@@ -1,0 +1,129 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+= Einfache Tabellen =
+$$ ^ Heading 1      ^ Heading 3                           ^^ heading 4   ^
+$$ | Row 1 Col 1    | Row 1 Col 2     | Row 1 Col 3        | row 1 col 4 |
+$$ | Row 2 Col 1    | some colspan (note the double pipe)              |||
+$$ | Row 3 Col 1    | Row 3 Col 2     | Row 3 Col 3        | row 3 col 4 |
+^ Heading 1      ^ Heading 3          ^^ heading 4   ^
+| Row 1 Col 1    | Row 1 Col 2     | Row 1 Col 3        | row 1 col 4 |
+| Row 2 Col 1    | some colspan (note the double pipe)              |||
+| Row 3 Col 1    | Row 3 Col 2     | Row 3 Col 3        | == row 3 col 4 == |
+
+$$ ^              ^ Heading 1            ^ Heading 2                               ^
+$$ ^ Heading 3    | Row 1 Col 2          |  [http://www.google.de google]          |
+$$ ^ Heading 4    | :>> >> colspan (align: right)                                 ||  
+$$ ^ Heading 5    | :> Row 2 Col 2       | [[manual:hyperlinks#hypalink]]          |           
+$$ ^ Heading 6    | no colspan this time |                                         |           
+^              ^ Heading 1            ^ Heading 2                            ^
+^ Heading 3    | Row 1 Col 2          |  [http://www.google.ca google]       |
+^ Heading 4    | :>> >> colspan (align: right)                              ||
+^ Heading 5    | :> Row 2 Col 2       | [[manual:hyperlinks#hypalinks]]      |
+^ Heading 6    | no colspan this time |                                      |
+
+
+
+
+
+**Vor NOWIKI** <nowiki>**Innerhalb NOWIKI. //Sonderzeichentest//: äöüß**</nowiki> **Nach NOWIKI**
+Nowiki-Alternative mit Prozentzeichen: %%__**//lala//**__%% wird nicht geparsed!
+
+$$ ^ Heading 5    | :> Row 2 Col 2       | [[manual:hyperlinks#hypalinks]]      |
+$$ ^ Heading 6    | {{{
+$$ * Liste test
+$$ * liste 2
+$$ }}} | Inhalt letzte Zelle |
+
+
+= header level 1 =
+~~PLUGIN:xy~~
+~~PLUGIN2:abc#par 1#par\ as2#pa~~ rn~~
+{{{ ml }}}
+^ header1   ^ header2   ^ header3 ^
+^ header4   | __test__ | **test2** ^ header5 ^
+| //weiter// | __**//lala//**__ | asdf |
+| {{{
+* liste
+| tabelle2 | lala |
+| 23 | 254 | 
+}}} |
+$$ preformat
+{{{ xy {{{ xy }}}}}}
+__underline
+auf mehreren
+zeilen__
+
+----
+
+
+
+----
+
+|:>> {{{
+| :> 23 | kalalalalala |
+| testen testen testen |:>> asdf |
+}}} |
+| testen testen testen | asd | 2 neue Tabellen ??? BUG!!! |
+| testen testen testen | asdf |  2 neue Tabellen ??? BUG!!! |
+$$ pre
+
+----
+
+
+----
+
+Neue Zeile \\ 2. Zeile
+
+----
+
+!! hallo = 3
+!! var3 = "string
+über mehrere zeilen mit \"escaped\" parenthesis!"
+{{PI}}
+Wiedergabe einer Variable **{{var3}}** und **{{hallo}}**
+
+----
+
+
+----
+
+
+
+----
+
+
+
+----
+
+== Syntax Verschachtelung (Multilines in Tabellen) ==
+Viele Syntaxanweisungen können in Tabellen noch nicht aufgelöst werden. \\
+z.B. werden Listen, Emoticons usw. innerhalb von Tabellen noch nicht (richtig) unterstützt.
+
+$$ ^ Heading 5    | :> Row 2 Col 2       | [[manual:hyperlinks#hypalinks]]      |
+$$ ^ Heading 6    | {{{
+$$ * Liste test
+$$ * liste 2
+$$ }}} | Inhalt letzte Zelle |
+
+^ Heading 5    | :> Row 2 Col 2       | [[manual:hyperlinks#hypalinks]]      |
+^ Heading 6    | {{{
+* Liste test
+* liste 2
+}}} | Inhalt letzte Zelle |
+
+

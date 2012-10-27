@@ -1,0 +1,11 @@
+= Bilder (beta)=
+$$ [[Image:bao1.jpg]]
+$$ [[Image:bao1.jpg#rightbox#alternate text]]
+$$ [[Image:bao1.jpg#boxleft#alternate text]]
+$$ [[Image:bao1.jpg#right#alternate text]]
+$$ [[Image:bao1.jpg#left#alternate text]]
+[[Image:bao1.jpg]]
+[[Image:bao1.jpg#rightbox#alternate text]]
+[[Image:bao1.jpg#boxleft#alternate text]]
+[[Image:bao1.jpg#right#alternate text]]
+[[Image:bao1.jpg#left#alternate text]]

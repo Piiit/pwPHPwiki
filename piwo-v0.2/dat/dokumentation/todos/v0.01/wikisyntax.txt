@@ -1,0 +1,33 @@
+= Wikisyntax =
+
+== todos ==
+* <p> um Textabschnitte legen </p>
+* <acronym> einführen
+* Vorschau-Info bei hover über Fußzeilen
+* Syntax ändern: Externe Links auch mit doppelter Klammerung und | für Parametertrennung (vereinheitlicht und copy/paste aus Dokuwiki besser möglich)
+* Externe, interne, Sprung- und Admin-Links grafisch voneinander trennen
+* Überlegen, ob noch andere Schreibweisen geändert werden sollen (bspw. Plugins und Variablen, Konstanten und Sektionen)
+* Funktion erstellen, die Interne Wikilinks zerlegt und als benanntes Array zurückgibt
+* Kommentare auch mit dreifachen Anführungszeichen zulassen (usability): ''%%"""Das ist ein Kommentar!"""%%''
+
+== bugs ==
+* <em>External Links</em> Klammern werden erst im Parser als ungültiger Link erkannt und somit werden Tokens, die innerhalb der Klammern vorkommen nicht (oder falsch; meist als externallink) verarbeitet. Bsp.: [{{ID}}] [~~TEXT:ucfirst|{{NS}}~~] [xy]
+* <em>Internal Links</em> Sprung zu einem Kapitel in einer anderen Seite (Hash-Symbol ''#'')\\Bsp.: ''%%[[textgestaltung:symbole#numerische notation]]%%''
+* <em>Warnungen</em> Fehler, falls Warnung innerhalb eines Tokens auftritt, der trotzdem verarbeitet wird. Verarbeitung müsste unterbunden werden und ein einheitlicher Fehler ausgegeben werden. \\Beispiel: ''%%[[{{VARXY}}|{{VARXY}}]]%%''\\Ausgabe: [[{{VARXY}}|{{VARXY}}]]
+* <em>Preformat</em> Leerzeichen am Zeilenanfang gehen verloren
+
+== done ==
+* <em>Internal Links</em> Interne Sprunglinks fehlen, bspw. [[#Testseiten]] oder [[#_TOP]] (//siehe [[:Dokumentation:Textgestaltung:Hyperlinks|Dokumentation]]//)
+* <em>External Links</em> ''%%[...]%%'' wird als externer Link erkannt, obwohl ... keine URL ist. TEST: [... Das ist KEIN gültiger Link] [...] [xy]
+* <em>Einzug</em> Aufeinander folgende Einzüge der selben Ebene dürfen kein neues DIV-Element erzeugen! Falsche Annahme: müssen neues DIV erzeugen, damit Zeilenumbrüche erhalten bleiben
+* <em>Preformat</em> Zeilen unter einer Preformat-Sektion werden in diese aufgenommen
+* <em>Listen</em> Gemischte Listen funktionieren nicht.
+* <em>Listen</em> Listen werden nicht richtig abgeschlossen.
+* <em>Symbole im nowiki-Sektor</em> ''%%&nbsp;%%'' wird als Leerzeichen angezeigt, sollte aber 1:1 ausgegeben werden.
+* <em>CDATA</em> [[:tests:syntax error reproduction:005|Bug #005]]
+
+== Testseiten ==
+* [[:tests:preformat|Preformat Testseite]]
+* [[:tests:listen|Listen Testseite]]
+* [[:tests:ilinktests|Interne Links Testseite]]
+* [[:tests:Syntax Error Reproduction]]

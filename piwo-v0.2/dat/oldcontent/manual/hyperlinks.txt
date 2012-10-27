@@ -1,0 +1,45 @@
+= Interne Links =
+Zwei eckige Klammern setzen.
+
+== Innerhalb dieser Datei ==
+Vor dem Link ein # setzen. Alle Links können als Parameter einen neuen Anzeige-Namen erhalten.
+^ ! 	^ Identifizierung bzw. Ziel		^ Befehl                    		        		^ Ausgabe - Beispiel 		^ Hinweise ^
+| :: >> **Kapitelauswahl**  			|
+| :ok: | Kapitelnummer 			| ''<nowiki>[[#1.2]]</nowiki>'' 				| > [[#1.2]] 							| Falls die Kapitelnummer angegeben wird, wird der Name des Titels ausgegeben.|
+| :ok: | Kapitelname				| ''<nowiki>[[#Externe Links]]</nowiki>'' 			| > [[#Externe Links]]					| Alternativ kann auch der Titelname hergenommen werden.|
+| :ok: | Kapitelname (neu definiert) 	| ''<nowiki>[[#Externe Links#Neuer Namen]]</nowiki>'' 	| > [[#Externe Links#Neuer Namen]]			| Der selbe Link mit einem neu definierten Linktext.|
+| :ok: | Fehlendes Kapitel			| ''<nowiki>[[#Nicht da]]</nowiki>'' 			| > [[#Nicht da]] 			| Fehlende Links werden markiert.|
+| :: >> **Spezielle Kürzel \\ --(HINWEIS: Falls diese Kürzel als Kapitelnamen vorkommen, muss die Kapitelnummer als Sprungziel hergenommen werden.)--** |||||
+| :ok: | Anfang der Seite			| ''<nowiki>[[#TOP]]</nowiki>'' 				| > [[#TOP]]	 			| Springe zum Anfang der Seite (Defaulttext = Anfang).|
+| :ok: | Anfang der Seite (neu def.)	| ''<nowiki>[[#TOP#Hier ist der Anfang]]</nowiki>''	| > [[#TOP#Hier ist der Anfang]]	| Springe zum Anfang der Seite (Text wird als Parameter definiert).|
+| :!:  | Inhaltsverzeichnis			| ''<nowiki>[[#PAGETOC]]</nowiki>'' 			| > [[#PAGETOC]]			| Springe zum Inhaltsverzeichnis dieser Seite (Defaulttext = Inhalt).|
+| :!:  | Hauptverzeichnis 			| ''<nowiki>[[#TOC]]</nowiki>''				| > [[#TOC]]				| Springe zum Inhaltsverzeichnis aller Seiten (Defaulttext = Inhalt).|
+| :ok: | Ende der Seite			| ''<nowiki>[[#BOTTOM]]</nowiki>'' 				| > [[#BOTTOM]] 			| Springe zum Ende der Seite (Defaulttext = Ende).|
+| :?:  | Haupttitel				| ''<nowiki>[[#MAINTITLE]]</nowiki>'' 			| > [[#MAINTITLE]] 			| Springe zum Haupttitel (Defaulttext = Titel).\\ --(TODO: Fehlerhandling)--|
+| :?:  | Seitenübersicht			| ''<nowiki>[[#SITEMAP]]</nowiki>'' 			| > [[#SITEMAP]] 			| Springe zur Sitemap. \\ --(TODO: alles)--|
+
+Legende: \\
+:!: BUG :?: TODO :ok: OK
+
+== Innerhalb dieser Wiki ==
+Wiki-Links haben einen Namespace, Kapitelnamen und optional einen Titel.\\
+Zum Beispiel liegt dieser Wikitext im Namespace "''{{NS}}''" und heißt "''{{ID}}''". Daraus ergibt sich die vollständige ID: "''{{FULLID}}''".
+$$ [[Namespace:Name#Text des Links]]
+Falls nur der Name angegeben wird, wird das //**Wurzelverzeichnis**// hergenommen: 
+$$ [[Name#Text des links]]
+
+:i: Außerdem gibt es noch spezielle Befehle im Namespace "''pw_cms''".\\
+::: Dieser Namespace ist nur für [[manual:berechtigungen#Administratoren]] zugänglich und enthält die [[manual:Konfiguration]] für das CMS-Frontend.
+
+= Externe Links =
+Eine eckige Klammern setzen. \\
+
+== Unbenannte Links ==
+:!: Links zu externen Seiten ohne Namen werden durchnummeriert und am Ende der Datei (:?: TODO) aufgelistet.
+$$ Der erste Link [http://www.google.de] und der zweite [http://www.hoferhof.net].
+Der erste Link [http://www.google.de] und der zweite [http://www.hoferhof.net].
+
+== Benannte Links ==
+Man kann dem Link auch einen Namen geben. 
+$$ [http://www.hoferhof.net Urlaub am Bauernhof]
+[http://www.hoferhof.net Urlaub am Bauernhof]

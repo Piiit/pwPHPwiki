@@ -1,0 +1,29 @@
+= Grammar =
+
+== Rules and Subrules ==
+<code>
+rule-name : definition ;
+rule-name : definition1 | definition2 | definition3 ;
+rule-name : definition1   # most significant
+          | definition2
+          | definition3   # least significant
+          ;
+rule-name : definition1 | (sub-rule(sub-sub-rule(...))) ;
+rule-name : 'string' rule-name 'other_string' ;
+</code>
+
+== Operators ==
+Optional
+<code>(...)?</code>
+One or more
+<code>(...)+</code>
+Zero or more
+<code>(...)*</code>
+Not
+<code>~'abc'</code>
+List of characters will be handled separatelly.
+<code>'a1c\n'</code>
+Strings will be handled as atoms.
+<code>"string"</code>
+Sequences
+<code>'a'..'z'</code>

@@ -1,0 +1,56 @@
+<right alone><border>~~TOC~~</border></right>
+= Unit Tests =
+
+
+== Unit Test Klasse ==
+
+== Unit Test Dateiformat ==
+
+; Format der Datei:
+: ''[SEKTION]'': Sektionsangabe
+: ''Variable = Wert'': Konfigurationszeile
+: ''Variable = "String (auch über mehrere Zeilen)"''
+: Innerhalb der Testsektion muss PHP-Code stehen, der Werte mit ''return'' zurückgibt.
+: Eingaben in der Input-Sektion können noch nicht auf einen bestimmten Datentyp geprüft werden.
+
+^ Sektion  ^ Aufgabe der Sektion ^ Beschreibung 
+^ Config   | Einstellungen zur Syntax, Codierung, ''require''-Anweisungen, Abhängigkeiten, ... | Wurde noch nicht implementiert! 
+^ Desc     | Beschreibung des Tests | Ausgabe im Überblicks-Infokasten
+^ Test     | PHP-Code des Tests | Schleifendurchlauf aller INPUT-Zeilen \\ Schlüsselwort: ''$INPUT'' fügt die einzelnen Zeilen ein, die in der INPUT-Sektion angegeben werden 
+^ Input    | Eingabeliste, die der Testroutine übergeben werden | Wird zeilenweise weitergereicht
+^ Expected | Erwartete Ergebnisse | Format: ''(Datentyp)Rückgabewert der Testfunktion'' (return)
+
+Weitere Informationen:
+* Die Reihenfolge der Sektionen ist unwichtig.
+* Alle Einträge unter **CONFIG** werden noch ignoriert.
+* Zur Zeit wird ''gettype'' verwendet, um Datentypen herauszufinden. Sollte man laut PHPmanual aber nicht, da sich die zurückgegebenen Zeichenketten ändern könnten.
+* __Achtung__: Leerzeichen am Ende der Input- und Expected-Sektion werden berücksichtigt. 
+
+=== Beispiel ===
+Vollständiges Beispiel zu [[unittest:dirname|common/dirname]].
+<code>
+[CONFIG]
+# noch keine CONFIG implementiert!!!
+syntax = wiki
+encoding = utf-8
+require = bin/common.php
+package = common.php
+
+[DESC]
+pw_dirname: 
+> Pfadstring wird übergeben
+< gibt den gesäuberten Pfadstring zurück
+
+[TEST]
+  return pw_dirname($INPUT, false);
+
+[INPUT]
+dat/dok/todos/v0.01.txt
+dat/dok/todos/
+
+[EXPECTED]
+(string)dat/dok/todos/
+(string)dat/dok/todos/
+</code>
+
+

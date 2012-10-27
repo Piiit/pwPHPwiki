@@ -1,0 +1,73 @@
+[DESC]
+Beschreibung...
+asdfasdf
+asdfasdfasdf
+asdfasdfasdf
+
+[TEST:1]
+  foreach ($filenames as $i => $filename) {
+    var_dump (pw_dirname($filename, true));
+
+[INPUT:1]
+dat/dok/todos/v0.01.txt
+dat/dok/todos/
+dat/dok/todos
+öäü/SOnderzeichen/Öä*
+////hallo//du/
+start/../anfang/
+/../../
+/Ähm/
+1/2/3/../../Hallo.php
+dat/h1/h2/../../zwei ebenen zurück.txt
+dat/tests/x/
+/
+hallo/../zwei.txt
+
+[EXPECTED:1]
+dat/dok/todos/
+dat/dok/todos/
+dat/dok/
+  false,
+/hallo/du/
+anfang/
+/
+/ähm/
+1/
+dat/
+dat/tests/x/
+/
+
+[TEST:2]
+  foreach ($filenames as $i => $filename) {
+    var_dump (pw_dirname($filename, false));
+    
+[INPUT:2 = INPUT:1]
+
+[EXPECTED:2]
+# Expected Results with 2nd parameter set to true (singleDirectory)
+"todos"
+"todos"
+"dok"
+false
+"du"
+"anfang"
+""
+"ähm"
+"1"
+"dat"
+"x"
+
+
+
+
+$res = test_pw_dirname($filenames, false);
+$res2 = test_pw_dirname($filenames, true);
+
+testing_html_header('pw_dirname2');
+
+pw_test($filenames, $res, $expres);
+pw_test($filenames, $res2, $expres2);
+
+testing_html_footer();
+
+?>

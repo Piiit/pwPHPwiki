@@ -1,0 +1,34 @@
+<code>
+!! var = 3
+{{var}}
+{{var = 7}}
+{{var}}
+{{varö = "Hallo Cavallo"}}
+{{i}}
+{{i = 3}}
+{{i}}
+{{i = 4}}
+{{i}}
+Teste Variablen: {{varö}}
+
+\\\\
+!! pfad = Die ID lautet {{ID}} und liegt im {{NS}}.
+{{pfad}}
+</code>
+
+!! var = 3
+{{var}}
+{{var = 7}}
+{{var}}
+{{varö = "Hallo Cavallo"}}
+{{i}}
+{{i = 3}}
+{{i}}
+{{i = 4}}
+{{i}}
+Teste Variablen: {{varö}}
+
+\\\\
+!! pfad = Die ID lautet {{ID}} und liegt im {{NS}}.
+{{pfad}}
+

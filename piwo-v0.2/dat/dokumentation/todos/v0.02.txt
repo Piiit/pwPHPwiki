@@ -1,0 +1,85 @@
+= Zukunftspläne =
+
+<info>
+:> Aktuelle Version:\\**{{version}}**\\--(Lexerversion: {{lexerversion}})--
+</info>
+
+<border>Inhaltsverzeichnis:\\~~TOC~~</border>
+
+; Farbcodes:
+: <hi 0>&nbsp;</hi> = Admin (Alle Menübefehle; inkl. interne Adminfunktionen, wie bspw. ''delpage'')
+: <hi 1>&nbsp;</hi> = Dokumentation
+: <hi 2>&nbsp;</hi> = Wikisyntax
+: <hi 3>&nbsp;</hi> = Code/Codierung
+: <hi 4>&nbsp;</hi> = Editor
+
+== CLEANUP v0.01 FIRST ==
+* <hi 3>Code</hi> Frontend und Backend voneinander trennen (UI-Bibliothek anlegen)
+ * ''pw_fileutils.php'' anlegen (Permissions des Filesystems kontrollieren, Fehlermeldungen übersetzen und ausgeben, ...)
+ * Abhängigkeiten auflösen... zu viele *.php-Files sind voneinander abhängig. Einzeln testen, einzeln testbar machen...
+
+== v0.02 ==
+* <hi>Admin</hi> WIKICSV implementieren...
+ * Korrekte Schreibweise für Dateinamen (Groß- und Kleinschreibung), lange und kurze Titel, Benutzer, Datum, ...
+ * Dateiinfo speichern, Wiki-Config speichern
+* <hi>Admin</hi> Mehrere Dateien löschen
+* <hi>Admin</hi> Timeout für Login auf x(5?) Minuten setzen.
+* <hi>Admin</hi> Login erfolgreich etc. nicht anzeigen bzw. nach kurzer Zeit ausblenden (falls JS aktiviert ist)
+* <hi>Admin</hi> Tastenkürzel
+ * für alle Funktionen festlegen... JS location.href = mit besserer Funktion versehen (setMode...)
+ * STRG+s = speichern
+ * testen, nur bei richtigem Kontext zulassen
+ * Pfeiltasten im Seitenüberblick (Enter = anzeigen, Space = auswählen, F7 = akt. Auswahl löschen, F6 = akt. Auswahl bearbeiten)
+* <hi>Admin</hi> autocompleter
+* <hi>Admin</hi> JS ''setfocus'' durch prototype-Fkt. ersetzen (???)
+* <hi>Admin</hi> Modaldialoge lassen die gesamte Seite neu laden... Performance schlecht. (AJAX oder iFrames?) -> Ansonsten durch Seitenbefehle ersetzen!!!
+* <hi 3>Code</hi> ''pw_lexer'' -> getconfig mit checks, ob config existiert oder nicht...
+* <hi 3>Code</hi> ''pw_lexer'' -> checknode einfügen nachdem im ''parserconf'' ein node abgerufen wird... (WARNING für LOG!)
+* <hi 3>Code</hi> ''pw_lexer'' -> automatisierte UNIT-Tests!
+* <hi 3>Code</hi> ''pw_lexer'' -> Interne Objektmethoden verwenden: ''getNode'' anstelle von ''$this->AST[$pid]''
+* <hi 3>Code</hi> Kommentare bei Erkennung aus AST entfernen, damit keine logischen Blöcke unterbrochen werden (siehe table, falls zwischen einer tablerow-Zeile und der nächsten ein Kommentar steht)
+* <hi 4>Editor</hi> [BESSER Wie in gmail! Sonst wird der Workflow unterbrochen!!!] Speichern im Modaldialog anzeigen (//Die Datei wird gespeichert... bitte warten.//)
+* <hi 4>Editor</hi> Speichern: Cursor muss aktuelle Position merken... ScrollX und -Y im Editor müssen erhalten bleiben. Besser in ein iFrame legen, damit textarea nicht neu geladen wird...
+
+
+== unsortiert ==
+* <hi 1>Dokumentation</hi> <hi 2>Wikisyntax</hi> UNIT Tests - Plugin, damit Tests innerhalb der Wiki angezeigt und dokumentiert werden können.
+* <hi>Admin</hi> ''pwTest'' und ''piwo'' zusammenbringen.
+* <hi>Admin</hi> Neue Funktion: "Seitenlink kopieren" -> a) als Link oder b) als Internen Wikilink
+* <hi>Admin</hi> Bilder und andere Dateien hochladen
+* <hi 2>Wikisyntax</hi> <em>Internal Links</em> Sprung zu einem Kapitel in einer anderen Seite (Hash-Symbol ''#'')\\Bsp.: ''%%[[textgestaltung:spezial#übersicht]]%%'' (schwierig, da fremde Seite geparsed und auf Sprungziele gescannt werden muss)
+* <hi 2>Wikisyntax</hi> INCLUDE
+* <hi 2>Wikisyntax</hi> NEWPAGE-Makro für Export oder Print
+* <hi 2>Wikisyntax</hi> nextpage, previouspage und weitere Navigationshilfen in Syntax einbauen
+* <hi 2>Wikisyntax</hi> <p> um Textabschnitte legen </p>
+* <hi 2>Wikisyntax</hi> <acronym> einführen
+* <hi 2>Wikisyntax</hi> Vorschau-Info bei hover über Fußzeilen
+* <hi 2>Wikisyntax</hi> Syntax ändern: Externe Links auch mit doppelter Klammerung und | für Parametertrennung (vereinheitlicht und copy/paste aus Dokuwiki besser möglich)
+* <hi 2>Wikisyntax</hi> Externe, interne, Sprung- und Admin-Links grafisch voneinander trennen
+* <hi 2>Wikisyntax</hi> Überlegen, ob noch andere Schreibweisen geändert werden sollen (bspw. Plugins und Variablen, Konstanten und Sektionen)
+* <hi 2>Wikisyntax</hi> Funktion erstellen, die Interne Wikilinks zerlegt und als benanntes Array zurückgibt
+* <hi 2>Wikisyntax</hi> <em>External Links</em> mit relativer Pfadangabe für ''localhost'' erlauben
+* <hi 2>Wikisyntax</hi> ''%%TextTextText((>Beschreibung für Hover oder Click))%%'' für Kurzbeschreibungen
+* <hi 2>Wikisyntax</hi> Anchor-Sprungbefehle damit man zb. zu einem bestimmten Bild oder Text springen kann.
+* <hi 2>Wikisyntax</hi> Fußzeilen, die erst am Ende definiert werden, damit der Text in dem sie vorkommen nicht "überladen" wird.
+* <hi 2>Wikisyntax</hi>  ''%%<code>%%''-Segmente mit GeShi parsen
+* <hi 2>Wikisyntax</hi> Boxen:
+ * width (%, px, auto) Parameter in Boxen erlauben
+ * download-Box hinzufügen (dunkleres grün)
+ * float right oder left
+ * Boxen müssen allg. gültige Paramterliste erhalten, damit float, width, height, etc. angegeben werden kann in lexerconf einführen... ''boxparameter'' oder ähnliches
+* <hi 2>Plugins</hi> History
+* <hi 2>Plugins</hi> Breadcrumb
+* <hi 2>Plugins</hi> Submenü, Seitenmenüs, Pulldown-Menüs, ...
+* <hi 1>Dokumentation</hi> Zeichen in der Sonderzeichentabelle nach Art/Typ (Mathe, Griechisch, Interpunktion, ...) sortieren, nicht nach Codierung
+* <hi 4>Editor</hi> Einfügen von Tabellen erleichtern (copy/paste), autom. ''|'' oder ''^'' einfügen
+
+== Bugs ==
+* <hi>Admin</hi> Logout (__nur mit Tastenkürzel__) vom Seitenüberblick aus führt auf eine Seite ''undefined'' ? (JS Fehler)
+* <hi>SECURITY</hi> mit Historyback kann man eine bereits beendete Session neu setzen und sich damit ohne Passwort einloggen
+* <hi>Admin</hi> URL-Parameter ''dialog'' wird angezeigt, obwohl kein Dialog geöffnet wurde. 
+ * Bsp.: Login + Bearbeiten = F12 + F6 => zeigt Editor + Logindialog
+ * Bsp.: Seite anzeigen + Einstellungen + Bearbeiten = F10 + F6 (alle MODE-Tastenkürzel ausschalten, wenn Dialog offen)
+
+
+

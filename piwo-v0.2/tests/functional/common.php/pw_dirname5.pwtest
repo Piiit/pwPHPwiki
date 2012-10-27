@@ -1,0 +1,43 @@
+[CONFIG]
+  syntax = wiki
+  encoding = utf-8
+  require = bin/common.php
+  package = common.php
+
+[DESC]
+Beschreibung... WIKISYNTAX MÖGLICH!
+asdfasdf
+asdfasdfasdf
+asdfasdfasdf
+
+[TEST]
+  var_dump (pw_dirname($INPUT, true));
+
+[INPUT]
+dat/dok/todos/v0.01.txt
+dat/dok/todos/
+dat/dok/todos
+öäü/SOnderzeichen/Öä*
+////hallo//du/
+start/../anfang/
+/../../
+/Ähm/
+1/2/3/../../Hallo.php
+dat/h1/h2/../../zwei ebenen zurück.txt
+dat/tests/x/
+/
+hallo/../zwei.txt
+
+[EXPECTED]
+dat/dok/todos/
+dat/dok/todos/
+dat/dok/
+  false,
+/hallo/du/
+anfang/
+/
+/ähm/
+1/
+dat/
+dat/tests/x/
+/

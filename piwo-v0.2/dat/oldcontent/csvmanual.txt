@@ -1,0 +1,14 @@
+!! title = Comma Separated Values - Engine
+!! tags = {Engine, wiki, csv, manual} # einzeilige listen sind noch nicht implementiert!!!
+!! include(wiki_vars) # includes sind noch nicht implementiert!!!
+!! small_title = CSV - Engine
+!! # Besser als UNIX-Date?
+!! created = {20/08/2008, 17:30, pitiz}
+!! last-modified = {user = pitiz, date = 31/08/2008}
+!! [testsection]
+!!    x = 3
+!!    y = 4
+!! []
+
+= Inhalt =
+~~toc:sub~~

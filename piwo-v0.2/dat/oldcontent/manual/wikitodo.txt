@@ -1,0 +1,80 @@
+= CMS: TODOS =
+Wichtig wäre ein bugtracker und eine einfache todo-liste mit Prioritäten
+== pw_wiki ==
+
+=== WIKI-SYNTAX ===
+# Fußnoten
+# :ok: hoch- und tiefgestellter Text
+# :ok: 3 Textgrößen: klein, normal/mittel, groß
+# [[manual:tabellen#Tabellen auch zeilenweise zulassen]]
+# Sections
+ * Openoffice Math Syntax support
+ * Download-Plugin
+# Vordefinierte Templates für z.B. Steckbrief etc.
+# Informationen ausgeben
+ * CSV-Werte und Tabellen bzw. Listen
+ * Pluginliste
+# Variablen und Konstanten definieren ( lastchange, user, edit_this_page )
+# [[#2. level einfügen]]...
+# Reload Vars: neu gestalten ohne $_SESSION zu benutzen, wenn möglich :?:
+# concatenate lines für bessere Übersichtlichkeit von wiki-Texten
+# TODO-Listen / frei definierte Listen mit #- und #+ für erledigt oder #I für römische Nummerierung etc.
+
+=== WIKI-STYLES ===
+# bessere Default - CSS
+# default.css und admin.css strikt trennen
+# Komplexen Text schreiben für Tests mit möglichst allen möglichen Variationen
+# herausfinden der veränderbaren Eigenschaften (über Admindialoge anpassbar machen)
+
+=== WIKI-ADMIN ===
+# Neue Seite anlegen
+# Neuen Namespace anlegen
+# Wikiordnung im 2. Level... d.h. zwei oder mehr wikis auf der selben plattform \\ Ordnerstruktur:
+ * ''data/'' (Ordner)
+  * ''seitenname/'' (Ordner)
+   * ''namespace/'' (Ordner <- optional)
+   * ''wikidateien'' (Datei)
+    * ''wikidateien'' (Datei)
+# :ok: Seiten löschen
+# Diffs zwischen alten und neuen Seiten
+# Backupsystem
+# :ok: //Links vom Wikitext aus, die auf Adminfunktionen zugreifen müssen vom Login aus direkt zur gewünschten Adresse weitergeleitet werden//
+# Infos zu den Seiten
+ * letzte Änderung von Benutzer xy
+ * angelegt am..., um...
+ * Zugriffsrechte
+ * Seitentitel (small und long)
+ * Seitenicon
+ * Template (css + automatischen Text als Vorlage)
+# Automatisches Speichern alle x Sekunden
+# Errorhandling mit besseren Ausgaben von Fehlern und Hinweisen
+# Logsystem (UNIX-style)       
+# Datenupload
+# kleiner einfacher Filemanager um Mediendateien...
+ * zu löschen
+ * umbenennen/verschieben
+ * Beschreibungen und Kommentare hinzufügen 
+
+== pw_lexer ==
+++Diese Idee zum Lexer ist veraltet. Siehe [[lexer#neuen Lexer]]! \\ //Kleinere Teile könnten aber noch übernommen werden.//++
+
+=== 2. Level einfügen ===
+* für Wiki-ARRAY (zukünftig WIKI-LEXER)
+* erster durchlauf: 
+ # alle cont als textzeile speichern (Trennzeichen = \n)
+ # aufrufe per call_user_function...
+* zweiter durchlauf:
+ # alle cont nochmal durch den lexer laufen lassen
+ # context-parameter einfügen... nicht alle tokens sind in allen contexts erlaubt
+* [[manual:multiline]]s einfügen
+ # {{{
+Syntax: 
+$$ {{{NAME
+$$ [...]
+$$ }}}
+Können dann später über ''<nowiki>{{{NAME}}}</nowiki>'' eingebunden werden für Listen in Tabellen z.B.
+}}}
+
+== pw_config ==
+# Definierbares Token für Kommentare (# -> wird im wiki-syntax zu oft verwendet) \\ oder string-hochkommata einführen \\ z.B. "[[Projekte{{CURRENTYEAR}}#Projekte des Jahre {{CURRENTYEAR}}]]"
+<nowiki> "[[Projekte{{CURRENTYEAR}}#Projekte des Jahre {{CURRENTYEAR}}]]"</nowiki>

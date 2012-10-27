@@ -1,0 +1,24 @@
+= Sonderzeichen =
+
+^ Was es ist ^ Was du schreibst\\(Beispiel) ^ Wie es\\dargestellt wird ^ Allgemeine Notation
+| Benanntes Zeichen      | ''%%&alpha;%%'' | ''&alpha;'' | ''&--[Name des Zeichens]--;''
+| Unicode (dezimal)     | ''%%&#945;%%''  | ''&#945;''  | ''&#--[Dezimale Nummer der Unicode-Tabelle]--;''
+| Unicdoe (hexadezimal) | ''%%&#x3B1;%%'' | ''&#x3B1;'' | ''&#x--[Hexadezimale Nummer der Unicode-Tabelle]--;''
+
+Das ''x'' notieren Sie dann, wenn Sie die Nummer hexadezimal angeben. Bei dezimaler Angabe 
+lassen Sie das ''x'' weg. 
+
+Eine Liste der gebräuchlichsten Symbole finden Sie in diesen [[Zeichentabelle|Zeichentabellen]]. 
+Falls das gesuchte Zeichen nicht dabei sein sollte, können Sie es aus den folgenden 
+[http://de.selfhtml.org/inter/unicode.htm Codetabellen] ermitteln.
+
+\\\\
+<info>
+**Hinweis:**\\
+Ein WWW-Browser muss jedoch HTML 4.0 interpretieren, und auch dann kann er nur solche Zeichen 
+darstellen, für die er eine geeignete Schriftart vorfindet.
+</info>
+
+\\
+----
+Quelle: [http://de.selfhtml.org/html/referenz/zeichen.htm SelfHTML Zeichenreferenz]

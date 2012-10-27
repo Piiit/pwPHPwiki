@@ -1,0 +1,424 @@
+
+body {
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 15px;
+  line-height: 1.5em;
+  background-color: #101010;
+  color: white;
+  margin: 0 0 0 0;
+  padding: 0;
+  width: 100%;
+}
+
+#imwiki {
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 15px;
+  line-height: 1.8em;
+  background-color: black;
+  color: white;
+
+}
+
+#imwiki .toc {
+  padding: 5px 0;
+  display: block;
+}
+
+#imwiki .pw_wiki_link_na:hover {
+  text-decoration: none;
+  #color: yellow;
+  border: 1px dotted lightgreen;
+}
+
+#imwiki .pw_wiki_link_na {
+  color: lightgreen;
+  border-bottom: 1px dotted lightgreen;
+  text-decoration: none;
+}
+
+#imwiki .pw_wiki_error {
+  border: 2px solid red;
+  color: red;
+  padding: 3px;
+  width: 200px;
+  background-color: yellow;
+}
+
+#imwiki table {
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  #margin: 20px;
+}
+
+#imwiki .tablediv {
+  overflow: auto;
+  width: 100%;
+  border: 0 solid green;
+}
+
+#imwiki table tbody td{
+   border: 1px solid lightgray;
+   padding: 3px 10px;
+   color: white;
+   font-size: 15px;
+}
+
+#imwiki table th{
+   color: white;
+   font-family: Verdana;
+   font-weight: normal;
+   border: 1px solid lightgray;
+   padding: 5px 10px;
+   background-color: #111122;
+   font-size: 14px;
+   letter-spacing: 3px;
+}
+
+#imwiki pre {
+  font-family: monospace;
+  border: 1px solid lightgray;
+  overflow-y: hidden;
+  overflow-x: auto;
+  background-color: #1A1A1A;
+  color: lightblue;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 16px;
+  margin: 6px 0;
+  padding: 0;
+}
+
+
+#imwiki pre div {
+  background:url("media/line-numbers.png") repeat-y left -10px;
+  background-color: #1A1A1A;
+  padding-left: 30px;
+  margin: 2px;
+}
+
+
+
+#imwiki li pre {
+  margin: 5px 0;
+}
+
+#imwiki .section_math {
+  font-family: Georgia, Times, "Times New Roman", serif;
+  font-size: 15px;
+}
+
+#imwiki .level {
+#  margin-left: 20px;
+}
+
+#imwiki .highlighted {
+  #background-color: orange;
+  border-radius: 3px;
+  padding: 1px 3px;
+  #color: black;
+}
+
+.c0 {
+  background-color: orange;
+  color: black;
+}
+
+.c1 {
+  background-color: green;
+  color: white;
+}
+.c2 {
+  background-color: yellow;
+  color: black;
+}
+.c3 {
+  background-color: #D8000C;
+  color: white;
+}
+.c4 {
+  background-color: lightblue;
+  color: black;
+}
+
+
+
+#imwiki .less_significant {
+  color: #444444;
+  font-size: 0.8em;
+}
+#imwiki .emphasised {
+  #color: yellow;
+  color: orange;
+}
+
+
+#imwiki h1,
+#imwiki h2,
+#imwiki h3,
+#imwiki h4,
+#imwiki h5 {
+ font-family: Georgia, Times, "Times New Roman", serif;
+ color: #3465A4;
+ clear: left;
+}
+
+#imwiki .clear {
+  clear: both;
+}
+
+#imwiki h1 {
+  margin: 55px auto 30px auto;
+  padding-bottom: 15px;
+  padding-left: 15px;
+  border-bottom: 1px solid #9999CC;
+  font-size: 2.3em;
+  font-weight: normal;
+  letter-spacing: 5px;
+}
+
+#imwiki h2 {
+  font-weight: normal;
+  border-bottom: 1px solid #222222;
+  font-size: 1.7em;
+  margin-top: 45px;
+  letter-spacing: 4px;
+  margin-bottom: 15px;
+  padding-bottom: 5px;
+}
+
+#imwiki h3 {
+  font-size: 1.1em;
+  margin-bottom: 10px;
+  letter-spacing: 3px;
+  margin-top: 20px;
+}
+
+#imwiki h4 {
+  color: white;
+  font-weight: bold;
+  font-size: 1em;
+  margin-bottom: 10px;
+  letter-spacing: 2px;
+  margin-top: 20px;
+}
+
+#imwiki h5 {
+  color: white;
+  font-size: 1em;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+  margin-top: 20px;
+}
+
+
+#imwiki p {
+  margin-bottom: 10px
+  line-height: 1.6em;
+}
+
+#imwiki strike:hover {
+  text-decoration: none;
+  border-top: 1px solid #333333;
+}
+
+.editing {
+  border: 1px solid black;
+  background-color: lightgray;
+  vertical-align: middle;
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+  font-size: 10px;
+  cursor: pointer;
+  float: right;
+  display: inline;
+}
+
+#imwiki code,
+#imwiki tt {
+  color: lightblue;
+  font-size: 16px;
+  font-family: monospace;
+  background-color: #1A1A1A;
+}
+
+
+#imwiki a {
+  color: lightgreen;
+  text-decoration: none
+}
+
+#imwiki a:hover {
+  text-decoration: underline;
+  #color: #3465A4;
+}
+
+#imwiki .footnote {
+  color: lightgreen;
+  text-decoration: none;
+  font-size: 10px;
+}
+
+#imwiki .footnote_t {
+  color: lightgreen;
+  text-decoration: none;
+}
+
+#imwiki .footnote_t:hover {
+  text-decoration: none;
+  color: #3465A4;
+}
+
+#imwiki .footnotes {
+  /*border-top: 1px solid lightblue;*/
+  /*margin-top: 30px;*/
+}
+
+
+#imwiki dt {
+  color: #3465A4;
+  #color: orange;
+  font-weight: bold;
+  font-size: 15px;
+  line-height: 1.6em;
+}
+
+#imwiki button {
+  vertical-align: middle;
+  margin: 0 5px;
+  padding: 3px;
+  background-color: white;
+  border: 1px solid gray;
+  color: black;
+}
+
+#imwiki input {
+  -moz-border-radius: 5px;
+  vertical-align: middle;
+  margin: 0 -2px;
+  padding: 3px;
+  background-color: white;
+  border: 1px solid gray;
+  color: black;
+}
+#imwiki input:hover,
+#imwiki button:hover,
+#imwiki input:focus,
+#imwiki button:focus {
+  background-color: lightblue;
+  border: 1px solid black;
+}
+
+#imwiki ul {margin: 0; padding-left: 25px; list-style-type: square;}
+#imwiki ul ul,
+#imwiki ol ul {margin: 0px; padding-left: 15px; list-style-type: square; list-style-position: outside}
+#imwiki ol {margin: 0; padding-left: 27px;}
+#imwiki ol ol {margin: 0; padding-left: 15px;}
+#imwiki li {color: white; padding-left: 0; padding-top: 2px;}
+#imwiki ol li .text {color: white}
+#imwiki li .text {
+  margin-bottom: -3px;
+  color: white;
+
+}
+
+#imwiki .center {
+  text-align: center;
+}
+#imwiki .center table {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+}
+
+#imwiki .right {
+  text-align:right
+}
+
+/*************
+ * SEKTIONEN *
+ *************/
+#imwiki .section_info,
+#imwiki .section_success,
+#imwiki .section_warning,
+#imwiki .section_error,
+#imwiki .section_validation,
+#imwiki .section_border {
+  border: 1px solid;
+  margin: 10px 0px;
+  padding:5px;
+  background-repeat: no-repeat;
+  background-position: 10px center;
+  border-radius: 5px;
+}
+
+#imwiki .section_info {
+  color: #00529B;
+  background-color: #BDE5F8;
+  /*background-image: url('../../lib/icons/PNG/info.png');*/
+}
+#imwiki .section_info li {
+  color: #00529B;
+}
+#imwiki .section_info a {
+  color: blue;
+}
+#imwiki .section_info a:hover {
+  color: #00529B;
+}
+#imwiki .section_info tt ,
+#imwiki .section_error tt {
+  color: #00529B;
+  background-color:  #95d8f8;
+  font-size: 0.9em;
+}
+#imwiki .section_info dt {
+  color: #3465A4;
+}
+
+#imwiki .section_success {
+  color: #4F8A10;
+  background-color: #DFF2BF;
+  /*background-image:url('../../lib/icons/PNG/success.png');*/
+}
+#imwiki .section_warning {
+  color: #9F6000;
+  background-color: #FEEFB3;
+  /*background-image: url('../../lib/icons/PNG/warning.png');*/
+}
+#imwiki .section_error {
+  color: #D8000C;
+  background-color: #FFBABA;
+  /*background-image: url("../../lib/icons/PNG/cancel.png");*/
+}
+#imwiki .section_validation {
+  color: #D63301;
+  background-color: #FFCCBA;
+  /*background-image: url('../../lib/icons/PNG/validation.png');*/
+}
+#imwiki .section_left {
+  width: 48%;
+  float: left;
+  margin: 5px 10px 10px 0;
+  padding: 3px 0
+}
+#imwiki .section_right {
+  width: 48%;
+  float: right;
+  margin: 5px 0 10px 10px;
+  padding: 3px 0
+}
+#imwiki .section_border {
+  border: 1px solid gray;
+  padding: 5px 10px 5px 10px;
+  border-radius: 5px;
+  background-color: black;
+}
+
+/*
+#__fullsite {
+  width: 100%;
+  height: 100%;
+  border: 3px solid red;
+}*/

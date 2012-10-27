@@ -1,0 +1,12 @@
+= {{ID}} =
+; Bereich
+: <hi 3>Codierung</hi> <em>Interne Links</em>
+; Erklärung
+: Links mit Sonderzeichen werden nicht dargestellt. 
+; Beispiel
+: ''%%[[Textgestaltung:Überschriften]]%%''
+; Ausgabe
+: [[Textgestaltung:Überschriften]]
+
+== Tests ==
+

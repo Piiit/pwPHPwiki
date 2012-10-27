@@ -1,0 +1,42 @@
+= Beschreibung =
+Codes sind kurze Zeichenfolgen, die durch ein Bild oder ein Sonderzeichen ersetzt werden. \\
+Konfiguriert werden sie in der Datei ''{{REPLACECODES}}''. \\
+Alle Icons liegen unter ''{{ICONPATH}}''. 
+
+= Emoticons =
+--Die meisten Emoticons können mit und ohne "Nase" ;) (Minuszeichen) dargestellt werden--
+$$ 8-) 8) 8-O :-( :( ;( ;-( :-) :) =) :-\ :\ :-? :? :-D :D :-P :P :-O :O :-X :X :-| :| ;-) ;) ^_^ 
+8-) 8) 8-O :-( :( ;( ;-( :-) :) =) :-\ :\ :-? :? :-D :D :-P :P :-O :O :-X :X :-| :| ;-) ;) ^_^
+
+= Symbole =
+Andere Icons kann man mit dem ''<nowiki>[image:]</nowiki>'' tag einfügen.
+
+$$ :?: :!: :*: :>: :i: :w: :e: :yes: :no: :hp: :mail: :ok: :todo: :fixme: :buggy: :bug:
+:?: :!: :*: :>: :i: :w: :e: :yes: :no: :hp: :mail: :ok: :todo: :fixme: :buggy: :bug:
+
+
+= Sonderzeichen =
+^ !    ^ Was? 					^ Befehl 						^ Beispiel 												^
+| :ok: | Neue Zeile 			| ''<nowiki>Zeile 1 \\ Zeile 2</nowiki>''		| Zeile 1 \\ Zeile 2 											|
+| :ok: | Zitat-Klammern			| ''<nowiki>>>Zitat<<</nowiki>''			| >>Zitat<<												|
+| :ok: | Doppelpfeil (schmal)  		| ''<nowiki>Mesch <-> Natur</nowiki>''		| Mensch <-> Natur 	|
+| :ok: | Einfache Pfeile (schmal)	| ''<nowiki>Links <- Mitte -> Rechts</nowiki>''	| Links <- Mitte -> Rechts										|
+| :ok: | Doppelpfeil (dick)		| ''<nowiki>Mensch <=> Gesellschaft</nowiki>''	| Mensch <=> Gesellschaft 						|
+| :ok: | Einfache Pfeile (dick)		| ''<nowiki>Links <= Mitte => Rechts</nowiki>''	| Links <= Mitte => Rechts										|
+| :ok: | Horizontale Trennlinie   	| ''<nowiki>Oben ---- Unten</nowiki>''		| Oben ---- Unten 											|
+
+\\ **Sonstiges**
+$$ | Deutsche Anführungszeichen | "Ja" |
+$$ | Lange Linie | ---  |
+$$ | Kurze Linie | --   |
+$$ | Copyright   | (c)  | 
+$$ | Trademark   | (tm) |  
+$$ | usw.        | ...  |
+$$ | Smileytest  | :-|  |
+| Deutsche Anführungszeichen | "Ja" |
+| Lange Linie | ---  |
+| Kurze Linie | --   |
+| Copyright   | (c)  | 
+| Trademark   | (tm) |  
+| usw.        | ...  |
+| Smileytest  | :-|  |

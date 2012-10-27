@@ -1,0 +1,1 @@
+= Zeilenende: MAC =<info>Alle Dateien werden auf das UNIX-Format angepasst. \\Diese Datei ist vom Format ''{{FILE:type}}''.</info>Diese Datei hat ''\r'' als LineEndings!MAC-Style...

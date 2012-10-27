@@ -1,0 +1,26 @@
+= Infos =
+Aktuelle Version [[parserlog#Parser]]: {{PARSERVERSION}}
+
+Aktuelle Version des alten Lexers: {{LEXERVERSION}} => [[lexer#Lexer]] (Link auf neuen Lexer)
+
+Aktuelle Version Editor (siehe [[cms_manual#CMS-Handbuch]]): {{EDITORVERSION}}
+
+= Verlinkte Seiten =
+* [[wikitodo]]
+* [[bugs]]
+
+= Todos =
+
+
+
+== Parser ==
+# Sections aufräumen
+ * Schließende Tags
+ * Wann wird eine geöffnet, geschlossen?
+ * Besseres Handling im Parser
+
+
+
+
+== Lexer ==
+[[new_lexer]]

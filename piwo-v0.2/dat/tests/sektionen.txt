@@ -1,0 +1,22 @@
+^ Was es ist ^ Wie es dargestellt wird ^ Was du schreibst ^
+| Hintergrund hervorheben\\Ohne Parameter (default) | {{{
+:> <hi>Ohne Angabe</hi>
+}}} | ''%%<hi>Ohne Angabe</hi>%%''
+| Paramter in Textform |  {{{
+:> <hi orange>Orange</hi>
+:> <hi blue>Blau</hi>
+:> <hi green>Grün</hi>
+:> <hi red>Rot</hi>
+:> <hi yellow>Gelb</hi>
+}}} | ''%%<hi Farbcode>Text</hi>%%''\\Für ''Farbcode'' kannst du ''orange'', ''blue'', ''green'', ''red'' oder ''yellow'' einsetzen.
+| Parameter in nummerischer Form | {{{
+:> <hi 0>Orange</hi>
+:> <hi 1>Grün</hi>
+:> <hi 2>Gelb</hi>
+:> <hi 3>Rot</hi>
+:> <hi 4>Blau</hi>
+}}} | ''%%<hi X>Text</hi>%%''\\Für ''X'' kannst du Ziffern von ''0'' bis ''4'' einsetzen.
+| Legenden darstellen\\--(Kein Text zwichen den Tags; bzw. ''%%&nbsp;%%'')-- | {{{
+: <hi 3></hi> = Leeres Feld
+: <hi 3>&nbsp;</hi> = Breitere Darstellung
+}}} | ''%%<hi 3></hi> = Leeres Feld%%''\\''%%<hi 3>&nbsp;</hi> = Breitere Darstellung%%''

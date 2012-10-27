@@ -1,0 +1,6 @@
+= NICE =
+<info>
+Hier wird alles abgelegt, das gefällt und eventuell als Idee dient... Vielleicht wird etwas in PiWo eingebaut...
+</info>
+
+~~NSTOC|{{fullid}}|TITLE~~

@@ -1,0 +1,12 @@
+= TODO =
+
+== Priorität I ==
+* CSV-Datei mit allen notwendigen Informationen
+* Details anzeigen
+* Neue Seite erstellen mit Namenschecks und weiteren Eingaben
+* Vorlagen verwalten
+* Upload von Dateien
+* Benutzerverwaltung und Zugriffsrechte verwalten
+
+== Priorität II ==
+* Editor verbessern (GUI + Usability)
