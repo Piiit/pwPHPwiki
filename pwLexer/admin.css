@@ -1,0 +1,388 @@
+#__main {
+  padding: 10px 15px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 960px;
+  border-radius: 15px;
+  border: 5px solid gray;
+  background-color: black;
+  color: white;
+}
+
+#admin table {
+  border-collapse: collapse;
+  margin-bottom: 10px;
+  margin-top: 3px;
+}
+#admin table tbody td{
+  border: 1px solid lightgray;
+  padding: 3px 10px;
+  color: white;
+  font-size: 12px;
+}
+
+#admin table th{
+  color: white;
+  font-family: Verdana;
+  font-weight: normal;
+  border: 1px solid lightgray;
+  padding: 5px 10px;
+  background-color: #111122;
+  font-size: 12px;
+  letter-spacing: 3px;
+}
+
+#admin a {
+  color: lightgreen;
+  text-decoration: none;
+}
+
+#admin a:hover {
+  text-decoration: underline;
+}
+
+#admin table tr:hover {
+  background-color: lightgray;
+}
+
+
+
+#imdebug {
+  color: black;
+  background-color: lightgray;
+  line-height: 15px;
+  font-size: 13px;
+  padding: 5px;
+}
+
+#imdebug pre {
+  overflow: auto;
+}
+
+.syntaxerror {
+  margin-left: 10px;
+  border: 1px solid red;
+  color: yellow;
+}
+
+.overlay-decorator {
+  background: black;
+  display: block;
+  height:100%;
+  width:100%;
+  position:absolute;
+  #overflow: hidden;
+  top:0;
+  left:0;
+  opacity:0.7;
+  z-index:2000;
+  *display:none;
+}
+.overlay-wrap {
+  height:100%;
+  width:100%;
+  display:block;
+  position:absolute;
+  top:0;
+  left:0;
+  z-index:2001;
+  overflow:hidden;
+  *overflow-x:hidden;
+  *zoom:1;
+  *filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#cc002244,endColorstr=#cc002244);
+  *background:transparent url(pixel.gif);
+}
+.overlay {
+  z-index:2001;
+  position:relative;
+  margin:0 auto;
+  display:table;
+  height:100%;
+  vertical-align:middle;
+  z-index:9999;
+  *width:100%;
+  *text-align:center;
+  *position:static;
+  *display:block;
+}
+.dialog-wrap {
+  display:table-cell;
+  vertical-align:middle;
+  #margin-top: 300px;
+  *width:300px;
+  *text-align:left;
+  *zoom:1;
+  *display:inline;
+}
+
+.dialog-decorator {
+  display:block;
+  *vertical-align:middle;
+  *zoom:1;
+  *display:inline;
+  *height:100%;
+  *width:0;
+}
+
+
+#modal {
+  display:block;
+}
+.modal #modal {
+  display:block;
+  padding: 0;
+}
+
+#__fullsite {
+  #font-family: tahoma;
+  font-size: 12px;
+  display: block
+}
+
+#header {
+  width: 960px;
+  height: 80px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 10px 15px;
+  border-radius: 15px;
+  border: 5px solid gray;
+  background-color: black;
+}
+
+#header .title {
+  float: left;
+  font-family: "MuseoSans",Helvetica;
+  font-size: 68px;
+  font-weight: normal;
+  letter-spacing: -1.5px;
+  margin-left: 10px;
+  margin-top: 25px;
+  color: white;
+}
+#header .titledesc {
+  color: gray;
+}
+#header .title a {
+  color: white;
+  text-decoration: none;
+}
+#header .title a:hover {
+  color: gray;
+}
+.edit {
+  position: relative;
+  margin: -5px 0;
+  font-size: 12px;
+  font-weight: normal;
+}
+a {
+  margin: 0;
+  display: inline;
+  position: relative;
+  text-decoration: none;
+  color: lightgreen;
+}
+a:hover {
+  text-decoration: underline;
+  #color: #3465A4;
+}
+
+.shortcut {
+  font-size: 0.8em;
+  border: 1px solid lightgreen;
+  margin-left: 3px;
+  margin-right: 3px;
+  background-color: black;
+  padding: 0 3px 1px 3px;
+  color: lightgreen;
+}
+
+#header .right {
+  position: absolute;
+  margin-top: -10px;
+  width: 300px;
+  height: 100px;
+  border-left: 5px solid gray;
+  margin-left: 650px;
+  padding-left: 7px;
+}
+
+#ajax_dialog {
+  font-family: tahoma;
+  background-color: black;
+  border: 5px solid gray;
+  border-radius: 15px;
+  overflow: hidden;
+}
+#ajax_dialog h1 {
+  background-color: black;
+  color: white;
+  border-bottom: 5px solid gray;
+  font-size: 15px;
+  letter-spacing: 2px;
+  margin: 10px auto 10px auto;
+  height: 35px;
+  text-align: center;
+}
+#ajax_dialog div {
+  margin: 20px;
+  color: white;
+}
+#ajax_dialog div:last-child {
+  display: block;
+  border: 0;
+  margin: 0;
+  text-align: center;
+  width: 100%;
+  border-top: 3px solid gray;
+  background-color: gray;
+}
+
+#ajax_dialog div:last-child a {
+  text-decoration: none;
+}
+#ajax_dialog div:last-child a input,
+#ajax_dialog div:last-child button {
+  width: 130px;
+  margin: 0 10px;
+}
+#ajax_dialog .textinput {
+  width: 500px;
+  font-family: monospace;
+  font-size: 16px;
+  height: 20px;
+  padding: 3px;
+}
+
+#autoc {
+}
+
+#autoc ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 0.9em;
+}
+
+#autoc span {
+  color: lightgreen;
+}
+
+#autoc li {
+  padding: 1px 3px;
+}
+
+#autoc li.selected {
+  color: white;
+  background-color: #222222;
+}
+
+
+.lexertable {
+  border-collapse: collapse;
+  font-family: verdana;
+  font-size: 11px;
+  border: 3px solid gray;
+}
+
+.lexertable th{
+  border-bottom: 3px solid gray;
+  border-right: 1px solid gray;
+  background-color: lightgray;
+  font-size: 13px;
+  padding: 5px;
+
+}
+.lexertable tr td {
+  padding: 5px;
+  border: 1px solid gray;
+}
+.odd {
+  background-color:lightgray;
+}
+
+.lexertable pre {
+  font-size: 12px;
+  margin: 0;
+}
+
+#wikitxt {
+  display: block;
+  #position: relative;
+  #margin: 0 -10px 0 0;
+  margin-left: 0;
+  margin-right: 0;
+  border: 1px solid gray;
+  color: white;
+  width: 98%;
+  padding: 0.9%;
+  background-color: rgb(0,64,128);
+  font-family: "Bitstream Vera Sans Mono", monospace;
+  font-size: 13px;
+  line-height: 18px;
+  letter-spacing: 1px
+}
+
+#texteditor {
+  border: 3px solid gray;
+  background-color: gray;
+}
+
+#texteditor a {
+  text-decoration: none;
+}
+
+button,
+input,
+#modal a,
+#texteditor a {
+  background-color: lightgray;
+  color: black;
+  border: 3px solid gray;
+  margin: 0 0 4px 0;
+  display: inline-block;
+  width: 150px;
+  font-size: 12px;
+  line-height: 14px;
+  padding: 0;
+}
+
+input[type=checkbox] {
+  width: auto;
+  margin-right: 5px;
+}
+
+#modal a,
+#texteditor a {
+  text-align: center;
+  padding: 1px;
+}
+
+
+button:hover,
+input:hover,
+button:focus,
+input:focus,
+#modal a:hover,
+#modal a:focus,
+#texteditor a:hover,
+#texteditor a:focus {
+  background-color: lightblue;
+  border: 3px solid black;
+}
+
+#texteditor tt {
+  color: black;
+  font-weight: bold;
+  font-size: 0.9em;
+  background-color: lightgreen;
+  border: 1px solid black;
+  padding: 2px;
+}
+
+#texteditor .error {
+  background-color: #FFCCBA;
+}
