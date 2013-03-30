@@ -1,5 +1,11 @@
 <?php
+if (!defined('INC_PATH')) {
+	define ('INC_PATH', '../');
+}
 
+require_once INC_PATH.'pw_isvalid.php';
+require_once INC_PATH.'toc.php';
+		
 function snewline() {
   #return '<br />';
 }
@@ -839,7 +845,7 @@ function sinternallink($node, $lexer) {
   } else {
 
     //out($fullid);
-    preg_match("#(.*)\#(.*)#", $fullid, $lpt);
+    preg_match("/(.*)#(.*)/", $fullid, $lpt);
     //out($lpt);
 
     $id = isset($lpt[1]) ? $lpt[1] : $fullid;

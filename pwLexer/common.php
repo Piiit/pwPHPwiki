@@ -177,7 +177,7 @@ function pw_basename($fn, $ext = null) {
 }
 
 function pw_wiki_file2editor($data) {
-	$data = pw_wiki_LE_unix($data);
+	pw_normalizeLE($data);
 	$data = pw_s2e($data);
 	return $data;
 }
