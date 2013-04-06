@@ -1,5 +1,5 @@
 <?php
-class Format {
+class TextFormat {
 	
 	public static function showLineNumbers($textInput) {
 		if (!is_string($textInput)) {

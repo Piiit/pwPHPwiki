@@ -3,8 +3,8 @@ if (!defined('INC_PATH')) {
 	define ('INC_PATH', '../');
 }
 
-require_once INC_PATH.'pw_isvalid.php';
-require_once INC_PATH.'toc.php';
+require_once INC_PATH.'pwTools/validator/pw_isvalid.php';
+require_once INC_PATH.'pwLexer/toc.php';
 		
 function snewline() {
   #return '<br />';

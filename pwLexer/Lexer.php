@@ -24,7 +24,7 @@ FIXME LEXER SHOULD ONLY PRODUCE AN AST; PUT EVERYTHING ELSE TO NODE, TREE OR A N
 */
 
 if (!defined('INC_PATH')) {
-	define ('INC_PATH', '.');
+	define ('INC_PATH', './');
 }
 
 require_once INC_PATH.'pwTools/encoding/encoding.php';
@@ -93,7 +93,7 @@ class Lexer {
 				$this->_updateTextPosition();
 				$this->_addNodeOnOpen($token);
 				$this->_addNodeOnClose($token);
-				echo Format::preFormat($token);
+				echo TextFormat::preFormat($token);
 			}
 			$this->_executiontime = $timer->measure_elapsed(4);
 		#} while($this->_cycle <= 6);
