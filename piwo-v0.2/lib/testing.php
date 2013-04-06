@@ -3,10 +3,10 @@
 if (!defined('INC_PATH')) {
 	define ('INC_PATH', realpath(dirname(__FILE__).'/../').'/');
 }
-require_once INC_PATH."utf8.php";
-require_once INC_PATH."encoding.php";
-require_once INC_PATH."common.php";
-require_once INC_PATH."pw_debug.php";
+require_once INC_PATH."pwTools/string/utf8.php";
+require_once INC_PATH."pwTools/string/encoding.php";
+require_once INC_PATH."piwo-v0.2/lib/common.php";
+require_once INC_PATH."piwo-v0.2/lib/pw_debug.php";
 
 class pwTest {
   protected $testName = "";

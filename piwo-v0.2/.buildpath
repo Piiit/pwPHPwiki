@@ -2,5 +2,6 @@
 <buildpath>
 	<buildpathentry kind="con" path="com.zend.php.phpunit.CONTAINER"/>
 	<buildpathentry kind="con" path="org.eclipse.php.core.LANGUAGE"/>
+	<buildpathentry combineaccessrules="false" kind="prj" path="/pwTools"/>
 	<buildpathentry kind="src" path=""/>
 </buildpath>

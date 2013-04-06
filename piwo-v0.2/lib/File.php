@@ -3,15 +3,22 @@
 if (!defined('INC_PATH')) {
 	define ('INC_PATH', realpath(dirname(__FILE__).'/../').'/');
 }
-require_once INC_PATH.'FilePath.php';
+require_once INC_PATH.'piwo-v0.2/lib/FilePath.php';
 
 
 /**
  * Class: File - file actions with exception throwing
  * @author pitiz29a
  * TODO what if we change the working directory and some files are still open,
- *      do they will be touched again in the new dir? All instances must be closed
+ *      will they be touched again in the new dir? All instances must be closed
  *      when changing the working dir!
+ * TODO Use FQ filepath and filename (-> FilePath)
+ * TODO Check for directory separators assigned from OS
+ * TODO Collect a set of Exceptions (create a class FileException) with ID and 
+ * 		central stored description strings
+ * TODO copy and move with renaming if destination has a filename
+ * TODO utf8 support
+ * TODO automagically create directories if not present (but only if flag is set)
  * 
  */
 class File {

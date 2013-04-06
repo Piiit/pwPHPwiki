@@ -4,6 +4,7 @@ if (!defined('INC_PATH')) {
 	define ('INC_PATH', realpath(dirname(__FILE__).'/../').'/lib/');
 	#echo INC_PATH;
 }
+require_once INC_PATH.'FilePath.php';
 require_once INC_PATH.'File.php';
 
 #mkdir("001");

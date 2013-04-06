@@ -3,9 +3,15 @@
 if (!defined('INC_PATH')) {
 	define ('INC_PATH', realpath(dirname(__FILE__).'/../').'/');
 }
-require_once INC_PATH.'pw_isvalid.php';
+require_once INC_PATH.'pwTools/validator/pw_isvalid.php';
 
-
+/**
+ * Class: FilePath - Creates an Object containing a cleaned filepath and provides some
+ * 		  additional information about the filepath, such as absolute, dir or file, validity, ...
+ * 		  Some static functions to perform actions on the given filepath-string
+ * @author pitiz29a@gmail.com
+ *
+ */
 class FilePath {
 	
 	private $_filename;

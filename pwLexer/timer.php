@@ -1,5 +1,6 @@
 <?php
 //Measure executing time
+//TODO Refactor, code conventions!!
 class timer
 {
 	private $time;
