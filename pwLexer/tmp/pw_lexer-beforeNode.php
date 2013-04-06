@@ -7,10 +7,10 @@
  */
 
 
-require_once INC_PATH."piwo-v0.2/lib/pw_debug.php";
-require_once INC_PATH."piwo-v0.2/lib/timer.php";
+require_once INC_PATH."pwLexer/pw_debug.php";
+require_once INC_PATH."pwLexer/timer.php";
 require_once INC_PATH."pwTools/string/encoding.php";
-require_once INC_PATH."piwo-v0.2/lib/Node.php";
+require_once INC_PATH."pwTools/tree/Node.php";
 
 #require_once LEXER_INC."lexer_testtext.php";
 
