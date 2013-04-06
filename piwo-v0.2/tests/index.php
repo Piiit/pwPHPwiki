@@ -8,8 +8,8 @@
   <frame src="showtests.php" name="Daten" frameborder="0" />
   <noframes>
     <body>
-      <h1>Keine Frame-Unterstützung</h1>
-      <p>Diese Testumgebung benötigt Frames!</p>
+      <h1>Keine Frame-Unterst&uuml;tzung</h1>
+      <p>Diese Testumgebung ben&ouml;tigt Frames!</p>
     </body>
   </noframes>
 </frameset>

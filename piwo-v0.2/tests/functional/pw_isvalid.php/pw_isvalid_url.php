@@ -1,13 +1,11 @@
 <?php
 
 if (!defined('INC_PATH')) {
-  define ('INC_PATH', '../../../');
-  #if(!defined('DOKU_INC')) define('DOKU_INC',realpath(dirname(__FILE__).'/../').'/');
-  #define('INC_PATH',realpath(dirname(__FILE__).'/').'/');
+  define ('INC_PATH', realpath(dirname(__FILE__).'/../../../../').'/');
 }
 
-require_once INC_PATH."/bin/testing.php";
-require_once INC_PATH."/lib/pw_isvalid.php";
+require_once INC_PATH."piwo-v0.2/lib/testing.php";
+require_once INC_PATH."pwTools/validator/pw_isvalid.php";
 
 // Input...
 $urls = array(

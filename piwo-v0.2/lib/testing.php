@@ -158,7 +158,7 @@ function testing_html_header($title) {
   pw_ne ('<head>', START);
   pw_ne ("<title>piwo: UNIT-TESTING: $title</title>");
   pw_ne ('<meta http-equiv="Content-Type" content="text/html" charset="utf-8">');
-  pw_ne ('<link rel="stylesheet" type="text/css" media="screen" href="'.INC_PATH.'testing.css">');
+  pw_ne ('<link rel="stylesheet" type="text/css" media="screen" href="../testing.css">');
   pw_ne ('</head>', END);
   pw_ne ('<body>', START);
   pw_ne ("<h1>Test: $title</h1>");

@@ -1,4 +1,4 @@
-<?php  // @TODO: BAD CODE...  $piwo_version = "0.1.1 - Alpha";  error_reporting(E_ALL);  session_start();  if (!defined('PLUGIN_PATH')) {
+<?php  //FIXME: BAD CODE SMELL... whole file!  $piwo_version = "0.1.1 - Alpha";  error_reporting(E_ALL);  session_start();  if (!defined('PLUGIN_PATH')) {
   	define ('PLUGIN_PATH', realpath(dirname(__FILE__)).'/plugins/');
   }
   if (!defined('CFG_PATH')) {  	define ('CFG_PATH', realpath(dirname(__FILE__)).'/cfg/');  }  if (!defined('INC_PATH')) {

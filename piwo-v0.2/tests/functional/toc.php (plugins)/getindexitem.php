@@ -1,18 +1,10 @@
 <?php
 
-if (!defined('INC_PATH')) {
-  define ('INC_PATH', '../../../');
-  #define('INC_PATH',realpath(dirname(__FILE__).'/').'/');
-}
+if (!defined('INC_PATH')) {  define ('INC_PATH', realpath(dirname(__FILE__).'/../../../../').'/');}
 
 session_start();
-
-require_once INC_PATH."/bin/testing.php";
-require_once INC_PATH."/lib/pw_debug.php";
-require_once INC_PATH."/lib/pw_lexer.php";
-require_once INC_PATH."/bin/lexerconf.php";
-require_once INC_PATH."/bin/parserconf.php";
-require_once INC_PATH."/plugins/toc.php";
+require_once INC_PATH."piwo-v0.2/lib/testing.php";
+require_once INC_PATH."piwo-v0.2/lib/pw_debug.php";require_once INC_PATH."piwo-v0.2/lib/pw_lexer.php";require_once INC_PATH."piwo-v0.2/lib/lexerconf.php";require_once INC_PATH."piwo-v0.2/lib/parserconf.php";require_once INC_PATH."piwo-v0.2/plugins/toc.php";
 
 $text = "
 = Hallo =

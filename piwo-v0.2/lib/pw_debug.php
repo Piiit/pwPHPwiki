@@ -14,7 +14,7 @@ if (isset($_SESSION["pw_debug"]) and $_SESSION["pw_debug"])
 if (!defined('INC_PATH')) {
 	define ('INC_PATH', realpath(dirname(__FILE__).'/../').'/');
 }
-require_once 'lib/common.php';
+require_once INC_PATH.'piwo-v0.2/lib/common.php';
 
 
 $pw_debug_id = 0;

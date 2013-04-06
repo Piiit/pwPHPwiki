@@ -20,11 +20,11 @@ $idX_expres = array(
 //FIXME Use phpUnit for testing...
 
 if (!defined('INC_PATH')) {
-  define ('INC_PATH', '../../../');
-  #define('INC_PATH',realpath(dirname(__FILE__).'/').'/');
+  define ('INC_PATH', realpath(dirname(__FILE__).'/../../../../').'/');
 }
 
-require_once INC_PATH."/bin/testing.php";
+require_once INC_PATH."piwo-v0.2/lib/testing.php";
+require_once INC_PATH."piwo-v0.2/lib/common.php";
 
 $storage = pw_wiki_getcfg('storage');
 $ext = pw_wiki_getcfg('fileext');

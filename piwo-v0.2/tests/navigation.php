@@ -1,10 +1,11 @@
 <?php
 
+//FIXME Define include paths like this... always step outside of piwo! Always use realpath and dirname
 if (!defined('INC_PATH')) {
-  define ('INC_PATH', '../');
+  define ('INC_PATH', realpath(dirname(__FILE__).'/../../').'/');
 }
 
-require_once INC_PATH."bin/testing.php";
+require_once INC_PATH."piwo-v0.2/lib/testing.php";
 
 testing_html_header("Functional");
 
@@ -20,6 +21,7 @@ foreach ($libs as $lib) {
     echo "<ul>";
     foreach ($functions as $func) {
       $name = basename($func, ".php");
+      //FIXME target doesn't jump to right frame!
       echo "<li><a target='Daten' href='$func'>$name</a></li>";
     }
     echo "</ul>";
