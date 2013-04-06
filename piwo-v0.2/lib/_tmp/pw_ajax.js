@@ -53,9 +53,9 @@
 
 				var xhri = pw_ajax_init();
 				var func = null;
+				var param_string = "";
 
 				if (param != null) {
-					var param_string = "";
 					for (var ele in param) {
 						param_string += ele + "=" + param[ele] + "&";
 					}

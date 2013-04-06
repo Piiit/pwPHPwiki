@@ -14,7 +14,7 @@ shortcut = {
 			'disable_in_input':false,
 			'target':document,
 			'keycode':false
-		}
+		};
 		if(!opt) opt = default_options;
 		else {
 			for(var dfo in default_options) {
@@ -24,7 +24,6 @@ shortcut = {
 
 		var ele = opt.target;
 		if(typeof opt.target == 'string') ele = document.getElementById(opt.target);
-		var ths = this;
 		shortcut_combination = shortcut_combination.toLowerCase();
 
 		//The function to be called at keypress
@@ -32,11 +31,10 @@ shortcut = {
 			e = e || window.event;
 
 			if(opt['disable_in_input']) { //Don't enable shortcut keys in Input, Textarea fields
-				var element;
+				element = null;
 				if(e.target) element=e.target;
 				else if(e.srcElement) element=e.srcElement;
 				if(element.nodeType==3) element=element.parentNode;
-
 				if(element.tagName == 'INPUT' || element.tagName == 'TEXTAREA') return;
 			}
 
@@ -73,7 +71,7 @@ shortcut = {
 				".":">",
 				"/":"?",
 				"\\":"|"
-			}
+			};
 			//Special Keys - and their codes
 			var special_keys = {
 				'esc':27,
@@ -127,7 +125,7 @@ shortcut = {
 				'f10':121,
 				'f11':122,
 				'f12':123
-			}
+			};
 
 			var modifiers = {
 				shift: { wanted:false, pressed:false},
@@ -194,7 +192,7 @@ shortcut = {
 					return false;
 				}
 			}
-		}
+		};
 		this.all_shortcuts[shortcut_combination] = {
 			'callback':func,
 			'target':ele,
@@ -210,7 +208,7 @@ shortcut = {
 	'remove':function(shortcut_combination) {
 		shortcut_combination = shortcut_combination.toLowerCase();
 		var binding = this.all_shortcuts[shortcut_combination];
-		delete(this.all_shortcuts[shortcut_combination])
+		delete(this.all_shortcuts[shortcut_combination]);
 		if(!binding) return;
 		var type = binding['event'];
 		var ele = binding['target'];
@@ -220,7 +218,7 @@ shortcut = {
 		else if(ele.removeEventListener) ele.removeEventListener(type, callback, false);
 		else ele['on'+type] = false;
 	}
-}
+};
 
 
 
@@ -231,13 +229,13 @@ shortcut = {
  * @TODO: but them in a configfile.
  */
 
-mode = pw_url_getparam('mode', window.location.href)
+mode = pw_url_getparam('mode', window.location.href);
 
 shortcut.add("Ctrl+s",function() {
 	//alert("SAVE");
 	//document.write("HALLO")
-	te = document.getElementById("save")
-	te.click()
+	te = document.getElementById("save");
+	te.click();
 },{
 	'type':'keydown',
 	'propagate':false,
@@ -247,25 +245,25 @@ shortcut.add("Ctrl+s",function() {
 
 
 shortcut.add("Esc",function() {
-	te = document.getElementById("exiteditor")
+	te = document.getElementById("exiteditor");
 	if (te)
-		window.location.href = te.href
+		window.location.href = te.href;
 	else {
 		// @TODO: location.href nur ändern, wenn ESC-Button im aktuellen Kontext erlaubt ist...
-		url = window.location.href
+		url = window.location.href;
 
-		mode = pw_url_getparam('mode', url)
-		dialog = pw_url_getparam('dialog', url)
+		mode = pw_url_getparam('mode', url);
+		dialog = pw_url_getparam('dialog', url);
 
-		notallowed = new Array('cleared')
-		url = pw_url_setparam('dialog', null, url)
+		notallowed = new Array('cleared');
+		url = pw_url_setparam('dialog', null, url);
 
 		if (!pw_array_find(mode, notallowed) || dialog)
 			if (mode == 'showpages' && dialog) {
-				window.location.href = pw_url_setparam('mode', 'showpages', url)
+				window.location.href = pw_url_setparam('mode', 'showpages', url);
 			} else {
 
-				window.location.href = pw_url_setparam('mode', 'cleared', url)
+				window.location.href = pw_url_setparam('mode', 'cleared', url);
 			}
 	}
 },{
@@ -276,17 +274,17 @@ shortcut.add("Esc",function() {
 
 shortcut.add("F6",function() {
 	url = window.location.href;
-	mode = pw_url_getparam('mode', url)
+	mode = pw_url_getparam('mode', url);
 	if (mode == 'showpages') {
-		node = document.getElementById("overview").getElementsByTagName("TR")
+		node = document.getElementById("overview").getElementsByTagName("TR");
 
 		for (i in node) {
 			if (node[i].nodeName == "TR") {
 				if (tr_focus == i) {
-					tr_focus = 0
-					links = node[i].getElementsByTagName("A")
+					tr_focus = 0;
+					links = node[i].getElementsByTagName("A");
 					if (links[1]) {
-						window.location.href = links[1]
+						window.location.href = links[1];
 					}
 				}
 			}
@@ -294,7 +292,7 @@ shortcut.add("F6",function() {
 		return
 
 	}
-	window.location.href = pw_url_setparam('mode', 'editpage', url)
+	window.location.href = pw_url_setparam('mode', 'editpage', url);
 },{
 	'type':'keydown',
 	'propagate':false,
@@ -303,18 +301,18 @@ shortcut.add("F6",function() {
 
 shortcut.add("F7",function() {
 	url = window.location.href;
-	mode = pw_url_getparam('mode', url)
+	mode = pw_url_getparam('mode', url);
 
 	if (mode == 'showpages') {
-		node = document.getElementById("overview").getElementsByTagName("TR")
+		node = document.getElementById("overview").getElementsByTagName("TR");
 
 		for (i in node) {
 			if (node[i].nodeName == "TR") {
 				if (tr_focus == i) {
-					tr_focus = 0
-					links = node[i].getElementsByTagName("A")
+					tr_focus = 0;
+					links = node[i].getElementsByTagName("A");
 					if (links[2]) {
-						window.location.href = links[2]
+						window.location.href = links[2];
 					}
 				}
 			}
@@ -323,9 +321,9 @@ shortcut.add("F7",function() {
 
 	}
 
-	dialog = pw_url_getparam('dialog', url)
+	dialog = pw_url_getparam('dialog', url);
 	if (dialog != 'delpage')
-		window.location.href = pw_url_setparam('dialog', 'delpage', url)
+		window.location.href = pw_url_setparam('dialog', 'delpage', url);
 },{
 	'type':'keydown',
 	'propagate':false,
@@ -334,18 +332,18 @@ shortcut.add("F7",function() {
 
 shortcut.add("F8",function() {
 	url = window.location.href;
-	mode = pw_url_getparam('mode', url)
+	mode = pw_url_getparam('mode', url);
 
 	if (mode == 'showpages') {
-		node = document.getElementById("overview").getElementsByTagName("TR")
+		node = document.getElementById("overview").getElementsByTagName("TR");
 
 		for (i in node) {
 			if (node[i].nodeName == "TR") {
 				if (tr_focus == i) {
-					tr_focus = 0
-					links = node[i].getElementsByTagName("A")
+					tr_focus = 0;
+					links = node[i].getElementsByTagName("A");
 					if (links[3]) {
-						window.location.href = links[3]
+						window.location.href = links[3];
 					}
 				}
 			}
@@ -354,9 +352,9 @@ shortcut.add("F8",function() {
 
 	}
 
-	dialog = pw_url_getparam('dialog', url)
+	dialog = pw_url_getparam('dialog', url);
 	if (dialog != 'movepage')
-		window.location.href = pw_url_setparam('dialog', 'movepage', url)
+		window.location.href = pw_url_setparam('dialog', 'movepage', url);
 
 },{
 	'type':'keydown',
@@ -366,9 +364,9 @@ shortcut.add("F8",function() {
 
 shortcut.add("F9",function() {
 	url = window.location.href;
-	dialog = pw_url_getparam('dialog', url)
+	dialog = pw_url_getparam('dialog', url);
 	if (dialog != 'newpage')
-		window.location.href = pw_url_setparam('dialog', 'newpage', url)
+		window.location.href = pw_url_setparam('dialog', 'newpage', url);
 },{
 	'type':'keydown',
 	'propagate':false,
@@ -377,9 +375,9 @@ shortcut.add("F9",function() {
 
 shortcut.add("F10",function() {
 	url = window.location.href;
-	mode = pw_url_getparam('mode', url)
+	mode = pw_url_getparam('mode', url);
 	if (mode != 'showpages')
-		window.location.href = pw_url_setparam('mode', 'showpages', url)
+		window.location.href = pw_url_setparam('mode', 'showpages', url);
 },{
 	'type':'keydown',
 	'propagate':false,
@@ -388,45 +386,45 @@ shortcut.add("F10",function() {
 
 shortcut.add("F12",function() {
 	url = window.location.href;
-	dialog = pw_url_getparam('dialog', url)
+	dialog = pw_url_getparam('dialog', url);
 	if (dialog != 'login')
-		window.location.href = pw_url_setparam('dialog', 'login', url)
+		window.location.href = pw_url_setparam('dialog', 'login', url);
 },{
 	'type':'keydown',
 	'propagate':false,
 	'target':document
 });
 
-tr_focus = 0
+tr_focus = 0;
 
 shortcut.add("up",function() {
 
-	node = document.getElementById("overview").getElementsByTagName("TR")
+	node = document.getElementById("overview").getElementsByTagName("TR");
 
-	tr_focus -= 1
+	tr_focus -= 1;
 
 	if (tr_focus <= 0)
-		tr_focus = node.length-1
+		tr_focus = node.length-1;
 
 	for (i in node) {
 		if (node[i].nodeName == "TR") {
 			if (tr_focus == i) {
-				node[i].style.background="#222222"
+				node[i].style.background="#222222";
 
 				// Position: tablerow
-				y = findPosY(node[i])
-				x = findPosX(node[i])
+				y = findPosY(node[i]);
+				x = findPosX(node[i]);
 
 				// Position: scrolled page (bottom)
-				px = f_scrollLeft()
-				py = f_scrollTop()+f_clientHeight()
+				px = f_scrollLeft();
+				py = f_scrollTop()+f_clientHeight();
 
 				if (py < y+20 || py > y) {
-					window.scrollTo(px, y-40)
+					window.scrollTo(px, y-40);
 				}
 
 			} else {
-				node[i].style.background="#000000"
+				node[i].style.background="#000000";
 			}
 		}
 	}
@@ -439,31 +437,31 @@ shortcut.add("up",function() {
 
 shortcut.add("down",function() {
 
-	node = document.getElementById("overview").getElementsByTagName("TR")
+	node = document.getElementById("overview").getElementsByTagName("TR");
 
-	tr_focus += 1
+	tr_focus += 1;
 
 	if (tr_focus > node.length-1)
-		tr_focus = 1
+		tr_focus = 1;
 
 	for (i in node) {
 		if (node[i].nodeName == "TR") {
 			if (tr_focus == i) {
-				node[i].style.background="#222222"
+				node[i].style.background="#222222";
 
 				// Position: tablerow
-				y = findPosY(node[i])
-				x = findPosX(node[i])
+				y = findPosY(node[i]);
+				x = findPosX(node[i]);
 
 				// Position: scrolled page (bottom)
-				px = f_scrollLeft()
-				py = f_scrollTop()+f_clientHeight()
+				px = f_scrollLeft();
+				py = f_scrollTop()+f_clientHeight();
 
 				if (py < y+20 || py > y) {
-					window.scrollTo(px, y-40)
+					window.scrollTo(px, y-40);
 				}
 			} else {
-				node[i].style.background="#000000"
+				node[i].style.background="#000000";
 			}
 		}
 	}
@@ -478,25 +476,25 @@ shortcut.add("down",function() {
 
 shortcut.add("enter",function() {
 
-	dialog = pw_url_getparam('dialog', window.location.href)
-	ae = document.activeElement
+	dialog = pw_url_getparam('dialog', window.location.href);
+	ae = document.activeElement;
 	if ((dialog != false || dialog != '')) {
 		if ((dialog == 'login' && ae.name == 'password') || (ae.name == 'logout') || (dialog == 'newpage') || (dialog == 'config') || (dialog == 'movepage')) {
 			node = document.getElementById('submit');
-			node.click()
+			node.click();
 			return false;
 		}
 	}
 
-	node = document.getElementById("overview").getElementsByTagName("TR")
+	node = document.getElementById("overview").getElementsByTagName("TR");
 
 	for (i in node) {
 		if (node[i].nodeName == "TR") {
 			if (tr_focus == i) {
-				tr_focus = 0
-				links = node[i].getElementsByTagName("A")
+				tr_focus = 0;
+				links = node[i].getElementsByTagName("A");
 				if (links[0])
-					window.location.href = links[0]
+					window.location.href = links[0];
 			}
 		}
 	}
@@ -508,15 +506,15 @@ shortcut.add("enter",function() {
 });
 
 shortcut.add("delete",function() {
-	node = document.getElementById("overview").getElementsByTagName("TR")
+	node = document.getElementById("overview").getElementsByTagName("TR");
 
 	for (i in node) {
 		if (node[i].nodeName == "TR") {
 			if (tr_focus == i) {
-				links = node[i].getElementsByTagName("A")
+				links = node[i].getElementsByTagName("A");
 				if (links[3]) {
-					tr_focus = 0
-					window.location.href = links[3]
+					tr_focus = 0;
+					window.location.href = links[3];
 				}
 			}
 		}

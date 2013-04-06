@@ -503,7 +503,7 @@ class pwLexer {
 		// DONE: exitpattern greifen erst, wenn sie bereits ge?ffnet wurden...
 
 		if (strlen($entrypattern) == 0) {
-			$this->addLog("WARNING", "Patternstringlength == 0! Pattern not added. name='$name', entry='$entrypattern', exit='$exitpattern', type='$type'");
+			$this->addLog("WARNING", "Patternstringlength == 0! Pattern not added. name='$name', entry='$entrypattern', exit='$exitpattern'");
 			return false;
 		}
 
@@ -606,7 +606,7 @@ class pwLexer {
 		// DONE: exitpattern greifen erst, wenn sie bereits ge?ffnet wurden...
 
 		if (strlen($entrypattern) == 0 or strlen($exitpattern) == 0) {
-			$this->addLog("WARNING", "Patternstringlength == 0! Pattern not added. name='$name', entry='$entrypattern', exit='$exitpattern', type='$type'");
+			$this->addLog("WARNING", "Patternstringlength == 0! Pattern not added. name='$name', entry='$entrypattern', exit='$exitpattern'");
 			return false;
 		}
 
