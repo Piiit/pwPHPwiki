@@ -7,7 +7,7 @@ if (!defined('INC_PATH')) {
 require_once INC_PATH.'pwTools/tree/Node.php';
 require_once INC_PATH.'pwTools/tree/TreeWalkerConfig.php';
 
-// FIXME refactor getArray with a TreeWalker adapter!!!
+// TODO refactor getArray with a TreeWalker adapter!!!
 function getArray($node, $arr = array()) {
 
 

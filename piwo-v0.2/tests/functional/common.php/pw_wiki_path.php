@@ -17,6 +17,8 @@ $idX_expres = array(
 
 */
 
+//FIXME Use phpUnit for testing...
+
 if (!defined('INC_PATH')) {
   define ('INC_PATH', '../../../');
   #define('INC_PATH',realpath(dirname(__FILE__).'/').'/');
