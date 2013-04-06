@@ -1,7 +1,6 @@
 <?php
 
-#require_once 'ui.php';
-require_once 'pw_debug.php';
+require_once INC_PATH.'piwo-v0.2/lib/pw_debug.php';
 
 function pw_wiki_version() {
 	global $piwo_version;

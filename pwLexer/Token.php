@@ -1,9 +1,5 @@
 <?php
 
-if (!defined('INC_PATH')) {
-	define ('INC_PATH', '../');
-}
-
 require_once INC_PATH.'pwTools/string/encoding.php';
 require_once INC_PATH.'pwTools/tree/Node.php';
 

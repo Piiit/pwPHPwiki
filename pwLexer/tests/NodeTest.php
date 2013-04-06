@@ -3,9 +3,6 @@
 require_once 'Node.php';
 require_once 'PHPUnit\Framework\TestCase.php';
 
-/**
- * Node test case.
- */
 class NodeTest {
 	
 	private $Node1;

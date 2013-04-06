@@ -23,18 +23,14 @@ TODO: new...
 FIXME LEXER SHOULD ONLY PRODUCE AN AST; PUT EVERYTHING ELSE TO NODE, TREE OR A NEW PARSER CLASS: LIKE GETARRAY, CALLFUNCTION, ETC.
 */
 
-if (!defined('INC_PATH')) {
-	define ('INC_PATH', './');
-}
-
 require_once INC_PATH.'pwTools/string/encoding.php';
 require_once INC_PATH.'pwTools/string/TextFormat.php';
 require_once INC_PATH.'pwTools/tree/Node.php';
 require_once INC_PATH.'pwTools/data/Collection.php';
-require_once 'timer.php';
-require_once 'Token.php';
-require_once 'Pattern.php';
-require_once 'Log.php';
+require_once INC_PATH.'piwo-v0.2/lib/timer.php';
+require_once INC_PATH.'piwo-v0.2/lib/Token.php';
+require_once INC_PATH.'piwo-v0.2/lib/Pattern.php';
+require_once INC_PATH.'piwo-v0.2/lib/Log.php';
 
 class Lexer {
 	

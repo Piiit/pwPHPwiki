@@ -7,7 +7,7 @@
 ## todo: ausgabe in log-file
 
 # auch E_NOTICE anzeigen, damit man auch kleinere programmfehler finden kann!! (per default ist dies ausgeschaltet)
-require_once "common.php";
+require_once INC_PATH.'piwo-v0.2/lib/common.php';
 
 if (isset($_SESSION["pw_debug"]) and $_SESSION["pw_debug"])
 	error_reporting(E_ALL&~E_NOTICE);

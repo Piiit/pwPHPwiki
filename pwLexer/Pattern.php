@@ -1,9 +1,5 @@
 <?php
 
-if (!defined('INC_PATH')) {
-	define ('INC_PATH', '.');
-}
-
 require_once INC_PATH.'pwTools/tree/Node.php';
 
 class Pattern extends Node {

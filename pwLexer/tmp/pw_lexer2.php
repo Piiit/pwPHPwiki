@@ -7,25 +7,12 @@
  */
 
 
-#if(!defined('LEXER_INC')) {
-#  define ('LEXER_INC', "../");
-#}
-
-#if (!defined('INC_PATH')) {
-#  define ('INC_PATH', '../../../');
-#}
-
 //FIXME: create a Node class to represent all Nodes with pattern, name, registered function to parse, config, ...
 
-
-#require_once LEXER_INC."pw_debug.php";
-#require_once LEXER_INC."timer.php";
-#require_once LEXER_INC."../bin/encoding.php";
-#require_once LEXER_INC."lexerutils.php";
-require_once "../pw_debug.php";
-require_once "../timer.php";
-require_once "../encoding.php";
-require_once "../pw_pattern.php";
+require_once INC_PATH."piwo-v0.2/lib/pw_debug.php";
+require_once INC_PATH."piwo-v0.2/lib/timer.php";
+require_once INC_PATH."pwTools/string/encoding.php";
+require_once INC_PATH."piwo-v0.2/lib/Node.php";
 
 #require_once LEXER_INC."lexer_testtext.php";
 

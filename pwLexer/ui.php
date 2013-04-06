@@ -1,5 +1,4 @@
 <?php
-
 function pw_ui_printDialogWrap($dialog=-1) {
 	if ($dialog == -1) {
 		pw_ne ("</div>", END);
