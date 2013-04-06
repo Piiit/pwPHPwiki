@@ -27,13 +27,13 @@ if (!defined('INC_PATH')) {
 	define ('INC_PATH', './');
 }
 
-require_once INC_PATH.'pwTools/encoding/encoding.php';
-require_once INC_PATH.'pwTools/string/Format.php';
+require_once INC_PATH.'pwTools/string/encoding.php';
+require_once INC_PATH.'pwTools/string/TextFormat.php';
 require_once INC_PATH.'pwTools/tree/Node.php';
+require_once INC_PATH.'pwTools/data/Collection.php';
 require_once 'timer.php';
 require_once 'Token.php';
 require_once 'Pattern.php';
-require_once 'Collection.php';
 require_once 'Log.php';
 
 class Lexer {
