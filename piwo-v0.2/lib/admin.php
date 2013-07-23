@@ -187,7 +187,7 @@ function pw_wiki_delnamespaces($dir) {
 	$footerData = file_get_contents($footerFilename);
 	if ($footerFilename === false) {
 		throw new Exception("Unable to read template file '$footerFilename'!");
-	}		$cachedDir = dirname($cachedFilename);	if (!is_dir($cachedDir) && !mkdir($cachedDir, 0755, true)) {		throw new Exception("Unable to create folder '$cachedDir'!");	}	$data = pw_wiki_LE_unix($data);	$headerData = pw_wiki_LE_unix($headerData);	$footerData = pw_wiki_LE_unix($footerData);
+	}		FileTools::createFolderIfNotExist(dirname($cachedFilename));	$data = pw_wiki_LE_unix($data);	$headerData = pw_wiki_LE_unix($headerData);	$footerData = pw_wiki_LE_unix($footerData);
 	$data = $headerData."\n".$data."\n".$footerData;
 	
 	if (!utf8_check($data)) {
