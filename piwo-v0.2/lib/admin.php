@@ -49,7 +49,7 @@ function pw_wiki_savepage ($id, $data) {
   }
 
   $data = pw_wiki_LE_unix($data);
-  $ret = @file_put_contents($filename, $data);
+  $ret = file_put_contents($filename, $data);
 
   $filename = pw_s2e($filename);  if ($ret !== false) {    $ret = "<tt>Datei '$filename' wurde gespeichert.</tt>";  } else {    $ret = "<tt class='error'>Datei '$filename' konnte nicht gespeichert werden.</tt>";
   }    pw_wiki_create_cached_page($id);
@@ -167,17 +167,17 @@ function pw_wiki_delpage ($id) {  //@TODO: clean the code...  // --- rrmdir is
     if (pw_wiki_isns($id)) {      $id = substr($id,0,strlen($id)-1);    }    $newid = pw_wiki_ns($id."..");    return pw_ui_getDialogInfo("L&ouml;schen", $outdelns."Der Namensraum '$fntext' wurde gel&ouml;scht.", "id=".$newid."&mode=$MODE");  }  $type = "Die Seite";  if (pw_wiki_isns($id)) {    $type = "Den Namensraum";  }  return pw_ui_getDialogQuestion("L&ouml;schen", "$type '$fntext' l&ouml;schen?", "del", "L&ouml;schen", "id=$id&mode=$MODE");}
 function pw_wiki_delnamespaces($dir) {
   if (!isset($_SESSION["pw_wiki"]["login"]["user"]))    return false;  if ($dir == pw_wiki_getcfg('storage')) {    return;  }  #out ($dir);  $dir = str_replace("//", "/", $dir);  $dir = str_replace("\\\\", "\\", $dir);  #out2($dir);
-  $dirnames = explode("/", $dir);  #out($dirnames);  $dirar = array();  $dn = "";  foreach ($dirnames as $dirname) {    if ($dirname != "") {      $dn .= $dirname."/";      $dirar[] = $dn;    }  }  $dirar = array_reverse($dirar);  #out($dirar);  #die();  $dirtxt = "";  foreach ($dirar as $dirname) {    if (@rmdir($dirname)) {      $dirtxt = pw_wiki_path2id($dirname);      $dirtxt = pw_s2e($dirtxt);      #$dirtxt = pw_wiki_entities(pw_wiki_urldecode($dirtxt));      #$dirtxt = "Der Namensraum '$dirtxt' ist leer. Er wird entfernt.<hr />";    } else {      break;    }  }  return $dirtxt;}function pw_wiki_update_cache() {	$storage = pw_wiki_getcfg('storage');	if (!is_dir($storage)) {
+  $dirnames = explode("/", $dir);  #out($dirnames);  $dirar = array();  $dn = "";  foreach ($dirnames as $dirname) {    if ($dirname != "") {      $dn .= $dirname."/";      $dirar[] = $dn;    }  }  $dirar = array_reverse($dirar);  #out($dirar);  #die();  $dirtxt = "";  foreach ($dirar as $dirname) {    if (@rmdir($dirname)) {      $dirtxt = pw_wiki_path2id($dirname);      $dirtxt = pw_s2e($dirtxt);      #$dirtxt = pw_wiki_entities(pw_wiki_urldecode($dirtxt));      #$dirtxt = "Der Namensraum '$dirtxt' ist leer. Er wird entfernt.<hr />";    } else {      break;    }  }  return $dirtxt;}function pw_wiki_update_cache($forced = false) {	$storage = pw_wiki_getcfg('storage');	if (!is_dir($storage)) {
 		throw new Exception("Folder '$storage' does not exist!");
 	}		$files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($storage));
-	foreach($files as $filename) {		if(substr($filename, -4) == ".txt") {			$filename = str_replace("\\", "/", $filename);			try {				pw_wiki_create_cached_page(pw_wiki_path2id($filename));			} catch (Exception $e) {				echo "Exception: Skipping file '$filename'<br /> ";				echo $e;			}		}
-	}}function pw_wiki_create_cached_page($id) {	$filename = pw_wiki_path($id, ST_FULL);	$headerFilename = pw_wiki_path("tpl:header", ST_FULL);	$footerFilename = pw_wiki_path("tpl:footer", ST_FULL);	$cachedFilename = "home/".pw_wiki_path($id, NOEXT).".html";
+	foreach($files as $filename) {		if(substr($filename, -4) == ".txt") {			$filename = str_replace("\\", "/", $filename);			try {				pw_wiki_create_cached_page(pw_wiki_path2id($filename), $forced);			} catch (Exception $e) {				echo "Exception: Skipping file '$filename'<br /> ";				echo $e;			}		}
+	}}function pw_wiki_create_cached_page($id, $forced = false) {	$filename = pw_wiki_path($id, ST_FULL);	$headerFilename = pw_wiki_path("tpl:header", ST_FULL);	$footerFilename = pw_wiki_path("tpl:footer", ST_FULL);	$cachedFilename = "home/".pw_wiki_path($id, NOEXT).".html";
 		if (!is_file($filename)) {		throw new Exception("File '$filename' does not exist!");
 	}	if (!is_file($headerFilename)) {
 		throw new Exception("File '$headerFilename' does not exist!");
 	}	if (!is_file($footerFilename)) {
 		throw new Exception("File '$footerFilename' does not exist!");
-	}		// If the cached file is still up-to-date do nothing!	if(is_file($cachedFilename)) {		$cachedMTime = filemtime($cachedFilename);		if($cachedMTime >= filemtime($filename) && $cachedMTime >= filemtime($headerFilename) && $cachedMTime >= filemtime($footerFilename)) {			return;		}	}		$data = file_get_contents($filename);	if ($data === false) {
+	}		// If the cached file is still up-to-date do nothing! Except forced overwriting!	if(!$forced && is_file($cachedFilename)) {		$cachedMTime = filemtime($cachedFilename);		if($cachedMTime >= filemtime($filename) && $cachedMTime >= filemtime($headerFilename) && $cachedMTime >= filemtime($footerFilename)) {			$data = file_get_contents($cachedFilename);			if ($data === false) {				throw new Exception("Unable to read data file '$cachedFilename'!");			}			return $data;		}	}		$data = file_get_contents($filename);	if ($data === false) {
 		throw new Exception("Unable to read data file '$filename'!");
 	}
 	$headerData = file_get_contents($headerFilename);
@@ -197,26 +197,8 @@ function pw_wiki_delnamespaces($dir) {
 	$headerLineCount = count(explode("\n", $headerData));
 	$footerLineCount = count(explode("\n", $footerData));
 	
-	$out = lexerconf($data, $headerLineCount, $footerLineCount);		if (file_put_contents($cachedFilename, $out) === false) {		throw new Exception("Unable to write file '$cachedFilename'!");	}	}
-function pw_wiki_showcontent($id) {
-  //@TODO: Errorhandling!!!  $filename = pw_wiki_path($id, ST_FULL);//   out($filename);  $header = file_get_contents(pw_wiki_path("tpl:header", ST_FULL));
-  $footer = file_get_contents(pw_wiki_path("tpl:footer", ST_FULL));
-
-  #if (!file_exists($filename) or !is_file($filename)) {  #  return false;  #}    $filenameCached = "home/".pw_wiki_path($id, NOEXT).".html";//   out($filenameCached);  if(file_exists($filenameCached) && filemtime($filenameCached) >= filemtime($filename)) {//   	out("Using cached file!");  	  return file_get_contents($filenameCached);  }
-  $data = file_get_contents($filename);
-  
-  $data = pw_wiki_LE_unix($data);
-  $data = $header."\n".$data."\n".$footer;
-
-  if (! utf8_check($data)) {    $filename2 = pw_wiki_path("tpl:noutf8", ST_FULL);    $data = file_get_contents($filename2);    if (! utf8_check($data)) {      die("FATAL ERROR: '$filename' isn't a UTF8-encoded file!!! Fallback failed...");    }
-  }
-
-  $hdlen = count(explode("\n", $header));
-  $ftlen = count(explode("\n", $footer));
-
-  $out = lexerconf($data, $hdlen, $ftlen);
-
-  return $out;
+	$out = lexerconf($data, $headerLineCount, $footerLineCount);		if (file_put_contents($cachedFilename, $out) === false) {		throw new Exception("Unable to write file '$cachedFilename'!");	}		return $out;	}
+function pw_wiki_showcontent($id) {    return pw_wiki_create_cached_page($id);
 }
 
 

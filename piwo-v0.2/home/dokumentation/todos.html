@@ -1,19 +1,51 @@
-<div id='imwiki'>
-<div class="section_border">
-Sie sind hier: <a href='?mode=cleared&id=index'>Home</a> &raquo; <a href='?mode=cleared&id=dokumentation'>Dokumentation</a> &raquo; Todos<span class="less_significant"> | <a href="?id=dokumentation:todos">Todos anzeigen</a></span></div><h1 id="header_28"> Changelog, Bugs and Todos... </h1><div class="section_info"><div align="center">Aktuelle Version:<br /><b>0.2.1 - Alpha</b><br /><small>(Lexerversion: 0.42d - PIWO)</small></div></div><!--&lt;right alone&gt;&lt;border&gt;Inhaltsverzeichnis:~~TOC~~&lt;/border&gt;&lt;/right&gt;--><h2 id="header_28.1"> Changelog </h2><dl><dt><a href="?id=dokumentation:todos:newStyle&mode=editpage" class="pw_wiki_link_na">new styled lexer</a><dd>build up a memoizing parser that understands <a href="?id=dokumentation:grammar-configuration-files">grammar-configuration-files</a>.</dd></dt></dl><dl><dt><a href="?id=dokumentation:todos:v0.01">&Uuml;berblick zur v0.01</a><dd>Singleuser-Login (hard-coded)</dd><dd>Funktionen: Debug-Modus, Bearbeiten, l&ouml;schen, verschieben, neu, Seiten&uuml;berblick, Quellcode anzeigen</dd><dd>Internals: utf8-Encoding, MAC|UNIX|PC-Lineendings</dd><dd><a href="?id=dokumentation:textgestaltung">Wikisyntax</a> in der Version 0.1</dd></dt></dl><dl><dt><a href="?id=dokumentation:todos:v0.02">&Uuml;berblick zur v0.02</a><dd>Konfigurationsmen&uuml; mit Einstellungen</dd><dd>tpl:header/footer - Handling &uuml;berlegen!</dd><dd>Tastenk&uuml;rzel mit Scriptaculous</dd><dd>Frontend und Backend voneinander trennen.</dd><dd>Editor ausbauen (autosave, Tastenk&uuml;rzel, Vorschau, Sektionen editieren,...)</dd><dd>AJAX oder iFrames einf&uuml;hren f&uuml;r GUI (Performance!)</dd></dt></dl><dl><dt><a href="?id=dokumentation:todos:v0.03&mode=editpage" class="pw_wiki_link_na">&Uuml;berblick zur v0.03</a><dd>Cache f&uuml;r HTML</dd><dd>Bilder</dd></dt></dl><dl><dt><a href="?id=dokumentation:todos:v0.04&mode=editpage" class="pw_wiki_link_na">&Uuml;berblick zur v0.04</a><dd>Multiuser </dd><dd>Permissions</dd><dd>Comments und Forum</dd></dt></dl><h2 id="header_28.2"> Ideen </h2><ul>
-</ul><ul><li>
-Einbinden von php-Quellcode Dokumentation ala phpDocumentor(?)</li>
-<li>
-<a target="_blank" href="https://github.com/selfthinker/dokuwiki_plugin_fontface/issues?sort=created&amp;direction=desc&amp;state=open">Texticons</a> einf&uuml;hren</li>
-<li>
-Sch&ouml;ne Seiten...</li>
-<ul><li>
-...im <a href="?id=dokumentation:todos:nice:design">Design</a></li>
-<li>
-...in der <a href="?id=dokumentation:todos:nice:usability&mode=editpage" class="pw_wiki_link_na">Usability</a></li>
-<li>
-...in der <a href="?id=dokumentation:todos:nice:programming&mode=editpage" class="pw_wiki_link_na">Programmierung</a></li>
-<li>
-<a href="?id=dokumentation:todos:nice:unsorted&mode=editpage" class="pw_wiki_link_na">(Unsortiertes)</a></li>
-</ul></ul>
-<br /><div align="right"><span class="less_significant">Verarbeitet in 0,0532 Sek. | Dateiformat: PC</span></div></div>
+<h1>Fehler im Wikitext erkannt</h1>Fehler in der Zeile .<pre style='white-space: pre-wrap'><span style='color: gray'>     1| &lt;border&gt;</span>
+<span style='color: gray'>     2| Sie sind hier: ~~TRACE~~</span>
+<span style='color: gray'>     3| &lt;lo&gt; | [[:dokumentation:todos|Todos anzeigen]]&lt;/lo&gt;</span>
+<span style='color: gray'>     4| &lt;/border&gt;</span>
+     5| = Changelog, Bugs and Todos... =
+     6| &lt;info&gt;
+     7| :&gt; Aktuelle Version:\\**{{version}}**\\--(Lexerversion: {{lexerversion}})--
+     8| &lt;/info&gt;
+     9| 
+    10| &quot;&quot;&quot;&lt;right alone&gt;&lt;border&gt;Inhaltsverzeichnis:~~TOC~~&lt;/border&gt;&lt;/right&gt;&quot;&quot;&quot;
+    11| 
+    12| == Changelog ==
+    13| ; [[todos:newStyle|new styled lexer]]
+    14| : build up a memoizing parser that understands [[grammar-configuration-files]].
+    15| 
+    16| ; [[todos:v0.01|&Uuml;berblick zur v0.01]]
+    17| : Singleuser-Login (hard-coded)
+    18| : Funktionen: Debug-Modus, Bearbeiten, l&ouml;schen, verschieben, neu, Seiten&uuml;berblick, Quellcode anzeigen
+    19| : Internals: utf8-Encoding, MAC|UNIX|PC-Lineendings
+    20| : [[textgestaltung|Wikisyntax]] in der Version 0.1
+    21| 
+    22| ; [[todos:v0.02|&Uuml;berblick zur v0.02]]
+    23| : Konfigurationsmen&uuml; mit Einstellungen
+    24| : tpl:header/footer - Handling &uuml;berlegen!
+    25| : Tastenk&uuml;rzel mit Scriptaculous
+    26| : Frontend und Backend voneinander trennen.
+    27| : Editor ausbauen (autosave, Tastenk&uuml;rzel, Vorschau, Sektionen editieren,...)
+    28| : AJAX oder iFrames einf&uuml;hren f&uuml;r GUI (Performance!)
+    29| 
+    30| ; [[todos:v0.03|&Uuml;berblick zur v0.03]]
+    31| : Cache f&uuml;r HTML
+    32| : Bilder
+    33| 
+    34| ; [[todos:v0.04|&Uuml;berblick zur v0.04]]
+    35| : Multiuser 
+    36| : Permissions
+    37| : Comments und Forum
+    38| 
+    39| == Ideen ==
+    40| * Einbinden von php-Quellcode Dokumentation ala phpDocumentor(?)
+    41| * [https://github.com/selfthinker/dokuwiki_plugin_fontface/issues?sort=created&amp;direction=desc&amp;state=open Texticons] einf&uuml;hren
+    42| * Sch&ouml;ne Seiten...
+    43|  * ...im [[todos:nice:design|Design]]
+    44|  * ...in der [[todos:nice:usability|Usability]]
+    45|  * ...in der [[todos:nice:programming|Programmierung]]
+    46|  * [[todos:nice:unsorted|(Unsortiertes)]]
+    47| 
+    48| 
+<span style='color: gray'>    49| \\</span>
+<span style='color: gray'>    50| :&gt;&gt; &lt;lo&gt;Verarbeitet in ~~TEXT:comma|{{PERFORMANCE}}~~ Sek. | Dateiformat: {{FILE:type}}&lt;/lo&gt;</span>
+</pre><i>Der graue Text zeigt die Kopf- und Fu&szlig;zeile des Dokumentes.</i>

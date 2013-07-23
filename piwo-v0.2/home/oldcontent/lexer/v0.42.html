@@ -1,97 +1,83 @@
-<div id='imwiki'>
-<div class="section_border">
-Sie sind hier: <a href='?mode=cleared&id=index'>Home</a> &raquo; <a href='?mode=cleared&id=dokumentation'>Dokumentation</a> &raquo; Todos<span class="less_significant"> | <a href="?id=dokumentation:todos">Todos anzeigen</a></span></div>
-Link: <a target="_blank" href="http://localhost/projekte/home/lib/tests/lexer42.php">Lexer v0.42</a>  <br />
-Link: <a target="_blank" href="http://localhost/projekte/home/lib/tests/lexer42cleanup.php">Lexer v0.42B</a>  <br />
-Link: <a target="_blank" href="http://localhost/projekte/home/lib/tests/lexer42c.php">Lexer v0.42C</a> <br />
-Link: <a target="_blank" href="http://localhost/projekte/home/lib/tests/lexertests/">Lexer v0.42D - Testumgebung</a><h1 id="header_69"> Todo/Changelog </h1><h2 id="header_69.1"> v0.42B </h2><ul>
-</ul><ul><li>
-:i: <tt>addAbstractNode</tt> wurde verworfen... wird sp&auml;ter komplett neu entwickelt!</li>
-<li>
-:ok: Cache f&uuml;r Regexp, damit <tt>getPatternString</tt> nur einmal f&uuml;r jeden Modus die Regexp bauen muss.</li>
-</ul>
-<h2 id="header_69.2"> v0.42C </h2><ul>
-</ul><ul><li>
-:ok: WORD-Pattern einf&uuml;hren</li>
-<li>
-:ok: Level-Berechnung f&uuml;r jedes Token: Performance -&gt; nur einmal berechnen!</li>
-<li>
-:ok: Debug: Tests in v0.42G</li>
-<ul><li>
-:ok: Ausgabe &uuml;ber <a href="?id=dokumentation:dom-funktionen&mode=editpage" class="pw_wiki_link_na">DOM-Funktionen</a>  (Diese Funktionen sollten auch dem Parser zur Verf&uuml;gung stehen -&gt; <tt>public</tt>)</li>
-<li>
-:ok: Aufwendige Debugfunktionen nur starten, wenn gefordert (Parameter im constructor) &lt;= PERFORMANCE! </li>
-<li>
-:ok: jeden Status f&uuml;r jeden Zyklus speichern</li>
-<li>
-:ok: PERFORMANCE: Nur Textposition speichern... Speicherbedarf reduzieren!</li>
-<li>
-:ok: Funktionen f&uuml;r Ausgabe der Debuginformationen (<tt>getBeforeMatch</tt>, <tt>getAfterMatch</tt>, <tt>showEntities</tt>) <br /> Rest wird &uuml;ber <tt>getDebugInfo</tt> ausgegeben (<tt>array</tt>)</li></ul>
-<li>
-:ok: <a href="?id=dokumentation:asttree&mode=editpage" class="pw_wiki_link_na">Abstract Syntax Tree (AST)</a> wie in ANTLR ausgeben</li>
-</ul>
-<h2 id="header_69.3"> v0.42D </h2><ul>
-</ul><ul><li>
-:ok: <a href="?id=dokumentation:abstractnode&mode=editpage" class="pw_wiki_link_na">Abstrakte Knoten</a>: Bsp. <tt>tablerow</tt>-Knoten sollten im Elternknoten <tt>table</tt> zusammengefasst werden.</li>
-<li>
-Bessere <tt>addLog</tt> Funktionen (<tt>array</tt> und <tt>class</tt>)</li>
-<li>
-Verschiedene Testprogramme mit Auswahlliste, Ladefunktion etc. um Bugs herauszufinden</li>
-<li>
-Log und Debug als Objektklasse verbinden und in separater Datei ablegen</li>
-<li>
-AST Schleife auslagern</li>
-<li>
-Testprogramme in separaten Dateien ablegen (DOM-Tests, Debug/Log-Tests, ...)</li>
-<li>
-:?: DOM-Funktionen mit internen Node-Zeiger im Lexer (Knoten sollten Objekte mit Zeigerfunktionen sein, abgeleitet von <tt>pwLexer</tt>)</li>
-</ul>
-<h2 id="header_69.4"> v0.42E </h2><ul>
-</ul><ul><li>
-Doppelt vergebene Pattern abfangen und ???</li>
-<li>
-Leeren Exitpattern -&gt; daf&uuml;r array mit Modes, die den aktuellen Status beenden, wenn neuer gestartet wird... <br /> oder leer, wenn jeder neue Status den aktuellen beendet.</li>
-</ul>
-<h2 id="header_69.5"> v0.42F </h2><ul>
-</ul><ul><li>
-Parameter (Flag): <tt>NO_SHIFT</tt>, damit ein Muster erkannt wird, der Textzeiger aber stehen bleibt. Bsp.: <tt>tablerow</tt> (Autom. Umwandlung in einen lookahead)</li>
-<li>
-Parameter (Flag): <tt>NOT_EMPTY</tt> bedeutet der Textknoten innerhalb eines Tokens darf nicht leer sein.</li>
-<li>
-Parameter (Flag): <tt>IGNORE_EMPTY</tt> Leere Tokens werden ignoriert. Bsp.: <tt>== ==</tt> wird zwar als <tt>header</tt> erkannt aber nicht in den AST aufgenommen.</li>
-</ul>
-<h2 id="header_69.6"> v0.42G </h2><ul>
-</ul><ul><li>
-FEATURE: AST als dynamische Liste (Javascript) ausgeben (wie Filemanager)</li>
-<li>
-Code aufr&auml;umen</li>
-<li>
-Bugfixes</li>
-<li>
-Tests</li>
-</ul>
-<h1 id="header_70"> getPatternString: modes </h1><pre><div>
- /**
-  * Gibt den regul&auml;ren Ausdruck f&uuml;r den aktuellen Status zur&uuml;ck.
-   * Erlaubte line- und section_start pattern inkl. des section_end patterns des
-   * aktuellen Status' wird zur&uuml;ckgeliefert.
-   *
-   * @param   string          $statusname    Name des aktuellen Status (Bsp. quoted string), default = #DOCUMENT
-   * @param   boolean         $keysensitive  'i'-Parameter f&uuml;r die regex, default = false
-   * @return  string/boolean  regexp-string oder false bei einem Fehler
-   */
-
-  public function getPatternString($statusname = &quot;#DOCUMENT&quot;, $keysensitive = false)
-
-</div></pre>
-Jeder Modus darf in einem bestimmten Kontext vorkommen. Siehe <a href="#header_71">addSectionPattern</a>.
-
-Falls eine neue Sektion aufgenommen wird, kann man festlegen worin sie vorkommen darf.
-Der aktuelle <tt>patternstring</tt> enth&auml;lt immer nur die erlaubten pattern und zwar in folgender Reihenfolge:<ol>
-</ol><ol><li>
-Alle erlaubten <tt>enter</tt>-pattern</li>
-<li>
-und einen <tt>exit</tt>-pattern f&uuml;r den aktuellen Modus</li>
-</ol>
-<h1 id="header_71"> addSectionPattern </h1>
-Paramterliste:<div class="tablediv"><table><tr><th> Paramtername </th><th> Datentyp </th><th> Erkl&auml;rung </th><th> Beispiel </th><th colspan="3"> Syntaxbeispiele </th></tr><tr><td> <tt>name</tt> </td></td><td> string </td></td><td> Statusname </td></td><td> header </td></td><td colspan="2"> <tt>= &Uuml;berschrift =</tt></td></td></tr><tr><td> <tt>entrypattern</tt> </td></td><td> string(regexp) </td></td><td> wenn dieses Token gefunden wird, wechselt der Lexer in ein neuen Status <tt>name</tt> </td></td><td> header </td></td><td colspan="2"> <tt>\n\s*={1,5}</tt></td></td></tr><tr><td> <tt>exitpattern</tt> </td></td><td> string(regexp) </td></td><td> wenn dieses Token gefunden wird, verl&auml;sst der Lexer den aktuellen Status wieder </td></td><td> header </td></td><td colspan="2"> <tt>={1,5}</tt></td></td></tr><tr><td> <tt>modes</tt> </td></td><td> array </td></td><td> Alle Kontextnamen, in denen <tt>name</tt> erlaubt ist. <br /> <tt>header</tt> darf nur in #DOCUMENT und section vorkommen, wird in zB. Listen ignoriert </td></td><td colspan="3"> <tt>array(&quot;#DOCUMENT&quot;, &quot;section&quot;)</tt> </td></td></td></tr><tr><td> <tt>type</tt> </td></td><td> string <br /> :fixme: </td></td><td colspan="4"> Alle Typen: <tt>TYPE_SECTION</tt>; <tt>TYPE_LINE</tt>; <tt>TYPE_WORD</tt> <br /> (sollte in Zukunft auf versch. Flags/Parameter erweitert werden <br /> Bsp. <tt>EMPTY</tt>, <tt>!EMPTY</tt>, ...) </td></td></td></td></tr></table></div><br /><div align="right"><span class="less_significant">Verarbeitet in 0,1616 Sek. | Dateiformat: PC</span></div></div>
+<h1>Fehler im Wikitext erkannt</h1>Fehler in der Zeile .<pre style='white-space: pre-wrap'><span style='color: gray'>     1| &lt;border&gt;</span>
+<span style='color: gray'>     2| Sie sind hier: ~~TRACE~~</span>
+<span style='color: gray'>     3| &lt;lo&gt; | [[:dokumentation:todos|Todos anzeigen]]&lt;/lo&gt;</span>
+<span style='color: gray'>     4| &lt;/border&gt;</span>
+     5| Link: [http://localhost/projekte/home/lib/tests/lexer42.php Lexer v0.42]  \\
+     6| Link: [http://localhost/projekte/home/lib/tests/lexer42cleanup.php Lexer v0.42B]  \\
+     7| Link: [http://localhost/projekte/home/lib/tests/lexer42c.php Lexer v0.42C] \\
+     8| Link: [http://localhost/projekte/home/lib/tests/lexertests/ Lexer v0.42D - Testumgebung]  
+     9| 
+    10| = Todo/Changelog =
+    11| 
+    12| == v0.42B ==
+    13| * :i: ''addAbstractNode'' wurde verworfen... wird sp&auml;ter komplett neu entwickelt!
+    14| * :ok: Cache f&uuml;r Regexp, damit ''getPatternString'' nur einmal f&uuml;r jeden Modus die Regexp bauen muss.
+    15| 
+    16| == v0.42C ==
+    17| * :ok: WORD-Pattern einf&uuml;hren
+    18| * :ok: Level-Berechnung f&uuml;r jedes Token: Performance -&gt; nur einmal berechnen!
+    19| * :ok: Debug: Tests in v0.42G
+    20|  * :ok: Ausgabe &uuml;ber [[dom-funktionen|DOM-Funktionen]]  (Diese Funktionen sollten auch dem Parser zur Verf&uuml;gung stehen -&gt; ''public'')
+    21|  * :ok: Aufwendige Debugfunktionen nur starten, wenn gefordert (Parameter im constructor) &lt;= PERFORMANCE! 
+    22|  * :ok: jeden Status f&uuml;r jeden Zyklus speichern
+    23|  * :ok: PERFORMANCE: Nur Textposition speichern... Speicherbedarf reduzieren!
+    24|  * :ok: Funktionen f&uuml;r Ausgabe der Debuginformationen (''getBeforeMatch'', ''getAfterMatch'', ''showEntities'') \\ Rest wird &uuml;ber ''getDebugInfo'' ausgegeben (''array'')
+    25| * :ok: [[asttree|Abstract Syntax Tree (AST)]] wie in ANTLR ausgeben
+    26| 
+    27| == v0.42D ==
+    28| * :ok: [[abstractnode|Abstrakte Knoten]]: Bsp. ''tablerow''-Knoten sollten im Elternknoten ''table'' zusammengefasst werden.
+    29| * Bessere ''addLog'' Funktionen (''array'' und ''class'')
+    30| * Verschiedene Testprogramme mit Auswahlliste, Ladefunktion etc. um Bugs herauszufinden
+    31| * Log und Debug als Objektklasse verbinden und in separater Datei ablegen
+    32| * AST Schleife auslagern
+    33| * Testprogramme in separaten Dateien ablegen (DOM-Tests, Debug/Log-Tests, ...)
+    34| * :?: DOM-Funktionen mit internen Node-Zeiger im Lexer (Knoten sollten Objekte mit Zeigerfunktionen sein, abgeleitet von ''pwLexer'')
+    35| 
+    36| == v0.42E ==
+    37| * Doppelt vergebene Pattern abfangen und ???
+    38| * Leeren Exitpattern -&gt; daf&uuml;r array mit Modes, die den aktuellen Status beenden, wenn neuer gestartet wird... \\ oder leer, wenn jeder neue Status den aktuellen beendet.
+    39| 
+    40| == v0.42F ==
+    41| * Parameter (Flag): ''NO_SHIFT'', damit ein Muster erkannt wird, der Textzeiger aber stehen bleibt. Bsp.: ''tablerow'' (Autom. Umwandlung in einen lookahead)
+    42| * Parameter (Flag): ''NOT_EMPTY'' bedeutet der Textknoten innerhalb eines Tokens darf nicht leer sein.
+    43| * Parameter (Flag): ''IGNORE_EMPTY'' Leere Tokens werden ignoriert. Bsp.: ''&lt;nowiki&gt;== ==&lt;/nowiki&gt;'' wird zwar als ''header'' erkannt aber nicht in den AST aufgenommen.
+    44| 
+    45| == v0.42G ==
+    46| * FEATURE: AST als dynamische Liste (Javascript) ausgeben (wie Filemanager)
+    47| * Code aufr&auml;umen
+    48| * Bugfixes
+    49| * Tests
+    50| 
+    51| = getPatternString: modes =
+    52| $$
+    53| $$  /**
+    54| $$   * Gibt den regul&auml;ren Ausdruck f&uuml;r den aktuellen Status zur&uuml;ck.
+    55| $$    * Erlaubte line- und section_start pattern inkl. des section_end patterns des
+    56| $$    * aktuellen Status' wird zur&uuml;ckgeliefert.
+    57| $$    *
+    58| $$    * @param   string          $statusname    Name des aktuellen Status (Bsp. quoted string), default = #DOCUMENT
+    59| $$    * @param   boolean         $keysensitive  'i'-Parameter f&uuml;r die regex, default = false
+    60| $$    * @return  string/boolean  regexp-string oder false bei einem Fehler
+    61| $$    */
+    62| $$
+    63| $$   public function getPatternString($statusname = &quot;#DOCUMENT&quot;, $keysensitive = false)
+    64| $$
+    65| 
+    66| Jeder Modus darf in einem bestimmten Kontext vorkommen. Siehe [[#addSectionPattern]].
+    67| 
+    68| Falls eine neue Sektion aufgenommen wird, kann man festlegen worin sie vorkommen darf.
+    69| Der aktuelle ''patternstring'' enth&auml;lt immer nur die erlaubten pattern und zwar in folgender Reihenfolge:
+    70| # Alle erlaubten ''enter''-pattern
+    71| # und einen ''exit''-pattern f&uuml;r den aktuellen Modus
+    72| 
+    73| = addSectionPattern =
+    74| Paramterliste:
+    75| ^ Paramtername ^ Datentyp ^ Erkl&auml;rung ^ Beispiel ^ Syntaxbeispiele ^
+    76| | ''name'' | string | Statusname | header | ''&lt;nowiki&gt;= &Uuml;berschrift =&lt;/nowiki&gt;''
+    77| | ''entrypattern'' | string(regexp) | wenn dieses Token gefunden wird, wechselt der Lexer in ein neuen Status ''name'' | header | ''\n\s*={1,5}''
+    78| | ''exitpattern'' | string(regexp) | wenn dieses Token gefunden wird, verl&auml;sst der Lexer den aktuellen Status wieder | header | ''={1,5}''
+    79| | ''modes'' | array | Alle Kontextnamen, in denen ''name'' erlaubt ist. \\ ''header'' darf nur in #DOCUMENT und section vorkommen, wird in zB. Listen ignoriert | ''&lt;nowiki&gt;array(&quot;#DOCUMENT&quot;, &quot;section&quot;)&lt;/nowiki&gt;'' |
+    80| | ''type'' | string \\ :fixme: | Alle Typen: ''TYPE%%_%%SECTION''; ''TYPE%%_%%LINE''; ''TYPE%%_%%WORD'' \\ (sollte in Zukunft auf versch. Flags/Parameter erweitert werden \\ Bsp. ''EMPTY'', ''!EMPTY'', ...) ||
+<span style='color: gray'>    81| \\</span>
+<span style='color: gray'>    82| :&gt;&gt; &lt;lo&gt;Verarbeitet in ~~TEXT:comma|{{PERFORMANCE}}~~ Sek. | Dateiformat: {{FILE:type}}&lt;/lo&gt;</span>
+</pre><i>Der graue Text zeigt die Kopf- und Fu&szlig;zeile des Dokumentes.</i>

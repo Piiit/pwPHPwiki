@@ -1,23 +1,79 @@
-<div id='imwiki'>
-<div class="section_border">
-Sie sind hier: <a href='?mode=cleared&id=index'>Home</a> &raquo; <a href='?mode=cleared&id=dokumentation'>Dokumentation</a> &raquo; Todos<span class="less_significant"> | <a href="?id=dokumentation:todos">Todos anzeigen</a></span></div><div class="section_right"><div class="section_border">Inhaltsverzeichnis:<br /><div class="toc" id="__toc"><ul><ul><li><a href="#header_1">1 Formate: Encoding/Decoding</a></li><ul><li><a href="#header_1.1">1.1 Globale Variablen &amp; globales Konfigurationsarray</a></li><li><a href="#header_1.2">1.2 Aktuell: encoding.php</a></li></ul><li><a href="#header_2">2 Grammar</a></li><ul><li><a href="#header_2.1">2.1 Rules and Subrules</a></li><li><a href="#header_2.2">2.2 Operators</a></li></ul><li><a href="#header_3">3 Lexer</a></li><ul><li><a href="#header_3.1">3.1 Beispiel 01: UnitTest Dateien</a></li><ul><li><a href="#header_3.1.1">3.1.1 Beispiel-Code</a></li><li><a href="#header_3.1.2">3.1.2 Implementierung</a></li></ul></ul><li><a href="#header_4">4 Todos</a></li><ul><li><a href="#header_4.1">4.1 Blocksatz</a></li><li><a href="#header_4.2">4.2 Zentriert</a></li><li><a href="#header_4.3">4.3 Rechtsb&uuml;ndig</a></li><li><a href="#header_4.4">4.4 Standard: Flattersatz (Linksb&uuml;ndig)</a></li></ul><li><a href="#header_5">5 Einzug</a></li><ul><li><a href="#header_5.1">5.1 Einz&uuml;ge &uuml;ber mehrere Zeilen</a></li></ul><li><a href="#header_6">6 Spaltenkontrolle</a></li><li><a href="#header_7">7 Hyperlinks</a></li><ul><li><a href="#header_7.1">7.1 Interne und externe Links</a></li><li><a href="#header_7.2">7.2 Sprungbefehle</a></li></ul><li><a href="#header_8">8 Sonderzeichentest &ouml;&auml;&uuml;&szlig;</a></li></ul></div></div></div><h1 id="header_7"> Hyperlinks </h1><h2 id="header_7.1"> Interne und externe Links </h2>
-Wiki-Links haben einen Namensraum, einen Namen, Kapitelnamen und optional einen Titel.<br />
-Zum Beispiel liegt dieser Wikitext im Namespace &quot;<tt>dokumentation</tt>&quot; und hei&szlig;t &quot;<tt>todos</tt>&quot;. <br /> 
-Daraus ergibt sich die vollst&auml;ndige ID: &quot;<tt>dokumentation:todos</tt>&quot;.
-<div class="tablediv"><table><tr><th> Was es ist </th><th> Was du schreibst </th><th colspan="2"> Wie es dargestellt wird </th></tr><tr><td> Einfacher externer Link<br />(Texterkennung, optional) </td></td><td> <pre><div>http://www.google.de
-www.google.de
-</div></pre> </td></td><td colspan="2"> <a target="_blank" href="http://www.google.de">http://www.google.de</a> <br /><a href="http://www.google.de">www.google.de</a> <br /> </td></td></tr><tr><td> Externe Links<br />(veraltet)</td></td><td> <pre><div>[http://www.google.de] 
-[http://www.google.de Google Suche]
-[mailto:someone@example.com]
-[mailto:someone@example.com E-Mail to SomeOne]
-</div></pre> </td></td><td colspan="2"> <div style="margin-left: 0px"><a target="_blank" href="http://www.google.de">http://www.google.de</a> </div><div style="margin-left: 0px"><a target="_blank" href="http://www.google.de">Google Suche</a></div><div style="margin-left: 0px"><a href="mailto:someone@example.com">mailto:someone@example.com</a></div><div style="margin-left: 0px"><a href="mailto:someone@example.com">E-Mail to SomeOne</a></div></td></td></tr><tr><td> Interne Links </td></td><td> <pre><div>Ohne Text: [[Ausrichtung]]
-Mit Text: [[Ausrichtung|Text ausrichten]]
-Relative Pfadangabe: [[..:Textgestaltung]]
-Absolute Pfadangabe: [[:Tests:xy]]
-Dieser Link ist...: [[Nicht vorhanden]]
-</div></pre> </td></td><td colspan="2"> <div style="margin-left: 0px"><a href="?id=dokumentation:Ausrichtung&mode=editpage" class="pw_wiki_link_na">Ausrichtung</a></div><div style="margin-left: 0px"><a href="?id=dokumentation:Ausrichtung&mode=editpage" class="pw_wiki_link_na">Text ausrichten</a></div><div style="margin-left: 0px"><a href="?id=dokumentation:..:Textgestaltung&mode=editpage" class="pw_wiki_link_na">Textgestaltung</a></div><div style="margin-left: 0px"><a href="?id=Tests:xy&mode=editpage" class="pw_wiki_link_na">xy</a></div><div style="margin-left: 0px"><a href="?id=dokumentation:Nicht+vorhanden&mode=editpage" class="pw_wiki_link_na">Nicht vorhanden</a></div></td></td></tr><tr><td> Adminfunktionen </td></td><td> <pre><div>Seite bearbeiten: [[edit&gt;Ausrichtung]]
-Die aktuelle Seite bearbeiten: [[edit&gt;{{ID}}]]
-</div></pre> </td></td><td colspan="2"> <div style="margin-left: 0px"><a href="?id=dokumentation:Ausrichtung&mode=editpage">Ausrichtung</a></div><div style="margin-left: 0px"><a href="?id=dokumentation:todos&mode=editpage">todos</a></div></td></td></tr></table></div><h2 id="header_7.2"> Sprungbefehle </h2>
-Vor dem Link ein <tt>#</tt> setzen. Alle Links k&ouml;nnen als Parameter einen neuen Anzeige-Namen erhalten. <br /><b>Hinweis</b>: &Uuml;berschriften, die in <tt>&lt;notoc&gt;</tt>-Sektionen stehen k&ouml;nnen nicht angesprungen werden.<div class="tablediv"><table><tr><th> Identifizierung bzw. Ziel                     </th><th> Befehl                                                                </th><th> Ausgabe - Beispiel                </th><th colspan="3"> Hinweise </th></tr><tr><th colspan="6"> Kapitelauswahl </th></tr><tr><td> Kapitelnummer                                      </td></td><td> <tt>[[#1.2]] - [[#1]]</tt>                                         </td></td><td> <div align="center"><a href="#header_1.2">Aktuell: encoding.php</a> - <a href="#header_1">Formate: Encoding/Decoding</a>                                                                                    </div></td></td><td colspan="3"> Falls die Kapitelnummer angegeben wird, wird der Name des Titels ausgegeben.</td></td></td></tr><tr><td> Kapitelname                                        </td></td><td> <tt>[[#Interne und externe Links]] - [[#Sonderzeichentest &ouml;&auml;&uuml;&szlig;]]</tt>                               </td></td><td> <div align="center"><a href="#header_7.1">Interne und externe Links</a> - <a href="#header_8">Sonderzeichentest &ouml;&auml;&uuml;&szlig;</a>                                                </div></td></td><td colspan="3"> Alternativ kann auch der Titelname hergenommen werden.</td></td></td></tr><tr><td> Kapitelname (neu definiert)                        </td></td><td> <tt>[[#Hyperlinks|Neuer Namen]]</tt>                   </td></td><td> <div align="center"><a href="#header_7">Neuer Namen</a>                          </div></td></td><td colspan="3"> Der selbe Link mit einem neu definierten Linktext.</td></td></td></tr><tr><td> Fehlendes Kapitel                                  </td></td><td> <tt>[[#Nicht da]]</tt>                                    </td></td><td> <div align="center"><a href="#" class="pw_wiki_link_na">nicht da</a>                               </div></td></td><td colspan="3"> Fehlende Links werden markiert.</td></td></td></tr><tr><th colspan="6"> Spezielle K&uuml;rzel <br /> <small>(HINWEIS: Falls diese K&uuml;rzel als Kapitelnamen vorkommen, muss die Kapitelnummer als Sprungziel hergenommen werden.)</small> </th></tr><tr><td> Anfang der Seite                                   </td></td><td> <tt>[[#_TOP]]</tt>                                         </td></td><td> <div align="center"><a href="#__main">Seitenanfang</a>                                                </div></td></td><td colspan="3"> Springe zum Anfang der Seite (Defaulttext = Anfang).</td></td></td></tr><tr><td> Anfang der Seite (neu def.)                        </td></td><td> <tt>[[#_TOP|Hier ist der Anfang]]</tt>                     </td></td><td> <div align="center"><a href="#__main">Hier ist der Anfang</a>    </div></td></td><td colspan="3"> Springe zum Anfang der Seite (Text wird als Parameter definiert).</td></td></td></tr><tr><td> Hauptverzeichnis                                   </td></td><td> <tt>[[#_TOC]]</tt>                                         </td></td><td> <div align="center"><a href="#__toc">Inhaltsverzeichnis</a>                                                </div></td></td><td colspan="3"> Springe zum Inhaltsverzeichnis aller Seiten (Defaulttext = Inhalt).</td></td></td></tr><tr><td> Ende der Seite                                     </td></td><td> <tt>[[#_BOTTOM]]</tt>                                      </td></td><td> <div align="center"><a href="#__bottom">Seitenende</a>                                 </div></td></td><td colspan="3"> Springe zum Ende der Seite (Defaulttext = Ende).</td></td></td></tr><tr><td> Haupttitel                                         </td></td><td> <tt>[[#_MAINTITLE]]</tt>                                   </td></td><td> <div align="center"><a href="#__fullsite">Haupttitel</a>                              </div></td></td><td colspan="3"> Springe zum Haupttitel (Defaulttext = Titel).<br /> <small>(TODO: Fehlerhandling)</small></td></td></td></tr><tr><th colspan="6">  Noch nicht implementiert </th></tr><tr><td> Sprung in eine andere Seite                        </td></td><td> <tt>[[..:Textgestaltung:Spezial#&Uuml;bersicht]]</tt>                                    </td></td><td> <div align="center"><a href="?id=dokumentation:..:Textgestaltung:Spezial#&uuml;bersicht&mode=editpage" class="pw_wiki_link_na">Spezial#Übersicht</a>                               </div></td></td><td colspan="3"> Springt zur Seite <tt>Symbole</tt> und zum Absatz <tt>Numerische Notation</tt></td></td></td></tr><tr><td> Seiten&uuml;bersicht                                    </td></td><td> <tt>[[#_SITEMAP]]</tt>                                     </td></td><td> <div align="center"><a href="#" class="pw_wiki_link_na">_sitemap</a>                                </div></td></td><td colspan="3"> Springe zur Sitemap. <br /> <small>(TODO: alles)</small></td></td></td></tr><tr><td> Inhaltsverzeichnis                                 </td></td><td> <tt>[[#_PAGETOC]]</tt>                                     </td></td><td> <div align="center"><a href="#" class="pw_wiki_link_na">_pagetoc</a>                                </div></td></td><td colspan="3"> Springe zum Inhaltsverzeichnis dieser Seite (Defaulttext = Inhalt).</td></td></td></tr></table></div><h1 id="header_8"> Sonderzeichentest &ouml;&auml;&uuml;&szlig; </h1>
-Dieser Abschnitt dient nur als Sprungziel f&uuml;r das <i>&quot;Sonderzeichentest-Beispiel&quot;</i>.
-<br /><div align="right"><span class="less_significant">Verarbeitet in 0,1612 Sek. | Dateiformat: PC</span></div></div>
+<h1>Fehler im Wikitext erkannt</h1>Fehler in der Zeile .<pre style='white-space: pre-wrap'><span style='color: gray'>     1| &lt;border&gt;</span>
+<span style='color: gray'>     2| Sie sind hier: ~~TRACE~~</span>
+<span style='color: gray'>     3| &lt;lo&gt; | [[:dokumentation:todos|Todos anzeigen]]&lt;/lo&gt;</span>
+<span style='color: gray'>     4| &lt;/border&gt;</span>
+     5| &lt;right alone&gt;&lt;border&gt;Inhaltsverzeichnis:\\~~TOC~~&lt;/border&gt;&lt;/right&gt;
+     6| 
+     7| = Hyperlinks =
+     8| == Interne und externe Links ==
+     9| Wiki-Links haben einen Namensraum, einen Namen, Kapitelnamen und optional einen Titel.\\
+    10| Zum Beispiel liegt dieser Wikitext im Namespace &quot;''{{NS}}''&quot; und hei&szlig;t &quot;''{{ID}}''&quot;. \\ 
+    11| Daraus ergibt sich die vollst&auml;ndige ID: &quot;''{{FULLID}}''&quot;.
+    12| 
+    13| ^ Was es ist ^ Was du schreibst ^ Wie es dargestellt wird 
+    14| | Einfacher externer Link\\(Texterkennung, optional) | {{{
+    15| $$ http://www.google.de
+    16| $$ www.google.de
+    17| }}} | {{{
+    18| http://www.google.de \\
+    19| www.google.de \\
+    20| }}} 
+    21| | Externe Links\\(veraltet)| {{{
+    22| $$ [http://www.google.de] 
+    23| $$ [http://www.google.de Google Suche]
+    24| $$ [mailto:someone@example.com]
+    25| $$ [mailto:someone@example.com E-Mail to SomeOne]
+    26| }}} | {{{
+    27| : [http://www.google.de] 
+    28| : [http://www.google.de Google Suche]
+    29| : [mailto:someone@example.com]
+    30| : [mailto:someone@example.com E-Mail to SomeOne]
+    31| }}}
+    32| | Interne Links | {{{
+    33| $$ Ohne Text: [[Ausrichtung]]
+    34| $$ Mit Text: [[Ausrichtung|Text ausrichten]]
+    35| $$ Relative Pfadangabe: [[..:Textgestaltung]]
+    36| $$ Absolute Pfadangabe: [[:Tests:xy]]
+    37| $$ Dieser Link ist...: [[Nicht vorhanden]]
+    38| }}} | {{{
+    39| : [[Ausrichtung]]
+    40| : [[Ausrichtung|Text ausrichten]]
+    41| : [[..:Textgestaltung]]
+    42| : [[:Tests:xy]]
+    43| : [[Nicht vorhanden]]
+    44| }}}
+    45| | Adminfunktionen | {{{
+    46| $$ Seite bearbeiten: [[edit&gt;Ausrichtung]]
+    47| $$ Die aktuelle Seite bearbeiten: [[edit&gt;{{ID}}]]
+    48| }}} | {{{
+    49| : [[edit&gt;Ausrichtung]]
+    50| : [[edit&gt;{{ID}}]]
+    51| }}}
+    52| 
+    53| == Sprungbefehle ==
+    54| Vor dem Link ein ''#'' setzen. Alle Links k&ouml;nnen als Parameter einen neuen Anzeige-Namen erhalten. \\
+    55| **Hinweis**: &Uuml;berschriften, die in ''%%&lt;notoc&gt;%%''-Sektionen stehen k&ouml;nnen nicht angesprungen werden.
+    56| ^ Identifizierung bzw. Ziel                     ^ Befehl                                                                ^ Ausgabe - Beispiel                ^ Hinweise ^
+    57| ^ Kapitelauswahl ^^^^
+    58| | Kapitelnummer                                      | ''&lt;nowiki&gt;[[#1.2]] - [[#1]]&lt;/nowiki&gt;''                                         | :&gt; [[#1.2]] - [[#1]]                                                                                    | Falls die Kapitelnummer angegeben wird, wird der Name des Titels ausgegeben.|
+    59| | Kapitelname                                        | ''&lt;nowiki&gt;[[#Interne und externe Links]] - [[#Sonderzeichentest &ouml;&auml;&uuml;&szlig;]]&lt;/nowiki&gt;''                               | :&gt; [[#Interne und externe Links]] - [[#Sonderzeichentest &ouml;&auml;&uuml;&szlig;]]                                                | Alternativ kann auch der Titelname hergenommen werden.|
+    60| | Kapitelname (neu definiert)                        | ''&lt;nowiki&gt;[[#Hyperlinks|Neuer Namen]]&lt;/nowiki&gt;''                   | :&gt; [[#Hyperlinks|Neuer Namen]]                          | Der selbe Link mit einem neu definierten Linktext.|
+    61| | Fehlendes Kapitel                                  | ''&lt;nowiki&gt;[[#Nicht da]]&lt;/nowiki&gt;''                                    | :&gt; [[#Nicht da|abc]]                               | Fehlende Links werden markiert.|
+    62| ^ Spezielle K&uuml;rzel \\ --(HINWEIS: Falls diese K&uuml;rzel als Kapitelnamen vorkommen, muss die Kapitelnummer als Sprungziel hergenommen werden.)-- ^^^^
+    63| | Anfang der Seite                                   | ''&lt;nowiki&gt;[[#_TOP]]&lt;/nowiki&gt;''                                         | :&gt; [[#_TOP]]                                                | Springe zum Anfang der Seite (Defaulttext = Anfang).|
+    64| | Anfang der Seite (neu def.)                        | ''&lt;nowiki&gt;[[#_TOP|Hier ist der Anfang]]&lt;/nowiki&gt;''                     | :&gt; [[#_TOP|Hier ist der Anfang]]    | Springe zum Anfang der Seite (Text wird als Parameter definiert).|
+    65| | Hauptverzeichnis                                   | ''&lt;nowiki&gt;[[#_TOC]]&lt;/nowiki&gt;''                                         | :&gt; [[#_TOC]]                                                | Springe zum Inhaltsverzeichnis aller Seiten (Defaulttext = Inhalt).|
+    66| | Ende der Seite                                     | ''&lt;nowiki&gt;[[#_BOTTOM]]&lt;/nowiki&gt;''                                      | :&gt; [[#_BOTTOM]]                                 | Springe zum Ende der Seite (Defaulttext = Ende).|
+    67| | Haupttitel                                         | ''&lt;nowiki&gt;[[#_MAINTITLE]]&lt;/nowiki&gt;''                                   | :&gt; [[#_MAINTITLE]]                              | Springe zum Haupttitel (Defaulttext = Titel).\\ --(TODO: Fehlerhandling)--|
+    68| ^  Noch nicht implementiert ^^^^
+    69| | Sprung in eine andere Seite                        | ''&lt;nowiki&gt;[[..:Textgestaltung:Spezial#&Uuml;bersicht]]&lt;/nowiki&gt;''                                    | :&gt; [[..:Textgestaltung:Spezial#&Uuml;bersicht]]                               | Springt zur Seite ''Symbole'' und zum Absatz ''Numerische Notation''|
+    70| | Seiten&uuml;bersicht                                    | ''&lt;nowiki&gt;[[#_SITEMAP]]&lt;/nowiki&gt;''                                     | :&gt; [[#_SITEMAP]]                                | Springe zur Sitemap. \\ --(TODO: alles)--|
+    71| | Inhaltsverzeichnis                                 | ''&lt;nowiki&gt;[[#_PAGETOC]]&lt;/nowiki&gt;''                                     | :&gt; [[#_PAGETOC]]                                | Springe zum Inhaltsverzeichnis dieser Seite (Defaulttext = Inhalt).|
+    72| 
+    73| 
+    74| = Sonderzeichentest &ouml;&auml;&uuml;&szlig; =
+    75| Dieser Abschnitt dient nur als Sprungziel f&uuml;r das //&quot;Sonderzeichentest-Beispiel&quot;//.
+    76| 
+<span style='color: gray'>    77| \\</span>
+<span style='color: gray'>    78| :&gt;&gt; &lt;lo&gt;Verarbeitet in ~~TEXT:comma|{{PERFORMANCE}}~~ Sek. | Dateiformat: {{FILE:type}}&lt;/lo&gt;</span>
+</pre><i>Der graue Text zeigt die Kopf- und Fu&szlig;zeile des Dokumentes.</i>

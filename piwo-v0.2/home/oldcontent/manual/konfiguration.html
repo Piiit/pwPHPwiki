@@ -1,20 +1,20 @@
-<div id='imwiki'>
-<div class="section_border">
-Sie sind hier: <a href='?mode=cleared&id=index'>Home</a> &raquo; <a href='?mode=cleared&id=dokumentation'>Dokumentation</a> &raquo; Todos<span class="less_significant"> | <a href="?id=dokumentation:todos">Todos anzeigen</a></span></div><h1 id="header_95"> CMS: Konfiguration </h1>
-:w: TODO!!!
-<ul>
-</ul><ul><li>
-Alle befehle muessen &uuml;ber commandline abrufbar sein &quot;<tt>mode=xy</tt>&quot;</li>
-<li>
-alle dateien f&uuml;r den adminbereich liegen unter &quot;<tt>cont/__admin__</tt>&quot;</li>
-<li>
-syntax = wikisyntax (erweitern f&uuml;r dialoge)</li>
-<li>
-handling der &uuml;bergebenen daten mit plugins (-&gt; plugins in den zeilenparser integrieren)</li>
-<li>
-jeder men&uuml;punkt unter pw_cms muss direkt &uuml;ber einen wikilink ansprechbar sein</li>
-<li>
-eigenes css, damit es auf allen seiten gleich aussieht </li>
-</ul>
-
-:&gt;: <u>Beispiel:</u><div style="margin-left: 20px"><tt>~~pw_cms:showpages~~</tt></div><br /><div align="right"><span class="less_significant">Verarbeitet in 0,0185 Sek. | Dateiformat: PC</span></div></div>
+<h1>Fehler im Wikitext erkannt</h1>Fehler in der Zeile .<pre style='white-space: pre-wrap'><span style='color: gray'>     1| &lt;border&gt;</span>
+<span style='color: gray'>     2| Sie sind hier: ~~TRACE~~</span>
+<span style='color: gray'>     3| &lt;lo&gt; | [[:dokumentation:todos|Todos anzeigen]]&lt;/lo&gt;</span>
+<span style='color: gray'>     4| &lt;/border&gt;</span>
+     5| = CMS: Konfiguration =
+     6| 
+     7| :w: TODO!!!
+     8| 
+     9| * Alle befehle muessen &uuml;ber commandline abrufbar sein &quot;''mode=xy''&quot;
+    10| * alle dateien f&uuml;r den adminbereich liegen unter &quot;''&lt;nowiki&gt;cont/__admin__&lt;/nowiki&gt;''&quot;
+    11| * syntax = wikisyntax (erweitern f&uuml;r dialoge)
+    12| * handling der &uuml;bergebenen daten mit plugins (-&gt; plugins in den zeilenparser integrieren)
+    13| * jeder men&uuml;punkt unter pw_cms muss direkt &uuml;ber einen wikilink ansprechbar sein
+    14| * eigenes css, damit es auf allen seiten gleich aussieht 
+    15| 
+    16| :&gt;: __Beispiel:__
+    17| ::: ''&lt;nowiki&gt;~~pw_cms:showpages~~&lt;/nowiki&gt;''
+<span style='color: gray'>    18| \\</span>
+<span style='color: gray'>    19| :&gt;&gt; &lt;lo&gt;Verarbeitet in ~~TEXT:comma|{{PERFORMANCE}}~~ Sek. | Dateiformat: {{FILE:type}}&lt;/lo&gt;</span>
+</pre><i>Der graue Text zeigt die Kopf- und Fu&szlig;zeile des Dokumentes.</i>

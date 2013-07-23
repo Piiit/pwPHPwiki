@@ -50,7 +50,7 @@ function sfootnote($node) {
   global $footnote;
   $GLOBALS['footnote']++;
   $GLOBALS['footnotes'][] = $node['ID'];
-  $o = '<sup><a class="footnote" id="fnt__'.$footnote.'" name="fnt__'.$footnote.'" href="#fn__'.$footnote.'">[';
+  $o = '<sup><a class="footnote" id="fnt__'.$footnote.'" href="#fn__'.$footnote.'">[';
   #echo '<acronym title="Keine Ahnung">';
   $o .= $footnote;
   #echo '</acronym>';
@@ -156,11 +156,11 @@ function ebold() {
 }
 
 function sunderline() {
-  return '<u>';
+  return '<span class="underline">';
 }
 
 function eunderline() {
-  return '</u>';
+  return '</span>';
 }
 
 function sitalic() {
@@ -172,11 +172,11 @@ function eitalic() {
 }
 
 function smonospace() {
-  return '<tt>';
+  return '<span class="code">';;
 }
 
 function emonospace() {
-  return '</tt>';
+  return '</span>';
 }
 
 function ssmall() {
@@ -188,19 +188,19 @@ function esmall() {
 }
 
 function sbig() {
-  return '<big>';
+  return '<span class="big">';
 }
 
 function ebig() {
-  return '</big>';
+  return '</span>';
 }
 
 function sstrike() {
-  return '<strike>';
+  return '<span class="strike">';
 }
 
 function estrike() {
-  return '</strike>';
+  return '</span>';
 }
 
 function ssub() {
@@ -733,7 +733,7 @@ function sexternallink($node, $lexer) {
 
 function sinternallink($node, $lexer) {
   //@TODO: clean redundant code... specially for encoding-functions!
-  global $indextable;
+//   global $indextable;
   global $moditext;
 
   $linkpos = $lexer->firstChild($node);

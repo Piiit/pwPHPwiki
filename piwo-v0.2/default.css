@@ -236,13 +236,16 @@ body {
 }
 
 #imwiki code,
-#imwiki tt {
+#imwiki .code {
   color: lightblue;
   font-size: 16px;
   font-family: monospace;
   background-color: #1A1A1A;
 }
 
+#imwiki .underline {
+	text-decoration: underline;
+}
 
 #imwiki a {
   color: lightgreen;
@@ -274,6 +277,15 @@ body {
   /*border-top: 1px solid lightblue;*/
   /*margin-top: 30px;*/
 }
+
+#imwiki .big {
+	font-size: 110%;
+}
+
+#imwiki .strike {
+    text-decoration: line-through;	
+}
+
 
 
 #imwiki dt {
@@ -367,8 +379,10 @@ body {
 #imwiki .section_info a:hover {
   color: #00529B;
 }
-#imwiki .section_info tt ,
-#imwiki .section_error tt {
+#imwiki .section_info code,
+#imwiki .section_error code,
+#imwiki .section_info .code,
+#imwiki .section_error .code {
   color: #00529B;
   background-color:  #95d8f8;
   font-size: 0.9em;

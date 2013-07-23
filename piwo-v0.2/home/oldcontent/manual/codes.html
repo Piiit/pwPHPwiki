@@ -1,23 +1,49 @@
-<div id='imwiki'>
-<div class="section_border">
-Sie sind hier: <a href='?mode=cleared&id=index'>Home</a> &raquo; <a href='?mode=cleared&id=dokumentation'>Dokumentation</a> &raquo; Todos<span class="less_significant"> | <a href="?id=dokumentation:todos">Todos anzeigen</a></span></div><h1 id="header_87"> Beschreibung </h1>
-Codes sind kurze Zeichenfolgen, die durch ein Bild oder ein Sonderzeichen ersetzt werden. <br />
-Konfiguriert werden sie in der Datei <tt><span style='color: yellow'>[WARNUNG: VARIABLE 'replacecodes' wurde nicht gesetzt.]</span></tt>. <br />
-Alle Icons liegen unter <tt><span style='color: yellow'>[WARNUNG: VARIABLE 'iconpath' wurde nicht gesetzt.]</span></tt>. 
-<h1 id="header_88"> Emoticons </h1><small>Die meisten Emoticons k&ouml;nnen mit und ohne &quot;Nase&quot; ;) (Minuszeichen) dargestellt werden</small><pre><div>8-) 8) 8-O :-( :( ;( ;-( :-) :) =) :-\ :\ :-? :? :-D :D :-P :P :-O :O :-X :X :-| :| ;-) ;) ^_^ 
-</div></pre>
-8-) 8) 8-O :-( :( ;( ;-( :-) :) =) :-\ :\ :-? :? :-D :D :-P :P :-O :O :-X :X :-| :| ;-) ;) ^_^
-<h1 id="header_89"> Symbole </h1>
-Andere Icons kann man mit dem <tt>[image:]</tt> tag einf&uuml;gen.
-<pre><div>:?: :!: :*: :&gt;: :i: :w: :e: :yes: :no: :hp: :mail: :ok: :todo: :fixme: :buggy: :bug:
-</div></pre>
-:?: :!: :*: :&gt;: :i: :w: :e: :yes: :no: :hp: :mail: :ok: :todo: :fixme: :buggy: :bug:
-<h1 id="header_90"> Sonderzeichen </h1><div class="tablediv"><table><tr><th> !    </th><th> Was? 					</th><th> Befehl 						</th><th colspan="3"> Beispiel 												</th></tr><tr><td> :ok: </td></td><td> Neue Zeile 			</td></td><td> <tt>Zeile 1 \\ Zeile 2</tt>		</td></td><td colspan="3"> Zeile 1 <br /> Zeile 2 											</td></td></td></tr><tr><td> :ok: </td></td><td> Zitat-Klammern			</td></td><td> <tt>&gt;&gt;Zitat&lt;&lt;</tt>			</td></td><td colspan="3"> &gt;&gt;Zitat&lt;&lt;												</td></td></td></tr><tr><td> :ok: </td></td><td> Doppelpfeil (schmal)  		</td></td><td> <tt>Mesch &lt;-&gt; Natur</tt>		</td></td><td colspan="3"> Mensch &lt;-&gt; Natur 	</td></td></td></tr><tr><td> :ok: </td></td><td> Einfache Pfeile (schmal)	</td></td><td> <tt>Links &lt;- Mitte -&gt; Rechts</tt>	</td></td><td colspan="3"> Links &lt;- Mitte -&gt; Rechts										</td></td></td></tr><tr><td> :ok: </td></td><td> Doppelpfeil (dick)		</td></td><td> <tt>Mensch &lt;=&gt; Gesellschaft</tt>	</td></td><td colspan="3"> Mensch &lt;=&gt; Gesellschaft 						</td></td></td></tr><tr><td> :ok: </td></td><td> Einfache Pfeile (dick)		</td></td><td> <tt>Links &lt;= Mitte =&gt; Rechts</tt>	</td></td><td colspan="3"> Links &lt;= Mitte =&gt; Rechts										</td></td></td></tr><tr><td> :ok: </td></td><td> Horizontale Trennlinie   	</td></td><td> <tt>Oben ---- Unten</tt>		</td></td><td colspan="3"> Oben <small></small> Unten 											</td></td></td></tr></table></div><br /> <b>Sonstiges</b><pre><div>| Deutsche Anf&uuml;hrungszeichen | &quot;Ja&quot; |
-| Lange Linie | ---  |
-| Kurze Linie | --   |
-| Copyright   | (c)  | 
-| Trademark   | (tm) |  
-| usw.        | ...  |
-| Smileytest  | :-|  |
-</div></pre><div class="tablediv"><table><tr><td> Deutsche Anf&uuml;hrungszeichen </td></td><td colspan="3"> &quot;Ja&quot; </td></td></td></tr><tr><td> Lange Linie </td></td><td colspan="3"> <small>-  |
-| Kurze Linie | </small>   </td></td></td></tr><tr><td> Copyright   </td></td><td> (c)  </td></td><td colspan="2"> </td></td></tr><tr><td> Trademark   </td></td><td> (tm) </td></td><td colspan="2">  </td></td></tr><tr><td> usw.        </td></td><td colspan="3"> ...  </td></td></td></tr><tr><td> Smileytest  </td></td><td> :-</td></td><td colspan="3">  </td></td></td></tr></table></div><br /><div align="right"><span class="less_significant">Verarbeitet in 0,1142 Sek. | Dateiformat: PC</span></div></div>
+<h1>Fehler im Wikitext erkannt</h1>Fehler in der Zeile .<pre style='white-space: pre-wrap'><span style='color: gray'>     1| &lt;border&gt;</span>
+<span style='color: gray'>     2| Sie sind hier: ~~TRACE~~</span>
+<span style='color: gray'>     3| &lt;lo&gt; | [[:dokumentation:todos|Todos anzeigen]]&lt;/lo&gt;</span>
+<span style='color: gray'>     4| &lt;/border&gt;</span>
+     5| = Beschreibung =
+     6| Codes sind kurze Zeichenfolgen, die durch ein Bild oder ein Sonderzeichen ersetzt werden. \\
+     7| Konfiguriert werden sie in der Datei ''{{REPLACECODES}}''. \\
+     8| Alle Icons liegen unter ''{{ICONPATH}}''. 
+     9| 
+    10| = Emoticons =
+    11| --Die meisten Emoticons k&ouml;nnen mit und ohne &quot;Nase&quot; ;) (Minuszeichen) dargestellt werden--
+    12| $$ 8-) 8) 8-O :-( :( ;( ;-( :-) :) =) :-\ :\ :-? :? :-D :D :-P :P :-O :O :-X :X :-| :| ;-) ;) ^_^ 
+    13| 8-) 8) 8-O :-( :( ;( ;-( :-) :) =) :-\ :\ :-? :? :-D :D :-P :P :-O :O :-X :X :-| :| ;-) ;) ^_^
+    14| 
+    15| = Symbole =
+    16| Andere Icons kann man mit dem ''&lt;nowiki&gt;[image:]&lt;/nowiki&gt;'' tag einf&uuml;gen.
+    17| 
+    18| $$ :?: :!: :*: :&gt;: :i: :w: :e: :yes: :no: :hp: :mail: :ok: :todo: :fixme: :buggy: :bug:
+    19| :?: :!: :*: :&gt;: :i: :w: :e: :yes: :no: :hp: :mail: :ok: :todo: :fixme: :buggy: :bug:
+    20| 
+    21| 
+    22| = Sonderzeichen =
+    23| ^ !    ^ Was? 					^ Befehl 						^ Beispiel 												^
+    24| | :ok: | Neue Zeile 			| ''&lt;nowiki&gt;Zeile 1 \\ Zeile 2&lt;/nowiki&gt;''		| Zeile 1 \\ Zeile 2 											|
+    25| | :ok: | Zitat-Klammern			| ''&lt;nowiki&gt;&gt;&gt;Zitat&lt;&lt;&lt;/nowiki&gt;''			| &gt;&gt;Zitat&lt;&lt;												|
+    26| | :ok: | Doppelpfeil (schmal)  		| ''&lt;nowiki&gt;Mesch &lt;-&gt; Natur&lt;/nowiki&gt;''		| Mensch &lt;-&gt; Natur 	|
+    27| | :ok: | Einfache Pfeile (schmal)	| ''&lt;nowiki&gt;Links &lt;- Mitte -&gt; Rechts&lt;/nowiki&gt;''	| Links &lt;- Mitte -&gt; Rechts										|
+    28| | :ok: | Doppelpfeil (dick)		| ''&lt;nowiki&gt;Mensch &lt;=&gt; Gesellschaft&lt;/nowiki&gt;''	| Mensch &lt;=&gt; Gesellschaft 						|
+    29| | :ok: | Einfache Pfeile (dick)		| ''&lt;nowiki&gt;Links &lt;= Mitte =&gt; Rechts&lt;/nowiki&gt;''	| Links &lt;= Mitte =&gt; Rechts										|
+    30| | :ok: | Horizontale Trennlinie   	| ''&lt;nowiki&gt;Oben ---- Unten&lt;/nowiki&gt;''		| Oben ---- Unten 											|
+    31| 
+    32| \\ **Sonstiges**
+    33| $$ | Deutsche Anf&uuml;hrungszeichen | &quot;Ja&quot; |
+    34| $$ | Lange Linie | ---  |
+    35| $$ | Kurze Linie | --   |
+    36| $$ | Copyright   | (c)  | 
+    37| $$ | Trademark   | (tm) |  
+    38| $$ | usw.        | ...  |
+    39| $$ | Smileytest  | :-|  |
+    40| | Deutsche Anf&uuml;hrungszeichen | &quot;Ja&quot; |
+    41| | Lange Linie | ---  |
+    42| | Kurze Linie | --   |
+    43| | Copyright   | (c)  | 
+    44| | Trademark   | (tm) |  
+    45| | usw.        | ...  |
+    46| | Smileytest  | :-|  |
+<span style='color: gray'>    47| \\</span>
+<span style='color: gray'>    48| :&gt;&gt; &lt;lo&gt;Verarbeitet in ~~TEXT:comma|{{PERFORMANCE}}~~ Sek. | Dateiformat: {{FILE:type}}&lt;/lo&gt;</span>
+</pre><i>Der graue Text zeigt die Kopf- und Fu&szlig;zeile des Dokumentes.</i>

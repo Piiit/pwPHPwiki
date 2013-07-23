@@ -1,35 +1,28 @@
-<div id='imwiki'>
-<div class="section_border">
-Sie sind hier: <a href='?mode=cleared&id=index'>Home</a> &raquo; <a href='?mode=cleared&id=dokumentation'>Dokumentation</a> &raquo; Todos<span class="less_significant"> | <a href="?id=dokumentation:todos">Todos anzeigen</a></span></div><h1 id="header_20"> Admin </h1><h2 id="header_20.1"> todos </h2><ul>
-</ul><ul><li>
-Quellcode anzeigen (ohne Login, konfigurierbar)</li>
-</ul>
-<h2 id="header_20.2"> bugs </h2><ul>
-</ul><ul><li>
-<a href="?id=dokumentation:utf8&mode=editpage" class="pw_wiki_link_na">Codierungsfehler</a> utf8, htmlentities, filesystem, ...</li>
-<li>
-First Start: tpl-Ordner anlegen, header, footer, etc. anlegen, startseite, die diese operationen vom benutzer fordern...</li>
-</ul>
-<h2 id="header_20.3"> done </h2><ul>
-</ul><ul><li>
-Datei oder Namensraum verschieben/umbenennen</li>
-<li>
-Namensr&auml;ume l&ouml;schen</li>
-<li>
-Login-Dialog zeigt <tt>Logout</tt> als &Uuml;berschrift</li>
-<li>
-Tastenk&uuml;rzel: f&uuml;r alle Funktionen festlegen... JS location.href = mit besserer Funktion versehen (setMode...)</li>
-<li>
-Dateinamen in einem ung&uuml;ltigen Format k&ouml;nnen weder ge&ouml;ffnet, noch gel&ouml;scht werden (Bsp.: <tt>\\Name</tt>).</li>
-<li>
-Dateien mit ung&uuml;ltigen Namen l&ouml;schen</li>
-<li>
-Autofocus in Dialogen (InfoDialog erh&auml;lt noch kein focus, da OK-Button als Link &lt;a&gt; definiert wurde)</li>
-<li>
-Debugmodus ein- und ausschalten &uuml;ber <tt>Einstellungen</tt>.</li>
-<li>
-Modaldialog in der Mitte anzeigen... nicht bei 300px</li>
-<li>
-Abbrechen im Modaldialog springt immer zur Startseite, da ID in der URL leer ist. </li>
-</ul>
-<br /><div align="right"><span class="less_significant">Verarbeitet in 0,0326 Sek. | Dateiformat: PC</span></div></div>
+<h1>Fehler im Wikitext erkannt</h1>Fehler in der Zeile .<pre style='white-space: pre-wrap'><span style='color: gray'>     1| &lt;border&gt;</span>
+<span style='color: gray'>     2| Sie sind hier: ~~TRACE~~</span>
+<span style='color: gray'>     3| &lt;lo&gt; | [[:dokumentation:todos|Todos anzeigen]]&lt;/lo&gt;</span>
+<span style='color: gray'>     4| &lt;/border&gt;</span>
+     5| = Admin =
+     6|    
+     7| == todos ==
+     8| * Quellcode anzeigen (ohne Login, konfigurierbar)
+     9| 
+    10| == bugs ==
+    11| * [[utf8|Codierungsfehler]] utf8, htmlentities, filesystem, ...
+    12| * First Start: tpl-Ordner anlegen, header, footer, etc. anlegen, startseite, die diese operationen vom benutzer fordern...
+    13| 
+    14| == done ==
+    15| * Datei oder Namensraum verschieben/umbenennen
+    16| * Namensr&auml;ume l&ouml;schen
+    17| * Login-Dialog zeigt ''Logout'' als &Uuml;berschrift
+    18| * Tastenk&uuml;rzel: f&uuml;r alle Funktionen festlegen... JS location.href = mit besserer Funktion versehen (setMode...)
+    19| * Dateinamen in einem ung&uuml;ltigen Format k&ouml;nnen weder ge&ouml;ffnet, noch gel&ouml;scht werden (Bsp.: ''%%\\Name%%'').
+    20| * Dateien mit ung&uuml;ltigen Namen l&ouml;schen
+    21| * Autofocus in Dialogen (InfoDialog erh&auml;lt noch kein focus, da OK-Button als Link &lt;a&gt; definiert wurde)
+    22| * Debugmodus ein- und ausschalten &uuml;ber ''Einstellungen''.
+    23| * Modaldialog in der Mitte anzeigen... nicht bei 300px
+    24| * Abbrechen im Modaldialog springt immer zur Startseite, da ID in der URL leer ist. 
+    25| 
+<span style='color: gray'>    26| \\</span>
+<span style='color: gray'>    27| :&gt;&gt; &lt;lo&gt;Verarbeitet in ~~TEXT:comma|{{PERFORMANCE}}~~ Sek. | Dateiformat: {{FILE:type}}&lt;/lo&gt;</span>
+</pre><i>Der graue Text zeigt die Kopf- und Fu&szlig;zeile des Dokumentes.</i>

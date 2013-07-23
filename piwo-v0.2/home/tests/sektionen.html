@@ -1,3 +1,30 @@
-<div id='imwiki'>
-<div class="section_border">
-Sie sind hier: <a href='?mode=cleared&id=index'>Home</a> &raquo; <a href='?mode=cleared&id=dokumentation'>Dokumentation</a> &raquo; Todos<span class="less_significant"> | <a href="?id=dokumentation:todos">Todos anzeigen</a></span></div><div class="tablediv"><table><tr><th> Was es ist </th><th> Wie es dargestellt wird </th><th colspan="3"> Was du schreibst </th></tr><tr><td> Hintergrund hervorheben<br />Ohne Parameter (default) </td></td><td> <div align="center"><span class="highlighted c0">Ohne Angabe</span></div> </td></td><td colspan="2"> <tt>&lt;hi&gt;Ohne Angabe&lt;/hi&gt;</tt></td></td></tr><tr><td> Paramter in Textform </td></td><td>  <div align="center"><span class="highlighted c0">Orange</span></div><div align="center"><span class="highlighted c4">Blau</span></div><div align="center"><span class="highlighted c1">Gr&uuml;n</span></div><div align="center"><span class="highlighted c3">Rot</span></div><div align="center"><span class="highlighted c2">Gelb</span></div> </td></td><td colspan="2"> <tt>&lt;hi Farbcode&gt;Text&lt;/hi&gt;</tt><br />F&uuml;r <tt>Farbcode</tt> kannst du <tt>orange</tt>, <tt>blue</tt>, <tt>green</tt>, <tt>red</tt> oder <tt>yellow</tt> einsetzen.</td></td></tr><tr><td> Parameter in nummerischer Form </td></td><td> <div align="center"><span class="highlighted c0">Orange</span></div><div align="center"><span class="highlighted c1">Gr&uuml;n</span></div><div align="center"><span class="highlighted c2">Gelb</span></div><div align="center"><span class="highlighted c3">Rot</span></div><div align="center"><span class="highlighted c4">Blau</span></div> </td></td><td colspan="2"> <tt>&lt;hi X&gt;Text&lt;/hi&gt;</tt><br />F&uuml;r <tt>X</tt> kannst du Ziffern von <tt>0</tt> bis <tt>4</tt> einsetzen.</td></td></tr><tr><td> Legenden darstellen<br /><small>(Kein Text zwichen den Tags; bzw. <tt>&amp;nbsp;</tt>)</small> </td></td><td> <div style="margin-left: 0px"><span class="highlighted c3"></span> = Leeres Feld</div><div style="margin-left: 0px"><span class="highlighted c3">&nbsp;</span> = Breitere Darstellung</div> </td></td><td colspan="2"> <tt>&lt;hi 3&gt;&lt;/hi&gt; = Leeres Feld</tt><br /><tt>&lt;hi 3&gt;&amp;nbsp;&lt;/hi&gt; = Breitere Darstellung</tt></td></td></tr></table></div><br /><div align="right"><span class="less_significant">Verarbeitet in 0,0706 Sek. | Dateiformat: PC</span></div></div>
+<h1>Fehler im Wikitext erkannt</h1>Fehler in der Zeile .<pre style='white-space: pre-wrap'><span style='color: gray'>     1| &lt;border&gt;</span>
+<span style='color: gray'>     2| Sie sind hier: ~~TRACE~~</span>
+<span style='color: gray'>     3| &lt;lo&gt; | [[:dokumentation:todos|Todos anzeigen]]&lt;/lo&gt;</span>
+<span style='color: gray'>     4| &lt;/border&gt;</span>
+     5| ^ Was es ist ^ Wie es dargestellt wird ^ Was du schreibst ^
+     6| | Hintergrund hervorheben\\Ohne Parameter (default) | {{{
+     7| :&gt; &lt;hi&gt;Ohne Angabe&lt;/hi&gt;
+     8| }}} | ''%%&lt;hi&gt;Ohne Angabe&lt;/hi&gt;%%''
+     9| | Paramter in Textform |  {{{
+    10| :&gt; &lt;hi orange&gt;Orange&lt;/hi&gt;
+    11| :&gt; &lt;hi blue&gt;Blau&lt;/hi&gt;
+    12| :&gt; &lt;hi green&gt;Gr&uuml;n&lt;/hi&gt;
+    13| :&gt; &lt;hi red&gt;Rot&lt;/hi&gt;
+    14| :&gt; &lt;hi yellow&gt;Gelb&lt;/hi&gt;
+    15| }}} | ''%%&lt;hi Farbcode&gt;Text&lt;/hi&gt;%%''\\F&uuml;r ''Farbcode'' kannst du ''orange'', ''blue'', ''green'', ''red'' oder ''yellow'' einsetzen.
+    16| | Parameter in nummerischer Form | {{{
+    17| :&gt; &lt;hi 0&gt;Orange&lt;/hi&gt;
+    18| :&gt; &lt;hi 1&gt;Gr&uuml;n&lt;/hi&gt;
+    19| :&gt; &lt;hi 2&gt;Gelb&lt;/hi&gt;
+    20| :&gt; &lt;hi 3&gt;Rot&lt;/hi&gt;
+    21| :&gt; &lt;hi 4&gt;Blau&lt;/hi&gt;
+    22| }}} | ''%%&lt;hi X&gt;Text&lt;/hi&gt;%%''\\F&uuml;r ''X'' kannst du Ziffern von ''0'' bis ''4'' einsetzen.
+    23| | Legenden darstellen\\--(Kein Text zwichen den Tags; bzw. ''%%&amp;nbsp;%%'')-- | {{{
+    24| : &lt;hi 3&gt;&lt;/hi&gt; = Leeres Feld
+    25| : &lt;hi 3&gt;&amp;nbsp;&lt;/hi&gt; = Breitere Darstellung
+    26| }}} | ''%%&lt;hi 3&gt;&lt;/hi&gt; = Leeres Feld%%''\\''%%&lt;hi 3&gt;&amp;nbsp;&lt;/hi&gt; = Breitere Darstellung%%''
+    27| 
+<span style='color: gray'>    28| \\</span>
+<span style='color: gray'>    29| :&gt;&gt; &lt;lo&gt;Verarbeitet in ~~TEXT:comma|{{PERFORMANCE}}~~ Sek. | Dateiformat: {{FILE:type}}&lt;/lo&gt;</span>
+</pre><i>Der graue Text zeigt die Kopf- und Fu&szlig;zeile des Dokumentes.</i>

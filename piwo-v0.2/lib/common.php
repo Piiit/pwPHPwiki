@@ -4,6 +4,7 @@ if (!defined('INC_PATH')) {
 	define ('INC_PATH', realpath(dirname(__FILE__).'/../').'/');
 }
 require_once INC_PATH.'pwTools/string/encoding.php';
+require_once INC_PATH.'pwTools/string/StringTools.php';
 require_once INC_PATH.'piwo-v0.2/lib/pw_debug.php';
 
 
@@ -201,7 +202,7 @@ function pw_wiki_path2id($path) {
 
   $id = ltrim($id, ":");
 
-  $id = strrtrim($id, pw_wiki_getcfg('fileext'));
+  $id = StringTools::rightTrim($id, pw_wiki_getcfg('fileext'));
   $id = pw_s2url($id);
   return $id;
 }
@@ -411,17 +412,7 @@ function html_footer($modal) {
   pw_ne ('<!-- FOOTER end -->');
 }
 
-function strrtrim($message, $strip) {
-  // break message apart by strip string
-  $lines = explode($strip, $message);
-  $last  = '';
-  // pop off empty strings at the end
-  do {
-      $last = array_pop($lines);
-  } while (empty($last) && (count($lines)));
-  // re-assemble what remains
-  return implode($strip, array_merge($lines, array($last)));
-}
+
 
 /**
  * SPECIAL UTILITIES FOR WIKI...
@@ -573,7 +564,7 @@ function pw_wiki_syntaxerr($text, $line, $errtxt, $header = 0, $footer = 0) {
 }
 
 function out($node, $txt = null) {
-  echo '<pre style="font-size: 12px; background-color: black;  color: lightgreen; border: 1px solid lightgreen;">';
+  echo '<pre style="font-size: 12px; background-color: black; color: lightgreen; border: 1px solid lightgreen;">';
   echo(pw_debug_get_info($txt)."\n");
   var_dump($node);
   echo '</pre>';

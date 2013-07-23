@@ -1,81 +1,88 @@
-<div id='imwiki'>
-<div class="section_border">
-Sie sind hier: <a href='?mode=cleared&id=index'>Home</a> &raquo; <a href='?mode=cleared&id=dokumentation'>Dokumentation</a> &raquo; Todos<span class="less_significant"> | <a href="?id=dokumentation:todos">Todos anzeigen</a></span></div><h1 id="header_52"> Aufbau der CSV-Tabellen </h1>
-Eine CSV-Datei besteht aus drei Teilen:<ul>
-</ul><ul><li>
-Konfigurationskopf <i>(Header)</i>: Die Kopfzeile beinhaltet Kommentare, spezielle <a href="#header_52.1.1">Konfigurationen</a> und Angaben f&uuml;r Labels von Variablen der <a href="#header_52.1">Datenstruktur</a>.</li>
-<li>
-Strukturzeile <i>(Struct)</i>: Aufbau der Datenbank (CSV-Datei-Struktur)... Datentypen, Konfigurationen, Spaltennamen, etc.</li>
-<li>
-Inhalt <i>(Content)</i>: Inhalt per CSV (Comma separated Values)</li>
-</ul>
-
- 
-Dabei gibt es drei Arten von Zeilentypen:<ul>
-</ul><ul><li>
-Kommentare beginnen mit einem # und k&ouml;nnen auch am Zeilenende einer Konfigurationszeile stehen (im Contentbereich sind sie nicht erlaubt)</li>
-<li>
-Konfigurationszeilen beginnen mit !! und haben zwei verschiedene Arten:</li>
-<ul><li>
-Form 1: <tt>!! Schl&uuml;ssel = Wert</tt> f&uuml;r einfache Einstellungen oder ...</li>
-<li>
-Form 2: <tt>!! Strukturzeile</tt> (<a href="#header_52.2">siehe Kapitel -&amp;gt; Strukturzeile</a>)</li>
-</ul></ul>
-<h2 id="header_52.1"> Konfigurationskopf (Header)</h2><pre><div># HEADER #
-# Kommentar: Test f&uuml;r pw_csv                   # Alle Kommentare beginnen mit einem &quot;#&quot;
-!! title       = %count Geburtstage            # Konfigurationseintr&auml;ge beginnen mit &quot;!!&quot; und haben folgende Form &quot;Schl&uuml;ssel = Wert&quot; (Weitere infos unter pw_config)
-!! title_empty = Keine Geburtstage gespeichert # Titel falls keine Eintr&auml;ge in der CSV vorhanden sind
-!! title_conf  = Geburtstage merken            # Titel f&uuml;r das Konfigurationsmen&uuml;
-</div></pre><h3 id="header_52.1.1"> Konfigurationen </h3><div class="tablediv"><table><tr><td> <div align="center"><tt>title</tt> </div></td></td><td colspan="3"> Titel der Tabelle, falls Werte vorhanden sind </td></td></td></tr><tr><td> <div align="center"><tt>title_empty</tt> </div></td></td><td colspan="3"> Titel der Tabelle, falls der &quot;Content&quot; leer ist </td></td></td></tr><tr><td> <div align="center"><tt>title_conf</tt> </div></td></td><td colspan="3"> Titel im Adminbereich der Datenbank </td></td></td></tr></table></div><h3 id="header_52.1.2"> Labels einzelnen Spalten zuweisen </h3><pre><div>!! datum       = Geburtstag                    # label f&uuml;r die Datenspalte &quot;datum&quot;
-</div></pre><h3 id="header_52.1.3"> Variablen innerhalb der Konfigurationstexte </h3><div class="tablediv"><table><tr><td> <div align="center"><tt>%count</tt> </div></td></td><td colspan="3"> Anzahl der Datens&auml;tze </td></td></td></tr><tr><td> <div align="center"><tt>%</tt> </div></td></td><td colspan="3"> ... </td></td></td></tr></table></div><h2 id="header_52.2"> Strukturzeile (Struct)</h2><pre><div># STRUCT #
-# Nun folgt die Strukturzeile (sie muss in einer Zeile stehen und darf nur einmal vorkommen --&gt; nur die erste Strukturzeile wird geparst, alle anderen ignoriert)
-!! &amp;id:int(0,), AUTO_INC|test:int(12,10000)|tage:list(montag, dienstag, mittwoch, donnerstag)|name:csv(test2, name, geschl), NULL |datum:date() | email:text.email(100), NULL
-</div></pre><h3 id="header_52.2.1"> Schl&uuml;sselw&ouml;rter </h3><div class="tablediv"><table><tr><td> <div align="center"><tt>&amp;</tt>        </div></td></td><td colspan="3"> bedeutet PRIMARY KEY und ist somit automatisch <tt>UNIQUE</tt> </td></td></td></tr><tr><td> <div align="center"><tt>AUTO_INC</tt> </div></td></td><td colspan="3"> Werte werden mit jedem neuen Eintrag automatisch inkrementiert </td></td></td></tr><tr><td> <div align="center"><tt>UNIQUE</tt>   </div></td></td><td colspan="3"> Inhalt darf nur einmal vorkommen (Default = <tt>NOT UNIQUE</tt>) </td></td></td></tr><tr><td> <div align="center"><tt>NULL</tt>     </div></td></td><td colspan="3"> bedeutet das Feld darf leer sein (Default = <tt>NOT NULL</tt>) </td></td></td></tr></table></div><h3 id="header_52.2.2"> Datentypen </h3><pre><div>schl&uuml;ssel:datentyp(datentypconfig), optionen
-</div></pre>
-oder<pre><div>schl&uuml;ssel:datentyp.untertyp(datentypconfig), optionen
-</div></pre><ul>
-</ul><ul><li>
-Datentypen:</li>
-<ol><li>
-:ok: <tt>text ( l&auml;nge, default )</tt></li>
-<li>
-:ok: <tt>date ( format, von, bis, default )</tt> -&gt; :w:Checks und errorhandling fehlt</li>
-<li>
-:ok: <tt>time ( von, bis, default )</tt> -&gt; :w:Checks und errorhandling fehlt</li>
-<li>
-:ok: <tt>datetime (von, bis, default )</tt> -&gt; :w:Checks und errorhandling fehlt</li>
-<li>
-:ok: <tt>int  ( von, bis, default )</tt></li>
-<li>
-:ok: <tt>float( von, bis, kommazahlen, default )</tt></li>
-<li>
-:ok: <tt>list ( element1, element2, ... )</tt></li>
-<li>
-<tt>csv  ( csvname, item1, item2, ... )</tt> <small>(es wird immer der &quot;primary key&quot; gespeichert)</small></li></ol>
-</ul><ul><li>
-Untertypen: <small>noch nicht implementiert</small></li>
-<ol><li>
-<tt>text.email</tt></li>
-<li>
-<tt>text.url</tt></li>
-<li>
-<tt>...</tt></li>
-</ol></ul>
-
- 
-<big>Datentyp: DATE</big>
-:i: Das Datum innerhalb der CSV hat immer folgende Form: <tt>JJJJ-MM-TT hh:mm:ss</tt><pre><div>date(format, von, bis, default)
-</div></pre>
-Parameterliste:<ul>
-</ul><ul><li>
-<b><tt>format</tt></b>: Ausgabeformat. <small>noch nicht implementiert</small></li>
-<li>
-<b><tt>von</tt></b>, <b><tt>bis</tt></b>: Zeitraum</li>
-<li>
-<b><tt>default</tt></b>: Entweder ein bestimmter Zeitpunkt im CSV-eigenen Datumsformat oder <br /> <tt>NOW</tt> als Konstante  <small>(weitere Konstante werden noch implementiert)</small></li>
-</ul>
-<h2 id="header_52.3"> Inhalt (Content) </h2><pre><div># CONTENT #
-# ...ab hier werden dann zeilenweise alle CSV - Eintr&auml;ge gespeichert
-0|14|1|2|1231772169|piiit@xy.de
-1|...
-</div></pre><br /><div align="right"><span class="less_significant">Verarbeitet in 0,1172 Sek. | Dateiformat: PC</span></div></div>
+<h1>Fehler im Wikitext erkannt</h1>Fehler in der Zeile .<pre style='white-space: pre-wrap'><span style='color: gray'>     1| &lt;border&gt;</span>
+<span style='color: gray'>     2| Sie sind hier: ~~TRACE~~</span>
+<span style='color: gray'>     3| &lt;lo&gt; | [[:dokumentation:todos|Todos anzeigen]]&lt;/lo&gt;</span>
+<span style='color: gray'>     4| &lt;/border&gt;</span>
+     5| = Aufbau der CSV-Tabellen =
+     6| 
+     7| Eine CSV-Datei besteht aus drei Teilen:
+     8| * Konfigurationskopf //(Header)//: Die Kopfzeile beinhaltet Kommentare, spezielle [[#Konfigurationen]] und Angaben f&uuml;r Labels von Variablen der [[#Konfigurationskopf (Header)|Datenstruktur]].
+     9| * Strukturzeile //(Struct)//: Aufbau der Datenbank (CSV-Datei-Struktur)... Datentypen, Konfigurationen, Spaltennamen, etc.
+    10| * Inhalt //(Content)//: Inhalt per CSV (Comma separated Values)
+    11|  
+    12| Dabei gibt es drei Arten von Zeilentypen:
+    13| * Kommentare beginnen mit einem # und k&ouml;nnen auch am Zeilenende einer Konfigurationszeile stehen (im Contentbereich sind sie nicht erlaubt)
+    14| * Konfigurationszeilen beginnen mit !! und haben zwei verschiedene Arten:
+    15|  * Form 1: ''!! Schl&uuml;ssel = Wert'' f&uuml;r einfache Einstellungen oder ...
+    16|  * Form 2: ''!! Strukturzeile'' ([[#Strukturzeile (Struct)|siehe Kapitel -&gt; Strukturzeile]])
+    17|  
+    18| == Konfigurationskopf (Header)==
+    19| $$ # HEADER #
+    20| $$ # Kommentar: Test f&uuml;r pw_csv                   # Alle Kommentare beginnen mit einem &quot;#&quot;
+    21| $$ !! title       = %count Geburtstage            # Konfigurationseintr&auml;ge beginnen mit &quot;!!&quot; und haben folgende Form &quot;Schl&uuml;ssel = Wert&quot; (Weitere infos unter pw_config)
+    22| $$ !! title_empty = Keine Geburtstage gespeichert # Titel falls keine Eintr&auml;ge in der CSV vorhanden sind
+    23| $$ !! title_conf  = Geburtstage merken            # Titel f&uuml;r das Konfigurationsmen&uuml;
+    24| 
+    25| === Konfigurationen ===
+    26| | :&gt; ''title'' | Titel der Tabelle, falls Werte vorhanden sind |
+    27| | :&gt; ''title_empty'' | Titel der Tabelle, falls der &quot;Content&quot; leer ist |
+    28| | :&gt; ''title_conf'' | Titel im Adminbereich der Datenbank |
+    29| 
+    30| === Labels einzelnen Spalten zuweisen ===
+    31| $$ !! datum       = Geburtstag                    # label f&uuml;r die Datenspalte &quot;datum&quot;
+    32| 
+    33| === Variablen innerhalb der Konfigurationstexte ===
+    34| | :&gt; ''%count'' | Anzahl der Datens&auml;tze |
+    35| | :&gt; ''%'' | ... |
+    36| 
+    37| == Strukturzeile (Struct)==
+    38| 
+    39| $$ # STRUCT #
+    40| $$ # Nun folgt die Strukturzeile (sie muss in einer Zeile stehen und darf nur einmal vorkommen --&gt; nur die erste Strukturzeile wird geparst, alle anderen ignoriert)
+    41| $$ !! &amp;id:int(0,), AUTO_INC|test:int(12,10000)|tage:list(montag, dienstag, mittwoch, donnerstag)|name:csv(test2, name, geschl), NULL |datum:date() | email:text.email(100), NULL
+    42| 
+    43| 
+    44| === Schl&uuml;sselw&ouml;rter ===
+    45| | :&gt; ''&amp;''        | bedeutet PRIMARY KEY und ist somit automatisch ''UNIQUE'' |
+    46| | :&gt; ''AUTO_INC'' | Werte werden mit jedem neuen Eintrag automatisch inkrementiert |
+    47| | :&gt; ''UNIQUE''   | Inhalt darf nur einmal vorkommen (Default = ''NOT UNIQUE'') |
+    48| | :&gt; ''NULL''     | bedeutet das Feld darf leer sein (Default = ''NOT NULL'') |
+    49| 
+    50|  
+    51| === Datentypen ===
+    52| $$ schl&uuml;ssel:datentyp(datentypconfig), optionen
+    53| oder
+    54| $$ schl&uuml;ssel:datentyp.untertyp(datentypconfig), optionen
+    55| 
+    56| * Datentypen:
+    57|  # :ok: ''text ( l&auml;nge, default )''
+    58|  # :ok: ''date ( format, von, bis, default )'' -&gt; :w:Checks und errorhandling fehlt
+    59|  # :ok: ''time ( von, bis, default )'' -&gt; :w:Checks und errorhandling fehlt
+    60|  # :ok: ''datetime (von, bis, default )'' -&gt; :w:Checks und errorhandling fehlt
+    61|  # :ok: ''int  ( von, bis, default )''
+    62|  # :ok: ''float( von, bis, kommazahlen, default )''
+    63|  # :ok: ''list ( element1, element2, ... )''
+    64|  # ''csv  ( csvname, item1, item2, ... )'' --(es wird immer der &quot;primary key&quot; gespeichert)--
+    65|  
+    66| * Untertypen: --noch nicht implementiert--
+    67|  # ''text.email''
+    68|  # ''text.url''
+    69|  # ''...''
+    70|  
+    71| ++Datentyp: DATE++
+    72| 
+    73| :i: Das Datum innerhalb der CSV hat immer folgende Form: ''JJJJ-MM-TT hh:mm:ss''
+    74| $$ date(format, von, bis, default)
+    75| Parameterliste:
+    76| * **''format''**: Ausgabeformat. --noch nicht implementiert--
+    77| * **''von''**, **''bis''**: Zeitraum
+    78| * **''default''**: Entweder ein bestimmter Zeitpunkt im CSV-eigenen Datumsformat oder \\ ''NOW'' als Konstante  --(weitere Konstante werden noch implementiert)--
+    79| 
+    80| 
+    81| == Inhalt (Content) ==
+    82| $$ # CONTENT #
+    83| $$ # ...ab hier werden dann zeilenweise alle CSV - Eintr&auml;ge gespeichert
+    84| $$ 0|14|1|2|1231772169|piiit@xy.de
+    85| $$ 1|...
+<span style='color: gray'>    86| \\</span>
+<span style='color: gray'>    87| :&gt;&gt; &lt;lo&gt;Verarbeitet in ~~TEXT:comma|{{PERFORMANCE}}~~ Sek. | Dateiformat: {{FILE:type}}&lt;/lo&gt;</span>
+</pre><i>Der graue Text zeigt die Kopf- und Fu&szlig;zeile des Dokumentes.</i>

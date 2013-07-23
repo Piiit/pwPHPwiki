@@ -1,35 +1,34 @@
-<div id='imwiki'>
-<div class="section_border">
-Sie sind hier: <a href='?mode=cleared&id=index'>Home</a> &raquo; <a href='?mode=cleared&id=dokumentation'>Dokumentation</a> &raquo; Todos<span class="less_significant"> | <a href="?id=dokumentation:todos">Todos anzeigen</a></span></div><h1 id="header_79"> Links </h1><ul>
-</ul><ul><li>
-:*: #LI0001: Zeichen vor und nach Links sollten dem Linktext angef&uuml;gt werden =&gt; Bsp.: <tt>Fehler #[[csvbugs:co0003]]</tt> -&gt; Fehler #<a href="?id=dokumentation:csvbugs:co0003&mode=editpage" class="pw_wiki_link_na">co0003</a></li>
-<li>
-:ok: <strike>#LI0002: kursiv + link l&auml;uft nicht <br /> Bsp. 1: <tt>//[http://www.heise.de Hier her]//</tt> -&gt; <i><a target="_blank" href="http://www.heise.de">Hier her</a></i> <br /> Bsp. 2: <tt>//[http://www.heise.de http://www.heise.de]//</tt> -&gt;  <i><a target="_blank" href="http://www.heise.de">&lt;a target=&quot;_blank&quot; href=&quot;http://www.heise.de&quot;&gt;http://www.heise.de&lt;/a&gt;</a></i> <br /> Bsp. 3: <tt>//[http://www.heise.de]//</tt> -&gt;  <i><a target="_blank" href="http://www.heise.de">http://www.heise.de</a></i></strike></li>
-</ul>
-<h1 id="header_80"> Browser </h1><ul>
-</ul><ul><li>
-:ok: <strike>#BR0001: Browser-Navigation funktioniert nicht richtig -&gt; History-Back (im Adminbereich etc.)</strike></li>
-</ul>
-<h1 id="header_81"> Sektionen </h1><ul>
-</ul><ul><li>
-:ok: <strike>#SE0001: Sonderzeichen werden in NOWIKI-Sektionen nicht richtig geparst -&gt; Bsp.: <tt>Sonderzeichen: &ouml;&auml;&uuml;&szlig;&Ouml;&Auml;&Uuml;</tt></strike></li>
-<li>
-:*: #SE0003: Andere Tags (Bsp. TITLE) k&ouml;nnen Sektionen starten und auch wieder beenden, falls ein selbiges auftritt...</li>
-</ul>
-<h1 id="header_82"> Align </h1><ul>
-</ul><ul><li>
-:ok: <strike>#AL0001: Tags werden nicht richtig geschlossen</strike></li>
-</ul>
-<h1 id="header_83"> Codes </h1><div class="section_info">In der neuen Version 0.01 gibt es keine Codes</div><ul>
-</ul><ul><li>
-:ok: <strike>#CO0001: <tt> :&gt;: </tt> wird in Listen oder am Zeilenanfang mit INDENT verwechselt. Funktioniert oft nur, wenn im Satz danach ein <tt>:</tt> steht.</strike></li>
-<li>
-:*:  #CO0002: Einige Icons wurden doppelt vergeben.</li>
-<li>
-:e:  #CO0003: <tt>Codes:Debug</tt> -&gt; Codes:Debug =&gt; Icons m&uuml;ssen entweder vorher oder nachher ein <tt>Leerzeichen</tt> haben oder <tt>\n</tt></li>
-</ul>
-<div class="section_info"><b>Legende</b> <br />
-:e: -&gt; gefunden <br />
-:!: -&gt; arbeite dran <br />
-:ok: -&gt; erledigt <br />
-:*: -&gt; Fehlendes Feature <br /></div><br /><div align="right"><span class="less_significant">Verarbeitet in 0,0723 Sek. | Dateiformat: PC</span></div></div>
+<h1>Fehler im Wikitext erkannt</h1>Fehler in der Zeile .<pre style='white-space: pre-wrap'><span style='color: gray'>     1| &lt;border&gt;</span>
+<span style='color: gray'>     2| Sie sind hier: ~~TRACE~~</span>
+<span style='color: gray'>     3| &lt;lo&gt; | [[:dokumentation:todos|Todos anzeigen]]&lt;/lo&gt;</span>
+<span style='color: gray'>     4| &lt;/border&gt;</span>
+     5| = Links =
+     6| * :*: #LI0001: Zeichen vor und nach Links sollten dem Linktext angef&uuml;gt werden =&gt; Bsp.: ''&lt;nowiki&gt;Fehler #[[csvbugs:co0003]]&lt;/nowiki&gt;'' -&gt; Fehler #[[csvbugs:co0003]]
+     7| * :ok: -+#LI0002: kursiv + link l&auml;uft nicht \\ Bsp. 1: ''&lt;nowiki&gt;//[http://www.heise.de Hier her]//&lt;/nowiki&gt;'' -&gt; //[http://www.heise.de Hier her]// \\ Bsp. 2: ''&lt;nowiki&gt;//[http://www.heise.de http://www.heise.de]//&lt;/nowiki&gt;'' -&gt;  //[http://www.heise.de http://www.heise.de]// \\ Bsp. 3: ''&lt;nowiki&gt;//[http://www.heise.de]//&lt;/nowiki&gt;'' -&gt;  //[http://www.heise.de]//+-
+     8| 
+     9| = Browser =
+    10| * :ok: -+#BR0001: Browser-Navigation funktioniert nicht richtig -&gt; History-Back (im Adminbereich etc.)+-
+    11| 
+    12| = Sektionen =
+    13| * :ok: -+#SE0001: Sonderzeichen werden in NOWIKI-Sektionen nicht richtig geparst -&gt; Bsp.: ''&lt;nowiki&gt;Sonderzeichen: &ouml;&auml;&uuml;&szlig;&Ouml;&Auml;&Uuml;&lt;/nowiki&gt;''+-
+    14| * :*: #SE0003: Andere Tags (Bsp. TITLE) k&ouml;nnen Sektionen starten und auch wieder beenden, falls ein selbiges auftritt...
+    15| 
+    16| = Align =
+    17| * :ok: -+#AL0001: Tags werden nicht richtig geschlossen+-
+    18| 
+    19| = Codes =
+    20| &lt;info&gt;In der neuen Version 0.01 gibt es keine Codes&lt;/info&gt;
+    21| * :ok: -+#CO0001: ''&lt;nowiki&gt; :&gt;: &lt;/nowiki&gt;'' wird in Listen oder am Zeilenanfang mit INDENT verwechselt. Funktioniert oft nur, wenn im Satz danach ein '':'' steht.+-
+    22| * :*:  #CO0002: Einige Icons wurden doppelt vergeben.
+    23| * :e:  #CO0003: ''&lt;nowiki&gt;Codes:Debug&lt;/nowiki&gt;'' -&gt; Codes:Debug =&gt; Icons m&uuml;ssen entweder vorher oder nachher ein ''Leerzeichen'' haben oder ''\n''
+    24| 
+    25| &lt;info&gt;
+    26| **Legende** \\
+    27| :e: -&gt; gefunden \\
+    28| :!: -&gt; arbeite dran \\
+    29| :ok: -&gt; erledigt \\
+    30| :*: -&gt; Fehlendes Feature \\
+    31| &lt;/info&gt;
+<span style='color: gray'>    32| \\</span>
+<span style='color: gray'>    33| :&gt;&gt; &lt;lo&gt;Verarbeitet in ~~TEXT:comma|{{PERFORMANCE}}~~ Sek. | Dateiformat: {{FILE:type}}&lt;/lo&gt;</span>
+</pre><i>Der graue Text zeigt die Kopf- und Fu&szlig;zeile des Dokumentes.</i>
