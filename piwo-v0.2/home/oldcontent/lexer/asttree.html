@@ -1,0 +1,91 @@
+<div id='imwiki'>
+<div class="section_border">
+Sie sind hier: <a href='?mode=cleared&id=index'>Home</a> &raquo; <a href='?mode=cleared&id=dokumentation'>Dokumentation</a> &raquo; Todos<span class="less_significant"> | <a href="?id=dokumentation:todos">Todos anzeigen</a></span></div><h1 id="header_65"> AST (Abstract Syntax Tree) </h1>
+Der folgende Wikicode erzeugt einen Baum, den sogenannten &quot;Abstract Syntax Tree&quot;.  
+<h2 id="header_65.1"> Wikicode (Beispiel) </h2><pre><div>  0 	 
+  1 	 === header ===
+  2 	 | __test__ | **test2** |
+  3 	 | //weiter// | __**//lala//**__ | asdf |
+  4 	 | {{{
+  5 	   * liste
+  6 	   | tabelle2 | lala |
+  7 	   | 23 | 254 |
+  8 	   }}} |
+  9 	 
+</div></pre><h2 id="header_65.2"> Ausgabe des AST </h2><small>Diese Ausgabe wurde mit dem Lexer v0.42c vom 3.8.2010 erzeugt.</small><pre><div> header[===] {
+   #TEXT {&quot; header &quot;}
+ }
+ tablerow[] {
+   tablecell[] {
+     underline[] {
+       #TEXT {&quot;test&quot;}
+     }
+   }
+   tablecell[] {
+     bold[] {
+       #TEXT {&quot;test2&quot;}
+     }
+   }
+ }
+ tablerow[] {
+   tablecell[] {
+     italic[] {
+       #TEXT {&quot;weiter&quot;}
+     }
+   }
+   tablecell[] {
+     underline[] {
+       bold[] {
+         italic[] {
+           #TEXT {&quot;lala&quot;}
+         }
+       }
+     }
+   }
+   tablecell[] {
+     #TEXT {&quot; asdf &quot;}
+   }
+ }
+ tablerow[] {
+   tablecell[] {
+     multiline[] {
+       listitem[  , *] {
+         #TEXT {&quot;liste&quot;}
+       }
+       tablerow[] {
+         tablecell[] {
+           #TEXT {&quot; tabelle2 &quot;}
+         }
+         tablecell[] {
+           #TEXT {&quot; lala &quot;}
+         }
+       }
+       tablerow[] {
+         tablecell[] {
+           #TEXT {&quot; 23 &quot;}
+         }
+         tablecell[] {
+           #TEXT {&quot; 254 &quot;}
+         }
+       }
+     }
+   }
+ }
+</div></pre><h2 id="header_65.3"> Konfiguration des Lexers </h2><pre><div>$lexer-&gt;addLinePattern(&quot;header&quot;, '\n *(={1,5})', '={1,5}');
+$lexer-&gt;addSectionPattern(&quot;tablerow&quot;, '\n *(?=\|)', '\| *\n');
+$lexer-&gt;addSectionPattern(&quot;tablecell&quot;, '\|(?! *\n)', '(?=\|)');
+$lexer-&gt;addSectionPattern(&quot;listitem&quot;, '\n( *)([\*\#]) ', '\n');
+$lexer-&gt;addSectionPattern(&quot;bold&quot;, '\*\*', '\*\*');
+$lexer-&gt;addSectionPattern(&quot;underline&quot;, '__', '__');
+$lexer-&gt;addSectionPattern(&quot;italic&quot;, '\/\/', '\/\/');
+$lexer-&gt;addSectionPattern(&quot;multiline&quot;, '{{{', '}}}');
+
+$lexer-&gt;setAllowedModes(&quot;header&quot;, array(&quot;#DOCUMENT&quot;, &quot;section&quot;));
+$lexer-&gt;setAllowedModes(&quot;tablecell&quot;, array(&quot;tablerow&quot;));
+$lexer-&gt;setAllowedModes(&quot;tablerow&quot;, array(&quot;#DOCUMENT&quot;, &quot;section&quot;, &quot;multiline&quot;));
+$lexer-&gt;setAllowedModes(&quot;listitem&quot;, array(&quot;#DOCUMENT&quot;, &quot;multiline&quot;, &quot;section&quot;));
+$lexer-&gt;setAllowedModes(&quot;bold&quot;, array(&quot;#DOCUMENT&quot;, &quot;tablecell&quot;, &quot;italic&quot;, &quot;underline&quot;));
+$lexer-&gt;setAllowedModes(&quot;italic&quot;, array(&quot;#DOCUMENT&quot;, &quot;tablecell&quot;, &quot;underline&quot;, &quot;bold&quot;));
+$lexer-&gt;setAllowedModes(&quot;underline&quot;, array(&quot;#DOCUMENT&quot;, &quot;tablecell&quot;, &quot;bold&quot;, &quot;italic&quot;));
+$lexer-&gt;setAllowedModes(&quot;multiline&quot;, array(&quot;#DOCUMENT&quot;, &quot;listitem&quot;, &quot;tablecell&quot;));
+</div></pre><br /><div align="right"><span class="less_significant">Verarbeitet in 0,0905 Sek. | Dateiformat: PC</span></div></div>

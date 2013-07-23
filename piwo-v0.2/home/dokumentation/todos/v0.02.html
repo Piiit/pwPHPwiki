@@ -1,0 +1,129 @@
+<div id='imwiki'>
+<div class="section_border">
+Sie sind hier: <a href='?mode=cleared&id=index'>Home</a> &raquo; <a href='?mode=cleared&id=dokumentation'>Dokumentation</a> &raquo; Todos<span class="less_significant"> | <a href="?id=dokumentation:todos">Todos anzeigen</a></span></div><h1 id="header_27"> Zukunftspl&auml;ne </h1><div class="section_info"><div align="center">Aktuelle Version:<br /><b>0.2.1 - Alpha</b><br /><small>(Lexerversion: 0.42d - PIWO)</small></div></div><div class="section_border">Inhaltsverzeichnis:<br /><div class="toc" id="__toc"><ul><ul><li><a href="#header_1">1 Formate: Encoding/Decoding</a></li><ul><li><a href="#header_1.1">1.1 Globale Variablen &amp; globales Konfigurationsarray</a></li><li><a href="#header_1.2">1.2 Aktuell: encoding.php</a></li></ul><li><a href="#header_2">2 Grammar</a></li><ul><li><a href="#header_2.1">2.1 Rules and Subrules</a></li><li><a href="#header_2.2">2.2 Operators</a></li></ul><li><a href="#header_3">3 Lexer</a></li><ul><li><a href="#header_3.1">3.1 Beispiel 01: UnitTest Dateien</a></li><ul><li><a href="#header_3.1.1">3.1.1 Beispiel-Code</a></li><li><a href="#header_3.1.2">3.1.2 Implementierung</a></li></ul></ul><li><a href="#header_4">4 Todos</a></li><ul><li><a href="#header_4.1">4.1 Blocksatz</a></li><li><a href="#header_4.2">4.2 Zentriert</a></li><li><a href="#header_4.3">4.3 Rechtsb&uuml;ndig</a></li><li><a href="#header_4.4">4.4 Standard: Flattersatz (Linksb&uuml;ndig)</a></li></ul><li><a href="#header_5">5 Einzug</a></li><ul><li><a href="#header_5.1">5.1 Einz&uuml;ge &uuml;ber mehrere Zeilen</a></li></ul><li><a href="#header_6">6 Spaltenkontrolle</a></li><li><a href="#header_7">7 Hyperlinks</a></li><ul><li><a href="#header_7.1">7.1 Interne und externe Links</a></li><li><a href="#header_7.2">7.2 Sprungbefehle</a></li></ul><li><a href="#header_8">8 Sonderzeichentest &ouml;&auml;&uuml;&szlig;</a></li><li><a href="#header_9">9 Listen</a></li><li><a href="#header_10">10 Sektionen</a></li><ul><li><a href="#header_10.1">10.1 Info-Boxen</a></li><li><a href="#header_10.2">10.2 Programmcode darstellen</a></li><li><a href="#header_10.3">10.3 Kommentare f&uuml;r Autoren</a></li></ul><li><a href="#header_11">11 Spezielle Befehle</a></li><ul><li><a href="#header_11.1">11.1 &Uuml;bersicht</a></li><li><a href="#header_11.2">11.2 Konstanten</a></li><li><a href="#header_11.3">11.3 Variablen</a></li><ul><li><a href="#header_11.3.1">11.3.1 Setzen und ausgeben</a></li><li><a href="#header_11.3.2">11.3.2 Hinweis</a></li><li><a href="#header_11.3.3">11.3.3 Fehler bei nicht gesetzten Variablen</a></li></ul><li><a href="#header_11.4">11.4 Fu&szlig;noten</a></li></ul><li><a href="#header_12">12 Spezielle Befehle</a></li><ul><li><a href="#header_12.1">12.1 &Uuml;bersicht</a></li><li><a href="#header_12.2">12.2 Konstanten</a></li><li><a href="#header_12.3">12.3 Variablen</a></li><ul><li><a href="#header_12.3.1">12.3.1 Setzen und ausgeben</a></li><li><a href="#header_12.3.2">12.3.2 Hinweis</a></li><li><a href="#header_12.3.3">12.3.3 Fehler bei nicht gesetzten Variablen</a></li></ul><li><a href="#header_12.4">12.4 Fu&szlig;noten</a></li></ul><li><a href="#header_13">13 Sonderzeichen</a></li><li><a href="#header_14">14 Tabellen</a></li><li><a href="#header_15">15 Todos</a></li><ul><li><a href="#header_15.1">15.1 Hervorgehobener Hintergrund</a></li></ul><li><a href="#header_16">16 &Uuml;berschriften</a></li><ul><li><a href="#header_16.1">16.1 &lt;notoc&gt; - Sektion</a></li><ul><li><a href="#header_16.1.1">16.1.1 &Uuml;berschrift C</a></li><ul><li><a href="#header_16.1.1.1">16.1.1.1 &Uuml;berschrift D</a></li><ul><li><a href="#header_16.1.1.1.1">16.1.1.1.1 &Uuml;berschrift E</a></li></ul></ul></ul></ul><li><a href="#header_17">17 Textgestaltung</a></li><ul><ul><ul><ul><li><a href="#header_17.0.0.0.1">17.0.0.0.1 &Uuml;berschrift der 5. Ebene</a></li></ul></ul></ul></ul><li><a href="#header_18">18 Designideen</a></li><li><a href="#header_19">19 NICE</a></li><li><a href="#header_20">20 Admin</a></li><ul><li><a href="#header_20.1">20.1 todos</a></li><li><a href="#header_20.2">20.2 bugs</a></li><li><a href="#header_20.3">20.3 done</a></li></ul><li><a href="#header_21">21 Todos: Dokumentation</a></li><li><a href="#header_22">22 Editor</a></li><ul><li><a href="#header_22.1">22.1 bugs</a></li><li><a href="#header_22.2">22.2 todos</a></li><li><a href="#header_22.3">22.3 done</a></li></ul><li><a href="#header_23">23 Plugins</a></li><ul><li><a href="#header_23.1">23.1 bugs</a></li></ul><li><a href="#header_24">24 Codierungen</a></li><ul><li><a href="#header_24.1">24.1 bugs</a></li><li><a href="#header_24.2">24.2 to check</a></li><li><a href="#header_24.3">24.3 todos</a></li><li><a href="#header_24.4">24.4 done</a></li><li><a href="#header_24.5">24.5 Fu&szlig;zeilen</a></li></ul><li><a href="#header_25">25 Wikisyntax</a></li><ul><li><a href="#header_25.1">25.1 todos</a></li><li><a href="#header_25.2">25.2 bugs</a></li><li><a href="#header_25.3">25.3 done</a></li><li><a href="#header_25.4">25.4 Testseiten</a></li></ul><li><a href="#header_26">26 v0.01</a></li><ul><li><a href="#header_26.1">26.1 Todos</a></li><li><a href="#header_26.2">26.2 Bugs</a></li><li><a href="#header_26.3">26.3 Done</a></li><li><a href="#header_26.4">26.4 Testseiten</a></li><li><a href="#header_26.5">26.5 Fu&szlig;zeilen</a></li></ul><li><a href="#header_27">27 Zukunftspl&auml;ne</a></li><ul><li><a href="#header_27.1">27.1 CLEANUP v0.01 FIRST</a></li><li><a href="#header_27.2">27.2 v0.02</a></li><li><a href="#header_27.3">27.3 unsortiert</a></li><li><a href="#header_27.4">27.4 Bugs</a></li></ul></div></div><dl><dt>Farbcodes:<dd><span class="highlighted c0">&nbsp;</span> = Admin (Alle Men&uuml;befehle; inkl. interne Adminfunktionen, wie bspw. <tt>delpage</tt>)</dd><dd><span class="highlighted c1">&nbsp;</span> = Dokumentation</dd><dd><span class="highlighted c2">&nbsp;</span> = Wikisyntax</dd><dd><span class="highlighted c3">&nbsp;</span> = Code/Codierung</dd><dd><span class="highlighted c4">&nbsp;</span> = Editor</dd></dt></dl><h2 id="header_27.1"> CLEANUP v0.01 FIRST </h2><ul>
+</ul><ul><li>
+<span class="highlighted c3">Code</span> Frontend und Backend voneinander trennen (UI-Bibliothek anlegen)</li>
+<ul><li>
+<tt>pw_fileutils.php</tt> anlegen (Permissions des Filesystems kontrollieren, Fehlermeldungen &uuml;bersetzen und ausgeben, ...)</li>
+<li>
+Abh&auml;ngigkeiten aufl&ouml;sen... zu viele *.php-Files sind voneinander abh&auml;ngig. Einzeln testen, einzeln testbar machen...</li>
+</ul></ul>
+<h2 id="header_27.2"> v0.02 </h2><ul>
+</ul><ul><li>
+<span class="highlighted c0">Admin</span> WIKICSV implementieren...</li>
+<ul><li>
+Korrekte Schreibweise f&uuml;r Dateinamen (Gro&szlig;- und Kleinschreibung), lange und kurze Titel, Benutzer, Datum, ...</li>
+<li>
+Dateiinfo speichern, Wiki-Config speichern</li></ul>
+<li>
+<span class="highlighted c0">Admin</span> Mehrere Dateien l&ouml;schen</li>
+<li>
+<span class="highlighted c0">Admin</span> Timeout f&uuml;r Login auf x(5?) Minuten setzen.</li>
+<li>
+<span class="highlighted c0">Admin</span> Login erfolgreich etc. nicht anzeigen bzw. nach kurzer Zeit ausblenden (falls JS aktiviert ist)</li>
+<li>
+<span class="highlighted c0">Admin</span> Tastenk&uuml;rzel</li>
+<ul><li>
+f&uuml;r alle Funktionen festlegen... JS location.href = mit besserer Funktion versehen (setMode...)</li>
+<li>
+STRG+s = speichern</li>
+<li>
+testen, nur bei richtigem Kontext zulassen</li>
+<li>
+Pfeiltasten im Seiten&uuml;berblick (Enter = anzeigen, Space = ausw&auml;hlen, F7 = akt. Auswahl l&ouml;schen, F6 = akt. Auswahl bearbeiten)</li></ul>
+<li>
+<span class="highlighted c0">Admin</span> autocompleter</li>
+<li>
+<span class="highlighted c0">Admin</span> JS <tt>setfocus</tt> durch prototype-Fkt. ersetzen (???)</li>
+<li>
+<span class="highlighted c0">Admin</span> Modaldialoge lassen die gesamte Seite neu laden... Performance schlecht. (AJAX oder iFrames?) -&gt; Ansonsten durch Seitenbefehle ersetzen!!!</li>
+<li>
+<span class="highlighted c3">Code</span> <tt>pw_lexer</tt> -&gt; getconfig mit checks, ob config existiert oder nicht...</li>
+<li>
+<span class="highlighted c3">Code</span> <tt>pw_lexer</tt> -&gt; checknode einf&uuml;gen nachdem im <tt>parserconf</tt> ein node abgerufen wird... (WARNING f&uuml;r LOG!)</li>
+<li>
+<span class="highlighted c3">Code</span> <tt>pw_lexer</tt> -&gt; automatisierte UNIT-Tests!</li>
+<li>
+<span class="highlighted c3">Code</span> <tt>pw_lexer</tt> -&gt; Interne Objektmethoden verwenden: <tt>getNode</tt> anstelle von <tt>$this-&gt;AST[$pid]</tt></li>
+<li>
+<span class="highlighted c3">Code</span> Kommentare bei Erkennung aus AST entfernen, damit keine logischen Bl&ouml;cke unterbrochen werden (siehe table, falls zwischen einer tablerow-Zeile und der n&auml;chsten ein Kommentar steht)</li>
+<li>
+<span class="highlighted c4">Editor</span> [BESSER Wie in gmail! Sonst wird der Workflow unterbrochen!!!] Speichern im Modaldialog anzeigen (<i>Die Datei wird gespeichert... bitte warten.</i>)</li>
+<li>
+<span class="highlighted c4">Editor</span> Speichern: Cursor muss aktuelle Position merken... ScrollX und -Y im Editor m&uuml;ssen erhalten bleiben. Besser in ein iFrame legen, damit textarea nicht neu geladen wird...</li>
+</ul>
+<h2 id="header_27.3"> unsortiert </h2><ul>
+</ul><ul><li>
+<span class="highlighted c1">Dokumentation</span> <span class="highlighted c2">Wikisyntax</span> UNIT Tests - Plugin, damit Tests innerhalb der Wiki angezeigt und dokumentiert werden k&ouml;nnen.</li>
+<li>
+<span class="highlighted c0">Admin</span> <tt>pwTest</tt> und <tt>piwo</tt> zusammenbringen.</li>
+<li>
+<span class="highlighted c0">Admin</span> Neue Funktion: &quot;Seitenlink kopieren&quot; -&gt; a) als Link oder b) als Internen Wikilink</li>
+<li>
+<span class="highlighted c0">Admin</span> Bilder und andere Dateien hochladen</li>
+<li>
+<span class="highlighted c2">Wikisyntax</span> <span class="emphasised">Internal Links</span> Sprung zu einem Kapitel in einer anderen Seite (Hash-Symbol <tt>#</tt>)<br />Bsp.: <tt>[[textgestaltung:spezial#&uuml;bersicht]]</tt> (schwierig, da fremde Seite geparsed und auf Sprungziele gescannt werden muss)</li>
+<li>
+<span class="highlighted c2">Wikisyntax</span> INCLUDE</li>
+<li>
+<span class="highlighted c2">Wikisyntax</span> NEWPAGE-Makro f&uuml;r Export oder Print</li>
+<li>
+<span class="highlighted c2">Wikisyntax</span> nextpage, previouspage und weitere Navigationshilfen in Syntax einbauen</li>
+<li>
+<span class="highlighted c2">Wikisyntax</span> &lt;p&gt; um Textabschnitte legen &lt;/p&gt;</li>
+<li>
+<span class="highlighted c2">Wikisyntax</span> &lt;acronym&gt; einf&uuml;hren</li>
+<li>
+<span class="highlighted c2">Wikisyntax</span> Vorschau-Info bei hover &uuml;ber Fu&szlig;zeilen</li>
+<li>
+<span class="highlighted c2">Wikisyntax</span> Syntax &auml;ndern: Externe Links auch mit doppelter Klammerung und | f&uuml;r Parametertrennung (vereinheitlicht und copy/paste aus Dokuwiki besser m&ouml;glich)</li>
+<li>
+<span class="highlighted c2">Wikisyntax</span> Externe, interne, Sprung- und Admin-Links grafisch voneinander trennen</li>
+<li>
+<span class="highlighted c2">Wikisyntax</span> &Uuml;berlegen, ob noch andere Schreibweisen ge&auml;ndert werden sollen (bspw. Plugins und Variablen, Konstanten und Sektionen)</li>
+<li>
+<span class="highlighted c2">Wikisyntax</span> Funktion erstellen, die Interne Wikilinks zerlegt und als benanntes Array zur&uuml;ckgibt</li>
+<li>
+<span class="highlighted c2">Wikisyntax</span> <span class="emphasised">External Links</span> mit relativer Pfadangabe f&uuml;r <tt>localhost</tt> erlauben</li>
+<li>
+<span class="highlighted c2">Wikisyntax</span> <tt>TextTextText((&gt;Beschreibung f&uuml;r Hover oder Click))</tt> f&uuml;r Kurzbeschreibungen</li>
+<li>
+<span class="highlighted c2">Wikisyntax</span> Anchor-Sprungbefehle damit man zb. zu einem bestimmten Bild oder Text springen kann.</li>
+<li>
+<span class="highlighted c2">Wikisyntax</span> Fu&szlig;zeilen, die erst am Ende definiert werden, damit der Text in dem sie vorkommen nicht &quot;&uuml;berladen&quot; wird.</li>
+<li>
+<span class="highlighted c2">Wikisyntax</span>  <tt>&lt;code&gt;</tt>-Segmente mit GeShi parsen</li>
+<li>
+<span class="highlighted c2">Wikisyntax</span> Boxen:</li>
+<ul><li>
+width (%, px, auto) Parameter in Boxen erlauben</li>
+<li>
+download-Box hinzuf&uuml;gen (dunkleres gr&uuml;n)</li>
+<li>
+float right oder left</li>
+<li>
+Boxen m&uuml;ssen allg. g&uuml;ltige Paramterliste erhalten, damit float, width, height, etc. angegeben werden kann in lexerconf einf&uuml;hren... <tt>boxparameter</tt> oder &auml;hnliches</li></ul>
+<li>
+<span class="highlighted c2">Plugins</span> History</li>
+<li>
+<span class="highlighted c2">Plugins</span> Breadcrumb</li>
+<li>
+<span class="highlighted c2">Plugins</span> Submen&uuml;, Seitenmen&uuml;s, Pulldown-Men&uuml;s, ...</li>
+<li>
+<span class="highlighted c1">Dokumentation</span> Zeichen in der Sonderzeichentabelle nach Art/Typ (Mathe, Griechisch, Interpunktion, ...) sortieren, nicht nach Codierung</li>
+<li>
+<span class="highlighted c4">Editor</span> Einf&uuml;gen von Tabellen erleichtern (copy/paste), autom. <tt>|</tt> oder <tt>^</tt> einf&uuml;gen</li>
+</ul>
+<h2 id="header_27.4"> Bugs </h2><ul>
+</ul><ul><li>
+<span class="highlighted c0">Admin</span> Logout (<u>nur mit Tastenk&uuml;rzel</u>) vom Seiten&uuml;berblick aus f&uuml;hrt auf eine Seite <tt>undefined</tt> ? (JS Fehler)</li>
+<li>
+<span class="highlighted c0">SECURITY</span> mit Historyback kann man eine bereits beendete Session neu setzen und sich damit ohne Passwort einloggen</li>
+<li>
+<span class="highlighted c0">Admin</span> URL-Parameter <tt>dialog</tt> wird angezeigt, obwohl kein Dialog ge&ouml;ffnet wurde. </li>
+<ul><li>
+Bsp.: Login + Bearbeiten = F12 + F6 =&gt; zeigt Editor + Logindialog</li>
+<li>
+Bsp.: Seite anzeigen + Einstellungen + Bearbeiten = F10 + F6 (alle MODE-Tastenk&uuml;rzel ausschalten, wenn Dialog offen)</li>
+</ul></ul>
+<br /><div align="right"><span class="less_significant">Verarbeitet in 0,1364 Sek. | Dateiformat: PC</span></div></div>

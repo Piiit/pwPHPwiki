@@ -1,0 +1,34 @@
+<div id='imwiki'>
+<div class="section_border">
+Sie sind hier: <a href='?mode=cleared&id=index'>Home</a> &raquo; <a href='?mode=cleared&id=dokumentation'>Dokumentation</a> &raquo; Todos<span class="less_significant"> | <a href="?id=dokumentation:todos">Todos anzeigen</a></span></div><h1 id="header_121"> Variablen und Konstanten </h1>
+Alle Variablen und Konstanten werden in zwei geschwungene Klammern eingeschlossen. <br />
+Syntax: <tt>{{VARIABLENAME}}</tt><h2 id="header_121.1"> Datum und Zeit </h2><pre><div>{{DAYNAME}}, am {{DAY}}. {{MONTHNAME}} {{YEAR}}. Monat in Zahlen: {{MONTH}}.
+</div></pre>Dienstag, am 23. Juli 2013. Monat in Zahlen: 07.
+<pre><div>Die aktuelle Zeit ist {{TIME}}.
+</div></pre>
+Die aktuelle Zeit ist 14:58.
+<pre><div>Das aktuelle Datum ist {{DATE}}.
+</div></pre>
+Die aktuelle Datum ist 23.07.2013.
+<b>TODO</b>: Default-Dateformat bestimmen und konfigurierbar machen!
+<h2 id="header_121.2"> Wikivariablen </h2><h3 id="header_121.2.1"> BUILD-IN </h3>
+Eingebaute Variablen.<div class="tablediv"><table><tr><th> Variable 	</th><th> Ausgabe 					</th><th colspan="3"> Beschreibung 					  			</th></tr><tr><td> ID	   	</td></td><td> Die aktuelle Seite hei&szlig;t &quot;todos&quot;. 	</td></td><td colspan="3"> Gibt den Namen (ID) der aktuellen Wikiseite aus 			</td></td></td></tr><tr><td> NS	   	</td></td><td> Sie liegt unter &quot;dokumentation&quot;.			</td></td><td colspan="3"> Gibt den Namespace der aktuellen Seite aus    				</td></td></td></tr><tr><td> FULLID   	</td></td><td> Ihr voller Namen lautet &quot;dokumentation:todos&quot;.	</td></td><td colspan="3"> Die volle ID (&uuml;ber eine solche ID identifiziert das CMS die Datei)	</td></td></td></tr><tr><td> COUNTSUBS	</td></td><td> Untergeordnete Seiten: 6.	</td></td><td colspan="3"> Die Anzahl der untergeordneten Seiten	<br /> <small>(Bsp.: Siehe Startseite des Manuals -&gt; Anzahl der Artikel)</small></td></td></td></tr></table></div><div class="section_info"><b>TODO</b>
+Weitere Variablen/Bereiche: 
+
+* MAINPAGE: falls mehr als eine Seite auf dem Server liegt. Bsp.: hoferhof und pitizWORLD... <br /> Wird &uuml;ber die URL festgelegt: Separate media, conf, cont, user, ...
+* PORTAL: unter pitizWORLD eine weitere Unterscheidung. Bsp.: Fussn und Pitiz... <br /> Wird &uuml;ber die Dateistruktur festgelegt...
+* ROOM: unter Pitiz noch eine Unterscheidung. Bsp.: CSV-Manual <br /> Wird &uuml;ber die Dateistruktur festgelegt...
+* NS: CSV-Manual -&gt; BUGS...<br /> Wird &uuml;ber die Dateistruktur festgelegt...
+* ID: CSV-Manual -&gt; BUGS -&gt; CO0001 <br /> Wird &uuml;ber die Dateistruktur festgelegt...
+:!: Somit gibt es eine Ordnertiefe von 5.
+</div><h3 id="header_121.2.2"> FREI DEFINIERBAR </h3>
+Variablen k&ouml;nnen auch frei definiert werden. Es gibt 2 Arten von Definitionen:<ol>
+</ol><ol><li>
+<b>LOKAL</b>: innerhalb der aktuellen Datei <br /> Syntax: <br /> <tt>!! VARIABLENAME = WERT</tt></li>
+<li>
+<b>GLOBAL</b>: Zugriff im gesamten Wiki m&ouml;glich <br /> siehe &quot;<tt>Adminbereich -&gt; Configs -&gt; wiki_vars</tt>&quot;</li>
+</ol>
+<u><b><big>Beispiele:</big></b></u><br /><pre><div>!! Zahl = 1000
+Die Zahl lautet: {{Zahl}}
+</div></pre>
+Die Zahl lautet: 1000<br /><div align="right"><span class="less_significant">Verarbeitet in 0,0575 Sek. | Dateiformat: PC</span></div></div>

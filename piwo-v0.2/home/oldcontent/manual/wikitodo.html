@@ -1,0 +1,134 @@
+<div id='imwiki'>
+<div class="section_border">
+Sie sind hier: <a href='?mode=cleared&id=index'>Home</a> &raquo; <a href='?mode=cleared&id=dokumentation'>Dokumentation</a> &raquo; Todos<span class="less_significant"> | <a href="?id=dokumentation:todos">Todos anzeigen</a></span></div><h1 id="header_122"> CMS: TODOS </h1>
+Wichtig w&auml;re ein bugtracker und eine einfache todo-liste mit Priorit&auml;ten<h2 id="header_122.1"> pw_wiki </h2><h3 id="header_122.1.1"> WIKI-SYNTAX </h3><ol>
+</ol><ol><li>
+Fu&szlig;noten</li>
+<li>
+:ok: hoch- und tiefgestellter Text</li>
+<li>
+:ok: 3 Textgr&ouml;&szlig;en: klein, normal/mittel, gro&szlig;</li>
+<li>
+<a href="?id=dokumentation:manual:tabellen#tabellen+auch+zeilenweise+zulassen&mode=editpage" class="pw_wiki_link_na">tabellen#Tabellen auch zeilenweise zulassen</a></li>
+<li>
+Sections</li>
+<ul><li>
+Openoffice Math Syntax support</li>
+<li>
+Download-Plugin</li></ul>
+</ol><ol><li>
+Vordefinierte Templates f&uuml;r z.B. Steckbrief etc.</li>
+<li>
+Informationen ausgeben</li>
+<ul><li>
+CSV-Werte und Tabellen bzw. Listen</li>
+<li>
+Pluginliste</li></ul>
+</ol><ol><li>
+Variablen und Konstanten definieren ( lastchange, user, edit_this_page )</li>
+<li>
+<a href="#header_122.2.1">2. Level einf&uuml;gen</a>...</li>
+<li>
+Reload Vars: neu gestalten ohne $_SESSION zu benutzen, wenn m&ouml;glich :?:</li>
+<li>
+concatenate lines f&uuml;r bessere &Uuml;bersichtlichkeit von wiki-Texten</li>
+<li>
+TODO-Listen / frei definierte Listen mit #- und #+ f&uuml;r erledigt oder #I f&uuml;r r&ouml;mische Nummerierung etc.</li>
+</ol>
+<h3 id="header_122.1.2"> WIKI-STYLES </h3><ol>
+</ol><ol><li>
+bessere Default - CSS</li>
+<li>
+default.css und admin.css strikt trennen</li>
+<li>
+Komplexen Text schreiben f&uuml;r Tests mit m&ouml;glichst allen m&ouml;glichen Variationen</li>
+<li>
+herausfinden der ver&auml;nderbaren Eigenschaften (&uuml;ber Admindialoge anpassbar machen)</li>
+</ol>
+<h3 id="header_122.1.3"> WIKI-ADMIN </h3><ol>
+</ol><ol><li>
+Neue Seite anlegen</li>
+<li>
+Neuen Namespace anlegen</li>
+<li>
+Wikiordnung im 2. Level... d.h. zwei oder mehr wikis auf der selben plattform <br /> Ordnerstruktur:</li>
+<ul><li>
+<tt>data/</tt> (Ordner)</li>
+<ul><li>
+<tt>seitenname/</tt> (Ordner)</li>
+<ul><li>
+<tt>namespace/</tt> (Ordner &lt;- optional)</li>
+<li>
+<tt>wikidateien</tt> (Datei)</li>
+<ul><li>
+<tt>wikidateien</tt> (Datei)</li></ul></ul></ul></ul>
+</ol><ol><li>
+:ok: Seiten l&ouml;schen</li>
+<li>
+Diffs zwischen alten und neuen Seiten</li>
+<li>
+Backupsystem</li>
+<li>
+:ok: <i>Links vom Wikitext aus, die auf Adminfunktionen zugreifen m&uuml;ssen vom Login aus direkt zur gew&uuml;nschten Adresse weitergeleitet werden</i></li>
+<li>
+Infos zu den Seiten</li>
+<ul><li>
+letzte &Auml;nderung von Benutzer xy</li>
+<li>
+angelegt am..., um...</li>
+<li>
+Zugriffsrechte</li>
+<li>
+Seitentitel (small und long)</li>
+<li>
+Seitenicon</li>
+<li>
+Template (css + automatischen Text als Vorlage)</li></ul>
+</ol><ol><li>
+Automatisches Speichern alle x Sekunden</li>
+<li>
+Errorhandling mit besseren Ausgaben von Fehlern und Hinweisen</li>
+<li>
+Logsystem (UNIX-style)       </li>
+<li>
+Datenupload</li>
+<li>
+kleiner einfacher Filemanager um Mediendateien...</li>
+<ul><li>
+zu l&ouml;schen</li>
+<li>
+umbenennen/verschieben</li>
+<li>
+Beschreibungen und Kommentare hinzuf&uuml;gen </li>
+</ul></ol>
+<h2 id="header_122.2"> pw_lexer </h2><big>Diese Idee zum Lexer ist veraltet. Siehe <a href="?id=dokumentation:lexer#neuen+lexer">lexer#neuen Lexer</a>! <br /> <i>Kleinere Teile k&ouml;nnten aber noch &uuml;bernommen werden.</i></big><h3 id="header_122.2.1"> 2. Level einf&uuml;gen </h3><ul>
+</ul><ul><li>
+f&uuml;r Wiki-ARRAY (zuk&uuml;nftig WIKI-LEXER)</li>
+<li>
+erster durchlauf: </li>
+<ol><li>
+alle cont als textzeile speichern (Trennzeichen = \n)</li>
+<li>
+aufrufe per call_user_function...</li></ol>
+</ul><ul><li>
+zweiter durchlauf:</li>
+<ol><li>
+alle cont nochmal durch den lexer laufen lassen</li>
+<li>
+context-parameter einf&uuml;gen... nicht alle tokens sind in allen contexts erlaubt</li></ol>
+</ul><ul><li>
+<a href="?id=dokumentation:manual:multiline&mode=editpage" class="pw_wiki_link_na">multiline</a>s einf&uuml;gen</li>
+<ol><li>
+
+Syntax: <pre><div>{{{NAME
+[...]
+}}}
+</div></pre>
+K&ouml;nnen dann sp&auml;ter &uuml;ber <tt>{{{NAME}}}</tt> eingebunden werden f&uuml;r Listen in Tabellen z.B.
+</li>
+</ol></ul>
+<h2 id="header_122.3"> pw_config </h2><ol>
+</ol><ol><li>
+Definierbares Token f&uuml;r Kommentare (# -&gt; wird im wiki-syntax zu oft verwendet) <br /> oder string-hochkommata einf&uuml;hren <br /> z.B. &quot;Projekte<span style='color: yellow'>[WARNUNG: VARIABLE 'currentyear' wurde nicht gesetzt.]</span>#Projekte des Jahre <span style='color: yellow'>[WARNUNG: VARIABLE 'currentyear' wurde nicht gesetzt.]</span><span style='color: yellow'>[WARNUNG: Interner Link kann wegen interner Fehler nicht aufgelöst werden.]</span>&quot;</li>
+</ol>
+ &quot;[[Projekte{{CURRENTYEAR}}#Projekte des Jahre {{CURRENTYEAR}}]]&quot;<br /><div align="right"><span class="less_significant">Verarbeitet in 0,0806 Sek. | Dateiformat: PC</span></div></div>

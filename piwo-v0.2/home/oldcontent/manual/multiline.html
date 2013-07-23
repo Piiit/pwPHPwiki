@@ -1,0 +1,59 @@
+<div id='imwiki'>
+<div class="section_border">
+Sie sind hier: <a href='?mode=cleared&id=index'>Home</a> &raquo; <a href='?mode=cleared&id=dokumentation'>Dokumentation</a> &raquo; Todos<span class="less_significant"> | <a href="?id=dokumentation:todos">Todos anzeigen</a></span></div><h1 id="header_102"> Multiline </h1>
+:fixme: Manual -&gt; fehlende Erkl&auml;rungen und Handhabungen, Ausnahmen, Do's and Dont's, wann sind sie nicht anwendbar...
+<h2 id="header_102.1"> Innerhalb LIST </h2><pre><div># {{{
+| Tabellen innerhalb einer Liste  
+| Zweite Zeile der Tabelle 
+| Dritte Z... 
+}}}
+# Zweiter Punkt
+</div></pre><ol>
+</ol><ol><li>
+<div class="tablediv"><table><tr><td colspan="2"> Tabellen innerhalb einer Liste </td></td></tr><tr><td colspan="2"> Zweite Zeile der Tabelle </td></td></tr><tr><td colspan="2"> Dritte Z... </td></td></tr></table></div></li>
+<li>
+Zweiter Punkt</li>
+</ol>
+<h2 id="header_102.2"> Innerhalb INDENT </h2><pre><div>::: {{{
+| Tabellen innerhalb INDENT 
+| Zweite Zeile der Tabelle 
+| Dritte Z... 
+}}}
+::: Zweiter Punkt
+</div></pre><div style="margin-left: 20px"><div class="tablediv"><table><tr><td colspan="2"> Tabellen innerhalb INDENT </td></td></tr><tr><td colspan="2"> Zweite Zeile der Tabelle </td></td></tr><tr><td colspan="2"> Dritte Z... </td></td></tr></table></div></div><div style="margin-left: 20px">Zweiter Punkt</div><h2 id="header_102.3"> Innerhalb ALIGN </h2><pre><div>:&gt; {{{
+| :&gt; Tabellen innerhalb ALIGN 
+| :&gt;&gt; Zweite Zeile der Tabelle 
+| Dritte Zeile als Platzhalter ########################### 
+}}}
+:&gt;&gt; Zweiter Punkt
+</div></pre><div align="center"><div class="tablediv"><table><tr><td> <div align="center">Tabellen innerhalb ALIGN 
+</div></td></td><td> <div align="right">Zweite Zeile der Tabelle 
+</div></td></td><td colspan="2"> Dritte Zeile als Platzhalter ########################### </td></td></tr></table></div></div><div align="center">Zweiter Punkt</div><h2 id="header_102.4"> Innerhalb TABLE </h2><pre><div>| {{{
+| Tabellen innerhalb TABLE 
+| Zweite Zeile der Tabelle
+| Dritte Z... 
+}}} | Zweite Zelle in der ersten Zeile
+</div></pre><div class="tablediv"><table><tr><td colspan="2"> <div class="tablediv"><table><tr><td colspan="2"> Tabellen innerhalb TABLE </td></td></tr><tr><td colspan="2"> Zweite Zeile der Tabelle </td></td></tr><tr><td colspan="2"> Dritte Z...</td></td></tr></table></div> </td></td></tr><tr><td colspan="2"> Zweite Zelle in der ersten Zeile</td></td></tr></table></div><h2 id="header_102.5"> Rekursion: Multilines innerhalb einer Multiline </h2><div align="center"><ul>
+</ul><ul><li>
+Mitte (nur Text)</li>
+<li>
+
+rechts
+mehrzeilig
+</li>
+</ul>
+</div><h2 id="header_102.6"> Tests </h2><h3 id="header_102.6.1"> Variablen innerhalb einer Multiline </h3><ul>
+</ul><ul><li>
+ 
+Variable ge&auml;ndert <tt>!! zahl = 1000</tt></li>
+</ul>
+<h3 id="header_102.6.2"> Nowiki innerhalb einer Multiline </h3><ul>
+</ul><ul><li>
+
+$$ = title =
+asdfasdf
+a dfaks jfd jf
+kjadf
+</li>
+</ul>
+<br /><div align="right"><span class="less_significant">Verarbeitet in 0,106 Sek. | Dateiformat: PC</span></div></div>

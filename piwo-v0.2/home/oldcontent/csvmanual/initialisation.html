@@ -1,0 +1,20 @@
+<div id='imwiki'>
+<div class="section_border">
+Sie sind hier: <a href='?mode=cleared&id=index'>Home</a> &raquo; <a href='?mode=cleared&id=dokumentation'>Dokumentation</a> &raquo; Todos<span class="less_significant"> | <a href="?id=dokumentation:todos">Todos anzeigen</a></span></div><h1 id="header_58"> Initialisierung der CSV-Engine </h1><h2 id="header_58.1"> Aufbau der CSV-Engine </h2><h2 id="header_58.2"> Beispiele </h2><h2 id="header_58.3"> Funktionsliste </h2><h3 id="header_58.3.1"> pw_csv_init </h3>
+Initialisiert die CSV-Engine.<br />
+Pr&uuml;ft und erzeugt ggf. einen Sessionstart und kontrolliert die Verzeichnisstruktur, die als Parameter angegeben wird
+<b> Synopsis </b><div style="margin-left: 10px"><tt>boolean <b>pw_csv_init</b> (csvpath, cfgpath, type)</tt></div><ul>
+</ul><ul><li>
+<tt>csvpath</tt>: gibt das Verzeichnis an, in dem alle CSVs gespeichert/geladen werden sollen</li>
+<li>
+<tt>cfgpath</tt>: gibt das Konfigurations-Verzeichnis an, in dem alle <tt>table</tt> configs gespeichert wurden</li>
+<li>
+<tt>type</tt>: Typ der CSV-Datei</li>
+<ul><li>
+<tt>CONFIG</tt>: mit Konfigurationsdatei (veraltet)</li>
+<li>
+<tt>NORMAL</tt>: ohne Konfigurationsdatei, einfaches CSV</li>
+<li>
+<tt>INTERN</tt>: Konfiguration findet sich als Einzeiler am Anfang der CSV-Datei (noch nicht implementiert)</li>
+</ul></ul>
+<h3 id="header_58.3.2"> pw_csv_set_current </h3><h3 id="header_58.3.3"> pw_csv_get_current </h3><h3 id="header_58.3.4"> pw_csv_add_table </h3><h3 id="header_58.3.5"> pw_csv_del_table </h3><h3 id="header_58.3.6"> pw_csv_validate_table </h3><h3 id="header_58.3.7"> pw_csv_renew_tablelist </h3><h3 id="header_58.3.8"> pw_csv_get_tablelist </h3><br /><div align="right"><span class="less_significant">Verarbeitet in 0,0494 Sek. | Dateiformat: PC</span></div></div>

@@ -1,0 +1,175 @@
+<div id='imwiki'>
+<div class="section_border">
+Sie sind hier: <a href='?mode=cleared&id=index'>Home</a> &raquo; <a href='?mode=cleared&id=dokumentation'>Dokumentation</a> &raquo; Todos<span class="less_significant"> | <a href="?id=dokumentation:todos">Todos anzeigen</a></span></div><h1 id="header_4"> PIWO: Wikisyntax v0.1 </h1>
+Inhaltsverzeichnis:<br /><div class="toc" id="__toc"><ul><ul><li><a href="#header_1">1 Listen: Testseite</a></li><ul><li><a href="#header_1.1">1.1 Mehrere Ebenen abschlie&szlig;en: Ungeordnete Listen (fixed)</a></li><li><a href="#header_1.2">1.2 Mehrere Ebenen abschlie&szlig;en: Geordnete Listen (fixed)</a></li><li><a href="#header_1.3">1.3 Gemischte Listen (fixed)</a></li><li><a href="#header_1.4">1.4 Fehler in Multilines... (fixed)</a></li></ul><li><a href="#header_2">2 todos</a></li><li><a href="#header_3">3 Preformat: Testseite</a></li><ul><li><a href="#header_3.1">3.1 Text nach einer Preformat-Sektion (fixed)</a></li><li><a href="#header_3.2">3.2 Leere Preformatzeilen (fixed)</a></li></ul><li><a href="#header_4">4 PIWO: Wikisyntax v0.1</a></li><ul><li><a href="#header_4.1">4.1 Text</a></li><li><a href="#header_4.2">4.2 Formatierung</a></li><li><a href="#header_4.3">4.3 Hyperlinks</a></li><ul><li><a href="#header_4.3.1">4.3.1 Hyperlink Tests</a></li></ul><li><a href="#header_4.4">4.4 Ausrichtung</a></li><ul><li><a href="#header_4.4.1">4.4.1 Blocksatz</a></li><li><a href="#header_4.4.2">4.4.2 Zentriert</a></li><li><a href="#header_4.4.3">4.4.3 Rechtsb&uuml;ndig</a></li><li><a href="#header_4.4.4">4.4.4 Standard: Flattersatz (Linksb&uuml;ndig)</a></li><li><a href="#header_4.4.5">4.4.5 Einzug</a></li><ul><li><a href="#header_4.4.5.1">4.4.5.1 Einz&uuml;ge &uuml;ber mehrere Zeilen</a></li></ul><li><a href="#header_4.4.6">4.4.6 Spaltenkontrolle</a></li></ul><li><a href="#header_4.5">4.5 Listen</a></li><li><a href="#header_4.6">4.6 &Uuml;berschriften</a></li><li><a href="#header_4.7">4.7 Tabellen</a></li><ul><li><a href="#header_4.7.1">4.7.1 Einfache Tabellen</a></li></ul><li><a href="#header_4.8">4.8 Boxen</a></li><li><a href="#header_4.9">4.9 Variablen und Konstanten</a></li><ul><li><a href="#header_4.9.1">4.9.1 Variablen</a></li><li><a href="#header_4.9.2">4.9.2 Konstanten</a></li><li><a href="#header_4.9.3">4.9.3 Wikivariablen</a></li><li><a href="#header_4.9.4">4.9.4 HTML-Zeichen-Symbole</a></li></ul><li><a href="#header_4.10">4.10 Fu&szlig;zeilen</a></li></ul></div><h2 id="header_4.1"> Text </h2>
+Das ist ein Text mit einigen Sonderzeichen &auml;&ouml;&uuml;&szlig;... &pi; <a href="?id=dokumentation:manual:indent&mode=editpage" class="pw_wiki_link_na">Einz&uuml;ge</a> <a href="?id=dokumentation:manual:ilink&mode=editpage" class="pw_wiki_link_na">Interne Links</a><h2 id="header_4.2"> Formatierung </h2><div class="tablediv"><table><tr><th> Was es ist                                    </th><th> Was du schreibst                                                      </th><th colspan="2"> Wie es dargestellt wird </th></tr><tr><td> fett                                          </td></td><td> <tt>**fett**</tt>                                                      </td></td><td colspan="2"> <b>fett</b>                                                  </td></td></tr><tr><td> kursiv                                        </td></td><td> <tt>//kursiv//</tt>                                                    </td></td><td colspan="2"> <i>kursiv</i>                                                </td></td></tr><tr><td> unterstrichen                                 </td></td><td> <tt>__unterstrichen__</tt>                                             </td></td><td colspan="2"> <u>unterstrichen</u>                                         </td></td></tr><tr><td> Fixe Textbreite (monospace)                   </td></td><td> <tt>''Fixe Textbreite''</tt>                                           </td></td><td colspan="2"> <tt>Fixe Textbreite</tt>                                       </td></td></tr><tr><td> Kleine Schrift                                </td></td><td> <tt>--Kleine Schrift--</tt>                                            </td></td><td colspan="2"> <small>Kleine Schrift</small>                                        </td></td></tr><tr><td> Gro&szlig;e Schrift                                 </td></td><td> <tt>++Gro&szlig;e Schrift++</tt>                                             </td></td><td colspan="2"> <big>Gro&szlig;e Schrift</big>                                         </td></td></tr><tr><td> Hervorgehobener Hintergrund                   </td></td><td> <tt>&lt;hi&gt;Hervorgehobener Hintergrund&lt;/hi&gt;</tt>                          </td></td><td colspan="2"> <span class="highlighted c0">Hervorgehobener Hintergrund</span>                                         </td></td></tr><tr><td> Hervorgehobener Text                          </td></td><td> <tt>&lt;em&gt;Hervorgehobener Text&lt;/em&gt;</tt>                                 </td></td><td colspan="2"> <span class="emphasised">Hervorgehobener Text</span>                                         </td></td></tr><tr><td> Unwichtiger Text                              </td></td><td> <tt>&lt;lo&gt;Unwichtiger Text&lt;/lo&gt;</tt>                                     </td></td><td colspan="2"> <span class="less_significant">Unwichtiger Text</span>                                         </td></td></tr><tr><td> durchgestrichen                               </td></td><td> <tt>-+Durchgestrichen+-</tt>                                           </td></td><td colspan="2"> <strike>Durchgestrichen</strike>                                      </td></td></tr><tr><td> tiefgestellt                                  </td></td><td> <tt>H_{2}O</tt> oder <tt>H_{16}</tt>                                    </td></td><td colspan="2"> H<sub>2</sub>O oder H<sub>16</sub>                          </td></td></tr><tr><td> hochgestellt                                  </td></td><td> <tt>dm^{3}</tt> oder <tt>x^{-5}</tt>                                    </td></td><td colspan="2"> dm<sup>3</sup> oder x<sup>-5</sup>       </td></td></tr><tr><td> unformatiert  (Standard)                      </td></td><td> <tt>&lt;nowiki&gt;**Ich bin nicht fett!**&lt;/nowiki&gt;</tt>                      </td></td><td colspan="2"> **Ich bin nicht fett!**</td></td></tr><tr><td> unformatiert  (kurze Schreibweise)            </td></td><td> <tt>%%**Ich bin nicht fett!**%%</tt>                      </td></td><td colspan="2"> **Ich bin nicht fett!**</td></td></tr><tr><td> Horizontale Linie                             </td></td><td> <tt>Das ist eine horizontale...</tt><br /><tt>----</tt><br /><tt>...Linie.</tt>  </td></td><td colspan="2">  Das ist eine horizontale...<hr />
+...Linie. </td></td></tr></table></div><h2 id="header_4.3"> Hyperlinks </h2><div class="tablediv"><table><tr><th> Was es ist </th><th> Was du schreibst                                      </th><th colspan="2"> Wie es dargestellt wird </th></tr><tr><td> Einfacher externer Link <br /> (Texterkennung, optional) </td></td><td> <pre><div>http://www.google.de
+http://localhost/projekte/home/lib/tests/lexertests/
+http://de.wikipedia.org/wiki/Hilfe:Links
+http://pitizworld.co.de/doku.php?do=index&amp;id=start
+http://www.dokuwiki.org/syntax#tables
+ftp://joe:password@ftp.filetransferprotocal.com
+www.google.ru
+</div></pre> </td></td><td colspan="2"> <a target="_blank" href="http://www.google.de">http://www.google.de</a> <br /><a target="_blank" href="http://localhost/projekte/home/lib/tests/lexertests/">http://localhost/projekte/home/lib/tests/lexertests/</a> <br /><a target="_blank" href="http://de.wikipedia.org/wiki/Hilfe:Links">http://de.wikipedia.org/wiki/Hilfe:Links</a> <br /><a target="_blank" href="http://pitizworld.co.de/doku.php?do=index&id=start">http://pitizworld.co.de/doku.php?do=index&id=start</a> <br /><a target="_blank" href="http://www.dokuwiki.org/syntax#tables">http://www.dokuwiki.org/syntax#tables</a> <br /><a target="_blank" href="ftp://joe:password@ftp.filetransferprot.com">ftp://joe:password@ftp.filetransferprot.com</a> <br /><a href="http://www.google.ru">www.google.ru</a> <br /> </td></td></tr><tr><td> Wikisyntax f&uuml;r externe Links </td></td><td> <pre><div>Der erste Link [http://www.google.de] 
+und der zweite [http://www.hoferhof.net].
+[http://www.hoferhof.net Urlaub am Bauernhof]
+</div></pre> </td></td><td colspan="2"> 
+Der erste Link <a target="_blank" href="http://www.google.de">http://www.google.de</a> <br />
+und der zweite <a target="_blank" href="http://www.hoferhof.net">http://www.hoferhof.net</a>. <br /><a target="_blank" href="http://www.hoferhof.net">Urlaub am Bauernhof</a></td></td></tr><tr><td> Wikisyntax f&uuml;r interne Links </td></td><td> <pre><div>[[Namespace:Name|Text des Links (mit Erweiterung)]]
+[[Namespace:Name auch mit Leerzeichen|Text des Links]]
+[[Namespace:Name auch mit Leerzeichen ohne Linktext]]
+</div></pre> </td></td><td colspan="2"> <a href="?id=dokumentation:Namespace:Name&mode=editpage" class="pw_wiki_link_na">Text des Links (mit Erweiterung)</a> <br /><a href="?id=dokumentation:Namespace:Name+auch+mit+Leerzeichen&mode=editpage" class="pw_wiki_link_na">Text des Links</a> <br /><a href="?id=dokumentation:Namespace:Name+auch+mit+Leerzeichen+ohne+Linktext&mode=editpage" class="pw_wiki_link_na">Name auch mit Leerzeichen ohne Linktext</a></td></td></tr></table></div><h3 id="header_4.3.1"> Hyperlink Tests </h3><pre><div>http://www.google.com/search?q=good+url+regex&amp;rls=com.microsoft:*&amp;ie=UTF-8&amp;oe=UTF-8&amp;startIndex=&amp;startPage=1
+</div></pre><a target="_blank" href="http://www.google.com/search?q=good+url+regex&rls=com.microsoft:*&ie=UTF-8&oe=UTF-8&startIndex=&startPage=1">http://www.google.com/search?q=good+url+regex&rls=com.microsoft:*&ie=UTF-8&oe=UTF-8&startIndex=&startPage=1</a><pre><div>https://some-url.com?query=&amp;name=joe?filter=*.*#some_anchor
+</div></pre><a target="_blank" href="https://some-url.com?query=&name=joe?filter=*.*#some_anchor">https://some-url.com?query=&name=joe?filter=*.*#some_anchor</a><h2 id="header_4.4"> Ausrichtung </h2><h3 id="header_4.4.1"> Blocksatz </h3><pre><div>:&lt;&gt; {{{...}}}
+</div></pre><div align="justify">
+Bitte beachte die Wikipedia-Richtlinien zur Formatierung, insbesondere: Kleiner- und gr&ouml;&szlig;ergeschriebenen Text, harte 
+Zeilenumbr&uuml;che mit br-Tags, Abs&auml;tze durch doppelte oder mehrfache Leerzeilen, Farben und &auml;hnliche Spezialformatierungen 
+solltest du nicht in Artikeln, sondern nur in Tabellen oder Textbausteinen verwenden, um ein einheitliches Aussehen der 
+Artikel zu gew&auml;hrleisten. Ansonsten bietet die Wikiauszeichnungssprache gen&uuml;gend M&ouml;glichkeiten, den Text zu formatieren. Fett- 
+und Kursivschreibung soll nicht mit HTML-Tags formatiert werden.
+</div><h3 id="header_4.4.2"> Zentriert </h3><pre><div>:&gt; {{{...}}}
+</div></pre><div align="center">
+Bitte beachte die Wikipedia-Richtlinien zur Formatierung, insbesondere: Kleiner- und gr&ouml;&szlig;ergeschriebenen Text, harte 
+Zeilenumbr&uuml;che mit br-Tags, Abs&auml;tze durch doppelte oder mehrfache Leerzeilen, Farben und &auml;hnliche Spezialformatierungen 
+solltest du nicht in Artikeln, sondern nur in Tabellen oder Textbausteinen verwenden, um ein einheitliches Aussehen der 
+Artikel zu gew&auml;hrleisten. Ansonsten bietet die Wikiauszeichnungssprache gen&uuml;gend M&ouml;glichkeiten, den Text zu formatieren. Fett- 
+und Kursivschreibung soll nicht mit HTML-Tags formatiert werden.
+</div><h3 id="header_4.4.3"> Rechtsb&uuml;ndig </h3><pre><div>:&gt;&gt; {{{...}}}
+</div></pre><div align="right">
+Bitte beachte die Wikipedia-Richtlinien zur Formatierung, insbesondere: Kleiner- und gr&ouml;&szlig;ergeschriebenen Text, harte 
+Zeilenumbr&uuml;che mit br-Tags, Abs&auml;tze durch doppelte oder mehrfache Leerzeilen, Farben und &auml;hnliche Spezialformatierungen 
+solltest du nicht in Artikeln, sondern nur in Tabellen oder Textbausteinen verwenden, um ein einheitliches Aussehen der 
+Artikel zu gew&auml;hrleisten. Ansonsten bietet die Wikiauszeichnungssprache gen&uuml;gend M&ouml;glichkeiten, den Text zu formatieren. Fett- 
+und Kursivschreibung soll nicht mit HTML-Tags formatiert werden.
+</div><h3 id="header_4.4.4"> Standard: Flattersatz (Linksb&uuml;ndig) </h3><div class="section_info">Standard: Kein Wikisyntax notwendig...</div>
+Bitte beachte die Wikipedia-Richtlinien zur Formatierung, insbesondere: Kleiner- und gr&ouml;&szlig;ergeschriebenen Text, harte 
+Zeilenumbr&uuml;che mit br-Tags, Abs&auml;tze durch doppelte oder mehrfache Leerzeilen, Farben und &auml;hnliche Spezialformatierungen 
+solltest du nicht in Artikeln, sondern nur in Tabellen oder Textbausteinen verwenden, um ein einheitliches Aussehen der 
+Artikel zu gew&auml;hrleisten. Ansonsten bietet die Wikiauszeichnungssprache gen&uuml;gend M&ouml;glichkeiten, den Text zu formatieren. Fett- 
+und Kursivschreibung soll nicht mit HTML-Tags formatiert werden.
+<h3 id="header_4.4.5"> Einzug </h3><pre><div>:: Einzug (lvl1)
+::: Einzug bis auf Ebene 2
+:: Wieder Ebene 1
+:: Immernoch Ebene 1 (erstellt ein neues DIV, damit Zeilen nicht aneinandergeh&auml;ngt werden...)
+::: Ebene 2
+:::::::::: Gro&szlig;e Einz&uuml;ge sollten nur in Ausnahmef&auml;llen ben&uuml;tzt werden. (lvl 10)
+</div></pre><div style="margin-left: 10px">Einzug (lvl1)</div><div style="margin-left: 20px">Einzug bis auf Ebene 2</div><div style="margin-left: 10px">Wieder Ebene 1</div><div style="margin-left: 10px">Immernoch Ebene 1 (erstellt ein neues DIV, damit Zeilen nicht aneinandergeh&auml;ngt werden...)</div><div style="margin-left: 20px">Ebene 2</div><div style="margin-left: 100px">Gro&szlig;e Einz&uuml;ge sollten nur in Ausnahmef&auml;llen ben&uuml;tzt werden. (lvl 10)</div><h4 id="header_4.4.5.1"> Einz&uuml;ge &uuml;ber mehrere Zeilen </h4><pre><div>:::: {{{
+Einzug &uuml;ber mehrere Zeilen...
+Dies ist die zweite Zeile. Sie wird mit der ersten ohne NEUE ZEILE verbunden.
+}}}
+</div></pre><div style="margin-left: 30px">
+Einzug &uuml;ber mehrere Zeilen...
+Dies ist die zweite Zeile. Sie wird mit der ersten ohne NEUE ZEILE verbunden.
+</div><h3 id="header_4.4.6"> Spaltenkontrolle </h3><pre><div>&lt;left&gt;...&lt;/left&gt;
+&lt;right&gt;...&lt;/right&gt;
+</div></pre><div class="section_left">
+Bitte beachte die Wikipedia-Richtlinien zur Formatierung, insbesondere: Kleiner- und gr&ouml;&szlig;ergeschriebenen Text, harte 
+Zeilenumbr&uuml;che mit br-Tags, Abs&auml;tze durch doppelte oder mehrfache Leerzeilen, Farben und &auml;hnliche Spezialformatierungen 
+solltest du nicht in Artikeln, sondern nur in Tabellen oder Textbausteinen verwenden, um ein einheitliches Aussehen der 
+Artikel zu gew&auml;hrleisten. Ansonsten bietet die Wikiauszeichnungssprache gen&uuml;gend M&ouml;glichkeiten, den Text zu formatieren. Fett- 
+und Kursivschreibung soll nicht mit HTML-Tags formatiert werden.
+</div><div class="section_right">
+Bitte beachte die Wikipedia-Richtlinien zur Formatierung, insbesondere: Kleiner- und gr&ouml;&szlig;ergeschriebenen Text, harte 
+Zeilenumbr&uuml;che mit br-Tags, Abs&auml;tze durch doppelte oder mehrfache Leerzeilen, Farben und &auml;hnliche Spezialformatierungen 
+solltest du nicht in Artikeln, sondern nur in Tabellen oder Textbausteinen verwenden, um ein einheitliches Aussehen der 
+Artikel zu gew&auml;hrleisten. Ansonsten bietet die Wikiauszeichnungssprache gen&uuml;gend M&ouml;glichkeiten, den Text zu formatieren. Fett- 
+und Kursivschreibung soll nicht mit HTML-Tags formatiert werden.
+</div><div class="clear"></div><div class="section_info"><b>Parameter</b>: <br /><tt>&lt;left[ Parameter]&gt;...&lt;/left&gt;</tt> <br /><tt>&lt;right[ Parameter]&gt;...&lt;/right&gt;</tt><dl><dt>alone <dd>Eine einzige Spalte, d.h. weitere Inhalte flie&szlig;en um die Spalte herum.</dd></dt></dl></div><h2 id="header_4.5"> Listen </h2><div class="tablediv"><table><tr><th> Was es ist </th><th> Was du schreibst                                      </th><th colspan="2"> Wie es dargestellt wird </th></tr><tr><td> Nummerierte Liste </td></td><td> <pre><div># Nummeriert
+ # Nummeriert Ebene 2
+  # Punkt in der 3. Ebene
+ # Zur&uuml;ck zur 2.
+ # Noch eines
+ # Abschluss
+</div></pre> </td></td><td colspan="2"> <ol>
+</ol><ol><li>
+Nummeriert</li>
+<ol><li>
+Nummeriert Ebene 2</li>
+<ol><li>
+Punkt in der 3. Ebene</li></ol>
+<li>
+Zur&uuml;ck zur 2.</li>
+<li>
+Noch eines</li>
+<li>
+Abschluss</li>
+</ol></ol>
+</td></td></tr><tr><td> Ungeordnete Liste </td></td><td> <pre><div>* Ungeordnet
+ * Ungeordnet 2
+  * Ungeordnet 3
+   * Ungeordnet 4
+</div></pre> </td></td><td colspan="2"> <ul>
+</ul><ul><li>
+Ungeordnet</li>
+<ul><li>
+Ungeordnet 2</li>
+<ul><li>
+Ungeordnet 3</li>
+<ul><li>
+Ungeordnet 4</li>
+</ul></ul></ul></ul>
+</td></td></tr><tr><td> Definitionsliste </td></td><td> <pre><div>; Definitionsliste 
+: Eine Definition 
+: Eine andere Definition 
+; Begriff 
+: Definition des Begriffs 
+</div></pre> </td></td><td colspan="2"> <dl><dt>Definitionsliste<dd>Eine Definition</dd><dd>Eine andere Definition</dd></dt><dt>Begriff<dd>Definition des Begriffs</dd></dt></dl> </td></td></tr><tr><td> Definitionsliste (verschachtelt) </td></td><td> 
+Definitionslisten verschachtelt man mit Multilines: <tt>{{{...}}}</tt><pre><div>; Das Haus : {{{
+hat ein 
+; Fenster : aus Glas
+; eine T&uuml;r : aus Holz
+; einen Kamin : aus Stein
+}}}
+</div></pre> </td></td><td colspan="2"> <dl><dt>Das Haus <dd>
+hat ein <dl><dt>Fenster <dd>aus Glas</dd></dt><dt>eine T&uuml;r <dd>aus Holz</dd></dt><dt>einen Kamin <dd>aus Stein</dd></dt></dl></dd></dt></dl></td></td></tr></table></div><h2 id="header_4.6"> &Uuml;berschriften </h2><div class="section_left"><div class="section_info">Eine &Uuml;berschrift der ersten Ebene sollte nur als Seitentitel Verwendung finden.</div><h2> &Uuml;berschrift 2 </h2><h3> &Uuml;berschrift 3 </h3><h4> &Uuml;berschrift 4 </h4><h5> &Uuml;berschrift 5 </h5></div><div class="section_right">
+Innerhalb der <tt>&lt;notoc&gt;</tt>-Sektion werden &Uuml;berschriften nicht ins Inhaltsverzeichnis aufgenommen.<pre><div>&lt;notoc&gt;
+== &Uuml;berschrift 2 ==
+=== &Uuml;berschrift 3 ===
+==== &Uuml;berschrift 4 ====
+===== &Uuml;berschrift 5 =====
+&lt;/notoc&gt;
+</div></pre></div><div class="clear"></div><h2 id="header_4.7"> Tabellen </h2><h3 id="header_4.7.1"> Einfache Tabellen </h3>
+Syntax im Stil von <a target="_blank" href="http://www.dokuwiki.org/syntax#tables">Dokuwiki</a>.<pre><div>^ Spaltenkopf 1                                             ^ Spaltenkopf 3 (auf zwei Spalten ausgedehnt)               ^^ Spaltenkopf 4   
+| Zeile 1 Spalte 1 \\ (auf zwei Zeilen ausgedehnt)          | Zeile 1 Spalte 2     | Zeile 1 Spalte 3                    | Zeile 1 Spalte 4 
+| :::                                                       | Zeile 2 Spalte 2 (auf zwei Spalten ausgedehnt)            ||
+^ Zeilenkopf 1                                              | Zeile 3 Spalte 2     | Zeile 3 Spalte 3                    | Zeile 3 Spalte 4 
+^ Zeilenkopf 2                                              | Zeile 4 Spalte 2     | Zeile 4 Spalte 3                    | Zeile 4 Spalte 4 
+</div></pre><div class="tablediv"><table><tr><th> Spaltenkopf 1                                             </th><th colspan="2"> Spaltenkopf 3 (auf zwei Spalten ausgedehnt)               </th><th colspan="2"> Spaltenkopf 4   </th></tr><tr><td rowspan="2"> Zeile 1 Spalte 1 <br /> (auf zwei Zeilen ausgedehnt)          </td></td><td> Zeile 1 Spalte 2     </td></td><td> Zeile 1 Spalte 3                    </td></td><td colspan="2"> Zeile 1 Spalte 4 </td></td></tr><tr></td><td colspan="4"> Zeile 2 Spalte 2 (auf zwei Spalten ausgedehnt)            </td></td></td></td></tr><tr><th> Zeilenkopf 1                                              </th><td> Zeile 3 Spalte 2     </td></td><td> Zeile 3 Spalte 3                    </td></td><td colspan="2"> Zeile 3 Spalte 4 </td></td></tr><tr><th> Zeilenkopf 2                                              </th><td> Zeile 4 Spalte 2     </td></td><td> Zeile 4 Spalte 3                    </td></td><td colspan="2"> Zeile 4 Spalte 4 </td></td></tr></table></div><h2 id="header_4.8"> Boxen </h2>
+Eine InfoBox f&uuml;r Informationen, Warnungen, Fehler, ...   <div class="tablediv"><table><tr><th> Was es ist </th><th> Was du schreibst                                      </th><th colspan="2"> Wie es dargestellt wird </th></tr><tr><td> Fehler anzeigen </td></td><td> <pre><div>&lt;error&gt;
+test
+&lt;/error&gt;
+</div></pre> </td></td><td colspan="2"> <div class="section_error">test</div></td></td></tr><tr><td> Informationen anzeigen </td></td><td> <pre><div>&lt;info&gt;
+test
+&lt;/info&gt;
+</div></pre> </td></td><td colspan="2"> <div class="section_info">test</div></td></td></tr><tr><td> R&uuml;ckmeldung einer erfolgreichen Eingabe </td></td><td> <pre><div>&lt;success&gt;
+Die Eingabe ist korrekt!
+&lt;/success&gt;
+</div></pre> </td></td><td colspan="2"> <div class="section_success">Die Eingabe ist korrekt!</div></td></td></tr><tr><td> Kontrolle einer Eingabe </td></td><td> <pre><div>&lt;validation&gt;
+Benutzername fehlt \\
+Geburtsdatum fehlt \\
+Passwort falsch
+&lt;/validation&gt;    
+</div></pre> </td></td><td colspan="2"> <div class="section_validation">Benutzername fehlt <br />Geburtsdatum fehlt <br />Passwort falsch</div></td></td></tr><tr><td> Allgemeine Warnhinweise</td></td><td> <pre><div>&lt;warning&gt;
+test
+&lt;/warning&gt;
+</div></pre> </td></td><td colspan="2"> <div class="section_warning">test</div></td></td></tr><tr><td> Rahmen zeichnen </td></td><td> <pre><div>&lt;border&gt;
+test
+&lt;/border&gt;
+</div></pre> </td></td><td colspan="2"> <div class="section_border">test</div></td></td></tr><tr><td> Codebl&ouml;cke <br /> (Farben und Einz&uuml;ge richtig darstellen)</td></td><td> <pre><div>&lt;code&gt;
+while (!asleep()) 
+  $sheep++; 
+&lt;/code&gt;
+</div></pre> </td></td><td colspan="2"> <pre><div>while (!asleep())
+  $sheep++;</div></pre></td></td></tr><tr><td> Unsichtbare Kommentare im Wikitext </td></td><td> <div class="section_info">Kommentare werden als eigenst&auml;ndige Wiki-Elemente erkannt und beenden daher logische Bl&ouml;cke, wie bspw. Tabellen.</div><pre><div>Ein unsichtbarer Kommentar. &lt;!-- Kommentar --&gt;
+</div></pre> </td></td><td colspan="2"> Ein unsichtbarer Kommentar. <!-- Kommentar --></td></td></tr></table></div><h2 id="header_4.9"> Variablen und Konstanten </h2>
+Alle Variablen und Konstanten werden in zwei geschwungene Klammern eingeschlossen. <br />
+Syntax: <tt>{{VARIABLENAME}}</tt><h3 id="header_4.9.1"> Variablen </h3><div class="tablediv"><table><tr><th> Was es ist </th><th> Was du schreibst                                      </th><th colspan="2"> Wie es dargestellt wird </th></tr><tr><td> Setzen einer Variable <br /> (Format: String) </td></td><td> <pre><div>!! Variable = Wert 
+</div></pre> </td></td><td colspan="2"> <div class="section_info">Es wird nichts dargestellt.</div></td></td></tr><tr><td> Setzen einer Variable <br /> (Format: String &uuml;ber mehrere Zeilen) </td></td><td> <pre><div>!! Variable2 = &quot;String
+&uuml;ber mehrere 
+Zeilen mit \&quot;escaped\&quot; Parenthesis!&quot; 
+</div></pre> </td></td><td colspan="2"> <div class="section_info">Es wird nichts dargestellt.</div></td></td></tr><tr><td> Wiedergabe der beiden Variablen </td></td><td> <pre><div>**{{Variable}}** und **{{Variable2}}** 
+</div></pre> </td></td><td colspan="2"> <b>Wert</b> und <b>String
+&uuml;ber mehrere 
+Zeilen mit \&quot;escaped\&quot; Parenthesis!</b></td></td></tr></table></div><h3 id="header_4.9.2"> Konstanten </h3><div class="tablediv"><table><tr><th> Kategorie             </th><th> Was es ist                        </th><th> Was du schreibst                              </th><th colspan="2"> Wie es dargestellt wird</th></tr><tr><th rowspan="2"> Mathematik            </th><td> Kreiszahl Pi                      </td></td><td> <tt>{{PI}} oder &lt;math&gt;&amp;pi;&lt;/math&gt;</tt>         </td></td><td colspan="2"> 3,14159 oder <span class="section_math">&pi;</span></td></td></tr><tr><td> Eulersche Zahl e                  </td></td><td> <tt>{{E}} oder &lt;math&gt;e&lt;/math&gt;</tt>             </td></td><td colspan="2"> 2,71828 oder <span class="section_math">e</span></td></td></tr><tr><th rowspan="4"> Datum                 </th><td> Tag (Name, in Zahlen)             </td></td><td> <tt>{{DAYNAME}} {{DAY}}</tt>                   </td></td><td colspan="2"> Dienstag 23</td></td></tr><tr><td> Monat (Name, in Zahlen)           </td></td><td> <tt>{{MONTHNAME}} {{MONTH}}</tt>               </td></td><td colspan="2"> Juli 07</td></td></tr><tr><td> Jahr                              </td></td><td> <tt>{{YEAR}}</tt>                              </td></td><td colspan="2"> 2013</td></td></tr><tr><td> Das aktuelle Datum                </td></td><td> <tt>{{DATE}}</tt>                              </td></td><td colspan="2"> 23.07.2013</td></td></tr><tr><th> Zeit                  </th><td> Die aktuelle Zeit                 </td></td><td> <tt>{{TIME}}</tt>                              </td></td><td colspan="2"> 15:02</td></td></tr></table></div><b>TODO</b>: Default-Dateformat<sup><a class="footnote" id="fnt__1" name="fnt__1" href="#fn__1">[1]</a></sup> bestimmen und konfigurierbar machen!
+<h3 id="header_4.9.3"> Wikivariablen </h3><div class="tablediv"><table><tr><th> Variable             </th><th> Was du schreibst                                       </th><th> Wie es dargestellt wird                                       </th><th colspan="2"> Beschreibung                                                                                              </th></tr><tr><td> ID                   </td></td><td> <tt>Die aktuelle Seite hei&szlig;t &quot;{{ID}}&quot;.</tt>             </td></td><td> Die aktuelle Seite hei&szlig;t &quot;todos&quot;.            </td></td><td colspan="2"> Gibt den Namen (ID) der aktuellen Wikiseite aus                                   </td></td></tr><tr><td> NS                   </td></td><td> <tt>Sie liegt unter &quot;{{NS}}&quot;.</tt>                      </td></td><td> Sie liegt unter &quot;dokumentation&quot;.                     </td></td><td colspan="2"> Gibt den Namespace der aktuellen Seite aus                                                    </td></td></tr><tr><td> FULLID               </td></td><td> <tt>Ihr voller Namen lautet &quot;{{FULLID}}&quot;.</tt>          </td></td><td> Ihr voller Namen lautet &quot;dokumentation:todos&quot;.         </td></td><td colspan="2"> Die volle ID (&uuml;ber eine solche ID identifiziert das CMS die Datei)    </td></td></tr><tr><td> COUNTSUBS            </td></td><td> <tt>Untergeordnete Seiten: {{COUNTSUBS}}</tt> </td></td><td> Untergeordnete Seiten: 6 </td></td><td colspan="2"> Die Anzahl der untergeordneten Seiten <br /> <small>(Bsp.: Siehe Startseite des Manuals -&gt; Anzahl der Artikel)</small></td></td></tr></table></div>
+Alle Artikel 6 im aktuellen Namensraum: dokumentation<ul><li><a href='?id=dokumentation::decoding'>Decoding</a></li><li><a href='?id=dokumentation::grammar-configuration-files'>Grammar-configuration-files</a></li><li><a href='?id=dokumentation::lexer'>Lexer</a></li><li><a href='?id=dokumentation::textgestaltung'>Textgestaltung</a></li><li><a href='?id=dokumentation::todos'>Todos</a></li><li><a href='?id=dokumentation::unittest'>Unittest</a></li></ul><h3 id="header_4.9.4"> HTML-Zeichen-Symbole </h3><div class="tablediv"><table><tr><th> Was es ist                        </th><th> Was du schreibst                              </th><th colspan="2"> Wie es dargestellt wird</th></tr><tr><td> Doppelte Anf&uuml;hrungszeichen<sup><a class="footnote" id="fnt__2" name="fnt__2" href="#fn__2">[2]</a></sup>        </td></td><td> <tt>Alle riefen: &amp;bdquo;Hurra!!!&amp;rdquo;</tt>    </td></td><td colspan="2"> Alle riefen: &bdquo;Hurra!!!&rdquo;</td></td></tr></table></div><h2 id="header_4.10"> Fu&szlig;zeilen </h2><div class="footnotes"><ol><li><a class="footnote_t" id="fn__1" name="fn__1" href="#fnt__1">&uarr;</a> siehe <a target="_blank" href="http://php.net/manual/de/function.date.php">PHP Funktion date</a></li><li><a class="footnote_t" id="fn__2" name="fn__2" href="#fnt__2">&uarr;</a> f&uuml;r deutsche Texte</li></ol></div><br /><div align="right"><span class="less_significant">Verarbeitet in 0,6327 Sek. | Dateiformat: PC</span></div></div>

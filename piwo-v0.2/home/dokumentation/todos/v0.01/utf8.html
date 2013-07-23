@@ -1,0 +1,30 @@
+<h1>Fehler im Wikitext erkannt</h1>Fehler in der Zeile .<pre style='white-space: pre-wrap'><span style='color: gray'>     1| &lt;border&gt;</span>
+<span style='color: gray'>     2| Sie sind hier: ~~TRACE~~</span>
+<span style='color: gray'>     3| &lt;lo&gt; | [[:dokumentation:todos|Todos anzeigen]]&lt;/lo&gt;</span>
+<span style='color: gray'>     4| &lt;/border&gt;</span>
+     5| = Codierungen =
+     6| &lt;info&gt;Codierungen jeglicher Art: utf8, htmlentities, Dateinamen, ...&lt;/info&gt;
+     7| &lt;info&gt;Codierung: [http://pitizworld.co.de/piwo/tests/encoding.php Testumgebung]&lt;/info&gt;
+     8| 
+     9| == bugs ==
+    10| * Suchen...
+    11| * Template: &quot;Leere Seite&quot; zeigt fehlerhafte Zeichen
+    12| * Links in der Wikiseite zeigen fehlerhafte Zeichen
+    13| 
+    14| == to check ==
+    15| 
+    16| == todos ==
+    17| * Code aufr&auml;umen: zu viele encode, decode, utf8 Befehle lassen Code un&uuml;bersichtlich werden.
+    18| 
+    19| == done ==
+    20| * [[:tests:sonderzeichen|Testseite]]: Umlaute und Sonderzeichen in Plugins (TEXT:ucwords zb. funktioniert bei sonderzeichen nicht) 
+    21| * Alle URLs m&uuml;ssen urlencoded werden, alle Ausgaben mit htmlentities versehen und alle $ids und pw_wiki_getcfg utf8 codiert. Achtung bei ucfirst, strtolower, ...
+    22| * Seiten&uuml;berblick: Sonderzeichen auf co.de werden falsch oder nicht dargestellt.
+    23| * Zeilenende((Zeilenenden:\\''\n'' f&uuml;r UNIX/Linux\\''\n\r'' f&uuml;r Windows\\ ''\r'' f&uuml;r MAC)) ist zurzeit auf PC gestellt (UNIX und MAC erkennen und normalisieren!)
+    24| * Problem auf UNIX-Dateisystemen mit keysensitiven Dateinamen (alle Dateinamen sind klein geschrieben). Richtige Schreibweisen findet man sp&auml;ter in der WikiCSV.
+    25| 
+    26| == Fu&szlig;zeilen ==
+    27| ~~FOOTNOTES~~
+<span style='color: gray'>    28| \\</span>
+<span style='color: gray'>    29| :&gt;&gt; &lt;lo&gt;Verarbeitet in ~~TEXT:comma|{{PERFORMANCE}}~~ Sek. | Dateiformat: {{FILE:type}}&lt;/lo&gt;</span>
+</pre><i>Der graue Text zeigt die Kopf- und Fu&szlig;zeile des Dokumentes.</i>

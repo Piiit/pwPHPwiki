@@ -93,7 +93,7 @@ class pwLexer {
 
   public function parse($cdata = true) {
 
-    $timer = new timer();
+    $timer = new Timer();
     if ($cdata) {
       $this->replaceCDATA();
     }
@@ -107,7 +107,7 @@ class pwLexer {
         $this->currentline = $tag["RESTORE"];
         $this->updateDomTree($tag, $this->temptxt);
       }
-      $this->executiontime = $timer->measure_elapsed(4);
+      $this->executiontime = $timer->getElapsedTime(4);
 
       if ($this->error == "FATAL")  return false;
 
