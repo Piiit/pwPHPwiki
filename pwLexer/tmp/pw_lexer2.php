@@ -10,7 +10,7 @@
 //FIXME: create a Node class to represent all Nodes with pattern, name, registered function to parse, config, ...
 
 require_once INC_PATH."piwo-v0.2/lib/pw_debug.php";
-require_once INC_PATH."piwo-v0.2/lib/timer.php";
+require_once INC_PATH."pwTools/time/Timer.php";
 require_once INC_PATH."pwTools/string/encoding.php";
 require_once INC_PATH."piwo-v0.2/lib/Node.php";
 

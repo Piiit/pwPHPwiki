@@ -8,7 +8,7 @@
 
 
 require_once INC_PATH."pwLexer/pw_debug.php";
-require_once INC_PATH."pwLexer/timer.php";
+require_once INC_PATH."pwTools/time/Timer.php";
 require_once INC_PATH."pwTools/string/encoding.php";
 require_once INC_PATH."pwTools/tree/Node.php";
 

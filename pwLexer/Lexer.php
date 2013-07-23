@@ -27,7 +27,7 @@ require_once INC_PATH.'pwTools/string/encoding.php';
 require_once INC_PATH.'pwTools/string/TextFormat.php';
 require_once INC_PATH.'pwTools/tree/Node.php';
 require_once INC_PATH.'pwTools/data/Collection.php';
-require_once INC_PATH.'pwLexer/timer.php';
+require_once INC_PATH.'pwTools/time/Timer.php';
 require_once INC_PATH.'pwLexer/Token.php';
 require_once INC_PATH.'pwLexer/Pattern.php';
 require_once INC_PATH.'pwLexer/Log.php';
