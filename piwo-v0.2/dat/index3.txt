@@ -1,0 +1,20 @@
+<info>
+\\
+:> ++ **Welcome \\ ...to PIWO...**++
+\\
+:> Attention: This is a ALPHA-Version! \\\\**pitiz29a@gmail.com**
+
+----
+
+:> First start of ++PIWO++ 
+:> Template folder created...
+:> You can [[showpages>:tpl:|change templates]] if you like.
+
+----
+:> <lo>
+&raquo; Piwo:Version **{{version}}** %%~~%% Wikisyntax:Version **0.1** %%~~%% Lexer:Version **{{lexerversion}}** &laquo;
+</lo>
+----
+
+</info>
+
