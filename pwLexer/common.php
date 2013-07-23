@@ -170,7 +170,7 @@ function pw_basename($fn, $ext = null) {
 	$fn = array_pop($fn);
 
 	if ($ext) {
-		$fn = strrtrim($fn, $ext);
+		$fn = StringTools::rightTrim($fn, $ext);
 	}
 	return $fn;
 }
@@ -198,7 +198,7 @@ function pw_wiki_path2id($path) {
 
 	$id = ltrim($id, ":");
 
-	$id = strrtrim($id, pw_wiki_getcfg('fileext'));
+	$id = StringTools::rightTrim($id, pw_wiki_getcfg('fileext'));
 	$id = pw_s2url($id);
 	return $id;
 }
@@ -406,18 +406,6 @@ function html_footer($modal) {
 	pw_ne ('</body>', END);
 	pw_ne ('</html>', END);
 	pw_ne ('<!-- FOOTER end -->');
-}
-
-function strrtrim($message, $strip) {
-	// break message apart by strip string
-	$lines = explode($strip, $message);
-	$last  = '';
-	// pop off empty strings at the end
-	do {
-		$last = array_pop($lines);
-	} while (empty($last) && (count($lines)));
-	// re-assemble what remains
-	return implode($strip, array_merge($lines, array($last)));
 }
 
 /**
