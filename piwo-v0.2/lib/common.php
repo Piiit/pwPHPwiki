@@ -174,7 +174,7 @@ function pw_basename($fn, $ext = null) {
   $fn = array_pop($fn);
 
   if ($ext) {
-    $fn = strrtrim($fn, $ext);
+    $fn = StringTools::rightTrim($fn, $ext);
   }
   return $fn;
 }
