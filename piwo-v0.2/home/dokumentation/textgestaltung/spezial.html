@@ -1,117 +1,41 @@
-<h1>Fehler im Wikitext erkannt</h1>Fehler in der Zeile .<pre style='white-space: pre-wrap'><span style='color: gray'>     1| &lt;border&gt;</span>
-<span style='color: gray'>     2| Sie sind hier: ~~TRACE~~</span>
-<span style='color: gray'>     3| &lt;lo&gt; | [[:dokumentation:todos|Todos anzeigen]]&lt;/lo&gt;</span>
-<span style='color: gray'>     4| &lt;/border&gt;</span>
-     5| = Spezielle Befehle =
-     6| 
-     7| &lt;border&gt;
-     8| ~~TOC~~
-     9| &lt;/border&gt;
-    10| 
-    11| == &Uuml;bersicht ==
-    12| 
-    13| ^ Was es ist           ^ Was du schreibst                                                      ^ Wie es dargestellt wird 
-    14| | [[#Konstanten]]      | ''%%{{Name der Konstante}}%%''\\Bsp.: ''%%{{version}}%%''   | Bsp.: {{version}}
-    15| | [[#Variablen]]       | Variable setzen: ''%%!! Name = Wert%%'' oder ''%%{{Name = Wert}}%%'' \\ Variable ausgeben: ''%%{{Name der Variable}}%%'' | {{{
-    16| $$ !! x = 3.5
-    17| $$ {{y = 0}}
-    18| $$ x={{x}}, y={{y}}
-    19| !! x = 3.5
-    20| {{y = 0}}
-    21| x={{x}}, y={{y}}
-    22| }}}
-    23| | Horizontale Linie    | ''%%Das ist eine horizontale...%%''\\''%%----%%''\\''%%...Linie.%%''  | {{{ Das ist eine horizontale...
-    24| ----
-    25| ...Linie. }}}
-    26| 
-    27| == Konstanten ==
-    28| ; Hinweis
-    29| : Konstanten k&ouml;nnen klein oder auch gro&szlig; geschrieben werden.
-    30| 
-    31| ; Schreibweise
-    32| : ''%%{{Name der Konstante}}%%'' Einfache Notation ohne Unterkategorie oder Parameter.
-    33| : ''%%{{Name der Konstante:Name der Unterkategorie}}%%'' Notation mit Unterkategorie (getrennt durch einen '':'')
-    34| : ''%%{{Name der Konstante|Parameter1|Parameter2|...}}%%'' Parameter werden durch ''|'' voneinander getrennt.
-    35| 
-    36| ^ Kategorie             ^ Was es ist                                      ^ Was du schreibst                             ^ Wie es dargestellt wird
-    37| ^ Mathematik            | Kreiszahl Pi                                    | ''%%{{PI}}%%''                               | {{PI}}
-    38| ^ :::                   | Eulersche Zahl                                  | ''%%{{E}}%%''                                | {{E}}
-    39| ^ Datum                 | Tag (Name, in Zahlen)                           | ''%%{{DAYNAME}}%%''\\''%%{{DAY}}%%''         | {{DAYNAME}}\\{{DAY}}
-    40| ^ :::                   | Monat (Name, in Zahlen)                         | ''%%{{MONTHNAME}}%%''\\''%%{{MONTH}}%%''     | {{MONTHNAME}}\\{{MONTH}}
-    41| ^ :::                   | Jahr                                            | ''%%{{YEAR}}%%''                             | {{YEAR}}
-    42| ^ :::                   | Das aktuelle Datum                              | ''%%{{DATE}}%%''                             | {{DATE}}
-    43| ^ Zeit                  | Die aktuelle Zeit                               | ''%%{{TIME}}%%''                             | {{TIME}}
-    44| ^ Wiki                  | Der Name der aktuellen Seite                    | ''%%{{ID}}%%''                               | {{ID}}
-    45| ^ :::                   | Der Namensraum der aktuellen Seite              | ''%%{{NS}}%%''                               | {{NS}}
-    46| ^ :::                   | Die vollst&auml;ndige ID der aktuellen Seite         | ''%%{{FULLID}}%%''                           | {{FULLID}}
-    47| ^ :::                   | Die aktuelle fehlerhafte ID (nur Ausgabe)       | ''%%{{WRONGID}}%%''                          | {{WRONGID}}\\//--(Falls noch keine fehlerhafte ID aufgerufen wurde, ist sie hier leer. N&uuml;tzlich f&uuml;r Fehlermeldungen innerhalb eines Wikitextes.)--//
-    48| ^ :::                   | Untergeordnete Seiten dieses Namensraumes       | ''%%{{COUNTSUBS}}%%''                        | {{COUNTSUBS}}
-    49| ^ :::                   | Die Startseite der Wiki (siehe Konfiguration)   | ''%%{{STARTPAGE}}%%''                        | {{STARTPAGE}}
-    50| ^ Informationen         | Version von **piwo**                            | ''%%{{VERSION}}%%''                          | {{VERSION}}
-    51| ^ :::                   | Version des Lexers                              | ''%%{{LEXERVERSION}}%%''                     | {{LEXERVERSION}}
-    52| ^ :::                   | Geschwindigkeit des Lexers in Sekunden          | ''%%{{PERFORMANCE}}%%''                      | {{PERFORMANCE}}
-    53| ^ :::                   | Information zur Datei (je nach Unterkategorie)  | ''%%{{FILE:TYPE}}%%''                        | {{FILE:TYPE}}
-    54| ^ Pfadangabe            | URL des piwo-Wurzelverzeichnisses               | ''%%{{PATH}}%%''                             | {{PATH}}
-    55| 
-    56| == Variablen ==
-    57| 
-    58| === Setzen und ausgeben ===
-    59| $$ !! Zahl = 1000&quot;&quot;&quot;(Diese Zeile wird nicht angezeigt)&quot;&quot;&quot;
-    60| $$ Die Zahl lautet: {{Zahl}}.
-    61| !! Zahl = 1000&quot;&quot;&quot;(Diese Zeile wird nicht angezeigt)&quot;&quot;&quot;
-    62| Die Zahl lautet: {{Zahl}}.
-    63| 
-    64| \\\\
-    65| Variablen k&ouml;nnen auch innerhalb geschwungener Klammern gesetzt werden.
-    66| $$ {{i = 3}}
-    67| $$ Ausgabe: {{i}}
-    68| {{i = 3}}
-    69| Ausgabe: {{i}} 
-    70| 
-    71| \\\\
-    72| Falls Variablen ein neuer Wert zugewiesen wird, wird der alte gel&ouml;scht.
-    73| $$ {{i = 4}}
-    74| $$ Ausgabe: {{i}}
-    75| {{i = 4}}
-    76| Ausgabe: {{i}}
-    77| 
-    78| \\\\
-    79| Variablennamen k&ouml;nnen auch Sonderzeichen und Umlaute enthalten.
-    80| $$ {{var&ouml; = &quot;Hallo Cavallo&quot;}}
-    81| $$ Ausgabe: {{var&ouml;}}
-    82| {{var&ouml; = &quot;Hallo Cavallo&quot;}}
-    83| Ausgabe: {{var&ouml;}}
-    84| 
-    85| === Hinweis ===
-    86| &lt;warning&gt;
-    87| **Achtung:** Konstanten k&ouml;nnen nicht &uuml;berschrieben werden...
-    88| &lt;/warning&gt;
-    89| 
-    90| $$ Die aktuelle Seite hei&szlig;t {{ID}}.
-    91| $$ !! ID = NEUE_ID 
-    92| $$ Versuche die ID zu &auml;ndern... \\
-    93| $$ Die aktuelle Seite hei&szlig;t immer noch {{ID}}.
-    94| Die aktuelle Seite hei&szlig;t {{ID}}.
-    95| !! ID = NEUE_ID
-    96| Versuche die ID zu &auml;ndern... \\
-    97| Die aktuelle Seite hei&szlig;t immer noch {{ID}}.
-    98| 
-    99| === Fehler bei nicht gesetzten Variablen ===
-   100| Nicht vorhandene Variablen werden wie folgt gekennzeichnet. \\
-   101| {{EXISTIERE_NICHT}}
-   102| 
-   103| == Fu&szlig;noten ==
-   104| ; Schreibweise
-   105| : Fu&szlig;noten in Textpassagen einf&uuml;gen: ''%%((Text f&uuml;r Fu&szlig;note))%%''
-   106| : Fu&szlig;noten als Liste ausgeben: ''%%~~FOOTNOTES~~%%''
-   107| 
-   108| $$ Beispiel: Das ist ein Text((Text 1)) mit drei((Text 2)) Fu&szlig;noten((Text 3: der **letzte** Text)). \\
-   109| $$ Fu&szlig;noten ausgeben...
-   110| $$ ~~FOOTNOTES~~
-   111| Beispiel: Das ist ein Text((Text 1)) mit drei((Text 2)) Fu&szlig;noten((Text 3: der **letzte** Text)). \\
-   112| Fu&szlig;noten ausgeben...
-   113| ~~FOOTNOTES~~
-   114| 
-<span style='color: gray'>   115| \\</span>
-<span style='color: gray'>   116| :&gt;&gt; &lt;lo&gt;Verarbeitet in ~~TEXT:comma|{{PERFORMANCE}}~~ Sek. | Dateiformat: {{FILE:type}}&lt;/lo&gt;</span>
-</pre><i>Der graue Text zeigt die Kopf- und Fu&szlig;zeile des Dokumentes.</i>
+    <div id='imwiki'>
+<div class="section_border">
+Sie sind hier: <a href='?mode=cleared&id=index'>Home</a> &raquo; <a href='?mode=cleared&id=reise'>Reise</a> &raquo; Fotoalbum<span class="less_significant"> | <a href="?id=dokumentation:todos">Todos anzeigen</a></span></div><h1 id="header_"> Spezielle Befehle </h1><div class="section_border"></div><h2 id="header_"> &Uuml;bersicht </h2><div class="tablediv"><table><tr><th> Was es ist           </th><th> Was du schreibst                                                      </th><th colspan="2"> Wie es dargestellt wird </th></tr><tr><td> <a href="#" class="pw_wiki_link_na">konstanten</a>      </td></td><td> <span class="code">{{Name der Konstante}}</span><br />Bsp.: <span class="code">{{version}}</span>   </td></td><td colspan="2"> Bsp.: 0.2.1 - Alpha</td></td></tr><tr><td> <a href="#" class="pw_wiki_link_na">variablen</a>       </td></td><td> Variable setzen: <span class="code">!! Name = Wert</span> oder <span class="code">{{Name = Wert}}</span> <br /> Variable ausgeben: <span class="code">{{Name der Variable}}</span> </td></td><td colspan="2"> <pre><div>!! x = 3.5
+{{y = 0}}
+x={{x}}, y={{y}}
+</div></pre>
+x=3.5, y=0</td></td></tr><tr><td> Horizontale Linie    </td></td><td> <span class="code">Das ist eine horizontale...</span><br /><span class="code">----</span><br /><span class="code">...Linie.</span>  </td></td><td colspan="2">  Das ist eine horizontale...<hr />
+...Linie. </td></td></tr></table></div><h2 id="header_"> Konstanten </h2><dl><dt>Hinweis<dd>Konstanten k&ouml;nnen klein oder auch gro&szlig; geschrieben werden.</dd></dt></dl><dl><dt>Schreibweise<dd><span class="code">{{Name der Konstante}}</span> Einfache Notation ohne Unterkategorie oder Parameter.</dd><dd><span class="code">{{Name der Konstante:Name der Unterkategorie}}</span> Notation mit Unterkategorie (getrennt durch einen <span class="code">:</span>)</dd><dd><span class="code">{{Name der Konstante|Parameter1|Parameter2|...}}</span> Parameter werden durch <span class="code">|</span> voneinander getrennt.</dd></dt></dl><div class="tablediv"><table><tr><th> Kategorie             </th><th> Was es ist                                      </th><th> Was du schreibst                             </th><th colspan="2"> Wie es dargestellt wird</th></tr><tr><th rowspan="2"> Mathematik            </th><td> Kreiszahl Pi                                    </td></td><td> <span class="code">{{PI}}</span>                               </td></td><td colspan="2"> 3,14159</td></td></tr><tr><td> Eulersche Zahl                                  </td></td><td> <span class="code">{{E}}</span>                                </td></td><td colspan="2"> 2,71828</td></td></tr><tr><th rowspan="4"> Datum                 </th><td> Tag (Name, in Zahlen)                           </td></td><td> <span class="code">{{DAYNAME}}</span><br /><span class="code">{{DAY}}</span>         </td></td><td colspan="2"> Mittwoch<br />24</td></td></tr><tr><td> Monat (Name, in Zahlen)                         </td></td><td> <span class="code">{{MONTHNAME}}</span><br /><span class="code">{{MONTH}}</span>     </td></td><td colspan="2"> Juli<br />07</td></td></tr><tr><td> Jahr                                            </td></td><td> <span class="code">{{YEAR}}</span>                             </td></td><td colspan="2"> 2013</td></td></tr><tr><td> Das aktuelle Datum                              </td></td><td> <span class="code">{{DATE}}</span>                             </td></td><td colspan="2"> 24.07.2013</td></td></tr><tr><th> Zeit                  </th><td> Die aktuelle Zeit                               </td></td><td> <span class="code">{{TIME}}</span>                             </td></td><td colspan="2"> 07:25</td></td></tr><tr><th rowspan="6"> Wiki                  </th><td> Der Name der aktuellen Seite                    </td></td><td> <span class="code">{{ID}}</span>                               </td></td><td colspan="2"> fotoalbum</td></td></tr><tr><td> Der Namensraum der aktuellen Seite              </td></td><td> <span class="code">{{NS}}</span>                               </td></td><td colspan="2"> reise</td></td></tr><tr><td> Die vollst&auml;ndige ID der aktuellen Seite         </td></td><td> <span class="code">{{FULLID}}</span>                           </td></td><td colspan="2"> reise:fotoalbum</td></td></tr><tr><td> Die aktuelle fehlerhafte ID (nur Ausgabe)       </td></td><td> <span class="code">{{WRONGID}}</span>                          </td></td><td colspan="2"> <br /><i><small>(Falls noch keine fehlerhafte ID aufgerufen wurde, ist sie hier leer. N&uuml;tzlich f&uuml;r Fehlermeldungen innerhalb eines Wikitextes.)</small></i></td></td></tr><tr><td> Untergeordnete Seiten dieses Namensraumes       </td></td><td> <span class="code">{{COUNTSUBS}}</span>                        </td></td><td colspan="2"> 1</td></td></tr><tr><td> Die Startseite der Wiki (siehe Konfiguration)   </td></td><td> <span class="code">{{STARTPAGE}}</span>                        </td></td><td colspan="2"> :index</td></td></tr><tr><th rowspan="4"> Informationen         </th><td> Version von <b>piwo</b>                            </td></td><td> <span class="code">{{VERSION}}</span>                          </td></td><td colspan="2"> 0.2.1 - Alpha</td></td></tr><tr><td> Version des Lexers                              </td></td><td> <span class="code">{{LEXERVERSION}}</span>                     </td></td><td colspan="2"> 0.42d - PIWO</td></td></tr><tr><td> Geschwindigkeit des Lexers in Sekunden          </td></td><td> <span class="code">{{PERFORMANCE}}</span>                      </td></td><td colspan="2"> 0.2375</td></td></tr><tr><td> Information zur Datei (je nach Unterkategorie)  </td></td><td> <span class="code">{{FILE:TYPE}}</span>                        </td></td><td colspan="2"> UNIX</td></td></tr><tr><th> Pfadangabe            </th><td> URL des piwo-Wurzelverzeichnisses               </td></td><td> <span class="code">{{PATH}}</span>                             </td></td><td colspan="2"> http://localhost/projekte/piwo-v0.2/</td></td></tr></table></div><h2 id="header_"> Variablen </h2><h3 id="header_"> Setzen und ausgeben </h3><pre><div>!! Zahl = 1000&quot;&quot;&quot;(Diese Zeile wird nicht angezeigt)&quot;&quot;&quot;
+Die Zahl lautet: {{Zahl}}.
+</div></pre>
+Die Zahl lautet: 1000(Diese Zeile wird nicht angezeigt).
+<br /><br />
+Variablen k&ouml;nnen auch innerhalb geschwungener Klammern gesetzt werden.<pre><div>{{i = 3}}
+Ausgabe: {{i}}
+</div></pre>
+Ausgabe: 3<br /><br />
+Falls Variablen ein neuer Wert zugewiesen wird, wird der alte gel&ouml;scht.<pre><div>{{i = 4}}
+Ausgabe: {{i}}
+</div></pre>
+Ausgabe: 4<br /><br />
+Variablennamen k&ouml;nnen auch Sonderzeichen und Umlaute enthalten.<pre><div>{{var&ouml; = &quot;Hallo Cavallo&quot;}}
+Ausgabe: {{var&ouml;}}
+</div></pre>
+Ausgabe: "Hallo Cavallo"<h3 id="header_"> Hinweis </h3><div class="section_warning"><b>Achtung:</b> Konstanten k&ouml;nnen nicht &uuml;berschrieben werden...
+</div><pre><div>Die aktuelle Seite hei&szlig;t {{ID}}.
+!! ID = NEUE_ID 
+Versuche die ID zu &auml;ndern... \\
+Die aktuelle Seite hei&szlig;t immer noch {{ID}}.
+</div></pre>
+Die aktuelle Seite hei&szlig;t fotoalbum.
+Versuche die ID zu &auml;ndern... <br />
+Die aktuelle Seite hei&szlig;t immer noch fotoalbum.
+<h3 id="header_"> Fehler bei nicht gesetzten Variablen </h3>
+Nicht vorhandene Variablen werden wie folgt gekennzeichnet. <br /><span style='color: yellow'>[WARNUNG: VARIABLE 'existiere_nicht' wurde nicht gesetzt.]</span><h2 id="header_"> Fu&szlig;noten </h2><dl><dt>Schreibweise<dd>Fu&szlig;noten in Textpassagen einf&uuml;gen: <span class="code">((Text f&uuml;r Fu&szlig;note))</span></dd><dd>Fu&szlig;noten als Liste ausgeben: <span class="code">~~FOOTNOTES~~</span></dd></dt></dl><pre><div>Beispiel: Das ist ein Text((Text 1)) mit drei((Text 2)) Fu&szlig;noten((Text 3: der **letzte** Text)). \\
+Fu&szlig;noten ausgeben...
+~~FOOTNOTES~~
+</div></pre>
+Beispiel: Das ist ein Text<sup><a class="footnote" id="fnt__4" href="#fn__4">[4]</a></sup> mit drei<sup><a class="footnote" id="fnt__5" href="#fn__5">[5]</a></sup> Fu&szlig;noten<sup><a class="footnote" id="fnt__6" href="#fn__6">[6]</a></sup>. <br />
+Fu&szlig;noten ausgeben...
+<div class="footnotes"><ol><li><a class="footnote_t" id="fn__1" href="#fnt__1">&uarr;</a> Fußnoten ausgeben...</li><li><a class="footnote_t" id="fn__2" href="#fnt__2">&uarr;</a> 
+Beispiel: Das ist ein Text</li><li><a class="footnote_t" id="fn__3" href="#fnt__3">&uarr;</a>  mit drei</li><li><a class="footnote_t" id="fn__4" href="#fnt__4">&uarr;</a> Text 1</li><li><a class="footnote_t" id="fn__5" href="#fnt__5">&uarr;</a> Text 2</li><li><a class="footnote_t" id="fn__6" href="#fnt__6">&uarr;</a> Text 3: der <b>letzte</b> Text</li></ol></div><br /><div align="right"><span class="less_significant">Verarbeitet in 0,2375 Sek. | Dateiformat: UNIX</span></div>    </div>

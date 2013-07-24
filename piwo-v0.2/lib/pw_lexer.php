@@ -1680,7 +1680,7 @@ class pwLexer {
     if ($type == "FATAL") {
       #out2(array_pop($this->logbook));
       #$this->logbook = ;
-      throw new Exception($this->getLogText(false));
+      throw new Exception("pwLexer: Exception caught: ".$this->getLogText(false));
     }
 
     $this->error = $type;

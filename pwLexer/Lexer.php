@@ -119,7 +119,7 @@ class Lexer {
 			throw new InvalidArgumentException("First argument must be string!");
 		}
 
-		pw_normalizeLE($source);
+		StringFormat::htmlIndentormalizeLE($source);
 		$source = "\n".$source."\n";
 		$this->_textInput = $source; 
 		$this->_temptxt = $source;

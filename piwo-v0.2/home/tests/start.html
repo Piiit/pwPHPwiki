@@ -1,375 +1,195 @@
-<h1>Fehler im Wikitext erkannt</h1>Fehler in der Zeile .<pre style='white-space: pre-wrap'><span style='color: gray'>     1| &lt;border&gt;</span>
-<span style='color: gray'>     2| Sie sind hier: ~~TRACE~~</span>
-<span style='color: gray'>     3| &lt;lo&gt; | [[:dokumentation:todos|Todos anzeigen]]&lt;/lo&gt;</span>
-<span style='color: gray'>     4| &lt;/border&gt;</span>
-     5| = PIWO: Wikisyntax v0.1 =
-     6| 
-     7| Inhaltsverzeichnis:\\
-     8| ~~TOC~~
-     9| 
-    10| 
-    11| == Text ==
-    12| Das ist ein Text mit einigen Sonderzeichen &auml;&ouml;&uuml;&szlig;... &amp;pi; [[manual:indent|Einz&uuml;ge]] [[manual:ilink|Interne Links]]
-    13| 
-    14| == Formatierung ==
-    15| ^ Was es ist                                    ^ Was du schreibst                                                      ^ Wie es dargestellt wird 
-    16| | fett                                          | ''%%**fett**%%''                                                      | **fett**                                                  
-    17| | kursiv                                        | ''%%//kursiv//%%''                                                    | //kursiv//                                                
-    18| | unterstrichen                                 | ''%%__unterstrichen__%%''                                             | __unterstrichen__                                         
-    19| | Fixe Textbreite (monospace)                   | ''%%''Fixe Textbreite''%%''                                           | ''Fixe Textbreite''                                       
-    20| | Kleine Schrift                                | ''%%--Kleine Schrift--%%''                                            | --Kleine Schrift--                                        
-    21| | Gro&szlig;e Schrift                                 | ''%%++Gro&szlig;e Schrift++%%''                                             | ++Gro&szlig;e Schrift++                                         
-    22| | Hervorgehobener Hintergrund                   | ''%%&lt;hi&gt;Hervorgehobener Hintergrund&lt;/hi&gt;%%''                          | &lt;hi&gt;Hervorgehobener Hintergrund&lt;/hi&gt;                                         
-    23| | Hervorgehobener Text                          | ''%%&lt;em&gt;Hervorgehobener Text&lt;/em&gt;%%''                                 | &lt;em&gt;Hervorgehobener Text&lt;/em&gt;                                         
-    24| | Unwichtiger Text                              | ''%%&lt;lo&gt;Unwichtiger Text&lt;/lo&gt;%%''                                     | &lt;lo&gt;Unwichtiger Text&lt;/lo&gt;                                         
-    25| | durchgestrichen                               | ''%%-+Durchgestrichen+-%%''                                           | -+Durchgestrichen+-                                      
-    26| | tiefgestellt                                  | ''%%H_{2}O%%'' oder ''%%H_{16}%%''                                    | H_{2}O oder H_{16}                          
-    27| | hochgestellt                                  | ''%%dm^{3}%%'' oder ''%%x^{-5}%%''                                    | dm^{3} oder x^{-5}       
-    28| | unformatiert  (Standard)                      | ''%%&lt;nowiki&gt;**Ich bin nicht fett!**&lt;/nowiki&gt;%%''                      | &lt;nowiki&gt;**Ich bin nicht fett!**&lt;/nowiki&gt;
-    29| | unformatiert  (kurze Schreibweise)            | ''&lt;nowiki&gt;%%**Ich bin nicht fett!**%%&lt;/nowiki&gt;''                      | %%**Ich bin nicht fett!**%%
-    30| | Horizontale Linie                             | ''%%Das ist eine horizontale...%%''\\''%%----%%''\\''%%...Linie.%%''  | {{{ Das ist eine horizontale...
-    31| ----
-    32| ...Linie. }}}
-    33| 
-    34| 
-    35| == Hyperlinks ==
-    36| ^ Was es ist ^ Was du schreibst                                      ^ Wie es dargestellt wird 
-    37| | Einfacher externer Link \\ (Texterkennung, optional) | {{{
-    38| $$ http://www.google.de
-    39| $$ http://localhost/projekte/home/lib/tests/lexertests/
-    40| $$ http://de.wikipedia.org/wiki/Hilfe:Links
-    41| $$ http://pitizworld.co.de/doku.php?do=index&amp;id=start
-    42| $$ http://www.dokuwiki.org/syntax#tables
-    43| $$ ftp://joe:password@ftp.filetransferprotocal.com
-    44| $$ www.google.ru
-    45| }}} | {{{
-    46| http://www.google.de \\
-    47| http://localhost/projekte/home/lib/tests/lexertests/ \\
-    48| http://de.wikipedia.org/wiki/Hilfe:Links \\
-    49| http://pitizworld.co.de/doku.php?do=index&amp;id=start \\
-    50| http://www.dokuwiki.org/syntax#tables \\
-    51| ftp://joe:password@ftp.filetransferprot.com \\
-    52| www.google.ru \\
-    53| }}} 
-    54| | Wikisyntax f&uuml;r externe Links | {{{
-    55| $$ Der erste Link [http://www.google.de] 
-    56| $$ und der zweite [http://www.hoferhof.net].
-    57| $$ [http://www.hoferhof.net Urlaub am Bauernhof]
-    58| }}} | {{{
-    59| Der erste Link [http://www.google.de] \\
-    60| und der zweite [http://www.hoferhof.net]. \\
-    61| [http://www.hoferhof.net Urlaub am Bauernhof]
-    62| }}}
-    63| | Wikisyntax f&uuml;r interne Links | {{{
-    64| $$ [[Namespace:Name|Text des Links (mit Erweiterung)]]
-    65| $$ [[Namespace:Name auch mit Leerzeichen|Text des Links]]
-    66| $$ [[Namespace:Name auch mit Leerzeichen ohne Linktext]]
-    67| }}} | {{{
-    68| [[Namespace:Name|Text des Links (mit Erweiterung)]] \\
-    69| [[Namespace:Name auch mit Leerzeichen|Text des Links]] \\
-    70| [[Namespace:Name auch mit Leerzeichen ohne Linktext]]
-    71| }}}
-    72| 
-    73| === Hyperlink Tests ===
-    74| $$ http://www.google.com/search?q=good+url+regex&amp;rls=com.microsoft:*&amp;ie=UTF-8&amp;oe=UTF-8&amp;startIndex=&amp;startPage=1
-    75| http://www.google.com/search?q=good+url+regex&amp;rls=com.microsoft:*&amp;ie=UTF-8&amp;oe=UTF-8&amp;startIndex=&amp;startPage=1
-    76| $$ https://some-url.com?query=&amp;name=joe?filter=*.*#some_anchor
-    77| https://some-url.com?query=&amp;name=joe?filter=*.*#some_anchor
-    78| 
-    79| 
-    80| == Ausrichtung ==
-    81| === Blocksatz ===
-    82| $$ :&lt;&gt; {{{...}}}
-    83| :&lt;&gt; {{{
-    84| Bitte beachte die Wikipedia-Richtlinien zur Formatierung, insbesondere: Kleiner- und gr&ouml;&szlig;ergeschriebenen Text, harte 
-    85| Zeilenumbr&uuml;che mit br-Tags, Abs&auml;tze durch doppelte oder mehrfache Leerzeilen, Farben und &auml;hnliche Spezialformatierungen 
-    86| solltest du nicht in Artikeln, sondern nur in Tabellen oder Textbausteinen verwenden, um ein einheitliches Aussehen der 
-    87| Artikel zu gew&auml;hrleisten. Ansonsten bietet die Wikiauszeichnungssprache gen&uuml;gend M&ouml;glichkeiten, den Text zu formatieren. Fett- 
-    88| und Kursivschreibung soll nicht mit HTML-Tags formatiert werden.
-    89| }}}
-    90| 
-    91| === Zentriert ===
-    92| $$ :&gt; {{{...}}}
-    93| :&gt; {{{
-    94| Bitte beachte die Wikipedia-Richtlinien zur Formatierung, insbesondere: Kleiner- und gr&ouml;&szlig;ergeschriebenen Text, harte 
-    95| Zeilenumbr&uuml;che mit br-Tags, Abs&auml;tze durch doppelte oder mehrfache Leerzeilen, Farben und &auml;hnliche Spezialformatierungen 
-    96| solltest du nicht in Artikeln, sondern nur in Tabellen oder Textbausteinen verwenden, um ein einheitliches Aussehen der 
-    97| Artikel zu gew&auml;hrleisten. Ansonsten bietet die Wikiauszeichnungssprache gen&uuml;gend M&ouml;glichkeiten, den Text zu formatieren. Fett- 
-    98| und Kursivschreibung soll nicht mit HTML-Tags formatiert werden.
-    99| }}}
-   100| 
-   101| === Rechtsb&uuml;ndig ===
-   102| $$ :&gt;&gt; {{{...}}}
-   103| :&gt;&gt; {{{
-   104| Bitte beachte die Wikipedia-Richtlinien zur Formatierung, insbesondere: Kleiner- und gr&ouml;&szlig;ergeschriebenen Text, harte 
-   105| Zeilenumbr&uuml;che mit br-Tags, Abs&auml;tze durch doppelte oder mehrfache Leerzeilen, Farben und &auml;hnliche Spezialformatierungen 
-   106| solltest du nicht in Artikeln, sondern nur in Tabellen oder Textbausteinen verwenden, um ein einheitliches Aussehen der 
-   107| Artikel zu gew&auml;hrleisten. Ansonsten bietet die Wikiauszeichnungssprache gen&uuml;gend M&ouml;glichkeiten, den Text zu formatieren. Fett- 
-   108| und Kursivschreibung soll nicht mit HTML-Tags formatiert werden.
-   109| }}}
-   110| 
-   111| === Standard: Flattersatz (Linksb&uuml;ndig) ===
-   112| &lt;info&gt;Standard: Kein Wikisyntax notwendig...&lt;/info&gt;
-   113| Bitte beachte die Wikipedia-Richtlinien zur Formatierung, insbesondere: Kleiner- und gr&ouml;&szlig;ergeschriebenen Text, harte 
-   114| Zeilenumbr&uuml;che mit br-Tags, Abs&auml;tze durch doppelte oder mehrfache Leerzeilen, Farben und &auml;hnliche Spezialformatierungen 
-   115| solltest du nicht in Artikeln, sondern nur in Tabellen oder Textbausteinen verwenden, um ein einheitliches Aussehen der 
-   116| Artikel zu gew&auml;hrleisten. Ansonsten bietet die Wikiauszeichnungssprache gen&uuml;gend M&ouml;glichkeiten, den Text zu formatieren. Fett- 
-   117| und Kursivschreibung soll nicht mit HTML-Tags formatiert werden.
-   118| 
-   119| === Einzug ===
-   120| $$ :: Einzug (lvl1)
-   121| $$ ::: Einzug bis auf Ebene 2
-   122| $$ :: Wieder Ebene 1
-   123| $$ :: Immernoch Ebene 1 (erstellt ein neues DIV, damit Zeilen nicht aneinandergeh&auml;ngt werden...)
-   124| $$ ::: Ebene 2
-   125| $$ :::::::::: Gro&szlig;e Einz&uuml;ge sollten nur in Ausnahmef&auml;llen ben&uuml;tzt werden. (lvl 10)
-   126| 
-   127| :: Einzug (lvl1)
-   128| ::: Einzug bis auf Ebene 2
-   129| :: Wieder Ebene 1
-   130| :: Immernoch Ebene 1 (erstellt ein neues DIV, damit Zeilen nicht aneinandergeh&auml;ngt werden...)
-   131| ::: Ebene 2
-   132| ::::::::::: Gro&szlig;e Einz&uuml;ge sollten nur in Ausnahmef&auml;llen ben&uuml;tzt werden. (lvl 10)
-   133| 
-   134| 
-   135| ==== Einz&uuml;ge &uuml;ber mehrere Zeilen ====
-   136| $$ :::: {{{
-   137| $$ Einzug &uuml;ber mehrere Zeilen...
-   138| $$ Dies ist die zweite Zeile. Sie wird mit der ersten ohne NEUE ZEILE verbunden.
-   139| $$ }}}
-   140| 
-   141| :::: {{{
-   142| Einzug &uuml;ber mehrere Zeilen...
-   143| Dies ist die zweite Zeile. Sie wird mit der ersten ohne NEUE ZEILE verbunden.
-   144| }}}
-   145| 
-   146| === Spaltenkontrolle ===
-   147| $$ &lt;left&gt;...&lt;/left&gt;
-   148| $$ &lt;right&gt;...&lt;/right&gt;
-   149| &lt;left&gt;
-   150| Bitte beachte die Wikipedia-Richtlinien zur Formatierung, insbesondere: Kleiner- und gr&ouml;&szlig;ergeschriebenen Text, harte 
-   151| Zeilenumbr&uuml;che mit br-Tags, Abs&auml;tze durch doppelte oder mehrfache Leerzeilen, Farben und &auml;hnliche Spezialformatierungen 
-   152| solltest du nicht in Artikeln, sondern nur in Tabellen oder Textbausteinen verwenden, um ein einheitliches Aussehen der 
-   153| Artikel zu gew&auml;hrleisten. Ansonsten bietet die Wikiauszeichnungssprache gen&uuml;gend M&ouml;glichkeiten, den Text zu formatieren. Fett- 
-   154| und Kursivschreibung soll nicht mit HTML-Tags formatiert werden.
-   155| &lt;/left&gt;
-   156| &lt;right&gt;
-   157| Bitte beachte die Wikipedia-Richtlinien zur Formatierung, insbesondere: Kleiner- und gr&ouml;&szlig;ergeschriebenen Text, harte 
-   158| Zeilenumbr&uuml;che mit br-Tags, Abs&auml;tze durch doppelte oder mehrfache Leerzeilen, Farben und &auml;hnliche Spezialformatierungen 
-   159| solltest du nicht in Artikeln, sondern nur in Tabellen oder Textbausteinen verwenden, um ein einheitliches Aussehen der 
-   160| Artikel zu gew&auml;hrleisten. Ansonsten bietet die Wikiauszeichnungssprache gen&uuml;gend M&ouml;glichkeiten, den Text zu formatieren. Fett- 
-   161| und Kursivschreibung soll nicht mit HTML-Tags formatiert werden.
-   162| &lt;/right&gt;
-   163| &lt;info&gt;
-   164| **Parameter**: \\
-   165| ''%%&lt;left[ Parameter]&gt;...&lt;/left&gt;%%'' \\
-   166| ''%%&lt;right[ Parameter]&gt;...&lt;/right&gt;%%''
-   167| ; alone : Eine einzige Spalte, d.h. weitere Inhalte flie&szlig;en um die Spalte herum.
-   168| &lt;/info&gt;
-   169| 
-   170| 
-   171| == Listen ==
-   172| ^ Was es ist ^ Was du schreibst                                      ^ Wie es dargestellt wird 
-   173| | Nummerierte Liste | {{{
-   174| $$ # Nummeriert
-   175| $$  # Nummeriert Ebene 2
-   176| $$   # Punkt in der 3. Ebene
-   177| $$  # Zur&uuml;ck zur 2.
-   178| $$  # Noch eines
-   179| $$  # Abschluss
-   180| }}} | {{{
-   181| # Nummeriert
-   182|  # Nummeriert Ebene 2
-   183|   # Punkt in der 3. Ebene
-   184|  # Zur&uuml;ck zur 2.
-   185|  # Noch eines
-   186|  # Abschluss
-   187| }}}
-   188| | Ungeordnete Liste | {{{
-   189| $$ * Ungeordnet
-   190| $$  * Ungeordnet 2
-   191| $$   * Ungeordnet 3
-   192| $$    * Ungeordnet 4
-   193| }}} | {{{
-   194| * Ungeordnet
-   195|  * Ungeordnet 2
-   196|   * Ungeordnet 3
-   197|    * Ungeordnet 4
-   198| }}}
-   199| | Definitionsliste | {{{
-   200| $$ ; Definitionsliste 
-   201| $$ : Eine Definition 
-   202| $$ : Eine andere Definition 
-   203| $$ ; Begriff 
-   204| $$ : Definition des Begriffs 
-   205| }}} | {{{
-   206| ; Definitionsliste
-   207| : Eine Definition
-   208| : Eine andere Definition
-   209| ; Begriff
-   210| : Definition des Begriffs
-   211| }}} 
-   212| | Definitionsliste (verschachtelt) | {{{
-   213| Definitionslisten verschachtelt man mit Multilines: ''%%{{{...}}}%%''
-   214| $$ ; Das Haus : {{{
-   215| $$ hat ein 
-   216| $$ ; Fenster : aus Glas
-   217| $$ ; eine T&uuml;r : aus Holz
-   218| $$ ; einen Kamin : aus Stein
-   219| $$ }}}
-   220| }}} | {{{
-   221| ; Das Haus : {{{
-   222| hat ein 
-   223| ; Fenster : aus Glas
-   224| ; eine T&uuml;r : aus Holz
-   225| ; einen Kamin : aus Stein
-   226| }}}
-   227| }}}
-   228| 
-   229| == &Uuml;berschriften ==
-   230| &lt;left&gt;
-   231| &lt;info&gt;Eine &Uuml;berschrift der ersten Ebene sollte nur als Seitentitel Verwendung finden.&lt;/info&gt;
-   232| &lt;notoc&gt;
-   233| == &Uuml;berschrift 2 ==
-   234| === &Uuml;berschrift 3 ===
-   235| ==== &Uuml;berschrift 4 ====
-   236| ===== &Uuml;berschrift 5 =====
-   237| &lt;/notoc&gt;
-   238| &lt;/left&gt;
-   239| &lt;right&gt;
-   240| Innerhalb der ''%%&lt;notoc&gt;%%''-Sektion werden &Uuml;berschriften nicht ins Inhaltsverzeichnis aufgenommen.
-   241| $$ &lt;notoc&gt;
-   242| $$ == &Uuml;berschrift 2 ==
-   243| $$ === &Uuml;berschrift 3 ===
-   244| $$ ==== &Uuml;berschrift 4 ====
-   245| $$ ===== &Uuml;berschrift 5 =====
-   246| $$ &lt;/notoc&gt;
-   247| &lt;/right&gt;
-   248| 
-   249| == Tabellen ==
-   250| === Einfache Tabellen ===
-   251| Syntax im Stil von [http://www.dokuwiki.org/syntax#tables Dokuwiki].
-   252| $$ ^ Spaltenkopf 1                                             ^ Spaltenkopf 3 (auf zwei Spalten ausgedehnt)               ^^ Spaltenkopf 4   
-   253| $$ | Zeile 1 Spalte 1 \\ (auf zwei Zeilen ausgedehnt)          | Zeile 1 Spalte 2     | Zeile 1 Spalte 3                    | Zeile 1 Spalte 4 
-   254| $$ | :::                                                       | Zeile 2 Spalte 2 (auf zwei Spalten ausgedehnt)            ||
-   255| $$ ^ Zeilenkopf 1                                              | Zeile 3 Spalte 2     | Zeile 3 Spalte 3                    | Zeile 3 Spalte 4 
-   256| $$ ^ Zeilenkopf 2                                              | Zeile 4 Spalte 2     | Zeile 4 Spalte 3                    | Zeile 4 Spalte 4 
-   257| ^ Spaltenkopf 1                                             ^ Spaltenkopf 3 (auf zwei Spalten ausgedehnt)               ^^ Spaltenkopf 4   
-   258| | Zeile 1 Spalte 1 \\ (auf zwei Zeilen ausgedehnt)          | Zeile 1 Spalte 2     | Zeile 1 Spalte 3                    | Zeile 1 Spalte 4 
-   259| | :::                                                       | Zeile 2 Spalte 2 (auf zwei Spalten ausgedehnt)            ||
-   260| ^ Zeilenkopf 1                                              | Zeile 3 Spalte 2     | Zeile 3 Spalte 3                    | Zeile 3 Spalte 4 
-   261| ^ Zeilenkopf 2                                              | Zeile 4 Spalte 2     | Zeile 4 Spalte 3                    | Zeile 4 Spalte 4 
-   262| 
-   263| == Boxen ==
-   264| Eine InfoBox f&uuml;r Informationen, Warnungen, Fehler, ...   
-   265| ^ Was es ist ^ Was du schreibst                                      ^ Wie es dargestellt wird 
-   266| | Fehler anzeigen | {{{
-   267| $$ &lt;error&gt;
-   268| $$ test
-   269| $$ &lt;/error&gt;
-   270| }}} | &lt;error&gt;test&lt;/error&gt;
-   271| | Informationen anzeigen | {{{
-   272| $$ &lt;info&gt;
-   273| $$ test
-   274| $$ &lt;/info&gt;
-   275| }}} | &lt;info&gt;test&lt;/info&gt;
-   276| | R&uuml;ckmeldung einer erfolgreichen Eingabe | {{{
-   277| $$ &lt;success&gt;
-   278| $$ Die Eingabe ist korrekt!
-   279| $$ &lt;/success&gt;
-   280| }}} | &lt;success&gt;Die Eingabe ist korrekt!&lt;/success&gt;
-   281| | Kontrolle einer Eingabe | {{{
-   282| $$ &lt;validation&gt;
-   283| $$ Benutzername fehlt \\
-   284| $$ Geburtsdatum fehlt \\
-   285| $$ Passwort falsch
-   286| $$ &lt;/validation&gt;    
-   287| }}} | &lt;validation&gt;Benutzername fehlt \\Geburtsdatum fehlt \\Passwort falsch&lt;/validation&gt;
-   288| | Allgemeine Warnhinweise| {{{
-   289| $$ &lt;warning&gt;
-   290| $$ test
-   291| $$ &lt;/warning&gt;
-   292| }}} | &lt;warning&gt;test&lt;/warning&gt;
-   293| | Rahmen zeichnen | {{{
-   294| $$ &lt;border&gt;
-   295| $$ test
-   296| $$ &lt;/border&gt;
-   297| }}} | &lt;border&gt;test&lt;/border&gt;
-   298| | Codebl&ouml;cke \\ (Farben und Einz&uuml;ge richtig darstellen)| {{{
-   299| $$ &lt;code&gt;
-   300| $$ while (!asleep()) 
-   301| $$   $sheep++; 
-   302| $$ &lt;/code&gt;
-   303| }}} | {{{
-   304| &lt;code&gt;
-   305| while (!asleep())
-   306|   $sheep++;
-   307| &lt;/code&gt;
-   308| }}}
-   309| | Unsichtbare Kommentare im Wikitext | {{{
-   310| &lt;info&gt;Kommentare werden als eigenst&auml;ndige Wiki-Elemente erkannt und beenden daher logische Bl&ouml;cke, wie bspw. Tabellen.&lt;/info&gt;
-   311| $$ Ein unsichtbarer Kommentar. &lt;!-- Kommentar --&gt;
-   312| }}} | Ein unsichtbarer Kommentar. &lt;!-- Kommentar --&gt;
-   313| 
-   314| == Variablen und Konstanten ==
-   315| Alle Variablen und Konstanten werden in zwei geschwungene Klammern eingeschlossen. \\
-   316| Syntax: ''&lt;nowiki&gt;{{VARIABLENAME}}&lt;/nowiki&gt;''
-   317| === Variablen ===
-   318| ^ Was es ist ^ Was du schreibst                                      ^ Wie es dargestellt wird 
-   319| | Setzen einer Variable \\ (Format: String) | {{{
-   320| $$ !! Variable = Wert 
-   321| }}} | {{{
-   322| &lt;info&gt;Es wird nichts dargestellt.&lt;/info&gt;
-   323| !! Variable = Wert
-   324| }}}
-   325| | Setzen einer Variable \\ (Format: String &uuml;ber mehrere Zeilen) | {{{
-   326| $$ !! Variable2 = &quot;String
-   327| $$ &uuml;ber mehrere 
-   328| $$ Zeilen mit \&quot;escaped\&quot; Parenthesis!&quot; 
-   329| }}} | {{{
-   330| &lt;info&gt;Es wird nichts dargestellt.&lt;/info&gt;
-   331| !! Variable2 = &quot;String
-   332| &uuml;ber mehrere 
-   333| Zeilen mit \&quot;escaped\&quot; Parenthesis!&quot;
-   334| }}}
-   335| | Wiedergabe der beiden Variablen | {{{
-   336| $$ **{{Variable}}** und **{{Variable2}}** 
-   337| }}} | {{{
-   338| **{{Variable}}** und **{{Variable2}}**
-   339| }}}
-   340| 
-   341| === Konstanten ===
-   342| ^ Kategorie             ^ Was es ist                        ^ Was du schreibst                              ^ Wie es dargestellt wird
-   343| ^ Mathematik            | Kreiszahl Pi                      | ''%%{{PI}} oder &lt;math&gt;&amp;pi;&lt;/math&gt;%%''         | {{PI}} oder &lt;math&gt;&amp;pi;&lt;/math&gt;
-   344| ^ :::                   | Eulersche Zahl e                  | ''%%{{E}} oder &lt;math&gt;e&lt;/math&gt;%%''             | {{E}} oder &lt;math&gt;e&lt;/math&gt;
-   345| ^ Datum                 | Tag (Name, in Zahlen)             | ''%%{{DAYNAME}} {{DAY}}%%''                   | {{DAYNAME}} {{DAY}}
-   346| ^ :::                   | Monat (Name, in Zahlen)           | ''%%{{MONTHNAME}} {{MONTH}}%%''               | {{MONTHNAME}} {{MONTH}}
-   347| ^ :::                   | Jahr                              | ''%%{{YEAR}}%%''                              | {{YEAR}}
-   348| ^ :::                   | Das aktuelle Datum                | ''%%{{DATE}}%%''                              | {{DATE}}
-   349| ^ Zeit                  | Die aktuelle Zeit                 | ''%%{{TIME}}%%''                              | {{TIME}}
-   350| 
-   351| **TODO**: Default-Dateformat((siehe [http://php.net/manual/de/function.date.php PHP Funktion date])) bestimmen und konfigurierbar machen!
-   352| 
-   353| === Wikivariablen ===
-   354| ^ Variable             ^ Was du schreibst                                       ^ Wie es dargestellt wird                                       ^ Beschreibung                                                                                              
-   355| | ID                   | ''%%Die aktuelle Seite hei&szlig;t &quot;{{ID}}&quot;.%%''             | Die aktuelle Seite hei&szlig;t &quot;{{ID}}&quot;.            | Gibt den Namen (ID) der aktuellen Wikiseite aus                                   
-   356| | NS                   | ''%%Sie liegt unter &quot;{{NS}}&quot;.%%''                      | Sie liegt unter &quot;{{NS}}&quot;.                     | Gibt den Namespace der aktuellen Seite aus                                                    
-   357| | FULLID               | ''%%Ihr voller Namen lautet &quot;{{FULLID}}&quot;.%%''          | Ihr voller Namen lautet &quot;{{FULLID}}&quot;.         | Die volle ID (&uuml;ber eine solche ID identifiziert das CMS die Datei)    
-   358| | COUNTSUBS            | ''%%Untergeordnete Seiten: {{COUNTSUBS}}%%'' | Untergeordnete Seiten: {{COUNTSUBS}} | Die Anzahl der untergeordneten Seiten \\ --(Bsp.: Siehe Startseite des Manuals -&gt; Anzahl der Artikel)--
-   359| 
-   360| Alle Artikel {{COUNTSUBS}} im aktuellen Namensraum: {{NS}}
-   361| ~~NSTOC~~
-   362| 
-   363|  
-   364| === HTML-Zeichen-Symbole ===
-   365| ^ Was es ist                        ^ Was du schreibst                              ^ Wie es dargestellt wird
-   366| | Doppelte Anf&uuml;hrungszeichen((f&uuml;r deutsche Texte))        | ''%%Alle riefen: &amp;bdquo;Hurra!!!&amp;rdquo;%%''    | Alle riefen: &amp;bdquo;Hurra!!!&amp;rdquo;
-   367| 
-   368| 
-   369| 
-   370| == Fu&szlig;zeilen ==
-   371| ~~FOOTNOTES~~
-   372| 
-<span style='color: gray'>   373| \\</span>
-<span style='color: gray'>   374| :&gt;&gt; &lt;lo&gt;Verarbeitet in ~~TEXT:comma|{{PERFORMANCE}}~~ Sek. | Dateiformat: {{FILE:type}}&lt;/lo&gt;</span>
-</pre><i>Der graue Text zeigt die Kopf- und Fu&szlig;zeile des Dokumentes.</i>
+      <div id='imwiki'>
+<div class="section_border">
+Sie sind hier: <a href='?mode=cleared&id=index'>Home</a> &raquo; <a href='?mode=cleared&id=reise'>Reise</a> &raquo; Fotoalbum<span class="less_significant"> | <a href="?id=dokumentation:todos">Todos anzeigen</a></span></div><h1 id="header_"> PIWO: Wikisyntax v0.1 </h1>
+Inhaltsverzeichnis:<br /><h2 id="header_"> Text </h2>
+Das ist ein Text mit einigen Sonderzeichen &auml;&ouml;&uuml;&szlig;... &pi; <a href="?id=reise:manual:indent&mode=editpage" class="pw_wiki_link_na">Einz&uuml;ge</a> <a href="?id=reise:manual:ilink&mode=editpage" class="pw_wiki_link_na">Interne Links</a><h2 id="header_"> Formatierung </h2><div class="tablediv"><table><tr><th> Was es ist                                    </th><th> Was du schreibst                                                      </th><th colspan="2"> Wie es dargestellt wird </th></tr><tr><td> fett                                          </td></td><td> <span class="code">**fett**</span>                                                      </td></td><td colspan="2"> <b>fett</b>                                                  </td></td></tr><tr><td> kursiv                                        </td></td><td> <span class="code">//kursiv//</span>                                                    </td></td><td colspan="2"> <i>kursiv</i>                                                </td></td></tr><tr><td> unterstrichen                                 </td></td><td> <span class="code">__unterstrichen__</span>                                             </td></td><td colspan="2"> <span class="underline">unterstrichen</span>                                         </td></td></tr><tr><td> Fixe Textbreite (monospace)                   </td></td><td> <span class="code">''Fixe Textbreite''</span>                                           </td></td><td colspan="2"> <span class="code">Fixe Textbreite</span>                                       </td></td></tr><tr><td> Kleine Schrift                                </td></td><td> <span class="code">--Kleine Schrift--</span>                                            </td></td><td colspan="2"> <small>Kleine Schrift</small>                                        </td></td></tr><tr><td> Gro&szlig;e Schrift                                 </td></td><td> <span class="code">++Gro&szlig;e Schrift++</span>                                             </td></td><td colspan="2"> <span class="big">Gro&szlig;e Schrift</span>                                         </td></td></tr><tr><td> Hervorgehobener Hintergrund                   </td></td><td> <span class="code">&lt;hi&gt;Hervorgehobener Hintergrund&lt;/hi&gt;</span>                          </td></td><td colspan="2"> <span class="highlighted c0">Hervorgehobener Hintergrund</span>                                         </td></td></tr><tr><td> Hervorgehobener Text                          </td></td><td> <span class="code">&lt;em&gt;Hervorgehobener Text&lt;/em&gt;</span>                                 </td></td><td colspan="2"> <span class="emphasised">Hervorgehobener Text</span>                                         </td></td></tr><tr><td> Unwichtiger Text                              </td></td><td> <span class="code">&lt;lo&gt;Unwichtiger Text&lt;/lo&gt;</span>                                     </td></td><td colspan="2"> <span class="less_significant">Unwichtiger Text</span>                                         </td></td></tr><tr><td> durchgestrichen                               </td></td><td> <span class="code">-+Durchgestrichen+-</span>                                           </td></td><td colspan="2"> <span class="strike">Durchgestrichen</span>                                      </td></td></tr><tr><td> tiefgestellt                                  </td></td><td> <span class="code">H_{2}O</span> oder <span class="code">H_{16}</span>                                    </td></td><td colspan="2"> H<sub>2</sub>O oder H<sub>16</sub>                          </td></td></tr><tr><td> hochgestellt                                  </td></td><td> <span class="code">dm^{3}</span> oder <span class="code">x^{-5}</span>                                    </td></td><td colspan="2"> dm<sup>3</sup> oder x<sup>-5</sup>       </td></td></tr><tr><td> unformatiert  (Standard)                      </td></td><td> <span class="code">&lt;nowiki&gt;**Ich bin nicht fett!**&lt;/nowiki&gt;</span>                      </td></td><td colspan="2"> **Ich bin nicht fett!**</td></td></tr><tr><td> unformatiert  (kurze Schreibweise)            </td></td><td> <span class="code">%%**Ich bin nicht fett!**%%</span>                      </td></td><td colspan="2"> **Ich bin nicht fett!**</td></td></tr><tr><td> Horizontale Linie                             </td></td><td> <span class="code">Das ist eine horizontale...</span><br /><span class="code">----</span><br /><span class="code">...Linie.</span>  </td></td><td colspan="2">  Das ist eine horizontale...<hr />
+...Linie. </td></td></tr></table></div><h2 id="header_"> Hyperlinks </h2><div class="tablediv"><table><tr><th> Was es ist </th><th> Was du schreibst                                      </th><th colspan="2"> Wie es dargestellt wird </th></tr><tr><td> Einfacher externer Link <br /> (Texterkennung, optional) </td></td><td> <pre><div>http://www.google.de
+http://localhost/projekte/home/lib/tests/lexertests/
+http://de.wikipedia.org/wiki/Hilfe:Links
+http://pitizworld.co.de/doku.php?do=index&amp;id=start
+http://www.dokuwiki.org/syntax#tables
+ftp://joe:password@ftp.filetransferprotocal.com
+www.google.ru
+</div></pre> </td></td><td colspan="2"> <a target="_blank" href="http://www.google.de">http://www.google.de</a> <br /><a target="_blank" href="http://localhost/projekte/home/lib/tests/lexertests/">http://localhost/projekte/home/lib/tests/lexertests/</a> <br /><a target="_blank" href="http://de.wikipedia.org/wiki/Hilfe:Links">http://de.wikipedia.org/wiki/Hilfe:Links</a> <br /><a target="_blank" href="http://pitizworld.co.de/doku.php?do=index&id=start">http://pitizworld.co.de/doku.php?do=index&id=start</a> <br /><a target="_blank" href="http://www.dokuwiki.org/syntax#tables">http://www.dokuwiki.org/syntax#tables</a> <br /><a target="_blank" href="ftp://joe:password@ftp.filetransferprot.com">ftp://joe:password@ftp.filetransferprot.com</a> <br /><a href="http://www.google.ru">www.google.ru</a> <br /> </td></td></tr><tr><td> Wikisyntax f&uuml;r externe Links </td></td><td> <pre><div>Der erste Link [http://www.google.de] 
+und der zweite [http://www.hoferhof.net].
+[http://www.hoferhof.net Urlaub am Bauernhof]
+</div></pre> </td></td><td colspan="2"> 
+Der erste Link <a target="_blank" href="http://www.google.de">http://www.google.de</a> <br />
+und der zweite <a target="_blank" href="http://www.hoferhof.net">http://www.hoferhof.net</a>. <br /><a target="_blank" href="http://www.hoferhof.net">Urlaub am Bauernhof</a></td></td></tr><tr><td> Wikisyntax f&uuml;r interne Links </td></td><td> <pre><div>[[Namespace:Name|Text des Links (mit Erweiterung)]]
+[[Namespace:Name auch mit Leerzeichen|Text des Links]]
+[[Namespace:Name auch mit Leerzeichen ohne Linktext]]
+</div></pre> </td></td><td colspan="2"> <a href="?id=reise:Namespace:Name&mode=editpage" class="pw_wiki_link_na">Text des Links (mit Erweiterung)</a> <br /><a href="?id=reise:Namespace:Name+auch+mit+Leerzeichen&mode=editpage" class="pw_wiki_link_na">Text des Links</a> <br /><a href="?id=reise:Namespace:Name+auch+mit+Leerzeichen+ohne+Linktext&mode=editpage" class="pw_wiki_link_na">Name auch mit Leerzeichen ohne Linktext</a></td></td></tr></table></div><h3 id="header_"> Hyperlink Tests </h3><pre><div>http://www.google.com/search?q=good+url+regex&amp;rls=com.microsoft:*&amp;ie=UTF-8&amp;oe=UTF-8&amp;startIndex=&amp;startPage=1
+</div></pre><a target="_blank" href="http://www.google.com/search?q=good+url+regex&rls=com.microsoft:*&ie=UTF-8&oe=UTF-8&startIndex=&startPage=1">http://www.google.com/search?q=good+url+regex&rls=com.microsoft:*&ie=UTF-8&oe=UTF-8&startIndex=&startPage=1</a><pre><div>https://some-url.com?query=&amp;name=joe?filter=*.*#some_anchor
+</div></pre><a target="_blank" href="https://some-url.com?query=&name=joe?filter=*.*#some_anchor">https://some-url.com?query=&name=joe?filter=*.*#some_anchor</a><h2 id="header_"> Ausrichtung </h2><h3 id="header_"> Blocksatz </h3><pre><div>:&lt;&gt; {{{...}}}
+</div></pre><div align="justify">
+Bitte beachte die Wikipedia-Richtlinien zur Formatierung, insbesondere: Kleiner- und gr&ouml;&szlig;ergeschriebenen Text, harte 
+Zeilenumbr&uuml;che mit br-Tags, Abs&auml;tze durch doppelte oder mehrfache Leerzeilen, Farben und &auml;hnliche Spezialformatierungen 
+solltest du nicht in Artikeln, sondern nur in Tabellen oder Textbausteinen verwenden, um ein einheitliches Aussehen der 
+Artikel zu gew&auml;hrleisten. Ansonsten bietet die Wikiauszeichnungssprache gen&uuml;gend M&ouml;glichkeiten, den Text zu formatieren. Fett- 
+und Kursivschreibung soll nicht mit HTML-Tags formatiert werden.
+</div><h3 id="header_"> Zentriert </h3><pre><div>:&gt; {{{...}}}
+</div></pre><div align="center">
+Bitte beachte die Wikipedia-Richtlinien zur Formatierung, insbesondere: Kleiner- und gr&ouml;&szlig;ergeschriebenen Text, harte 
+Zeilenumbr&uuml;che mit br-Tags, Abs&auml;tze durch doppelte oder mehrfache Leerzeilen, Farben und &auml;hnliche Spezialformatierungen 
+solltest du nicht in Artikeln, sondern nur in Tabellen oder Textbausteinen verwenden, um ein einheitliches Aussehen der 
+Artikel zu gew&auml;hrleisten. Ansonsten bietet die Wikiauszeichnungssprache gen&uuml;gend M&ouml;glichkeiten, den Text zu formatieren. Fett- 
+und Kursivschreibung soll nicht mit HTML-Tags formatiert werden.
+</div><h3 id="header_"> Rechtsb&uuml;ndig </h3><pre><div>:&gt;&gt; {{{...}}}
+</div></pre><div align="right">
+Bitte beachte die Wikipedia-Richtlinien zur Formatierung, insbesondere: Kleiner- und gr&ouml;&szlig;ergeschriebenen Text, harte 
+Zeilenumbr&uuml;che mit br-Tags, Abs&auml;tze durch doppelte oder mehrfache Leerzeilen, Farben und &auml;hnliche Spezialformatierungen 
+solltest du nicht in Artikeln, sondern nur in Tabellen oder Textbausteinen verwenden, um ein einheitliches Aussehen der 
+Artikel zu gew&auml;hrleisten. Ansonsten bietet die Wikiauszeichnungssprache gen&uuml;gend M&ouml;glichkeiten, den Text zu formatieren. Fett- 
+und Kursivschreibung soll nicht mit HTML-Tags formatiert werden.
+</div><h3 id="header_"> Standard: Flattersatz (Linksb&uuml;ndig) </h3><div class="section_info">Standard: Kein Wikisyntax notwendig...</div>
+Bitte beachte die Wikipedia-Richtlinien zur Formatierung, insbesondere: Kleiner- und gr&ouml;&szlig;ergeschriebenen Text, harte 
+Zeilenumbr&uuml;che mit br-Tags, Abs&auml;tze durch doppelte oder mehrfache Leerzeilen, Farben und &auml;hnliche Spezialformatierungen 
+solltest du nicht in Artikeln, sondern nur in Tabellen oder Textbausteinen verwenden, um ein einheitliches Aussehen der 
+Artikel zu gew&auml;hrleisten. Ansonsten bietet die Wikiauszeichnungssprache gen&uuml;gend M&ouml;glichkeiten, den Text zu formatieren. Fett- 
+und Kursivschreibung soll nicht mit HTML-Tags formatiert werden.
+<h3 id="header_"> Einzug </h3><pre><div>:: Einzug (lvl1)
+::: Einzug bis auf Ebene 2
+:: Wieder Ebene 1
+:: Immernoch Ebene 1 (erstellt ein neues DIV, damit Zeilen nicht aneinandergeh&auml;ngt werden...)
+::: Ebene 2
+:::::::::: Gro&szlig;e Einz&uuml;ge sollten nur in Ausnahmef&auml;llen ben&uuml;tzt werden. (lvl 10)
+</div></pre><div style="margin-left: 10px">Einzug (lvl1)</div><div style="margin-left: 20px">Einzug bis auf Ebene 2</div><div style="margin-left: 10px">Wieder Ebene 1</div><div style="margin-left: 10px">Immernoch Ebene 1 (erstellt ein neues DIV, damit Zeilen nicht aneinandergeh&auml;ngt werden...)</div><div style="margin-left: 20px">Ebene 2</div><div style="margin-left: 100px">Gro&szlig;e Einz&uuml;ge sollten nur in Ausnahmef&auml;llen ben&uuml;tzt werden. (lvl 10)</div><h4 id="header_"> Einz&uuml;ge &uuml;ber mehrere Zeilen </h4><pre><div>:::: {{{
+Einzug &uuml;ber mehrere Zeilen...
+Dies ist die zweite Zeile. Sie wird mit der ersten ohne NEUE ZEILE verbunden.
+}}}
+</div></pre><div style="margin-left: 30px">
+Einzug &uuml;ber mehrere Zeilen...
+Dies ist die zweite Zeile. Sie wird mit der ersten ohne NEUE ZEILE verbunden.
+</div><h3 id="header_"> Spaltenkontrolle </h3><pre><div>&lt;left&gt;...&lt;/left&gt;
+&lt;right&gt;...&lt;/right&gt;
+</div></pre><div class="section_left">
+Bitte beachte die Wikipedia-Richtlinien zur Formatierung, insbesondere: Kleiner- und gr&ouml;&szlig;ergeschriebenen Text, harte 
+Zeilenumbr&uuml;che mit br-Tags, Abs&auml;tze durch doppelte oder mehrfache Leerzeilen, Farben und &auml;hnliche Spezialformatierungen 
+solltest du nicht in Artikeln, sondern nur in Tabellen oder Textbausteinen verwenden, um ein einheitliches Aussehen der 
+Artikel zu gew&auml;hrleisten. Ansonsten bietet die Wikiauszeichnungssprache gen&uuml;gend M&ouml;glichkeiten, den Text zu formatieren. Fett- 
+und Kursivschreibung soll nicht mit HTML-Tags formatiert werden.
+</div><div class="section_right">
+Bitte beachte die Wikipedia-Richtlinien zur Formatierung, insbesondere: Kleiner- und gr&ouml;&szlig;ergeschriebenen Text, harte 
+Zeilenumbr&uuml;che mit br-Tags, Abs&auml;tze durch doppelte oder mehrfache Leerzeilen, Farben und &auml;hnliche Spezialformatierungen 
+solltest du nicht in Artikeln, sondern nur in Tabellen oder Textbausteinen verwenden, um ein einheitliches Aussehen der 
+Artikel zu gew&auml;hrleisten. Ansonsten bietet die Wikiauszeichnungssprache gen&uuml;gend M&ouml;glichkeiten, den Text zu formatieren. Fett- 
+und Kursivschreibung soll nicht mit HTML-Tags formatiert werden.
+</div><div class="clear"></div><div class="section_info"><b>Parameter</b>: <br /><span class="code">&lt;left[ Parameter]&gt;...&lt;/left&gt;</span> <br /><span class="code">&lt;right[ Parameter]&gt;...&lt;/right&gt;</span><dl><dt>alone <dd>Eine einzige Spalte, d.h. weitere Inhalte flie&szlig;en um die Spalte herum.</dd></dt></dl></div><h2 id="header_"> Listen </h2><div class="tablediv"><table><tr><th> Was es ist </th><th> Was du schreibst                                      </th><th colspan="2"> Wie es dargestellt wird </th></tr><tr><td> Nummerierte Liste </td></td><td> <pre><div># Nummeriert
+ # Nummeriert Ebene 2
+  # Punkt in der 3. Ebene
+ # Zur&uuml;ck zur 2.
+ # Noch eines
+ # Abschluss
+</div></pre> </td></td><td colspan="2">         <ol>
+        </ol><ol><li>
+Nummeriert        </li>
+        <ol><li>
+Nummeriert Ebene 2        </li>
+        <ol><li>
+Punkt in der 3. Ebene        </li></ol>
+        <li>
+Zur&uuml;ck zur 2.        </li>
+        <li>
+Noch eines        </li>
+        <li>
+Abschluss        </li>
+        </ol></ol>
+</td></td></tr><tr><td> Ungeordnete Liste </td></td><td> <pre><div>* Ungeordnet
+ * Ungeordnet 2
+  * Ungeordnet 3
+   * Ungeordnet 4
+</div></pre> </td></td><td colspan="2">         <ul>
+        </ul><ul><li>
+Ungeordnet        </li>
+        <ul><li>
+Ungeordnet 2        </li>
+        <ul><li>
+Ungeordnet 3        </li>
+        <ul><li>
+Ungeordnet 4        </li>
+        </ul></ul></ul></ul>
+</td></td></tr><tr><td> Definitionsliste </td></td><td> <pre><div>; Definitionsliste 
+: Eine Definition 
+: Eine andere Definition 
+; Begriff 
+: Definition des Begriffs 
+</div></pre> </td></td><td colspan="2"> <dl><dt>Definitionsliste<dd>Eine Definition</dd><dd>Eine andere Definition</dd></dt><dt>Begriff<dd>Definition des Begriffs</dd></dt></dl> </td></td></tr><tr><td> Definitionsliste (verschachtelt) </td></td><td> 
+Definitionslisten verschachtelt man mit Multilines: <span class="code">{{{...}}}</span><pre><div>; Das Haus : {{{
+hat ein 
+; Fenster : aus Glas
+; eine T&uuml;r : aus Holz
+; einen Kamin : aus Stein
+}}}
+</div></pre> </td></td><td colspan="2"> <dl><dt>Das Haus <dd>
+hat ein <dl><dt>Fenster <dd>aus Glas</dd></dt><dt>eine T&uuml;r <dd>aus Holz</dd></dt><dt>einen Kamin <dd>aus Stein</dd></dt></dl></dd></dt></dl></td></td></tr></table></div><h2 id="header_"> &Uuml;berschriften </h2><div class="section_left"><div class="section_info">Eine &Uuml;berschrift der ersten Ebene sollte nur als Seitentitel Verwendung finden.</div><h2> &Uuml;berschrift 2 </h2><h3> &Uuml;berschrift 3 </h3><h4> &Uuml;berschrift 4 </h4><h5> &Uuml;berschrift 5 </h5></div><div class="section_right">
+Innerhalb der <span class="code">&lt;notoc&gt;</span>-Sektion werden &Uuml;berschriften nicht ins Inhaltsverzeichnis aufgenommen.<pre><div>&lt;notoc&gt;
+== &Uuml;berschrift 2 ==
+=== &Uuml;berschrift 3 ===
+==== &Uuml;berschrift 4 ====
+===== &Uuml;berschrift 5 =====
+&lt;/notoc&gt;
+</div></pre></div><div class="clear"></div><h2 id="header_"> Tabellen </h2><h3 id="header_"> Einfache Tabellen </h3>
+Syntax im Stil von <a target="_blank" href="http://www.dokuwiki.org/syntax#tables">Dokuwiki</a>.<pre><div>^ Spaltenkopf 1                                             ^ Spaltenkopf 3 (auf zwei Spalten ausgedehnt)               ^^ Spaltenkopf 4   
+| Zeile 1 Spalte 1 \\ (auf zwei Zeilen ausgedehnt)          | Zeile 1 Spalte 2     | Zeile 1 Spalte 3                    | Zeile 1 Spalte 4 
+| :::                                                       | Zeile 2 Spalte 2 (auf zwei Spalten ausgedehnt)            ||
+^ Zeilenkopf 1                                              | Zeile 3 Spalte 2     | Zeile 3 Spalte 3                    | Zeile 3 Spalte 4 
+^ Zeilenkopf 2                                              | Zeile 4 Spalte 2     | Zeile 4 Spalte 3                    | Zeile 4 Spalte 4 
+</div></pre><div class="tablediv"><table><tr><th> Spaltenkopf 1                                             </th><th colspan="2"> Spaltenkopf 3 (auf zwei Spalten ausgedehnt)               </th><th colspan="2"> Spaltenkopf 4   </th></tr><tr><td rowspan="2"> Zeile 1 Spalte 1 <br /> (auf zwei Zeilen ausgedehnt)          </td></td><td> Zeile 1 Spalte 2     </td></td><td> Zeile 1 Spalte 3                    </td></td><td colspan="2"> Zeile 1 Spalte 4 </td></td></tr><tr></td><td colspan="4"> Zeile 2 Spalte 2 (auf zwei Spalten ausgedehnt)            </td></td></td></td></tr><tr><th> Zeilenkopf 1                                              </th><td> Zeile 3 Spalte 2     </td></td><td> Zeile 3 Spalte 3                    </td></td><td colspan="2"> Zeile 3 Spalte 4 </td></td></tr><tr><th> Zeilenkopf 2                                              </th><td> Zeile 4 Spalte 2     </td></td><td> Zeile 4 Spalte 3                    </td></td><td colspan="2"> Zeile 4 Spalte 4 </td></td></tr></table></div><h2 id="header_"> Boxen </h2>
+Eine InfoBox f&uuml;r Informationen, Warnungen, Fehler, ...   <div class="tablediv"><table><tr><th> Was es ist </th><th> Was du schreibst                                      </th><th colspan="2"> Wie es dargestellt wird </th></tr><tr><td> Fehler anzeigen </td></td><td> <pre><div>&lt;error&gt;
+test
+&lt;/error&gt;
+</div></pre> </td></td><td colspan="2"> <div class="section_error">test</div></td></td></tr><tr><td> Informationen anzeigen </td></td><td> <pre><div>&lt;info&gt;
+test
+&lt;/info&gt;
+</div></pre> </td></td><td colspan="2"> <div class="section_info">test</div></td></td></tr><tr><td> R&uuml;ckmeldung einer erfolgreichen Eingabe </td></td><td> <pre><div>&lt;success&gt;
+Die Eingabe ist korrekt!
+&lt;/success&gt;
+</div></pre> </td></td><td colspan="2"> <div class="section_success">Die Eingabe ist korrekt!</div></td></td></tr><tr><td> Kontrolle einer Eingabe </td></td><td> <pre><div>&lt;validation&gt;
+Benutzername fehlt \\
+Geburtsdatum fehlt \\
+Passwort falsch
+&lt;/validation&gt;    
+</div></pre> </td></td><td colspan="2"> <div class="section_validation">Benutzername fehlt <br />Geburtsdatum fehlt <br />Passwort falsch</div></td></td></tr><tr><td> Allgemeine Warnhinweise</td></td><td> <pre><div>&lt;warning&gt;
+test
+&lt;/warning&gt;
+</div></pre> </td></td><td colspan="2"> <div class="section_warning">test</div></td></td></tr><tr><td> Rahmen zeichnen </td></td><td> <pre><div>&lt;border&gt;
+test
+&lt;/border&gt;
+</div></pre> </td></td><td colspan="2"> <div class="section_border">test</div></td></td></tr><tr><td> Codebl&ouml;cke <br /> (Farben und Einz&uuml;ge richtig darstellen)</td></td><td> <pre><div>&lt;code&gt;
+while (!asleep()) 
+  $sheep++; 
+&lt;/code&gt;
+</div></pre> </td></td><td colspan="2"> <pre><div>while (!asleep())
+  $sheep++;</div></pre></td></td></tr><tr><td> Unsichtbare Kommentare im Wikitext </td></td><td> <div class="section_info">Kommentare werden als eigenst&auml;ndige Wiki-Elemente erkannt und beenden daher logische Bl&ouml;cke, wie bspw. Tabellen.</div><pre><div>Ein unsichtbarer Kommentar. &lt;!-- Kommentar --&gt;
+</div></pre> </td></td><td colspan="2"> Ein unsichtbarer Kommentar. <!-- Kommentar --></td></td></tr></table></div><h2 id="header_"> Variablen und Konstanten </h2>
+Alle Variablen und Konstanten werden in zwei geschwungene Klammern eingeschlossen. <br />
+Syntax: <span class="code">{{VARIABLENAME}}</span><h3 id="header_"> Variablen </h3><div class="tablediv"><table><tr><th> Was es ist </th><th> Was du schreibst                                      </th><th colspan="2"> Wie es dargestellt wird </th></tr><tr><td> Setzen einer Variable <br /> (Format: String) </td></td><td> <pre><div>!! Variable = Wert 
+</div></pre> </td></td><td colspan="2"> <div class="section_info">Es wird nichts dargestellt.</div></td></td></tr><tr><td> Setzen einer Variable <br /> (Format: String &uuml;ber mehrere Zeilen) </td></td><td> <pre><div>!! Variable2 = &quot;String
+&uuml;ber mehrere 
+Zeilen mit \&quot;escaped\&quot; Parenthesis!&quot; 
+</div></pre> </td></td><td colspan="2"> <div class="section_info">Es wird nichts dargestellt.</div></td></td></tr><tr><td> Wiedergabe der beiden Variablen </td></td><td> <pre><div>**{{Variable}}** und **{{Variable2}}** 
+</div></pre> </td></td><td colspan="2"> <b>Wert</b> und <b>String
+&uuml;ber mehrere 
+Zeilen mit \&quot;escaped\&quot; Parenthesis!</b></td></td></tr></table></div><h3 id="header_"> Konstanten </h3><div class="tablediv"><table><tr><th> Kategorie             </th><th> Was es ist                        </th><th> Was du schreibst                              </th><th colspan="2"> Wie es dargestellt wird</th></tr><tr><th rowspan="2"> Mathematik            </th><td> Kreiszahl Pi                      </td></td><td> <span class="code">{{PI}} oder &lt;math&gt;&amp;pi;&lt;/math&gt;</span>         </td></td><td colspan="2"> 3,14159 oder <span class="section_math">&pi;</span></td></td></tr><tr><td> Eulersche Zahl e                  </td></td><td> <span class="code">{{E}} oder &lt;math&gt;e&lt;/math&gt;</span>             </td></td><td colspan="2"> 2,71828 oder <span class="section_math">e</span></td></td></tr><tr><th rowspan="4"> Datum                 </th><td> Tag (Name, in Zahlen)             </td></td><td> <span class="code">{{DAYNAME}} {{DAY}}</span>                   </td></td><td colspan="2"> Mittwoch 24</td></td></tr><tr><td> Monat (Name, in Zahlen)           </td></td><td> <span class="code">{{MONTHNAME}} {{MONTH}}</span>               </td></td><td colspan="2"> Juli 07</td></td></tr><tr><td> Jahr                              </td></td><td> <span class="code">{{YEAR}}</span>                              </td></td><td colspan="2"> 2013</td></td></tr><tr><td> Das aktuelle Datum                </td></td><td> <span class="code">{{DATE}}</span>                              </td></td><td colspan="2"> 24.07.2013</td></td></tr><tr><th> Zeit                  </th><td> Die aktuelle Zeit                 </td></td><td> <span class="code">{{TIME}}</span>                              </td></td><td colspan="2"> 07:25</td></td></tr></table></div><b>TODO</b>: Default-Dateformat<sup><a class="footnote" id="fnt__12" href="#fn__12">[12]</a></sup> bestimmen und konfigurierbar machen!
+<h3 id="header_"> Wikivariablen </h3><div class="tablediv"><table><tr><th> Variable             </th><th> Was du schreibst                                       </th><th> Wie es dargestellt wird                                       </th><th colspan="2"> Beschreibung                                                                                              </th></tr><tr><td> ID                   </td></td><td> <span class="code">Die aktuelle Seite hei&szlig;t &quot;{{ID}}&quot;.</span>             </td></td><td> Die aktuelle Seite hei&szlig;t &quot;fotoalbum&quot;.            </td></td><td colspan="2"> Gibt den Namen (ID) der aktuellen Wikiseite aus                                   </td></td></tr><tr><td> NS                   </td></td><td> <span class="code">Sie liegt unter &quot;{{NS}}&quot;.</span>                      </td></td><td> Sie liegt unter &quot;reise&quot;.                     </td></td><td colspan="2"> Gibt den Namespace der aktuellen Seite aus                                                    </td></td></tr><tr><td> FULLID               </td></td><td> <span class="code">Ihr voller Namen lautet &quot;{{FULLID}}&quot;.</span>          </td></td><td> Ihr voller Namen lautet &quot;reise:fotoalbum&quot;.         </td></td><td colspan="2"> Die volle ID (&uuml;ber eine solche ID identifiziert das CMS die Datei)    </td></td></tr><tr><td> COUNTSUBS            </td></td><td> <span class="code">Untergeordnete Seiten: {{COUNTSUBS}}</span> </td></td><td> Untergeordnete Seiten: 1 </td></td><td colspan="2"> Die Anzahl der untergeordneten Seiten <br /> <small>(Bsp.: Siehe Startseite des Manuals -&gt; Anzahl der Artikel)</small></td></td></tr></table></div>
+Alle Artikel 1 im aktuellen Namensraum: reise<ul><li><a href='?id=reise::fotoalbum'>Fotoalbum</a></li></ul><h3 id="header_"> HTML-Zeichen-Symbole </h3><div class="tablediv"><table><tr><th> Was es ist                        </th><th> Was du schreibst                              </th><th colspan="2"> Wie es dargestellt wird</th></tr><tr><td> Doppelte Anf&uuml;hrungszeichen<sup><a class="footnote" id="fnt__13" href="#fn__13">[13]</a></sup>        </td></td><td> <span class="code">Alle riefen: &amp;bdquo;Hurra!!!&amp;rdquo;</span>    </td></td><td colspan="2"> Alle riefen: &bdquo;Hurra!!!&rdquo;</td></td></tr></table></div><h2 id="header_"> Fu&szlig;zeilen </h2><div class="footnotes"><ol><li><a class="footnote_t" id="fn__1" href="#fnt__1">&uarr;</a>  Nummerierte Liste </li><li><a class="footnote_t" id="fn__2" href="#fnt__2">&uarr;</a>  </li><li><a class="footnote_t" id="fn__3" href="#fnt__3">&uarr;</a> # Nummeriert</li><li><a class="footnote_t" id="fn__4" href="#fnt__4">&uarr;</a> <pre><div># Nummeriert
+ # Nummeriert Ebene 2
+  # Punkt in der 3. Ebene
+ # Zur&uuml;ck zur 2.
+ # Noch eines
+ # Abschluss
+</div></pre></li><li><a class="footnote_t" id="fn__5" href="#fnt__5">&uarr;</a> # Nummeriert</li><li><a class="footnote_t" id="fn__6" href="#fnt__6">&uarr;</a>   # Punkt in der 3. Ebene</li><li><a class="footnote_t" id="fn__7" href="#fnt__7">&uarr;</a> fett</li><li><a class="footnote_t" id="fn__8" href="#fnt__8">&uarr;</a> <td> Ungeordnete Liste </td></td><td> <pre><div>* Ungeordnet
+ * Ungeordnet 2
+  * Ungeordnet 3
+   * Ungeordnet 4
+</div></pre> </td></td><td colspan="2">         <ul>
+        </ul><ul><li>
+Ungeordnet        </li>
+        <ul><li>
+Ungeordnet 2        </li>
+        <ul><li>
+Ungeordnet 3        </li>
+        <ul><li>
+Ungeordnet 4        </li>
+        </ul></ul></ul></ul>
+</td></td></li><li><a class="footnote_t" id="fn__9" href="#fnt__9">&uarr;</a>                                       </li><li><a class="footnote_t" id="fn__10" href="#fnt__10">&uarr;</a> siehe <a target="_blank" href="http://php.net/manual/de/function.date.php">PHP Funktion date</a></li><li><a class="footnote_t" id="fn__11" href="#fnt__11">&uarr;</a> f&uuml;r deutsche Texte</li><li><a class="footnote_t" id="fn__12" href="#fnt__12">&uarr;</a> siehe <a target="_blank" href="http://php.net/manual/de/function.date.php">PHP Funktion date</a></li><li><a class="footnote_t" id="fn__13" href="#fnt__13">&uarr;</a> f&uuml;r deutsche Texte</li></ol></div><br /><div align="right"><span class="less_significant">Verarbeitet in 0,8416 Sek. | Dateiformat: PC</span></div>      </div>

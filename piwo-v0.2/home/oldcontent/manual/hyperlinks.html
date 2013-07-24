@@ -1,52 +1,22 @@
-<h1>Fehler im Wikitext erkannt</h1>Fehler in der Zeile .<pre style='white-space: pre-wrap'><span style='color: gray'>     1| &lt;border&gt;</span>
-<span style='color: gray'>     2| Sie sind hier: ~~TRACE~~</span>
-<span style='color: gray'>     3| &lt;lo&gt; | [[:dokumentation:todos|Todos anzeigen]]&lt;/lo&gt;</span>
-<span style='color: gray'>     4| &lt;/border&gt;</span>
-     5| = Interne Links =
-     6| Zwei eckige Klammern setzen.
-     7| 
-     8| == Innerhalb dieser Datei ==
-     9| Vor dem Link ein # setzen. Alle Links k&ouml;nnen als Parameter einen neuen Anzeige-Namen erhalten.
-    10| ^ ! 	^ Identifizierung bzw. Ziel		^ Befehl                    		        		^ Ausgabe - Beispiel 		^ Hinweise ^
-    11| | :: &gt;&gt; **Kapitelauswahl**  			|
-    12| | :ok: | Kapitelnummer 			| ''&lt;nowiki&gt;[[#1.2]]&lt;/nowiki&gt;'' 				| &gt; [[#1.2]] 							| Falls die Kapitelnummer angegeben wird, wird der Name des Titels ausgegeben.|
-    13| | :ok: | Kapitelname				| ''&lt;nowiki&gt;[[#Externe Links]]&lt;/nowiki&gt;'' 			| &gt; [[#Externe Links]]					| Alternativ kann auch der Titelname hergenommen werden.|
-    14| | :ok: | Kapitelname (neu definiert) 	| ''&lt;nowiki&gt;[[#Externe Links#Neuer Namen]]&lt;/nowiki&gt;'' 	| &gt; [[#Externe Links#Neuer Namen]]			| Der selbe Link mit einem neu definierten Linktext.|
-    15| | :ok: | Fehlendes Kapitel			| ''&lt;nowiki&gt;[[#Nicht da]]&lt;/nowiki&gt;'' 			| &gt; [[#Nicht da]] 			| Fehlende Links werden markiert.|
-    16| | :: &gt;&gt; **Spezielle K&uuml;rzel \\ --(HINWEIS: Falls diese K&uuml;rzel als Kapitelnamen vorkommen, muss die Kapitelnummer als Sprungziel hergenommen werden.)--** |||||
-    17| | :ok: | Anfang der Seite			| ''&lt;nowiki&gt;[[#TOP]]&lt;/nowiki&gt;'' 				| &gt; [[#TOP]]	 			| Springe zum Anfang der Seite (Defaulttext = Anfang).|
-    18| | :ok: | Anfang der Seite (neu def.)	| ''&lt;nowiki&gt;[[#TOP#Hier ist der Anfang]]&lt;/nowiki&gt;''	| &gt; [[#TOP#Hier ist der Anfang]]	| Springe zum Anfang der Seite (Text wird als Parameter definiert).|
-    19| | :!:  | Inhaltsverzeichnis			| ''&lt;nowiki&gt;[[#PAGETOC]]&lt;/nowiki&gt;'' 			| &gt; [[#PAGETOC]]			| Springe zum Inhaltsverzeichnis dieser Seite (Defaulttext = Inhalt).|
-    20| | :!:  | Hauptverzeichnis 			| ''&lt;nowiki&gt;[[#TOC]]&lt;/nowiki&gt;''				| &gt; [[#TOC]]				| Springe zum Inhaltsverzeichnis aller Seiten (Defaulttext = Inhalt).|
-    21| | :ok: | Ende der Seite			| ''&lt;nowiki&gt;[[#BOTTOM]]&lt;/nowiki&gt;'' 				| &gt; [[#BOTTOM]] 			| Springe zum Ende der Seite (Defaulttext = Ende).|
-    22| | :?:  | Haupttitel				| ''&lt;nowiki&gt;[[#MAINTITLE]]&lt;/nowiki&gt;'' 			| &gt; [[#MAINTITLE]] 			| Springe zum Haupttitel (Defaulttext = Titel).\\ --(TODO: Fehlerhandling)--|
-    23| | :?:  | Seiten&uuml;bersicht			| ''&lt;nowiki&gt;[[#SITEMAP]]&lt;/nowiki&gt;'' 			| &gt; [[#SITEMAP]] 			| Springe zur Sitemap. \\ --(TODO: alles)--|
-    24| 
-    25| Legende: \\
-    26| :!: BUG :?: TODO :ok: OK
-    27| 
-    28| == Innerhalb dieser Wiki ==
-    29| Wiki-Links haben einen Namespace, Kapitelnamen und optional einen Titel.\\
-    30| Zum Beispiel liegt dieser Wikitext im Namespace &quot;''{{NS}}''&quot; und hei&szlig;t &quot;''{{ID}}''&quot;. Daraus ergibt sich die vollst&auml;ndige ID: &quot;''{{FULLID}}''&quot;.
-    31| $$ [[Namespace:Name#Text des Links]]
-    32| Falls nur der Name angegeben wird, wird das //**Wurzelverzeichnis**// hergenommen: 
-    33| $$ [[Name#Text des links]]
-    34| 
-    35| :i: Au&szlig;erdem gibt es noch spezielle Befehle im Namespace &quot;''pw_cms''&quot;.\\
-    36| ::: Dieser Namespace ist nur f&uuml;r [[manual:berechtigungen#Administratoren]] zug&auml;nglich und enth&auml;lt die [[manual:Konfiguration]] f&uuml;r das CMS-Frontend.
-    37| 
-    38| = Externe Links =
-    39| Eine eckige Klammern setzen. \\
-    40| 
-    41| == Unbenannte Links ==
-    42| :!: Links zu externen Seiten ohne Namen werden durchnummeriert und am Ende der Datei (:?: TODO) aufgelistet.
-    43| $$ Der erste Link [http://www.google.de] und der zweite [http://www.hoferhof.net].
-    44| Der erste Link [http://www.google.de] und der zweite [http://www.hoferhof.net].
-    45| 
-    46| == Benannte Links ==
-    47| Man kann dem Link auch einen Namen geben. 
-    48| $$ [http://www.hoferhof.net Urlaub am Bauernhof]
-    49| [http://www.hoferhof.net Urlaub am Bauernhof]
-<span style='color: gray'>    50| \\</span>
-<span style='color: gray'>    51| :&gt;&gt; &lt;lo&gt;Verarbeitet in ~~TEXT:comma|{{PERFORMANCE}}~~ Sek. | Dateiformat: {{FILE:type}}&lt;/lo&gt;</span>
-</pre><i>Der graue Text zeigt die Kopf- und Fu&szlig;zeile des Dokumentes.</i>
+      <div id='imwiki'>
+<div class="section_border">
+Sie sind hier: <a href='?mode=cleared&id=index'>Home</a> &raquo; <a href='?mode=cleared&id=reise'>Reise</a> &raquo; Fotoalbum<span class="less_significant"> | <a href="?id=dokumentation:todos">Todos anzeigen</a></span></div><h1 id="header_"> Interne Links </h1>
+Zwei eckige Klammern setzen.
+<h2 id="header_"> Innerhalb dieser Datei </h2>
+Vor dem Link ein # setzen. Alle Links k&ouml;nnen als Parameter einen neuen Anzeige-Namen erhalten.<div class="tablediv"><table><tr><th> ! 	</th><th> Identifizierung bzw. Ziel		</th><th> Befehl                    		        		</th><th> Ausgabe - Beispiel 		</th><th colspan="3"> Hinweise </th></tr><tr><td colspan="3"> :: &gt;&gt; <b>Kapitelauswahl</b>  			</td></td></td></tr><tr><td> :ok: </td></td><td> Kapitelnummer 			</td></td><td> <span class="code">[[#1.2]]</span> 				</td></td><td> &gt; <a href="#" class="pw_wiki_link_na">1.2</a> 							</td></td><td colspan="3"> Falls die Kapitelnummer angegeben wird, wird der Name des Titels ausgegeben.</td></td></td></tr><tr><td> :ok: </td></td><td> Kapitelname				</td></td><td> <span class="code">[[#Externe Links]]</span> 			</td></td><td> &gt; <a href="#" class="pw_wiki_link_na">externe links</a>					</td></td><td colspan="3"> Alternativ kann auch der Titelname hergenommen werden.</td></td></td></tr><tr><td> :ok: </td></td><td> Kapitelname (neu definiert) 	</td></td><td> <span class="code">[[#Externe Links#Neuer Namen]]</span> 	</td></td><td> &gt; <a href="#" class="pw_wiki_link_na">externe links#neuer namen</a>			</td></td><td colspan="3"> Der selbe Link mit einem neu definierten Linktext.</td></td></td></tr><tr><td> :ok: </td></td><td> Fehlendes Kapitel			</td></td><td> <span class="code">[[#Nicht da]]</span> 			</td></td><td> &gt; <a href="#" class="pw_wiki_link_na">nicht da</a> 			</td></td><td colspan="3"> Fehlende Links werden markiert.</td></td></td></tr><tr><td colspan="7"> :: &gt;&gt; <b>Spezielle K&uuml;rzel <br /> <small>(HINWEIS: Falls diese K&uuml;rzel als Kapitelnamen vorkommen, muss die Kapitelnummer als Sprungziel hergenommen werden.)</small></b> </td></td></td></td></td></td></td></tr><tr><td> :ok: </td></td><td> Anfang der Seite			</td></td><td> <span class="code">[[#TOP]]</span> 				</td></td><td> &gt; <a href="#" class="pw_wiki_link_na">top</a>	 			</td></td><td colspan="3"> Springe zum Anfang der Seite (Defaulttext = Anfang).</td></td></td></tr><tr><td> :ok: </td></td><td> Anfang der Seite (neu def.)	</td></td><td> <span class="code">[[#TOP#Hier ist der Anfang]]</span>	</td></td><td> &gt; <a href="#" class="pw_wiki_link_na">top#hier ist der anfang</a>	</td></td><td colspan="3"> Springe zum Anfang der Seite (Text wird als Parameter definiert).</td></td></td></tr><tr><td> :!:  </td></td><td> Inhaltsverzeichnis			</td></td><td> <span class="code">[[#PAGETOC]]</span> 			</td></td><td> &gt; <a href="#" class="pw_wiki_link_na">pagetoc</a>			</td></td><td colspan="3"> Springe zum Inhaltsverzeichnis dieser Seite (Defaulttext = Inhalt).</td></td></td></tr><tr><td> :!:  </td></td><td> Hauptverzeichnis 			</td></td><td> <span class="code">[[#TOC]]</span>				</td></td><td> &gt; <a href="#" class="pw_wiki_link_na">toc</a>				</td></td><td colspan="3"> Springe zum Inhaltsverzeichnis aller Seiten (Defaulttext = Inhalt).</td></td></td></tr><tr><td> :ok: </td></td><td> Ende der Seite			</td></td><td> <span class="code">[[#BOTTOM]]</span> 				</td></td><td> &gt; <a href="#" class="pw_wiki_link_na">bottom</a> 			</td></td><td colspan="3"> Springe zum Ende der Seite (Defaulttext = Ende).</td></td></td></tr><tr><td> :?:  </td></td><td> Haupttitel				</td></td><td> <span class="code">[[#MAINTITLE]]</span> 			</td></td><td> &gt; <a href="#" class="pw_wiki_link_na">maintitle</a> 			</td></td><td colspan="3"> Springe zum Haupttitel (Defaulttext = Titel).<br /> <small>(TODO: Fehlerhandling)</small></td></td></td></tr><tr><td> :?:  </td></td><td> Seiten&uuml;bersicht			</td></td><td> <span class="code">[[#SITEMAP]]</span> 			</td></td><td> &gt; <a href="#" class="pw_wiki_link_na">sitemap</a> 			</td></td><td colspan="3"> Springe zur Sitemap. <br /> <small>(TODO: alles)</small></td></td></td></tr></table></div>
+Legende: <br />
+:!: BUG :?: TODO :ok: OK
+<h2 id="header_"> Innerhalb dieser Wiki </h2>
+Wiki-Links haben einen Namespace, Kapitelnamen und optional einen Titel.<br />
+Zum Beispiel liegt dieser Wikitext im Namespace &quot;<span class="code">reise</span>&quot; und hei&szlig;t &quot;<span class="code">fotoalbum</span>&quot;. Daraus ergibt sich die vollst&auml;ndige ID: &quot;<span class="code">reise:fotoalbum</span>&quot;.<pre><div>[[Namespace:Name#Text des Links]]
+</div></pre>
+Falls nur der Name angegeben wird, wird das <i><b>Wurzelverzeichnis</b></i> hergenommen: <pre><div>[[Name#Text des links]]
+</div></pre>
+:i: Au&szlig;erdem gibt es noch spezielle Befehle im Namespace &quot;<span class="code">pw_cms</span>&quot;.<br /><div style="margin-left: 20px">Dieser Namespace ist nur f&uuml;r <a href="?id=reise:manual:berechtigungen#administratoren&mode=editpage" class="pw_wiki_link_na">berechtigungen#Administratoren</a> zug&auml;nglich und enth&auml;lt die <a href="?id=reise:manual:Konfiguration&mode=editpage" class="pw_wiki_link_na">Konfiguration</a> f&uuml;r das CMS-Frontend.</div><h1 id="header_"> Externe Links </h1>
+Eine eckige Klammern setzen. <br /><h2 id="header_"> Unbenannte Links </h2>
+:!: Links zu externen Seiten ohne Namen werden durchnummeriert und am Ende der Datei (:?: TODO) aufgelistet.<pre><div>Der erste Link [http://www.google.de] und der zweite [http://www.hoferhof.net].
+</div></pre>
+Der erste Link <a target="_blank" href="http://www.google.de">http://www.google.de</a> und der zweite <a target="_blank" href="http://www.hoferhof.net">http://www.hoferhof.net</a>.
+<h2 id="header_"> Benannte Links </h2>
+Man kann dem Link auch einen Namen geben. <pre><div>[http://www.hoferhof.net Urlaub am Bauernhof]
+</div></pre><a target="_blank" href="http://www.hoferhof.net">Urlaub am Bauernhof</a><br /><div align="right"><span class="less_significant">Verarbeitet in 0,1306 Sek. | Dateiformat: PC</span></div>      </div>

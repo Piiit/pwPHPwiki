@@ -5,6 +5,7 @@ if (!defined('INC_PATH')) {
 }
 require_once INC_PATH.'pwTools/string/encoding.php';
 require_once INC_PATH.'pwTools/string/StringTools.php';
+require_once INC_PATH.'pwTools/string/StringFormat.php';
 require_once INC_PATH.'piwo-v0.2/lib/pw_debug.php';
 
 
@@ -258,45 +259,7 @@ function pw_wiki_isns($id) {
   return utf8_substr($id, -1) == ':' ? true : false;
 }
 
-$html_level = 0;
 
-define("START", 1);
-define("END", 0);
-
-function pw_n($type_txt="", $startend="", $newline = true, $spaces = true) {
-  global $WIKI_GLOBALS;
-
-  if (is_numeric($type_txt)) {
-    $GLOBALS['html_level'] += $type_txt;
-    return "";
-  }
-
-  $startend = strtolower($startend);
-
-  if ($startend == END) $GLOBALS['html_level']--;
-
-  if ($spaces) {
-    $spaces = "";
-    for ($i = 0; $i < $GLOBALS['html_level']; $i++)
-      $spaces .= "  ";
-  }
-
-  if ($newline)
-    $newline = "\n";
-
-  if ($startend == START) $GLOBALS['html_level']++;
-
-  if (@array_key_exists($type_txt, $WIKI_GLOBALS[tags])) {
-    if (is_array($WIKI_GLOBALS[tags][$type_txt]))
-      return $spaces.$WIKI_GLOBALS[tags][$type_txt][$startend].$newline;
-    return $spaces.$WIKI_GLOBALS[tags][$type_txt].$newline;
-  }
-  return $spaces.$type_txt.$newline;
-}
-
-function pw_ne($type_txt="", $startend="", $newline = true, $spaces = true) {
-  echo pw_n($type_txt, $startend, $newline, $spaces);
-}
 
 function pw_wiki_getfulltitle($sep = "&raquo;", $showuser = true) {
   $sep = ' '.$sep.' ';
@@ -340,25 +303,25 @@ function pw_wiki_getfulltitle($sep = "&raquo;", $showuser = true) {
 
 function html_header() {
   global $MODE;
-  pw_ne ('<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">');
-  pw_ne ('<html>', START);
-  pw_ne ('<!-- HEADER start -->');
-  pw_ne ('<head>', START);
-  pw_ne ('<title>'.pw_wiki_getfulltitle().'</title>');
-  pw_ne ('<meta name="description" content="'.pw_wiki_getcfg('description').'">');
-  pw_ne ('<meta name="keywords" content="'.pw_wiki_getcfg('keywords').'">');
-  pw_ne ('<meta http-equiv="Content-Type" content="text/html" charset="utf-8">');
-  pw_ne ('<meta http-equiv="Content-Script-Type" content="text/javascript">');
-  pw_ne ('<link rel="shortcut icon" href="media/favicon.ico" type="image/ico" />');
-  pw_ne ('<link rel="stylesheet" type="text/css" media="screen" href="default.css">');
-  pw_ne ('<link rel="stylesheet" type="text/css" media="screen" href="admin.css">');
-  #pw_ne ('<script type="text/javascript" language="javascript" src="lib/js/scriptaculous/lib/prototype.js"></script>');
-  #pw_ne ('<script type="text/javascript" language="javascript" src="lib/js/scriptaculous/src/scriptaculous.js"></script>');
-  #pw_ne ('<script type="text/javascript" language="javascript" src="lib/js/pw_url.js"></script>');
-  #pw_ne ('<script type="text/javascript" language="javascript" src="lib/js/pw_array.js"></script>');
-  pw_ne ('<script type="text/javascript" language="javascript" src="lib/js/catchkeys.js"></script>'); // Editorkeys: catch TAB, insert Spaces
-  #pw_ne ('<script type="text/javascript" language="javascript" src="lib/js/shortcut.js"></script>');
-  #pw_ne ('<script type="text/javascript" language="javascript" src="lib/js/pw_ui.js"></script>');
+  StringFormat::htmlIndentPrint ('<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">');
+  StringFormat::htmlIndentPrint ('<html>', StringFormat::START);
+  StringFormat::htmlIndentPrint ('<!-- HEADER start -->');
+  StringFormat::htmlIndentPrint ('<head>', StringFormat::START);
+  StringFormat::htmlIndentPrint ('<title>'.pw_wiki_getfulltitle().'</title>');
+  StringFormat::htmlIndentPrint ('<meta name="description" content="'.pw_wiki_getcfg('description').'">');
+  StringFormat::htmlIndentPrint ('<meta name="keywords" content="'.pw_wiki_getcfg('keywords').'">');
+  StringFormat::htmlIndentPrint ('<meta http-equiv="Content-Type" content="text/html" charset="utf-8">');
+  StringFormat::htmlIndentPrint ('<meta http-equiv="Content-Script-Type" content="text/javascript">');
+  StringFormat::htmlIndentPrint ('<link rel="shortcut icon" href="media/favicon.ico" type="image/ico" />');
+  StringFormat::htmlIndentPrint ('<link rel="stylesheet" type="text/css" media="screen" href="default.css">');
+  StringFormat::htmlIndentPrint ('<link rel="stylesheet" type="text/css" media="screen" href="admin.css">');
+  #StringFormat::htmlIndente ('<script type="text/javascript" language="javascript" src="lib/js/scriptaculous/lib/prototype.js"></script>');
+  #StringFormat::htmlIndente ('<script type="text/javascript" language="javascript" src="lib/js/scriptaculous/src/scriptaculous.js"></script>');
+  #StringFormat::htmlIndente ('<script type="text/javascript" language="javascript" src="lib/js/pw_url.js"></script>');
+  #StringFormat::htmlIndente ('<script type="text/javascript" language="javascript" src="lib/js/pw_array.js"></script>');
+  StringFormat::htmlIndentPrint ('<script type="text/javascript" language="javascript" src="lib/js/catchkeys.js"></script>'); // Editorkeys: catch TAB, insert Spaces
+  #StringFormat::htmlIndente ('<script type="text/javascript" language="javascript" src="lib/js/shortcut.js"></script>');
+  #StringFormat::htmlIndente ('<script type="text/javascript" language="javascript" src="lib/js/pw_ui.js"></script>');
 
   echo "<script>function setfocus() {
     var f = document.getElementsByTagName('input');
@@ -390,10 +353,10 @@ function html_header() {
     pw_debug_init(true);
   }
 
-  pw_ne ('</head>', END);
-  pw_ne ('<body onload="setfocus()">', START);
-  pw_ne ('<!-- HEADER end -->');
-  pw_ne ('<div id="INFO"></div>');
+  StringFormat::htmlIndentPrint ('</head>', StringFormat::END);
+  StringFormat::htmlIndentPrint ('<body onload="setfocus()">', StringFormat::START);
+  StringFormat::htmlIndentPrint ('<!-- HEADER end -->');
+  StringFormat::htmlIndentPrint ('<div id="INFO"></div>');
 }
 
 function html_footer($modal) {
@@ -406,10 +369,10 @@ function html_footer($modal) {
     pw_ui_printDialogWrap();
   }
 
-  pw_ne ('<!-- FOOTER start -->');
-  pw_ne ('</body>', END);
-  pw_ne ('</html>', END);
-  pw_ne ('<!-- FOOTER end -->');
+  StringFormat::htmlIndentPrint ('<!-- FOOTER start -->');
+  StringFormat::htmlIndentPrint ('</body>', StringFormat::END);
+  StringFormat::htmlIndentPrint ('</html>', StringFormat::END);
+  StringFormat::htmlIndentPrint ('<!-- FOOTER end -->');
 }
 
 
@@ -563,19 +526,6 @@ function pw_wiki_syntaxerr($text, $line, $errtxt, $header = 0, $footer = 0) {
   return $out;
 }
 
-function out($node, $txt = null) {
-  echo '<pre style="font-size: 12px; background-color: black; color: lightgreen; border: 1px solid lightgreen;">';
-  echo(pw_debug_get_info($txt)."\n");
-  var_dump($node);
-  echo '</pre>';
-}
-
-function out2($node, $txt = null) {
-  echo '<pre style="font-size: 12px; background-color: black; color: red; border: 1px solid red;">';
-  echo(pw_debug_get_info($txt)."\n");
-  var_dump($node);
-  echo '</pre>';
-}
 
 
 ?>

@@ -4,7 +4,7 @@ if (!defined('INC_PATH')) {
 	define ('INC_PATH', realpath(dirname(__FILE__).'/../').'/');
 }
 require_once INC_PATH.'pwTools/string/StringTools.php';
-require_once INC_PATH.'piwo-v0.2/lib/IndexItem.php';
+require_once INC_PATH.'pwTools/data/IndexItem.php';
 
 //TODO Dynamic length of levels, not limited to 5! 
 class IndexTable {
@@ -52,18 +52,10 @@ class IndexTable {
 		return $this->_cont[$index];
 	}
 	
+	public function getAsArray() {
+		return $this->_cont;
+	}
+	
 }
-
-// $t = new IndexTable();
-// $t->add(1, "test");
-// $t->add(1, "test2");
-// $t->add(1, "test3");
-// $t->add(3, "test4");
-// $t->add(3, "test4");
-
-// echo "<pre>".$t."</pre>";
-
-// echo "<pre>".$t->get(7)."</pre>";
-
 
 ?>

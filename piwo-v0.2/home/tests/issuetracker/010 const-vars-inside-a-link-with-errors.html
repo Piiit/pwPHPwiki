@@ -1,64 +1,21 @@
-<h1>Fehler im Wikitext erkannt</h1>Fehler in der Zeile .<pre style='white-space: pre-wrap'><span style='color: gray'>     1| &lt;border&gt;</span>
-<span style='color: gray'>     2| Sie sind hier: ~~TRACE~~</span>
-<span style='color: gray'>     3| &lt;lo&gt; | [[:dokumentation:todos|Todos anzeigen]]&lt;/lo&gt;</span>
-<span style='color: gray'>     4| &lt;/border&gt;</span>
-     5| !! pfad = Die ID lautet {{ID}} und liegt im {{NS}}.
-     6| 
-     7| = {{ID}} =
-     8| ; Bereich
-     9| : &lt;hi 2&gt;Wikisyntax&lt;/hi&gt; &lt;em&gt;Variablen und Konstanten&lt;/em&gt;
-    10| ; Erkl&auml;rung
-    11| : Einige interne Fehler werden angezeigt, obwohl keine aufgetreten sind.
-    12| : Fehler werden mitgeschleift auch &uuml;ber ihren Scope hinaus. 
-    13| : Wann m&uuml;ssen Fehlermeldungen wieder auf Null gestetzt werden? 
-    14| : Wann wird ein G&uuml;ltigkeitsbereich verlassen?
-    15| : &quot;Text&quot; nicht ausgeben, sondern nur vorhandene Fehler-bubbles b&uuml;ndeln und ausgeben.
-    16| ; Beispiel
-    17| : {{{ &lt;code&gt;!! pfad = Die ID lautet {{ID}} und liegt im {{NS}}.
-    18| {{pfad}}
-    19| &lt;/code&gt;
-    20| }}}
-    21| ; Ausgabe
-    22| : {{{ {{pfad}} }}}
-    23| 
-    24| == Tests ==
-    25| &lt;code&gt;
-    26| !! var = 3
-    27| {{var}}
-    28| {{var = 7}}
-    29| {{var}}
-    30| {{var&ouml; = &quot;Hallo Cavallo&quot;}}
-    31| {{i}}
-    32| {{i = 3}}
-    33| {{i}}
-    34| {{i = 4}}
-    35| {{i}}
-    36| Teste Variablen: {{var&ouml;}}
-    37| 
-    38| \\\\
-    39| !! pfad = Die ID lautet {{ID}} und liegt im {{NS}}.
-    40| {{pfad}}
-    41| &lt;/code&gt;
-    42| 
-    43| ''
-    44| !! var = 3
-    45| {{var}}
-    46| {{var = 7}}
-    47| {{var}}
-    48| {{var&ouml; = &quot;Hallo Cavallo&quot;}}
-    49| {{i}}
-    50| {{i = 3}}
-    51| {{i}}
-    52| {{i = 4}}
-    53| {{i}}
-    54| Teste Variablen: {{var&ouml;}}
-    55| 
-    56| \\\\
-    57| !! pfad = Die ID lautet {{ID}} und liegt im {{NS}} {{WTF}}.
-    58| {{pfad}}
-    59| ''
-    60| 
-    61| 
-<span style='color: gray'>    62| \\</span>
-<span style='color: gray'>    63| :&gt;&gt; &lt;lo&gt;Verarbeitet in ~~TEXT:comma|{{PERFORMANCE}}~~ Sek. | Dateiformat: {{FILE:type}}&lt;/lo&gt;</span>
-</pre><i>Der graue Text zeigt die Kopf- und Fu&szlig;zeile des Dokumentes.</i>
+      <div id='imwiki'>
+<div class="section_border">
+Sie sind hier: <a href='?mode=cleared&id=index'>Home</a> &raquo; <a href='?mode=cleared&id=reise'>Reise</a> &raquo; Fotoalbum<span class="less_significant"> | <a href="?id=dokumentation:todos">Todos anzeigen</a></span></div><h1 id="header_"> fotoalbum </h1><dl><dt>Bereich<dd><span class="highlighted c2">Wikisyntax</span> <span class="emphasised">Variablen und Konstanten</span></dd></dt><dt>Erkl&auml;rung<dd>Einige interne Fehler werden angezeigt, obwohl keine aufgetreten sind.</dd><dd>Fehler werden mitgeschleift auch &uuml;ber ihren Scope hinaus. </dd><dd>Wann m&uuml;ssen Fehlermeldungen wieder auf Null gestetzt werden? </dd><dd>Wann wird ein G&uuml;ltigkeitsbereich verlassen?</dd><dd>&quot;Text&quot; nicht ausgeben, sondern nur vorhandene Fehler-bubbles b&uuml;ndeln und ausgeben.</dd></dt><dt>Beispiel<dd> <pre><div>!! pfad = Die ID lautet {{ID}} und liegt im {{NS}}.
+{{pfad}}</div></pre></dd></dt><dt>Ausgabe<dd> Die ID lautet fotoalbum und liegt im reise. </dd></dt></dl><h2 id="header_"> Tests </h2><pre><div>!! var = 3
+{{var}}
+{{var = 7}}
+{{var}}
+{{var&ouml; = &quot;Hallo Cavallo&quot;}}
+{{i}}
+{{i = 3}}
+{{i}}
+{{i = 4}}
+{{i}}
+Teste Variablen: {{var&ouml;}}
+
+\\\\
+!! pfad = Die ID lautet {{ID}} und liegt im {{NS}}.
+{{pfad}}</div></pre><span class="code">37434
+Teste Variablen: "Hallo Cavallo"
+
+<br /><br />Die ID lautet fotoalbum und liegt im reise <span style='color: yellow'>[WARNUNG: VARIABLE 'wtf' wurde nicht gesetzt.]</span>.<span style='color: yellow'>[WARNUNG: Die Variable kann wegen interner Fehler nicht gesetzt werden.]</span>Die ID lautet fotoalbum und liegt im reise.</span><br /><div align="right"><span class="less_significant">Verarbeitet in 0,0449 Sek. | Dateiformat: UNIX</span></div>      </div>

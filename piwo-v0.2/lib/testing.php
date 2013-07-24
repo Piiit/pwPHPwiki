@@ -153,20 +153,20 @@ function test_output($input, $expres, $res, &$errors = -1) {
 }
 
 function testing_html_header($title) {
-  pw_ne ('<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">');
-  pw_ne ('<html>', START);
-  pw_ne ('<head>', START);
-  pw_ne ("<title>piwo: UNIT-TESTING: $title</title>");
-  pw_ne ('<meta http-equiv="Content-Type" content="text/html" charset="utf-8">');
-  pw_ne ('<link rel="stylesheet" type="text/css" media="screen" href="../testing.css">');
-  pw_ne ('</head>', END);
-  pw_ne ('<body>', START);
-  pw_ne ("<h1>Test: $title</h1>");
+  StringFormat::htmlIndente ('<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">');
+  StringFormat::htmlIndente ('<html>', START);
+  StringFormat::htmlIndente ('<head>', START);
+  StringFormat::htmlIndente ("<title>piwo: UNIT-TESTING: $title</title>");
+  StringFormat::htmlIndente ('<meta http-equiv="Content-Type" content="text/html" charset="utf-8">');
+  StringFormat::htmlIndente ('<link rel="stylesheet" type="text/css" media="screen" href="../testing.css">');
+  StringFormat::htmlIndente ('</head>', END);
+  StringFormat::htmlIndente ('<body>', START);
+  StringFormat::htmlIndente ("<h1>Test: $title</h1>");
 }
 
 function testing_html_footer() {
-  pw_ne ('</body>', END);
-  pw_ne ('</html>', END);
+  StringFormat::htmlIndente ('</body>', END);
+  StringFormat::htmlIndente ('</html>', END);
 }
 
 function pw_test($inputs, $results, $exp_results) {

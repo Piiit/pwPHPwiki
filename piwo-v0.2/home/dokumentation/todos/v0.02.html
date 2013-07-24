@@ -1,93 +1,129 @@
-<h1>Fehler im Wikitext erkannt</h1>Fehler in der Zeile .<pre style='white-space: pre-wrap'><span style='color: gray'>     1| &lt;border&gt;</span>
-<span style='color: gray'>     2| Sie sind hier: ~~TRACE~~</span>
-<span style='color: gray'>     3| &lt;lo&gt; | [[:dokumentation:todos|Todos anzeigen]]&lt;/lo&gt;</span>
-<span style='color: gray'>     4| &lt;/border&gt;</span>
-     5| = Zukunftspl&auml;ne =
-     6| 
-     7| &lt;info&gt;
-     8| :&gt; Aktuelle Version:\\**{{version}}**\\--(Lexerversion: {{lexerversion}})--
-     9| &lt;/info&gt;
-    10| 
-    11| &lt;border&gt;Inhaltsverzeichnis:\\~~TOC~~&lt;/border&gt;
-    12| 
-    13| ; Farbcodes:
-    14| : &lt;hi 0&gt;&amp;nbsp;&lt;/hi&gt; = Admin (Alle Men&uuml;befehle; inkl. interne Adminfunktionen, wie bspw. ''delpage'')
-    15| : &lt;hi 1&gt;&amp;nbsp;&lt;/hi&gt; = Dokumentation
-    16| : &lt;hi 2&gt;&amp;nbsp;&lt;/hi&gt; = Wikisyntax
-    17| : &lt;hi 3&gt;&amp;nbsp;&lt;/hi&gt; = Code/Codierung
-    18| : &lt;hi 4&gt;&amp;nbsp;&lt;/hi&gt; = Editor
-    19| 
-    20| == CLEANUP v0.01 FIRST ==
-    21| * &lt;hi 3&gt;Code&lt;/hi&gt; Frontend und Backend voneinander trennen (UI-Bibliothek anlegen)
-    22|  * ''pw_fileutils.php'' anlegen (Permissions des Filesystems kontrollieren, Fehlermeldungen &uuml;bersetzen und ausgeben, ...)
-    23|  * Abh&auml;ngigkeiten aufl&ouml;sen... zu viele *.php-Files sind voneinander abh&auml;ngig. Einzeln testen, einzeln testbar machen...
-    24| 
-    25| == v0.02 ==
-    26| * &lt;hi&gt;Admin&lt;/hi&gt; WIKICSV implementieren...
-    27|  * Korrekte Schreibweise f&uuml;r Dateinamen (Gro&szlig;- und Kleinschreibung), lange und kurze Titel, Benutzer, Datum, ...
-    28|  * Dateiinfo speichern, Wiki-Config speichern
-    29| * &lt;hi&gt;Admin&lt;/hi&gt; Mehrere Dateien l&ouml;schen
-    30| * &lt;hi&gt;Admin&lt;/hi&gt; Timeout f&uuml;r Login auf x(5?) Minuten setzen.
-    31| * &lt;hi&gt;Admin&lt;/hi&gt; Login erfolgreich etc. nicht anzeigen bzw. nach kurzer Zeit ausblenden (falls JS aktiviert ist)
-    32| * &lt;hi&gt;Admin&lt;/hi&gt; Tastenk&uuml;rzel
-    33|  * f&uuml;r alle Funktionen festlegen... JS location.href = mit besserer Funktion versehen (setMode...)
-    34|  * STRG+s = speichern
-    35|  * testen, nur bei richtigem Kontext zulassen
-    36|  * Pfeiltasten im Seiten&uuml;berblick (Enter = anzeigen, Space = ausw&auml;hlen, F7 = akt. Auswahl l&ouml;schen, F6 = akt. Auswahl bearbeiten)
-    37| * &lt;hi&gt;Admin&lt;/hi&gt; autocompleter
-    38| * &lt;hi&gt;Admin&lt;/hi&gt; JS ''setfocus'' durch prototype-Fkt. ersetzen (???)
-    39| * &lt;hi&gt;Admin&lt;/hi&gt; Modaldialoge lassen die gesamte Seite neu laden... Performance schlecht. (AJAX oder iFrames?) -&gt; Ansonsten durch Seitenbefehle ersetzen!!!
-    40| * &lt;hi 3&gt;Code&lt;/hi&gt; ''pw_lexer'' -&gt; getconfig mit checks, ob config existiert oder nicht...
-    41| * &lt;hi 3&gt;Code&lt;/hi&gt; ''pw_lexer'' -&gt; checknode einf&uuml;gen nachdem im ''parserconf'' ein node abgerufen wird... (WARNING f&uuml;r LOG!)
-    42| * &lt;hi 3&gt;Code&lt;/hi&gt; ''pw_lexer'' -&gt; automatisierte UNIT-Tests!
-    43| * &lt;hi 3&gt;Code&lt;/hi&gt; ''pw_lexer'' -&gt; Interne Objektmethoden verwenden: ''getNode'' anstelle von ''$this-&gt;AST[$pid]''
-    44| * &lt;hi 3&gt;Code&lt;/hi&gt; Kommentare bei Erkennung aus AST entfernen, damit keine logischen Bl&ouml;cke unterbrochen werden (siehe table, falls zwischen einer tablerow-Zeile und der n&auml;chsten ein Kommentar steht)
-    45| * &lt;hi 4&gt;Editor&lt;/hi&gt; [BESSER Wie in gmail! Sonst wird der Workflow unterbrochen!!!] Speichern im Modaldialog anzeigen (//Die Datei wird gespeichert... bitte warten.//)
-    46| * &lt;hi 4&gt;Editor&lt;/hi&gt; Speichern: Cursor muss aktuelle Position merken... ScrollX und -Y im Editor m&uuml;ssen erhalten bleiben. Besser in ein iFrame legen, damit textarea nicht neu geladen wird...
-    47| 
-    48| 
-    49| == unsortiert ==
-    50| * &lt;hi 1&gt;Dokumentation&lt;/hi&gt; &lt;hi 2&gt;Wikisyntax&lt;/hi&gt; UNIT Tests - Plugin, damit Tests innerhalb der Wiki angezeigt und dokumentiert werden k&ouml;nnen.
-    51| * &lt;hi&gt;Admin&lt;/hi&gt; ''pwTest'' und ''piwo'' zusammenbringen.
-    52| * &lt;hi&gt;Admin&lt;/hi&gt; Neue Funktion: &quot;Seitenlink kopieren&quot; -&gt; a) als Link oder b) als Internen Wikilink
-    53| * &lt;hi&gt;Admin&lt;/hi&gt; Bilder und andere Dateien hochladen
-    54| * &lt;hi 2&gt;Wikisyntax&lt;/hi&gt; &lt;em&gt;Internal Links&lt;/em&gt; Sprung zu einem Kapitel in einer anderen Seite (Hash-Symbol ''#'')\\Bsp.: ''%%[[textgestaltung:spezial#&uuml;bersicht]]%%'' (schwierig, da fremde Seite geparsed und auf Sprungziele gescannt werden muss)
-    55| * &lt;hi 2&gt;Wikisyntax&lt;/hi&gt; INCLUDE
-    56| * &lt;hi 2&gt;Wikisyntax&lt;/hi&gt; NEWPAGE-Makro f&uuml;r Export oder Print
-    57| * &lt;hi 2&gt;Wikisyntax&lt;/hi&gt; nextpage, previouspage und weitere Navigationshilfen in Syntax einbauen
-    58| * &lt;hi 2&gt;Wikisyntax&lt;/hi&gt; &lt;p&gt; um Textabschnitte legen &lt;/p&gt;
-    59| * &lt;hi 2&gt;Wikisyntax&lt;/hi&gt; &lt;acronym&gt; einf&uuml;hren
-    60| * &lt;hi 2&gt;Wikisyntax&lt;/hi&gt; Vorschau-Info bei hover &uuml;ber Fu&szlig;zeilen
-    61| * &lt;hi 2&gt;Wikisyntax&lt;/hi&gt; Syntax &auml;ndern: Externe Links auch mit doppelter Klammerung und | f&uuml;r Parametertrennung (vereinheitlicht und copy/paste aus Dokuwiki besser m&ouml;glich)
-    62| * &lt;hi 2&gt;Wikisyntax&lt;/hi&gt; Externe, interne, Sprung- und Admin-Links grafisch voneinander trennen
-    63| * &lt;hi 2&gt;Wikisyntax&lt;/hi&gt; &Uuml;berlegen, ob noch andere Schreibweisen ge&auml;ndert werden sollen (bspw. Plugins und Variablen, Konstanten und Sektionen)
-    64| * &lt;hi 2&gt;Wikisyntax&lt;/hi&gt; Funktion erstellen, die Interne Wikilinks zerlegt und als benanntes Array zur&uuml;ckgibt
-    65| * &lt;hi 2&gt;Wikisyntax&lt;/hi&gt; &lt;em&gt;External Links&lt;/em&gt; mit relativer Pfadangabe f&uuml;r ''localhost'' erlauben
-    66| * &lt;hi 2&gt;Wikisyntax&lt;/hi&gt; ''%%TextTextText((&gt;Beschreibung f&uuml;r Hover oder Click))%%'' f&uuml;r Kurzbeschreibungen
-    67| * &lt;hi 2&gt;Wikisyntax&lt;/hi&gt; Anchor-Sprungbefehle damit man zb. zu einem bestimmten Bild oder Text springen kann.
-    68| * &lt;hi 2&gt;Wikisyntax&lt;/hi&gt; Fu&szlig;zeilen, die erst am Ende definiert werden, damit der Text in dem sie vorkommen nicht &quot;&uuml;berladen&quot; wird.
-    69| * &lt;hi 2&gt;Wikisyntax&lt;/hi&gt;  ''%%&lt;code&gt;%%''-Segmente mit GeShi parsen
-    70| * &lt;hi 2&gt;Wikisyntax&lt;/hi&gt; Boxen:
-    71|  * width (%, px, auto) Parameter in Boxen erlauben
-    72|  * download-Box hinzuf&uuml;gen (dunkleres gr&uuml;n)
-    73|  * float right oder left
-    74|  * Boxen m&uuml;ssen allg. g&uuml;ltige Paramterliste erhalten, damit float, width, height, etc. angegeben werden kann in lexerconf einf&uuml;hren... ''boxparameter'' oder &auml;hnliches
-    75| * &lt;hi 2&gt;Plugins&lt;/hi&gt; History
-    76| * &lt;hi 2&gt;Plugins&lt;/hi&gt; Breadcrumb
-    77| * &lt;hi 2&gt;Plugins&lt;/hi&gt; Submen&uuml;, Seitenmen&uuml;s, Pulldown-Men&uuml;s, ...
-    78| * &lt;hi 1&gt;Dokumentation&lt;/hi&gt; Zeichen in der Sonderzeichentabelle nach Art/Typ (Mathe, Griechisch, Interpunktion, ...) sortieren, nicht nach Codierung
-    79| * &lt;hi 4&gt;Editor&lt;/hi&gt; Einf&uuml;gen von Tabellen erleichtern (copy/paste), autom. ''|'' oder ''^'' einf&uuml;gen
-    80| 
-    81| == Bugs ==
-    82| * &lt;hi&gt;Admin&lt;/hi&gt; Logout (__nur mit Tastenk&uuml;rzel__) vom Seiten&uuml;berblick aus f&uuml;hrt auf eine Seite ''undefined'' ? (JS Fehler)
-    83| * &lt;hi&gt;SECURITY&lt;/hi&gt; mit Historyback kann man eine bereits beendete Session neu setzen und sich damit ohne Passwort einloggen
-    84| * &lt;hi&gt;Admin&lt;/hi&gt; URL-Parameter ''dialog'' wird angezeigt, obwohl kein Dialog ge&ouml;ffnet wurde. 
-    85|  * Bsp.: Login + Bearbeiten = F12 + F6 =&gt; zeigt Editor + Logindialog
-    86|  * Bsp.: Seite anzeigen + Einstellungen + Bearbeiten = F10 + F6 (alle MODE-Tastenk&uuml;rzel ausschalten, wenn Dialog offen)
-    87| 
-    88| 
-    89| 
-    90| 
-<span style='color: gray'>    91| \\</span>
-<span style='color: gray'>    92| :&gt;&gt; &lt;lo&gt;Verarbeitet in ~~TEXT:comma|{{PERFORMANCE}}~~ Sek. | Dateiformat: {{FILE:type}}&lt;/lo&gt;</span>
-</pre><i>Der graue Text zeigt die Kopf- und Fu&szlig;zeile des Dokumentes.</i>
+      <div id='imwiki'>
+<div class="section_border">
+Sie sind hier: <a href='?mode=cleared&id=index'>Home</a> &raquo; <a href='?mode=cleared&id=reise'>Reise</a> &raquo; Fotoalbum<span class="less_significant"> | <a href="?id=dokumentation:todos">Todos anzeigen</a></span></div><h1 id="header_"> Zukunftspl&auml;ne </h1><div class="section_info"><div align="center">Aktuelle Version:<br /><b>0.2.1 - Alpha</b><br /><small>(Lexerversion: 0.42d - PIWO)</small></div></div><div class="section_border">Inhaltsverzeichnis:<br /></div><dl><dt>Farbcodes:<dd><span class="highlighted c0">&nbsp;</span> = Admin (Alle Men&uuml;befehle; inkl. interne Adminfunktionen, wie bspw. <span class="code">delpage</span>)</dd><dd><span class="highlighted c1">&nbsp;</span> = Dokumentation</dd><dd><span class="highlighted c2">&nbsp;</span> = Wikisyntax</dd><dd><span class="highlighted c3">&nbsp;</span> = Code/Codierung</dd><dd><span class="highlighted c4">&nbsp;</span> = Editor</dd></dt></dl><h2 id="header_"> CLEANUP v0.01 FIRST </h2>        <ul>
+        </ul><ul><li>
+<span class="highlighted c3">Code</span> Frontend und Backend voneinander trennen (UI-Bibliothek anlegen)        </li>
+        <ul><li>
+<span class="code">pw_fileutils.php</span> anlegen (Permissions des Filesystems kontrollieren, Fehlermeldungen &uuml;bersetzen und ausgeben, ...)        </li>
+        <li>
+Abh&auml;ngigkeiten aufl&ouml;sen... zu viele *.php-Files sind voneinander abh&auml;ngig. Einzeln testen, einzeln testbar machen...        </li>
+        </ul></ul>
+<h2 id="header_"> v0.02 </h2>        <ul>
+        </ul><ul><li>
+<span class="highlighted c0">Admin</span> WIKICSV implementieren...        </li>
+        <ul><li>
+Korrekte Schreibweise f&uuml;r Dateinamen (Gro&szlig;- und Kleinschreibung), lange und kurze Titel, Benutzer, Datum, ...        </li>
+        <li>
+Dateiinfo speichern, Wiki-Config speichern        </li></ul>
+        <li>
+<span class="highlighted c0">Admin</span> Mehrere Dateien l&ouml;schen        </li>
+        <li>
+<span class="highlighted c0">Admin</span> Timeout f&uuml;r Login auf x(5?) Minuten setzen.        </li>
+        <li>
+<span class="highlighted c0">Admin</span> Login erfolgreich etc. nicht anzeigen bzw. nach kurzer Zeit ausblenden (falls JS aktiviert ist)        </li>
+        <li>
+<span class="highlighted c0">Admin</span> Tastenk&uuml;rzel        </li>
+        <ul><li>
+f&uuml;r alle Funktionen festlegen... JS location.href = mit besserer Funktion versehen (setMode...)        </li>
+        <li>
+STRG+s = speichern        </li>
+        <li>
+testen, nur bei richtigem Kontext zulassen        </li>
+        <li>
+Pfeiltasten im Seiten&uuml;berblick (Enter = anzeigen, Space = ausw&auml;hlen, F7 = akt. Auswahl l&ouml;schen, F6 = akt. Auswahl bearbeiten)        </li></ul>
+        <li>
+<span class="highlighted c0">Admin</span> autocompleter        </li>
+        <li>
+<span class="highlighted c0">Admin</span> JS <span class="code">setfocus</span> durch prototype-Fkt. ersetzen (???)        </li>
+        <li>
+<span class="highlighted c0">Admin</span> Modaldialoge lassen die gesamte Seite neu laden... Performance schlecht. (AJAX oder iFrames?) -&gt; Ansonsten durch Seitenbefehle ersetzen!!!        </li>
+        <li>
+<span class="highlighted c3">Code</span> <span class="code">pw_lexer</span> -&gt; getconfig mit checks, ob config existiert oder nicht...        </li>
+        <li>
+<span class="highlighted c3">Code</span> <span class="code">pw_lexer</span> -&gt; checknode einf&uuml;gen nachdem im <span class="code">parserconf</span> ein node abgerufen wird... (WARNING f&uuml;r LOG!)        </li>
+        <li>
+<span class="highlighted c3">Code</span> <span class="code">pw_lexer</span> -&gt; automatisierte UNIT-Tests!        </li>
+        <li>
+<span class="highlighted c3">Code</span> <span class="code">pw_lexer</span> -&gt; Interne Objektmethoden verwenden: <span class="code">getNode</span> anstelle von <span class="code">$this-&gt;AST[$pid]</span>        </li>
+        <li>
+<span class="highlighted c3">Code</span> Kommentare bei Erkennung aus AST entfernen, damit keine logischen Bl&ouml;cke unterbrochen werden (siehe table, falls zwischen einer tablerow-Zeile und der n&auml;chsten ein Kommentar steht)        </li>
+        <li>
+<span class="highlighted c4">Editor</span> [BESSER Wie in gmail! Sonst wird der Workflow unterbrochen!!!] Speichern im Modaldialog anzeigen (<i>Die Datei wird gespeichert... bitte warten.</i>)        </li>
+        <li>
+<span class="highlighted c4">Editor</span> Speichern: Cursor muss aktuelle Position merken... ScrollX und -Y im Editor m&uuml;ssen erhalten bleiben. Besser in ein iFrame legen, damit textarea nicht neu geladen wird...        </li>
+        </ul>
+<h2 id="header_"> unsortiert </h2>        <ul>
+        </ul><ul><li>
+<span class="highlighted c1">Dokumentation</span> <span class="highlighted c2">Wikisyntax</span> UNIT Tests - Plugin, damit Tests innerhalb der Wiki angezeigt und dokumentiert werden k&ouml;nnen.        </li>
+        <li>
+<span class="highlighted c0">Admin</span> <span class="code">pwTest</span> und <span class="code">piwo</span> zusammenbringen.        </li>
+        <li>
+<span class="highlighted c0">Admin</span> Neue Funktion: &quot;Seitenlink kopieren&quot; -&gt; a) als Link oder b) als Internen Wikilink        </li>
+        <li>
+<span class="highlighted c0">Admin</span> Bilder und andere Dateien hochladen        </li>
+        <li>
+<span class="highlighted c2">Wikisyntax</span> <span class="emphasised">Internal Links</span> Sprung zu einem Kapitel in einer anderen Seite (Hash-Symbol <span class="code">#</span>)<br />Bsp.: <span class="code">[[textgestaltung:spezial#&uuml;bersicht]]</span> (schwierig, da fremde Seite geparsed und auf Sprungziele gescannt werden muss)        </li>
+        <li>
+<span class="highlighted c2">Wikisyntax</span> INCLUDE        </li>
+        <li>
+<span class="highlighted c2">Wikisyntax</span> NEWPAGE-Makro f&uuml;r Export oder Print        </li>
+        <li>
+<span class="highlighted c2">Wikisyntax</span> nextpage, previouspage und weitere Navigationshilfen in Syntax einbauen        </li>
+        <li>
+<span class="highlighted c2">Wikisyntax</span> &lt;p&gt; um Textabschnitte legen &lt;/p&gt;        </li>
+        <li>
+<span class="highlighted c2">Wikisyntax</span> &lt;acronym&gt; einf&uuml;hren        </li>
+        <li>
+<span class="highlighted c2">Wikisyntax</span> Vorschau-Info bei hover &uuml;ber Fu&szlig;zeilen        </li>
+        <li>
+<span class="highlighted c2">Wikisyntax</span> Syntax &auml;ndern: Externe Links auch mit doppelter Klammerung und | f&uuml;r Parametertrennung (vereinheitlicht und copy/paste aus Dokuwiki besser m&ouml;glich)        </li>
+        <li>
+<span class="highlighted c2">Wikisyntax</span> Externe, interne, Sprung- und Admin-Links grafisch voneinander trennen        </li>
+        <li>
+<span class="highlighted c2">Wikisyntax</span> &Uuml;berlegen, ob noch andere Schreibweisen ge&auml;ndert werden sollen (bspw. Plugins und Variablen, Konstanten und Sektionen)        </li>
+        <li>
+<span class="highlighted c2">Wikisyntax</span> Funktion erstellen, die Interne Wikilinks zerlegt und als benanntes Array zur&uuml;ckgibt        </li>
+        <li>
+<span class="highlighted c2">Wikisyntax</span> <span class="emphasised">External Links</span> mit relativer Pfadangabe f&uuml;r <span class="code">localhost</span> erlauben        </li>
+        <li>
+<span class="highlighted c2">Wikisyntax</span> <span class="code">TextTextText((&gt;Beschreibung f&uuml;r Hover oder Click))</span> f&uuml;r Kurzbeschreibungen        </li>
+        <li>
+<span class="highlighted c2">Wikisyntax</span> Anchor-Sprungbefehle damit man zb. zu einem bestimmten Bild oder Text springen kann.        </li>
+        <li>
+<span class="highlighted c2">Wikisyntax</span> Fu&szlig;zeilen, die erst am Ende definiert werden, damit der Text in dem sie vorkommen nicht &quot;&uuml;berladen&quot; wird.        </li>
+        <li>
+<span class="highlighted c2">Wikisyntax</span>  <span class="code">&lt;code&gt;</span>-Segmente mit GeShi parsen        </li>
+        <li>
+<span class="highlighted c2">Wikisyntax</span> Boxen:        </li>
+        <ul><li>
+width (%, px, auto) Parameter in Boxen erlauben        </li>
+        <li>
+download-Box hinzuf&uuml;gen (dunkleres gr&uuml;n)        </li>
+        <li>
+float right oder left        </li>
+        <li>
+Boxen m&uuml;ssen allg. g&uuml;ltige Paramterliste erhalten, damit float, width, height, etc. angegeben werden kann in lexerconf einf&uuml;hren... <span class="code">boxparameter</span> oder &auml;hnliches        </li></ul>
+        <li>
+<span class="highlighted c2">Plugins</span> History        </li>
+        <li>
+<span class="highlighted c2">Plugins</span> Breadcrumb        </li>
+        <li>
+<span class="highlighted c2">Plugins</span> Submen&uuml;, Seitenmen&uuml;s, Pulldown-Men&uuml;s, ...        </li>
+        <li>
+<span class="highlighted c1">Dokumentation</span> Zeichen in der Sonderzeichentabelle nach Art/Typ (Mathe, Griechisch, Interpunktion, ...) sortieren, nicht nach Codierung        </li>
+        <li>
+<span class="highlighted c4">Editor</span> Einf&uuml;gen von Tabellen erleichtern (copy/paste), autom. <span class="code">|</span> oder <span class="code">^</span> einf&uuml;gen        </li>
+        </ul>
+<h2 id="header_"> Bugs </h2>        <ul>
+        </ul><ul><li>
+<span class="highlighted c0">Admin</span> Logout (<span class="underline">nur mit Tastenk&uuml;rzel</span>) vom Seiten&uuml;berblick aus f&uuml;hrt auf eine Seite <span class="code">undefined</span> ? (JS Fehler)        </li>
+        <li>
+<span class="highlighted c0">SECURITY</span> mit Historyback kann man eine bereits beendete Session neu setzen und sich damit ohne Passwort einloggen        </li>
+        <li>
+<span class="highlighted c0">Admin</span> URL-Parameter <span class="code">dialog</span> wird angezeigt, obwohl kein Dialog ge&ouml;ffnet wurde.         </li>
+        <ul><li>
+Bsp.: Login + Bearbeiten = F12 + F6 =&gt; zeigt Editor + Logindialog        </li>
+        <li>
+Bsp.: Seite anzeigen + Einstellungen + Bearbeiten = F10 + F6 (alle MODE-Tastenk&uuml;rzel ausschalten, wenn Dialog offen)        </li>
+        </ul></ul>
+<br /><div align="right"><span class="less_significant">Verarbeitet in 0,1921 Sek. | Dateiformat: UNIX</span></div>      </div>

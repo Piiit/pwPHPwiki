@@ -1,48 +1,48 @@
-<h1>Fehler im Wikitext erkannt</h1>Fehler in der Zeile .<pre style='white-space: pre-wrap'><span style='color: gray'>     1| &lt;border&gt;</span>
-<span style='color: gray'>     2| Sie sind hier: ~~TRACE~~</span>
-<span style='color: gray'>     3| &lt;lo&gt; | [[:dokumentation:todos|Todos anzeigen]]&lt;/lo&gt;</span>
-<span style='color: gray'>     4| &lt;/border&gt;</span>
-     5| = Plugins (beta)=
-     6| Alle Plugins werden mit ''~~Modulname:Funktion#Parameter~~'' aufgerufen.
-     7| //Parameterangaben sind optional.//
-     8| 
-     9| &lt;left&gt;
-    10| == Inhaltsverzeichnis ==
-    11| * Modulname: TOC
-    12| * Funktionen:
-    13|  # **wiki** -&gt; Inhaltsverzeichnis der aktuellen Seite \\ Keine Parameter
-    14| $$ ~~TOC:wiki~~
-    15| //siehe rechte obere Ecke//
-    16| 
-    17| == Template ==
-    18| * Modulname: style
-    19| * Funktionen: 
-    20|  # **header** -&gt; Kopfzeile ausgeben
-    21| &lt;/left&gt;
-    22| &lt;right&gt;
-    23| == Verzeichnisposition ==
-    24| * Modulname: WIKI
-    25| * Funktionen:
-    26|  # {{{
-    27| **trace** -&gt; Aktuelle Verzeichnisposition ausgeben 
-    28| 
-    29| Keine Parameter
-    30| $$ ~~wiki:trace~~
-    31| ~~wiki:trace~~
-    32| }}}
-    33| 
-    34| == Tokenliste ==
-    35| * Modulname: WIKI
-    36| * Funktionen:
-    37|  # {{{
-    38| **tokenlist** -&gt; gibt alle vorhandenen Tokens aus
-    39| 
-    40| Parameter:
-    41| * ''mode'': Modus je nach Kontext \\ MAIN -&gt; gibt alle tokens aus. \\ je nach Kontext werden gewisse Tokens verweigert. \\ Bsp.: Keine Tabellen innerhalb Tabellen...
-    42| $$ ~~wiki:tokenlist#Mode=MAIN#~~
-    43| ~~wiki:tokenlist#Mode=MAIN#~~
-    44| }}}
-    45| &lt;/right&gt;
-<span style='color: gray'>    46| \\</span>
-<span style='color: gray'>    47| :&gt;&gt; &lt;lo&gt;Verarbeitet in ~~TEXT:comma|{{PERFORMANCE}}~~ Sek. | Dateiformat: {{FILE:type}}&lt;/lo&gt;</span>
-</pre><i>Der graue Text zeigt die Kopf- und Fu&szlig;zeile des Dokumentes.</i>
+      <div id='imwiki'>
+<div class="section_border">
+Sie sind hier: <a href='?mode=cleared&id=index'>Home</a> &raquo; <a href='?mode=cleared&id=reise'>Reise</a> &raquo; Fotoalbum<span class="less_significant"> | <a href="?id=dokumentation:todos">Todos anzeigen</a></span></div><h1 id="header_"> Plugins (beta)</h1>
+Alle Plugins werden mit <span class="code"><span style='color: yellow'>[WARNUNG: PLUGIN 'modulname' nicht verf&uuml;gbar.]</span></span> aufgerufen.
+<i>Parameterangaben sind optional.</i><div class="section_left"><h2 id="header_"> Inhaltsverzeichnis </h2>        <ul>
+        </ul><ul><li>
+Modulname: TOC        </li>
+        <li>
+Funktionen:        </li>
+        <ol><li>
+<b>wiki</b> -&gt; Inhaltsverzeichnis der aktuellen Seite <br /> Keine Parameter<pre><div>~~TOC:wiki~~
+</div></pre>        </li>
+        </ol></ul>
+<i>siehe rechte obere Ecke</i><h2 id="header_"> Template </h2>        <ul>
+        </ul><ul><li>
+Modulname: style        </li>
+        <li>
+Funktionen:         </li>
+        <ol><li>
+<b>header</b> -&gt; Kopfzeile ausgeben        </li>
+        </ol></ul>
+</div><div class="section_right"><h2 id="header_"> Verzeichnisposition </h2>        <ul>
+        </ul><ul><li>
+Modulname: WIKI        </li>
+        <li>
+Funktionen:        </li>
+        <ol><li>
+<b>trace</b> -&gt; Aktuelle Verzeichnisposition ausgeben 
+
+Keine Parameter<pre><div>~~wiki:trace~~
+</div></pre><span style='color: yellow'>[WARNUNG: PLUGIN 'wiki' nicht verf&uuml;gbar.]</span>        </li>
+        </ol></ul>
+<h2 id="header_"> Tokenliste </h2>        <ul>
+        </ul><ul><li>
+Modulname: WIKI        </li>
+        <li>
+Funktionen:        </li>
+        <ol><li>
+<b>tokenlist</b> -&gt; gibt alle vorhandenen Tokens aus
+
+Parameter:        <ul>
+        </ul><ul><li>
+<span class="code">mode</span>: Modus je nach Kontext <br /> MAIN -&gt; gibt alle tokens aus. <br /> je nach Kontext werden gewisse Tokens verweigert. <br /> Bsp.: Keine Tabellen innerhalb Tabellen...<pre><div>~~wiki:tokenlist#Mode=MAIN#~~
+</div></pre>        </li>
+        </ul>
+<span style='color: yellow'>[WARNUNG: PLUGIN 'wiki' nicht verf&uuml;gbar.]</span>        </li>
+        
+</div><div class="clear"></div><br /><div align="right"><span class="less_significant">Verarbeitet in 0,0474 Sek. | Dateiformat: PC</span></div>      </div>

@@ -176,7 +176,7 @@ function pw_basename($fn, $ext = null) {
 }
 
 function pw_wiki_file2editor($data) {
-	pw_normalizeLE($data);
+	StringFormat::htmlIndentormalizeLE($data);
 	$data = pw_s2e($data);
 	return $data;
 }
@@ -336,25 +336,25 @@ function pw_wiki_getfulltitle($sep = "&raquo;", $showuser = true) {
 
 function html_header() {
 	global $MODE;
-	pw_ne ('<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">');
-	pw_ne ('<html>', START);
-	pw_ne ('<!-- HEADER start -->');
-	pw_ne ('<head>', START);
-	pw_ne ('<title>'.pw_wiki_getfulltitle().'</title>');
-	pw_ne ('<meta name="description" content="'.pw_wiki_getcfg('description').'">');
-	pw_ne ('<meta name="keywords" content="'.pw_wiki_getcfg('keywords').'">');
-	pw_ne ('<meta http-equiv="Content-Type" content="text/html" charset="utf-8">');
-	pw_ne ('<meta http-equiv="Content-Script-Type" content="text/javascript">');
-	pw_ne ('<link rel="shortcut icon" href="media/favicon.ico" type="image/ico" />');
-	pw_ne ('<link rel="stylesheet" type="text/css" media="screen" href="default.css">');
-	pw_ne ('<link rel="stylesheet" type="text/css" media="screen" href="admin.css">');
-	#pw_ne ('<script type="text/javascript" language="javascript" src="lib/js/scriptaculous/lib/prototype.js"></script>');
-	#pw_ne ('<script type="text/javascript" language="javascript" src="lib/js/scriptaculous/src/scriptaculous.js"></script>');
-	#pw_ne ('<script type="text/javascript" language="javascript" src="lib/js/pw_url.js"></script>');
-	#pw_ne ('<script type="text/javascript" language="javascript" src="lib/js/pw_array.js"></script>');
-	pw_ne ('<script type="text/javascript" language="javascript" src="lib/js/catchkeys.js"></script>'); // Editorkeys: catch TAB, insert Spaces
-	#pw_ne ('<script type="text/javascript" language="javascript" src="lib/js/shortcut.js"></script>');
-	#pw_ne ('<script type="text/javascript" language="javascript" src="lib/js/pw_ui.js"></script>');
+	StringFormat::htmlIndente ('<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">');
+	StringFormat::htmlIndente ('<html>', START);
+	StringFormat::htmlIndente ('<!-- HEADER start -->');
+	StringFormat::htmlIndente ('<head>', START);
+	StringFormat::htmlIndente ('<title>'.pw_wiki_getfulltitle().'</title>');
+	StringFormat::htmlIndente ('<meta name="description" content="'.pw_wiki_getcfg('description').'">');
+	StringFormat::htmlIndente ('<meta name="keywords" content="'.pw_wiki_getcfg('keywords').'">');
+	StringFormat::htmlIndente ('<meta http-equiv="Content-Type" content="text/html" charset="utf-8">');
+	StringFormat::htmlIndente ('<meta http-equiv="Content-Script-Type" content="text/javascript">');
+	StringFormat::htmlIndente ('<link rel="shortcut icon" href="media/favicon.ico" type="image/ico" />');
+	StringFormat::htmlIndente ('<link rel="stylesheet" type="text/css" media="screen" href="default.css">');
+	StringFormat::htmlIndente ('<link rel="stylesheet" type="text/css" media="screen" href="admin.css">');
+	#StringFormat::htmlIndente ('<script type="text/javascript" language="javascript" src="lib/js/scriptaculous/lib/prototype.js"></script>');
+	#StringFormat::htmlIndente ('<script type="text/javascript" language="javascript" src="lib/js/scriptaculous/src/scriptaculous.js"></script>');
+	#StringFormat::htmlIndente ('<script type="text/javascript" language="javascript" src="lib/js/pw_url.js"></script>');
+	#StringFormat::htmlIndente ('<script type="text/javascript" language="javascript" src="lib/js/pw_array.js"></script>');
+	StringFormat::htmlIndente ('<script type="text/javascript" language="javascript" src="lib/js/catchkeys.js"></script>'); // Editorkeys: catch TAB, insert Spaces
+	#StringFormat::htmlIndente ('<script type="text/javascript" language="javascript" src="lib/js/shortcut.js"></script>');
+	#StringFormat::htmlIndente ('<script type="text/javascript" language="javascript" src="lib/js/pw_ui.js"></script>');
 
 	echo "<script>function setfocus() {
 			var f = document.getElementsByTagName('input');
@@ -386,10 +386,10 @@ function html_header() {
 		pw_debug_init(true);
 	}
 
-	pw_ne ('</head>', END);
-	pw_ne ('<body onload="setfocus()">', START);
-	pw_ne ('<!-- HEADER end -->');
-	pw_ne ('<div id="INFO"></div>');
+	StringFormat::htmlIndente ('</head>', END);
+	StringFormat::htmlIndente ('<body onload="setfocus()">', START);
+	StringFormat::htmlIndente ('<!-- HEADER end -->');
+	StringFormat::htmlIndente ('<div id="INFO"></div>');
 }
 
 function html_footer($modal) {
@@ -402,10 +402,10 @@ function html_footer($modal) {
 		pw_ui_printDialogWrap();
 	}
 
-	pw_ne ('<!-- FOOTER start -->');
-	pw_ne ('</body>', END);
-	pw_ne ('</html>', END);
-	pw_ne ('<!-- FOOTER end -->');
+	StringFormat::htmlIndente ('<!-- FOOTER start -->');
+	StringFormat::htmlIndente ('</body>', END);
+	StringFormat::htmlIndente ('</html>', END);
+	StringFormat::htmlIndente ('<!-- FOOTER end -->');
 }
 
 /**

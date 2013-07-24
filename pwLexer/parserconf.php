@@ -70,7 +70,7 @@ function slist($node, $lexer) {
   $listtype = $data[1] == "#" ? '<ol>' : '<ul>';
   $GLOBALS['listitems'][] = $data[1];
   #$listtype = htmlentities($listtype);
-  return pw_n($listtype, START);
+  return StringFormat::htmlIndent($listtype, START);
 }
 
 function slistitem($node, $lexer) {
@@ -115,7 +115,7 @@ function slistitem($node, $lexer) {
 
   $o .= "<li>";
   #$o = htmlentities($o);
-  return pw_n($o, START);
+  return StringFormat::htmlIndent($o, START);
 }
 
 function elistitem($node, $lexer) {
@@ -140,7 +140,7 @@ function elistitem($node, $lexer) {
 
   }
   #$o = htmlentities($o);
-  return pw_n($o, END);
+  return StringFormat::htmlIndent($o, END);
 }
 
 function elist($node, $lexer) {
@@ -152,7 +152,7 @@ function elist($node, $lexer) {
     $o .= $listtype;
   }
   #$o = htmlentities($o);
-  return pw_n($o, END);
+  return StringFormat::htmlIndent($o, END);
 }
 
 function sbold() {

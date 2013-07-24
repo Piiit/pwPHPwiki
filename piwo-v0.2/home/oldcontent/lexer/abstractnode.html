@@ -1,70 +1,56 @@
-<h1>Fehler im Wikitext erkannt</h1>Fehler in der Zeile .<pre style='white-space: pre-wrap'><span style='color: gray'>     1| &lt;border&gt;</span>
-<span style='color: gray'>     2| Sie sind hier: ~~TRACE~~</span>
-<span style='color: gray'>     3| &lt;lo&gt; | [[:dokumentation:todos|Todos anzeigen]]&lt;/lo&gt;</span>
-<span style='color: gray'>     4| &lt;/border&gt;</span>
-     5| = Abstrakte Knoten erzeugen mit connectTo =
-     6| 
-     7| Synopsis: ''connectTo($name, $abstractnode)''
-     8| 
-     9| = Beispiel =
-    10| 
-    11| Alle ''tablerow''-Knoten werden in einem abstrakten Knoten namens ''table'' zusammengefasst.
-    12| $$ $lexer-&gt;connectTo(&quot;tablerow&quot;, &quot;table&quot;);
-    13| 
-    14| Alle ''multiline''-Knoten werden in einem abstrakten Knoten namens ''ml'' zusammengefasst.
-    15| $$ $lexer-&gt;connectTo(&quot;multiline&quot;, &quot;ml&quot;);
-    16| 
-    17| Falls ein Knoten gefunden wird, der nicht per ''connectTo''-Funktion mit einem offenen abstrakten Knoten verbunden werden darf,
-    18| wird dieser geschlossen.
-    19| 
-    20| == Folgender Code wird also... ==
-    21| $$ | {{{
-    22| $$ | x1 | x2 |
-    23| $$ | x3 | x4 |
-    24| $$ }}} **lala** {{{ hallo }}} {{{ hallo2 }}} |&quot;;
-    25| 
-    26| == ...zu diesem AST geparsed. ==
-    27| $$   #DOCUMENT[] (0){
-    28| $$     table[] (1){
-    29| $$       tablerow[] (2){
-    30| $$         tablecell[] (3){
-    31| $$           ml[] (4){
-    32| $$             multiline[] (5){
-    33| $$               table[] (6){
-    34| $$                 tablerow[] (7){
-    35| $$                   tablecell[] (8){
-    36| $$                     #TEXT (9) {' x1 '}
-    37| $$                   }
-    38| $$                   tablecell[] (10){
-    39| $$                     #TEXT (11) {' x2 '}
-    40| $$                   }
-    41| $$                 }
-    42| $$                 tablerow[] (12){
-    43| $$                   tablecell[] (13){
-    44| $$                     #TEXT (14) {' x3 '}
-    45| $$                   }
-    46| $$                   tablecell[] (15){
-    47| $$                     #TEXT (16) {' x4 '}
-    48| $$                   }
-    49| $$                 }
-    50| $$               }
-    51| $$             }
-    52| $$           }
-    53| $$           bold[] (17){
-    54| $$             #TEXT (18) {'lala'}
-    55| $$           }
-    56| $$           ml[] (19){
-    57| $$             multiline[] (20){
-    58| $$               #TEXT (21) {' hallo '}
-    59| $$             }
-    60| $$             multiline[] (22){
-    61| $$               #TEXT (23) {' hallo2 '}
-    62| $$             }
-    63| $$           }
-    64| $$         }
-    65| $$       }
-    66| $$     }
-    67| $$   }
-<span style='color: gray'>    68| \\</span>
-<span style='color: gray'>    69| :&gt;&gt; &lt;lo&gt;Verarbeitet in ~~TEXT:comma|{{PERFORMANCE}}~~ Sek. | Dateiformat: {{FILE:type}}&lt;/lo&gt;</span>
-</pre><i>Der graue Text zeigt die Kopf- und Fu&szlig;zeile des Dokumentes.</i>
+      <div id='imwiki'>
+<div class="section_border">
+Sie sind hier: <a href='?mode=cleared&id=index'>Home</a> &raquo; <a href='?mode=cleared&id=reise'>Reise</a> &raquo; Fotoalbum<span class="less_significant"> | <a href="?id=dokumentation:todos">Todos anzeigen</a></span></div><h1 id="header_"> Abstrakte Knoten erzeugen mit connectTo </h1>
+Synopsis: <span class="code">connectTo($name, $abstractnode)</span><h1 id="header_"> Beispiel </h1>
+Alle <span class="code">tablerow</span>-Knoten werden in einem abstrakten Knoten namens <span class="code">table</span> zusammengefasst.<pre><div>$lexer-&gt;connectTo(&quot;tablerow&quot;, &quot;table&quot;);
+</div></pre>
+Alle <span class="code">multiline</span>-Knoten werden in einem abstrakten Knoten namens <span class="code">ml</span> zusammengefasst.<pre><div>$lexer-&gt;connectTo(&quot;multiline&quot;, &quot;ml&quot;);
+</div></pre>
+Falls ein Knoten gefunden wird, der nicht per <span class="code">connectTo</span>-Funktion mit einem offenen abstrakten Knoten verbunden werden darf,
+wird dieser geschlossen.
+<h2 id="header_"> Folgender Code wird also... </h2><pre><div>| {{{
+| x1 | x2 |
+| x3 | x4 |
+}}} **lala** {{{ hallo }}} {{{ hallo2 }}} |&quot;;
+</div></pre><h2 id="header_"> ...zu diesem AST geparsed. </h2><pre><div>  #DOCUMENT[] (0){
+    table[] (1){
+      tablerow[] (2){
+        tablecell[] (3){
+          ml[] (4){
+            multiline[] (5){
+              table[] (6){
+                tablerow[] (7){
+                  tablecell[] (8){
+                    #TEXT (9) {' x1 '}
+                  }
+                  tablecell[] (10){
+                    #TEXT (11) {' x2 '}
+                  }
+                }
+                tablerow[] (12){
+                  tablecell[] (13){
+                    #TEXT (14) {' x3 '}
+                  }
+                  tablecell[] (15){
+                    #TEXT (16) {' x4 '}
+                  }
+                }
+              }
+            }
+          }
+          bold[] (17){
+            #TEXT (18) {'lala'}
+          }
+          ml[] (19){
+            multiline[] (20){
+              #TEXT (21) {' hallo '}
+            }
+            multiline[] (22){
+              #TEXT (23) {' hallo2 '}
+            }
+          }
+        }
+      }
+    }
+  }
+</div></pre><br /><div align="right"><span class="less_significant">Verarbeitet in 0,0672 Sek. | Dateiformat: PC</span></div>      </div>

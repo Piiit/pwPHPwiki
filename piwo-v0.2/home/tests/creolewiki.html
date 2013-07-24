@@ -1,142 +1,101 @@
-<h1>Fehler im Wikitext erkannt</h1>Fehler in der Zeile .<pre style='white-space: pre-wrap'><span style='color: gray'>     1| &lt;border&gt;</span>
-<span style='color: gray'>     2| Sie sind hier: ~~TRACE~~</span>
-<span style='color: gray'>     3| &lt;lo&gt; | [[:dokumentation:todos|Todos anzeigen]]&lt;/lo&gt;</span>
-<span style='color: gray'>     4| &lt;/border&gt;</span>
-     5| = Top-level heading (1)
-     6| == This a test for creole 0.1 (2)
-     7| === This is a Subheading (3)
-     8| ==== Subsub (4)
-     9| ===== Subsubsub (5)
-    10| 
-    11| The ending equal signs should not be displayed:
-    12| 
-    13| = Top-level heading (1) =
-    14| == This a test for creole 0.1 (2) ==
-    15| === This is a Subheading (3) ===
-    16| ==== Subsub (4) ====
-    17| ===== Subsubsub (5) =====
-    18| 
-    19| 
-    20| You can make things **bold** or //italic// or **//both//** or //**both**//.
-    21| 
-    22| Character formatting extends across line breaks: **bold,
-    23| this is still bold. This line deliberately does not end in star-star.
-    24| 
-    25| Not bold. Character formatting does not cross paragraph boundaries.
-    26| 
-    27| You can use [[internal links]] or [[http://www.wikicreole.org|external links]],
-    28| give the link a [[internal links|different]] name.
-    29| 
-    30| Here's another sentence: This wisdom is taken from [[Ward Cunningham's]]
-    31| [[http://www.c2.com/doc/wikisym/WikiSym2006.pdf|Presentation at the Wikisym 06]].
-    32| 
-    33| Here's a external link without a description: [[http://www.wikicreole.org]]
-    34| 
-    35| Be careful that italic links are rendered properly:  //[[http://my.book.example/|My Book Title]]// 
-    36| 
-    37| Free links without braces should be rendered as well, like http://www.wikicreole.org/ and http://www.wikicreole.org/users/~example. 
-    38| 
-    39| Creole1.0 specifies that http://bar and ftp://bar should not render italic,
-    40| something like foo://bar should render as italic.
-    41| 
-    42| You can use this to draw a line to separate the page:
-    43| ----
-    44| 
-    45| You can use lists, start it at the first column for now, please...
-    46| 
-    47| unnumbered lists are like
-    48| * item a
-    49| * item b
-    50| * **bold item c**
-    51| 
-    52| blank space is also permitted before lists like:
-    53|   *   item a
-    54|  * item b
-    55| * item c
-    56|  ** item c.a
-    57| 
-    58| or you can number them
-    59| # [[item 1]]
-    60| # item 2
-    61| # // italic item 3 //
-    62|     ## item 3.1
-    63|   ## item 3.2
-    64| 
-    65| up to five levels
-    66| * 1
-    67| ** 2
-    68| *** 3
-    69| **** 4
-    70| ***** 5
-    71| 
-    72| * You can have
-    73| multiline list items
-    74| * this is a second multiline
-    75| list item
-    76| 
-    77| You can use nowiki syntax if you would like do stuff like this:
-    78| 
-    79| ----
-    80| **Ausgeklammert**
-    81| %%
-    82| {{{
-    83| Guitar Chord C:
-    84| 
-    85| ||---|---|---|
-    86| ||-0-|---|---|
-    87| ||---|---|---|
-    88| ||---|-0-|---|
-    89| ||---|---|-0-|
-    90| ||---|---|---|
-    91| }}}
-    92| %%
-    93| **Ausgeklammert**
-    94| ----
-    95| 
-    96| You can also use it inline nowiki {{{ in a sentence }}} like this.
-    97| 
-    98| = Escapes =
-    99| Normal Link: http://wikicreole.org/ - now same link, but escaped: ~http://wikicreole.org/ 
-   100| 
-   101| Normal asterisks: ~**not bold~**
-   102| 
-   103| a tilde alone: ~
-   104| 
-   105| a tilde escapes itself: ~~xxx
-   106| 
-   107| === Creole 0.2 ===
-   108| 
-   109| This should be a flower with the ALT text &quot;this is a flower&quot; if your wiki supports ALT text on images:
-   110| 
-   111| {{Red-Flower.jpg|here is a red flower}}
-   112| 
-   113| === Creole 0.4 ===
-   114| 
-   115| Tables are done like this:
-   116| 
-   117| |=header col1|=header col2| 
-   118| |col1|col2| 
-   119| |you         |can         | 
-   120| |also        |align\\ it. | 
-   121| 
-   122| You can format an address by simply forcing linebreaks:
-   123| 
-   124| My contact dates:\\
-   125| Pone: xyz\\
-   126| Fax: +45\\
-   127| Mobile: abc
-   128| 
-   129| === Creole 0.5 ===
-   130| 
-   131| |= Header title               |= Another header title     |
-   132| | {{{ //not italic text// }}} | {{{ **not bold text** }}} |
-   133| | //italic text//             | **  bold text **          |
-   134| 
-   135| === Creole 1.0 ===
-   136| 
-   137| If interwiki links are setup in your wiki, this links to the WikiCreole page about Creole 1.0 test cases: [[WikiCreole:Creole1.0TestCases]].
-   138| 
-   139| 
-<span style='color: gray'>   140| \\</span>
-<span style='color: gray'>   141| :&gt;&gt; &lt;lo&gt;Verarbeitet in ~~TEXT:comma|{{PERFORMANCE}}~~ Sek. | Dateiformat: {{FILE:type}}&lt;/lo&gt;</span>
-</pre><i>Der graue Text zeigt die Kopf- und Fu&szlig;zeile des Dokumentes.</i>
+      <div id='imwiki'>
+<div class="section_border">
+Sie sind hier: <a href='?mode=cleared&id=index'>Home</a> &raquo; <a href='?mode=cleared&id=reise'>Reise</a> &raquo; Fotoalbum<span class="less_significant"> | <a href="?id=dokumentation:todos">Todos anzeigen</a></span></div>
+= Top-level heading (1)
+== This a test for creole 0.1 (2)
+=== This is a Subheading (3)
+==== Subsub (4)
+===== Subsubsub (5)
+
+The ending equal signs should not be displayed:
+<h1 id="header_"> Top-level heading (1) </h1><h2 id="header_"> This a test for creole 0.1 (2) </h2><h3 id="header_"> This is a Subheading (3) </h3><h4 id="header_"> Subsub (4) </h4><h5 id="header_"> Subsubsub (5) </h5>
+You can make things <b>bold</b> or <i>italic</i> or <b><i>both</i></b> or <i><b>both</b></i>.
+
+Character formatting extends across line breaks: <b>bold,
+this is still bold. This line deliberately does not end in star-star.
+
+Not bold. Character formatting does not cross paragraph boundaries.
+
+You can use <a href="?id=reise:internal+links&mode=editpage" class="pw_wiki_link_na">internal links</a> or <a href="?id=reise:http://www.wikicreole.org&mode=editpage" class="pw_wiki_link_na">external links</a>,
+give the link a <a href="?id=reise:internal+links&mode=editpage" class="pw_wiki_link_na">different</a> name.
+
+Here's another sentence: This wisdom is taken from <a href="?id=reise:Ward+Cunningham's&mode=editpage" class="pw_wiki_link_na">Ward Cunningham's</a><a href="?id=reise:http://www.c2.com/doc/wikisym/WikiSym2006.pdf&mode=editpage" class="pw_wiki_link_na">Presentation at the Wikisym 06</a>.
+
+Here's a external link without a description: <a href="?id=reise:http://www.wikicreole.org&mode=editpage" class="pw_wiki_link_na"></a>
+
+Be careful that italic links are rendered properly:  <i><a href="?id=reise:http://my.book.example/&mode=editpage" class="pw_wiki_link_na">My Book Title</a></i> 
+
+Free links without braces should be rendered as well, like <a target="_blank" href="http://www.wikicreole.org/">http://www.wikicreole.org/</a> and <a target="_blank" href="http://www.wikicreole.org/users/~example.">http://www.wikicreole.org/users/~example.</a> 
+
+Creole1.0 specifies that <a target="_blank" href="http://bar">http://bar</a> and <a target="_blank" href="ftp://bar">ftp://bar</a> should not render italic,
+something like <a target="_blank" href="foo://bar">foo://bar</a> should render as italic.
+
+You can use this to draw a line to separate the page:
+<small></small>
+
+You can use lists, start it at the first column for now, please...
+
+unnumbered lists are like
+* item a
+* item b
+* </b>bold item c<b>
+
+blank space is also permitted before lists like:
+  *   item a
+ * item b
+* item c
+ </b> item c.a
+
+or you can number them        <ol>
+        </ol><ol><li>
+<a href="?id=reise:item+1&mode=editpage" class="pw_wiki_link_na">item 1</a>        </li>
+        <li>
+item 2        </li>
+        <li>
+<i> italic item 3 </i>        </li>
+        </ol>
+
+    ## item 3.1
+  ## item 3.2
+
+up to five levels        <ul>
+        </ul><ul><li>
+1        </li>
+        </ul>
+<b> 2
+</b>* 3
+<b></b> 4
+<b></b>* 5
+        <ul>
+        </ul><ul><li>
+You can have        </li>
+        </ul>
+
+multiline list items        <ul>
+        </ul><ul><li>
+this is a second multiline        </li>
+        </ul>
+
+list item
+
+You can use nowiki syntax if you would like do stuff like this:
+<hr /><b>Ausgeklammert</b>
+{{{
+Guitar Chord C:
+
+||---|---|---|
+||-0-|---|---|
+||---|---|---|
+||---|-0-|---|
+||---|---|-0-|
+||---|---|---|
+}}}
+<b>Ausgeklammert</b><hr />
+You can also use it inline nowiki  in a sentence  like this.
+<h1 id="header_"> Escapes </h1>
+Normal Link: <a target="_blank" href="http://wikicreole.org/">http://wikicreole.org/</a> - now same link, but escaped: ~<a target="_blank" href="http://wikicreole.org/">http://wikicreole.org/</a>
+Normal asterisks: ~<b>not bold~</b>
+a tilde alone: ~
+
+a tilde escapes itself: <span style='color: yellow'>[WARNUNG: PLUGIN 'xxx' nicht verf&uuml;gbar.]</span>TEXT:comma|0.0647~~ Sek. | Dateiformat: UNIX&lt;/lo&gt;
+      </div>

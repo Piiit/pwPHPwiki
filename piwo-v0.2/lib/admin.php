@@ -1,13 +1,13 @@
 <?php//@TODO: frontend und backend trennen... UserInterface in separate Datei ablegen!if (!defined('INC_PATH')) {
 	define ('INC_PATH', realpath(dirname(__FILE__).'/../').'/');
 }
-require_once INC_PATH.'piwo-v0.2/lib/common.php';require_once INC_PATH.'pwTools/string/encoding.php';require_once INC_PATH.'piwo-v0.2/lib/pw_debug.php';function pw_wiki_showsource ($id) {  $filename = pw_wiki_path($id, ST_FULL);  $out = pw_n("<h1>Quelltext von <tt>$id</tt></h1>");  $out .= pw_n("<i>Sie sind nicht berechtigt diesen Quelltext zu bearbeiten.</i><br />");  if (file_exists($filename) and !isset($_POST['save'])) {    $data = file_get_contents($filename);    $data = pw_wiki_LE_unix($data);    $data = pw_wiki_file2editor($data);    $out .= pw_n("<br /><a href='?mode=cleared&id=$id'>&laquo; Zur&uuml;ck zur Seite</a>");    $out .= pw_n("<a style='float: right' href='?mode=showpages&id=$id'>Zum Seiten&uuml;berblick &raquo;</a><hr />");    $out .= pw_n("<textarea cols='80' rows='25' id='wikitxt' readonly='readonly' wrap='off'>$data</textarea>");    $out .= pw_n("<hr /><a href='?mode=cleared&id=$id'>&laquo; Zur&uuml;ck zur Seite</a>");    $out .= pw_n("<a style='float: right' href='?mode=showpages&id=$id'>Zum Seiten&uuml;berblick &raquo;</a>");    return $out;  }  // Leere Rückgabe, damit ein "notfound"-Fehler ausgelöst wird...  return;}
+require_once INC_PATH.'piwo-v0.2/lib/common.php';require_once INC_PATH.'pwTools/string/encoding.php';require_once INC_PATH.'piwo-v0.2/lib/pw_debug.php';function pw_wiki_showsource ($id) {  $filename = pw_wiki_path($id, ST_FULL);  $out = StringFormat::htmlIndent("<h1>Quelltext von <tt>$id</tt></h1>");  $out .= StringFormat::htmlIndent("<i>Sie sind nicht berechtigt diesen Quelltext zu bearbeiten.</i><br />");  if (file_exists($filename) and !isset($_POST['save'])) {    $data = file_get_contents($filename);    $data = pw_wiki_LE_unix($data);    $data = pw_wiki_file2editor($data);    $out .= StringFormat::htmlIndent("<br /><a href='?mode=cleared&id=$id'>&laquo; Zur&uuml;ck zur Seite</a>");    $out .= StringFormat::htmlIndent("<a style='float: right' href='?mode=showpages&id=$id'>Zum Seiten&uuml;berblick &raquo;</a><hr />");    $out .= StringFormat::htmlIndent("<textarea cols='80' rows='25' id='wikitxt' readonly='readonly' wrap='off'>$data</textarea>");    $out .= StringFormat::htmlIndent("<hr /><a href='?mode=cleared&id=$id'>&laquo; Zur&uuml;ck zur Seite</a>");    $out .= StringFormat::htmlIndent("<a style='float: right' href='?mode=showpages&id=$id'>Zum Seiten&uuml;berblick &raquo;</a>");    return $out;  }  // Leere Rückgabe, damit ein "notfound"-Fehler ausgelöst wird...  return;}
 function pw_wiki_editpage ($id) {
   #out(pw_wiki_isvalidid(pw_wiki_pg($id)));
   $data = "";  $ret = "";  if (!isset($_SESSION["pw_wiki"]["login"]["user"]))    return false;
   if (pw_wiki_isns($id))
     return;
-  $filename = pw_wiki_path($id, ST_FULL);  #out2(utf8_check($filename));  if (file_exists($filename) and !isset($_POST['save'])) {    $data = file_get_contents($filename);    $data = pw_wiki_LE_unix($data);    $filename = pw_s2e($filename);    $ret = "<tt>Datei '$filename' wurde geladen</tt>";  }  if (isset($_POST["save"])) {    $data = $_POST['wikitxt'];    $data = pw_stripslashes($data);    $data = pw_s2u($data);    $data = pw_wiki_LE_unix($data);    // @TODO: What is config?    $config = null;    $ret = pw_wiki_savepage ($id, $data, $config);  }  $data = pw_wiki_file2editor($data);  $id = pw_wiki_path2id($filename);  $OLDMODE = isset($_REQUEST['oldmode']) ? $_REQUEST['oldmode'] : "cleared";  $out = pw_n();  $out .= pw_n("<!-- EDITOR START -->", START);  $out .= pw_n("<form id='texteditor' name='texteditor' method='post' accept-charset='utf-8'>", START);  $out .= pw_n("<div id='editor_win' style='width: 100%; border: 0;'>", START);  $out .= pw_n("<button  value='save' name='save' id='save'>Speichern</button><a id='exiteditor' class='textinput' href='?id=$id&mode=$OLDMODE'>Abbrechen</a>");  $out .= pw_n("<span style='float: right'>$ret</span>");  $out .= pw_n("<label style='display: block; border: 0; padding: 0; margin: 0'>", START);  $out .= pw_n("<textarea cols='80' rows='25' name='wikitxt' id='wikitxt' wrap=off onkeydown='return catchTab(this,event)'>$data</textarea>");  $out .= pw_n("</label>", END);  $out .= pw_n("</div>", END);  $out .= pw_n("</form>", END);  $out .= pw_n("<!-- EDITOR END -->", END);  $out .= pw_n();  return $out;}
+  $filename = pw_wiki_path($id, ST_FULL);  #out2(utf8_check($filename));  if (file_exists($filename) and !isset($_POST['save'])) {    $data = file_get_contents($filename);    $data = pw_wiki_LE_unix($data);    $filename = pw_s2e($filename);    $ret = "<tt>Datei '$filename' wurde geladen</tt>";  }  if (isset($_POST["save"])) {    $data = $_POST['wikitxt'];    $data = pw_stripslashes($data);    $data = pw_s2u($data);    $data = pw_wiki_LE_unix($data);    // @TODO: What is config?    $config = null;    $ret = pw_wiki_savepage ($id, $data, $config);  }  $data = pw_wiki_file2editor($data);  $id = pw_wiki_path2id($filename);  $OLDMODE = isset($_REQUEST['oldmode']) ? $_REQUEST['oldmode'] : "cleared";  $out = StringFormat::htmlIndent();  $out .= StringFormat::htmlIndent("<!-- EDITOR START -->", START);  $out .= StringFormat::htmlIndent("<form id='texteditor' name='texteditor' method='post' accept-charset='utf-8'>", START);  $out .= StringFormat::htmlIndent("<div id='editor_win' style='width: 100%; border: 0;'>", START);  $out .= StringFormat::htmlIndent("<button  value='save' name='save' id='save'>Speichern</button><a id='exiteditor' class='textinput' href='?id=$id&mode=$OLDMODE'>Abbrechen</a>");  $out .= StringFormat::htmlIndent("<span style='float: right'>$ret</span>");  $out .= StringFormat::htmlIndent("<label style='display: block; border: 0; padding: 0; margin: 0'>", START);  $out .= StringFormat::htmlIndent("<textarea cols='80' rows='25' name='wikitxt' id='wikitxt' wrap=off onkeydown='return catchTab(this,event)'>$data</textarea>");  $out .= StringFormat::htmlIndent("</label>", END);  $out .= StringFormat::htmlIndent("</div>", END);  $out .= StringFormat::htmlIndent("</form>", END);  $out .= StringFormat::htmlIndent("<!-- EDITOR END -->", END);  $out .= StringFormat::htmlIndent();  return $out;}
 function pw_wiki_newpage ($id) {  if (!isset($_SESSION["pw_wiki"]["login"]["user"]))
     return false;
 
@@ -16,7 +16,7 @@ function pw_wiki_newpage ($id) {  if (!isset($_SESSION["pw_wiki"]["login"]["use
   $idurl = $id;
   $id = pw_s2e(utf8_rtrim(pw_url2u($id), ':').':');
 
-  $entries  = pw_n("<input type='hidden' name='mode' value='editpage' />");  $entries .= pw_n("<input type='hidden' name='oldmode' value='$MODE' />");  $entries .= pw_n("<input type='hidden' name='olddialog' value='newpage' />");  $entries .= pw_n("<label for='id'>ID:</label> <input type='text' class='textinput' name='id' id='id' value='$id' />");  $entries .= pw_n("<br /><hr /><tt><small>Namensr&auml;ume werden mit : voneinander getrennt!<br />Bsp.: Handbuch:Seite1<br />Falls die Seite schon existiert, wird sie zum Bearbeiten ge&ouml;ffnet.</small></tt>");
+  $entries  = StringFormat::htmlIndent("<input type='hidden' name='mode' value='editpage' />");  $entries .= StringFormat::htmlIndent("<input type='hidden' name='oldmode' value='$MODE' />");  $entries .= StringFormat::htmlIndent("<input type='hidden' name='olddialog' value='newpage' />");  $entries .= StringFormat::htmlIndent("<label for='id'>ID:</label> <input type='text' class='textinput' name='id' id='id' value='$id' />");  $entries .= StringFormat::htmlIndent("<br /><hr /><tt><small>Namensr&auml;ume werden mit : voneinander getrennt!<br />Bsp.: Handbuch:Seite1<br />Falls die Seite schon existiert, wird sie zum Bearbeiten ge&ouml;ffnet.</small></tt>");
   return pw_ui_getDialogQuestion("Neue Seite erstellen", $entries, "create", "OK", "id=$idurl&mode=$MODE", "get");
 
 }
@@ -32,7 +32,7 @@ function pw_wiki_config ($id) {  if (!isset($_SESSION["pw_wiki"]["login"]["user
   if (pw_wiki_getcfg('debug')) {    $debug_ch = " checked='checked' ";
   }
 
-  $entries = pw_n("<input type='hidden' name='oldmode' value='$MODE' />");  $entries .= pw_n("<label for='debug'>Debug-Modus:</label> <input type='checkbox' name='debug' id='debug'$debug_ch />");
+  $entries = StringFormat::htmlIndent("<input type='hidden' name='oldmode' value='$MODE' />");  $entries .= StringFormat::htmlIndent("<label for='debug'>Debug-Modus:</label> <input type='checkbox' name='debug' id='debug'$debug_ch />");
   return pw_ui_getDialogQuestion("Einstellungen", $entries, "config", "OK", "id=$id&mode=$MODE");
 
 }
@@ -87,7 +87,7 @@ function pw_wiki_rename ($id) {
     $newid = pw_wiki_path2id($targetfn);    return pw_ui_getDialogInfo("Umbenennen", $typetxt." wurde nach <tt>$targettext</tt> umbenannt.", "id=$newid&mode=$MODE");
   }
 
-  $entries  = pw_n("<input type='hidden' name='mode' value='editpage' />");  #$entries .= pw_n("<input type='hidden' name='id' value='$id' />");  $entries .= pw_n("<input type='hidden' name='oldmode' value='$MODE' />");  $entries .= pw_n("<input type='hidden' name='olddialog' value='rename' />");  $typetxt = $isns ? "Den Namensraum" : "Die Seite";  $entries .= pw_n($typetxt." <tt>$fntext</tt> umbenennen...<br />");  $entries .= pw_n("<input type='text' class='textinput' autocomplete='off' name='target' id='target' value='' />");
+  $entries  = StringFormat::htmlIndent("<input type='hidden' name='mode' value='editpage' />");  #$entries .= StringFormat::htmlIndent("<input type='hidden' name='id' value='$id' />");  $entries .= StringFormat::htmlIndent("<input type='hidden' name='oldmode' value='$MODE' />");  $entries .= StringFormat::htmlIndent("<input type='hidden' name='olddialog' value='rename' />");  $typetxt = $isns ? "Den Namensraum" : "Die Seite";  $entries .= StringFormat::htmlIndent($typetxt." <tt>$fntext</tt> umbenennen...<br />");  $entries .= StringFormat::htmlIndent("<input type='text' class='textinput' autocomplete='off' name='target' id='target' value='' />");
   return pw_ui_getDialogQuestion("Umbenennen", $entries, "rename", "Umbenennen", "id=$id&mode=$MODE");
 
 }
@@ -119,7 +119,7 @@ function pw_wiki_movepage ($id) {
 
     }
 
-    if (!isset($_POST["overwrite"])) {      $targetfn = $targetfn."/".$filename;      if (file_exists($targetfn) && !$isns) {        $entries = pw_n("<input type='hidden' name='target' value='$target' />");        return pw_ui_getDialogQuestion("Verschieben", $entries."Die Zieldatei '$targetid:$filename' existiert bereits.<br />Soll sie überschrieben werden?", "overwrite", "Ja", "id=$id&mode=$MODE");      }    } else {      $targetfn = pw_wiki_path($_POST['target'], ST_NOEXT)."/".$filename;      if ($fullfilename != $targetfn) {        if (!unlink($targetfn)) {          return pw_ui_getDialogInfo("Verschieben", "Fehler beim Verschieben der Datei<br />$fntext<br />nach<br />$targettext.<br />Die existierende Zieldatei konnte nicht gelöscht werden.", "id=$id&mode=$MODE");        }
+    if (!isset($_POST["overwrite"])) {      $targetfn = $targetfn."/".$filename;      if (file_exists($targetfn) && !$isns) {        $entries = StringFormat::htmlIndent("<input type='hidden' name='target' value='$target' />");        return pw_ui_getDialogQuestion("Verschieben", $entries."Die Zieldatei '$targetid:$filename' existiert bereits.<br />Soll sie überschrieben werden?", "overwrite", "Ja", "id=$id&mode=$MODE");      }    } else {      $targetfn = pw_wiki_path($_POST['target'], ST_NOEXT)."/".$filename;      if ($fullfilename != $targetfn) {        if (!unlink($targetfn)) {          return pw_ui_getDialogInfo("Verschieben", "Fehler beim Verschieben der Datei<br />$fntext<br />nach<br />$targettext.<br />Die existierende Zieldatei konnte nicht gelöscht werden.", "id=$id&mode=$MODE");        }
       }
 
       #return pw_ui_getDialogInfo("Verschieben", "OVERWRITE: $id; $t", "id=$id&mode=$MODE");
@@ -142,12 +142,12 @@ function pw_wiki_movepage ($id) {
 
   }
 
-  $entries  = pw_n("<input type='hidden' name='mode' value='editpage' />");  $entries .= pw_n("<input type='hidden' name='oldmode' value='$MODE' />");  $entries .= pw_n("<input type='hidden' name='olddialog' value='movepage' />");  if ($isns) {
-    $entries .= pw_n("Den Namensraum <tt>$fntext</tt> verschieben nach...<br />");
+  $entries  = StringFormat::htmlIndent("<input type='hidden' name='mode' value='editpage' />");  $entries .= StringFormat::htmlIndent("<input type='hidden' name='oldmode' value='$MODE' />");  $entries .= StringFormat::htmlIndent("<input type='hidden' name='olddialog' value='movepage' />");  if ($isns) {
+    $entries .= StringFormat::htmlIndent("Den Namensraum <tt>$fntext</tt> verschieben nach...<br />");
   } else {
-    $entries .= pw_n("Die Seite <tt>$fntext</tt> verschieben nach...<br />");  }
-  $entries .= pw_n("<!--label for='id'>Ziel:</label--> <input type='text' class='textinput' autocomplete='off' name='target' id='target' value='' />");  $entries .= pw_n("<br /><input type='checkbox' id='createfolder' name='createfolder' checked='checked' /><label for='createfolder'>Verzeichnisse anlegen</label>");  #$entries .= "<div id='autoc' name='autoc' style='position: relative; display: block; top: -20px; width: 500px; border: 3px solid gray'></div>";  #$entries .= "<script type=\"text/javascript\">document.observe('dom:loaded', function() {new Ajax.Autocompleter('target', 'autoc', 'bin/getfilelist.php')});</script>";  return pw_ui_getDialogQuestion("Verschieben", $entries, "move", "Verschieben", "id=$id&mode=$MODE");}
-function pw_wiki_delpage ($id) {  //@TODO: clean the code...  // --- rrmdir is not needed because pw_wiki_delnamespaces does the job!  global $MODE;  if (!isset($_SESSION["pw_wiki"]["login"]["user"]) or pw_wiki_ns($id) == "tpl:") {    return pw_ui_getDialogInfo("L&ouml;schen", "Sie sind nicht berechtigt diese Seite oder diesen Namensraum zu l&ouml;schen...", "id=$id&mode=$MODE");  }  $filename = pw_wiki_path($id, ST_FULL);  out($filename);  $fntext = pw_url2e($id);  if (isset($_POST["del"])) {    //@TODO: file_exists -> direxists??? redundant?    if (!file_exists($filename)) {      return pw_ui_getDialogInfo("L&ouml;schen", "Die Seite '$fntext' existiert nicht.", "id=$id&mode=$MODE");    }    if (is_file($filename)) {      if (!unlink($filename)) {        return pw_ui_getDialogInfo("L&ouml;schen", "Die Seite '$fntext' konnte nicht gel&ouml;scht werden.", "id=$id&mode=$MODE");      }      $dir = pw_wiki_path($id, ST_SHORT);      $oldid = $id;
+    $entries .= StringFormat::htmlIndent("Die Seite <tt>$fntext</tt> verschieben nach...<br />");  }
+  $entries .= StringFormat::htmlIndent("<!--label for='id'>Ziel:</label--> <input type='text' class='textinput' autocomplete='off' name='target' id='target' value='' />");  $entries .= StringFormat::htmlIndent("<br /><input type='checkbox' id='createfolder' name='createfolder' checked='checked' /><label for='createfolder'>Verzeichnisse anlegen</label>");  #$entries .= "<div id='autoc' name='autoc' style='position: relative; display: block; top: -20px; width: 500px; border: 3px solid gray'></div>";  #$entries .= "<script type=\"text/javascript\">document.observe('dom:loaded', function() {new Ajax.Autocompleter('target', 'autoc', 'bin/getfilelist.php')});</script>";  return pw_ui_getDialogQuestion("Verschieben", $entries, "move", "Verschieben", "id=$id&mode=$MODE");}
+function pw_wiki_delpage ($id) {  //@TODO: clean the code...  // --- rrmdir is not needed because pw_wiki_delnamespaces does the job!  global $MODE;  if (!isset($_SESSION["pw_wiki"]["login"]["user"]) or pw_wiki_ns($id) == "tpl:") {    return pw_ui_getDialogInfo("L&ouml;schen", "Sie sind nicht berechtigt diese Seite oder diesen Namensraum zu l&ouml;schen...", "id=$id&mode=$MODE");  }  $filename = pw_wiki_path($id, ST_FULL);  Debug::out($filename);  $fntext = pw_url2e($id);  if (isset($_POST["del"])) {    //@TODO: file_exists -> direxists??? redundant?    if (!file_exists($filename)) {      return pw_ui_getDialogInfo("L&ouml;schen", "Die Seite '$fntext' existiert nicht.", "id=$id&mode=$MODE");    }    if (is_file($filename)) {      if (!unlink($filename)) {        return pw_ui_getDialogInfo("L&ouml;schen", "Die Seite '$fntext' konnte nicht gel&ouml;scht werden.", "id=$id&mode=$MODE");      }      $dir = pw_wiki_path($id, ST_SHORT);      $oldid = $id;
       $id = pw_wiki_delnamespaces($dir);      $outdelns = "";
       if ($id == "") {
         $id = $oldid;
@@ -170,14 +170,14 @@ function pw_wiki_delnamespaces($dir) {
   $dirnames = explode("/", $dir);  #out($dirnames);  $dirar = array();  $dn = "";  foreach ($dirnames as $dirname) {    if ($dirname != "") {      $dn .= $dirname."/";      $dirar[] = $dn;    }  }  $dirar = array_reverse($dirar);  #out($dirar);  #die();  $dirtxt = "";  foreach ($dirar as $dirname) {    if (@rmdir($dirname)) {      $dirtxt = pw_wiki_path2id($dirname);      $dirtxt = pw_s2e($dirtxt);      #$dirtxt = pw_wiki_entities(pw_wiki_urldecode($dirtxt));      #$dirtxt = "Der Namensraum '$dirtxt' ist leer. Er wird entfernt.<hr />";    } else {      break;    }  }  return $dirtxt;}function pw_wiki_update_cache($forced = false) {	$storage = pw_wiki_getcfg('storage');	if (!is_dir($storage)) {
 		throw new Exception("Folder '$storage' does not exist!");
 	}		$files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($storage));
-	foreach($files as $filename) {		if(substr($filename, -4) == ".txt") {			$filename = str_replace("\\", "/", $filename);			try {				pw_wiki_create_cached_page(pw_wiki_path2id($filename), $forced);			} catch (Exception $e) {				echo "Exception: Skipping file '$filename'<br /> ";				echo $e;			}		}
+	foreach($files as $filename) {		if(substr($filename, -4) == ".txt") {			$filename = str_replace("\\", "/", $filename);			try {				pw_wiki_create_cached_page(pw_wiki_path2id($filename), $forced);			} catch (Exception $e) {				echo "<pre>Exception: Skipping file '$filename': $e\n</pre>";			}		}
 	}}function pw_wiki_create_cached_page($id, $forced = false) {	$filename = pw_wiki_path($id, ST_FULL);	$headerFilename = pw_wiki_path("tpl:header", ST_FULL);	$footerFilename = pw_wiki_path("tpl:footer", ST_FULL);	$cachedFilename = "home/".pw_wiki_path($id, NOEXT).".html";
 		if (!is_file($filename)) {		throw new Exception("File '$filename' does not exist!");
 	}	if (!is_file($headerFilename)) {
 		throw new Exception("File '$headerFilename' does not exist!");
 	}	if (!is_file($footerFilename)) {
 		throw new Exception("File '$footerFilename' does not exist!");
-	}		// If the cached file is still up-to-date do nothing! Except forced overwriting!	if(!$forced && is_file($cachedFilename)) {		$cachedMTime = filemtime($cachedFilename);		if($cachedMTime >= filemtime($filename) && $cachedMTime >= filemtime($headerFilename) && $cachedMTime >= filemtime($footerFilename)) {			$data = file_get_contents($cachedFilename);			if ($data === false) {				throw new Exception("Unable to read data file '$cachedFilename'!");			}			return $data;		}	}		$data = file_get_contents($filename);	if ($data === false) {
+	}		// If the cached file is still up-to-date do nothing! Except forced overwriting!	if(!$forced && is_file($cachedFilename)) {		$cachedMTime = filemtime($cachedFilename);		if($cachedMTime >= filemtime($filename) && $cachedMTime >= filemtime($headerFilename) && $cachedMTime >= filemtime($footerFilename)) {			$data = file_get_contents($cachedFilename);			if ($data === false) {				throw new Exception("Unable to read data file '$cachedFilename'!");			}			Debug::out($cachedFilename);			return $data;		}	}		$data = file_get_contents($filename);	if ($data === false) {
 		throw new Exception("Unable to read data file '$filename'!");
 	}
 	$headerData = file_get_contents($headerFilename);
@@ -188,16 +188,16 @@ function pw_wiki_delnamespaces($dir) {
 	if ($footerFilename === false) {
 		throw new Exception("Unable to read template file '$footerFilename'!");
 	}		FileTools::createFolderIfNotExist(dirname($cachedFilename));	$data = pw_wiki_LE_unix($data);	$headerData = pw_wiki_LE_unix($headerData);	$footerData = pw_wiki_LE_unix($footerData);
-	$data = $headerData."\n".$data."\n".$footerData;
+	$data = $headerData."\n".$data."\n".$footerData;	$data = pw_wiki_LE_unix($data);
 	
 	if (!utf8_check($data)) {
 		throw new Exception("File '$filename' is not an UTF8-encoded file!");
 	}
 	
-	$headerLineCount = count(explode("\n", $headerData));
-	$footerLineCount = count(explode("\n", $footerData));
+// 	$headerLineCount = count(explode("\n", $headerData));
+// 	$footerLineCount = count(explode("\n", $footerData));
 	
-	$out = lexerconf($data, $headerLineCount, $footerLineCount);		if (file_put_contents($cachedFilename, $out) === false) {		throw new Exception("Unable to write file '$cachedFilename'!");	}		return $out;	}
+// 	$out = lexerconf($data, $headerLineCount, $footerLineCount);	$out = parse($data);		if (file_put_contents($cachedFilename, $out) === false) {		throw new Exception("Unable to write file '$cachedFilename'!");	}		return $out;	}
 function pw_wiki_showcontent($id) {    return pw_wiki_create_cached_page($id);
 }
 

@@ -30,23 +30,23 @@ function pw_debug_init($start = true) {
 	if (!isset($_SESSION["pw_debug"]) or !$_SESSION["pw_debug"])
 		$_SESSION["pw_debug"] = true;
 
-	pw_ne ();
-	pw_ne ("<!-- PW_DEBUG_INIT --------------------------------------------------->");
-	pw_ne ("<script language='JavaScript' src='lib/js/pw_showhide.js'></script>");
-	pw_ne ("<style>", START);
-	pw_ne (".deblength {border: 1px solid black; background-color: black; color: white; padding-left: 3px; padding-right: 3px}");
-	pw_ne (".debtype {background-color: white; border: 1px solid black; color: black; padding-left: 3px; padding-right: 3px}");
-	pw_ne (".debpre {font-size: 12px; color: black; background-color: lightgray; margin: 0; padding-top: 6px}");
-	pw_ne (".debout {background-color: white; color: black; border: 1px solid black; padding-left: 2px; padding-right: 2px}");
-	pw_ne (".debspecial {background-color: gray; color: white; margin-left: 2px; margin-right: 2px}");
-	pw_ne (".debdiv {margin-left: 20px; margin-top: -20px; border: 1px solid black; background-color: lightgray; margin-bottom: 1px;}");
-	pw_ne (".debbutton {height: 20px; wi/dth: 10px; width: 20px}");
-	pw_ne (".debdiv ul {list-style-type: none}");
-	pw_ne (".debdiv ul#first {padding-left: 0px; margin-left: 0; margin-top: 3px; padding-bottom: 3px; margin-bottom:0}");
-	pw_ne (".debdiv ul li pre {background-color: lightgray; !important}");
-	pw_ne ("</style>", END);
-	pw_ne ("<!-- PW_DEBUG_INIT --------------------------------------------------->");
-	pw_ne ();
+	StringFormat::htmlIndente ();
+	StringFormat::htmlIndente ("<!-- PW_DEBUG_INIT --------------------------------------------------->");
+	StringFormat::htmlIndente ("<script language='JavaScript' src='lib/js/pw_showhide.js'></script>");
+	StringFormat::htmlIndente ("<style>", START);
+	StringFormat::htmlIndente (".deblength {border: 1px solid black; background-color: black; color: white; padding-left: 3px; padding-right: 3px}");
+	StringFormat::htmlIndente (".debtype {background-color: white; border: 1px solid black; color: black; padding-left: 3px; padding-right: 3px}");
+	StringFormat::htmlIndente (".debpre {font-size: 12px; color: black; background-color: lightgray; margin: 0; padding-top: 6px}");
+	StringFormat::htmlIndente (".debout {background-color: white; color: black; border: 1px solid black; padding-left: 2px; padding-right: 2px}");
+	StringFormat::htmlIndente (".debspecial {background-color: gray; color: white; margin-left: 2px; margin-right: 2px}");
+	StringFormat::htmlIndente (".debdiv {margin-left: 20px; margin-top: -20px; border: 1px solid black; background-color: lightgray; margin-bottom: 1px;}");
+	StringFormat::htmlIndente (".debbutton {height: 20px; wi/dth: 10px; width: 20px}");
+	StringFormat::htmlIndente (".debdiv ul {list-style-type: none}");
+	StringFormat::htmlIndente (".debdiv ul#first {padding-left: 0px; margin-left: 0; margin-top: 3px; padding-bottom: 3px; margin-bottom:0}");
+	StringFormat::htmlIndente (".debdiv ul li pre {background-color: lightgray; !important}");
+	StringFormat::htmlIndente ("</style>", END);
+	StringFormat::htmlIndente ("<!-- PW_DEBUG_INIT --------------------------------------------------->");
+	StringFormat::htmlIndente ();
 }
 
 function pw_debug_msg($text, $type, $info="Keine Informationen", $cat=NULL) {
