@@ -1,18 +1,18 @@
       <div id='imwiki'>
 <div class="section_border">
-Sie sind hier: <a href='?mode=cleared&id=index'>Home</a> &raquo; <a href='?mode=cleared&id=reise'>Reise</a> &raquo; Fotoalbum<span class="less_significant"> | <a href="?id=dokumentation:todos">Todos anzeigen</a></span></div><h1 id="header_"> Variablen und Konstanten </h1>
+Sie sind hier: <a href='?mode=cleared&id=index'>Home</a> &raquo; Index<span class="less_significant"> | <a href="?id=dokumentation:todos">Todos anzeigen</a></span></div><h1 id="header_1"> Variablen und Konstanten </h1>
 Alle Variablen und Konstanten werden in zwei geschwungene Klammern eingeschlossen. <br />
-Syntax: <span class="code">{{VARIABLENAME}}</span><h2 id="header_"> Datum und Zeit </h2><pre><div>{{DAYNAME}}, am {{DAY}}. {{MONTHNAME}} {{YEAR}}. Monat in Zahlen: {{MONTH}}.
-</div></pre>Mittwoch, am 24. Juli 2013. Monat in Zahlen: 07.
+Syntax: <span class="code">{{VARIABLENAME}}</span><h2 id="header_1.1"> Datum und Zeit </h2><pre><div>{{DAYNAME}}, am {{DAY}}. {{MONTHNAME}} {{YEAR}}. Monat in Zahlen: {{MONTH}}.
+</div></pre>Donnerstag, am 25. Juli 2013. Monat in Zahlen: 07.
 <pre><div>Die aktuelle Zeit ist {{TIME}}.
 </div></pre>
-Die aktuelle Zeit ist 07:25.
+Die aktuelle Zeit ist 07:29.
 <pre><div>Das aktuelle Datum ist {{DATE}}.
 </div></pre>
-Die aktuelle Datum ist 24.07.2013.
+Die aktuelle Datum ist 25.07.2013.
 <b>TODO</b>: Default-Dateformat bestimmen und konfigurierbar machen!
-<h2 id="header_"> Wikivariablen </h2><h3 id="header_"> BUILD-IN </h3>
-Eingebaute Variablen.<div class="tablediv"><table><tr><th> Variable 	</th><th> Ausgabe 					</th><th colspan="3"> Beschreibung 					  			</th></tr><tr><td> ID	   	</td></td><td> Die aktuelle Seite hei&szlig;t &quot;fotoalbum&quot;. 	</td></td><td colspan="3"> Gibt den Namen (ID) der aktuellen Wikiseite aus 			</td></td></td></tr><tr><td> NS	   	</td></td><td> Sie liegt unter &quot;reise&quot;.			</td></td><td colspan="3"> Gibt den Namespace der aktuellen Seite aus    				</td></td></td></tr><tr><td> FULLID   	</td></td><td> Ihr voller Namen lautet &quot;reise:fotoalbum&quot;.	</td></td><td colspan="3"> Die volle ID (&uuml;ber eine solche ID identifiziert das CMS die Datei)	</td></td></td></tr><tr><td> COUNTSUBS	</td></td><td> Untergeordnete Seiten: 1.	</td></td><td colspan="3"> Die Anzahl der untergeordneten Seiten	<br /> <small>(Bsp.: Siehe Startseite des Manuals -&gt; Anzahl der Artikel)</small></td></td></td></tr></table></div><div class="section_info"><b>TODO</b>
+<h2 id="header_1.2"> Wikivariablen </h2><h3 id="header_1.2.1"> BUILD-IN </h3>
+Eingebaute Variablen.<div class="tablediv"><table><tr><th> Variable 	</th><th> Ausgabe 					</th><th colspan="3"> Beschreibung 					  			</th></tr><tr><td> ID	   	</td></td><td> Die aktuelle Seite hei&szlig;t &quot;index&quot;. 	</td></td><td colspan="3"> Gibt den Namen (ID) der aktuellen Wikiseite aus 			</td></td></td></tr><tr><td> NS	   	</td></td><td> Sie liegt unter &quot;&quot;.			</td></td><td colspan="3"> Gibt den Namespace der aktuellen Seite aus    				</td></td></td></tr><tr><td> FULLID   	</td></td><td> Ihr voller Namen lautet &quot;index&quot;.	</td></td><td colspan="3"> Die volle ID (&uuml;ber eine solche ID identifiziert das CMS die Datei)	</td></td></td></tr><tr><td> COUNTSUBS	</td></td><td> Untergeordnete Seiten: 9.	</td></td><td colspan="3"> Die Anzahl der untergeordneten Seiten	<br /> <small>(Bsp.: Siehe Startseite des Manuals -&gt; Anzahl der Artikel)</small></td></td></td></tr></table></div><div class="section_info"><b>TODO</b>
 Weitere Variablen/Bereiche: 
 
 * MAINPAGE: falls mehr als eine Seite auf dem Server liegt. Bsp.: hoferhof und pitizWORLD... <br /> Wird &uuml;ber die URL festgelegt: Separate media, conf, cont, user, ...
@@ -21,7 +21,7 @@ Weitere Variablen/Bereiche:
 * NS: CSV-Manual -&gt; BUGS...<br /> Wird &uuml;ber die Dateistruktur festgelegt...
 * ID: CSV-Manual -&gt; BUGS -&gt; CO0001 <br /> Wird &uuml;ber die Dateistruktur festgelegt...
 :!: Somit gibt es eine Ordnertiefe von 5.
-</div><h3 id="header_"> FREI DEFINIERBAR </h3>
+</div><h3 id="header_1.2.2"> FREI DEFINIERBAR </h3>
 Variablen k&ouml;nnen auch frei definiert werden. Es gibt 2 Arten von Definitionen:        <ol>
         </ol><ol><li>
 <b>LOKAL</b>: innerhalb der aktuellen Datei <br /> Syntax: <br /> <span class="code">!! VARIABLENAME = WERT</span>        </li>
@@ -31,4 +31,4 @@ Variablen k&ouml;nnen auch frei definiert werden. Es gibt 2 Arten von Definition
 <span class="underline"><b><span class="big">Beispiele:</span></b></span><br /><pre><div>!! Zahl = 1000
 Die Zahl lautet: {{Zahl}}
 </div></pre>
-Die Zahl lautet: 1000<br /><div align="right"><span class="less_significant">Verarbeitet in 0,0587 Sek. | Dateiformat: PC</span></div>      </div>
+Die Zahl lautet: 1000<br /><div align="right"><span class="less_significant">Verarbeitet in 0,0579 Sek. | Dateiformat: PC</span></div>      </div>

@@ -1,6 +1,6 @@
       <div id='imwiki'>
 <div class="section_border">
-Sie sind hier: <a href='?mode=cleared&id=index'>Home</a> &raquo; <a href='?mode=cleared&id=reise'>Reise</a> &raquo; Fotoalbum<span class="less_significant"> | <a href="?id=dokumentation:todos">Todos anzeigen</a></span></div><div class="section_info">
+Sie sind hier: <a href='?mode=cleared&id=index'>Home</a> &raquo; Index<span class="less_significant"> | <a href="?id=dokumentation:todos">Todos anzeigen</a></span></div><div class="section_info">
 Zur Zeit ist ein neuer Lexer in Arbeit, um folgende Aufgaben zu l&ouml;sen:
 * Erkennung der verschiedenen Sektionen mit Parent/Child-Struktur (DOM)
 * Berechtigungen innerhalb der Sektionen werden erkannt.
@@ -9,7 +9,7 @@ Zur Zeit ist ein neuer Lexer in Arbeit, um folgende Aufgaben zu l&ouml;sen:
 * BACKUP/RESTORE-Funktion f&uuml;r gewisse Bereiche, wie Kommentare etc.
 
 F&uuml;r mehr Details siehe:
-<span class="big"><a href="?id=reise:lexer#neuer+lexer&mode=editpage" class="pw_wiki_link_na">lexer#Neuer Lexer</a></span></div><h1 id="header_"> Modi </h1>        <ul>
+<span class="big"><a href="?id=lexer#neuer+lexer&mode=editpage" class="pw_wiki_link_na">lexer#Neuer Lexer</a></span></div><h1 id="header_1"> Modi </h1>        <ul>
         </ul><ul><li>
 MAIN: Hauptmodus        </li>
         <li>
@@ -21,7 +21,7 @@ INCLUDE: Externe Daten einbinden        </li>
         <li>
 SECTION: Sektionen k&ouml;nnen externe Parser aufrufen oder als CSS-Bereiche (div) angegeben werden        </li>
         </ul>
-<h1 id="header_"> MAIN: Hauptmodus </h1><h2 id="header_"> Tokens </h2><span style='color: yellow'>[WARNUNG: PLUGIN 'wiki' nicht verf&uuml;gbar.]</span><h2 id="header_"> Array: Strukturierung </h2><div class="section_left"><pre><div>WIKIARRAY
+<h1 id="header_2"> MAIN: Hauptmodus </h1><h2 id="header_2.1"> Tokens </h2><span style='color: yellow'>[WARNUNG: PLUGIN 'wiki' nicht verf&uuml;gbar.]</span><h2 id="header_2.2"> Array: Strukturierung </h2><div class="section_left"><pre><div>WIKIARRAY
 |- namespace   (string)
 |- pagename    (string)
 |- fullid      (string) &quot;namespace:pagename&quot;
@@ -34,7 +34,7 @@ SECTION: Sektionen k&ouml;nnen externe Parser aufrufen oder als CSS-Bereiche (di
  |- type     (string) (siehe Tokens)
  |- [cont    (array|string)]
  |- [...und typspezifische Bereiche...]
-</div></pre></div><div class="clear"></div><h3 id="header_"> Einzeilige Tokens mit Inhalt </h3>
+</div></pre></div><div class="clear"></div><h3 id="header_2.2.1"> Einzeilige Tokens mit Inhalt </h3>
 Hier gibt es nur das HAUPTLEVEL.<hr />        <ul>
         </ul><ul><li>
 <b>TITLE</b><pre><div>|- type    (string)   &quot;title&quot;
@@ -51,7 +51,7 @@ Hier gibt es nur das HAUPTLEVEL.<hr />        <ul>
 |- parameters (array)    (entweder mit Parametername NAME=WERT oder nur Wert &lt;Index&gt;=WERT)
 </div></pre>        </li>
         </ul>
-<h3 id="header_"> Einzeilige Tokens ohne Inhalt </h3>
+<h3 id="header_2.2.2"> Einzeilige Tokens ohne Inhalt </h3>
 Hier gibt es nur das HAUPTLEVEL.<hr />        <ul>
         </ul><ul><li>
 <b>INCLUDE</b><pre><div>|- type    (string) &quot;include&quot;
@@ -70,4 +70,4 @@ Hier gibt es nur das HAUPTLEVEL.<hr />        <ul>
 |- section (string) &quot;sektion1|sektion2|sektion3|...&quot;
 </div></pre>        </li>
         </ul>
-<br /><div align="right"><span class="less_significant">Verarbeitet in 0,0631 Sek. | Dateiformat: PC</span></div>      </div>
+<br /><div align="right"><span class="less_significant">Verarbeitet in 0,0715 Sek. | Dateiformat: PC</span></div>      </div>

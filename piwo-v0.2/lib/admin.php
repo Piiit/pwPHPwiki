@@ -200,10 +200,7 @@ function pw_wiki_delnamespaces($dir) {
 		throw new Exception("File '$filename' is not an UTF8-encoded file!");
 	}
 	
-// 	$headerLineCount = count(explode("\n", $headerData));
-// 	$footerLineCount = count(explode("\n", $footerData));
-	
-// 	$out = lexerconf($data, $headerLineCount, $footerLineCount);	$out = parse($data);		FileTools::createFolderIfNotExist(dirname($cachedFilename));
+	$out = parse($data);		FileTools::createFolderIfNotExist(dirname($cachedFilename));
 	if (file_put_contents($cachedFilename, $out) === false) {		throw new Exception("Unable to write file '$cachedFilename'!");	}		return $out;}function pw_wiki_get_parsed_file($id) {		$filename = pw_wiki_path($id, ST_FULL);
 	$headerFilename = pw_wiki_path("tpl:header", ST_FULL);
 	$footerFilename = pw_wiki_path("tpl:footer", ST_FULL);

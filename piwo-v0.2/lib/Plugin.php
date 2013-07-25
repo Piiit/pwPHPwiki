@@ -14,6 +14,13 @@ abstract class Plugin {
 		
 	}
 	
+	public function registerMethod($id, $name) {
+		
+	}
+	
+	public function callMethod($id) {
+		
+	}
 }
 
 ?>

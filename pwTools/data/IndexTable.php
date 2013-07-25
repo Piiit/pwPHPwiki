@@ -1,12 +1,14 @@
 <?php
 
+//TODO Dynamic length of levels, not limited to 5!
+
 if (!defined('INC_PATH')) {
 	define ('INC_PATH', realpath(dirname(__FILE__).'/../').'/');
 }
 require_once INC_PATH.'pwTools/string/StringTools.php';
 require_once INC_PATH.'pwTools/data/IndexItem.php';
 
-//TODO Dynamic length of levels, not limited to 5! 
+
 class IndexTable {
 	
 	private $_cont;
@@ -21,7 +23,7 @@ class IndexTable {
 	
 	public function add($level, $text) {
 		
-		if ($this->_lastlevel > $level) {
+		if ($this->_lastlevel < $level) {
 			$this->_levels[$level+1] = 0;
 			$this->_levels[$level+2] = 0;
 			$this->_levels[$level+3] = 0;
@@ -33,6 +35,8 @@ class IndexTable {
 		$l = $this->_levels;
 		$id = StringTools::rightTrim("$l[1].$l[2].$l[3].$l[4].$l[5]", ".0");
 		$item = new IndexItem($id, $level, $text);
+		
+		$this->_lastlevel = $this->_level;
 		
 		$this->_cont[] = $item;
 	}
@@ -56,11 +60,10 @@ class IndexTable {
         return $this->_cont[$index];
     }
 	
-	
 	public function getByIdOrText($idOrText) {
-		$idOrText = utf8_strtolower(pw_s2u(utf8_trim($idOrText)));
+		$idOrText = utf8_strtolower(utf8_trim(pw_s2u($idOrText)));
 		foreach ($this->_cont as $item) {
-			$text = pw_s2e(utf8_strtolower(pw_s2u(trim($item->getText()))));
+			$text = pw_s2e(utf8_strtolower(utf8_trim(pw_s2u($item->getText()))));
 			if ($text == $idOrText || $item->getId() == $idOrText) {
 				return $item;
 			}

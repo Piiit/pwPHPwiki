@@ -1,12 +1,12 @@
       <div id='imwiki'>
 <div class="section_border">
-Sie sind hier: <a href='?mode=cleared&id=index'>Home</a> &raquo; <a href='?mode=cleared&id=reise'>Reise</a> &raquo; Fotoalbum<span class="less_significant"> | <a href="?id=dokumentation:todos">Todos anzeigen</a></span></div><div class="section_warning">
+Sie sind hier: <a href='?mode=cleared&id=index'>Home</a> &raquo; Index<span class="less_significant"> | <a href="?id=dokumentation:todos">Todos anzeigen</a></span></div><div class="section_warning">
 Veraltet, wird seit Version 0.4 nicht mehr verwendet.
-</div><h1 id="header_"> Section-Types </h1><h2 id="header_"> Neue Sektionstypen definieren </h2>
-Alle Sektionen, die nicht definiert und erlaubt sind (<a href="#" class="pw_wiki_link_na">config-datei</a>) werden je nach Einstellung entweder ignoriert oder 
+</div><h1 id="header_1"> Section-Types </h1><h2 id="header_1.1"> Neue Sektionstypen definieren </h2>
+Alle Sektionen, die nicht definiert und erlaubt sind (<a href="#header_1.2.2">Config-Datei</a>) werden je nach Einstellung entweder ignoriert oder 
 per default als <br /> <span class="code">&lt;div class='sectionname'&gt;[...]&lt;/div&gt;</span> geparst. Falls <span class="code">strict</span> eingestellt wird,
 wird ein Fehler ausgegeben und der Parser wird beenden.
-<h2 id="header_"> Typische Fehler </h2><h3 id="header_"> Tag im Tag </h3>
+<h2 id="header_1.2"> Typische Fehler </h2><h3 id="header_1.2.1"> Tag im Tag </h3>
 Der erste auftretende Closetag wird akzeptiert! <br />
 Beispiel: code-Tag ist vom Typ <span class="code">BLOCKED</span><pre><div>&lt;code&gt;
  &lt;tag1&gt; &lt;code&gt; $id=3; &lt;/code&gt;
@@ -15,12 +15,12 @@ Beispiel: code-Tag ist vom Typ <span class="code">BLOCKED</span><pre><div>&lt;co
 Der Lexer startet mit dem ersten <span class="code">code</span>-Tag, setzt den Status auf <span class="code">BLOCKED</span> und ignoriert alle weiteren Tags, 
 bis er in der 2. Zeile auf <span class="code">&lt;/code&gt;</span> st&ouml;&szlig;t und den Code-Block als beendet annimmt.
 Danach findet er einen schlie&szlig;enden Code-Tag (<span class="code">&lt;/code&gt;</span>), der aber nie ge&ouml;ffnet wurde -&gt; FEHLER! Lexer wird beendet.
-<h3 id="header_"> Config-Datei </h3>
+<h3 id="header_1.2.2"> Config-Datei </h3>
 :todo:
-<h2 id="header_"> Erkl&auml;rung am Beispiel </h2><pre><div>&lt;code&gt;
+<h2 id="header_1.3"> Erkl&auml;rung am Beispiel </h2><pre><div>&lt;code&gt;
   &lt;blabla&gt;
 &lt;/code&gt;
 </div></pre>
 Falls <span class="code">code</span> auf <span class="code">BLOCKED</span> gesetzt wurde, wird der Inhalt nicht geparst: Alle Sektionen werden ignoriert und als Plaintext ausgegeben.
 Dieser Plaintext kann dann &uuml;ber CSS formatiert werden.
-<h2 id="header_"> Parameterliste </h2><div class="tablediv"><table><tr><th> Status </th><th> Parametername </th><th> Beschreibung </th><th> Code </th><th colspan="3"> Parseroutput </th></tr><tr><td> :ok:   </td></td><td> <span class="code">NORMAL</span>  </td></td><td> Normal geparsed (Default) </td></td><td>  </td></td><td colspan="3">  </td></td></td></tr><tr><td> :todo: </td></td><td> <span class="code">BLOCKED</span> </td></td><td> nur Sonderzeichen (htmlentities und utf8-Konvertierung), wie <span class="code">nowiki</span> </td></td><td>  </td></td><td colspan="3">  </td></td></td></tr><tr><td> :todo: </td></td><td> <span class="code">REPLACE</span> </td></td><td> Wikiparser l&auml;uft &uuml;ber diese Sektion, einige Standardfunktionen werden aber anders verarbeitet... <br /> Bsp. Eine dynamische Todo-Liste <br /> <span class="code">&lt;todo file=&quot;todos.pwcsv&quot;&gt;* Das muss ich machen...&lt;/todo&gt;</span> </td></td><td>  </td></td><td colspan="3">  </td></td></td></tr><tr><td> :todo: </td></td><td> <span class="code">PLUGIN</span>  </td></td><td> Komplett erhalten, wird sp&auml;ter an PLUGIN-Parser &uuml;bergeben <span class="code">&lt;math&gt;</span> </td></td><td>  </td></td><td colspan="3">  </td></td></td></tr><tr><td> :todo: </td></td><td> <span class="code">CONTROL</span> </td></td><td> Kontrollstrukturen, wie z.B. <br /> <span class="code">&lt;on_include&gt;Diese Seite wurde mit include eingebunden.&lt;/on_include&gt;</span> </td></td><td>  </td></td><td colspan="3">  </td></td></td></tr></table></div><br /><div align="right"><span class="less_significant">Verarbeitet in 0,0989 Sek. | Dateiformat: PC</span></div>      </div>
+<h2 id="header_1.4"> Parameterliste </h2><div class="tablediv"><table><tr><th> Status </th><th> Parametername </th><th> Beschreibung </th><th> Code </th><th colspan="3"> Parseroutput </th></tr><tr><td> :ok:   </td></td><td> <span class="code">NORMAL</span>  </td></td><td> Normal geparsed (Default) </td></td><td>  </td></td><td colspan="3">  </td></td></td></tr><tr><td> :todo: </td></td><td> <span class="code">BLOCKED</span> </td></td><td> nur Sonderzeichen (htmlentities und utf8-Konvertierung), wie <span class="code">nowiki</span> </td></td><td>  </td></td><td colspan="3">  </td></td></td></tr><tr><td> :todo: </td></td><td> <span class="code">REPLACE</span> </td></td><td> Wikiparser l&auml;uft &uuml;ber diese Sektion, einige Standardfunktionen werden aber anders verarbeitet... <br /> Bsp. Eine dynamische Todo-Liste <br /> <span class="code">&lt;todo file=&quot;todos.pwcsv&quot;&gt;* Das muss ich machen...&lt;/todo&gt;</span> </td></td><td>  </td></td><td colspan="3">  </td></td></td></tr><tr><td> :todo: </td></td><td> <span class="code">PLUGIN</span>  </td></td><td> Komplett erhalten, wird sp&auml;ter an PLUGIN-Parser &uuml;bergeben <span class="code">&lt;math&gt;</span> </td></td><td>  </td></td><td colspan="3">  </td></td></td></tr><tr><td> :todo: </td></td><td> <span class="code">CONTROL</span> </td></td><td> Kontrollstrukturen, wie z.B. <br /> <span class="code">&lt;on_include&gt;Diese Seite wurde mit include eingebunden.&lt;/on_include&gt;</span> </td></td><td>  </td></td><td colspan="3">  </td></td></td></tr></table></div><br /><div align="right"><span class="less_significant">Verarbeitet in 0,0713 Sek. | Dateiformat: PC</span></div>      </div>

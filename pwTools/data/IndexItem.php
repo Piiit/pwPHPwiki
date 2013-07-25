@@ -24,7 +24,7 @@ class IndexItem {
 	}
 	
 	public function __toString() {
-		return $this->_id.":".$this->_level.":".$this->_text;
+		return "[IndexItem: id=".$this->_id."; level=".$this->_level."; text=".$this->_text."]";
 	}
 
 }

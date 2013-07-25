@@ -1,14 +1,14 @@
       <div id='imwiki'>
 <div class="section_border">
-Sie sind hier: <a href='?mode=cleared&id=index'>Home</a> &raquo; <a href='?mode=cleared&id=reise'>Reise</a> &raquo; Fotoalbum<span class="less_significant"> | <a href="?id=dokumentation:todos">Todos anzeigen</a></span></div><h1 id="header_"> Inhalt </h1><ul><li><a href='?id=reise::fotoalbum'>Fotoalbum</a></li></ul>
+Sie sind hier: <a href='?mode=cleared&id=index'>Home</a> &raquo; Index<span class="less_significant"> | <a href="?id=dokumentation:todos">Todos anzeigen</a></span></div><h1 id="header_1"> Inhalt </h1><ul><li><a href='?id=dokumentation'>Dokumentation</a></li><li><a href='?id=index'>Index</a></li><li><a href='?id=index2'>Index2</a></li><li><a href='?id=index3'>Index3</a></li><li><a href='?id=manual'>Manual</a></li><li><a href='?id=oldcontent'>Oldcontent</a></li><li><a href='?id=start'>Start</a></li><li><a href='?id=tests'>Tests</a></li><li><a href='?id=tpl'>Tpl</a></li></ul>
 = Changelog &amp; Todos = 
-<h2 id="header_"> Wunschliste </h2>        <ul>
+<h2 id="header_1.1"> Wunschliste </h2>        <ul>
         </ul><ul><li>
 Tag Encapsulation throws exception -&gt; Fehlercodes und Zeile (LOGS!)        </li>
         <li>
 Kommentare im Code &amp; autom. Manual schreiben -&gt; phpDoc???        </li>
         </ul>
-<h2 id="header_"> Lexer 0.44 (future) </h2>        <ul>
+<h2 id="header_1.2"> Lexer 0.44 (future) </h2>        <ul>
         </ul><ul><li>
 Neues Feature: Mapping von Variablen <br /> Bsp: <span class="code">a = 3</span> =&gt; <span class="code">a</span> darf nur einmal gespeichert werden.        </li>
         <li>
@@ -16,7 +16,7 @@ Funktion, um zus&auml;tzliche Aufgaben beim Betreten (entry) oder verlassen (exi
         <li>
 Escape-Symbole aufnehmen (andere M&ouml;glichkeiten f&uuml;r zB. Smileys er&ouml;rtern)        </li>
         </ul>
-<h2 id="header_"> Lexer 0.43 (future) </h2>        <ul>
+<h2 id="header_1.3"> Lexer 0.43 (future) </h2>        <ul>
         </ul><ul><li>
 Fehlermeldungen, wenn Tokens in nicht erlaubten Sektionen erkannt werden. <br /> Bsp.: <span class="code">= {{{ hallo }}} =</span> =&gt; <b>FEHLER: <span class="code">multiline</span> darf in <span class="code">header</span> nicht vorkommen.</b>        </li>
         <li>
@@ -26,22 +26,22 @@ Weitere preg_match Fehlermeldungen und L&ouml;sungsvorschl&auml;ge hinzuf&uuml;g
         <li>
 <span class="code">eof</span>-Pattern fix in Lexer integrieren.        </li>
         </ul>
-<h2 id="header_"> Lexer 0.42 (working) </h2>
-Link: <a href="?id=reise:lexer:v0.42#lexer+v0.42+dokumentation&mode=editpage" class="pw_wiki_link_na">v0.42#Lexer v0.42 Dokumentation</a>        <ul>
+<h2 id="header_1.4"> Lexer 0.42 (working) </h2>
+Link: <a href="?id=lexer:v0.42#lexer+v0.42+dokumentation&mode=editpage" class="pw_wiki_link_na">v0.42#Lexer v0.42 Dokumentation</a>        <ul>
         </ul><ul><li>
 entry und exit-pattern f&uuml;r gesamte syntax        </li>
         <li>
 allg. g&uuml;ltige config f&uuml;r lexer ausdenken, damit er auch f&uuml;r plugins verwendet werden kann...        </li>
         <li>
-Funktionen f&uuml;r AST-Handling (<a href="?id=reise:lexer:DOM-Funktionen#dom&mode=editpage" class="pw_wiki_link_na">DOM-Funktionen#DOM</a>) definieren -&gt; nextSibling/firstChild/...         </li>
+Funktionen f&uuml;r AST-Handling (<a href="?id=lexer:DOM-Funktionen#dom&mode=editpage" class="pw_wiki_link_na">DOM-Funktionen#DOM</a>) definieren -&gt; nextSibling/firstChild/...         </li>
         <li>
-Funktionen f&uuml;r AST-Manipulation (<a href="?id=reise:lexer:DOM-Funktionen#dom&mode=editpage" class="pw_wiki_link_na">DOM-Funktionen#DOM</a>) definieren -&gt; createElement/insertBefore/...         </li>
+Funktionen f&uuml;r AST-Manipulation (<a href="?id=lexer:DOM-Funktionen#dom&mode=editpage" class="pw_wiki_link_na">DOM-Funktionen#DOM</a>) definieren -&gt; createElement/insertBefore/...         </li>
         <li>
 Abstrakte Knoten (TABLE)        </li>
         <li>
 Debugfunktionen        </li>
         </ul>
-<h2 id="header_"> Lexer 0.4 (done) </h2>
+<h2 id="header_1.5"> Lexer 0.4 (done) </h2>
 Link: <a target="_blank" href="http://localhost/projekte/home/lib/tests/lexer4.php">Lexer4</a> <br />
 Link: <a target="_blank" href="http://localhost/projekte/home/lib/tests/lexer41.php">Lexer4.1</a> <br />        <ul>
         </ul><ul><li>
@@ -55,20 +55,20 @@ Link: <a target="_blank" href="http://localhost/projekte/home/lib/tests/lexer41.
         <li>
 :ok: entry und exit-pattern tests f&uuml;r sections, multiline, preformat und title        </li>
         </ul>
-<h2 id="header_"> Lexer 0.3 (done) </h2>
+<h2 id="header_1.6"> Lexer 0.3 (done) </h2>
 Link: <a target="_blank" href="http://localhost/projekte/home/lib/tests/lexer3.php">Lexer3</a>        <ul>
         </ul><ul><li>
 :ok: objektorientiert        </li>
         <li>
 :ok: bessere variablenamen und code &uuml;bersichtlicher gestalten... functionen auslagern?        </li>
         <li>
-:ok: <a href="?id=reise:lexer:CDATA#cdata&mode=editpage" class="pw_wiki_link_na">CDATA#CDATA</a>-Replace in lexer einbinden: <span class="code">&lt;![CDATA[Inhalt]]&gt;</span>        </li>
+:ok: <a href="?id=lexer:CDATA#cdata&mode=editpage" class="pw_wiki_link_na">CDATA#CDATA</a>-Replace in lexer einbinden: <span class="code">&lt;![CDATA[Inhalt]]&gt;</span>        </li>
         <li>
-:ok: <a href="?id=reise:manual:multiline#multilines&mode=editpage" class="pw_wiki_link_na">multiline#multilines</a> aufnehmen...        </li>
+:ok: <a href="?id=manual:multiline#multilines&mode=editpage" class="pw_wiki_link_na">multiline#multilines</a> aufnehmen...        </li>
         <li>
-:ok: <a href="?id=reise:lexer:section-types#section-types&mode=editpage" class="pw_wiki_link_na">section-types#section-types</a> einf&uuml;hren (Funktion <span class="code">registerSection($name, $type)</span>)        </li>
+:ok: <a href="?id=lexer:section-types#section-types&mode=editpage" class="pw_wiki_link_na">section-types#section-types</a> einf&uuml;hren (Funktion <span class="code">registerSection($name, $type)</span>)        </li>
         </ul>
-<h2 id="header_"> Lexer 0.2 (done) </h2>
+<h2 id="header_1.7"> Lexer 0.2 (done) </h2>
 Link: <a target="_blank" href="http://localhost/projekte/home/lib/tests/lexer2.php">Lexer2</a>        <ul>
         </ul><ul><li>
 :ok: DOM (Document Object Model) erzeugen        </li>
@@ -79,7 +79,7 @@ Link: <a target="_blank" href="http://localhost/projekte/home/lib/tests/lexer2.p
         <li>
 :ok: alle texte auserhalb der sektionen erhalten... <span class="code">_BASE_</span> als hauptsektion einf&uuml;hren        </li>
         </ul>
-<h2 id="header_"> Lexer 0.1 (done) </h2>
+<h2 id="header_1.8"> Lexer 0.1 (done) </h2>
 Link: <a target="_blank" href="http://localhost/projekte/home/lib/tests/lexer1.php">Lexer1</a>        <ul>
         </ul><ul><li>
 :ok: CDATA-Replace        </li>
@@ -106,5 +106,5 @@ Beispiel f&uuml;r Text: <span class="code">Anfang &lt;code&gt; lala &lt;/code&gt
   config    	&quot;html&quot;
   parent  	&quot;0&quot;
 </div></pre>
-:ok: <span class="strike">PERFORMANCE: Drei preg_match aufrufe... REDUZIEREN! siehe Lexer2...</span><h1 id="header_"> Quellenangaben </h1>
-Idee von phpPatterns -&gt; [http://www.phppatterns.com/docs/develop/simple_test_lexer_notes|SimpleTestLexer]<br /><div align="right"><span class="less_significant">Verarbeitet in 0,1198 Sek. | Dateiformat: UNIX</span></div>      </div>
+:ok: <span class="strike">PERFORMANCE: Drei preg_match aufrufe... REDUZIEREN! siehe Lexer2...</span><h1 id="header_2"> Quellenangaben </h1>
+Idee von phpPatterns -&gt; [http://www.phppatterns.com/docs/develop/simple_test_lexer_notes|SimpleTestLexer]<br /><div align="right"><span class="less_significant">Verarbeitet in 0,1048 Sek. | Dateiformat: UNIX</span></div>      </div>
