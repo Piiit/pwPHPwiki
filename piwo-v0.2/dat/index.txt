@@ -1,6 +1,6 @@
 <info>
 \\
-:> ++ **Willkommen \\ ...bei piwo...**++
+:> ++ **Willkommen \\ ...bei piwo 0.2.1...**++
 \\
 </info>
 

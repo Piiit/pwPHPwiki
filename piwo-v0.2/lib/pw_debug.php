@@ -17,11 +17,7 @@ if (!defined('INC_PATH')) {
 require_once INC_PATH.'piwo-v0.2/lib/common.php';
 require_once INC_PATH.'pwTools/string/StringFormat.php';
 
-
-$pw_debug_id = 0;
-
 function pw_debug_style_out($type, $length, $out, $main = NULL, $info = NULL) {
-  global $pw_debug_id;
   isset($length) ? $length = "<span class='deblength'>$length</span>" : $length = "";
   isset($out) and $type != "array" ? $out = "<span class='debout'>$out</span>" : $out = "";
   return "<pre class='debpre !important'><b>[$main]</b> <span class='debtype'>$type</span>".$length." ".$out." <span style='display:inline; margin-left: 20px; '>$info</span></pre>";
