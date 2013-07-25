@@ -39,7 +39,7 @@ function pw_debug_init($start = true) {
   StringFormat::htmlIndentPrint ();
   StringFormat::htmlIndentPrint ("<!-- PW_DEBUG_INIT --------------------------------------------------->");
   StringFormat::htmlIndentPrint ("<script language='JavaScript' src='lib/js/pw_showhide.js'></script>");
-  StringFormat::htmlIndentPrint ("<style>", START);
+  StringFormat::htmlIndentPrint ("<style>", StringFormat::START);
   StringFormat::htmlIndentPrint (".deblength {border: 1px solid black; background-color: black; color: white; padding-left: 3px; padding-right: 3px}");
   StringFormat::htmlIndentPrint (".debtype {background-color: white; border: 1px solid black; color: black; padding-left: 3px; padding-right: 3px}");
   StringFormat::htmlIndentPrint (".debpre {font-size: 12px; color: black; background-color: lightgray; margin: 0; padding-top: 6px}");
@@ -50,7 +50,7 @@ function pw_debug_init($start = true) {
   StringFormat::htmlIndentPrint (".debdiv ul {list-style-type: none}");
   StringFormat::htmlIndentPrint (".debdiv ul#first {padding-left: 0px; margin-left: 0; margin-top: 3px; padding-bottom: 3px; margin-bottom:0}");
   StringFormat::htmlIndentPrint (".debdiv ul li pre {background-color: lightgray; !important}");
-  StringFormat::htmlIndentPrint ("</style>", END);
+  StringFormat::htmlIndentPrint ("</style>", StringFormat::END);
   StringFormat::htmlIndentPrint ("<!-- PW_DEBUG_INIT --------------------------------------------------->");
   StringFormat::htmlIndentPrint ();
 }

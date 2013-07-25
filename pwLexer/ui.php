@@ -1,19 +1,19 @@
 <?php
 function pw_ui_printDialogWrap($dialog=-1) {
 	if ($dialog == -1) {
-		StringFormat::htmlIndente ("</div>", END);
+		StringFormat::htmlIndentPrint ("</div>", END);
 		return;
 	}
 	if ($dialog == "") {
 		return false;
 	}
 
-	StringFormat::htmlIndente ("<!-- MODALDIALOG START -->");
-	StringFormat::htmlIndente ('<div id="modal"><div class="overlay-decorator"></div><div class="overlay-wrap"><div class="overlay"><div class="dialog-wrap"><div class="dialog" id="dialog"><div class="dialog-decorator"><div id="ajax_dialog">', START);
-	StringFormat::htmlIndente ($dialog);
-	StringFormat::htmlIndente ('</div></div></div></div></div></div></div>', END);
-	StringFormat::htmlIndente ("<div style='position: absolute; top: 0; left: 0; width: 100%; display: block; height: 100%; overflow: hidden'>");
-	StringFormat::htmlIndente ("<!-- MODALDIALOG END -->", START);
+	StringFormat::htmlIndentPrint ("<!-- MODALDIALOG START -->");
+	StringFormat::htmlIndentPrint ('<div id="modal"><div class="overlay-decorator"></div><div class="overlay-wrap"><div class="overlay"><div class="dialog-wrap"><div class="dialog" id="dialog"><div class="dialog-decorator"><div id="ajax_dialog">', START);
+	StringFormat::htmlIndentPrint ($dialog);
+	StringFormat::htmlIndentPrint ('</div></div></div></div></div></div></div>', END);
+	StringFormat::htmlIndentPrint ("<div style='position: absolute; top: 0; left: 0; width: 100%; display: block; height: 100%; overflow: hidden'>");
+	StringFormat::htmlIndentPrint ("<!-- MODALDIALOG END -->", START);
 
 	return true;
 }

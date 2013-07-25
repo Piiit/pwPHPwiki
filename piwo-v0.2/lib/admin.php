@@ -26,13 +26,20 @@ function pw_wiki_config ($id) {  if (!isset($_SESSION["pw_wiki"]["login"]["user
 
   global $MODE;
 
-  if (isset($_POST["config"])) {    if ($_POST['debug']) {      $_SESSION['pw_wiki']['debug'] = true;    } else {      $_SESSION['pw_wiki']['debug'] = false;      #unset($_SESSION['pw_debug']);      pw_debug_init(false);    }    return;
+  if (isset($_POST["config"])) {    if ($_POST['debug']) {      $_SESSION['pw_wiki']['debug'] = true;    } else {      $_SESSION['pw_wiki']['debug'] = false;      pw_debug_init(false);    }        if ($_POST['useCache']) {
+    	$_SESSION['pw_wiki']['useCache'] = true;
+    } else {
+    	$_SESSION['pw_wiki']['useCache'] = false;
+    }    return;
   }
   $debug_ch = "";
   if (pw_wiki_getcfg('debug')) {    $debug_ch = " checked='checked' ";
+  }    $cache_ch = "";
+  if (pw_wiki_getcfg('useCache')) {
+  	$cache_ch = " checked='checked' ";
   }
 
-  $entries = StringFormat::htmlIndent("<input type='hidden' name='oldmode' value='$MODE' />");  $entries .= StringFormat::htmlIndent("<label for='debug'>Debug-Modus:</label> <input type='checkbox' name='debug' id='debug'$debug_ch />");
+  $entries = StringFormat::htmlIndent("<input type='hidden' name='oldmode' value='$MODE' />");  $entries .= StringFormat::htmlIndent("<label for='debug'>Debug-Modus:</label> <input type='checkbox' name='debug' id='debug'$debug_ch />");  $entries .= StringFormat::htmlIndent("<br />");  $entries .= StringFormat::htmlIndent("<label for='useCache'>Use cache:</label> <input type='checkbox' name='useCache' id='useCache'$cache_ch />");
   return pw_ui_getDialogQuestion("Einstellungen", $entries, "config", "OK", "id=$id&mode=$MODE");
 
 }
@@ -154,7 +161,7 @@ function pw_wiki_delpage ($id) {  //@TODO: clean the code...  // --- rrmdir is
       } else {
         $outdelns = "Der Namensraum '$id' ist leer. Er wird entfernt.<hr />";      }
       //@TODO: getlastvalid namespace id      if (pw_wiki_isns($id)) {        //out($id);
-        $id = substr($id,0,strlen($id)-1);      }      $newid = pw_wiki_ns($id."..");      return pw_ui_getDialogInfo("L&ouml;schen", $outdelns."Die Seite '$fntext' wurde gel&ouml;scht.", "id=".$newid."&mode=$MODE");    }    if (!is_dir($filename)) {      return pw_ui_getDialogInfo("L&ouml;schen", "Der Namensraum '$fntext' existiert nicht.", "id=$id&mode=$MODE");    }    if (!rrmdir($filename)) {      return pw_ui_getDialogInfo("L&ouml;schen", "Der Namensraum '$fntext' konnte nicht gel&ouml;scht werden.", "id=$id&mode=$MODE");    }    //@TODO: put this in a common function...    if (pw_wiki_isns($id)) {      $id = substr($id,0,strlen($id)-1);    }    $newid = pw_wiki_ns($id."..");    $dir = pw_wiki_path($newid, ST_SHORT);    $oldid = $id;
+        $id = substr($id,0,strlen($id)-1);      }      $newid = pw_wiki_ns($id."..");      return pw_ui_getDialogInfo("L&ouml;schen", $outdelns."Die Seite '$fntext' wurde gel&ouml;scht.", "id=".$newid."&mode=$MODE");    }    if (!is_dir($filename)) {      return pw_ui_getDialogInfo("L&ouml;schen", "Der Namensraum '$fntext' existiert nicht.", "id=$id&mode=$MODE");    }    try {    	FileTools::removeDirectory($filename);    } catch (Exception $e) {      return pw_ui_getDialogInfo("L&ouml;schen", "Der Namensraum '$fntext' konnte nicht gel&ouml;scht werden.", "id=$id&mode=$MODE");    }    //@TODO: put this in a common function...    if (pw_wiki_isns($id)) {      $id = substr($id,0,strlen($id)-1);    }    $newid = pw_wiki_ns($id."..");    $dir = pw_wiki_path($newid, ST_SHORT);    $oldid = $id;
     $id = pw_wiki_delnamespaces($dir);
     $outdelns = "";
     if ($id == "") {
@@ -167,17 +174,16 @@ function pw_wiki_delpage ($id) {  //@TODO: clean the code...  // --- rrmdir is
     if (pw_wiki_isns($id)) {      $id = substr($id,0,strlen($id)-1);    }    $newid = pw_wiki_ns($id."..");    return pw_ui_getDialogInfo("L&ouml;schen", $outdelns."Der Namensraum '$fntext' wurde gel&ouml;scht.", "id=".$newid."&mode=$MODE");  }  $type = "Die Seite";  if (pw_wiki_isns($id)) {    $type = "Den Namensraum";  }  return pw_ui_getDialogQuestion("L&ouml;schen", "$type '$fntext' l&ouml;schen?", "del", "L&ouml;schen", "id=$id&mode=$MODE");}
 function pw_wiki_delnamespaces($dir) {
   if (!isset($_SESSION["pw_wiki"]["login"]["user"]))    return false;  if ($dir == pw_wiki_getcfg('storage')) {    return;  }  #out ($dir);  $dir = str_replace("//", "/", $dir);  $dir = str_replace("\\\\", "\\", $dir);  #out2($dir);
-  $dirnames = explode("/", $dir);  #out($dirnames);  $dirar = array();  $dn = "";  foreach ($dirnames as $dirname) {    if ($dirname != "") {      $dn .= $dirname."/";      $dirar[] = $dn;    }  }  $dirar = array_reverse($dirar);  #out($dirar);  #die();  $dirtxt = "";  foreach ($dirar as $dirname) {    if (@rmdir($dirname)) {      $dirtxt = pw_wiki_path2id($dirname);      $dirtxt = pw_s2e($dirtxt);      #$dirtxt = pw_wiki_entities(pw_wiki_urldecode($dirtxt));      #$dirtxt = "Der Namensraum '$dirtxt' ist leer. Er wird entfernt.<hr />";    } else {      break;    }  }  return $dirtxt;}function pw_wiki_update_cache($forced = false) {	$storage = pw_wiki_getcfg('storage');	if (!is_dir($storage)) {
+  $dirnames = explode("/", $dir);  #out($dirnames);  $dirar = array();  $dn = "";  foreach ($dirnames as $dirname) {    if ($dirname != "") {      $dn .= $dirname."/";      $dirar[] = $dn;    }  }  $dirar = array_reverse($dirar);  #out($dirar);  #die();  $dirtxt = "";  foreach ($dirar as $dirname) {    if (rmdir($dirname)) {      $dirtxt = pw_wiki_path2id($dirname);      $dirtxt = pw_s2e($dirtxt);      #$dirtxt = pw_wiki_entities(pw_wiki_urldecode($dirtxt));      #$dirtxt = "Der Namensraum '$dirtxt' ist leer. Er wird entfernt.<hr />";    } else {      break;    }  }  return $dirtxt;}function pw_wiki_update_cache($forced = false) {	$storage = pw_wiki_getcfg('storage');	if (!is_dir($storage)) {
 		throw new Exception("Folder '$storage' does not exist!");
 	}		$files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($storage));
 	foreach($files as $filename) {		if(substr($filename, -4) == ".txt") {			$filename = str_replace("\\", "/", $filename);			try {				pw_wiki_create_cached_page(pw_wiki_path2id($filename), $forced);			} catch (Exception $e) {				echo "<pre>Exception: Skipping file '$filename': $e\n</pre>";			}		}
-	}}function pw_wiki_create_cached_page($id, $forced = false) {	$filename = pw_wiki_path($id, ST_FULL);	$headerFilename = pw_wiki_path("tpl:header", ST_FULL);	$footerFilename = pw_wiki_path("tpl:footer", ST_FULL);	$cachedFilename = "home/".pw_wiki_path($id, NOEXT).".html";
-		if (!is_file($filename)) {		throw new Exception("File '$filename' does not exist!");
+	}}function pw_wiki_create_cached_page($id, $forced = false) {	$filename = pw_wiki_path($id, ST_FULL);	$headerFilename = pw_wiki_path("tpl:header", ST_FULL);	$footerFilename = pw_wiki_path("tpl:footer", ST_FULL);		if (!is_file($filename)) {		throw new Exception("File '$filename' does not exist!");
 	}	if (!is_file($headerFilename)) {
 		throw new Exception("File '$headerFilename' does not exist!");
 	}	if (!is_file($footerFilename)) {
 		throw new Exception("File '$footerFilename' does not exist!");
-	}		// If the cached file is still up-to-date do nothing! Except forced overwriting!	if(!$forced && is_file($cachedFilename)) {		$cachedMTime = filemtime($cachedFilename);		if($cachedMTime >= filemtime($filename) && $cachedMTime >= filemtime($headerFilename) && $cachedMTime >= filemtime($footerFilename)) {			$data = file_get_contents($cachedFilename);			if ($data === false) {				throw new Exception("Unable to read data file '$cachedFilename'!");			}			Debug::out($cachedFilename);			return $data;		}	}		$data = file_get_contents($filename);	if ($data === false) {
+	}		// If the cached file is still up-to-date do nothing! Except forced overwriting!	$cachedFilename = "home/".pw_wiki_path($id, NOEXT).".html";	if(!$forced && is_file($cachedFilename)) {		$cachedMTime = filemtime($cachedFilename);		if($cachedMTime >= filemtime($filename) && $cachedMTime >= filemtime($headerFilename) && $cachedMTime >= filemtime($footerFilename)) {			$data = file_get_contents($cachedFilename);			if ($data === false) {				throw new Exception("Unable to read data file '$cachedFilename'!");			}			Debug::out($cachedFilename);			return $data;		}	}		$data = file_get_contents($filename);	if ($data === false) {
 		throw new Exception("Unable to read data file '$filename'!");
 	}
 	$headerData = file_get_contents($headerFilename);
@@ -187,7 +193,7 @@ function pw_wiki_delnamespaces($dir) {
 	$footerData = file_get_contents($footerFilename);
 	if ($footerFilename === false) {
 		throw new Exception("Unable to read template file '$footerFilename'!");
-	}		FileTools::createFolderIfNotExist(dirname($cachedFilename));	$data = pw_wiki_LE_unix($data);	$headerData = pw_wiki_LE_unix($headerData);	$footerData = pw_wiki_LE_unix($footerData);
+	}		$data = pw_wiki_LE_unix($data);	$headerData = pw_wiki_LE_unix($headerData);	$footerData = pw_wiki_LE_unix($footerData);
 	$data = $headerData."\n".$data."\n".$footerData;	$data = pw_wiki_LE_unix($data);
 	
 	if (!utf8_check($data)) {
@@ -197,8 +203,36 @@ function pw_wiki_delnamespaces($dir) {
 // 	$headerLineCount = count(explode("\n", $headerData));
 // 	$footerLineCount = count(explode("\n", $footerData));
 	
-// 	$out = lexerconf($data, $headerLineCount, $footerLineCount);	$out = parse($data);		if (file_put_contents($cachedFilename, $out) === false) {		throw new Exception("Unable to write file '$cachedFilename'!");	}		return $out;	}
-function pw_wiki_showcontent($id) {    return pw_wiki_create_cached_page($id);
+// 	$out = lexerconf($data, $headerLineCount, $footerLineCount);	$out = parse($data);		FileTools::createFolderIfNotExist(dirname($cachedFilename));
+	if (file_put_contents($cachedFilename, $out) === false) {		throw new Exception("Unable to write file '$cachedFilename'!");	}		return $out;}function pw_wiki_get_parsed_file($id) {		$filename = pw_wiki_path($id, ST_FULL);
+	$headerFilename = pw_wiki_path("tpl:header", ST_FULL);
+	$footerFilename = pw_wiki_path("tpl:footer", ST_FULL);
+	
+	if (!is_file($filename)) {
+		throw new Exception("File '$filename' does not exist!");
+	}
+	if (!is_file($headerFilename)) {
+		throw new Exception("File '$headerFilename' does not exist!");
+	}
+	if (!is_file($footerFilename)) {
+		throw new Exception("File '$footerFilename' does not exist!");
+	}		$data = file_get_contents($filename);
+	if ($data === false) {
+		throw new Exception("Unable to read data file '$filename'!");
+	}
+	$headerData = file_get_contents($headerFilename);
+	if ($headerData === false) {
+		throw new Exception("Unable to read template file '$headerFilename'!");
+	}
+	$footerData = file_get_contents($footerFilename);
+	if ($footerFilename === false) {
+		throw new Exception("Unable to read template file '$footerFilename'!");
+	}		$data = pw_wiki_LE_unix($data);
+	$headerData = pw_wiki_LE_unix($headerData);
+	$footerData = pw_wiki_LE_unix($footerData);
+	$data = $headerData."\n".$data."\n".$footerData;
+	$data = pw_wiki_LE_unix($data);		$out = parse($data);	return $out;}
+function pw_wiki_showcontent($id) {	if(isset($_SESSION['pw_wiki']['useCache']) && $_SESSION['pw_wiki']['useCache'] == false) {		return pw_wiki_get_parsed_file($id);	}    return pw_wiki_create_cached_page($id);
 }
 
 
@@ -300,7 +334,6 @@ function pw_wiki_showpages($id = null) {  global $MODE;  #if (!isset($_SESSION
   $strout .= "</table>";  return $strout;
 }
 
-function rrmdir($dir) {   if (is_dir($dir)) {     $objects = scandir($dir);     foreach ($objects as $object) {       if ($object != "." && $object != "..") {         if (filetype($dir."/".$object) == "dir") {           rrmdir($dir."/".$object);         } else {           if (!unlink($dir."/".$object)) {             return false;           }         }       }     }     reset($objects);     if (!rmdir($dir)) {       return false;     }   }   return true;
- }
+
 
 ?>

@@ -336,25 +336,25 @@ function pw_wiki_getfulltitle($sep = "&raquo;", $showuser = true) {
 
 function html_header() {
 	global $MODE;
-	StringFormat::htmlIndente ('<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">');
-	StringFormat::htmlIndente ('<html>', START);
-	StringFormat::htmlIndente ('<!-- HEADER start -->');
-	StringFormat::htmlIndente ('<head>', START);
-	StringFormat::htmlIndente ('<title>'.pw_wiki_getfulltitle().'</title>');
-	StringFormat::htmlIndente ('<meta name="description" content="'.pw_wiki_getcfg('description').'">');
-	StringFormat::htmlIndente ('<meta name="keywords" content="'.pw_wiki_getcfg('keywords').'">');
-	StringFormat::htmlIndente ('<meta http-equiv="Content-Type" content="text/html" charset="utf-8">');
-	StringFormat::htmlIndente ('<meta http-equiv="Content-Script-Type" content="text/javascript">');
-	StringFormat::htmlIndente ('<link rel="shortcut icon" href="media/favicon.ico" type="image/ico" />');
-	StringFormat::htmlIndente ('<link rel="stylesheet" type="text/css" media="screen" href="default.css">');
-	StringFormat::htmlIndente ('<link rel="stylesheet" type="text/css" media="screen" href="admin.css">');
-	#StringFormat::htmlIndente ('<script type="text/javascript" language="javascript" src="lib/js/scriptaculous/lib/prototype.js"></script>');
-	#StringFormat::htmlIndente ('<script type="text/javascript" language="javascript" src="lib/js/scriptaculous/src/scriptaculous.js"></script>');
-	#StringFormat::htmlIndente ('<script type="text/javascript" language="javascript" src="lib/js/pw_url.js"></script>');
-	#StringFormat::htmlIndente ('<script type="text/javascript" language="javascript" src="lib/js/pw_array.js"></script>');
-	StringFormat::htmlIndente ('<script type="text/javascript" language="javascript" src="lib/js/catchkeys.js"></script>'); // Editorkeys: catch TAB, insert Spaces
-	#StringFormat::htmlIndente ('<script type="text/javascript" language="javascript" src="lib/js/shortcut.js"></script>');
-	#StringFormat::htmlIndente ('<script type="text/javascript" language="javascript" src="lib/js/pw_ui.js"></script>');
+	StringFormat::htmlIndentPrint ('<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">');
+	StringFormat::htmlIndentPrint ('<html>', START);
+	StringFormat::htmlIndentPrint ('<!-- HEADER start -->');
+	StringFormat::htmlIndentPrint ('<head>', START);
+	StringFormat::htmlIndentPrint ('<title>'.pw_wiki_getfulltitle().'</title>');
+	StringFormat::htmlIndentPrint ('<meta name="description" content="'.pw_wiki_getcfg('description').'">');
+	StringFormat::htmlIndentPrint ('<meta name="keywords" content="'.pw_wiki_getcfg('keywords').'">');
+	StringFormat::htmlIndentPrint ('<meta http-equiv="Content-Type" content="text/html" charset="utf-8">');
+	StringFormat::htmlIndentPrint ('<meta http-equiv="Content-Script-Type" content="text/javascript">');
+	StringFormat::htmlIndentPrint ('<link rel="shortcut icon" href="media/favicon.ico" type="image/ico" />');
+	StringFormat::htmlIndentPrint ('<link rel="stylesheet" type="text/css" media="screen" href="default.css">');
+	StringFormat::htmlIndentPrint ('<link rel="stylesheet" type="text/css" media="screen" href="admin.css">');
+	#StringFormat::htmlIndentPrint ('<script type="text/javascript" language="javascript" src="lib/js/scriptaculous/lib/prototype.js"></script>');
+	#StringFormat::htmlIndentPrint ('<script type="text/javascript" language="javascript" src="lib/js/scriptaculous/src/scriptaculous.js"></script>');
+	#StringFormat::htmlIndentPrint ('<script type="text/javascript" language="javascript" src="lib/js/pw_url.js"></script>');
+	#StringFormat::htmlIndentPrint ('<script type="text/javascript" language="javascript" src="lib/js/pw_array.js"></script>');
+	StringFormat::htmlIndentPrint ('<script type="text/javascript" language="javascript" src="lib/js/catchkeys.js"></script>'); // Editorkeys: catch TAB, insert Spaces
+	#StringFormat::htmlIndentPrint ('<script type="text/javascript" language="javascript" src="lib/js/shortcut.js"></script>');
+	#StringFormat::htmlIndentPrint ('<script type="text/javascript" language="javascript" src="lib/js/pw_ui.js"></script>');
 
 	echo "<script>function setfocus() {
 			var f = document.getElementsByTagName('input');
@@ -386,10 +386,10 @@ function html_header() {
 		pw_debug_init(true);
 	}
 
-	StringFormat::htmlIndente ('</head>', END);
-	StringFormat::htmlIndente ('<body onload="setfocus()">', START);
-	StringFormat::htmlIndente ('<!-- HEADER end -->');
-	StringFormat::htmlIndente ('<div id="INFO"></div>');
+	StringFormat::htmlIndentPrint ('</head>', END);
+	StringFormat::htmlIndentPrint ('<body onload="setfocus()">', START);
+	StringFormat::htmlIndentPrint ('<!-- HEADER end -->');
+	StringFormat::htmlIndentPrint ('<div id="INFO"></div>');
 }
 
 function html_footer($modal) {
@@ -402,10 +402,10 @@ function html_footer($modal) {
 		pw_ui_printDialogWrap();
 	}
 
-	StringFormat::htmlIndente ('<!-- FOOTER start -->');
-	StringFormat::htmlIndente ('</body>', END);
-	StringFormat::htmlIndente ('</html>', END);
-	StringFormat::htmlIndente ('<!-- FOOTER end -->');
+	StringFormat::htmlIndentPrint ('<!-- FOOTER start -->');
+	StringFormat::htmlIndentPrint ('</body>', END);
+	StringFormat::htmlIndentPrint ('</html>', END);
+	StringFormat::htmlIndentPrint ('<!-- FOOTER end -->');
 }
 
 /**

@@ -52,6 +52,8 @@ class pwLexer {
   protected $linenr = 0;
   protected $debug = false;
   protected $parsed = false;
+  protected $cycle = 0;
+  protected $ids = array();
   public static $version = "0.42d - PIWO";
   public $AST = array();  // AST: Abstract Syntax Tree
 

@@ -42,6 +42,27 @@ class FileTools {
 			FileTools::copyFileIfNotExist($file, $dest.basename($file));
 		}
 	}
+	
+	public static function removeDirectory($dir) {
+		if (is_dir($dir)) {
+			$objects = scandir($dir);
+			foreach ($objects as $object) {
+				if ($object != "." && $object != "..") {
+					if (filetype($dir."/".$object) == "dir") {
+						self::removeDirectory($dir."/".$object);
+					} else {
+						if (!unlink($dir."/".$object)) {
+							throw new Exception("Unable to remove directory '".$dir."/".$object."'");
+						}
+					}
+				}
+			}
+			reset($objects);
+			if (!rmdir($dir)) {
+				throw new Exception("Unable to remove directory '".$dir."'");
+			}
+		}
+	}
 }
 
 ?>

@@ -30,23 +30,23 @@ function pw_debug_init($start = true) {
 	if (!isset($_SESSION["pw_debug"]) or !$_SESSION["pw_debug"])
 		$_SESSION["pw_debug"] = true;
 
-	StringFormat::htmlIndente ();
-	StringFormat::htmlIndente ("<!-- PW_DEBUG_INIT --------------------------------------------------->");
-	StringFormat::htmlIndente ("<script language='JavaScript' src='lib/js/pw_showhide.js'></script>");
-	StringFormat::htmlIndente ("<style>", START);
-	StringFormat::htmlIndente (".deblength {border: 1px solid black; background-color: black; color: white; padding-left: 3px; padding-right: 3px}");
-	StringFormat::htmlIndente (".debtype {background-color: white; border: 1px solid black; color: black; padding-left: 3px; padding-right: 3px}");
-	StringFormat::htmlIndente (".debpre {font-size: 12px; color: black; background-color: lightgray; margin: 0; padding-top: 6px}");
-	StringFormat::htmlIndente (".debout {background-color: white; color: black; border: 1px solid black; padding-left: 2px; padding-right: 2px}");
-	StringFormat::htmlIndente (".debspecial {background-color: gray; color: white; margin-left: 2px; margin-right: 2px}");
-	StringFormat::htmlIndente (".debdiv {margin-left: 20px; margin-top: -20px; border: 1px solid black; background-color: lightgray; margin-bottom: 1px;}");
-	StringFormat::htmlIndente (".debbutton {height: 20px; wi/dth: 10px; width: 20px}");
-	StringFormat::htmlIndente (".debdiv ul {list-style-type: none}");
-	StringFormat::htmlIndente (".debdiv ul#first {padding-left: 0px; margin-left: 0; margin-top: 3px; padding-bottom: 3px; margin-bottom:0}");
-	StringFormat::htmlIndente (".debdiv ul li pre {background-color: lightgray; !important}");
-	StringFormat::htmlIndente ("</style>", END);
-	StringFormat::htmlIndente ("<!-- PW_DEBUG_INIT --------------------------------------------------->");
-	StringFormat::htmlIndente ();
+	StringFormat::htmlIndentPrint ();
+	StringFormat::htmlIndentPrint ("<!-- PW_DEBUG_INIT --------------------------------------------------->");
+	StringFormat::htmlIndentPrint ("<script language='JavaScript' src='lib/js/pw_showhide.js'></script>");
+	StringFormat::htmlIndentPrint ("<style>", START);
+	StringFormat::htmlIndentPrint (".deblength {border: 1px solid black; background-color: black; color: white; padding-left: 3px; padding-right: 3px}");
+	StringFormat::htmlIndentPrint (".debtype {background-color: white; border: 1px solid black; color: black; padding-left: 3px; padding-right: 3px}");
+	StringFormat::htmlIndentPrint (".debpre {font-size: 12px; color: black; background-color: lightgray; margin: 0; padding-top: 6px}");
+	StringFormat::htmlIndentPrint (".debout {background-color: white; color: black; border: 1px solid black; padding-left: 2px; padding-right: 2px}");
+	StringFormat::htmlIndentPrint (".debspecial {background-color: gray; color: white; margin-left: 2px; margin-right: 2px}");
+	StringFormat::htmlIndentPrint (".debdiv {margin-left: 20px; margin-top: -20px; border: 1px solid black; background-color: lightgray; margin-bottom: 1px;}");
+	StringFormat::htmlIndentPrint (".debbutton {height: 20px; wi/dth: 10px; width: 20px}");
+	StringFormat::htmlIndentPrint (".debdiv ul {list-style-type: none}");
+	StringFormat::htmlIndentPrint (".debdiv ul#first {padding-left: 0px; margin-left: 0; margin-top: 3px; padding-bottom: 3px; margin-bottom:0}");
+	StringFormat::htmlIndentPrint (".debdiv ul li pre {background-color: lightgray; !important}");
+	StringFormat::htmlIndentPrint ("</style>", END);
+	StringFormat::htmlIndentPrint ("<!-- PW_DEBUG_INIT --------------------------------------------------->");
+	StringFormat::htmlIndentPrint ();
 }
 
 function pw_debug_msg($text, $type, $info="Keine Informationen", $cat=NULL) {

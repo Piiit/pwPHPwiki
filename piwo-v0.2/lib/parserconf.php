@@ -438,10 +438,11 @@ function sheader($node, $lexer) {
   } else {
     global $idheader;
     global $indextable;
+//     Debug::out($indextable);
     $fc = $lexer->firstChild($node);
     $txt = trim($fc['VALUE']);
     //$o = '<h'.$level.' id="header_'.$GLOBALS['indextable']['CONT'][$idheader]['ID'].'">';
-    $o = '<h'.$level.' id="header_'.$indextable->get($idheader)->getId().'">';
+    $o = '<h'.$level.' id="header_'.$indextable->getByIndex($idheader)->getId().'">';
     $GLOBALS['idheader']++;
   }
 
@@ -734,7 +735,7 @@ function sexternallink($node, $lexer) {
 
 function sinternallink($node, $lexer) {
   //@TODO: clean redundant code... specially for encoding-functions!
-//   global $indextable;
+  global $indextable;
   global $moditext;
 
   $linkpos = $lexer->firstChild($node);
@@ -804,33 +805,22 @@ function sinternallink($node, $lexer) {
       case "_toc": $href = "#__toc"; break;
       case "_maintitle": $href = "#__fullsite"; break;
       default:
-        // Suche das Indexitem mit der Kapitel-ID (1.2.6, 1.1, ...)
-        #out($id);
+      	
+      	try {
 
-        $item = getindexitem($id);
-
-        #out($GLOBALS['indextable']);
-
-        #out2($item);
-
-        // Suche nicht erfolgreich... Suche per Kapitel-Namen
-        if ($item === NULL) {
-          $item = getindexitem($id, false);
+      		$item = $indextable->getByIdOrText($id);
+            $section = $item->getId();
+            if (!$text) {
+                $text = $item->getText();
+            }
+            $text = pw_s2e($text);
+            
+        } catch (Exception $e) {
+            $found = false;
+            $href = "#";
+            $text = pw_url2u($id);
+            $na = ' class="pw_wiki_link_na"';
         }
-
-        if ($item) {
-          $section = $item['ID'];
-          if (!$text) {
-            $text = $item['TEXT'];
-          }
-          $text = pw_s2e($text);
-        } else {
-          $found = false;
-          $href = "#";
-          $text = pw_url2u($id);
-          $na = ' class="pw_wiki_link_na"';
-        }
-
 
       break;
     }
@@ -884,7 +874,7 @@ function sinternallink($node, $lexer) {
   if ($type == "JUMP" and !$text) {
     $text = pw_wiki_getcfg('anchor_text', $id);
     if (!$text) {
-      $text = $item['TEXT'];
+      $text = $item->getText();
     }
     $text = pw_s2e($text);
   }

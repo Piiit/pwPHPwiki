@@ -45,15 +45,49 @@ class IndexTable {
 		return $out;
 	}
 	
-	public function get($index) {
-		if($index >= sizeof($this->_cont)) {
-			throw new Exception("Index out of bounds!");
-		}
-		return $this->_cont[$index];
-	}
-	
 	public function getAsArray() {
 		return $this->_cont;
+	}
+	
+	public function getByIndex($index) {
+        if($index >= sizeof($this->_cont)) {
+        	throw new Exception("Index out of bounds!");
+        }
+        return $this->_cont[$index];
+    }
+	
+	
+	public function getByIdOrText($idOrText) {
+		$idOrText = utf8_strtolower(pw_s2u(utf8_trim($idOrText)));
+		foreach ($this->_cont as $item) {
+			$text = pw_s2e(utf8_strtolower(pw_s2u(trim($item->getText()))));
+			if ($text == $idOrText || $item->getId() == $idOrText) {
+				return $item;
+			}
+		}
+	
+		throw new Exception("Id or text '$idOrText' not found in this index table.");
+	}
+
+	public function getById($id) {
+		foreach ($this->_cont as $item) {
+			if ($item->getId() == $id) {
+				return $item;
+			}
+		}
+	
+		throw new Exception("Id '$id' not found in this index table.");
+	}
+	
+	public function getByText($text) {
+		$text = strtolower(pw_s2u(trim($text)));
+		foreach ($this->_cont as $item) {
+			if ($item->getText() == $text) {
+				return $item;
+			}
+		}
+	
+		throw new Exception("Text '$text' not found in this index table.");
 	}
 	
 }

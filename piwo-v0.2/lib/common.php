@@ -315,13 +315,13 @@ function html_header() {
   StringFormat::htmlIndentPrint ('<link rel="shortcut icon" href="media/favicon.ico" type="image/ico" />');
   StringFormat::htmlIndentPrint ('<link rel="stylesheet" type="text/css" media="screen" href="default.css">');
   StringFormat::htmlIndentPrint ('<link rel="stylesheet" type="text/css" media="screen" href="admin.css">');
-  #StringFormat::htmlIndente ('<script type="text/javascript" language="javascript" src="lib/js/scriptaculous/lib/prototype.js"></script>');
-  #StringFormat::htmlIndente ('<script type="text/javascript" language="javascript" src="lib/js/scriptaculous/src/scriptaculous.js"></script>');
-  #StringFormat::htmlIndente ('<script type="text/javascript" language="javascript" src="lib/js/pw_url.js"></script>');
-  #StringFormat::htmlIndente ('<script type="text/javascript" language="javascript" src="lib/js/pw_array.js"></script>');
+  #StringFormat::htmlIndentPrint ('<script type="text/javascript" language="javascript" src="lib/js/scriptaculous/lib/prototype.js"></script>');
+  #StringFormat::htmlIndentPrint ('<script type="text/javascript" language="javascript" src="lib/js/scriptaculous/src/scriptaculous.js"></script>');
+  #StringFormat::htmlIndentPrint ('<script type="text/javascript" language="javascript" src="lib/js/pw_url.js"></script>');
+  #StringFormat::htmlIndentPrint ('<script type="text/javascript" language="javascript" src="lib/js/pw_array.js"></script>');
   StringFormat::htmlIndentPrint ('<script type="text/javascript" language="javascript" src="lib/js/catchkeys.js"></script>'); // Editorkeys: catch TAB, insert Spaces
-  #StringFormat::htmlIndente ('<script type="text/javascript" language="javascript" src="lib/js/shortcut.js"></script>');
-  #StringFormat::htmlIndente ('<script type="text/javascript" language="javascript" src="lib/js/pw_ui.js"></script>');
+  #StringFormat::htmlIndentPrint ('<script type="text/javascript" language="javascript" src="lib/js/shortcut.js"></script>');
+  #StringFormat::htmlIndentPrint ('<script type="text/javascript" language="javascript" src="lib/js/pw_ui.js"></script>');
 
   echo "<script>function setfocus() {
     var f = document.getElementsByTagName('input');

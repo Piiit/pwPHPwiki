@@ -74,6 +74,14 @@ class Node {
 	public function getData() {
 		return $this->data;
 	}
+
+	/**
+	 * Returns the parent-node.
+	 * @return Node|null Returns the parent-node or null if this the root-node.
+	 */
+	public function getParent() {
+		return $this->parent;
+	}
 	
 	/**
 	 * Returns the root of this node or null if this node is the root.
@@ -88,14 +96,6 @@ class Node {
 			$node = $node->getParent();
 		}
 		return $node;
-	}
-	
-	/**
-	 * Returns the parent-node.
-	 * @return Node|null Returns the parent-node or null if this the root-node.
-	 */
-	public function getParent() {
-		return $this->parent;
 	}
 	
 	/**
