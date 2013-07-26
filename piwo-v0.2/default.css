@@ -16,7 +16,6 @@ body {
   line-height: 1.8em;
   background-color: black;
   color: white;
-
 }
 
 #imwiki .toc {
@@ -436,3 +435,8 @@ body {
   height: 100%;
   border: 3px solid red;
 }*/
+
+/* Workaround: Unreadable with white text...*/
+.xdebug-error {
+	color: black;
+}

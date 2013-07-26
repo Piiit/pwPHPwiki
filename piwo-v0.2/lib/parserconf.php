@@ -438,7 +438,7 @@ function sheader($node, $lexer) {
   } else {
     global $idheader;
     global $indextable;
-//     Debug::out($indextable);
+//    TestingTools::inform($indextable);
     $fc = $lexer->firstChild($node);
     $txt = trim($fc['VALUE']);
     //$o = '<h'.$level.' id="header_'.$GLOBALS['indextable']['CONT'][$idheader]['ID'].'">';

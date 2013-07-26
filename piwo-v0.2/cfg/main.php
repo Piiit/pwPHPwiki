@@ -4,6 +4,7 @@
 
   if (! isset($_SESSION['pw_wiki']['config'])) {
     $config  = array ( "debug"        => false,
+    				   "useCache"	  => true,
                        "startpage"    => "index",
                        "storage"      => "dat",
                        "fileext"      => ".txt",

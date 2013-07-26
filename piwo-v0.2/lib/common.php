@@ -6,8 +6,7 @@ if (!defined('INC_PATH')) {
 require_once INC_PATH.'pwTools/string/encoding.php';
 require_once INC_PATH.'pwTools/string/StringTools.php';
 require_once INC_PATH.'pwTools/string/StringFormat.php';
-require_once INC_PATH.'piwo-v0.2/lib/pw_debug.php';
-
+require_once INC_PATH.'pwTools/debug/TestingTools.php';
 
 function pw_wiki_version() {
   global $piwo_version;
@@ -74,20 +73,23 @@ function pw_wiki_setcfg($id, $mode) {
 
 function pw_wiki_getcfg($what = "", $subcat = "") {
 
-  if (!is_array($_SESSION['pw_wiki']))
-    return false;
+  if (!is_array($_SESSION['pw_wiki'])) {
+    throw new Exception("Session pw_wiki is not an ARRAY!");
+  }
 
   if ($what == "")
     return $_SESSION['pw_wiki'];
 
-  if (!array_key_exists($what, $_SESSION['pw_wiki']))
-    return false;
+  if (!array_key_exists($what, $_SESSION['pw_wiki'])) {
+    throw new Exception("Session pw_wiki has no category '$what'!");
+  }
 
   if ($subcat == "")
     return $_SESSION['pw_wiki'][$what];
 
-  if (!array_key_exists($subcat, $_SESSION['pw_wiki'][$what]))
-    return false;
+  if (!array_key_exists($subcat, $_SESSION['pw_wiki'][$what])) {
+    throw new Exception("Session pw_wiki has no sub-category '$subcat' within '$what'!");
+  }
 
   return $_SESSION['pw_wiki'][$what][$subcat];
 }
@@ -350,7 +352,8 @@ function html_header() {
   </script>";
 
   if (pw_wiki_getcfg('debug')) {
-    pw_debug_init(true);
+    TestingTools::init();
+    TestingTools::debugOn();
   }
 
   StringFormat::htmlIndentPrint ('</head>', StringFormat::END);
@@ -381,6 +384,7 @@ function html_footer($modal) {
  * SPECIAL UTILITIES FOR WIKI...
  */
 function pw_wiki_s2id($id) {
+	TestingTools::inform($id);
   $id = pw_s2u($id);
   $id = pw_stripslashes($id);
   $id = pw_s2url($id);

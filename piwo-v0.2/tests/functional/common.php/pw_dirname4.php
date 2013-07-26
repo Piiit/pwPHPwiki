@@ -6,6 +6,7 @@ if (!defined('INC_PATH')) {
 
 require_once INC_PATH."piwo-v0.2/lib/testing.php";
 require_once INC_PATH."piwo-v0.2/lib/common.php";
+require_once INC_PATH."pwTools/debug/TestingTools.php";
 
 // Input...
 $filenames = array(
@@ -58,7 +59,8 @@ $expres2 = array(
   ""
 );
 
-pw_debug_init();
+TestingTools::init();
+TestingTools::debugOn();
 
 $test = new pwTest("pw_dirname4");
 $test->addInput($filenames, $expres);
@@ -66,7 +68,7 @@ $test->addInput($filenames, $expres2);
 
 $inputs = $test->getInputs();
 
-pw_debug($inputs);
+TestingTools::debug($inputs);
 die();
 
 function test_pw_dirname($filenames, $single) {

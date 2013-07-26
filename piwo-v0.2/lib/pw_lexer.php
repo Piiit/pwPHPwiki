@@ -9,11 +9,12 @@
 if (!defined('INC_PATH')) {
 	define ('INC_PATH', realpath(dirname(__FILE__).'/../').'/');
 }
-require_once INC_PATH."piwo-v0.2/lib/pw_debug.php";
+require_once INC_PATH."pwTools/debug/TestingTools.php";
 require_once INC_PATH."pwTools/time/Timer.php";
 require_once INC_PATH."pwTools/string/encoding.php";
 
-#pw_debug_init(true);
+#TestingTools::init();
+#TestingTools::debugOn();
 
 #define("SECTION",       1);  // Eine "section" kann ?ber mehrere Zeilen laufen, z.B. <nowiki>...</nowiki> oder **fett**
 #define("LINE",          2);  // Eine "line" ist genau eine Zeile lang (enter und leave state muss in der selben zeile sein), z.B. = ?berschrift =
@@ -66,8 +67,8 @@ class pwLexer {
   }
 
   public function printSectionTable() {
-    if( !pw_debug($this->sectiontable, "SectionTable") )
-      $this->addLog("WARNING", "Can not print tables if pw_debug mode set to 'off'");
+    if( !TestingTools::debug($this->sectiontable, "SectionTable") )
+      $this->addLog("WARNING", "Can not print tables if TestingTools::debug mode set to 'off'");
   }
   */
 
@@ -161,8 +162,8 @@ class pwLexer {
   }
 
   public function printDOM() {
-    if( !pw_debug($this->AST, "DOMTREE") )
-      $this->addLog("WARNING", "Can not print tables if pw_debug mode set to 'off'");
+    if( !TestingTools::debug($this->AST, "DOMTREE") )
+      $this->addLog("WARNING", "Can not print tables if TestingTools::debug mode set to 'off'");
   }
 
   public function getSource($showlines = false) {
@@ -230,7 +231,7 @@ class pwLexer {
    */
   protected function getNamedToken($m) {
 
-    #pw_debug($m);
+    #TestingTools::debug($m);
 
     $id = $this->getTokenName($m);
 
@@ -240,13 +241,13 @@ class pwLexer {
 
     $m = $this->cleanupArray($m);
 
-    #pw_debug($m);
+    #TestingTools::debug($m);
 
     // Die ersten beiden Felder sind Standard-Felder (RESTORE & TEXT)
     // Mit dem letzten Feld wird im Text weitergelesen...
     // Verarbeitete Bereiche werden abgeschnitten (siehe $this->temptxt)
     $conf = array_slice($m, 2, -1);
-    #pw_debug($id);
+    #TestingTools::debug($id);
     $txtlength = strlen($m[1]);
 
     return array ( "NAME"       => $id,
@@ -267,10 +268,10 @@ class pwLexer {
     }
 
     #out($this->ids);
-    #pw_debug($this->ids);
+    #TestingTools::debug($this->ids);
     #die();
     foreach ($this->ids as $key => $id) {
-      #pw_debug("$key; $id");
+      #TestingTools::debug("$key; $id");
       if ($m[$key][1] != -1) {
         return $id;
       }
@@ -312,7 +313,7 @@ class pwLexer {
 
     $regex = $this->getPatternString($mode);
     if (! $regex) {
-      pw_debug($this->AST);
+      TestingTools::debug($this->AST);
       $this->addLog("FATAL", "Empty Regular Expression found for '$mode' (PID=$pid).");
       return false;
     }
@@ -356,11 +357,11 @@ class pwLexer {
     }
 
     $tag = $this->getNamedToken($m);
-    #pw_debug($tag);
+    #TestingTools::debug($tag);
 
 
     $flag = $this->getPatternInfo($tag['NAME'], "FLAGS");
-    #pw_debug($flag xor NO_SHIFT, $tag['NAME']);
+    #TestingTools::debug($flag xor NO_SHIFT, $tag['NAME']);
 
     if ($tag !== false) {
 
@@ -372,8 +373,8 @@ class pwLexer {
         if ($this->textposition == $pos) {
           $last = end($this->AST);
           if ($last['NAME'] == $tag['NAME']) {
-            pw_debug($tag, $this->textposition.":".$pos);
-            pw_debug(end($this->AST), "LAST");
+            TestingTools::debug($tag, $this->textposition.":".$pos);
+            TestingTools::debug(end($this->AST), "LAST");
             $this->addLog("FATAL", "Textpointer has not moved for pattern '".$tag['NAME']."'. Try the NO_RESTORE flag.");
           }
         }
@@ -392,8 +393,8 @@ class pwLexer {
     // Alle (...) z?hlen, au?er lookarounds (?...)!
     // @TODO: ERROR-Handling + Nesting-Level (...(...)...) + OR-Operator
     preg_match_all('/\([^\?][^\)]*\)|\(\)/', $pattern, $cox);
-    #pw_debug($cox[0]);
-    #pw_debug($pattern);
+    #TestingTools::debug($cox[0]);
+    #TestingTools::debug($pattern);
     return count($cox[0]);
   }
 
@@ -414,7 +415,7 @@ class pwLexer {
   }
 
   public function connectTo($name, $to) {
-    #pw_debug($this->patterntable);
+    #TestingTools::debug($this->patterntable);
     if (! array_key_exists($name, $this->patterntable)) {
       $this->addLog("WARNING", "Key '$name' doesn't exist in patterntable!");
       return false;
@@ -790,7 +791,7 @@ class pwLexer {
     if ($nodename == false or $this->AST[$pid]["NAME"] == $nodename)
       return false;
 
-    #pw_debug($this->AST[$parentid], "addABSTRACTNODE: $name; parentid = $parentid");
+    #TestingTools::debug($this->AST[$parentid], "addABSTRACTNODE: $name; parentid = $parentid");
 
     $tag = array( "NAME"   => $nodename,
                   "ID"     => count($this->AST),
@@ -847,7 +848,7 @@ class pwLexer {
 
     // Keine ID gegeben: update + gib die entsprechende parent-ID zur?ck
     if ($id === NULL) {
-      #pw_debug($this->parentstack, "updateParentStack: id = $id; parentid = $parentid");
+      #TestingTools::debug($this->parentstack, "updateParentStack: id = $id; parentid = $parentid");
       $parentid = $this->removeParentFromStack();
       return $parentid;
     }
@@ -859,7 +860,7 @@ class pwLexer {
     }
     $this->parentstack[] = $id;
 
-    #pw_debug($this->parentstack, "updateParentStack: id = $id; parentid = $id");
+    #TestingTools::debug($this->parentstack, "updateParentStack: id = $id; parentid = $id");
     return true;
 
   }
@@ -878,7 +879,7 @@ class pwLexer {
 
   protected function addNodeOnOpen($tag) {
 
-    #pw_debug($tag, "ONOPEN");
+    #TestingTools::debug($tag, "ONOPEN");
 
     // R?ckgabe: FALSE => OpenTag gefunden
     if ($this->stripExitTagName($tag["NAME"]) !== false) {
@@ -909,16 +910,16 @@ class pwLexer {
     // Text-Knoten erzeugen...
     #$this->addTextNode($tag, false, false, true);
     #if (trim($tag['TEXT']) == "Diese Seite") {
-    #  pw_debug(trim($tag['TEXT']));
-    #  pw_debug($tag);
+    #  TestingTools::debug(trim($tag['TEXT']));
+    #  TestingTools::debug($tag);
     #  $pid = $this->getParentID();
-    #  pw_debug($pid);
+    #  TestingTools::debug($pid);
     #  $anodename = $this->getPatternInfo($tag["NAME"], "CONNECTTO");
-    #  pw_debug($anodename);
+    #  TestingTools::debug($anodename);
     #}
 
 
-    #pw_debug($tag, "ONOPEN - before add: id = $id; parentid = $parentid ");
+    #TestingTools::debug($tag, "ONOPEN - before add: id = $id; parentid = $parentid ");
     #if ($tag['TOKEN'] == false) {
     #  $this->addLog("FATAL", print_r($tag, true));
     #  return false;
@@ -930,7 +931,7 @@ class pwLexer {
                                   "PARENT"  => $this->getParentID()
                                 ));
     #$x = count($this->AST);
-    #pw_debug($x);
+    #TestingTools::debug($x);
     #$this->AST[$x] =  array( "NAME"    => $tag["NAME"],
     #                              "ID"      => $x,
     #                              "CONFIG"  => $tag["CONFIG"],
@@ -953,9 +954,9 @@ class pwLexer {
 
     }
 
-    #pw_debug($this->parentstack, "PARENT");
-    #pw_debug($tag, "ONOPEN - added: id = $id; parentid = $parentid ");
-    #pw_debug($this->AST, "DOM");
+    #TestingTools::debug($this->parentstack, "PARENT");
+    #TestingTools::debug($tag, "ONOPEN - added: id = $id; parentid = $parentid ");
+    #TestingTools::debug($this->AST, "DOM");
     #echo "<pre>".htmlentities($this->temptxt)."</pre><hr>";
 
     #out ($this->AST);
@@ -1008,7 +1009,7 @@ class pwLexer {
     if ($length == 0 and $addemptystring == false)
       return false;
 
-    #if ($txtortag['NAME'] == "tableheader")    pw_debug($txtortag);
+    #if ($txtortag['NAME'] == "tableheader")    TestingTools::debug($txtortag);
 
     $trimtext = trim($text, ' ');
 
@@ -1097,17 +1098,17 @@ class pwLexer {
     }
 
     #if ($tag['NAME'] == "preformat") {
-    #  pw_debug($tag);
-    #  #pw_debug($pid);
-    #  pw_debug($this->getPatternInfo($this->AST[$pid]['NAME'], "TYPE"), $pid);
-    #  pw_debug($this->parentstack);
+    #  TestingTools::debug($tag);
+    #  #TestingTools::debug($pid);
+    #  TestingTools::debug($this->getPatternInfo($this->AST[$pid]['NAME'], "TYPE"), $pid);
+    #  TestingTools::debug($this->parentstack);
     #}
 
     // Restlichen Text als Textknoten in das DOM h?ngen
     #$this->addTextNode($tag, false, false, true);
 
     #if($this->AST[$pid]['NAME'] == 'comment') {
-    #  pw_debug($pid);
+    #  TestingTools::debug($pid);
     #  $this->AST[$pid]['IGNORE'] = true;
     #  array_pop($this->AST);
     #  #array_pop($this->AST);
@@ -1117,8 +1118,8 @@ class pwLexer {
     $this->updateParentStack();
 
     #if ($this->AST[$pid]['IGNORE']) {
-    #  pw_debug($tag, "CLOSING: ".$tag["NAME"]." ID=$pid");
-    #  pw_debug($this->parentstack);
+    #  TestingTools::debug($tag, "CLOSING: ".$tag["NAME"]." ID=$pid");
+    #  TestingTools::debug($this->parentstack);
     #  array_pop($this->AST);
     #  array_pop($this->AST);
     #}
@@ -1228,7 +1229,7 @@ class pwLexer {
 
   protected function updateDomTree($tag, $txt) {
 
-    #pw_debug($tag, "TAG");
+    #TestingTools::debug($tag, "TAG");
     $pid = $this->getParentID();
     $this->updateTextPosition();
     $this->addNodeOnOpen($tag);
@@ -1237,8 +1238,8 @@ class pwLexer {
     $current = end ($this->AST);
     $thisid = $current['ID'];
 
-    #pw_debug($current);
-    #pw_debug($tag);
+    #TestingTools::debug($current);
+    #TestingTools::debug($tag);
 
     $n = $tag["NAME"];
     $exit = $this->stripExitTagName($n);
@@ -1666,15 +1667,13 @@ class pwLexer {
    **/
   public function addLog($type, $text, $data = null) {
 
-
-    // get Debuginfo as array(1)!
-    $dbginfo = pw_debug_get_info("", 1);
+    $dbginfo = TestingTools::getDebugInfoAsArray();
 
     $this->logbook[] = array ( 'TIME' => date("Y/m/d h:i:s", time()),
                                'TYPE' => $type,
-                               'FILE' => $dbginfo['FILE'],
-                               'LINE' => $dbginfo["LINE"],
-                               'FUNC' => $dbginfo["FUNC"],
+                               'FILE' => $dbginfo['file'],
+                               'LINE' => $dbginfo["line"],
+                               'FUNC' => $dbginfo["function"],
                                'TEXT' => $text,
                                'DATA' => $data
                              );
@@ -1730,7 +1729,7 @@ $lexer->printText(true);
 
 $lexer->printDOM();
 $di = $lexer->getDebugInfo();
-#pw_debug( $di );
+#TestingTools::debug( $di );
 
     echo  "<table border=1 style='width: 100%'><tr>".
           "<th width=80>Line #</th>".
@@ -1760,32 +1759,32 @@ echo "</table>";
 
 
 $node = $lexer->firstChild();
-pw_debug($node, "firstChild: null");
+TestingTools::debug($node, "firstChild: null");
 
 $node = $lexer->parentNode($node);
-pw_debug($node, "parentNode: #DOCUMENT");
+TestingTools::debug($node, "parentNode: #DOCUMENT");
 
 $node = $lexer->getNode(1);
-pw_debug($node, "getNode");
+TestingTools::debug($node, "getNode");
 
 $node = $lexer->parentNode($node);
-pw_debug($node, "parentNode");
+TestingTools::debug($node, "parentNode");
 
-pw_debug($lexer->childNodes($node), "childNodes");
+TestingTools::debug($lexer->childNodes($node), "childNodes");
 
 $l = $lexer->lastChild($node);
-pw_debug($l, "lastChild");
+TestingTools::debug($l, "lastChild");
 
 $node = $lexer->firstChild($node);
-pw_debug($node, "firstChild");
+TestingTools::debug($node, "firstChild");
 
 $node = $lexer->nextSibling($node);
-pw_debug($node, "nextSibling");
+TestingTools::debug($node, "nextSibling");
 
 $node = $lexer->getNode(2);
-pw_debug($node, "getNode");
+TestingTools::debug($node, "getNode");
 
-pw_debug( $lexer->hasChildNodes($node) , "hasChildNodes");
+TestingTools::debug( $lexer->hasChildNodes($node) , "hasChildNodes");
 
 $lexer->printLog();
 
@@ -1819,7 +1818,7 @@ $lexer->printPatternTable();
 
 $_SESSION["timer"][] = $lexer->getExecutionTime();
 
-pw_debug($_SESSION["timer"]);
+TestingTools::debug($_SESSION["timer"]);
 
 /*
 TODO:
