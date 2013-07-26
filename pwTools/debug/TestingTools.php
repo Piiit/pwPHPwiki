@@ -105,7 +105,14 @@ class TestingTools {
 	
 	public static function getDebugInfoAsArray() {
 		$debugInfo = debug_backtrace();
-		return end(array_values($debugInfo));
+		$debug = $debugInfo[0];
+		while($debug["file"] == __FILE__) {
+			$debug = next($debugInfo);
+		}
+		$line = $debug["line"];
+		$debug = next($debugInfo);
+		$debug["line"] = $line;
+		return $debug;
 	}
 	
 	public static function getDebugInfoAsString() {
