@@ -93,7 +93,7 @@ class FileTools {
 	
 	public static function setTextFileFormat($text, TextFileFormat $newFormat) {
 		
-		if($newFormat->getString() == TextFileFormat::UNDEFINED || $newFormat->getString() == TextFileFormat::MIXED) {
+		if($newFormat->getOrdinal() == TextFileFormat::UNDEFINED || $newFormat->getOrdinal() == TextFileFormat::MIXED) {
 			throw new Exception("Cannot set text file to format ".TextFileFormat::toString($newFormat));
 		}
 		
@@ -102,7 +102,7 @@ class FileTools {
 			return $text;
 		}
 		$text = str_replace(array("\n\r", "\r\n", "\r"), array("\n", "\n", "\n"), $text);
-		switch ($newFormat->getString()) {
+		switch ($newFormat->getOrdinal()) {
 			case TextFileFormat::UNIX:
 			case TextFileFormat::MAC:
 				 return $text;
