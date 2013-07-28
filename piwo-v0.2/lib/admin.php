@@ -1,13 +1,13 @@
 <?php//@TODO: frontend und backend trennen... UserInterface in separate Datei ablegen!if (!defined('INC_PATH')) {
 	define ('INC_PATH', realpath(dirname(__FILE__).'/../').'/');
 }
-require_once INC_PATH.'piwo-v0.2/lib/common.php';require_once INC_PATH.'pwTools/string/encoding.php';require_once INC_PATH.'pwTools/debug/TestingTools.php';function pw_wiki_showsource ($id) {  $filename = pw_wiki_path($id, ST_FULL);  $out = StringFormat::htmlIndent("<h1>Quelltext von <tt>$id</tt></h1>");  $out .= StringFormat::htmlIndent("<i>Sie sind nicht berechtigt diesen Quelltext zu bearbeiten.</i><br />");  if (file_exists($filename) and !isset($_POST['save'])) {    $data = file_get_contents($filename);    $data = pw_wiki_LE_unix($data);    $data = pw_wiki_file2editor($data);    $out .= StringFormat::htmlIndent("<br /><a href='?mode=cleared&id=$id'>&laquo; Zur&uuml;ck zur Seite</a>");    $out .= StringFormat::htmlIndent("<a style='float: right' href='?mode=showpages&id=$id'>Zum Seiten&uuml;berblick &raquo;</a><hr />");    $out .= StringFormat::htmlIndent("<textarea cols='80' rows='25' id='wikitxt' readonly='readonly' wrap='off'>$data</textarea>");    $out .= StringFormat::htmlIndent("<hr /><a href='?mode=cleared&id=$id'>&laquo; Zur&uuml;ck zur Seite</a>");    $out .= StringFormat::htmlIndent("<a style='float: right' href='?mode=showpages&id=$id'>Zum Seiten&uuml;berblick &raquo;</a>");    return $out;  }  // Leere Rückgabe, damit ein "notfound"-Fehler ausgelöst wird...  return;}
+require_once INC_PATH.'piwo-v0.2/lib/common.php';require_once INC_PATH.'pwTools/string/encoding.php';require_once INC_PATH.'pwTools/debug/TestingTools.php';require_once INC_PATH.'pwTools/file/FileTools.php';function pw_wiki_showsource ($id) {  $filename = pw_wiki_path($id, ST_FULL);  $out = StringFormat::htmlIndent("<h1>Quelltext von <tt>$id</tt></h1>");  $out .= StringFormat::htmlIndent("<i>Sie sind nicht berechtigt diesen Quelltext zu bearbeiten.</i><br />");  if (file_exists($filename) and !isset($_POST['save'])) {    $data = file_get_contents($filename);    $data = pw_wiki_file2editor($data);    $out .= StringFormat::htmlIndent("<br /><a href='?mode=cleared&id=$id'>&laquo; Zur&uuml;ck zur Seite</a>");    $out .= StringFormat::htmlIndent("<a style='float: right' href='?mode=showpages&id=$id'>Zum Seiten&uuml;berblick &raquo;</a><hr />");    $out .= StringFormat::htmlIndent("<textarea cols='80' rows='25' id='wikitxt' readonly='readonly' wrap='off'>$data</textarea>");    $out .= StringFormat::htmlIndent("<hr /><a href='?mode=cleared&id=$id'>&laquo; Zur&uuml;ck zur Seite</a>");    $out .= StringFormat::htmlIndent("<a style='float: right' href='?mode=showpages&id=$id'>Zum Seiten&uuml;berblick &raquo;</a>");    return $out;  }  // Leere Rückgabe, damit ein "notfound"-Fehler ausgelöst wird...  return;}
 function pw_wiki_editpage ($id) {
   #out(pw_wiki_isvalidid(pw_wiki_pg($id)));
   $data = "";  $ret = "";  if (!isset($_SESSION["pw_wiki"]["login"]["user"]))    return false;
   if (pw_wiki_isns($id))
     return;
-  $filename = pw_wiki_path($id, ST_FULL);  #out2(utf8_check($filename));  if (file_exists($filename) and !isset($_POST['save'])) {    $data = file_get_contents($filename);    $data = pw_wiki_LE_unix($data);    $filename = pw_s2e($filename);    $ret = "<tt>Datei '$filename' wurde geladen</tt>";  }  if (isset($_POST["save"])) {    $data = $_POST['wikitxt'];    $data = pw_stripslashes($data);    $data = pw_s2u($data);    $data = pw_wiki_LE_unix($data);    // @TODO: What is config?    $config = null;    $ret = pw_wiki_savepage ($id, $data, $config);  }  $data = pw_wiki_file2editor($data);  $id = pw_wiki_path2id($filename);  $OLDMODE = isset($_REQUEST['oldmode']) ? $_REQUEST['oldmode'] : "cleared";  $out = StringFormat::htmlIndent();  $out .= StringFormat::htmlIndent("<!-- EDITOR START -->", START);  $out .= StringFormat::htmlIndent("<form id='texteditor' name='texteditor' method='post' accept-charset='utf-8'>", START);  $out .= StringFormat::htmlIndent("<div id='editor_win' style='width: 100%; border: 0;'>", START);  $out .= StringFormat::htmlIndent("<button  value='save' name='save' id='save'>Speichern</button><a id='exiteditor' class='textinput' href='?id=$id&mode=$OLDMODE'>Abbrechen</a>");  $out .= StringFormat::htmlIndent("<span style='float: right'>$ret</span>");  $out .= StringFormat::htmlIndent("<label style='display: block; border: 0; padding: 0; margin: 0'>", START);  $out .= StringFormat::htmlIndent("<textarea cols='80' rows='25' name='wikitxt' id='wikitxt' wrap=off onkeydown='return catchTab(this,event)'>$data</textarea>");  $out .= StringFormat::htmlIndent("</label>", END);  $out .= StringFormat::htmlIndent("</div>", END);  $out .= StringFormat::htmlIndent("</form>", END);  $out .= StringFormat::htmlIndent("<!-- EDITOR END -->", END);  $out .= StringFormat::htmlIndent();  return $out;}
+  $filename = pw_wiki_path($id, ST_FULL);  #out2(utf8_check($filename));  if (file_exists($filename) and !isset($_POST['save'])) {    $data = file_get_contents($filename);    $data = FileTools::setTextFileFormat($data, new TextFileFormat('UNIX'));    $filename = pw_s2e($filename);    $ret = "<tt>Datei '$filename' wurde geladen</tt>";  }  if (isset($_POST["save"])) {    $data = $_POST['wikitxt'];    $data = pw_stripslashes($data);    $data = pw_s2u($data);    $data = FileTools::setTextFileFormat($data, new TextFileFormat('UNIX'));    // @TODO: What is config?    $config = null;    $ret = pw_wiki_savepage ($id, $data, $config);  }  $data = pw_wiki_file2editor($data);  $id = pw_wiki_path2id($filename);  $OLDMODE = isset($_REQUEST['oldmode']) ? $_REQUEST['oldmode'] : "cleared";  $out = StringFormat::htmlIndent();  $out .= StringFormat::htmlIndent("<!-- EDITOR START -->", StringFormat::START);  $out .= StringFormat::htmlIndent("<form id='texteditor' name='texteditor' method='post' accept-charset='utf-8'>", StringFormat::START);  $out .= StringFormat::htmlIndent("<div id='editor_win' style='width: 100%; border: 0;'>", StringFormat::START);  $out .= StringFormat::htmlIndent("<button  value='save' name='save' id='save'>Speichern</button><a id='exiteditor' class='textinput' href='?id=$id&mode=$OLDMODE'>Abbrechen</a>");  $out .= StringFormat::htmlIndent("<span style='float: right'>$ret</span>");  $out .= StringFormat::htmlIndent("<label style='display: block; border: 0; padding: 0; margin: 0'>", StringFormat::START);  $out .= StringFormat::htmlIndent("<textarea cols='80' rows='25' name='wikitxt' id='wikitxt' wrap=off onkeydown='return catchTab(this,event)'>$data</textarea>");  $out .= StringFormat::htmlIndent("</label>", StringFormat::END);  $out .= StringFormat::htmlIndent("</div>", StringFormat::END);  $out .= StringFormat::htmlIndent("</form>", StringFormat::END);  $out .= StringFormat::htmlIndent("<!-- EDITOR END -->", StringFormat::END);  $out .= StringFormat::htmlIndent();  return $out;}
 function pw_wiki_newpage ($id) {  if (!isset($_SESSION["pw_wiki"]["login"]["user"]))
     return false;
 
@@ -26,7 +26,7 @@ function pw_wiki_config ($id) {  if (!isset($_SESSION["pw_wiki"]["login"]["user
 
   global $MODE;
 
-  if (isset($_POST["config"])) {    if (isset($_POST['debug']) && $_POST['debug']) {      $_SESSION['pw_wiki']['debug'] = true;    } else {      $_SESSION['pw_wiki']['debug'] = false;      TestingTools::shutdownDebug();    }        if (isset($_POST['useCache']) && $_POST['useCache']) {
+  if (isset($_POST["config"])) {    if (isset($_POST['debug']) && $_POST['debug']) {      $_SESSION['pw_wiki']['debug'] = true;    } else {      $_SESSION['pw_wiki']['debug'] = false;      TestingTools::debugOff();    }        if (isset($_POST['useCache']) && $_POST['useCache']) {
     	$_SESSION['pw_wiki']['useCache'] = true;
     } else {
     	$_SESSION['pw_wiki']['useCache'] = false;
@@ -55,7 +55,7 @@ function pw_wiki_savepage ($id, $data) {
   // Kontrolliere, ob der Ordner existiert und lege ihn ggf. an  $dirnames = explode("/", $dirname);  $dn = "";  foreach ($dirnames as $dirname) {    $dn .= $dirname."/";    if (!file_exists($dn)) {      if (!mkdir($dn)) {        $ret = "<tt class='error'>Der Ordner '$dn' konnte nicht angelegt werden.</tt>";        return $ret;      }    }
   }
 
-  $data = pw_wiki_LE_unix($data);
+  $data = FileTools::setTextFileFormat($data, new TextFileFormat('UNIX'));
   $ret = file_put_contents($filename, $data);
 
   $filename = pw_s2e($filename);  if ($ret !== false) {    $ret = "<tt>Datei '$filename' wurde gespeichert.</tt>";  } else {    $ret = "<tt class='error'>Datei '$filename' konnte nicht gespeichert werden.</tt>";
@@ -193,8 +193,7 @@ function pw_wiki_delnamespaces($dir) {
 	$footerData = file_get_contents($footerFilename);
 	if ($footerFilename === false) {
 		throw new Exception("Unable to read template file '$footerFilename'!");
-	}		$data = pw_wiki_LE_unix($data);	$headerData = pw_wiki_LE_unix($headerData);	$footerData = pw_wiki_LE_unix($footerData);
-	$data = $headerData."\n".$data."\n".$footerData;	$data = pw_wiki_LE_unix($data);
+	}		$data = $headerData."\n".$data."\n".$footerData;	$data = FileTools::setTextFileFormat($data, new TextFileFormat('UNIX'));
 	
 	if (!utf8_check($data)) {
 		throw new Exception("File '$filename' is not an UTF8-encoded file!");
@@ -224,11 +223,8 @@ function pw_wiki_delnamespaces($dir) {
 	$footerData = file_get_contents($footerFilename);
 	if ($footerFilename === false) {
 		throw new Exception("Unable to read template file '$footerFilename'!");
-	}		$data = pw_wiki_LE_unix($data);
-	$headerData = pw_wiki_LE_unix($headerData);
-	$footerData = pw_wiki_LE_unix($footerData);
-	$data = $headerData."\n".$data."\n".$footerData;
-	$data = pw_wiki_LE_unix($data);		$out = parse($data);	return $out;}
+	}		$data = $headerData."\n".$data."\n".$footerData;	$_SESSION['pw_wiki']['file']['format'] = FileTools::getTextFileFormat($data)->getString();
+	$data = FileTools::setTextFileFormat($data, new TextFileFormat('UNIX'));		$out = parse($data);	return $out;}
 function pw_wiki_showcontent($id) {	if(isset($_SESSION['pw_wiki']['useCache']) && $_SESSION['pw_wiki']['useCache'] == false) {		return pw_wiki_get_parsed_file($id);	}    return pw_wiki_create_cached_page($id);
 }
 

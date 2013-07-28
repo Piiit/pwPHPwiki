@@ -1,6 +1,6 @@
 <?php
 
-  global $piwo_version;
+  $piwo_version = "0.2.1 - Alpha";
 
   if (! isset($_SESSION['pw_wiki']['config'])) {
     $config  = array ( "debug"        => false,
@@ -9,7 +9,7 @@
                        "storage"      => "dat",
                        "fileext"      => ".txt",
                        "wikititle"    => "piwo",
-                       "titledesc"    => isset($piwo_version) ? $piwo_version : "version missing",
+                       "titledesc"    => $piwo_version,
                        "showuser"     => true,
                        "showsource"   => true,
                        "showpages"    => true,

@@ -14,14 +14,12 @@ function pw_wiki_version() {
 }
 
 function pw_wiki_getid() {
-	$id = isset($_GET['id']) ? $_GET['id'] : pw_url2u(pw_wiki_getcfg('id'));
-	if (!$id) {
+	try {
+		$id = isset($_GET['id']) ? $_GET['id'] : pw_url2u(pw_wiki_getcfg('id'));
+	} catch (Exception $e) {
 		$id = pw_url2u(pw_wiki_getcfg('startpage'));
 	}
-
-	$id = pw_wiki_s2id($id);
-
-	return $id;
+	return pw_wiki_s2id($id);
 }
 
 
@@ -183,7 +181,7 @@ function pw_basename($fn, $ext = null) {
 }
 
 function pw_wiki_file2editor($data) {
-	$data = pw_wiki_LE_unix($data);
+	$data = FileTools::setTextFileFormat($data, new TextFileFormat('UNIX'));
 	$data = pw_s2e($data);
 	return $data;
 }
@@ -396,6 +394,7 @@ function pw_wiki_s2id($id) {
 function pw_wiki_fileinfo($subcat) {
 	switch($subcat) {
 		case 'type':
+			// TODO use FileTools to get this file information...
 			$o = $_SESSION['pw_wiki']['file']['format'];
 		break;
 	}
@@ -437,40 +436,6 @@ function pw_wiki_fullns($ns) {
 
 	return pw_wiki_ns(pw_wiki_getcfg('fullns').$ns);
 }
-
-
-
-function pw_wiki_LE_unix($data) {
-
-	#out("\r");
-
-	if (strpos($data,"\n") and strpos($data,"\r")===false) {
-			$_SESSION['pw_wiki']['file']['format'] = "UNIX";
-			return $data;
-	}
-
-	if (($nr = strpos($data,"\n\r")) or ($rn = strpos($data, "\r\n"))) {
-		$sep = $nr ? "\n\r" : "\r\n";
-		$data = explode($sep, $data);
-		$data = implode("\n", $data);
-		$_SESSION['pw_wiki']['file']['format'] = "PC";
-		return $data;
-	}
-
-	#out(strToHex($data));
-	if(strpos($data,"\r") and strpos($data, "\n")===false) {
-		$data = explode("\r", $data);
-		$data = implode("\n", $data);
-		$_SESSION['pw_wiki']['file']['format'] = "MAC";
-		return $data;
-	}
-
-	$_SESSION['pw_wiki']['file']['format'] = "UNDEFINED";
-	return $data;
-
-}
-
-
 
 
 function pw_wiki_isvalidid($fullid) {

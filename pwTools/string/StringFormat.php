@@ -29,7 +29,7 @@ class StringFormat {
 		if (!is_bool($value)) {
 			throw new InvalidArgumentException("First argument has to be boolean!");
 		}
-		return ($value ? "TRUE" : "FALSE");
+		return ($value ? "true" : "false");
 	}
 	
 	//TODO Better use a single htmlIndentation method that handles entire html pages... (this should become deprecated)

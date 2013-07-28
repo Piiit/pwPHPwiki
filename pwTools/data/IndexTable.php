@@ -36,7 +36,7 @@ class IndexTable {
 		$id = StringTools::rightTrim("$l[1].$l[2].$l[3].$l[4].$l[5]", ".0");
 		$item = new IndexItem($id, $level, $text);
 		
-		$this->_lastlevel = $this->_level;
+		$this->_lastlevel = $level;
 		
 		$this->_cont[] = $item;
 	}

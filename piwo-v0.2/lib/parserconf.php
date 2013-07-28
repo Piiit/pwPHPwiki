@@ -69,7 +69,7 @@ function slist($node, $lexer) {
   $listtype = $fc['CONFIG'][1] == "#" ? '<ol>' : '<ul>';
   $GLOBALS['listitems'][] = $fc['CONFIG'][1];
   #$listtype = htmlentities($listtype);
-  return StringFormat::htmlIndent($listtype, START);
+  return StringFormat::htmlIndent($listtype, StringFormat::START);
 }
 
 function slistitem($node, $lexer) {
@@ -109,7 +109,7 @@ function slistitem($node, $lexer) {
 
   $o .= "<li>";
   #$o = htmlentities($o);
-  return StringFormat::htmlIndent($o, START);
+  return StringFormat::htmlIndent($o, StringFormat::START);
 }
 
 function elistitem($node, $lexer) {
@@ -132,7 +132,7 @@ function elistitem($node, $lexer) {
 
   }
   #$o = htmlentities($o);
-  return StringFormat::htmlIndent($o, END);
+  return StringFormat::htmlIndent($o, StringFormat::END);
 }
 
 function elist($node, $lexer) {
@@ -144,7 +144,7 @@ function elist($node, $lexer) {
     $o .= $listtype;
   }
   #$o = htmlentities($o);
-  return StringFormat::htmlIndent($o, END);
+  return StringFormat::htmlIndent($o, StringFormat::END);
 }
 
 function sbold() {

@@ -25,16 +25,21 @@ class TestingTools {
 	
 	private static function printItem($item, $name = null, $debugInfo = null) {
 		$name = htmlentities($name);
-		if (is_array($item))
+		if (is_array($item)) {
 			echo self::printLine(gettype($item), count($item), "", $name, $debugInfo)."\n";
-		elseif (is_bool($item))
+		} elseif (is_bool($item)) {
 			echo self::printLine("boolean", 1, $item ? $item = "true" : $item = "false", $name, $debugInfo)."\n";
-		elseif (is_null($item))
+		} elseif (is_null($item)) {
 			echo self::printLine("null", "", "", $name, $debugInfo)."\n";
-		elseif (is_string($item))
-			echo self::printLine("string", strlen($item), preg_replace("#\n#", "<code class='debspecial'> N </code>", htmlentities($item)), $name, $debugInfo)."\n";
-		else
+		} elseif (is_string($item)) {
+			$itemClean = htmlentities($item);
+			$itemClean = preg_replace("#\n#", "<code class='debspecial'> N </code>", $itemClean);
+			$itemClean = preg_replace("#\r#", "<code class='debspecial'> R </code>", $itemClean);
+			$itemClean = preg_replace("#\t#", "<code class='debspecial'> T </code>", $itemClean);
+			echo self::printLine("string", strlen($item), $itemClean, $name, $debugInfo)."\n";
+		} else {
 			echo self::printLine(gettype($item), count($item), $item, $name, $debugInfo)."\n";
+		}
 	}
 	
 	private static function printAll($output, $description="", $call = 0, $type = self::INFORM) {
