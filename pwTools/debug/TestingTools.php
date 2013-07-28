@@ -1,6 +1,7 @@
 <?php
 
 //TODO getDebugInfo should return a debug info object not an array or string
+//TODO output of a class missing
 
 if (!defined('INC_PATH')) {
 	define ('INC_PATH', realpath(dirname(__FILE__).'/../').'/');

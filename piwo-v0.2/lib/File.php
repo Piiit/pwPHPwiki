@@ -53,7 +53,7 @@ class File {
 			}
 		}
 		$this->_filePath = new FilePath($filename);
-		var_dump($this->_filePath);
+		#var_dump($this->_filePath);
 		#$this->_directory = self::realPath(self::$_workingDirectory.dirname($filename));
 		#$this->_filename = basename($filename);
 		#$this->_realpath = self::realPath(self::$_workingDirectory.'/'.$this->_directory.'/').$this->_filename;

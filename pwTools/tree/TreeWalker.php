@@ -25,9 +25,7 @@ class TreeWalker {
 					throw new Exception("TreeWalker-Nodes must be an instance of Node!");
 				}
 				$this->_treeWalkerConfig->callBefore($node);
-				if($this->_treeWalkerConfig->doRecursion($node)) {
-					$this->_treeWalker($node);
-				}
+				$this->_treeWalker($node);
 				$this->_treeWalkerConfig->callAfter($node);
 			}
 		}

@@ -270,20 +270,6 @@ class Node {
 		// TODO remove this node and all it's children.
 	}
 	
-	public function getArray() {
-		$treeArray = new TreeArray();
-		//$treeArray->addNoRecursionNode("header");
-		$ta = new TreeWalker($this, new TreeArray());
-// 		$ta->addNoRecursionNode("header");
-		return $ta->getResult();
-	}
-	
-	public function getText($sep = "") {
-		$text = implode($sep, $this->getArray());
-		return $text;
-	}
-	
-	
 	/**
 	 * Fetch the child with specified index from children's list or null if not existent.
 	 * @param int $childIndex	array index

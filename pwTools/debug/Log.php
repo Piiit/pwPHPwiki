@@ -102,6 +102,7 @@ class Log {
 		);
 	}
 	
+	//FIXME use TestingTools::getDebugInfo...
 	private function _getDebugInfo() {
 		if ($this->_logLevel < self::DEBUG) {
 			return array();

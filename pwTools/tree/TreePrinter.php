@@ -9,14 +9,14 @@ class TreePrinter implements TreeWalkerConfig {
 	private $_text = "";
 	private $_space = "";
 	 
-	public function callBefore($node) {
+	public function callBefore(Node $node) {
 		$this->_text .= $this->_space.$node."\n";
 		if ($node->hasChildren()) {
 			$this->_space .= "  ";
 		} 
 	}
 
-	public function callAfter($node) {
+	public function callAfter(Node $node) {
 		if ($node->getParent()->getLastChild() === $node) {
 			$this->_space = substr($this->_space, 0, -2);
 		}

@@ -34,9 +34,9 @@ require_once INC_PATH.'pwTools/file/TextFileFormat.php';
 require_once INC_PATH.'pwTools/tree/Node.php';
 require_once INC_PATH.'pwTools/data/Collection.php';
 require_once INC_PATH.'pwTools/time/Timer.php';
-require_once INC_PATH.'pwLexer/Token.php';
-require_once INC_PATH.'pwLexer/Pattern.php';
-require_once INC_PATH.'pwLexer/Log.php';
+require_once INC_PATH.'pwTools/parser/Token.php';
+require_once INC_PATH.'pwTools/parser/Pattern.php';
+require_once INC_PATH.'pwTools/debug/Log.php';
 
 class Lexer {
 	
@@ -168,7 +168,9 @@ class Lexer {
 		$regexpMatch = $this->_cleanupArray($regexpMatch);
 		$beforeMatch = $regexpMatch[1];
 		$completeMatch = $regexpMatch[0];
+// 		TestingTools::inform($regexpMatch);
 		$conf = array_slice($regexpMatch, 2, -1);
+// 		TestingTools::inform($conf, "CONF");
 		
 		return new Token($name, $beforeMatch, $completeMatch, $conf);
 	}
@@ -297,11 +299,7 @@ class Lexer {
 	}
 	
 	
-	public function addPattern($pattern) {
-		if (!($pattern instanceof Pattern)) {
-			throw new InvalidArgumentException("Invalid pattern object given!");
-		}
-			
+	public function addPattern(Pattern $pattern) {
 		switch ($pattern->getType()) {
 			case Pattern::TYPE_WORD:
 				$restore = "";
@@ -455,6 +453,7 @@ class Lexer {
 			}
 		}
 
+// 		var_dump($token);
 		$node = new Node($token->getName(), $token->getConfig());
 		$parent->addChild($node);
 		$this->_lastNode = $node;
