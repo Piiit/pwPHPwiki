@@ -1,5 +1,5 @@
 eclipse.preferences.version=1
-include_path=0;/pwLexer\u00052;/pwTools
+include_path=0;/pwLexer\u00052;/pwTools\u00052;/piwo-v0.2
 org.eclipse.php.core.phpDoc=false
 phpVersion=php5
 useShortTags=true

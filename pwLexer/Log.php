@@ -61,9 +61,9 @@ class Log {
 			$typeString = $this->_getTypeString($line['TYPE']);
 			$debugString = "";
 			if ($this->_logLevel == self::DEBUG) {
-				$debugString = sprintf("| DEBUG=%s->%s@%s", $line["FILE"],$line["FUNC"],$line["LINE"]);
+				$debugString = sprintf("%s->%s@%s", $line["FILE"], $line["FUNC"], $line["LINE"]);
 			}
-			$out .= sprintf("%19s | %-7s | %-80s%s\n", $date, trim($typeString), trim($line['TEXT']), trim($debugString));
+			$out .= sprintf("%19s | %-7s | %-40s | %s\n", $date, trim($typeString), trim($debugString), trim($line['TEXT']));
 		}
 		return $out;
 	}

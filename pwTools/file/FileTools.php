@@ -13,7 +13,7 @@ class FileTools {
 			throw new Exception("Folder string cannot be empty");
 		}
 		if (!file_exists($folder)) {
-			if(!mkdir($folder, 0777, TRUE)) {
+			if(!mkdir($folder, 0755, TRUE)) {
 				throw new Exception("Creating folder '$folder' failed!");
 			}
 		}

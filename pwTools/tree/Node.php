@@ -1,5 +1,9 @@
 <?php
  
+if (!defined('INC_PATH')) {
+	define ('INC_PATH', realpath(dirname(__FILE__).'/../../').'/');
+}
+
 require_once INC_PATH.'pwTools/string/encoding.php';
 
 /**
@@ -152,6 +156,9 @@ class Node {
 	 * @return Node|NULL
 	 */
 	public function getNextSibling() {
+		if($this->isRoot()) {
+			return null;
+		}
 		$pnode = $this->getParent();
 		$pnodeChildren = $pnode->getChildren();
 		$cur = $this->_getChildIndex();
@@ -264,7 +271,10 @@ class Node {
 	}
 	
 	public function getArray() {
+		$treeArray = new TreeArray();
+		//$treeArray->addNoRecursionNode("header");
 		$ta = new TreeWalker($this, new TreeArray());
+// 		$ta->addNoRecursionNode("header");
 		return $ta->getResult();
 	}
 	

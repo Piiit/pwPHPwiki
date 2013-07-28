@@ -23,8 +23,14 @@ TODO: new...
 FIXME LEXER SHOULD ONLY PRODUCE AN AST; PUT EVERYTHING ELSE TO NODE, TREE OR A NEW PARSER CLASS: LIKE GETARRAY, CALLFUNCTION, ETC.
 */
 
+if (!defined('INC_PATH')) {
+	define ('INC_PATH', realpath(dirname(__FILE__).'/../').'/');
+}
+
 require_once INC_PATH.'pwTools/string/encoding.php';
-require_once INC_PATH.'pwTools/string/TextFormat.php';
+require_once INC_PATH.'pwTools/string/StringFormat.php';
+require_once INC_PATH.'pwTools/file/FileTools.php';
+require_once INC_PATH.'pwTools/file/TextFileFormat.php';
 require_once INC_PATH.'pwTools/tree/Node.php';
 require_once INC_PATH.'pwTools/data/Collection.php';
 require_once INC_PATH.'pwTools/time/Timer.php';
@@ -89,9 +95,9 @@ class Lexer {
 				$this->_updateTextPosition();
 				$this->_addNodeOnOpen($token);
 				$this->_addNodeOnClose($token);
-				echo TextFormat::preFormat($token);
+				echo StringFormat::preFormat($token);
 			}
-			$this->_executiontime = $timer->measure_elapsed(4);
+			$this->_executiontime = $timer->getElapsedTime(4);
 		#} while($this->_cycle <= 6);
 		} while($token);
 
@@ -119,7 +125,7 @@ class Lexer {
 			throw new InvalidArgumentException("First argument must be string!");
 		}
 
-		StringFormat::htmlIndentormalizeLE($source);
+		FileTools::setTextFileFormat($source, new TextFileFormat(TextFileFormat::UNIX));
 		$source = "\n".$source."\n";
 		$this->_textInput = $source; 
 		$this->_temptxt = $source;
@@ -319,7 +325,7 @@ class Lexer {
 					$entrypattern .= '(?=[^\n]*'.$lookaheadexit.'\n)';
 				}
 				
-				// Linepattern m?ssen immer mit einer Newline anfangen...
+				// Linepatterns must start with a newline...
 				if (substr($entrypattern, 0, 2) != '\n') {
 					$entrypattern = '\n'.$entrypattern;
 				}

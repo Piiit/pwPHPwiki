@@ -436,22 +436,23 @@ function ealignintable() {
   return '</div>';
 }
 
-function sheader($node, $lexer) {
+function sheader(Node $node, $lexer) {
   $o = "";
-  $level = strlen($node['CONFIG'][0]);
+  $nodeData = $node->getData();
+  $level = strlen($nodeData[0]);
 
+  var_dump($node);
 
-  if ($lexer->hasAncestor($node, "notoc")) {
+  if ($node->isInside("notoc")) {
     $o = '<h'.$level.'>';
   } else {
     global $idheader;
-    $fc = $lexer->firstChild($node);
-    $txt = trim($fc['VALUE']);
     $o = '<h'.$level.' id="header_'.$GLOBALS['indextable']['CONT'][$idheader]['ID'].'">';
     $GLOBALS['idheader']++;
   }
 
-  $htxt = $lexer->getText($node);
+  $htxt = $node->getText($node);
+  var_dump($node);
 
   if (!$htxt) {
     $o .= nop("Leere Titel sind nicht erlaubt!");
@@ -744,7 +745,7 @@ function sinternallink($node, $lexer) {
   global $moditext;
 
   $linkpos = $node->getFirstChild();
-  out($linkpos);
+  TestingTools::inform($linkpos);
   $linkpostxt = $linkpos->getText();
   #out2($_SESSION['pw_wiki']['error']);
   #out($linkpostxt);
@@ -772,7 +773,7 @@ function sinternallink($node, $lexer) {
     return nop("Interner Wikilink ohne Zielangabe. Leerer Wikilink?", false);
   }
 
-  $text = $lexer->getText2($linkpos);
+  $text = $node->getText($linkpos);
 
   //@TODO: refactor... common function... bubble-up of an error until ????
   if ($_SESSION['pw_wiki']['error']) {
@@ -860,7 +861,8 @@ function sinternallink($node, $lexer) {
     if ($id[0] == ':') {
       $id = ltrim($id, ':');
     } else {
-      $ns = pw_wiki_getcfg('fullns');
+      //FIXME $ns = pw_wiki_getcfg('fullns');
+      $ns = "XXX";
       $id = $ns ? $ns.$id : $id;
     }
 

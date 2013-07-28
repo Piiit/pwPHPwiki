@@ -1,7 +1,12 @@
 <?php
 
+if (!defined('INC_PATH')) {
+	define ('INC_PATH', realpath(dirname(__FILE__).'/../../').'/');
+}
+
 require_once INC_PATH.'pwTools/string/encoding.php';
 require_once INC_PATH.'pwTools/tree/Node.php';
+require_once INC_PATH.'pwTools/debug/TestingTools.php';
 
 class Token extends Node {
 	
@@ -25,7 +30,7 @@ class Token extends Node {
 		$this->_beforeMatch = $beforeMatch;
 		$this->_completeMatch = $completeMatch;
 		$this->_tokenMatch = substr($completeMatch, strlen($beforeMatch));
-		out($this->_tokenMatch);
+		TestingTools::inform($this->_tokenMatch);
 	}
 	
 	public function __toString() {

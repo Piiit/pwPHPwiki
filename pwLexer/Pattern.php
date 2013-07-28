@@ -21,7 +21,6 @@ class Pattern extends Node {
 	private $_regexp = "";
 	private $_keySensitive = false;
 	
-	
 	public function __construct($name, $type = self::TYPE_BASE, $entry = "", $exit = null, $keySensitive = false) {
 		
 		if (! is_bool($this->_keySensitive)) {

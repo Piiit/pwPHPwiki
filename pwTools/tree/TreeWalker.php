@@ -7,17 +7,9 @@ class TreeWalker {
 	private $_rootNode = null;
 	private $_treeWalkerConfig = null;
 
-	public function __construct($rootNode, $treeWalkerConfig) {
-		if ($rootNode instanceof Node) {
-			$this->_rootNode = $rootNode;
-		} else {
-			throw new InvalidArgumentException("RootNode must be of type Node!");
-		}
-		if ($treeWalkerConfig instanceof TreeWalkerConfig) { 
-			$this->_treeWalkerConfig = $treeWalkerConfig;
-		} else {
-			throw new InvalidArgumentException("Config must be of type TreeWalkerConfig!");
-		}
+	public function __construct(Node $rootNode, TreeWalkerConfig $treeWalkerConfig) {
+		$this->_rootNode = $rootNode;
+		$this->_treeWalkerConfig = $treeWalkerConfig;
 	}
 	
 	
@@ -26,15 +18,14 @@ class TreeWalker {
 		return $this->_treeWalkerConfig->getResult();
 	}
 	
-	
-	private function _treeWalker($node) {
+	private function _treeWalker(Node $node) {
 		if ($node->hasChildren()) {
 			for ($node = $node->getFirstChild(); $node != null; $node = $node->getNextSibling()) {
 				if (!$node instanceof Node) {
 					throw new Exception("TreeWalker-Nodes must be an instance of Node!");
 				}
 				$this->_treeWalkerConfig->callBefore($node);
-				if ($node->hasChildren()) {
+				if($this->_treeWalkerConfig->doRecursion($node)) {
 					$this->_treeWalker($node);
 				}
 				$this->_treeWalkerConfig->callAfter($node);

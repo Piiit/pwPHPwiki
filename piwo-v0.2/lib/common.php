@@ -8,11 +8,6 @@ require_once INC_PATH.'pwTools/string/StringTools.php';
 require_once INC_PATH.'pwTools/string/StringFormat.php';
 require_once INC_PATH.'pwTools/debug/TestingTools.php';
 
-function pw_wiki_version() {
-	global $piwo_version;
-	return $piwo_version;
-}
-
 function pw_wiki_getid() {
 	try {
 		$id = isset($_GET['id']) ? $_GET['id'] : pw_url2u(pw_wiki_getcfg('id'));
@@ -22,14 +17,17 @@ function pw_wiki_getid() {
 	return pw_wiki_s2id($id);
 }
 
+function pw_wiki_setmode($mode) {
+	$_SESSION['pw_wiki']['mode'] = $mode;
+}
 
-function pw_wiki_setcfg($id, $mode) {
+function pw_wiki_setid($id) {
 
 	$id = pw_s2u($id);
 
 	if (! pw_wiki_isvalidid($id)) {
 		$_SESSION['pw_wiki']['wrongid'] = $id;
-		return false;
+		throw new Exception("Wrong id '$id'!");
 	}
 
 	$id = utf8_strtolower($id);
@@ -55,7 +53,6 @@ function pw_wiki_setcfg($id, $mode) {
 	$id = pw_s2url($id);
 	$pg = pw_s2url($pg);
 
-	$_SESSION['pw_wiki']['mode'] = $mode;
 	$_SESSION['pw_wiki']['fullpath'] = $fullpath;
 	$_SESSION['pw_wiki']['path'] = $path;
 	$_SESSION['pw_wiki']['path2'] = $path2;
@@ -63,10 +60,6 @@ function pw_wiki_setcfg($id, $mode) {
 	$_SESSION['pw_wiki']['ns'] = $ns;
 	$_SESSION['pw_wiki']['id'] = $id;
 	$_SESSION['pw_wiki']['pg'] = $pg;
-
-	#return $fullid;
-	return true;
-
 }
 
 function pw_wiki_getcfg($what = "", $subcat = "") {
@@ -466,8 +459,6 @@ function pw_wiki_trace($ns, $sep = "&raquo;") {
 	return $o;
 
 }
-
-
 
 function pw_wiki_syntaxerr($text, $line, $errtxt, $header = 0, $footer = 0) {
 	$texp = explode("\n", $text);

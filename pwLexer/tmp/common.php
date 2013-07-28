@@ -1,6 +1,6 @@
 <?php
 
-require_once INC_PATH.'pwLexer/pw_debug.php';
+require_once INC_PATH.'pwTools/debug/TestingTools.php';
 
 function pw_wiki_version() {
 	global $piwo_version;
@@ -383,7 +383,8 @@ function html_header() {
 			</script>";
 
 	if (pw_wiki_getcfg('debug')) {
-		pw_debug_init(true);
+		TestingTools::init();
+		TestingTools::debugOn();
 	}
 
 	StringFormat::htmlIndentPrint ('</head>', END);
@@ -521,20 +522,5 @@ function pw_wiki_syntaxerr($text, $line, $errtxt, $header = 0, $footer = 0) {
 	}
 	return $out;
 }
-
-function out($node, $txt = null) {
-	echo '<pre style="font-size: 12px; background-color: white;  color: black; border: 3px solid lightgreen; padding: 5px">';
-	echo(pw_debug_get_info($txt)."\n");
-	var_dump($node);
-	echo '</pre>';
-}
-
-function out2($node, $txt = null) {
-	echo '<pre style="font-size: 12px; background-color: white; color: black; border: 3px solid red; padding: 5px">';
-	echo(pw_debug_get_info($txt)."\n");
-	var_dump($node);
-	echo '</pre>';
-}
-
 
 ?>

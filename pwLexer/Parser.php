@@ -1,6 +1,12 @@
 <?php
+
+
 class Parser {
-	public function callFunction($node, $type) {
+	
+	const ONENTRY = 0;
+	const ONEXIT = 1;
+	
+	public static function callFunction(Node $node, $type) {
 		$prefix = 'e';
 		if ($type == self::ONENTRY) {
 			$prefix = 's';
@@ -14,13 +20,12 @@ class Parser {
 			return call_user_func($prefix.$node->getName(), $node, $this);
 		}
 	}
-	
-	
-	public function getText2($node) {
+		
+	public static function getText2(Node $node) {
 	
 		$text = "";
 		for ($node = $node->getNextSibling(); $node != null; $node = $node->getNextSibling()) {
-			$ret = $this->getText($node);
+			$ret = $node->getText();
 			if (!$ret) {
 				$ret = $this->callFunction($node, self::ONENTRY);
 				$ret .= $this->callFunction($node, self::ONEXIT);

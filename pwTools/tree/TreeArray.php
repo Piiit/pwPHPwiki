@@ -3,11 +3,6 @@
 require_once INC_PATH.'pwTools/tree/Node.php';
 require_once INC_PATH.'pwTools/tree/TreeWalkerConfig.php';
 
-// TODO refactor getArray with a TreeWalker adapter!!!
-function getArray($node, $arr = array()) {
-
-
-}
 function callFunction($node, $type) {
 	$prefix = 'e';
 	if ($type == 0) {
@@ -20,7 +15,6 @@ function callFunction($node, $type) {
 
 	
 	if (function_exists($prefix.$node->getName())) {
-		#echo $prefix.$node->getName();
 		return call_user_func($prefix.$node->getName(), $node, null);
 	}
 }
@@ -28,13 +22,10 @@ function callFunction($node, $type) {
 class TreeArray implements TreeWalkerConfig {
 	
 	private $_array = array();
+	private $_noRecursion = array();
 	
-	public function __construct() {
-		//@TODO: BUG! no globals here: unbound the class from the rest of the world!!!
-		global $norecursion;
-		if (!is_array($norecursion)) {
-			throw new InvalidArgumentException("DATATYPE for NoRecursion has to be Array. FIXME=no globals!!!!!!");
-		}
+	public function addNoRecursionNode($nodeName) {
+		$this->_noRecursion[$nodeName] = 0;
 	}
 	
 	public function callBefore($node) {
@@ -60,6 +51,13 @@ class TreeArray implements TreeWalkerConfig {
 
 	public function getResult() {
 		return $this->_array;
+	}
+	
+	public function doRecursion(Node $node = null) {
+		if ($node != null && array_key_exists($node->getName(), $this->_noRecursion)) {
+			return false;
+		}
+		return true;
 	}
 	
 }

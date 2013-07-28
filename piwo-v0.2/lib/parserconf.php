@@ -432,6 +432,7 @@ function ealignintable() {
 function sheader($node, $lexer) {
   $o = "";
   $level = strlen($node['CONFIG'][0]);
+  $level = strlen($node['CONFIG'][0]);
 
   if ($lexer->hasAncestor($node, "notoc")) {
     $o = '<h'.$level.'>';
