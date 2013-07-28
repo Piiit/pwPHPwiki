@@ -181,7 +181,7 @@ function pw_basename($fn, $ext = null) {
 }
 
 function pw_wiki_file2editor($data) {
-	$data = FileTools::setTextFileFormat($data, new TextFileFormat('UNIX'));
+	$data = FileTools::setTextFileFormat($data, new TextFileFormat(TextFileFormat::UNIX));
 	$data = pw_s2e($data);
 	return $data;
 }

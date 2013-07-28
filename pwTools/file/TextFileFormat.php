@@ -3,6 +3,13 @@ class TextFileFormat {
 	
 	private $chosen = -1;
 	
+	const UNIX = 0;
+	const WINDOWS = 1;
+	const OLDMAC = 2;
+	const UNDEFINED = 3;
+	const MIXED = 4;
+	const MAC = 5;
+	
 	private static $enum = array(
 			0 => 'UNIX',
 			1 => 'WINDOWS',
@@ -21,7 +28,7 @@ class TextFileFormat {
 	}
 	
 	public function getOrdinal() {
-		return self::toOrdinal($this->chosen);
+		return $this->chosen;
 	}
 	
 	public function getString() {
