@@ -85,11 +85,12 @@ class TestingTools {
 			StringFormat::htmlIndentPrint ();
 			StringFormat::htmlIndentPrint ("<!-- PW_DEBUG_INIT --------------------------------------------------->");
 			StringFormat::htmlIndentPrint ("<style>", StringFormat::START);
-			StringFormat::htmlIndentPrint (".debpre {font-size: 12px; color: black; background-color: lightgray; margin: 0; padding-top: 0px}");
+			StringFormat::htmlIndentPrint (".debpre {font-size: 12px; color: black; background-color: lightgray; margin: 1px; padding-top: 0px}");
 			StringFormat::htmlIndentPrint (".debout {background-color: white; color: black; border: 1px solid black; padding-left: 2px; padding-right: 2px}");
 			StringFormat::htmlIndentPrint (".debspecial {background-color: gray; color: white; margin-left: 2px; margin-right: 2px}");
 			StringFormat::htmlIndentPrint (".debdiv {margin: 5px; border: 1px solid black; background-color: lightgray}");
 			StringFormat::htmlIndentPrint (".debdiv ul {list-style-type: none}");
+			StringFormat::htmlIndentPrint (".debdiv ul li {margin-top:3px;}");
 			StringFormat::htmlIndentPrint (".debdiv ul#first {padding-left: 0px; margin-left: 0; margin-top: 3px; padding-bottom: 3px; margin-bottom:0}");
 			StringFormat::htmlIndentPrint ("</style>", StringFormat::END);
 			StringFormat::htmlIndentPrint ("<!-- PW_DEBUG_INIT --------------------------------------------------->");
@@ -116,14 +117,20 @@ class TestingTools {
 			$debug = next($debugInfo);
 		}
 		$line = $debug["line"];
+		$file = $debug["file"];
 		$debug = next($debugInfo);
 		$debug["line"] = $line;
+		$debug["file"] = $file;
 		return $debug;
 	}
 	
 	public static function getDebugInfoAsString() {
 		$debugInfo = self::getDebugInfoAsArray();
-		return "FILE=".basename($debugInfo["file"])."; FUNC=".ArrayTools::getIfExists($debugInfo, "class").ArrayTools::getIfExists($debugInfo, "type").$debugInfo["function"]."; LINE=".$debugInfo["line"];
+		$funcText = ArrayTools::getIfExists($debugInfo, "class").ArrayTools::getIfExists($debugInfo, "type").ArrayTools::getIfExists($debugInfo, "function");
+		if(strlen($funcText) != 0) {
+			$funcText = "; FUNC=".$funcText;
+		}
+		return "FILE=".basename($debugInfo["file"]).$funcText."; LINE=".$debugInfo["line"];
 	}
 	
 }

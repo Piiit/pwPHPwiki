@@ -31,7 +31,7 @@ class Token extends Node {
 		$this->_completeMatch = $completeMatch;
 		$this->_tokenMatch = substr($completeMatch, strlen($beforeMatch));
 		$this->_config = $conf;
-		TestingTools::inform($this->_tokenMatch);
+// 		TestingTools::inform($this->_tokenMatch);
 	}
 	
 	public function __toString() {

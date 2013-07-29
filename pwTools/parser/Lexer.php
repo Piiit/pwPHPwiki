@@ -95,7 +95,6 @@ class Lexer {
 				$this->_updateTextPosition();
 				$this->_addNodeOnOpen($token);
 				$this->_addNodeOnClose($token);
-				echo StringFormat::preFormat($token);
 			}
 			$this->_executiontime = $timer->getElapsedTime(4);
 		#} while($this->_cycle <= 6);

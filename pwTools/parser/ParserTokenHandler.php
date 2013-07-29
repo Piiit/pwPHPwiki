@@ -1,7 +1,7 @@
 <?php
 interface ParserTokenHandler {
-	public function onEntry(Node $node);
-	public function onExit(Node $node);
+	public function onEntry();
+	public function onExit();
 	public function doRecursion();
 }
 

@@ -12,7 +12,6 @@ class TreeWalker {
 		$this->_treeWalkerConfig = $treeWalkerConfig;
 	}
 	
-	
 	public function getResult() {
 		$this->_treeWalker($this->_rootNode, null);
 		return $this->_treeWalkerConfig->getResult();
@@ -25,7 +24,11 @@ class TreeWalker {
 					throw new Exception("TreeWalker-Nodes must be an instance of Node!");
 				}
 				$this->_treeWalkerConfig->callBefore($node);
-				$this->_treeWalker($node);
+				if($this->_treeWalkerConfig->doRecursion($node)) {
+					TestingTools::inform("REC: $node");
+					var_dump($this->_treeWalkerConfig);
+					$this->_treeWalker($node);
+				}
 				$this->_treeWalkerConfig->callAfter($node);
 			}
 		}

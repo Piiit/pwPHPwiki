@@ -441,7 +441,7 @@ function sheader(Node $node, $lexer) {
   $nodeData = $node->getData();
   $level = strlen($nodeData[0]);
 
-  var_dump($node);
+//   var_dump($node);
 
   if ($node->isInside("notoc")) {
     $o = '<h'.$level.'>';
@@ -452,7 +452,7 @@ function sheader(Node $node, $lexer) {
   }
 
   $htxt = $node->getText($node);
-  var_dump($node);
+//   var_dump($node);
 
   if (!$htxt) {
     $o .= nop("Leere Titel sind nicht erlaubt!");
@@ -745,7 +745,7 @@ function sinternallink($node, $lexer) {
   global $moditext;
 
   $linkpos = $node->getFirstChild();
-  TestingTools::inform($linkpos);
+//   TestingTools::inform($linkpos);
   $linkpostxt = $linkpos->getText();
   #out2($_SESSION['pw_wiki']['error']);
   #out($linkpostxt);

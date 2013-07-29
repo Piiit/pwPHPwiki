@@ -4,39 +4,41 @@ if (!defined('INC_PATH')) {
 	define ('INC_PATH', realpath(dirname(__FILE__).'/../').'/');
 }
 require_once INC_PATH.'pwTools/parser/ParserTokenHandler.php';
+require_once INC_PATH.'pwTools/parser/ParserToken.php';
 
-class ParserTokenHeader implements ParserTokenHandler {
+class ParserTokenHeader extends ParserToken implements ParserTokenHandler {
 	
 	private static $headerId;
 	private static $level;
 
-	public function onEntry(Node $node) {
+	public function onEntry() {
 
+		$node = $this->getNode();
 		$nodeData = $node->getData();
 		self::$level = strlen($nodeData[0]);
 	
 		if ($node->isInside("notoc")) {
 			$o = '<h'.self::$level.'>';
 		} else {
-			$o = '<h'.self::$level.' id="header_'.$GLOBALS['indextable']['CONT'][self::$headerId]['ID'].'">';
+			//$o = '<h'.self::$level.' id="header_'.$GLOBALS['indextable']['CONT'][self::$headerId]['ID'].'">';
+			$o = '<h'.self::$level.'>';
 			self::$headerId++;
 		}
-	
-// 		$htxt = $node->getText($node);
-// 		var_dump($node);
-// 		if (!$htxt) {
-// 			$o .= nop("Leere Titel sind nicht erlaubt!");
-// 		}
-// 		$o .= $htxt;
+		
+ 		$htxt = trim($this->getText($node));
+ 		if (strlen($htxt) == 0) {
+ 			$o .= nop("Leere Titel sind nicht erlaubt!");
+ 		}
+ 		$o .= $htxt;
 		return $o;
 	}
 
-	public function onExit(Node $node) {
+	public function onExit() {
 		return '</h'.self::$level.'>';
 	}
 
 	public function doRecursion() {
-		return true;
+		return false;
 	}
 
 }

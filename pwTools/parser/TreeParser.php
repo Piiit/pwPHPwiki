@@ -43,10 +43,15 @@ class TreeParser implements TreeWalkerConfig {
 	
 	public function callBefore(Node $node) {
 		if ($node->getName() == "#TEXT") {
+// 			TestingTools::inform("ADDING: ".$node->getData());
 			$this->_array[] = pw_s2e($node->getData());
 		} else {
-			$ret = $this->getParserToken($node->getName())->onEntry($node);
+			$parserToken = $this->getParserToken($node->getName());
+			$parserToken->setNode($node);
+			$parserToken->setParser($this);
+			$ret = $parserToken->onEntry();
 			if ($ret !== null) {
+// 				TestingTools::inform("ADDING: ".$ret);
 				$this->_array[] = $ret;
 			}
 		}
@@ -56,7 +61,10 @@ class TreeParser implements TreeWalkerConfig {
 		if ($node->getName() == "#TEXT") {
 			return;
 		}
-		$ret = $this->getParserToken($node->getName())->onExit($node);
+		$parserToken = $this->getParserToken($node->getName());
+		$parserToken->setNode($node);
+		$parserToken->setParser($this);
+		$ret = $parserToken->onExit();
 		if ($ret !== null) {
 			$this->_array[] = $ret;
 		}
@@ -66,6 +74,24 @@ class TreeParser implements TreeWalkerConfig {
 		return $this->_array;
 	}
 	
+	public function resetResult() {
+		$this->_array = array();
+	}
+	
+	public function setResult($resultArray) {
+		$this->_array = $resultArray;
+	}
+	
+	public function doRecursion(Node $node) {
+		if ($node->getName() == "#TEXT") {
+			return;
+		}
+		$parserToken = $this->getParserToken($node->getName());
+		$parserToken->setNode($node);
+		$parserToken->setParser($this);
+// 		TestingTools::inform($parserToken->doRecursion());
+		return $parserToken->doRecursion();
+	}
 }
 
 ?>
