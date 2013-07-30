@@ -6,30 +6,14 @@ if (!defined('INC_PATH')) {
 require_once INC_PATH.'pwTools/tree/Node.php';
 require_once INC_PATH.'pwTools/tree/TreeWalkerConfig.php';
 
-function callFunction($node, $type) {
-	$prefix = 'e';
-	if ($type == 0) {
-		$prefix = 's';
-	}
-
-	if ($node->getName() == "#TEXT") {
-		return $node->getData();
-	}
-
-	
-	if (function_exists($prefix.$node->getName())) {
-		return call_user_func($prefix.$node->getName(), $node, null);
-	}
-}
-
 class TreeParser implements TreeWalkerConfig { 
 	
 	private $_registeredHandler = array();
 	private $_array = array();
 		
-	public function registerParserToken($name, ParserTokenHandler $tokenHandler) {
+	public function registerParserToken($name, ParserToken $tokenHandler) {
 		if(array_key_exists($name, $this->_registeredHandler)) {
-			throw new Exception("Parser Token '$name' already registered!");
+			throw new Exception("Parser token '$name' already registered!");
 		}
 		$this->_registeredHandler[$name] = $tokenHandler;
 	}
@@ -43,7 +27,7 @@ class TreeParser implements TreeWalkerConfig {
 	
 	public function callBefore(Node $node) {
 		if ($node->getName() == "#TEXT") {
-// 			TestingTools::inform("ADDING: ".$node->getData());
+//  			TestingTools::inform($node);
 			$this->_array[] = pw_s2e($node->getData());
 		} else {
 			$parserToken = $this->getParserToken($node->getName());

@@ -4,6 +4,10 @@ abstract class ParserToken {
 	private $node;
 	private $parser;
 	
+	abstract public function onEntry();
+	abstract public function onExit();
+	abstract public function doRecursion();
+	
 	public function setNode(Node $node) {
 		$this->node = $node;
 	}

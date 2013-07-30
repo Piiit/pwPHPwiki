@@ -1,7 +1,7 @@
 <?php
 
 //TODO getDebugInfo should return a debug info object not an array or string
-//TODO output of a class missing
+//TODO replace var_dump(?) or replace all other output mechanisms with var_dump(???)
 
 if (!defined('INC_PATH')) {
 	define ('INC_PATH', realpath(dirname(__FILE__).'/../').'/');
@@ -21,25 +21,28 @@ class TestingTools {
 		isset($length) ? $length = "<span class='deblength'>$length</span>" : $length = "";
 		isset($description) && strlen($description) > 0 ? $description = "<span class='debout'>$description</span> =" : $description = "";
 		isset($out) && $type != "array" ? $out = "<span class='debout'>$out</span>" : $out = "";
-		return "<li><pre class='debpre !important'> $description $out ($type, $length) $debugInfo</pre></li>";
+		return "<li><pre class='debpre !important'> $description $out ($type, $length) $debugInfo</pre></li>\n";
 	}
 	
 	private static function printItem($item, $name = null, $debugInfo = null) {
 		$name = htmlentities($name);
 		if (is_array($item)) {
-			echo self::printLine(gettype($item), count($item), "", $name, $debugInfo)."\n";
+			echo self::printLine(gettype($item), count($item), "", $name, $debugInfo);
 		} elseif (is_bool($item)) {
-			echo self::printLine("boolean", 1, $item ? $item = "true" : $item = "false", $name, $debugInfo)."\n";
+			echo self::printLine("boolean", 1, $item ? $item = "true" : $item = "false", $name, $debugInfo);
 		} elseif (is_null($item)) {
-			echo self::printLine("null", "", "", $name, $debugInfo)."\n";
+			echo self::printLine("null", "", "", $name, $debugInfo);
 		} elseif (is_string($item)) {
 			$itemClean = htmlentities($item);
 			$itemClean = preg_replace("#\n#", "<code class='debspecial'> N </code>", $itemClean);
 			$itemClean = preg_replace("#\r#", "<code class='debspecial'> R </code>", $itemClean);
 			$itemClean = preg_replace("#\t#", "<code class='debspecial'> T </code>", $itemClean);
-			echo self::printLine("string", strlen($item), $itemClean, $name, $debugInfo)."\n";
+			echo self::printLine("string", strlen($item), $itemClean, $name, $debugInfo);
+		} elseif (is_object($item)) {
+			echo "<pre>".$debugInfo."</pre>"; //FIXME output with printLine or similar
+			var_dump($item);
 		} else {
-			echo self::printLine(gettype($item), count($item), $item, $name, $debugInfo)."\n";
+			echo self::printLine(gettype($item), count($item), $item, $name, $debugInfo);
 		}
 	}
 	
@@ -130,7 +133,7 @@ class TestingTools {
 		if(strlen($funcText) != 0) {
 			$funcText = "; FUNC=".$funcText;
 		}
-		return "FILE=".basename($debugInfo["file"]).$funcText."; LINE=".$debugInfo["line"];
+		return "FILE=".basename($debugInfo["file"])."; LINE=".$debugInfo["line"].$funcText;
 	}
 	
 }

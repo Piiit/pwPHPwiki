@@ -6,7 +6,7 @@ if (!defined('INC_PATH')) {
 require_once INC_PATH.'pwTools/parser/ParserTokenHandler.php';
 require_once INC_PATH.'pwTools/parser/ParserToken.php';
 
-class ParserTokenHeader extends ParserToken implements ParserTokenHandler {
+class Header extends ParserToken {
 	
 	private static $headerId;
 	private static $level;
