@@ -282,21 +282,20 @@ class Lexer {
 		$this->_log->addInfo($this->_logFormat("CONNECTTO", "'$name->$to' connected."));
 	}
 
-	public function addWordPattern($name, $entryPattern, $flags = 0) {
+	public function addWordPattern($name, $entryPattern) {
 		$newPattern = new Pattern($name, Pattern::TYPE_WORD, $entryPattern);
 		$this->addPattern($newPattern);
 	}
 
-	public function addLinePattern($name, $entrypattern, $exitpattern='\n', $flags = 0) {
+	public function addLinePattern($name, $entrypattern, $exitpattern='\n') {
 		$newPattern = new Pattern($name, Pattern::TYPE_LINE, $entrypattern, $exitpattern);
 		$this->addPattern($newPattern);
 	}
 	
-	public function addSectionPattern($name, $entrypattern, $exitpattern, $flags = 0) {
+	public function addSectionPattern($name, $entrypattern, $exitpattern) {
 		$newPattern = new Pattern($name, Pattern::TYPE_SECTION, $entrypattern, $exitpattern);
 		$this->addPattern($newPattern);
 	}
-	
 	
 	public function addPattern(Pattern $pattern) {
 		switch ($pattern->getType()) {

@@ -13,6 +13,20 @@ class Plugin extends ParserToken implements ParserTokenHandler {
 		return 'plugin';
 	}
 	
+	public function getPattern() {
+		return new Pattern($this->getName(), Pattern::TYPE_SECTION, '~~([\w]+):*([\w]+)*', '~~');
+	}
+	
+	public function getAllowedModes() {
+		return array(
+				"#DOCUMENT", "tablecell", "listitem", "multiline", "bold", "underline", "italic", 
+				"monospace", "small", "big", "strike", "sub", "sup", "hi", "lo", "em",
+				"multiline", "header", "ilinkpos", "internallink", "externallink", "elinkpos", 
+				"tablecell", "tableheader", "wptableheader", "wptablecell", "align", "justify", 
+				"alignintable", "indent", "left", "right", "error", "info", "warning", "success", "validation", "border"
+				);
+	}
+	
 	public function onEntry() {
 		$node = $this->getNode();
 		$nodeData = $node->getData();

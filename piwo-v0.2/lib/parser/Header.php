@@ -14,7 +14,15 @@ class Header extends ParserToken implements ParserTokenHandler {
 	public function getName() {
 		return 'header';
 	}
+	
+	public function getPattern() {
+		return new Pattern($this->getName(), Pattern::TYPE_LINE, ' *(={1,5})', '={1,5}');
+	}
 
+	public function getAllowedModes() {
+		return array("#DOCUMENT", "left", "right", "notoc", "multiline", "error", "info", "warning", "success", "validation", "border");
+	}
+	
 	public function onEntry() {
 
 		$node = $this->getNode();
