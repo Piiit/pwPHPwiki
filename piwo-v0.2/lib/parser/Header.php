@@ -1,15 +1,19 @@
 <?php
 
 if (!defined('INC_PATH')) {
-	define ('INC_PATH', realpath(dirname(__FILE__).'/../').'/');
+	define ('INC_PATH', realpath(dirname(__FILE__).'/../../').'/');
 }
 require_once INC_PATH.'pwTools/parser/ParserTokenHandler.php';
 require_once INC_PATH.'pwTools/parser/ParserToken.php';
 
-class Header extends ParserToken {
+class Header extends ParserToken implements ParserTokenHandler {
 	
 	private static $headerId;
 	private static $level;
+	
+	public function getName() {
+		return 'header';
+	}
 
 	public function onEntry() {
 

@@ -1,12 +1,26 @@
 <?php
-abstract class ParserToken {
+
+if (!defined('INC_PATH')) {
+	define ('INC_PATH', realpath(dirname(__FILE__).'/../../').'/');
+}
+require_once INC_PATH.'pwTools/tree/Node.php';
+require_once INC_PATH.'pwTools/parser/TreeParser.php';
+require_once INC_PATH.'pwTools/tree/TreeWalker.php';
+
+
+class ParserToken {
 	
 	private $node;
 	private $parser;
 	
-	abstract public function onEntry();
-	abstract public function onExit();
-	abstract public function doRecursion();
+	public function __construct($node = null, $parser = null) {
+		if($node != null) {
+			$this->setNode($node);
+		}
+		if($parser != null) {
+			$this->setParser($parser);
+		}
+	}
 	
 	public function setNode(Node $node) {
 		$this->node = $node;

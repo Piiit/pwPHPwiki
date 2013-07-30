@@ -39,8 +39,9 @@ class TestingTools {
 			$itemClean = preg_replace("#\t#", "<code class='debspecial'> T </code>", $itemClean);
 			echo self::printLine("string", strlen($item), $itemClean, $name, $debugInfo);
 		} elseif (is_object($item)) {
-			echo "<pre>".$debugInfo."</pre>"; //FIXME output with printLine or similar
+			echo "<pre class='debpre !important'>".$debugInfo; //FIXME output with printLine or similar
 			var_dump($item);
+			echo "</pre>";
 		} else {
 			echo self::printLine(gettype($item), count($item), $item, $name, $debugInfo);
 		}

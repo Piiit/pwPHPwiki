@@ -11,11 +11,14 @@ class TreeParser implements TreeWalkerConfig {
 	private $_registeredHandler = array();
 	private $_array = array();
 		
-	public function registerParserToken($name, ParserToken $tokenHandler) {
-		if(array_key_exists($name, $this->_registeredHandler)) {
-			throw new Exception("Parser token '$name' already registered!");
+	public function registerParserToken(ParserTokenHandler $tokenHandler) {
+		if(strlen($tokenHandler->getName()) == 0) {
+			throw new Exception("Cannot register a tokenhandler without a name!");
+		} 
+		if(array_key_exists($tokenHandler->getName(), $this->_registeredHandler)) {
+			throw new Exception("Parser token '".$tokenHandler->getName()."' already registered!");
 		}
-		$this->_registeredHandler[$name] = $tokenHandler;
+		$this->_registeredHandler[$tokenHandler->getName()] = $tokenHandler;
 	}
 	
 	private function getParserToken($name) {
