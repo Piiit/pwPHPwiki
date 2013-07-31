@@ -98,9 +98,11 @@ class Lexer {
 			}
 			$this->_executiontime = $timer->getElapsedTime(4);
 		#} while($this->_cycle <= 6);
-		} while($token);
+		} while(!$token->isEndOfFile());
 
 		$this->_parsed = true;
+		
+		$this->_log->addInfo("FINISHED: @$this->_textPosition (line $this->_currentLineNumber)");
 	}
 
 	public function getExecutionTime() {
@@ -231,8 +233,8 @@ class Lexer {
 			throw new Exception($errorMsg);
 		}
 
-		#out($m);
 		$token = $this->_getNamedToken($m);
+// 		TestingTools::debug($token);
 		
 		if ($token->getTextLength() == 0 && $this->_lastNode->getName() == $token->getName()) {
 			$errorMsg = "Textpointer has not moved for pattern '".$token->getName()."'. Try the NO_RESTORE flag.";
@@ -252,12 +254,6 @@ class Lexer {
 		);
 		$this->_log->addDebug($this->_logFormat("TOKEN FOUND", "$token @$this->_textPosition"), $debugInfo);
 
-		// eof reached...
-		if ($token->getName() == Token::EOF) {
-			$this->_log->addInfo("FINISHED: @$this->_textPosition (line $this->_currentLineNumber)");
-			return null;
-		}
-		
 		$this->_textPosition += $token->getTextLength();
 		
 		return $token;

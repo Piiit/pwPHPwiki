@@ -3,14 +3,16 @@
 if (!defined('INC_PATH')) {
 	define ('INC_PATH', realpath(dirname(__FILE__).'/../../').'/');
 }
-require_once INC_PATH.'pwTools/parser/ParserTokenHandler.php';
-require_once INC_PATH.'pwTools/parser/ParserToken.php';
+require_once INC_PATH.'pwTools/parser/LexerRuleHandler.php';
+require_once INC_PATH.'pwTools/parser/ParserRuleHandler.php';
+require_once INC_PATH.'pwTools/parser/ParserRule.php';
+require_once INC_PATH.'pwTools/parser/Pattern.php';
 
 
-class Plugin extends ParserToken implements ParserTokenHandler {
+class Plugin extends ParserRule implements ParserRuleHandler, LexerRuleHandler {
 	
 	public function getName() {
-		return 'plugin';
+		return strtolower(__CLASS__);
 	}
 	
 	public function getPattern() {
@@ -35,7 +37,7 @@ class Plugin extends ParserToken implements ParserTokenHandler {
 		if (!function_exists($funcname)) {
 			return nop("PLUGIN '$pluginname' nicht verf&uuml;gbar.",false);
 		}
-		return call_user_func($funcname, $node);
+		return call_user_func($funcname, $this->getParser(), $node);
 	}
 
 	public function onExit() {

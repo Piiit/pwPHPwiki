@@ -8,7 +8,7 @@ require_once INC_PATH.'pwTools/parser/TreeParser.php';
 require_once INC_PATH.'pwTools/tree/TreeWalker.php';
 
 
-class ParserToken {
+class ParserRule {
 	
 	private $node;
 	private $parser;
@@ -43,6 +43,15 @@ class ParserToken {
 		$tmp = $this->parser->getResult();
 		$this->parser->resetResult();
 		$result = implode($ta->getResult());
+		$this->parser->setResult($tmp);
+		return $result;
+	}
+	
+	public function getArray() {
+		$ta = new TreeWalker($this->node, $this->parser);
+		$tmp = $this->parser->getResult();
+		$this->parser->resetResult();
+		$result = $ta->getResult();
 		$this->parser->setResult($tmp);
 		return $result;
 	}

@@ -25,8 +25,6 @@ class TreeWalker {
 				}
 				$this->_treeWalkerConfig->callBefore($node);
 				if($this->_treeWalkerConfig->doRecursion($node)) {
-					TestingTools::inform("REC: $node");
-					var_dump($this->_treeWalkerConfig);
 					$this->_treeWalker($node);
 				}
 				$this->_treeWalkerConfig->callAfter($node);

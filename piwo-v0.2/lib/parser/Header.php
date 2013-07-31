@@ -3,16 +3,18 @@
 if (!defined('INC_PATH')) {
 	define ('INC_PATH', realpath(dirname(__FILE__).'/../../').'/');
 }
-require_once INC_PATH.'pwTools/parser/ParserTokenHandler.php';
-require_once INC_PATH.'pwTools/parser/ParserToken.php';
+require_once INC_PATH.'pwTools/parser/LexerRuleHandler.php';
+require_once INC_PATH.'pwTools/parser/ParserRuleHandler.php';
+require_once INC_PATH.'pwTools/parser/ParserRule.php';
+require_once INC_PATH.'pwTools/parser/Pattern.php';
 
-class Header extends ParserToken implements ParserTokenHandler {
+class Header extends ParserRule implements ParserRuleHandler, LexerRuleHandler {
 	
 	private static $headerId;
 	private static $level;
 	
 	public function getName() {
-		return 'header';
+		return strtolower(__CLASS__);
 	}
 	
 	public function getPattern() {

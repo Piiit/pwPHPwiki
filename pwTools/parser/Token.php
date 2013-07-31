@@ -59,34 +59,33 @@ class Token extends Node {
 	#	return $this->_tokenEndCharIndex;
 	#}
 	
-	/**
-	 * @return the $_name
-	 */
 	public function getName() {
 		return $this->_name;
 	}
 	
-	/**
-	 * @return the $_textFull
-	 */
 	public function getTextFull() {
 		return $this->_completeMatch;
 	}
 
-	/**
-	 * @return the $_textString
-	 */
 	public function getTextString() {
 		return $this->_beforeMatch;
 	}
 
-	/**
-	 * @return the $_config
-	 */
 	public function getConfig() {
 		return $this->_config;
 	}
+	
+	public function isEndOfFile() {
+		return ($this->_name == self::EOF);
+	}
 
+	public function isDocument() {
+		return ($this->_name == self::DOC);
+	}
+	
+	public function isText() {
+		return ($this->_name == self::TXT);
+	}
 	
 }
 

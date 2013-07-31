@@ -5,13 +5,14 @@ if (!defined('INC_PATH')) {
 }
 require_once INC_PATH.'pwTools/tree/Node.php';
 require_once INC_PATH.'pwTools/tree/TreeWalkerConfig.php';
+require_once INC_PATH.'pwTools/parser/ParserRuleHandler.php';
 
 class TreeParser implements TreeWalkerConfig { 
 	
 	private $_registeredHandler = array();
 	private $_array = array();
 		
-	public function registerParserToken(ParserTokenHandler $tokenHandler) {
+	public function registerParserToken(ParserRuleHandler $tokenHandler) {
 		if(strlen($tokenHandler->getName()) == 0) {
 			throw new Exception("Cannot register a tokenhandler without a name!");
 		} 
@@ -29,23 +30,24 @@ class TreeParser implements TreeWalkerConfig {
 	}
 	
 	public function callBefore(Node $node) {
+		if($node->getName() == "#EOF") {
+			return;
+		}
 		if ($node->getName() == "#TEXT") {
-//  			TestingTools::inform($node);
 			$this->_array[] = pw_s2e($node->getData());
-		} else {
-			$parserToken = $this->getParserToken($node->getName());
-			$parserToken->setNode($node);
-			$parserToken->setParser($this);
-			$ret = $parserToken->onEntry();
-			if ($ret !== null) {
-// 				TestingTools::inform("ADDING: ".$ret);
-				$this->_array[] = $ret;
-			}
+			return;
+		} 
+		$parserToken = $this->getParserToken($node->getName());
+		$parserToken->setNode($node);
+		$parserToken->setParser($this);
+		$ret = $parserToken->onEntry();
+		if ($ret !== null) {
+			$this->_array[] = $ret;
 		}
 	}
 
 	public function callAfter(Node $node) {
-		if ($node->getName() == "#TEXT") {
+		if ($node->getName() == "#TEXT" || $node->getName() == "#EOF") {
 			return;
 		}
 		$parserToken = $this->getParserToken($node->getName());
@@ -70,13 +72,12 @@ class TreeParser implements TreeWalkerConfig {
 	}
 	
 	public function doRecursion(Node $node) {
-		if ($node->getName() == "#TEXT") {
+		if ($node->getName() == "#TEXT" || $node->getName() == "#EOF") {
 			return;
 		}
 		$parserToken = $this->getParserToken($node->getName());
 		$parserToken->setNode($node);
 		$parserToken->setParser($this);
-// 		TestingTools::inform($parserToken->doRecursion());
 		return $parserToken->doRecursion();
 	}
 }
