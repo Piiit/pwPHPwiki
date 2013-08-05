@@ -8,7 +8,7 @@ require_once INC_PATH.'pwTools/parser/ParserRuleHandler.php';
 require_once INC_PATH.'pwTools/parser/ParserRule.php';
 require_once INC_PATH.'pwTools/parser/Pattern.php';
 
-class Border extends ParserRule implements ParserRuleHandler, LexerRuleHandler {
+class InternalLinkPos extends ParserRule implements ParserRuleHandler, LexerRuleHandler {
 	
 	public function getName() {
 		return strtolower(__CLASS__);
@@ -27,11 +27,11 @@ class Border extends ParserRule implements ParserRuleHandler, LexerRuleHandler {
 	}
 
 	public function getPattern() {
-		return new Pattern($this->getName(), Pattern::TYPE_SECTION, '<border>', '<\/border>');
+		return new Pattern($this->getName(), Pattern::TYPE_SECTION, '\[\[', '\||(?=\]\])');
 	}
 	
 	public function getAllowedModes() {
-		return array("#DOCUMENT");
+		return array("internallink");
 	}
 }
 

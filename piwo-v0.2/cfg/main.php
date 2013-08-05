@@ -3,8 +3,8 @@
   $piwo_version = "0.2.1 - Alpha";
 
   if (! isset($_SESSION['pw_wiki']['config'])) {
-    $config  = array ( "debug"        => false,
-    				   "useCache"	  => true,
+    $config  = array ( "debug"        => true,
+    				   "useCache"	  => false,
                        "startpage"    => "index",
                        "storage"      => "dat",
                        "fileext"      => ".txt",

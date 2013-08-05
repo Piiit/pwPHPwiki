@@ -9,24 +9,33 @@ require_once INC_PATH.'pwTools/parser/ParserRuleHandler.php';
 
 class TreeParser implements TreeWalkerConfig { 
 	
-	private $_registeredHandler = array();
+	private $_handlerTable = array();
 	private $_array = array();
 		
-	public function registerParserToken(ParserRuleHandler $tokenHandler) {
+	public function registerHandler(ParserRuleHandler $tokenHandler) {
 		if(strlen($tokenHandler->getName()) == 0) {
-			throw new Exception("Cannot register a tokenhandler without a name!");
+			throw new Exception("Cannot register a handler without a name!");
 		} 
-		if(array_key_exists($tokenHandler->getName(), $this->_registeredHandler)) {
+		if(array_key_exists($tokenHandler->getName(), $this->_handlerTable)) {
 			throw new Exception("Parser token '".$tokenHandler->getName()."' already registered!");
 		}
-		$this->_registeredHandler[$tokenHandler->getName()] = $tokenHandler;
+		$this->_handlerTable[$tokenHandler->getName()] = $tokenHandler;
+	}
+	
+	public function registerHandlerList($handlerList) {
+		if(!is_array($handlerList)) {
+			throw new Exception("Handler list must be an array!");
+		}
+		foreach($handlerList as $handler) {
+			$this->registerHandler($handler);
+		}
 	}
 	
 	private function getParserToken($name) {
-		if(!array_key_exists($name, $this->_registeredHandler)) {
+		if(!array_key_exists($name, $this->_handlerTable)) {
 			throw new Exception("Parser Token '$name' does not exist!");
 		}
-		return $this->_registeredHandler[$name];
+		return $this->_handlerTable[$name];
 	}
 	
 	public function callBefore(Node $node) {

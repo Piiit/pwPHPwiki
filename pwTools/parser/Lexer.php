@@ -68,6 +68,7 @@ class Lexer {
 	private $_patternTable;
 	private $_lastNode = null;
 	private $_rootNode = null;  // root of the AST (=Abstract Syntax Tree)
+	private $_handlerTable = null;
 	
 
 	public function __construct($text, $loglevel = Log::INFO) {
@@ -75,6 +76,8 @@ class Lexer {
 			throw new InvalidArgumentException("No Text to parse given! Wrong datatype!");
 		}
 		$this->_log = new Log($loglevel);
+		$this->_handlerTable = new Collection();
+		
 		$this->_patternTable = new Collection();
 		$this->_patternTable->add(Token::DOC, new Pattern(Token::DOC));
 		$this->_patternTable->add(Token::TXT, new Pattern(Token::TXT));
@@ -83,6 +86,10 @@ class Lexer {
 	}
 
 	public function parse() {
+		foreach($this->_handlerTable->getArray() as $handler) {
+			$this->setAllowedModes($handler->getName(), $handler->getAllowedModes());
+		}
+		
 		$timer = new timer();
 		$this->_cycle = 0;
 		$this->_parsed = false;
@@ -277,6 +284,26 @@ class Lexer {
 		
 		$this->_log->addInfo($this->_logFormat("CONNECTTO", "'$name->$to' connected."));
 	}
+	
+	public function registerHandler(LexerRuleHandler $handler) {
+		if(strlen($handler->getName()) == 0) {
+			throw new Exception("Cannot register a handler without a name!");
+		}
+		if(array_key_exists($handler->getName(), $this->_handlerTable)) {
+			throw new Exception("Handler '".$handler->getName()."' already registered!");
+		}
+		$this->_handlerTable->add($handler->getName(), $handler);
+		$this->addPattern($handler->getPattern());
+	}
+	
+	public function registerHandlerList($handlerList) {
+		if(!is_array($handlerList)) {
+			throw new Exception("Handler list must be an array!");
+		}
+		foreach($handlerList as $handler) {
+			$this->registerHandler($handler);
+		}
+	}
 
 	public function addWordPattern($name, $entryPattern) {
 		$newPattern = new Pattern($name, Pattern::TYPE_WORD, $entryPattern);
@@ -352,8 +379,13 @@ class Lexer {
 		}
 		$pattern2Add = $this->_patternTable->get($name);
 		foreach ($modes as $mode) {
-			$pattern = $this->_patternTable->get($mode);
-			$pattern->addMode($pattern2Add);
+			try {
+				$pattern = $this->_patternTable->get($mode);
+				$pattern->addMode($pattern2Add);
+				$this->_log->addInfo($this->_logFormat("ADD MODE", "$pattern2Add can be within $pattern"));
+			} catch (Exception $e) {
+				$this->_log->addWarning($this->_logFormat("ADD MODE", $pattern2Add.$e->getMessage()));
+			}
 		}
 	}
 
