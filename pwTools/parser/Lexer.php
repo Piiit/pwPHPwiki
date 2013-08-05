@@ -369,7 +369,7 @@ class Lexer {
 				throw new InvalidArgumentException("Pattern object must be of the following types: TYPE_SECTION, TYPE_LINE or TYPE_WORD!");
 		}
 		$this->_patternTable->add($pattern->getName(), $pattern);
-		$this->_log->addInfo($this->_logFormat("ADD PATTERN", $pattern));
+		$this->_log->addDebug($this->_logFormat("ADD PATTERN", $pattern));
 	}
 
 	
@@ -382,7 +382,7 @@ class Lexer {
 			try {
 				$pattern = $this->_patternTable->get($mode);
 				$pattern->addMode($pattern2Add);
-				$this->_log->addInfo($this->_logFormat("ADD MODE", "$pattern2Add can be within $pattern"));
+				$this->_log->addDebug($this->_logFormat("ADD MODE", "$pattern2Add can be within $pattern"));
 			} catch (Exception $e) {
 				$this->_log->addWarning($this->_logFormat("ADD MODE", $pattern2Add.$e->getMessage()));
 			}
