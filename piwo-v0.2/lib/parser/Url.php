@@ -42,7 +42,8 @@ class Url extends ParserRule implements ParserRuleHandler, LexerRuleHandler {
 	public function getAllowedModes() {
 		return array("#DOCUMENT", "tablecell", "listitem", "multiline", "bold", "underline", "italic", 
 				"monospace", "small", "big", "strike", "sub", "sup", "hi", "lo", "em", "externallink", 
-				"footnote", "defitem", "error", "info", "warning", "success", "validation", "border");
+				"footnote", "defitem", "bordererror", "borderinfo", "borderwarning", "bordersuccess", 
+				"bordervalidation", "border");
 	}
 }
 

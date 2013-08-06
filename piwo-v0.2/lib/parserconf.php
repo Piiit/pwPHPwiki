@@ -147,78 +147,6 @@ function elist($node, $lexer) {
   return StringFormat::htmlIndent($o, StringFormat::END);
 }
 
-function sbold() {
-  return '<b>';
-}
-
-function ebold() {
-  return '</b>';
-}
-
-function sunderline() {
-  return '<span class="underline">';
-}
-
-function eunderline() {
-  return '</span>';
-}
-
-function sitalic() {
-  return '<i>';
-}
-
-function eitalic() {
-  return '</i>';
-}
-
-function smonospace() {
-  return '<span class="code">';;
-}
-
-function emonospace() {
-  return '</span>';
-}
-
-function ssmall() {
-  return '<small>';
-}
-
-function esmall() {
-  return '</small>';
-}
-
-function sbig() {
-  return '<span class="big">';
-}
-
-function ebig() {
-  return '</span>';
-}
-
-function sstrike() {
-  return '<span class="strike">';
-}
-
-function estrike() {
-  return '</span>';
-}
-
-function ssub() {
-  return '<sub>';
-}
-
-function esub() {
-  return '</sub>';
-}
-
-function ssup() {
-  return '<sup>';
-}
-
-function esup() {
-  return '</sup>';
-}
-
 function seof() {
   #return "_____EOF_____";
 }
@@ -230,17 +158,6 @@ function stable() {
 function etable() {
   return '</table></div>';
 }
-
-
-function stablerow() {
-  return '<tr>';
-}
-
-function etablerow() {
-
-  return '</tr>';
-}
-
 
 function stablecell($node, $lexer) {
   $o = "";
@@ -333,23 +250,7 @@ function emultiline() {
   return '';
 }
 
-function snowiki() {
-  return '';
-}
-
-function enowiki() {
-  return '';
-}
-
 function snotoc() {
-  return '';
-}
-
-function snowikialt() {
-  return '';
-}
-
-function enowikialt() {
   return '';
 }
 
@@ -594,46 +495,6 @@ function eright($node, $lexer) {
   return $o;
 }
 
-function serror() {
-  return '<div class="section_error">';
-}
-
-function eerror() {
-  return '</div>';
-}
-
-function sborder() {
-  return '<div class="section_border">';
-}
-function eborder() {
-  return '</div>';
-}
-
-
-function svalidation() {
-  return '<div class="section_validation">';
-}
-
-function evalidation() {
-  return '</div>';
-}
-
-function sinfo() {
-  return '<div class="section_info">';
-}
-
-function einfo() {
-  return '</div>';
-}
-
-function swarning() {
-  return '<div class="section_warning">';
-}
-
-function ewarning() {
-  return '</div>';
-}
-
 function scode($node, $lexer) {
   $tn = $lexer->firstChild($node);
   $text = pw_s2e($tn['VALUE']);
@@ -653,13 +514,6 @@ function smath() {
 function emath() {
   return '</span>';
 }
-function ssuccess() {
-  return '<div class="section_success">';
-}
-
-function esuccess() {
-  return '</div>';
-}
 
 function shi($node, $lexer) {
   $colorid = trim($node['CONFIG'][0]);
@@ -674,21 +528,6 @@ function shi($node, $lexer) {
   }
 
   return '<span class="highlighted c'.$colorid.'">';
-}
-function ehi() {
-  return '</span>';
-}
-function slo() {
-  return '<span class="less_significant">';
-}
-function elo() {
-  return '</span>';
-}
-function sem() {
-  return '<span class="emphasised">';
-}
-function eem() {
-  return '</span>';
 }
 
 function surl($node, $lexer) {

@@ -20,10 +20,10 @@ class InternalLink extends ParserRule implements ParserRuleHandler, LexerRuleHan
 		global $moditext;
 		
 		$node = $this->getNode();
-		$parser = new ParserRule($node, $this->getParser());
+// 		$parser = new ParserRule($node, $this->getParser());
 		
 		$linkpos = $node->getFirstChild();
-		$linkpostxt = $parser->getText();
+		$linkpostxt = $this->getText();
 		
 // 		TestingTools::inform($linkpostxt);
 		
@@ -50,7 +50,8 @@ class InternalLink extends ParserRule implements ParserRuleHandler, LexerRuleHan
 			return nop("Interner Wikilink ohne Zielangabe. Leerer Wikilink?", false);
 		}
 	
-		$text = $parser->getText();
+		$text = $this->getText();
+		TestingTools::inform($text);
 	
 		//@TODO: refactor... common function... bubble-up of an error until ????
 		if ($_SESSION['pw_wiki']['error']) {
@@ -212,7 +213,7 @@ class InternalLink extends ParserRule implements ParserRuleHandler, LexerRuleHan
 		return array(
 				"#DOCUMENT", "tablecell", "listitem", "multiline", "bold", "underline", 
 				"italic", "monospace", "small", "big", "strike", "sub", "sup", "hi", "lo", 
-				"em", "error", "info", "warning", "success", "validation", "border", 
+				"em", "bordererror", "borderinfo", "borderwarning", "bordersuccess", "bordervalidation", "border", 
 				"tablecell", "tableheader", "wptableheader", "wptablecell", "align", 
 				"justify", "alignintable", "indent", "left", "right", "footnote", "defitem", "defterm");
 	}

@@ -4,7 +4,8 @@
 require_once INC_PATH."piwo-v0.2/lib/pw_lexer.php";require_once INC_PATH.'piwo-v0.2/lib/common.php';require_once INC_PATH.'pwTools/data/IndexTable.php';require_once INC_PATH.'pwTools/parser/Lexer.php';// include all parser token handler...$parserTokenList = glob(INC_PATH."piwo-v0.2/lib/parser/*.php");
 foreach ($parserTokenList as $parserToken) {
 	require_once $parserToken;
-}$variables = array();$norecursion = array("internallink", "externallink", "variable", "footnote", "plugin", "code", "tableheader", "tablecell", "header");#$dontencode = array("ilinkpos");$moditext = "edit|showpages";$dontencode = array();$footnote = 0;$footnotes = array();$indextable = null;$idheader = 0;function parse($txt) {	try {		$loglevel = pw_wiki_getcfg('debug');				if($loglevel === true) {			$loglevel = Log::DEBUG;		} else {			$loglevel = Log::INFO;		}		$lexer = new Lexer($txt, $loglevel);				$handlerList = array(				new Header(),				new Border(),				new Plugin(),				new InternalLink(),				new InternalLinkPos(),				new Url()				);				$lexer->registerHandlerList($handlerList);				//TODO No pattern? AST = #DOCUMENT with a single #TEXT node
+}$variables = array();$norecursion = array("externallink", "variable", "footnote", "tableheader", "tablecell");#$dontencode = array("ilinkpos");$moditext = "edit|showpages";$dontencode = array();$footnote = 0;$footnotes = array();$indextable = null;function parse($txt) {	try {		$loglevel = pw_wiki_getcfg('debug');				if($loglevel === true) {			$loglevel = Log::DEBUG;		} else {			$loglevel = Log::INFO;		}		$lexer = new Lexer($txt, $loglevel);				$handlerList = array(				new Header(),				new Border(),				new BorderError(),				new BorderInfo(),				new BorderSuccess(),				new BorderValidation(),				new BorderWarning(),				new Plugin(),				new InternalLink(),				new InternalLinkPos(),				new Url(),				new Big(),				new Bold(),				new Em(),				new Hi(),				new Italic(),				new Lo(), 				new Monospace(),				new Small(),				new Strike(),				new Sub(),				new Sup(),				new Underline(),				new Code(),				new NoWiki(),				new NoWikiAlt(),// 				new Table(),// 				new TableCell(),// 				new TableRow()				);						$lexer->registerHandlerList($handlerList);// 		$lexer->connectTo("tablerow", "table");
+				//TODO No pattern? AST = #DOCUMENT with a single #TEXT node
 		$lexer->parse();		$parser = new TreeParser();		$parser->registerHandlerList($handlerList);
 				$GLOBALS['idheader'] = 0;		$it = new IndexTable();		createindextable($parser, $lexer->getRootNode(), $it);		$GLOBALS['indextable'] = $it;				$_SESSION["pw_wiki"]["error"] = false;		$o = StringFormat::htmlIndent("<div id='imwiki'>", StringFormat::START);		// 		TestingTools::inform($lexer->getRootNode());		 		$ta = new TreeWalker($lexer->getRootNode(), $parser);
  		$o .= implode($ta->getResult());
@@ -25,14 +26,7 @@ foreach ($parserTokenList as $parserToken) {
 		$o .= "\n\nLOG: \n".$log;
 		$o .= "</pre>";
 		
-		echo $o;		if (isset($lexer)) {			$o = "<pre style='white-space: pre-wrap'>";			$o .= "\n\nPATTERNTABLE: \n";			$o .= $lexer->getPatternTableAsString();			$o .= "</pre>";			echo $o;		}	}				// 	$lexer = new pwLexer($txt, pw_wiki_getcfg('debug'));
-// 	pw_wiki_lexerconf($lexer);
-// 	$lexer->parse(false);	// 	$GLOBALS['idheader'] = 0;
-// 	$it = new IndexTable();// 	createindextable($lexer, null, $it);// 	$GLOBALS['indextable'] = $it;	
-// 	$_SESSION["pw_wiki"]["error"] = false;
-// 	$o = StringFormat::htmlIndent("<div id='imwiki'>", StringFormat::START);
-// 	$o .= $lexer->getText(null);
-// 	$o .= StringFormat::htmlIndent("</div>", StringFormat::END);	// 	return $o;}function lexerconf($txt, $hdlen = -1, $ftlen = -1) {  try {    // Erstelle ein neues Lexer-Objekt...    $lexer = new pwLexer($txt, pw_wiki_getcfg('debug'));    pw_wiki_lexerconf($lexer);    // Parse den Text; ignoriere CDATA-Einträge...    $lexer->parse(false);    // @TODO: PLUGINs -> runBeforeOutput/Renderer... registerFunction?//     out($GLOBALS['indextable']);    $GLOBALS['indextable'] = array("LEVELS" => array(1=>0,2=>0,3=>0,4=>0,5=>0,"LASTLEVEL"=>0,"CONT"=>array()));    $GLOBALS['idheader'] = 0;    $it = new IndexTable();    createindextable($lexer, null, $it);//     echo $it;    $_SESSION["pw_wiki"]["error"] = false;    $o = StringFormat::htmlIndent ("<div id='imwiki'>", StringFormat::START);    #$node = $lexer->getNode(9);    $o .= $lexer->getText(null);    $o .= StringFormat::htmlIndent ("</div>", StringFormat::END);    #TestingTools::inform($lexer->AST);    if (pw_wiki_getcfg('debug')) {      $o .= "<div id='imdebug'>";      $o .= "<h3>Lexer: Version und Kurzinfos.</h3>";      $o .= $lexer;      $o .= "<h3>AST</h3>";      $o .= "<pre style='overflow: auto'>";      $o .= $lexer->getAST();      $o .= "</pre>";      $o .= "<h3>Logdatei (ohne INFO-Zeilen)</h3>";      $o .= "<pre style='overflow: auto'>";      #$o .= utf8_encode(htmlentities(utf8_decode($lexer->getLogText(false))));      $logtext = $lexer->getLogText(false);      $o .= pw_s2e($logtext);      $o .= "</pre>";      #$o .= "<h3>Performance</h3>";      #$o .= "Text in ".$lexer->getExecutionTime()."s geparsed!";      $o .= "<h3>Debug: Parser - Schritte</h3>";      $lexer->printDebugInfo(1,1);      #$o .= "<h3>Text, der geparsed werden soll (mit Zeilennummern).</h3>";      #$o .= "Die erste und letzte Zeile werden vom Lexer automatisch hinzugef&uuml;gt.";      #$lexer->printSource(true);      #$o .= "<h3>Lexer: PatternTable</h3>";      #$lexer->printPatternTable();      $o .= "</div>";    }    return $o;  } catch (Exception $e) {  	TestingTools::inform($e);    global $idurl;    $o = "";    $err = array_pop($lexer->getLog(false));    /*    $o .= "Bitte w&auml;hlen: ";    $o .= "<span class='edit'>[<a href='?mode=editpage&id=$idurl'>Bearbeiten</a>]</span> | ";    $o .= "<span class='edit'>[<a href='?mode=$MODE&dialog=delpage&id=$idurl'>L&ouml;schen</a>]</span> | ";    $o .= "<span class='edit'>[<a href='?mode=showpages&id=$idurl'>Seiten&uuml;berblick anzeigen</a>]</span> | ";    $o .= "<span class='edit'>[<a href='?mode=cleared&id='>Zur&uuml;ck zur Startseite</a>]</span>";    $o .= "<hr />";    */    $o .= "<h1>Fehler im Wikitext erkannt</h1>";    $o .= "Fehler in der Zeile ".$err['DATA']['LINENR'].". ";    $o .= "<pre style='white-space: pre-wrap'>";    $o .= pw_wiki_syntaxerr(pw_u2t($lexer->getSource(false)), $err['DATA']['LINENR'], $err['DATA']['TEXT'], $hdlen, $ftlen);    $o .= "</pre>";    $o .= "<i>Der graue Text zeigt die Kopf- und Fu&szlig;zeile des Dokumentes.</i>";    /*    $o .= "<hr />Bitte w&auml;hlen: ";    $o .= "<span class='edit'>[<a href='?mode=editpage&id=$idurl'>Bearbeiten</a>]</span> | ";    $o .= "<span class='edit'>[<a href='?mode=$MODE&dialog=delpage&id=$idurl'>L&ouml;schen</a>]</span> | ";    $o .= "<span class='edit'>[<a href='?mode=showpages&id=$idurl'>Seiten&uuml;berblick anzeigen</a>]</span> | ";    $o .= "<span class='edit'>[<a href='?mode=cleared&id='>Zur&uuml;ck zur Startseite</a>]</span>";    */    if (pw_wiki_getcfg('debug')) {      $o .= "<div id='imdebug'>";      $o .= "<h3>Exception catched! Logfile output...</h3>";      $o .= "<pre>";      $o .= "ERROR MESSAGE: <pre>".pw_s2e(print_r($e->getMessage(), true))."</pre>";      $o .= "ERROR TRACE: <pre>".pw_s2e($e->getTraceAsString())."</pre>";      $o .= "SOURCE: <pre>".pw_s2e($lexer->getSource(true))."</pre>";      $o .= "PARSER STEP-BY-STEP: <pre>".$lexer->printDebugInfo(1,1, false)."</pre>";      $o .= "</pre>";      $o .= "</div>";    }    return $o;    #die("Programm terminated!");  }}function pw_wiki_lexerconf(Lexer $lexer) {
+		echo $o;		if (isset($lexer)) {			$o = "<pre style='white-space: pre-wrap'>";			$o .= "\n\nPATTERNTABLE: \n";			$o .= $lexer->getPatternTableAsString();			$o .= "</pre>";			echo $o;		}	}	}function lexerconf($txt, $hdlen = -1, $ftlen = -1) {  try {    // Erstelle ein neues Lexer-Objekt...    $lexer = new pwLexer($txt, pw_wiki_getcfg('debug'));    pw_wiki_lexerconf($lexer);    // Parse den Text; ignoriere CDATA-Einträge...    $lexer->parse(false);    // @TODO: PLUGINs -> runBeforeOutput/Renderer... registerFunction?//     out($GLOBALS['indextable']);    $GLOBALS['indextable'] = array("LEVELS" => array(1=>0,2=>0,3=>0,4=>0,5=>0,"LASTLEVEL"=>0,"CONT"=>array()));    $GLOBALS['idheader'] = 0;    $it = new IndexTable();    createindextable($lexer, null, $it);//     echo $it;    $_SESSION["pw_wiki"]["error"] = false;    $o = StringFormat::htmlIndent ("<div id='imwiki'>", StringFormat::START);    #$node = $lexer->getNode(9);    $o .= $lexer->getText(null);    $o .= StringFormat::htmlIndent ("</div>", StringFormat::END);    #TestingTools::inform($lexer->AST);    if (pw_wiki_getcfg('debug')) {      $o .= "<div id='imdebug'>";      $o .= "<h3>Lexer: Version und Kurzinfos.</h3>";      $o .= $lexer;      $o .= "<h3>AST</h3>";      $o .= "<pre style='overflow: auto'>";      $o .= $lexer->getAST();      $o .= "</pre>";      $o .= "<h3>Logdatei (ohne INFO-Zeilen)</h3>";      $o .= "<pre style='overflow: auto'>";      #$o .= utf8_encode(htmlentities(utf8_decode($lexer->getLogText(false))));      $logtext = $lexer->getLogText(false);      $o .= pw_s2e($logtext);      $o .= "</pre>";      #$o .= "<h3>Performance</h3>";      #$o .= "Text in ".$lexer->getExecutionTime()."s geparsed!";      $o .= "<h3>Debug: Parser - Schritte</h3>";      $lexer->printDebugInfo(1,1);      #$o .= "<h3>Text, der geparsed werden soll (mit Zeilennummern).</h3>";      #$o .= "Die erste und letzte Zeile werden vom Lexer automatisch hinzugef&uuml;gt.";      #$lexer->printSource(true);      #$o .= "<h3>Lexer: PatternTable</h3>";      #$lexer->printPatternTable();      $o .= "</div>";    }    return $o;  } catch (Exception $e) {  	TestingTools::inform($e);    global $idurl;    $o = "";    $err = array_pop($lexer->getLog(false));    /*    $o .= "Bitte w&auml;hlen: ";    $o .= "<span class='edit'>[<a href='?mode=editpage&id=$idurl'>Bearbeiten</a>]</span> | ";    $o .= "<span class='edit'>[<a href='?mode=$MODE&dialog=delpage&id=$idurl'>L&ouml;schen</a>]</span> | ";    $o .= "<span class='edit'>[<a href='?mode=showpages&id=$idurl'>Seiten&uuml;berblick anzeigen</a>]</span> | ";    $o .= "<span class='edit'>[<a href='?mode=cleared&id='>Zur&uuml;ck zur Startseite</a>]</span>";    $o .= "<hr />";    */    $o .= "<h1>Fehler im Wikitext erkannt</h1>";    $o .= "Fehler in der Zeile ".$err['DATA']['LINENR'].". ";    $o .= "<pre style='white-space: pre-wrap'>";    $o .= pw_wiki_syntaxerr(pw_u2t($lexer->getSource(false)), $err['DATA']['LINENR'], $err['DATA']['TEXT'], $hdlen, $ftlen);    $o .= "</pre>";    $o .= "<i>Der graue Text zeigt die Kopf- und Fu&szlig;zeile des Dokumentes.</i>";    /*    $o .= "<hr />Bitte w&auml;hlen: ";    $o .= "<span class='edit'>[<a href='?mode=editpage&id=$idurl'>Bearbeiten</a>]</span> | ";    $o .= "<span class='edit'>[<a href='?mode=$MODE&dialog=delpage&id=$idurl'>L&ouml;schen</a>]</span> | ";    $o .= "<span class='edit'>[<a href='?mode=showpages&id=$idurl'>Seiten&uuml;berblick anzeigen</a>]</span> | ";    $o .= "<span class='edit'>[<a href='?mode=cleared&id='>Zur&uuml;ck zur Startseite</a>]</span>";    */    if (pw_wiki_getcfg('debug')) {      $o .= "<div id='imdebug'>";      $o .= "<h3>Exception catched! Logfile output...</h3>";      $o .= "<pre>";      $o .= "ERROR MESSAGE: <pre>".pw_s2e(print_r($e->getMessage(), true))."</pre>";      $o .= "ERROR TRACE: <pre>".pw_s2e($e->getTraceAsString())."</pre>";      $o .= "SOURCE: <pre>".pw_s2e($lexer->getSource(true))."</pre>";      $o .= "PARSER STEP-BY-STEP: <pre>".$lexer->printDebugInfo(1,1, false)."</pre>";      $o .= "</pre>";      $o .= "</div>";    }    return $o;    #die("Programm terminated!");  }}function pw_wiki_lexerconf(Lexer $lexer) {
 	$lexer->addWordPattern("newline", '(?<=\n)\n');
 	$lexer->addWordPattern("newline2", '\\\\\\\\');
 	$lexer->addWordPattern("eof", '(?<=\n)$');
@@ -41,16 +35,12 @@ foreach ($parserTokenList as $parserToken) {
 	$lexer->addLinePattern("hrule", '----');
 	$lexer->addSectionPattern("footnote", '\(\(', '\)\)');
 
-	$lexer->addWordPattern("url", '([\w]+?:\/\/.*?[^ \"\n\r\t<\]]*)');
 	$lexer->addWordPattern("url2", '(www\.[^ \"\n\r\t<\]]*)');
-	$lexer->addSectionPattern("internallink", '(?=\[\[)', '\]\]');
-	$lexer->addSectionPattern("ilinkpos", '\[\[', '\||(?=\]\])');
 
 	$lexer->addSectionPattern("externallink", '(?=\[(?!\[))', '\]');
 	$lexer->addSectionPattern("elinkpos", '\[(?!\[)', ' |(?=\])');
 
 	// Single lines...
-	$lexer->addLinePattern("header", ' *(={1,5})', '={1,5}');
 	$lexer->addLinePattern("preformat", '( *\$\$ | *\$\$)');
 	$lexer->connectTo("preformat", "pre");
 	$lexer->addSectionPattern("plugin", '~~([\w]+):*([\w]+)*', '~~');
@@ -91,18 +81,6 @@ foreach ($parserTokenList as $parserToken) {
 
 	// Format...
 	$format = array("bold", "underline", "italic", "monospace", "small", "big", "strike", "sub", "sup", "hi", "lo", "em");
-	$lexer->addSectionPattern("bold", '\*\*', '\*\*');
-	$lexer->addSectionPattern("italic", '\/\/', '\/\/');
-	$lexer->addSectionPattern("underline", '__', '__');
-	$lexer->addSectionPattern("monospace", '\'\'', '\'\'');
-	$lexer->addSectionPattern("small", '--', '--');
-	$lexer->addSectionPattern("big", '\+\+', '\+\+');
-	$lexer->addSectionPattern("strike", '\-\+', '\+\-');
-	$lexer->addSectionPattern("sub", '_{', '}');
-	$lexer->addSectionPattern("sup", '\^{', '}');
-	$lexer->addSectionPattern("hi", '<hi( *[\w]*)>', '<\/hi>');
-	$lexer->addSectionPattern("lo", '<lo>', '<\/lo>');
-	$lexer->addSectionPattern("em", '<em>', '<\/em>');
 
 	//Alignment...
 	$align = array("align", "justify", "alignintable", "indent", "left", "right");
@@ -117,21 +95,9 @@ foreach ($parserTokenList as $parserToken) {
 
 
 	// Sections...
-	#$lexer->addSectionPattern("section", '<([\w]+)\s*([^>]*)>', '<\/([\w]+)\s*>');
-	$lexer->addSectionPattern("nowikialt", '%%', '%%');
-	$lexer->addSectionPattern("nowiki", '<nowiki>', '<\/nowiki>');
-	$lexer->addSectionPattern("code", '<code( *[\w ]*)>', '<\/code>');
-	#$lexer->addSectionPattern("code", '<code>', '<\/code>');
 	$lexer->addSectionPattern("math", '<math>', '<\/math>');
 	$lexer->addSectionPattern("notoc", '<notoc>', '<\/notoc>');
 
-	// Boxes...
-	$lexer->addSectionPattern("error", '<error>', '<\/error>');
-	$lexer->addSectionPattern("border", '<border>', '<\/border>');
-	$lexer->addSectionPattern("info", '<info>', '<\/info>');
-	$lexer->addSectionPattern("warning", '<warning>', '<\/warning>');
-	$lexer->addSectionPattern("success", '<success>', '<\/success>');
-	$lexer->addSectionPattern("validation", '<validation>', '<\/validation>');
 	$boxes = array("error", "info", "warning", "success", "validation", "border");
 
 
@@ -141,20 +107,6 @@ foreach ($parserTokenList as $parserToken) {
 
 	// TODO: Aggregate categories and cleanup, Attention with Deflists and Modi, which must (not) be a part of their selfs...
 	$tables = array("tablecell", "tableheader", "wptableheader", "wptablecell");
-
-	$perm4format = array_merge($format, $boxes, $blocks, $tables, $align, array("defitem", "footnote"));
-	$lexer->setAllowedModes("bold", $perm4format);
-	$lexer->setAllowedModes("italic", $perm4format);
-	$lexer->setAllowedModes("underline", $perm4format);
-	$lexer->setAllowedModes("monospace", $perm4format);
-	$lexer->setAllowedModes("small", $perm4format);
-	$lexer->setAllowedModes("big", $perm4format);
-	$lexer->setAllowedModes("strike", $perm4format);
-	$lexer->setAllowedModes("sub", $perm4format);
-	$lexer->setAllowedModes("sup", $perm4format);
-	$lexer->setAllowedModes("hi", $perm4format);
-	$lexer->setAllowedModes("lo", $perm4format);
-	$lexer->setAllowedModes("em", $perm4format);
 
 	$lexer->setAllowedModes("footnote", array_merge($format, $blocks, $boxes, $align, $tables, array("defitem", "defterm")));
 	$lexer->setAllowedModes("newline", array_merge($blocks, $boxes, array("#DOCUMENT", "multiline")));
@@ -178,19 +130,11 @@ foreach ($parserTokenList as $parserToken) {
 	$lexer->setAllowedModes("defitem", array("defterm"));
 	$lexer->setAllowedModes("const", array_merge($format, $blocks, $boxes, $tables, $align, array("pluginparam", "header", "ilinkpos", "internallink", "externallink", "elinkpos", "variable")));
 	$lexer->setAllowedModes("symbol", array_merge($format, $blocks, $boxes, $tables, $align, array("math", "defitem", "defterm")));
-	$lexer->setAllowedModes("nowiki", array_merge($format, $blocks, $boxes, array("defterm", "defitem")));
-	$lexer->setAllowedModes("nowikialt", array_merge($format, $blocks, $boxes, array("defterm", "defitem")));
 	$lexer->setAllowedModes("code", array_merge($format, $blocks, $boxes));
 	$lexer->setAllowedModes("math", array_merge($format, $blocks, $boxes, $tables));
 	$lexer->setAllowedModes("notoc", array_merge($blocks, $boxes, $tables, array("left", "right")));
 	$lexer->setAllowedModes("left", array("#DOCUMENT"));
 	$lexer->setAllowedModes("right", array("#DOCUMENT"));
-	$lexer->setAllowedModes("error", array("#DOCUMENT", "multiline", "left", "right", "indent", "tablecell"));
-	$lexer->setAllowedModes("border", array("#DOCUMENT", "multiline", "left", "right", "indent", "tablecell"));
-	$lexer->setAllowedModes("info", array("#DOCUMENT", "multiline", "left", "right", "indent", "tablecell"));
-	$lexer->setAllowedModes("success", array("#DOCUMENT", "multiline", "left", "right", "indent", "tablecell"));
-	$lexer->setAllowedModes("warning", array("#DOCUMENT", "multiline", "left", "right", "indent", "tablecell"));
-	$lexer->setAllowedModes("validation", array("#DOCUMENT", "multiline", "left", "right", "indent", "tablecell"));
 	$lexer->setAllowedModes("hrule", array_merge(array("#DOCUMENT", "multiline", "left", "right"), $boxes));
 
 	// Tables...
@@ -209,11 +153,8 @@ foreach ($parserTokenList as $parserToken) {
 	$lexer->setAllowedModes("listitem", array("#DOCUMENT", "multiline", "left", "right", "wptablecell"));
 
 	// Hyperlinks...
-	$lexer->setAllowedModes("url", array_merge($format, $blocks, $boxes, array("externallink", "footnote", "defitem")) );
 	$lexer->setAllowedModes("url2", array_merge($format, $blocks, $boxes, array("externallink", "footnote", "defitem")) );
 	$lexer->setAllowedModes("externallink", array_merge($format, $blocks, $boxes, $tables, $align, array("footnote", "defitem", "defterm")));
-	$lexer->setAllowedModes("internallink", array_merge($format, $blocks, $boxes, $tables, $align, array("footnote", "defitem", "defterm")));
-	$lexer->setAllowedModes("ilinkpos", array("internallink"));
 	$lexer->setAllowedModes("elinkpos", array("externallink"));
 
 	return $lexer;

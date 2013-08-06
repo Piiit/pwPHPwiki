@@ -161,7 +161,7 @@ class Node {
 		}
 		$pnode = $this->getParent();
 		$pnodeChildren = $pnode->getChildren();
-		$cur = $this->_getChildIndex();
+		$cur = $this->getChildIndex();
 		if (isset($pnodeChildren[$cur+1])) {
 			return $pnodeChildren[$cur+1];
 		}
@@ -175,7 +175,7 @@ class Node {
 	public function getPreviousSibling() {
 		$pnode = $this->getParent();
 		$pnodeChildren = $pnode->getChildren();
-		$cur = $this->_getChildIndex();
+		$cur = $this->getChildIndex();
 		if (isset($pnodeChildren[$cur-1])) {
 			return $pnodeChildren[$cur-1];
 		}
@@ -241,8 +241,8 @@ class Node {
 		$sibling = $this->getNextSibling();
 		if (!$sibling)
 			return null;
-		$childIndex = $child->_getChildIndex();
-		$child = $sibling->getChild($childIndex);
+		$childIndex = $child->getChildIndex();
+		$child = $sibling->getChildByIndex($childIndex);
 		return $child;
 	}
 	
@@ -257,8 +257,8 @@ class Node {
 		$sibling = $this->getPreviousSibling();
 		if (!$sibling)
 			return null;
-		$childIndex = $child->_getChildIndex();
-		$child = $sibling->getChild($childIndex);
+		$childIndex = $child->getChildIndex();
+		$child = $sibling->getChildByIndex($childIndex);
 		return $child;
 	}
 	
@@ -275,7 +275,7 @@ class Node {
 	 * @param int $childIndex	array index
 	 * @return NULL|Node
 	 */
-	private function _getChild($childIndex) {
+	public function getChildByIndex($childIndex) {
 		if (!isset($this->children[$childIndex]))
 			throw new OutOfRangeException("No child with array index $childIndex avaiable!");
 		return $this->children[$childIndex];
@@ -286,7 +286,7 @@ class Node {
 	 * @throws Exception If this node can't be found inside parent's children's list.
 	 * @return int Array-index.
 	 */
-	private function _getChildIndex() {
+	public function getChildIndex() {
 		$parent = $this->getParent();
 		
 		if ($parent && $parent->hasChildren()) {

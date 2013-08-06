@@ -25,7 +25,8 @@ class Plugin extends ParserRule implements ParserRuleHandler, LexerRuleHandler {
 				"monospace", "small", "big", "strike", "sub", "sup", "hi", "lo", "em",
 				"multiline", "header", "ilinkpos", "internallink", "externallink", "elinkpos", 
 				"tablecell", "tableheader", "wptableheader", "wptablecell", "align", "justify", 
-				"alignintable", "indent", "left", "right", "error", "info", "warning", "success", "validation", "border"
+				"alignintable", "indent", "left", "right", "bordererror", "borderinfo", "borderwarning", 
+				"bordersuccess", "bordervalidation", "border"
 				);
 	}
 	
@@ -44,7 +45,7 @@ class Plugin extends ParserRule implements ParserRuleHandler, LexerRuleHandler {
 	}
 
 	public function doRecursion() {
-		return true;
+		return false;
 	}
 
 }

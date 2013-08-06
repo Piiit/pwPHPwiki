@@ -285,6 +285,10 @@ class Lexer {
 		$this->_log->addInfo($this->_logFormat("CONNECTTO", "'$name->$to' connected."));
 	}
 	
+	public function registerAbstractHandler(LexerRuleHandlerAbstract $handler) {
+		//TODO connectTo OR combine within registerHandler (check with instanceof inside)
+	}
+	
 	public function registerHandler(LexerRuleHandler $handler) {
 		if(strlen($handler->getName()) == 0) {
 			throw new Exception("Cannot register a handler without a name!");
@@ -301,7 +305,12 @@ class Lexer {
 			throw new Exception("Handler list must be an array!");
 		}
 		foreach($handlerList as $handler) {
-			$this->registerHandler($handler);
+			if($handler instanceof LexerRuleHandler) {
+				$this->registerHandler($handler);
+			}
+			if($handler instanceof LexerRuleHandlerAbstract) {
+				$this->registerAbstractHandler($handler);
+			}
 		}
 	}
 

@@ -22,7 +22,9 @@ class Header extends ParserRule implements ParserRuleHandler, LexerRuleHandler {
 	}
 
 	public function getAllowedModes() {
-		return array("#DOCUMENT", "left", "right", "notoc", "multiline", "error", "info", "warning", "success", "validation", "border");
+		return array(
+				"#DOCUMENT", "left", "right", "notoc", "multiline", "bordererror", "borderinfo", 
+				"borderwarning", "bordersuccess", "bordervalidation", "border");
 	}
 	
 	public function onEntry() {
