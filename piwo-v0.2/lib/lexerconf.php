@@ -9,7 +9,7 @@ foreach ($parserTokenList as $parserToken) {
 		$lexer->parse();		$parser = new TreeParser();		$parser->registerHandlerList($handlerList);
 				$GLOBALS['idheader'] = 0;		$it = new IndexTable();		createindextable($parser, $lexer->getRootNode(), $it);		$GLOBALS['indextable'] = $it;				$_SESSION["pw_wiki"]["error"] = false;		$o = StringFormat::htmlIndent("<div id='imwiki'>", StringFormat::START);		// 		TestingTools::inform($lexer->getRootNode());		 		$ta = new TreeWalker($lexer->getRootNode(), $parser);
  		$o .= implode($ta->getResult());
-				$o .= StringFormat::htmlIndent("</div>", StringFormat::END);		echo StringFormat::preFormat($lexer->getLog());
+				$o .= StringFormat::htmlIndent("</div>", StringFormat::END);		TestingTools::inform($lexer->getLog());
 				return $o;	} catch (Exception $e) {		$o = "";
 		$src = "N/A";
 		$log = "N/A";

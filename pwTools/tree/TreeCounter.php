@@ -16,5 +16,9 @@ class TreeCounter implements TreeWalkerConfig {
 	public function getResult() {
 		return $this->_count;
 	}
+	
+	public function doRecursion(Node $node = null) {
+		return true;
+	}
 
 }
