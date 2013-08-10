@@ -43,7 +43,15 @@ class ParserRule {
 	}
 	
 	public function getArray() {
-		$ta = new TreeWalker($this->node, $this->parser);
+		return $this->getArrayFromNode($this->node);
+	}
+	
+	public function getTextFromNode(Node $node) {
+		return implode($this->getArrayFromNode($node));
+	}
+	
+	public function getArrayFromNode(Node $node) {
+		$ta = new TreeWalker($node, $this->parser);
 		$tmp = $this->parser->getResult();
 		$this->parser->resetResult();
 		$result = $ta->getResult();
