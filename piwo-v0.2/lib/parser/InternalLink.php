@@ -20,23 +20,22 @@ class InternalLink extends ParserRule implements ParserRuleHandler, LexerRuleHan
 		global $moditext;
 		
 		$node = $this->getNode();
-// 		$parser = new ParserRule($node, $this->getParser());
 		
-		$linkpos = $node->getFirstChild();
-		$linkpostxt = $this->getText();
+		$linkPositionNode = $node->getFirstChild();
+		$linkPositionText = $this->getTextFromNode($linkPositionNode);
 		
- 		TestingTools::inform($linkpostxt);
+  		TestingTools::inform($linkPositionText);
 		
 		//@TODO: refactor... common function... bubble-up of an error until ????
 		if ($_SESSION['pw_wiki']['error']) {
 			$_SESSION['pw_wiki']['error'] = false;
-			return $linkpostxt.nop("Interner Link kann wegen interner Fehler nicht aufgel&ouml;st werden.");
+			return $linkPositionText.nop("Interner Link kann wegen interner Fehler nicht aufgel&ouml;st werden.");
 		}
 	
-		$fullid = $linkpostxt;
+		$fullid = $linkPositionText;
 		$modus = false;
 	
-		if (preg_match("#(.*)&gt;(.*)#", $linkpostxt, $xp_lpt)) {
+		if (preg_match("#(.*)&gt;(.*)#", $linkPositionText, $xp_lpt)) {
 			$modus = $xp_lpt[1];
 			$fullid = $xp_lpt[2];
 	
@@ -50,7 +49,12 @@ class InternalLink extends ParserRule implements ParserRuleHandler, LexerRuleHan
 			return nop("Interner Wikilink ohne Zielangabe. Leerer Wikilink?", false);
 		}
 	
-		$text = $this->getText();
+		//TODO loop to catch all parts until the end of the link
+		$textNode = $linkPositionNode->getNextSibling();
+		TestingTools::inform($textNode->__toString());
+// 		$parser = new ParserRule($textNode, $this->getParser());
+// 		$text = $parser->getText();
+		$text = $textNode->getData();
 		TestingTools::inform($text);
 	
 		//@TODO: refactor... common function... bubble-up of an error until ????
