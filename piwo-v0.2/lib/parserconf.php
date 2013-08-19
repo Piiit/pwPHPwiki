@@ -9,13 +9,6 @@ require_once INC_PATH.'pwTools/string/encoding.php';
 require_once INC_PATH.'pwTools/data/IndexTable.php';
 
 
-function snewline() {
-  #return '<br />';
-}
-
-function snewline2() {
-  return '<br />';
-}
 function scomment() {
   return '<!--';
 }
@@ -233,23 +226,6 @@ function epre() {
   return '</div></pre>';
 }
 
-function spreformat() {
-  return '';
-}
-
-function epreformat() {
-  return "\n";
-}
-
-
-function smultiline() {
-  return '';
-}
-
-function emultiline() {
-  return '';
-}
-
 function snotoc() {
   return '';
 }
@@ -257,65 +233,6 @@ function snotoc() {
 function shrule() {
   return '<hr />';
 }
-
-function sindent($node, $lexer) {
-  // Pro Zeile ein neues DIV-Element...
-  #$level = strlen($node['CONFIG'][0])*10;
-  #$last = $lexer->previousSibling($node);
-  #if ($last['NAME'] == "indent") {
-  #  $lastlevel = strlen($last['CONFIG'][0])*10;
-  #  if($lastlevel != $level) {
-  #    echo '<div style="margin-left: '.$level.'">';
-  #    #echo 'START-INDENT: l='.$level.'|';
-  #  }
-  #} else {
-  #  echo '<div style="margin-left: '.$level.'">';
-  #  #echo 'START-INDENT: l='.$level.'|';
-  #}
-
-  $level = strlen($node['CONFIG'][0])*10;
-  return '<div style="margin-left: '.$level.'px">';
-}
-
-function eindent($node, $lexer) {
-  #$next = $lexer->nextSibling($node);
-  #if ($next['NAME'] != "indent") {
-  #  echo '</div>';
-  #  #echo 'END-INDENT 1<br />';
-  #} else {
-  #  $nextlevel = $next['CONFIG'][0];
-  #  $nextlevel = strlen($nextlevel)*10;
-  #  $level = strlen($node['CONFIG'][0])*10;
-  #  if($nextlevel != $level) {
-  #    echo '</div>';
-  #    #echo "END-INDENT 2: $level; $nextlevel<br />";
-  #  }
-  #}
-
-  return '</div>';
-}
-
-function salign($node, $lexer) {
-  $type = $node['CONFIG'][0];
-  if ($type == '>') {
-    return '<div align="right">';
-  } else {
-    return '<div align="center">';
-  }
-}
-
-function ealign() {
-  return '</div>';
-}
-
-function sjustify($node, $lexer) {
-  return '<div align="justify">';
-}
-
-function ejustify($node, $lexer) {
-  return '</div>';
-}
-
 
 function salignintable($node, $lexer) {
   $type = $node['CONFIG'][0];
@@ -329,37 +246,6 @@ function salignintable($node, $lexer) {
 function ealignintable() {
   return '</div>';
 }
-
-function sheader($node, $lexer) {
-  $o = "";
-  $level = strlen($node['CONFIG'][0]);
-  $level = strlen($node['CONFIG'][0]);
-
-  if ($lexer->hasAncestor($node, "notoc")) {
-    $o = '<h'.$level.'>';
-  } else {
-    global $idheader;
-    global $indextable;
-//    TestingTools::inform($indextable);
-    $fc = $lexer->firstChild($node);
-    $txt = trim($fc['VALUE']);
-    //$o = '<h'.$level.' id="header_'.$GLOBALS['indextable']['CONT'][$idheader]['ID'].'">';
-    $o = '<h'.$level.' id="header_'.$indextable->getByIndex($idheader)->getId().'">';
-    $GLOBALS['idheader']++;
-  }
-
-  $htxt = $lexer->getText($node);
-
-  if (!$htxt) {
-    $o .= nop("Leere Titel sind nicht erlaubt!");
-  }
-  $o .= $htxt;
-  $o .= '</h'.$level.'>';
-
-  return $o;
-}
-
-
 
 function unescape($txt) {
   $esc    = array ('\"',
@@ -495,50 +381,13 @@ function eright($node, $lexer) {
   return $o;
 }
 
-function scode($node, $lexer) {
-  $tn = $lexer->firstChild($node);
-  $text = pw_s2e($tn['VALUE']);
-  $o = '<pre><div>';
-  $o .= utf8_trim($text, "\n");
-  return $o;
-}
 
-function ecode() {
-  $o = '</div></pre>';
-  return $o;
-}
 function smath() {
   return '<span class="section_math">';
 }
 
 function emath() {
   return '</span>';
-}
-
-function shi($node, $lexer) {
-  $colorid = trim($node['CONFIG'][0]);
-  $colors = array("orange" => 0, "green" => 1, "yellow" => 2, "red" => 3, "blue" => 4);
-
-  if (is_string($colorid) and array_key_exists($colorid, $colors)) {
-    $colorid = $colors[$colorid];
-  }
-
-  if (!is_numeric($colorid) or $colorid < 0 or $colorid > 4) {
-    $colorid = 0;
-  }
-
-  return '<span class="highlighted c'.$colorid.'">';
-}
-
-function surl($node, $lexer) {
-  $url = $node['CONFIG'][0];
-  $target = 'target="_blank" ';
-  $mailto = substr($url, 0, 7) == "mailto:" ? true : false;
-  if ($mailto) {
-    $target = "";
-  }
-
-  return '<a '.$target.'href="'.$url.'">'.$url.'</a>';
 }
 
 function sexternallink($node, $lexer) {
@@ -573,186 +422,6 @@ function sexternallink($node, $lexer) {
   return '<a '.$target.'href="'.$url.'">'.$txt.'</a>';
 }
 
-function sinternallink($node, $lexer) {
-  //@TODO: clean redundant code... specially for encoding-functions!
-  global $indextable;
-  global $moditext;
-
-  $linkpos = $lexer->firstChild($node);
-  $linkpostxt = $lexer->getText($linkpos);
-  #out2($_SESSION['pw_wiki']['error']);
-  #out($linkpostxt);
-
-  //@TODO: refactor... common function... bubble-up of an error until ????
-  if ($_SESSION['pw_wiki']['error']) {
-    $_SESSION['pw_wiki']['error'] = false;
-    return $linkpostxt.nop("Interner Link kann wegen interner Fehler nicht aufgelöst werden.");
-  }
-
-  $fullid = $linkpostxt;
-  $modus = false;
-
-  if (preg_match("#(.*)&gt;(.*)#", $linkpostxt, $xp_lpt)) {
-    $modus = $xp_lpt[1];
-    $fullid = $xp_lpt[2];
-
-    $modi = explode("|", $moditext);
-    if (!in_array($modus, $modi)) {
-      return nop("Interner Link mit falschem Modus '$modus'. Erlaubte Modi sind: ".$moditext);
-    }
-  }
-
-  if (!$fullid) {
-    return nop("Interner Wikilink ohne Zielangabe. Leerer Wikilink?", false);
-  }
-
-  $text = $lexer->getText2($linkpos);
-
-  //@TODO: refactor... common function... bubble-up of an error until ????
-  if ($_SESSION['pw_wiki']['error']) {
-    $_SESSION['pw_wiki']['error'] = false;
-    //@TODO: refactor... Interner Link Token einfach ausgeben ohne ihn zu verarbeiten... restore! und darin enthalten die interne Fehlermeldung!!!
-    return pw_e2u($text)." ".nop("Interner Link kann wegen interner Fehler nicht aufgelöst werden.");
-  }
-
-/*
-  $text = "";
-  for ($textpos = $lexer->nextSibling($linkpos); $textpos != null; $textpos = $lexer->nextSibling($textpos)) {
-    $ret = $lexer->getText($textpos);
-    if (!$ret) {
-      $ret = $lexer->callFunction($textpos, ONENTRY);
-      $ret .= $lexer->callFunction($textpos, ONEXIT);
-
-    }
-    $ret = utf8_encode(htmlentities(utf8_decode($ret)));
-    $text .= $ret;
-  }
-*/
-
-  $found = true;
-  $na = "";
-  $type = "INTERNAL";
-  $section = null;
-  if ($fullid[0] == "#") {
-    $idtxt = ltrim($fullid, "#");
-    $id = pw_s2u($idtxt);
-    $id = utf8_strtolower($id);
-    $type = "JUMP";
-
-    switch($id) {
-      case "_top": $href = "#__main"; break;
-      case "_bottom": $href = "#__bottom"; break;
-      case "_toc": $href = "#__toc"; break;
-      case "_maintitle": $href = "#__fullsite"; break;
-      default:
-      	
-      	try {
-
-      		$item = $indextable->getByIdOrText($id);
-            $section = $item->getId();
-            if (!$text) {
-                $text = $item->getText();
-            }
-            $text = pw_s2e($text);
-            
-        } catch (Exception $e) {
-            $found = false;
-            $href = "#";
-            $text = pw_url2u($id);
-            $na = ' class="pw_wiki_link_na"';
-        }
-
-      break;
-    }
-
-  } else {
-
-    //out($fullid);
-    preg_match("/(.*)#(.*)/", $fullid, $lpt);
-    #out($lpt);
-
-    $id = isset($lpt[1]) ? $lpt[1] : $fullid;
-    $jump = "";
-    if (isset($lpt[2]) and strlen($lpt[2]) > 0) {
-      $jump = "#".utf8_strtolower(pw_s2url($lpt[2]));
-    }
-
-    $id = pw_url2t($id);
-
-    // Absolute Pfadangabe...
-    if ($id[0] == ':') {
-      $id = ltrim($id, ':');
-    } else {
-      $ns = pw_wiki_getcfg('fullns');
-      $id = $ns ? $ns.$id : $id;
-    }
-
-    $id = pw_e2u($id);
-    $filename = pw_wiki_path($id, ST_FULL);
-    #out($id);
-    #$filename = pw_u2t($filename);
-    #out(file_exists($filename), $filename);
-    #out($filename);
-    #out2(utf8_check($filename));
-    #die();
-
-    if (!file_exists($filename) and !$modus) {
-      $na = ' class="pw_wiki_link_na"';
-      $modus = "edit";
-      $found = false;
-    }
-    
-    if (!$text) {
-      $text = pw_wiki_pg(pw_e2u($fullid));
-      #out(pw_e2u($fullid));
-    }
-
-    $href = "?id=".pw_s2url($id).$jump;
-
-  }
-
-  if ($type == "JUMP" and !$text) {
-    $text = pw_wiki_getcfg('anchor_text', $id);
-    if (!$text) {
-      $text = $item->getText();
-    }
-    $text = pw_s2e($text);
-  }
-
-
-  if ($modus == "edit" and $section) {
-    $href = "?id=".pw_wiki_getcfg('id');
-    $href .= "&mode=editpage&amp;section=$section";
-  }
-
-  if ($type == "JUMP" and !$modus and $section) {
-    $href = "#header_".$section;
-  }
-
-  if ($type == "INTERNAL") {
-    if ($modus == "edit" or !$found) {
-      $href .= '&mode=editpage';
-    }
-    if ($modus == "showpages") {
-      $href .= "&mode=showpages";
-      $na = '';
-    }
-  }
-
-
-  // AJAX-Links...
-  #return '<a onclick="wikilink(\''.$fullid.'\'); return false;" href="#id='.$fullid.'"'.$na.'>'.$text.'</a>';
-  #out("LPTXT=$linkpostxt; MODUS=$modus; TEXT=$text; LINK=$fullid; TYPE=$type; \nID=$id; HREF=$href; FOUND=".($found?"TRUE":"FALSE")."; SECTION=$section;");
-  #return $linkpostxt.'|'.$textnode['VALUE'].' [a href="'.$href.'"'.$na.']'.$text.'[/a]';
-
-  //@TODO alle hrefs encodieren und strtolower anwenden (achtung bei utf8-Sonderzeichen)
-  #$href = pw_wiki_urlencode($href);
-  #$text = pw_wiki_entities($text);
-  #$text = pw_s2e($text);
-  return '<a href="'.$href.'"'.$na.'>'.$text.'</a>';
-
-}
-
 function spluginparam($node, $lexer) {
   if(!$lexer->hasChildNodes($node))
     return "";
@@ -763,16 +432,6 @@ function surl2($node, $lexer) {
   $url = $node['CONFIG'][0];
   return '<a href="http://'.$url.'">'.$url.'</a>';
 }
-
-function splugin($node, $lexer) {
-  $pluginname = strtolower($node['CONFIG'][0]);
-  $funcname = "plugin_".$pluginname;
-  if (!function_exists($funcname)) {
-    return nop("PLUGIN '$pluginname' nicht verf&uuml;gbar.",false);
-  }
-  return call_user_func($funcname, $lexer, $node);
-}
-
 
 function nop($txt) {
   $out = "<span style='color: yellow'>[WARNUNG: ";

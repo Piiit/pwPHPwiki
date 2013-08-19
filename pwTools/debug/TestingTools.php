@@ -13,18 +13,20 @@ class TestingTools {
 	
 	const INFORM = "INFORM";
 	const DEBUG = "DEBUG";
+	const PRINTNEWLINE = 0;
+	const REPLACENEWLINE = 1;
 	
 	private static $_debugOn = false;
 	private static $_init = false;
 	
 	private static function printLine($type, $length, $out, $description = null, $debugInfo = null) {
 		isset($length) ? $length = "<span class='deblength'>$length</span>" : $length = "";
-		isset($description) && strlen($description) > 0 ? $description = "<span class='debout'>$description</span> =" : $description = "";
+		isset($description) && strlen($description) > 0 ? $description = "$description = " : $description = "";
 		isset($out) && $type != "array" ? $out = "<span class='debout'>$out</span>" : $out = "";
-		return "<li><pre class='debpre !important'> $description $out ($type, $length) $debugInfo</pre></li>\n";
+		return "<li><pre class='debpre !important'> $debugInfo ($type, $length)\n $description$out</pre></li>\n";
 	}
 	
-	private static function printItem($item, $name = null, $debugInfo = null) {
+	private static function printItem($item, $name = null, $debugInfo = null, $newline = self::REPLACENEWLINE) {
 		$name = htmlentities($name);
 		if (is_array($item)) {
 			echo self::printLine(gettype($item), count($item), "", $name, $debugInfo);
@@ -34,8 +36,10 @@ class TestingTools {
 			echo self::printLine("null", "", "", $name, $debugInfo);
 		} elseif (is_string($item)) {
 			$itemClean = htmlentities($item);
-			$itemClean = preg_replace("#\n#", "<code class='debspecial'> N </code>", $itemClean);
-			$itemClean = preg_replace("#\r#", "<code class='debspecial'> R </code>", $itemClean);
+			if($newline == self::REPLACENEWLINE) {
+				$itemClean = preg_replace("#\n#", "<code class='debspecial'> N </code>", $itemClean);
+				$itemClean = preg_replace("#\r#", "<code class='debspecial'> R </code>", $itemClean);
+			}
 			$itemClean = preg_replace("#\t#", "<code class='debspecial'> T </code>", $itemClean);
 			echo self::printLine("string", strlen($item), $itemClean, $name, $debugInfo);
 		} elseif (is_object($item)) {
@@ -47,12 +51,12 @@ class TestingTools {
 		}
 	}
 	
-	private static function printAll($output, $description="", $call = 0, $type = self::INFORM) {
+	private static function printAll($output, $description="", $call = 0, $type = self::INFORM, $newline = self::REPLACENEWLINE) {
 		self::init();
 		if ($call == 0) {
 			$debugInfo = $type.": SUM=".count($output, COUNT_RECURSIVE)."; ".self::getDebugInfoAsString($description);
 			echo "<div class='debdiv'><ul id='first'>\n";
-  			self::printItem($output, $description, $debugInfo);
+  			self::printItem($output, $description, $debugInfo, $newline);
 		}
 		
 		if (!is_array($output)) {
@@ -105,6 +109,10 @@ class TestingTools {
 	
 	public static function inform($output, $description = "") {
 		self::printAll($output, $description);
+	}
+	
+	public static function informPrintNewline($output, $description = "") {
+		self::printAll($output, $description, 0, self::INFORM, self::PRINTNEWLINE);
 	}
 	
 	public static function debug($output, $description="") {

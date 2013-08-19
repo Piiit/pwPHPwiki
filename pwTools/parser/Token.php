@@ -35,7 +35,8 @@ class Token extends Node {
 	}
 	
 	public function __toString() {
-		return "[Token: $this->_name: ".pw_s2e_whiteSpace($this->_tokenMatch).", LENGTH={$this->getTextLength()}, EXIT=$this->_typeExit]";
+		$exit = $this->_typeExit ? "EXIT" : "ENTRY";
+		return "[Token: $this->_name: ".pw_s2e_whiteSpace($this->_tokenMatch).", LENGTH={$this->getTextLength()}, $exit]";
 	}
 	
 	public function isExit() {

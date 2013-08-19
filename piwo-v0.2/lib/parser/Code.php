@@ -19,11 +19,8 @@ class Code extends ParserRule implements ParserRuleHandler, LexerRuleHandler {
 	}
 	
 	public function onEntry() {
-		$tn = $this->getNode()->getFirstChild()->getData();
-  		$text = pw_s2e($tn['VALUE']);
-  		$o = '<pre><div>';
-  		$o .= utf8_trim($text, "\n");
-  		return $o;
+  		$text = pw_s2e($this->getNode()->getFirstChild()->getData());
+  		return '<pre><div>'.utf8_trim($text, "\n");
 	}
 
 	public function onExit() {

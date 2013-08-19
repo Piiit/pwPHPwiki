@@ -51,17 +51,20 @@ class InternalLink extends ParserRule implements ParserRuleHandler, LexerRuleHan
 	
 		//TODO loop to catch all parts until the end of the link
 		$textNode = $linkPositionNode->getNextSibling();
-		TestingTools::inform($textNode->__toString());
-// 		$parser = new ParserRule($textNode, $this->getParser());
-// 		$text = $parser->getText();
-		$text = $textNode->getData();
-		TestingTools::inform($text);
+		$text = null;
+		if ($textNode != null) {
+			TestingTools::inform($textNode->__toString());
+	// 		$parser = new ParserRule($textNode, $this->getParser());
+	// 		$text = $parser->getText();
+			$text = $textNode->getData();
+			TestingTools::inform($text, "link text");
+		}
 	
 		//@TODO: refactor... common function... bubble-up of an error until ????
 		if ($_SESSION['pw_wiki']['error']) {
 			$_SESSION['pw_wiki']['error'] = false;
 			//@TODO: refactor... Interner Link Token einfach ausgeben ohne ihn zu verarbeiten... restore! und darin enthalten die interne Fehlermeldung!!!
-			return pw_e2u($text)." ".nop("Interner Link kann wegen interner Fehler nicht aufgelöst werden.");
+			return pw_e2u($text)." ".nop("Interner Link kann wegen interner Fehler nicht aufgel&ouml;st werden.");
 		}
 	
 	/*
