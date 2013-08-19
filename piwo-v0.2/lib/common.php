@@ -485,6 +485,14 @@ function pw_wiki_syntaxerr($text, $line, $errtxt, $header = 0, $footer = 0) {
 	return $out;
 }
 
+function nop($txt) {
+	$out = "<span style='color: yellow'>[WARNUNG: ";
+	$out .= $txt;
+	$out .= "]</span>";
+
+	return $out;
+
+}
 
 
 ?>

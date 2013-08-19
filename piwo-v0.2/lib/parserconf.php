@@ -268,82 +268,6 @@ function svariable($node, $lexer) {
   $GLOBALS['variables'][$varname] = $value;
 }
 
-function sconst($node, $lexer) {
-  #out2("SCONST");
-  #out2($node);
-  global $variables;
-
-  $conf = pw_s2u($node['CONFIG'][0]);
-
-
-  if (preg_match("#(.*) *= *(.*)#i", $conf, $ass)) {
-    $varname = utf8_strtolower(utf8_trim($ass[1]));
-    $value = utf8_trim($ass[2]);
-    $GLOBALS['variables'][$varname] = $value;
-    return;
-  }
-
-  $conf = utf8_strtolower($conf);
-
-  $txt = "";
-
-  //@TODO: Ersetzen mit richtigen PHP i18n Funktionen!!!
-  $months_translated = array("Januar","Februar","M&auml;rz","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember");;
-  $months = array("January","February","March","April","May","June","July","August","September","October","November","December");
-  $days = array("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday");
-  $days_translated = array("Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag");
-
-  $varnames = explode(":", $conf);
-  $varname = array_shift($varnames);
-  $subcat = array_pop($varnames);
-  #out($varname);
-  switch($varname) {
-    case 'date': $txt = date('d.m.Y'); break;
-    case 'month': $txt = date('m'); break;
-    case 'monthname': $txt = str_replace($months,$months_translated,date('F')); break;
-    case 'day': $txt = date('d'); break;
-    case 'dayname': $txt = str_replace($days,$days_translated,date('l')); break;
-    case 'year': $txt = date('Y'); break;
-    case 'time': $txt = date('H:i'); break;
-    case 'pi': $txt = str_replace('.',',',round(pi(), 5)); break;
-    case 'e': $txt = str_replace('.',',',round(2.718281828459045235, 5)); break;
-    case 'ns': $txt = pw_url2u(pw_wiki_getcfg('ns')); if ($txt === false) $txt = "[root]"; break;
-    case 'id': $txt = pw_url2u(pw_wiki_getcfg('pg')); break;
-    case 'wrongid': $txt = pw_url2u(pw_wiki_getcfg('wrongid')); break;
-    case 'fullid': $txt = pw_url2u(pw_wiki_getcfg('id')); break;
-    case 'startpage': $txt = ':'.pw_url2u(pw_wiki_getcfg('startpage')); break;
-    case 'version': $txt = pw_wiki_version(); break;
-    case 'lexerversion': $txt = $lexer->getVersion(); break;
-    case 'path': $txt = 'http://'.$_SERVER['SERVER_NAME'].pw_dirname($_SERVER['PHP_SELF']); break;
-    case 'countsubs':
-      // zähle alle wikipages im aktuellen namespace
-      $path = pw_wiki_getcfg('path');
-      $ext = pw_wiki_getcfg('fileext');
-      $txt = count(glob($path."/*".$ext));
-    break;
-    case 'performance':
-      $txt = $lexer->getExecutionTime();
-    break;
-    case 'file':
-      $txt = pw_wiki_fileinfo($subcat);
-    break;
-    default:
-
-      if (isset($variables[$varname])) {
-        $txt = $variables[$varname];
-        $txt = unescape($txt);
-        return $txt;
-      } else {
-        $_SESSION['pw_wiki']['error'] = true;
-        return nop("VARIABLE '$varname' wurde nicht gesetzt.", false);
-      }
-
-    break;
-  }
-
-  return pw_s2e($txt);
-}
-
 function ssymbol($node, $lexer) {
   $symbol = $node['CONFIG'][0];
 
@@ -351,36 +275,6 @@ function ssymbol($node, $lexer) {
   #echo '<span class="symbols">&'.$symbol.';</span>';
   return '&'.$symbol.';';
 }
-
-function sleft() {
-  return '<div class="section_left">';
-}
-
-function eleft($node, $lexer) {
-  $o = '</div>';
-  $ns = $lexer->nextSibling($node);
-  $cfg = isset($node['CONFIG'][1]) ? $node['CONFIG'][1] : null;
-  $o .= $cfg;
-  if ($ns['NAME'] != 'right' and $cfg != "alone") {
-    $o .= '<div class="clear"></div>';
-  }
-  return $o;
-}
-
-function sright() {
-  return '<div class="section_right">';
-}
-
-function eright($node, $lexer) {
-  $o = '</div>';
-  $ns = $lexer->nextSibling($node);
-  $cfg = isset($node['CONFIG'][1]) ? $node['CONFIG'][1] : null;
-  if ($ns['NAME'] != 'left' and $cfg != "alone") {
-    $o .= '<div class="clear"></div>';
-  }
-  return $o;
-}
-
 
 function smath() {
   return '<span class="section_math">';
@@ -433,13 +327,6 @@ function surl2($node, $lexer) {
   return '<a href="http://'.$url.'">'.$url.'</a>';
 }
 
-function nop($txt) {
-  $out = "<span style='color: yellow'>[WARNUNG: ";
-  $out .= $txt;
-  $out .= "]</span>";
 
-  return $out;
-
-}
 
 ?>
