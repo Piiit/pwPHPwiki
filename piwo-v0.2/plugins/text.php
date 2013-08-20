@@ -11,7 +11,7 @@ function plugin_text(TreeParser $parser, Node $node) {
   	$nodeData = $node->getData();
     $func = utf8_strtolower($nodeData[1]);
     $token = new ParserRule($node, $parser);
-    $text = pw_e2u($token->getText($node));
+    $text = pw_e2u($token->getText());
 
     switch ($func) {
       	case "ucfirst":

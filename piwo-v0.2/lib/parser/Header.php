@@ -36,7 +36,7 @@ class Header extends ParserRule implements ParserRuleHandler, LexerRuleHandler {
 		if ($node->isInside("notoc")) {
 			$o = '<h'.self::$level.'>';
 		} else {
-			//$o = '<h'.self::$level.' id="header_'.$GLOBALS['indextable']['CONT'][self::$headerId]['ID'].'">';
+			//TODO $o = '<h'.self::$level.' id="header_'.$GLOBALS['indextable']['CONT'][self::$headerId]['ID'].'">';
 			$o = '<h'.self::$level.'>';
 			self::$headerId++;
 		}

@@ -1,6 +1,6 @@
 <info>
 \\
-:> ++ **Willkommen \\ ...bei piwo 0.2.1...**++
+:> ++ **Willkommen \\ ...bei piwo {{version}}...**++
 \\
 </info>
 

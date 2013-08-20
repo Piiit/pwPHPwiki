@@ -1,2 +1,5 @@
 eclipse.preferences.version=1
 include_path=5;com.zend.php.phpunit.CONTAINER\u00052;/pwTools
+org.eclipse.php.core.phpDoc=false
+org.eclipse.php.core.phpForamtterIndentationSize=1
+org.eclipse.php.core.phpForamtterUseTabs=true

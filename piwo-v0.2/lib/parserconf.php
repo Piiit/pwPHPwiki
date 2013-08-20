@@ -256,26 +256,6 @@ function unescape($txt) {
 }
 
 
-function svariable($node, $lexer) {
-  $varname = utf8_strtolower($node['CONFIG'][0]);
-  $value = $lexer->getText($node);
-
-  if ($_SESSION['pw_wiki']['error']) {
-    $_SESSION['pw_wiki']['error'] = false;
-    return $value.nop("Die Variable kann wegen interner Fehler nicht gesetzt werden.");
-  }
-
-  $GLOBALS['variables'][$varname] = $value;
-}
-
-function ssymbol($node, $lexer) {
-  $symbol = $node['CONFIG'][0];
-
-  // Veränderte Darstellung nur in class=math
-  #echo '<span class="symbols">&'.$symbol.';</span>';
-  return '&'.$symbol.';';
-}
-
 function smath() {
   return '<span class="section_math">';
 }

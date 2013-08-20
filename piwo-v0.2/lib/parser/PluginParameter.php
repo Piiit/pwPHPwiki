@@ -1,14 +1,5 @@
 <?php
 
-//TODO $lexer->connectTo("preformat", "pre"); 
-// function spre() {
-//   return '<pre><div>';
-// }
-
-// function epre() {
-//   return '</div></pre>';
-// }
-
 if (!defined('INC_PATH')) {
 	define ('INC_PATH', realpath(dirname(__FILE__).'/../../').'/');
 }
@@ -17,7 +8,7 @@ require_once INC_PATH.'pwTools/parser/ParserRuleHandler.php';
 require_once INC_PATH.'pwTools/parser/ParserRule.php';
 require_once INC_PATH.'pwTools/parser/Pattern.php';
 
-class Preformat extends ParserRule implements ParserRuleHandler, LexerRuleHandler {
+class PluginParameter extends ParserRule implements ParserRuleHandler, LexerRuleHandler {
 	
 	public function getName() {
 		return strtolower(__CLASS__);
@@ -28,7 +19,7 @@ class Preformat extends ParserRule implements ParserRuleHandler, LexerRuleHandle
 	}
 
 	public function onExit() {
-		return "\n";
+		return '';
 	}
 
 	public function doRecursion() {
@@ -36,13 +27,11 @@ class Preformat extends ParserRule implements ParserRuleHandler, LexerRuleHandle
 	}
 
 	public function getPattern() {
-		return new Pattern($this->getName(), Pattern::TYPE_LINE, '( *\$\$ | *\$\$)');
+		return new Pattern($this->getName(), Pattern::TYPE_SECTION, '\|', '(?=\||~~)');
 	}
 	
 	public function getAllowedModes() {
-		return array("#DOCUMENT", "tablecell", "listitem", "multiline", "tablecell", "tableheader", "wptableheader", "wptablecell",
-				"bordererror", "borderinfo", "borderwarning", "bordersuccess", "bordervalidation", "border",
-				"align", "justify", "alignintable", "indent", "left", "right");
+		return array("plugin");
 	}
 }
 

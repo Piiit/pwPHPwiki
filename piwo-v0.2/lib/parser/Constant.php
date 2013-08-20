@@ -75,13 +75,13 @@ class Constant extends ParserRule implements ParserRuleHandler, LexerRuleHandler
 			break;
 			case 'performance':
 				// TODO $txt = $lexer->getExecutionTime();
-				$txt = "performance: NOT IMPLEMENTED YET!";
+				$txt = "CONSTANT 'performance': NOT IMPLEMENTED YET!";
 			break;
 			case 'file':
 				$txt = pw_wiki_fileinfo($subcat);
 			break;
 			default:
-	
+// 				TestingTools::inform($varname);
 				if (isset($variables[$varname])) {
 					$txt = $variables[$varname];
 					$txt = unescape($txt);
@@ -114,7 +114,7 @@ class Constant extends ParserRule implements ParserRuleHandler, LexerRuleHandler
 				"bordersuccess", "bordervalidation", "border", "bold", "underline", "italic", "monospace", "small", "big", 
 				"strike", "sub", "sup", "hi", "lo", "em", "tablecell", "tableheader", "wptableheader", "wptablecell",
 				"align", "justify", "alignintable", "indent", "left", "right", "pluginparam", "header", "ilinkpos", 
-				"internallink", "externallink", "elinkpos", "variable"
+				"internallink", "externallink", "elinkpos", "variable", "plugin", "pluginparameter"
 				);
 	}
 }

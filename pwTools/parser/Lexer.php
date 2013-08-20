@@ -169,16 +169,14 @@ class Lexer {
 		
 		if (empty($regexpMatch) && $this->_currentMode->getName() == Token::DOC) {
 			// Nothing matched: EOF reached!
-			return new Token(Token::EOF, $this->_textInput, $this->_textInput, 1);
+			return new Token(Token::EOF, $this->_temptxt, $this->_temptxt, null);
 		} 
 
 		$name = $this->_getTokenName($regexpMatch);
 		$regexpMatch = $this->_cleanupArray($regexpMatch);
 		$beforeMatch = $regexpMatch[1];
 		$completeMatch = $regexpMatch[0];
-// 		TestingTools::inform($regexpMatch);
 		$conf = array_slice($regexpMatch, 2, -1);
-// 		TestingTools::inform($conf, "CONF");
 		
 		return new Token($name, $beforeMatch, $completeMatch, $conf);
 	}
@@ -266,7 +264,7 @@ class Lexer {
 		return $token;
 	}
 
-	public function connectTo($name, $to) {
+	private function _connectTo($name, $to) {
 		$pattern = $this->_patternTable->get($name);
 		
 		if ($pattern->isAbstract()) {
@@ -286,7 +284,10 @@ class Lexer {
 	}
 	
 	public function registerAbstractHandler(LexerRuleHandlerAbstract $handler) {
-		//TODO connectTo OR combine within registerHandler (check with instanceof inside)
+		$children = $handler->getConnectTo();
+		foreach($children as $child) {
+			$this->_connectTo($child, $handler->getName());
+		}
 	}
 	
 	public function registerHandler(LexerRuleHandler $handler) {
@@ -383,7 +384,7 @@ class Lexer {
 
 	
 	public function setAllowedModes($name, $modes) {
-		if (! is_array($modes) or ! is_string($name)) {
+		if (! is_array($modes) || ! is_string($name)) {
 			throw new InvalidArgumentException("Modename must be string and modes must be an array!");
 		}
 		$pattern2Add = $this->_patternTable->get($name);
