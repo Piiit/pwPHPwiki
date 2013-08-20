@@ -241,11 +241,11 @@ class Lexer {
 		$token = $this->_getNamedToken($m);
 // 		TestingTools::debug($token);
 		
-		if ($token->getTextLength() == 0 && $this->_lastNode->getName() == $token->getName()) {
-			$errorMsg = "Textpointer has not moved for pattern '".$token->getName()."'. Try the NO_RESTORE flag.";
-			$this->_log->addError($errorMsg);
-			throw new Exception($errorMsg);
-		}
+// 		if ($token->getTextLength() == 0 && $this->_lastNode->getName() == $token->getName()) {
+// 			$errorMsg = "Textpointer has not moved for pattern '".$token->getName()."'. Try the NO_RESTORE flag.";
+// 			$this->_log->addError($errorMsg);
+// 			throw new Exception($errorMsg);
+// 		}
 
 		$this->_temptxt = substr($this->_temptxt, $token->getTextLength());
 

@@ -17,10 +17,9 @@ class TableCell extends ParserRule implements ParserRuleHandler, LexerRuleHandle
 	public function onEntry() {
 		$o = "";
   		$chid = $this->getNode()->getChildIndex();
-  		$rowspan = $this->rowspantext();
-  		$colspan = $this->colspantext();
+  		$rowspan = self::getRowspanText($this->getNode());
+  		$colspan = self::getColspanText($this->getNode());
 
-  		TestingTools::inform($chid);
   		if($this->getNode()->hasChildren()) {
 	  		$fc = $this->getNode()->getFirstChild();
 	  		$fcData = $fc->getData();
@@ -34,7 +33,7 @@ class TableCell extends ParserRule implements ParserRuleHandler, LexerRuleHandle
 	}
 
 	public function onExit() {
-		return '</td>';
+		return '';
 	}
 
 	public function doRecursion() {
@@ -42,15 +41,15 @@ class TableCell extends ParserRule implements ParserRuleHandler, LexerRuleHandle
 	}
 
 	public function getPattern() {
-		return new Pattern($this->getName(), Pattern::TYPE_SECTION, '\|', '(?=\||\^|\n)');  //TODO look-ahead is not working!
+		return new Pattern($this->getName(), Pattern::TYPE_SECTION, '\|', '(?=\||\^|\n)'); 
 	}
 	
 	public function getAllowedModes() {
 		return array("tablerow");
 	}
 	
-	private function rowspantext() {
-		$nx = $this->getNode();
+	public static function getRowspanText(Node $node) {
+		$nx = $node;
 		$rowspans = 0;
 		while($nx && $nx->hasChildren()) {
 			if ($nx->getFirstChild()->getName() == "tablespan") {
@@ -63,12 +62,12 @@ class TableCell extends ParserRule implements ParserRuleHandler, LexerRuleHandle
 			}
 			
 		}
-		$rowspan = $rowspans == 1 ? '' : ' rowspan="'.$rowspans.'"';
+		$rowspan = $rowspans == 0 ? '' : ' rowspan="'.$rowspans.'"';
 		return $rowspan;
 	}
 	
-	private function colspantext() {
-		$nx = $this->getNode()->getNextSibling();
+	public static function getColspanText(Node $node) {
+		$nx = $node->getNextSibling();
 		$colspans = 1;
 		while($nx && !$nx->hasChildren()) {
 			$colspans++;
