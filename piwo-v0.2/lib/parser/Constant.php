@@ -7,6 +7,7 @@ require_once INC_PATH.'pwTools/parser/LexerRuleHandler.php';
 require_once INC_PATH.'pwTools/parser/ParserRuleHandler.php';
 require_once INC_PATH.'pwTools/parser/ParserRule.php';
 require_once INC_PATH.'pwTools/parser/Pattern.php';
+require_once INC_PATH.'piwo-v0.2/lib/parser/Variable.php';
 
 class Constant extends ParserRule implements ParserRuleHandler, LexerRuleHandler {
 	
@@ -15,17 +16,16 @@ class Constant extends ParserRule implements ParserRuleHandler, LexerRuleHandler
 	}
 	
 	public function onEntry() {
-		global $variables;
 		global $piwo_version;
 
 		$nodeData = $this->getNode()->getData();
   		$conf = pw_s2u($nodeData[0]);
 
-
+  		//TODO do this with quoted string tokens...
   		if (preg_match("#(.*) *= *(.*)#i", $conf, $ass)) {
     		$varname = utf8_strtolower(utf8_trim($ass[1]));
     		$value = utf8_trim($ass[2]);
-    		$GLOBALS['variables'][$varname] = $value;
+    		Variable::$variables[$varname] = $value;
     		return;
   		}
 
@@ -82,9 +82,9 @@ class Constant extends ParserRule implements ParserRuleHandler, LexerRuleHandler
 			break;
 			default:
 // 				TestingTools::inform($varname);
-				if (isset($variables[$varname])) {
-					$txt = $variables[$varname];
-					$txt = unescape($txt);
+				if (isset(Variable::$variables[$varname])) {
+					$txt = Variable::$variables[$varname];
+					$txt = self::unescape($txt);
 					return $txt;
 				} else {
 					$_SESSION['pw_wiki']['error'] = true;
@@ -116,6 +116,10 @@ class Constant extends ParserRule implements ParserRuleHandler, LexerRuleHandler
 				"align", "justify", "alignintable", "indent", "left", "right", "pluginparam", "header", "internallinkpos", 
 				"internallink", "externallink", "externallinkpos", "variable", "plugin", "pluginparameter"
 				);
+	}
+	
+	private static function unescape($txt) {
+  		return str_replace(array('\"', '\>'), array('"', '&gt;'), $txt);
 	}
 }
 

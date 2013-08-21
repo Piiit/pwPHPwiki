@@ -10,6 +10,8 @@ require_once INC_PATH.'pwTools/parser/Pattern.php';
 
 class Variable extends ParserRule implements ParserRuleHandler, LexerRuleHandler {
 	
+	public static $variables;
+	
 	public function getName() {
 		return strtolower(__CLASS__);
 	}
@@ -21,10 +23,10 @@ class Variable extends ParserRule implements ParserRuleHandler, LexerRuleHandler
 
   		if ($_SESSION['pw_wiki']['error']) {
     		$_SESSION['pw_wiki']['error'] = false;
-    		return $value.nop("Die Variable kann wegen interner Fehler nicht gesetzt werden.");
+    		return $value.nop("Die Variable '$varname' kann wegen interner Fehler nicht gesetzt werden.");
   		}
 
-  		$GLOBALS['variables'][$varname] = $value;
+  		self::$variables[$varname] = $value;
 	}
 
 	public function onExit() {
