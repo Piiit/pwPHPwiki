@@ -1,0 +1,81 @@
+    <div id='imwiki'>
+<div class="section_border">
+Sie sind hier: <a href='?mode=cleared&id=index'>Home</a> &raquo; <a href='?mode=cleared&id=dokumentation'>Dokumentation</a> &raquo; <a href='?mode=cleared&id=dokumentation:todos'>Todos</a> &raquo; V0.01<span class="less_significant"> | <a href="?id=dokumentation:todos">Todos anzeigen</a></span></div><h1>v0.01</h1>
+
+<div class="section_info"><div align="center">Aktuelle Version:<br /><b>0.2.1 - Alpha</b><br /><small>(Lexerversion: 0.5 - newStyle)</small></div></div>
+
+<div class="section_left"><div class="section_border">Inhaltsverzeichnis:<br /><div class="toc" id="__toc"><ul><ul><li><a href="#header_1">1 v0.01</a></li><ul><li><a href="#header_1.1">1.1 Todos</a></li><li><a href="#header_1.2">1.2 Bugs</a></li><li><a href="#header_1.3">1.3 Done</a></li><li><a href="#header_1.4">1.4 Testseiten</a></li><li><a href="#header_1.5">1.5 Fu&szlig;zeilen</a></li></ul></div></div></div><div class="section_right"><div class="section_border"><dl><dt>Farbcodes:<dd><span class="highlighted c0">&nbsp;</span> = Admin (Alle Men&uuml;befehle; inkl. interne Adminfunktionen, wie bspw. <span class="code">delpage</span>)</dd><dd><span class="highlighted c1">&nbsp;</span> = Dokumentation</dd><dd><span class="highlighted c2">&nbsp;</span> = Wikisyntax</dd><dd><span class="highlighted c3">&nbsp;</span> = Codierung</dd><dd><span class="highlighted c4">&nbsp;</span> = Editor</dd></dt></dl></div></div><div class="clear"></div><h2>Todos</h2>
+* Alle unn&ouml;tigen CSS und JS-Links l&ouml;schen, Hauptdateien aufr&auml;umen (index.php, etc.)
+* In ein <b>Subversion-System</b> integrieren!
+* Dokumentation &uuml;ber TRAC
+* Subversion Backups erstellen!
+<h2>Bugs</h2><h2>Done</h2>
+* <span class="highlighted c3">Codierung</span> Verlinkte &Uuml;berschriften mit Sonderzeichen werden nicht dargestellt.
+* <span class="highlighted c0">Admin</span> <span class="emphasised">Umbenennen</span> Fehlermeldung &quot;Datei existiert&quot; -&gt; Testet auf alten Dateinamen, nicht auf den neu eingegebenen.
+* <span class="highlighted c0">Admin</span> <span class="emphasised">L&ouml;schen</span> Springt zur bereits gel&ouml;schten ID, ersetzt diese mit &quot;NOTFOUND&quot; und l&ouml;scht &quot;NOTFOUND&quot; nach dem &quot;gel&ouml;scht&quot;-Hinweis.
+* <span class="highlighted c0">Admin</span> First Start: tpl-Ordner anlegen, header, footer, etc. anlegen
+* <span class="highlighted c0">Admin</span> Fehlerhafte IDs abfangen: in Adressleiste des Browsers erlaubt (bspw.: <span class="code">id=tests:..&amp;mode=editpage</span> erzeugt eine <span class="code">...txt</span>-Datei)
+* <span class="highlighted c0">Admin</span> Allg. Men&uuml;spr&uuml;nge zu bestimmten IDs sind oft nicht sinnvoll. Besseres Handling! Genauere Definitionen!
+* <span class="highlighted c2">Wikisyntax</span> <span class="emphasised">Warnungen</span> <a href="?id=tests:issuetracker:008+error-inside-a-token+(solved)">008 error-inside-a-token (solved)</a>
+* <span class="highlighted c2">Wikisyntax</span> <span class="emphasised">External Links</span> <span class="code">const</span> geben ihren Namen und nicht ihren Wert zur&uuml;ck.
+* <span class="highlighted c2">Wikisyntax</span> <span class="emphasised">Variablen</span> <span class="code">const</span> in Werten werden nicht aufgel&ouml;st.
+* <span class="highlighted c0">Admin</span> Verschieben einer Datei erzeugt einen falschen Dateinamen (Bsp. <span class="code">nstoc.txttests</span>, verschoben von <span class="code">tests:nstoc</span> nach <span class="code">tests:nstoc verzeichnis:1:2:3:</span>)
+* <span class="highlighted c0">Admin</span> L&ouml;schen von <span class="code">tests:xy</span> (direkt von Anzeigeseite) springt bis zum Wurzelverzeichnis und gibt leeren <i>Namensraum '' wird gel&ouml;scht</i> aus.
+* <span class="highlighted c0">Admin</span> L&ouml;schen innerhalb des Editors f&uuml;hrt oft zu neuem Editorfenster mit neuem Inhalt. Besser auf <b>Seiten&uuml;berlick</b> oder <b>Anzeige</b> zur&uuml;ckspringen.
+* <span class="highlighted c2">Plugins</span> <span class="emphasised">NSTOC</span> Pfadangabe muss in der aktuellen Version immer absolut sein. Das ist falsch! Pfade k&ouml;nnen immer relativ und absolut angegeben werden. Sie sollten &uuml;ber eine Funktion (<span class="code">common</span>) stets richtig ausgelesen werden. Au&szlig;erdem muss ein default-Wert f&uuml;r leere Parameter gesetzt werden. <a href="?id=tests:nstoc+verzeichnis:1:2:3:nstoc&mode=editpage" class="pw_wiki_link_na">Test</a>
+* <span class="highlighted c1">Dokumentation</span> Dokumentation f&uuml;r <span class="code">encoding.php</span>: In/Out-Tabelle anlegen!
+* <span class="highlighted c0">Admin</span> <span class="emphasised">L&ouml;schen</span> Falsches Sprungziel nach dem L&ouml;schen, falls mehrere Namensr&auml;ume gel&ouml;scht werden.
+* <span class="highlighted c0">Admin</span> <span class="emphasised">L&ouml;schen</span> springt zur bereits gel&ouml;schten ID und danach zur <span class="code">ID:..</span> ohne Aufl&ouml;sung des <span class="code">..</span>-Zeigers
+* <span class="highlighted c2">Wikisyntax</span> <span class="emphasised">Internal Links</span> Interne Sprunglinks fehlen, bspw. <a href="#header_1.4">Testseiten</a> oder <a href="#__main">Seitenanfang</a> (<i>siehe <a href="?id=Dokumentation:Textgestaltung:Hyperlinks">Dokumentation</a></i>)
+* <span class="highlighted c2">Wikisyntax</span> <span class="emphasised">Internal Links</span> Interne Sprunglinks sind zur Zeit <i>keysensitive</i>, umstellen!
+* <span class="highlighted c3">Codierung</span> <span class="highlighted c2">Plugins</span> <span class="emphasised">TOC</span> Sonderzeichen in Men&uuml;punkten werden falsch codiert.
+* <span class="highlighted c3">Codierung</span> <span class="highlighted c2">Wikisyntax</span> <span class="emphasised">Links</span> Sonderzeichenfehler (siehe <a href="?id=tests:ilinktests">ilinktests</a>)
+* <span class="highlighted c0">Admin</span> Verschieben von Namensr&auml;umen
+* <span class="highlighted c0">Admin</span> Quellcode anzeigen (ohne Login, konfigurierbar)
+* <span class="highlighted c0">Admin</span> <span class="emphasised">Verschieben</span> Dialog mit <span class="code">checkbox</span> erstelle Verzeichnisse versehen
+* <span class="highlighted c0">Admin</span> <span class="emphasised">L&ouml;schen</span> Namensr&auml;ume l&ouml;schen
+* <span class="highlighted c0">Admin</span> <span class="emphasised">Umbenennen</span> fehlt im allg. Men&uuml;
+* <span class="highlighted c0">Admin</span> <span class="emphasised">Umbennenen</span> im Modus <span class="code">cleared</span> und <span class="code">showpages</span>: Springt nach dem Umbenennen zur alten ID
+* <span class="highlighted c0">Admin</span> <span class="emphasised">Umbennenen (neu)</span> umbenennen von Seiten und Namensr&auml;umen
+* <span class="highlighted c0">Admin</span> Codierungsfehler utf8, htmlentities, filesystem, ...
+* <span class="highlighted c0">Admin</span> Namensr&auml;ume l&ouml;schen
+* <span class="highlighted c0">Admin</span> Login-Dialog zeigt <span class="code">Logout</span> als &Uuml;berschrift
+* <span class="highlighted c0">Admin</span> Dateinamen in einem ung&uuml;ltigen Format k&ouml;nnen weder ge&ouml;ffnet, noch gel&ouml;scht werden (Bsp.: <span class="code">\\Name</span>).
+* <span class="highlighted c0">Admin</span> Dateien mit ung&uuml;ltigen Namen l&ouml;schen
+* <span class="highlighted c0">Admin</span> Autofocus in Dialogen (InfoDialog erh&auml;lt noch kein focus, da OK-Button als Link &lt;a&gt; definiert wurde)
+* <span class="highlighted c0">Admin</span> Debugmodus ein- und ausschalten &uuml;ber <span class="code">Einstellungen</span>.
+* <span class="highlighted c0">Admin</span> Modaldialog in der Mitte anzeigen... nicht bei 300px
+* <span class="highlighted c0">Admin</span> Abbrechen im Modaldialog springt immer zur Startseite, da ID in der URL leer ist. 
+* <span class="highlighted c4">Editor</span> <span class="highlighted c3">Codierung</span> <span class="code">&amp;nbsp;</span> verschwindet, andere Symbole, wie <span class="code">&amp;pi;</span> werden richtig angezeigt. TEST =   (siehe <a href="?id=dokumentation:todos:%7B%7BID%7D%7D&mode=editpage">Quellcode</a>)
+* <span class="highlighted c4">Editor</span> Fehlerbehandlung: Fehler in Zeile xy... FATAL-errors abfangen
+* <span class="highlighted c4">Editor</span> Tabulatoren abfangen und in Leerzeichen umwandeln
+* <span class="highlighted c4">Editor</span> Start Focus auf Editor richten
+* <span class="highlighted c2">Wikisyntax</span> <span class="emphasised">Einzug</span> Aufeinander folgende Einz&uuml;ge der selben Ebene d&uuml;rfen kein neues DIV-Element erzeugen! Falsche Annahme: m&uuml;ssen neues DIV erzeugen, damit Zeilenumbr&uuml;che erhalten bleiben
+* <span class="highlighted c2">Wikisyntax</span> <span class="emphasised">Preformat</span> Zeilen unter einer Preformat-Sektion werden in diese aufgenommen
+* <span class="highlighted c2">Wikisyntax</span> <span class="emphasised">Listen</span> Gemischte Listen funktionieren nicht.
+* <span class="highlighted c2">Wikisyntax</span> <span class="emphasised">Listen</span> Listen werden nicht richtig abgeschlossen.
+* <span class="highlighted c2">Wikisyntax</span> <span class="emphasised">Symbole im nowiki-Sektor</span> <span class="code">&amp;nbsp;</span> wird als Leerzeichen angezeigt, sollte aber 1:1 ausgegeben werden.
+* <span class="highlighted c2">Wikisyntax</span> <span class="emphasised">External Links</span> Klammern werden erst im Parser als ung&uuml;ltiger Link erkannt und somit werden Tokens, die innerhalb der Klammern vorkommen nicht (oder falsch; meist als externallink) verarbeitet. Bsp.: [{{ID}}] [~~TEXT:ucfirst|{{NS}}~~] [xy]
+* <span class="highlighted c2">Wikisyntax</span> <span class="emphasised">External Links</span> <span class="code">[...]</span> wird als externer Link erkannt, obwohl ... keine URL ist. TEST: [...Das ist KEIN g&uuml;ltiger Link] [...] [xy]
+* <span class="highlighted c2">Wikisyntax</span> <span class="emphasised">CDATA</span> <a href="?id=tests:syntax+error+reproduction:005&mode=editpage" class="pw_wiki_link_na">Bug #005</a>
+* <span class="highlighted c2">Wikisyntax</span> Kommentare auch mit dreifachen Anf&uuml;hrungszeichen zulassen (usability): <span class="code">&quot;&quot;&quot;Das ist ein Kommentar!&quot;&quot;&quot;</span>
+* <span class="highlighted c2">Wikisyntax</span> <span class="emphasised">External Links</span> <span class="code">mailto:</span> fehlt
+* <span class="highlighted c2">Wikisyntax</span> <span class="emphasised">Preformat</span> Leerzeichen am Zeilenanfang gehen verloren
+* <span class="highlighted c3">Codierung</span> Codierungsfehler in Linktexten und &Uuml;berschriften, ids,...
+* <span class="highlighted c3">Codierung</span> <span class="code">encoding.php</span> mit Codierungsfunktionen (intern nur Standard-PHP-Befehle erlaubt)
+* <span class="highlighted c3">Codierung</span> Template: &quot;Leere Seite&quot; zeigt fehlerhafte Zeichen
+* <span class="highlighted c3">Codierung</span> Links in der Wikiseite zeigen fehlerhafte Zeichen
+* <span class="highlighted c3">Codierung</span> <a href="?id=tests:sonderzeichen">Testseite</a>: Umlaute und Sonderzeichen in Plugins (TEXT:ucwords zb. funktioniert bei sonderzeichen nicht) 
+* <span class="highlighted c3">Codierung</span> Alle URLs m&uuml;ssen urlencoded werden, alle Ausgaben mit htmlentities versehen und alle $ids und pw_wiki_getcfg utf8 codiert. Achtung bei ucfirst, strtolower, ...
+* <span class="highlighted c3">Codierung</span> Seiten&uuml;berblick: Sonderzeichen auf co.de werden falsch oder nicht dargestellt.
+* <span class="highlighted c3">Codierung</span> Zeilenende((Zeilenenden:<br /><span class="code">\n</span> f&uuml;r UNIX/Linux<br /><span class="code">\n\r</span> f&uuml;r Windows<br /> <span class="code">\r</span> f&uuml;r MAC)) ist zurzeit auf PC gestellt (UNIX und MAC erkennen und normalisieren!)
+* <span class="highlighted c3">Codierung</span> Problem auf UNIX-Dateisystemen mit keysensitiven Dateinamen (alle Dateinamen sind klein geschrieben). Richtige Schreibweisen findet man sp&auml;ter in der WikiCSV.
+* <span class="highlighted c3">Codierung</span> Code aufr&auml;umen: zu viele encode, decode, utf8 Befehle lassen Code un&uuml;bersichtlich werden. <span class="code">decoding</span>-Befehle verwenden (alte Befehle aus <span class="code">common</span> entfernen)
+<h2>Testseiten</h2>
+* <span class="highlighted c2">Wikisyntax</span> <a href="?id=tests:preformat">Preformat Testseite</a>
+* <span class="highlighted c2">Wikisyntax</span> <a href="?id=tests:listen">Listen Testseite</a>
+* <span class="highlighted c2">Wikisyntax</span> <a href="?id=tests:ilinktests">Interne Links Testseite</a>
+* <span class="highlighted c2">Wikisyntax</span> <a href="?id=tests:issuetracker">issuetracker</a>
+* <span class="highlighted c3">Codierung</span>  <a target="_blank" href="http://localhost/projekte/piwo/tests/encoding.php">Testumgebung</a><h2>Fu&szlig;zeilen</h2><div class="footnotes"><ol></ol>In diesem Text kommen keine Fußnoten vor.</div>
+
+<br /><div align="right"><span class="less_significant">Verarbeitet in CONSTANT 'performance': NOT IMPLEMENTED YET! Sek. | Dateiformat: MIXED</span></div>    </div>

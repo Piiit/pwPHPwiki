@@ -23,7 +23,7 @@ class Plugin extends ParserRule implements ParserRuleHandler, LexerRuleHandler {
 		return array(
 				"#DOCUMENT", "tablecell", "listitem", "multiline", "bold", "underline", "italic", 
 				"monospace", "small", "big", "strike", "sub", "sup", "hi", "lo", "em",
-				"multiline", "header", "ilinkpos", "internallink", "externallink", "elinkpos", 
+				"multiline", "header", "internallinkpos", "internallink", "externallink", "externallinkpos", 
 				"tablecell", "tableheader", "wptableheader", "wptablecell", "align", "justify", 
 				"alignintable", "indent", "left", "right", "bordererror", "borderinfo", "borderwarning", 
 				"bordersuccess", "bordervalidation", "border"

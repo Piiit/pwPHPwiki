@@ -24,7 +24,7 @@ class InternalLink extends ParserRule implements ParserRuleHandler, LexerRuleHan
 		$linkPositionNode = $node->getFirstChild();
 		$linkPositionText = $this->getTextFromNode($linkPositionNode);
 		
-//   		TestingTools::inform($linkPositionText);
+//    		TestingTools::inform($linkPositionText);
 		
 		//@TODO: refactor... common function... bubble-up of an error until ????
 		if ($_SESSION['pw_wiki']['error']) {

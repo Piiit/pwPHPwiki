@@ -1,0 +1,49 @@
+    <div id='imwiki'>
+<div class="section_border">
+Sie sind hier: <a href='?mode=cleared&id=index'>Home</a> &raquo; <a href='?mode=cleared&id=dokumentation'>Dokumentation</a> &raquo; <a href='?mode=cleared&id=dokumentation:unittest'>Unittest</a> &raquo; Dirname<span class="less_significant"> | <a href="?id=dokumentation:todos">Todos anzeigen</a></span></div><h1>UnitTest: Beispiel</h1><h2>Output</h2>[{{PATH}}/../pwtest/testing.php]<h2>Code</h2><pre><div>[CONFIG]
+  syntax = wiki
+  encoding = utf-8
+  require = bin/common.php
+  package = common.php
+
+[DESC]
+Beschreibung...
+asdfasdf
+asdfasdfasdf
+asdfasdfasdf
+
+[TEST]
+  return pw_dirname($INPUT, false);
+
+[INPUT]
+dat/dok/todos/v0.01.txt
+dat/dok/todos/
+dat/dok/todos
+&ouml;&auml;&uuml;/SOnderzeichen/&Ouml;&auml;*
+////hallo//du/
+start/../anfang/
+/../../
+/&Auml;hm/
+1/2/3/../../Hallo.php
+dat/h1/h2/../../zwei ebenen zur&uuml;ck.txt
+dat/tests/x/
+/
+hallo/../zwei.txt
+
+[EXPECTED]
+(string)dat/dok/todos/
+(string)dat/dok/todos/
+(string)dat/dok/
+(boolean)false
+(string)/hallo/du/
+(string)anfang/
+(string)/
+(string)/&auml;hm/
+(string)1/
+(string)dat/
+(string)dat/tests/x/
+(string)/
+(string)</div></pre>
+
+
+<br /><div align="right"><span class="less_significant">Verarbeitet in CONSTANT 'performance': NOT IMPLEMENTED YET! Sek. | Dateiformat: MIXED</span></div>    </div>
