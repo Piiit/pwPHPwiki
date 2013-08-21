@@ -21,9 +21,7 @@ class TableCell extends ParserRule implements ParserRuleHandler, LexerRuleHandle
   		$colspan = self::getColspanText($this->getNode());
 
   		if($this->getNode()->hasChildren()) {
-	  		$fc = $this->getNode()->getFirstChild();
-	  		$fcData = $fc->getData();
-	  		if ($fcData && $fc->getName() !== "tablespan") {
+	  		if ($this->getNode()->getFirstChild()->getName() !== "tablespan") {
 	    		$o = '<td'.$rowspan.$colspan.'>';
 	    		$o .= $this->getText();
 	    		$o .= '</td>';
@@ -49,31 +47,48 @@ class TableCell extends ParserRule implements ParserRuleHandler, LexerRuleHandle
 	}
 	
 	public static function getRowspanText(Node $node) {
-		$nx = $node;
 		$rowspans = 0;
-		while($nx && $nx->hasChildren()) {
-			if ($nx->getFirstChild()->getName() == "tablespan") {
-				$rowspans++;
-			}
-			try {
-				$nx = $nx->getNextSiblingSameChild($nx);
-			} catch (Exception $e) {
-				break;
+
+		// find table row
+		$tablerow = $node->getParent();
+		while($tablerow->getName() !== "tablerow") {
+			$tablerow = $tablerow->getParent();
+		}
+		
+		$nexttablerow = $tablerow->getNextSibling();
+		
+		while($nexttablerow && $nexttablerow->hasChildren()) {
+		
+			// check lower cells for tablespan tokens...
+			$cell = $tablerow->getFirstChild();
+			$lowercell = $nexttablerow->getFirstChild();
+			while($cell !== $node) {
+				$cell = $cell->getNextSibling();
+				if($lowercell) {
+					$lowercell = $lowercell->getNextSibling();
+				}
 			}
 			
+			if ($lowercell && $lowercell->hasChildren() && $lowercell->getFirstChild()->getName() == "tablespan") {
+				$rowspans++;
+				$nexttablerow = $nexttablerow->getNextSibling();
+			} else {
+				$nexttablerow = null;
+			}
 		}
-		$rowspan = $rowspans == 0 ? '' : ' rowspan="'.$rowspans.'"';
+		
+		$rowspan = $rowspans == 0 ? '' : ' rowspan="'.($rowspans+1).'"';
 		return $rowspan;
 	}
 	
 	public static function getColspanText(Node $node) {
 		$nx = $node->getNextSibling();
-		$colspans = 1;
+		$colspans = 0;
 		while($nx && !$nx->hasChildren()) {
 			$colspans++;
 			$nx = $nx->getNextSibling();
 		}
-		$colspan = $colspans == 1 ? '' : ' colspan="'.$colspans.'"';
+		$colspan = ($colspans == 0 || $colspans == 1) ? '' : ' colspan="'.$colspans.'"';
 		return $colspan;
 	}
 }

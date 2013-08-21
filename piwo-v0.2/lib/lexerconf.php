@@ -6,11 +6,11 @@ require_once INC_PATH.'pwTools/data/IndexTable.php';require_once INC_PATH.'pwTo
 foreach ($parserTokenList as $parserToken) {
 	require_once $parserToken;
 }$variables = array();$norecursion = array("externallink", "variable", "footnote", "tableheader", "tablecell");#$dontencode = array("ilinkpos");$moditext = "edit|showpages";$dontencode = array();$footnote = 0;$footnotes = array();$indextable = null;function parse($txt) {	try {		$loglevel = pw_wiki_getcfg('debug');				if($loglevel === true) {			$loglevel = Log::DEBUG;		} else {			$loglevel = Log::INFO;		}		$lexer = new Lexer($txt, $loglevel);				$handlerList = array(				new Header(),				new Border(),				new BorderError(),				new BorderInfo(),				new BorderSuccess(),				new BorderValidation(),				new BorderWarning(),				new Plugin(),				new PluginParameter(),
-				new InternalLink(),				new InternalLinkPos(),				new Url(),				new Big(),				new Bold(),				new Em(),				new Hi(),				new Italic(),				new Lo(), 				new Monospace(),				new Small(),				new Strike(),				new Sub(),				new Sup(),				new Underline(),				new Code(),				new NoWiki(),				new NoWikiAlt(),				new Newline(),				new Multiline(),				new Preformat(),				new Align(),				new Justify(),				new Indent(),				new Right(),				new Left(),				new Constant(),				new Symbol(),				new Variable(),				new ExternalLink(),				new ExternalLinkPos(),				new Pre(),				new TableCell(),				new TableRow(),				new TableHeader(),				new Table()		);						$lexer->registerHandlerList($handlerList);				//TODO No pattern? AST = #DOCUMENT with a single #TEXT node
+				new InternalLink(),				new InternalLinkPos(),				new Url(),				new Big(),				new Bold(),				new Em(),				new Hi(),				new Italic(),				new Lo(), 				new Monospace(),				new Small(),				new Strike(),				new Sub(),				new Sup(),				new Underline(),				new Code(),				new NoWiki(),				new NoWikiAlt(),				new Newline(),				new Multiline(),				new Preformat(),				new Align(),				new Justify(),				new Indent(),				new Right(),				new Left(),				new Constant(),				new Symbol(),				new Variable(),				new ExternalLink(),				new ExternalLinkPos(),				new Pre(),				new TableCell(),				new TableRow(),				new TableHeader(),				new Table(),				new TableSpan(),				new HorizontalRule(),				new DefTerm(),				new DefList(),				new DefItem(),		);						$lexer->registerHandlerList($handlerList);				//TODO No pattern? AST = #DOCUMENT with a single #TEXT node
 		$lexer->parse();		$parser = new TreeParser();		$parser->registerHandlerList($handlerList);
 				$GLOBALS['idheader'] = 0;		$it = new IndexTable();		createindextable($parser, $lexer->getRootNode(), $it);		$GLOBALS['indextable'] = $it;				$_SESSION["pw_wiki"]["error"] = false;		$o = StringFormat::htmlIndent("<div id='imwiki'>", StringFormat::START);		// 		TestingTools::inform($lexer->getRootNode());		 		$ta = new TreeWalker($lexer->getRootNode(), $parser);
  		$o .= implode($ta->getResult());
-				$o .= StringFormat::htmlIndent("</div>", StringFormat::END);// 		echo StringFormat::preFormat(StringFormat::showLineNumbers(pw_s2e($o)));// 		echo $o;//  		TestingTools::informPrintNewline($lexer->getLog()->__toString());		return $o;	} catch (Exception $e) {		$o = "";
+				$o .= StringFormat::htmlIndent("</div>", StringFormat::END);// 		echo StringFormat::preFormat(StringFormat::showLineNumbers(pw_s2e($o)));// 		echo $o;//   		TestingTools::informPrintNewline($lexer->getLog()->__toString());		return $o;	} catch (Exception $e) {		$o = "";
 		$src = "N/A";
 		$log = "N/A";
 		if (isset($lexer)) {
@@ -64,7 +64,6 @@ foreach ($parserTokenList as $parserToken) {
 }function pw_wiki_lexerconf(Lexer $lexer) {
 	$lexer->addWordPattern("newline", '(?<=\n)\n');
 	$lexer->addWordPattern("eof", '(?<=\n)$');
-	$lexer->addLinePattern("hrule", '----');
 	$lexer->addSectionPattern("footnote", '\(\(', '\)\)');
 
 	$lexer->addWordPattern("url2", '(www\.[^ \"\n\r\t<\]]*)');
@@ -78,12 +77,8 @@ foreach ($parserTokenList as $parserToken) {
 	#$lexer->addSectionPattern("tableheader", '\^(?! *\n)', '(?=\||\^|\n)');
 	#$lexer->addSectionPattern("tablecell", '\|(?! *\n)', '(?=\||\^|\n)');
 
-	$lexer->addWordPattern("tablespan", ' *::: *');
 	$lexer->addSectionPattern("listitem", '\n( *)([\*\#]) ', '\n');
 	$lexer->connectTo("listitem", "list");
-	$lexer->addSectionPattern("defterm", '\n( *)\; ', '\n');
-	$lexer->addSectionPattern("defitem", '(\n: |: )', '(?=\n)');  // bracket this... BUG countPatternLevel
-	$lexer->connectTo("defterm", "deflist");
 	$lexer->addSectionPattern("comment", '<!--', '-->'); // @TODO: Einstellung -> NO-NODE (do not create a node)
 	$lexer->addSectionPattern("comment2", '"""', '"""'); // @TODO: Einstellung -> NO-NODE (do not create a node)
 
@@ -118,16 +113,11 @@ foreach ($parserTokenList as $parserToken) {
 	$lexer->setAllowedModes("quoted_string", array("variable"));
 	$lexer->setAllowedModes("eof", array("#DOCUMENT"));
 	$lexer->setAllowedModes("indent", array_merge($blocks, $boxes));
-	$lexer->setAllowedModes("defterm", array_merge($blocks, $boxes, $align));
-	$lexer->setAllowedModes("defitem", array("defterm"));
-	$lexer->setAllowedModes("code", array_merge($format, $blocks, $boxes));
 	$lexer->setAllowedModes("math", array_merge($format, $blocks, $boxes, $tables));
 	$lexer->setAllowedModes("notoc", array_merge($blocks, $boxes, $tables, array("left", "right")));
-	$lexer->setAllowedModes("hrule", array_merge(array("#DOCUMENT", "multiline", "left", "right"), $boxes));
 
 	// Tables...
 	$lexer->setAllowedModes("alignintable", array("tablecell"));
-	$lexer->setAllowedModes("tablespan", array("tablecell", "tableheader"));
 	$lexer->setAllowedModes("wptable", array("#DOCUMENT", "multiline", "wptablecell"));
 	$lexer->setAllowedModes("wptableline", array("wptable"));
 	$lexer->setAllowedModes("wptabletitle", array("wptable"));

@@ -21,24 +21,6 @@ function scomment2() {
 function ecomment2() {
   return '-->';
 }
-function sdeflist() {
-  return '<dl>';
-}
-function edeflist() {
-  return '</dl>';
-}
-function sdefterm() {
-  return '<dt>';
-}
-function edefterm() {
-  return '</dt>';
-}
-function sdefitem() {
-  return '<dd>';
-}
-function edefitem() {
-  return '</dd>';
-}
 function sfootnote($node) {
   global $footnote;
   $GLOBALS['footnote']++;
@@ -144,94 +126,8 @@ function seof() {
   #return "_____EOF_____";
 }
 
-function stable() {
-  return '<div class="tablediv"><table>';
-}
-
-function etable() {
-  return '</table></div>';
-}
-
-function stablecell($node, $lexer) {
-  $o = "";
-
-  $chid = $lexer->childPosition($node);
-  $rowspan = rowspantext($node, $lexer, $chid);
-  $colspan = colspantext($node, $lexer, $chid);
-
-  $fc = $lexer->firstChild($node);
-  if ($fc and $fc['NAME'] !== "tablespan") {
-    $o = '<td'.$rowspan.$colspan.'>';
-    $o .= $lexer->getText($node);
-    $o .= '</td>';
-  }
-  return $o;
-}
-
-function etablecell() {
-  return '</td>';
-}
-
-
-function rowspantext($node, $lexer, $chid) {
-  $nx = $node;
-  $rowspans = 1;
-  while($nx) {
-  	$nx = $lexer->nextSiblingSameChild($nx, $chid);
-    $fc = $lexer->firstChild($nx);
-    if ($fc['NAME'] == "tablespan") {
-      $rowspans++;
-    } else {
-      break;
-    }
-  }
-  $rowspan = $rowspans == 1 ? '' : ' rowspan="'.$rowspans.'"';
-  return $rowspan;
-}
-
-function colspantext($node, $lexer, $chid) {
-  $nx = $node;
-  $colspans = 1;
-  while($nx) {
-  	$nx = $lexer->nextSibling($nx, $lexer, $chid);
-    if (!$lexer->hasChildNodes($nx)) {
-      $colspans++;
-    } else {
-      break;
-    }
-  }
-  $colspan = $colspans == 1 ? '' : ' colspan="'.$colspans.'"';
-  return $colspan;
-}
-
-function stableheader($node, $lexer) {
-  $o = "";
-  $chid = $lexer->childPosition($node);
-  $rowspan = rowspantext($node, $lexer, $chid);
-  $colspan = colspantext($node, $lexer, $chid);
-  $fc = $lexer->firstChild($node);
-  if ($fc and $fc['NAME'] !== "tablespan") {
-    $o = '<th'.$rowspan.$colspan.'>';
-    $o .= $lexer->getText($node);
-    $o .= '</th>';
-  }
-  return $o;
-}
-
-function spre() {
-  return '<pre><div>';
-}
-
-function epre() {
-  return '</div></pre>';
-}
-
 function snotoc() {
   return '';
-}
-
-function shrule() {
-  return '<hr />';
 }
 
 function salignintable($node, $lexer) {
@@ -295,12 +191,6 @@ function sexternallink($node, $lexer) {
 
   return '<a '.$target.'href="'.$url.'">'.$txt.'</a>';
 }
-
-function spluginparam($node, $lexer) {
-  if(!$lexer->hasChildNodes($node))
-    return "";
-}
-
 
 function surl2($node, $lexer) {
   $url = $node['CONFIG'][0];

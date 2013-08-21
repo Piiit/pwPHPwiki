@@ -23,9 +23,7 @@ class TableHeader extends ParserRule implements ParserRuleHandler, LexerRuleHand
   		$colspan = TableCell::getColspanText($this->getNode());
 
   		if($this->getNode()->hasChildren()) {
-	  		$fc = $this->getNode()->getFirstChild();
-	  		$fcData = $fc->getData();
-	  		if ($fcData && $fc->getName() !== "tablespan") {
+	  		if ($this->getNode()->getFirstChild()->getName() !== "tablespan") {
 	    		$o = '<th'.$rowspan.$colspan.'>';
 	    		$o .= $this->getText();
 	    		$o .= '</th>';

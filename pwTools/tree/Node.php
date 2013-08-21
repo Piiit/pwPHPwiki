@@ -231,7 +231,7 @@ class Node {
 	}
 
 	/**
-	 * Finds the next sibling and goes down to the same child in his child-branch.
+	 * Finds the next sibling and goes down to the same child in its child-branch.
 	 * For example, this is useful to find the neighbor data-field inside a wiki-table.
 	 * (tablerow = next sibling & table-cell = child) 
 	 * @param Node $child
