@@ -13,8 +13,17 @@ class Parser implements TreeWalkerConfig {
 	private $_array = array();
 	private $_userInfo = array();
 	
-	public function registerUserInfo($key, $value) {
+	public function setUserInfo($key, $value) {
 		$this->_userInfo[$key] = $value;
+	}
+	
+	public function getUserInfoOrNew($key, $valueIfNotExists) {
+		try {
+			return $this->getUserInfo($key);
+		} catch (Exception $e) {
+			$this->setUserInfo($key, $valueIfNotExists);
+		}
+		return $valueIfNotExists;
 	}
 	
 	public function getUserInfo($key) {

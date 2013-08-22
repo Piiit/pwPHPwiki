@@ -287,7 +287,7 @@ function pw_wiki_getfilelist($id = null) {  #var_dump($id);
 function pw_wiki_showpages($id = null) {  global $MODE;  #if (!isset($_SESSION["pw_wiki"]["login"]["user"]))
   #  return false;
 
-  #out($id);  $ns = pw_wiki_ns($id);
+  #out($id);  $ns = pw_wiki_ns($id);  TestingTools::inform($id);
   $path = pw_wiki_path($ns, ST_NOEXT);
 
   $strout = "";  $files = array();  $dirs = array();  if($ns) {    $dirs[] = array('NAME' => '..', 'TYPE' => 'DIR');  }

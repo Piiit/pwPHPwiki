@@ -10,15 +10,15 @@ require_once INC_PATH.'pwTools/parser/Pattern.php';
 
 class Footnote extends ParserRule implements ParserRuleHandler, LexerRuleHandler {
 	
-	public static $footnoteList;
-	
 	public function getName() {
 		return strtolower(__CLASS__);
 	}
 	
 	public function onEntry() {
-  		self::$footnoteList[] = $this->getTextFromNode($this->getNode());
-  		$footnoteNumber = sizeof(self::$footnoteList);
+		$footnoteList = $this->getParser()->getUserInfoOrNew('footnotelist', array());
+  		$footnoteList[] = $this->getTextFromNode($this->getNode());
+  		$this->getParser()->setUserInfo('footnotelist', $footnoteList);
+  		$footnoteNumber = sizeof($footnoteList);
   		$o = '<sup><a class="footnote" id="fnt__'.$footnoteNumber.'" href="#fn__'.$footnoteNumber.'">[';
   		#echo '<acronym title="Keine Ahnung">';
   		$o .= $footnoteNumber;
