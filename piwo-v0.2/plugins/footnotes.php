@@ -1,6 +1,6 @@
 <?php
 
-  function plugin_footnotes(TreeParser $parser, Node $node) {
+  function plugin_footnotes(Parser $parser, Node $node) {
   	
     $o = '<div class="footnotes">';
     $o .= '<ol>';

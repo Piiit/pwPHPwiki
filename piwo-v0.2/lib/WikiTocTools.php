@@ -1,13 +1,13 @@
 <?php
 class WikiTocTools {
 	
-	public static function createIndexTable(TreeParser $parser, Node $node) {
+	public static function createIndexTable(Parser $parser, Node $node) {
 		$indextable = new IndexTable();
 		self::_createindextable($parser, $node, $indextable);
 		return $indextable;
 	}
 	
-	private static function _createIndexTable(TreeParser $parser, Node $node, IndexTable $indextable = null) {
+	private static function _createIndexTable(Parser $parser, Node $node, IndexTable $indextable = null) {
 		if($node->hasChildren() && $node->getName() != "notoc") {
 			for ($node = $node->getFirstChild(); $node != null; $node = $node->getNextSibling()) {
 				if ($node->getName() == "header") {

@@ -7,7 +7,7 @@ require_once INC_PATH.'pwTools/parser/LexerRuleHandlerAbstract.php';
 require_once INC_PATH.'pwTools/parser/ParserRuleHandler.php';
 require_once INC_PATH.'pwTools/parser/ParserRule.php';
 require_once INC_PATH.'pwTools/parser/Pattern.php';
-require_once INC_PATH.'piwo-v0.2/lib/parser/ListItem.php';
+require_once INC_PATH.'piwo-v0.2/lib/tokens/ListItem.php';
 
 
 class Lists extends ParserRule implements ParserRuleHandler, LexerRuleHandlerAbstract {

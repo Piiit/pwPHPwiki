@@ -388,15 +388,17 @@ class Lexer {
 			throw new InvalidArgumentException("Modename must be string and modes must be an array!");
 		}
 		$pattern2Add = $this->_patternTable->get($name);
+		$patternLogString = "";
 		foreach ($modes as $mode) {
 			try {
 				$pattern = $this->_patternTable->get($mode);
 				$pattern->addMode($pattern2Add);
-				$this->_log->addDebug($this->_logFormat("ADD MODE", "$pattern2Add can be within $pattern"));
+				$patternLogString .= $pattern.", ";
 			} catch (Exception $e) {
-				$this->_log->addWarning($this->_logFormat("ADD MODE", $pattern2Add.$e->getMessage()));
+				$this->_log->addWarning($this->_logFormat("ADD MODE", $pattern2Add." ".$e->getMessage()));
 			}
 		}
+		$this->_log->addDebug($this->_logFormat("ADD MODE", "$pattern2Add can be within $patternLogString"));
 	}
 
 	public function getPatternTable() {

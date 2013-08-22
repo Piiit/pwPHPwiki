@@ -6,7 +6,7 @@ if (!defined('INC_PATH')) {
 require_once INC_PATH.'pwTools/parser/ParserRule.php';
 require_once INC_PATH.'pwTools/tree/Node.php';
 
-function plugin_text(TreeParser $parser, Node $node) {
+function plugin_text(Parser $parser, Node $node) {
 
   	$nodeData = $node->getData();
     $func = utf8_strtolower($nodeData[1]);

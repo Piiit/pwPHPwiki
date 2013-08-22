@@ -7,7 +7,7 @@ require_once INC_PATH.'pwTools/parser/LexerRuleHandler.php';
 require_once INC_PATH.'pwTools/parser/ParserRuleHandler.php';
 require_once INC_PATH.'pwTools/parser/ParserRule.php';
 require_once INC_PATH.'pwTools/parser/Pattern.php';
-require_once INC_PATH.'piwo-v0.2/lib/parser/Variable.php';
+require_once INC_PATH.'piwo-v0.2/lib/tokens/Variable.php';
 
 class Constant extends ParserRule implements ParserRuleHandler, LexerRuleHandler {
 	

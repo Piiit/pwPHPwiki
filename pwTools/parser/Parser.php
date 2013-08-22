@@ -7,7 +7,7 @@ require_once INC_PATH.'pwTools/tree/Node.php';
 require_once INC_PATH.'pwTools/tree/TreeWalkerConfig.php';
 require_once INC_PATH.'pwTools/parser/ParserRuleHandler.php';
 
-class TreeParser implements TreeWalkerConfig { 
+class Parser implements TreeWalkerConfig { 
 	
 	private $_handlerTable = array();
 	private $_array = array();

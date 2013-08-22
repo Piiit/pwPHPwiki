@@ -4,7 +4,7 @@ if (!defined('INC_PATH')) {
 	define ('INC_PATH', realpath(dirname(__FILE__).'/../../').'/');
 }
 require_once INC_PATH.'pwTools/tree/Node.php';
-require_once INC_PATH.'pwTools/parser/TreeParser.php';
+require_once INC_PATH.'pwTools/parser/Parser.php';
 require_once INC_PATH.'pwTools/tree/TreeWalker.php';
 
 
@@ -30,7 +30,7 @@ class ParserRule {
 		return $this->node;
 	}
 	
-	public function setParser(TreeParser $parser) {
+	public function setParser(Parser $parser) {
 		$this->parser = $parser;
 	}
 	
