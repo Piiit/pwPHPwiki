@@ -10,7 +10,7 @@ foreach ($parserTokenList as $parserToken) {
 		$lexer->parse();		$parser = new Parser();		$parser->registerHandlerList($handlerList);
 		$parser->registerUserInfo('indextable', WikiTocTools::createIndexTable($parser, $lexer->getRootNode()));		$parser->registerUserInfo('lexerperformance', $lexer->getExecutionTime());		$parser->registerUserInfo('piwoversion', PIWOVERSION);				$_SESSION["pw_wiki"]["error"] = false;		// 		TestingTools::inform($lexer->getRootNode());		 		$ta = new TreeWalker($lexer->getRootNode(), $parser);
  		$o = implode($ta->getResult());
-		// 		echo StringFormat::preFormat(StringFormat::showLineNumbers(pw_s2e($o)));// 		echo $o;   		TestingTools::informPrintNewline($lexer->getLog()->__toString());		return $o;	} catch (Exception $e) {		$o = "";
+		// 		echo StringFormat::preFormat(StringFormat::showLineNumbers(pw_s2e($o)));// 		echo $o;//    		TestingTools::informPrintNewline($lexer->getLog()->__toString());		return $o;	} catch (Exception $e) {		$o = "";
 		$src = "N/A";
 		$log = "N/A";
 		if (isset($lexer)) {
