@@ -1,5 +1,5 @@
 = Textgestaltung =
-
+ 
 <left>
 <border>
 ; [[Textgestaltung:Text formatieren]]

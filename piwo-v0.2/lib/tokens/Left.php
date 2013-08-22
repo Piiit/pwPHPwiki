@@ -20,10 +20,10 @@ class Left extends ParserRule implements ParserRuleHandler, LexerRuleHandler {
 
 	public function onExit() {
 		$o = '</div>';
-  		$nsName = $this->getNode()->getNextSibling()->getName();
+  		$ns = $this->getNode()->getNextSibling();
   		$nodeData = $this->getNode()->getData();
   		$cfg = isset($nodeData[1]) ? $nodeData[1] : null;
-  		if ($nsName != 'right' && $cfg != "alone") {
+  		if ($ns && $ns->getName() != 'right' && $cfg != "alone") {
     		$o .= '<div class="clear"></div>';
   		}
   		return $o;

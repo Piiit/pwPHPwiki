@@ -36,7 +36,7 @@ class Preformat extends ParserRule implements ParserRuleHandler, LexerRuleHandle
 	}
 
 	public function getPattern() {
-		return new Pattern($this->getName(), Pattern::TYPE_LINE, '( *\$\$ | *\$\$)');
+		return new Pattern($this->getName(), Pattern::TYPE_LINE, '( *\$\$ | *\$\$)', '\n');
 	}
 	
 	public function getAllowedModes() {
