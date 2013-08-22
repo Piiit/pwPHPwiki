@@ -3,7 +3,7 @@
 }
 if (!defined('CFG_PATH')) {	define ('CFG_PATH', realpath(dirname(__FILE__)).'/cfg/');}if (!defined('INC_PATH')) {
 	define ('INC_PATH', '../');
-}require_once INC_PATH.'pwTools/validator/pw_isvalid.php';require_once INC_PATH.'pwTools/string/utf8.php';require_once INC_PATH.'pwTools/string/encoding.php';require_once INC_PATH.'pwTools/string/StringFormat.php';require_once INC_PATH.'pwTools/file/FileTools.php';require_once INC_PATH.'pwTools/debug/TestingTools.php';	require_once INC_PATH.'piwo-v0.2/lib/common.php';require_once INC_PATH.'piwo-v0.2/lib/lexerconf.php';require_once INC_PATH.'piwo-v0.2/lib/parserconf.php';require_once INC_PATH.'piwo-v0.2/lib/admin.php';require_once INC_PATH.'piwo-v0.2/lib/ui.php';require_once CFG_PATH."main.php";
+}require_once INC_PATH.'pwTools/validator/pw_isvalid.php';require_once INC_PATH.'pwTools/string/utf8.php';require_once INC_PATH.'pwTools/string/encoding.php';require_once INC_PATH.'pwTools/string/StringFormat.php';require_once INC_PATH.'pwTools/file/FileTools.php';require_once INC_PATH.'pwTools/debug/TestingTools.php';	require_once INC_PATH.'piwo-v0.2/lib/common.php';require_once INC_PATH.'piwo-v0.2/lib/lexerconf.php';require_once INC_PATH.'piwo-v0.2/lib/admin.php';require_once INC_PATH.'piwo-v0.2/lib/ui.php';require_once CFG_PATH."main.php";
 $parserTokenList = glob(PLUGIN_PATH."*.php");
 foreach ($parserTokenList as $plugin) {
 	require_once $plugin;

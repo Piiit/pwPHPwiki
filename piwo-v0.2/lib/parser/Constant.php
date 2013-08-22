@@ -16,7 +16,6 @@ class Constant extends ParserRule implements ParserRuleHandler, LexerRuleHandler
 	}
 	
 	public function onEntry() {
-		global $piwo_version;
 
 		$nodeData = $this->getNode()->getData();
   		$conf = pw_s2u($nodeData[0]);
@@ -64,7 +63,7 @@ class Constant extends ParserRule implements ParserRuleHandler, LexerRuleHandler
 			break;
 			case 'fullid': $txt = pw_url2u(pw_wiki_getcfg('id')); break;
 			case 'startpage': $txt = ':'.pw_url2u(pw_wiki_getcfg('startpage')); break;
-			case 'version': $txt = $piwo_version; break;
+			case 'version': $txt = $this->getParser()->getUserInfo('piwoversion'); break;
 			case 'lexerversion': $txt = Lexer::getVersion(); break;
 			case 'path': $txt = 'http://'.$_SERVER['SERVER_NAME'].pw_dirname($_SERVER['PHP_SELF']); break;
 			case 'countsubs':
@@ -74,8 +73,7 @@ class Constant extends ParserRule implements ParserRuleHandler, LexerRuleHandler
 				$txt = count(glob($path."/*".$ext));
 			break;
 			case 'performance':
-				// TODO $txt = $lexer->getExecutionTime();
-				$txt = "CONSTANT 'performance': NOT IMPLEMENTED YET!";
+				$txt = $this->getParser()->getUserInfo('lexerperformance');
 			break;
 			case 'file':
 				$txt = pw_wiki_fileinfo($subcat);

@@ -10,7 +10,7 @@ require_once INC_PATH.'pwTools/parser/Pattern.php';
 
 class Header extends ParserRule implements ParserRuleHandler, LexerRuleHandler {
 	
-	private static $headerId;
+	private static $headerIndex = 0;
 	private static $level;
 	
 	public function getName() {
@@ -28,6 +28,7 @@ class Header extends ParserRule implements ParserRuleHandler, LexerRuleHandler {
 	}
 	
 	public function onEntry() {
+		$indextable = $this->getParser()->getUserInfo('indextable');
 
 		$node = $this->getNode();
 		$nodeData = $node->getData();
@@ -36,9 +37,8 @@ class Header extends ParserRule implements ParserRuleHandler, LexerRuleHandler {
 		if ($node->isInside("notoc")) {
 			$o = '<h'.self::$level.'>';
 		} else {
-			//TODO $o = '<h'.self::$level.' id="header_'.$GLOBALS['indextable']['CONT'][self::$headerId]['ID'].'">';
-			$o = '<h'.self::$level.'>';
-			self::$headerId++;
+			$o = '<h'.self::$level.' id="header_'.$indextable->getByIndex(self::$headerIndex)->getId().'">';
+			self::$headerIndex++;
 		}
 		
  		$htxt = trim($this->getText($node));

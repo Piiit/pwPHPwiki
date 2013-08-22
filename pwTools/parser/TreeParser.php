@@ -11,6 +11,18 @@ class TreeParser implements TreeWalkerConfig {
 	
 	private $_handlerTable = array();
 	private $_array = array();
+	private $_userInfo = array();
+	
+	public function registerUserInfo($key, $value) {
+		$this->_userInfo[$key] = $value;
+	}
+	
+	public function getUserInfo($key) {
+		if(!array_key_exists($key, $this->_userInfo)) {
+			throw new Exception("UserInfo '$key' does not exists!");
+		}
+		return $this->_userInfo[$key];
+	}
 		
 	public function registerHandler(ParserRuleHandler $tokenHandler) {
 		if(strlen($tokenHandler->getName()) == 0) {

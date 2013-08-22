@@ -10,14 +10,15 @@ require_once INC_PATH.'pwTools/parser/Pattern.php';
 
 class InternalLink extends ParserRule implements ParserRuleHandler, LexerRuleHandler {
 	
+	const MODITEXT = "edit|showpages";
+	
 	public function getName() {
 		return strtolower(__CLASS__);
 	}
 	
 	public function onEntry() {
 		//@TODO: clean redundant code... specially for encoding-functions!
-		global $indextable;
-		global $moditext;
+		$indextable = $this->getParser()->getUserInfo('indextable');
 		
 		$node = $this->getNode();
 		
@@ -39,9 +40,9 @@ class InternalLink extends ParserRule implements ParserRuleHandler, LexerRuleHan
 			$modus = $xp_lpt[1];
 			$fullid = $xp_lpt[2];
 	
-			$modi = explode("|", $moditext);
+			$modi = explode("|", self::MODITEXT);
 			if (!in_array($modus, $modi)) {
-				return nop("Interner Link mit falschem Modus '$modus'. Erlaubte Modi sind: ".$moditext);
+				return nop("Interner Link mit falschem Modus '$modus'. Erlaubte Modi sind: ".self::MODITEXT);
 			}
 		}
 	

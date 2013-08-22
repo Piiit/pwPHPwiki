@@ -1,6 +1,8 @@
 <?php
 
-  $piwo_version = "0.2.1 - Alpha";
+	//TODO no globals, most of this session variables could be part of the parser user info system...
+
+  CONST PIWOVERSION = "0.2.1 - Alpha";
 
   if (! isset($_SESSION['pw_wiki']['config'])) {
     $config  = array ( "debug"        => true,
@@ -9,7 +11,7 @@
                        "storage"      => "dat",
                        "fileext"      => ".txt",
                        "wikititle"    => "piwo",
-                       "titledesc"    => $piwo_version,
+                       "titledesc"    => PIWOVERSION,
                        "showuser"     => true,
                        "showsource"   => true,
                        "showpages"    => true,
