@@ -2,7 +2,7 @@
 
 	//TODO no globals, most of this session variables could be part of the parser user info system...
 
-  CONST PIWOVERSION = "0.2.1 - Alpha";
+  const PIWOVERSION = "0.2.1 - Alpha";
 
   if (! isset($_SESSION['pw_wiki']['config'])) {
     $config  = array ( "debug"        => true,

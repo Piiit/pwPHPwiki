@@ -6,7 +6,7 @@
 if (!defined('INC_PATH')) {
 	define ('INC_PATH', realpath(dirname(__FILE__).'/../').'/');
 }
-require_once INC_PATH.'pwTools/string/StringFormat.php';
+require_once INC_PATH.'pwTools/string/StringTools.php';
 require_once INC_PATH.'pwTools/data/ArrayTools.php';
 
 class TestingTools {
@@ -90,19 +90,19 @@ class TestingTools {
 	
 	public static function init() {
 		if(self::$_init == false) {
-			StringFormat::htmlIndentPrint ();
-			StringFormat::htmlIndentPrint ("<!-- PW_DEBUG_INIT --------------------------------------------------->");
-			StringFormat::htmlIndentPrint ("<style>", StringFormat::START);
-			StringFormat::htmlIndentPrint (".debpre {font-size: 12px; color: black; background-color: lightgray; margin: 1px; padding-top: 0px}");
-			StringFormat::htmlIndentPrint (".debout {background-color: white; color: black; border: 1px solid black; padding-left: 2px; padding-right: 2px}");
-			StringFormat::htmlIndentPrint (".debspecial {background-color: gray; color: white; margin-left: 2px; margin-right: 2px}");
-			StringFormat::htmlIndentPrint (".debdiv {margin: 5px; border: 1px solid black; background-color: lightgray}");
-			StringFormat::htmlIndentPrint (".debdiv ul {list-style-type: none}");
-			StringFormat::htmlIndentPrint (".debdiv ul li {margin-top:3px;}");
-			StringFormat::htmlIndentPrint (".debdiv ul#first {padding-left: 0px; margin-left: 0; margin-top: 3px; padding-bottom: 3px; margin-bottom:0}");
-			StringFormat::htmlIndentPrint ("</style>", StringFormat::END);
-			StringFormat::htmlIndentPrint ("<!-- PW_DEBUG_INIT --------------------------------------------------->");
-			StringFormat::htmlIndentPrint ();
+			StringTools::htmlIndentPrint ();
+			StringTools::htmlIndentPrint ("<!-- PW_DEBUG_INIT --------------------------------------------------->");
+			StringTools::htmlIndentPrint ("<style>", StringTools::START);
+			StringTools::htmlIndentPrint (".debpre {font-size: 12px; color: black; background-color: lightgray; margin: 1px; padding-top: 0px}");
+			StringTools::htmlIndentPrint (".debout {background-color: white; color: black; border: 1px solid black; padding-left: 2px; padding-right: 2px}");
+			StringTools::htmlIndentPrint (".debspecial {background-color: gray; color: white; margin-left: 2px; margin-right: 2px}");
+			StringTools::htmlIndentPrint (".debdiv {margin: 5px; border: 1px solid black; background-color: lightgray}");
+			StringTools::htmlIndentPrint (".debdiv ul {list-style-type: none}");
+			StringTools::htmlIndentPrint (".debdiv ul li {margin-top:3px;}");
+			StringTools::htmlIndentPrint (".debdiv ul#first {padding-left: 0px; margin-left: 0; margin-top: 3px; padding-bottom: 3px; margin-bottom:0}");
+			StringTools::htmlIndentPrint ("</style>", StringTools::END);
+			StringTools::htmlIndentPrint ("<!-- PW_DEBUG_INIT --------------------------------------------------->");
+			StringTools::htmlIndentPrint ();
 			self::$_init = true;
 		}
 	}

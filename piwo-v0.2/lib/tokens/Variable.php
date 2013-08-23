@@ -10,7 +10,7 @@ require_once INC_PATH.'pwTools/parser/Pattern.php';
 
 class Variable extends ParserRule implements ParserRuleHandler, LexerRuleHandler {
 	
-	public static $variables;
+	public static $variables = array();
 	
 	public function getName() {
 		return strtolower(__CLASS__);

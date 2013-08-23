@@ -53,7 +53,7 @@ class ListItem extends ParserRule implements ParserRuleHandler, LexerRuleHandler
 		}
 		
 		$o .= "<li>";
-		return StringFormat::htmlIndent($o, StringFormat::START);
+		return $o;
 	}
 
 	public function onExit() {
@@ -76,7 +76,7 @@ class ListItem extends ParserRule implements ParserRuleHandler, LexerRuleHandler
       			}
     		}
   		}
-  		return StringFormat::htmlIndent($o, StringFormat::END);
+  		return $o;
 	}
 
 	public function doRecursion() {

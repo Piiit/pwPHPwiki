@@ -1,6 +1,5 @@
 <?php
 
-//FIXME Define include paths like this... always step outside of piwo! Always use realpath and dirname
 if (!defined('INC_PATH')) {
   define ('INC_PATH', realpath(dirname(__FILE__).'/../../').'/');
 }

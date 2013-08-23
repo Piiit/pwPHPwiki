@@ -15,11 +15,11 @@ class Pre extends ParserRule implements ParserRuleHandler, LexerRuleHandlerAbstr
 	}
 	
 	public function onEntry() {
-		return '<pre><div>';
+		return 'SSSS<pre><div>';
 	}
 
 	public function onExit() {
-		return '</div></pre>';
+		return '</div></pre>EEEE';
 	}
 
 	public function doRecursion() {

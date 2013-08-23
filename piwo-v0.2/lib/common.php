@@ -5,15 +5,13 @@ if (!defined('INC_PATH')) {
 }
 require_once INC_PATH.'pwTools/string/encoding.php';
 require_once INC_PATH.'pwTools/string/StringTools.php';
-require_once INC_PATH.'pwTools/string/StringFormat.php';
 require_once INC_PATH.'pwTools/debug/TestingTools.php';
 
 function pw_wiki_getid() {
-	try {
-		$id = isset($_GET['id']) ? $_GET['id'] : pw_url2u(pw_wiki_getcfg('id'));
-	} catch (Exception $e) {
+	$id = isset($_GET['id']) ? $_GET['id'] : pw_url2u(pw_wiki_getcfg('id'));
+	if($id == "") {
 		$id = pw_url2u(pw_wiki_getcfg('startpage'));
-	}
+	} 
 	return pw_wiki_s2id($id);
 }
 
@@ -296,25 +294,25 @@ function pw_wiki_getfulltitle($sep = "&raquo;", $showuser = true) {
 
 function html_header() {
 	global $MODE;
-	StringFormat::htmlIndentPrint ('<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">');
-	StringFormat::htmlIndentPrint ('<html>', StringFormat::START);
-	StringFormat::htmlIndentPrint ('<!-- HEADER start -->');
-	StringFormat::htmlIndentPrint ('<head>', StringFormat::START);
-	StringFormat::htmlIndentPrint ('<title>'.pw_wiki_getfulltitle().'</title>');
-	StringFormat::htmlIndentPrint ('<meta name="description" content="'.pw_wiki_getcfg('description').'">');
-	StringFormat::htmlIndentPrint ('<meta name="keywords" content="'.pw_wiki_getcfg('keywords').'">');
-	StringFormat::htmlIndentPrint ('<meta http-equiv="Content-Type" content="text/html" charset="utf-8">');
-	StringFormat::htmlIndentPrint ('<meta http-equiv="Content-Script-Type" content="text/javascript">');
-	StringFormat::htmlIndentPrint ('<link rel="shortcut icon" href="media/favicon.ico" type="image/ico" />');
-	StringFormat::htmlIndentPrint ('<link rel="stylesheet" type="text/css" media="screen" href="default.css">');
-	StringFormat::htmlIndentPrint ('<link rel="stylesheet" type="text/css" media="screen" href="admin.css">');
-	#StringFormat::htmlIndentPrint ('<script type="text/javascript" language="javascript" src="lib/js/scriptaculous/lib/prototype.js"></script>');
-	#StringFormat::htmlIndentPrint ('<script type="text/javascript" language="javascript" src="lib/js/scriptaculous/src/scriptaculous.js"></script>');
-	#StringFormat::htmlIndentPrint ('<script type="text/javascript" language="javascript" src="lib/js/pw_url.js"></script>');
-	#StringFormat::htmlIndentPrint ('<script type="text/javascript" language="javascript" src="lib/js/pw_array.js"></script>');
-	StringFormat::htmlIndentPrint ('<script type="text/javascript" language="javascript" src="lib/js/catchkeys.js"></script>'); // Editorkeys: catch TAB, insert Spaces
-	#StringFormat::htmlIndentPrint ('<script type="text/javascript" language="javascript" src="lib/js/shortcut.js"></script>');
-	#StringFormat::htmlIndentPrint ('<script type="text/javascript" language="javascript" src="lib/js/pw_ui.js"></script>');
+	StringTools::htmlIndentPrint ('<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">');
+	StringTools::htmlIndentPrint ('<html>', StringTools::START);
+	StringTools::htmlIndentPrint ('<!-- HEADER start -->');
+	StringTools::htmlIndentPrint ('<head>', StringTools::START);
+	StringTools::htmlIndentPrint ('<title>'.pw_wiki_getfulltitle().'</title>');
+	StringTools::htmlIndentPrint ('<meta name="description" content="'.pw_wiki_getcfg('description').'">');
+	StringTools::htmlIndentPrint ('<meta name="keywords" content="'.pw_wiki_getcfg('keywords').'">');
+	StringTools::htmlIndentPrint ('<meta http-equiv="Content-Type" content="text/html" charset="utf-8">');
+	StringTools::htmlIndentPrint ('<meta http-equiv="Content-Script-Type" content="text/javascript">');
+	StringTools::htmlIndentPrint ('<link rel="shortcut icon" href="media/favicon.ico" type="image/ico" />');
+	StringTools::htmlIndentPrint ('<link rel="stylesheet" type="text/css" media="screen" href="default.css">');
+	StringTools::htmlIndentPrint ('<link rel="stylesheet" type="text/css" media="screen" href="admin.css">');
+	#StringTools::htmlIndentPrint ('<script type="text/javascript" language="javascript" src="lib/js/scriptaculous/lib/prototype.js"></script>');
+	#StringTools::htmlIndentPrint ('<script type="text/javascript" language="javascript" src="lib/js/scriptaculous/src/scriptaculous.js"></script>');
+	#StringTools::htmlIndentPrint ('<script type="text/javascript" language="javascript" src="lib/js/pw_url.js"></script>');
+	#StringTools::htmlIndentPrint ('<script type="text/javascript" language="javascript" src="lib/js/pw_array.js"></script>');
+	StringTools::htmlIndentPrint ('<script type="text/javascript" language="javascript" src="lib/js/catchkeys.js"></script>'); // Editorkeys: catch TAB, insert Spaces
+	#StringTools::htmlIndentPrint ('<script type="text/javascript" language="javascript" src="lib/js/shortcut.js"></script>');
+	#StringTools::htmlIndentPrint ('<script type="text/javascript" language="javascript" src="lib/js/pw_ui.js"></script>');
 
 	echo "<script>function setfocus() {
 		var f = document.getElementsByTagName('input');
@@ -347,10 +345,10 @@ function html_header() {
 		TestingTools::debugOn();
 	}
 
-	StringFormat::htmlIndentPrint ('</head>', StringFormat::END);
-	StringFormat::htmlIndentPrint ('<body onload="setfocus()">', StringFormat::START);
-	StringFormat::htmlIndentPrint ('<!-- HEADER end -->');
-	StringFormat::htmlIndentPrint ('<div id="INFO"></div>');
+	StringTools::htmlIndentPrint ('</head>', StringTools::END);
+	StringTools::htmlIndentPrint ('<body onload="setfocus()">', StringTools::START);
+	StringTools::htmlIndentPrint ('<!-- HEADER end -->');
+	StringTools::htmlIndentPrint ('<div id="INFO"></div>');
 }
 
 function html_footer($modal) {
@@ -363,10 +361,10 @@ function html_footer($modal) {
 		pw_ui_printDialogWrap();
 	}
 
-	StringFormat::htmlIndentPrint ('<!-- FOOTER start -->');
-	StringFormat::htmlIndentPrint ('</body>', StringFormat::END);
-	StringFormat::htmlIndentPrint ('</html>', StringFormat::END);
-	StringFormat::htmlIndentPrint ('<!-- FOOTER end -->');
+	StringTools::htmlIndentPrint ('<!-- FOOTER start -->');
+	StringTools::htmlIndentPrint ('</body>', StringTools::END);
+	StringTools::htmlIndentPrint ('</html>', StringTools::END);
+	StringTools::htmlIndentPrint ('<!-- FOOTER end -->');
 }
 
 

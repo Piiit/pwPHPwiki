@@ -10,8 +10,8 @@ require_once INC_PATH.'pwTools/parser/Pattern.php';
 
 class Header extends ParserRule implements ParserRuleHandler, LexerRuleHandler {
 	
-	private static $headerIndex = 0;
-	private static $level;
+	private $headerIndex = 0;
+	private $level;
 	
 	public function getName() {
 		return strtolower(__CLASS__);
@@ -32,13 +32,13 @@ class Header extends ParserRule implements ParserRuleHandler, LexerRuleHandler {
 
 		$node = $this->getNode();
 		$nodeData = $node->getData();
-		self::$level = strlen($nodeData[0]);
+		$this->level = strlen($nodeData[0]);
 	
 		if ($node->isInside("notoc")) {
-			$o = '<h'.self::$level.'>';
+			$o = '<h'.$this->level.'>';
 		} else {
-			$o = '<h'.self::$level.' id="header_'.$indextable->getByIndex(self::$headerIndex)->getId().'">';
-			self::$headerIndex++;
+			$o = '<h'.$this->level.' id="header_'.$indextable->getByIndex($this->headerIndex)->getId().'">';
+			$this->headerIndex++;
 		}
 		
  		$htxt = trim($this->getText($node));
@@ -50,7 +50,7 @@ class Header extends ParserRule implements ParserRuleHandler, LexerRuleHandler {
 	}
 
 	public function onExit() {
-		return '</h'.self::$level.'>';
+		return '</h'.$this->level.'>';
 	}
 
 	public function doRecursion() {

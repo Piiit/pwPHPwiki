@@ -23,7 +23,7 @@ class Lists extends ParserRule implements ParserRuleHandler, LexerRuleHandlerAbs
   		$fcData = $fc->getData();
   		$listtype = $fcData[1] == "#" ? '<ol>' : '<ul>';
   		ListItem::$listitems[] = $fcData[1];
-  		return StringFormat::htmlIndent($listtype, StringFormat::START);
+  		return $listtype;
 	}
 
 	public function onExit() {
@@ -34,7 +34,7 @@ class Lists extends ParserRule implements ParserRuleHandler, LexerRuleHandlerAbs
     		$listtype = $listtype == "#" ? '</ol>' : '</ul>';
     		$o .= $listtype;
   		}
-  		return StringFormat::htmlIndent($o, StringFormat::END);
+  		return $o;
 	}
 
 	public function doRecursion() {

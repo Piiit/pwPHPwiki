@@ -28,7 +28,7 @@ if (!defined('INC_PATH')) {
 }
 
 require_once INC_PATH.'pwTools/string/encoding.php';
-require_once INC_PATH.'pwTools/string/StringFormat.php';
+require_once INC_PATH.'pwTools/string/StringTools.php';
 require_once INC_PATH.'pwTools/file/FileTools.php';
 require_once INC_PATH.'pwTools/file/TextFileFormat.php';
 require_once INC_PATH.'pwTools/tree/Node.php';
@@ -100,8 +100,11 @@ class Lexer {
 			if ($token) {
 				$this->_currentLine = $token->getTextFull();
 				$this->_updateTextPosition();
-				$this->_addNodeOnOpen($token);
-				$this->_addNodeOnClose($token);
+				if ($token->isExit()) {
+					$this->_addNodeOnClose($token);
+				} else {
+					$this->_addNodeOnOpen($token);
+				}
 			}
 			$this->_executiontime = $timer->getElapsedTime(4);
 		#} while($this->_cycle <= 6);
@@ -449,7 +452,9 @@ class Lexer {
 	}
 
 	private function _parentStackRemove() {
-		array_pop($this->_parentStack);
+		$value = array_pop($this->_parentStack);
+		$this->_log->addDebug($this->_logFormat("CLOSING NODE", "$value"));
+		
 	}
 
 	
@@ -468,10 +473,6 @@ class Lexer {
 	 * @return boolean
 	 */
 	private function _addNodeOnOpen($token) {
-		// Exit-token found. Do nothing!
-		if ($token->isExit()) {
-			return;
-		}
 
 		$this->_addTextNode($token, false, false, true);
 
@@ -484,25 +485,23 @@ class Lexer {
 				$this->_parentStackRemove();
 			}
 			$this->_addAbstractNode($token->getName());
-			$parent = $this->_getParentFromStack();
 		} else {
 			if ($parentPattern->isAbstract()) {
 				$this->_parentStackRemove();
 			}
 		}
-
-// 		var_dump($token);
+		$parent = $this->_getParentFromStack();
+		
 		$node = new Node($token->getName(), $token->getConfig());
 		$parent->addChild($node);
 		$this->_lastNode = $node;
 		$this->_log->addDebug($this->_logFormat("ADD NODE", "$node to $parent"));
 
-		// WORD-pattern werden gleich nach dem ?ffnen wieder geschlossen.
-		// Keine parentID wird in den Stapel aufgenommen.
+		// WORD-patterns get closed right after opening (no parent ID gets stored within the stack)
 		$pattern = $this->_patternTable->get($token->getName());
 		if ($pattern->getType() == Pattern::TYPE_WORD) {
-			// Backstep... Manche Matches m?ssen nach der Erkennung eines Exit-Tags
-			// f?r den n?chsten Entry-Tag bewahrt bleiben.
+			// Backstep... Some matched strings must get preserved after the recognition of an exit token,
+			// otherwise some entry tokens do not find there whole match (ex. NEWLINES missing)
 			if ($pattern->getRestore() != "") {
 				$this->_textPosition -= strlen($token->getTextFull());
 				$this->_temptxt = $token->getTextFull().$this->_temptxt;
@@ -544,7 +543,7 @@ class Lexer {
 
 		$trimtext = trim($text, ' ');
 
-		// Nur Newline entdeckt...
+		// TODO Check if this should be removed to recognize newline patterns!!! Nur Newline entdeckt...
 		if ($trimtext == "\n" and $addnewlines == false) {
 			return;
 		}
@@ -602,17 +601,18 @@ class Lexer {
 		$this->_addTextNode($token, false, false, true);
 
 		// Close abstract parent-nodes, if a new mode has to be started!
-		$connectToName = $pattern->getConnectTo();
 		$parent = $this->_getParentFromStack();
-		if ($connectToName === null or $connectToName != $parent->getName()) {
+		$connectToName = $pattern->getConnectTo();
+// 		$this->_log->addDebug($this->_logFormat("YYY", $parent));
+		if ($connectToName === null || $connectToName != $parent->getName()) {
 			$parentPattern = $this->_patternTable->get($parent->getName());
+// 			$this->_log->addDebug($this->_logFormat("XXX", $parent));
 			if ($parentPattern->isAbstract()) {
 				$this->_parentStackRemove();
 			}
 		}
 		
 		$this->_parentStackRemove();
-		$this->_log->addDebug($this->_logFormat("CLOSE NODE", $parent));
 	}
 
 	private function _updateTextPosition() {

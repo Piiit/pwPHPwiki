@@ -152,20 +152,20 @@ function test_output($input, $expres, $res, &$errors = -1) {
 }
 
 function testing_html_header($title) {
-  StringFormat::htmlIndentPrint ('<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">');
-  StringFormat::htmlIndentPrint ('<html>', START);
-  StringFormat::htmlIndentPrint ('<head>', START);
-  StringFormat::htmlIndentPrint ("<title>piwo: UNIT-TESTING: $title</title>");
-  StringFormat::htmlIndentPrint ('<meta http-equiv="Content-Type" content="text/html" charset="utf-8">');
-  StringFormat::htmlIndentPrint ('<link rel="stylesheet" type="text/css" media="screen" href="../testing.css">');
-  StringFormat::htmlIndentPrint ('</head>', END);
-  StringFormat::htmlIndentPrint ('<body>', START);
-  StringFormat::htmlIndentPrint ("<h1>Test: $title</h1>");
+  StringTools::htmlIndentPrint ('<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">');
+  StringTools::htmlIndentPrint ('<html>', START);
+  StringTools::htmlIndentPrint ('<head>', START);
+  StringTools::htmlIndentPrint ("<title>piwo: UNIT-TESTING: $title</title>");
+  StringTools::htmlIndentPrint ('<meta http-equiv="Content-Type" content="text/html" charset="utf-8">');
+  StringTools::htmlIndentPrint ('<link rel="stylesheet" type="text/css" media="screen" href="../testing.css">');
+  StringTools::htmlIndentPrint ('</head>', END);
+  StringTools::htmlIndentPrint ('<body>', START);
+  StringTools::htmlIndentPrint ("<h1>Test: $title</h1>");
 }
 
 function testing_html_footer() {
-  StringFormat::htmlIndentPrint ('</body>', END);
-  StringFormat::htmlIndentPrint ('</html>', END);
+  StringTools::htmlIndentPrint ('</body>', END);
+  StringTools::htmlIndentPrint ('</html>', END);
 }
 
 function pw_test($inputs, $results, $exp_results) {

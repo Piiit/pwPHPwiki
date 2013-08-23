@@ -2,7 +2,9 @@
 	define ('INC_PATH', realpath(dirname(__FILE__).'/../').'/');
 }
 require_once INC_PATH.'piwo-v0.2/lib/common.php';require_once INC_PATH.'piwo-v0.2/lib/WikiTocTools.php';require_once INC_PATH.'piwo-v0.2/plugins/toc.php';
-require_once INC_PATH.'pwTools/data/IndexTable.php';require_once INC_PATH.'pwTools/parser/Lexer.php';require_once INC_PATH.'pwTools/parser/Parser.php';// include all parser token handler...$parserTokenList = glob(INC_PATH."piwo-v0.2/lib/tokens/*.php");
+require_once INC_PATH.'piwo-v0.2/cfg/main.php';
+require_once INC_PATH.'pwTools/data/IndexTable.php';require_once INC_PATH.'pwTools/parser/Lexer.php';require_once INC_PATH.'pwTools/parser/Parser.php';require_once INC_PATH.'pwTools/tree/TreePrinter.php';
+// include all parser token handler...$parserTokenList = glob(INC_PATH."piwo-v0.2/lib/tokens/*.php");
 foreach ($parserTokenList as $parserToken) {
 	require_once $parserToken;
 }function parse($txt) {	try {		$loglevel = pw_wiki_getcfg('debug');				if($loglevel === true) {			$loglevel = Log::DEBUG;		} else {			$loglevel = Log::INFO;		}		$lexer = new Lexer($txt, $loglevel);				$handlerList = array(				new Header(),				new Border(),				new BorderError(),				new BorderInfo(),				new BorderSuccess(),				new BorderValidation(),				new BorderWarning(),				new Plugin(),				new PluginParameter(),
@@ -10,7 +12,7 @@ foreach ($parserTokenList as $parserToken) {
 		$lexer->parse();		$parser = new Parser();		$parser->registerHandlerList($handlerList);
 		$parser->setUserInfo('indextable', WikiTocTools::createIndexTable($parser, $lexer->getRootNode()));		$parser->setUserInfo('lexerperformance', $lexer->getExecutionTime());		$parser->setUserInfo('piwoversion', PIWOVERSION);				$_SESSION["pw_wiki"]["error"] = false;		// 		TestingTools::inform($lexer->getRootNode());		 		$ta = new TreeWalker($lexer->getRootNode(), $parser);
  		$o = implode($ta->getResult());
-		// 		echo StringFormat::preFormat(StringFormat::showLineNumbers(pw_s2e($o)));// 		echo $o;//    		TestingTools::informPrintNewline($lexer->getLog()->__toString());		return $o;	} catch (Exception $e) {		$o = "";
+		// 		echo StringTools::preFormat(StringTools::showLineNumbers(pw_s2e($o)));// 		echo $o;    		TestingTools::informPrintNewline($lexer->getLog()->__toString());    		    	$treePrinter = new TreeWalker($lexer->getRootNode(), new TreePrinter());    	echo StringTools::preFormatShowLineNumbers($treePrinter->getResult());		return $o;	} catch (Exception $e) {		$o = "";
 		$src = "N/A";
 		$log = "N/A";
 		if (isset($lexer)) {
@@ -22,7 +24,7 @@ foreach ($parserTokenList as $parserToken) {
 		$o .= "<pre style='white-space: pre-wrap'>";
 		$o .= "ERROR MESSAGE: \n".pw_s2e(print_r($e->getMessage(), true));
 		$o .= "\n\nERROR TRACE: \n".pw_s2e($e->getTraceAsString());
-		$o .= "\n\nSOURCE: \n".pw_s2e(StringFormat::showLineNumbers($src));
+		$o .= "\n\nSOURCE: \n".pw_s2e(StringTools::showLineNumbers($src));
 		$o .= "\n\nLOG: \n".$log;
 		$o .= "</pre>";
 		

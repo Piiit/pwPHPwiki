@@ -1,14 +1,5 @@
 <?php
 
-//TODO $lexer->connectTo("preformat", "pre"); 
-// function spre() {
-//   return '<pre><div>';
-// }
-
-// function epre() {
-//   return '</div></pre>';
-// }
-
 if (!defined('INC_PATH')) {
 	define ('INC_PATH', realpath(dirname(__FILE__).'/../../').'/');
 }
