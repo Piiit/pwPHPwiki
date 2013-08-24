@@ -15,7 +15,7 @@ AST-Schleife und debuginfo-tabelle in separate datei...
 
 TODO: new...
 * $this->ids should contain real pattern objects not just strings (_stripExitTagName etc. will be deprecated)
-* move debuginfo to a separate class
+* TODO move debuginfo to a separate class
 * Source-code stuff to a separate class (print, showlines, etc.)
 * Comments in english!
 * combine Token with Node
@@ -410,10 +410,10 @@ class Lexer {
 	}
 
 	public function getPatternTableAsString() {
-		$ptable = $this->getPatternTable();
+		$ptable = $this->getPatternTable()->getArray();
 		$out = "";
 		foreach ($ptable as $i => $p) {
-			$out .= "[$i]$p\n";
+			$out .= "$p\n";
 		}
 		return $out;
 	}

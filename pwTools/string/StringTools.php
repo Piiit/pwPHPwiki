@@ -14,22 +14,26 @@ class StringTools {
 			throw new InvalidArgumentException("First argument has to be string!");
 		}
 		if (strlen($textInput) == 0) {
-			return $textInput;
+			return "";
 		}
 		$text = explode("\n", $textInput);
 		$t = "";
 		foreach($text as $k => $line) {
 			$t .= sprintf("%5d %s\n", $k+1, $line);
 		}
+		
 		return $t;
 	}
 	
 	public static function preFormat($textInput) {
+		if(strlen($textInput) == 0) {
+			return "";
+		}
 		return "<pre>".$textInput."</pre>";
 	}
 	
 	public static function preFormatShowLineNumbers($textInput) {
-		self::preFormat(self::showLineNumbers($textInput));
+		return self::preFormat(self::showLineNumbers($textInput));
 	}
 	
 	public static function boolean2String($value) {

@@ -50,13 +50,26 @@ class Log {
 		return $this->_logbook;
 	}
 	
+	public function getLogReversed() {
+		return array_reverse($this->_logbook);
+	}
+	
 	public function getLastLog() {
 		return end($this->_logbook);
 	}
 	
+	public function toStringReversed() {
+		return $this->toString(true);
+	}
+
 	public function __toString() {
+		return $this->toString();
+	}
+	
+	public function toString($reversed = false) {
 		$out = "";
-		foreach ($this->_logbook as $line) {
+		$logbook = $reversed ? $this->getLogReversed() : $this->getLog();
+		foreach ($logbook as $line) {
 			$date = date($this->_dateFormat, $line['TIME']);
 			$typeString = $this->_getTypeString($line['TYPE']);
 			$debugString = "";

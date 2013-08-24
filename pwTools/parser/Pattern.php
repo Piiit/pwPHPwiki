@@ -12,6 +12,7 @@ class Pattern extends Node {
 	const TYPE_WORD 	= 2;
 	const TYPE_LINE 	= 3;
 	const TYPE_SECTION 	= 4;
+	private static $_type_names = array("TYPE_BASE", "TYPE_ABSTRACT", "TYPE_WORD", "TYPE_LINE", "TYPE_SECTION");
 	
 	private $_type = self::TYPE_BASE;
 	private $_modes = array();
@@ -43,7 +44,8 @@ class Pattern extends Node {
 	}
 	
 	public function __toString() {
-		return "[Pattern: ".parent::getName()."($this->_type)]"; //type='$this->_type', entry='$this->_entry', exit='$this->_exit', flags='".sprintf("%06b", $this->_flags)."', level='$this->_level', connectTo='$this->_connectTo']";
+		$connectTo = $this->_connectTo ? "; CONNECTED TO ".$this->_connectTo : "";
+		return "[Pattern: ".parent::getName()." (".self::$_type_names[$this->_type].$connectTo.")]"; 
 	}
 	
 	/**

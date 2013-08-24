@@ -8,10 +8,16 @@ require_once INC_PATH.'pwTools/string/StringTools.php';
 require_once INC_PATH.'pwTools/debug/TestingTools.php';
 
 function pw_wiki_getid() {
-	$id = isset($_GET['id']) ? $_GET['id'] : pw_url2u(pw_wiki_getcfg('id'));
-	if($id == "") {
-		$id = pw_url2u(pw_wiki_getcfg('startpage'));
-	} 
+// 	try {
+// 		$id = isset($_GET['id']) ? $_GET['id'] : pw_url2u(pw_wiki_getcfg('id'));
+// 	} catch (Exception $e) {
+		
+// 	}
+// 	if($id == "") {
+// 		$id = pw_url2u(pw_wiki_getcfg('startpage'));
+// 	}
+
+	$id = isset($_GET['id']) && $_GET['id'] != "" ? $_GET['id'] : pw_url2u(pw_wiki_getcfg('startpage'));
 	return pw_wiki_s2id($id);
 }
 
@@ -19,46 +25,46 @@ function pw_wiki_setmode($mode) {
 	$_SESSION['pw_wiki']['mode'] = $mode;
 }
 
-function pw_wiki_setid($id) {
+// function pw_wiki_setid($id) {
 
-	$id = pw_s2u($id);
+// 	$id = pw_s2u($id);
 
-	if (! pw_wiki_isvalidid($id)) {
-		$_SESSION['pw_wiki']['wrongid'] = $id;
-		throw new Exception("Wrong id '$id'!");
-	}
+// 	if (! pw_wiki_isvalidid($id)) {
+// 		$_SESSION['pw_wiki']['wrongid'] = $id;
+// 		throw new Exception("Wrong id '$id'!");
+// 	}
 
-	$id = utf8_strtolower($id);
+// 	$id = utf8_strtolower($id);
 
-	$fullpath = pw_wiki_path($id, ST_FULL);
-	$path = pw_wiki_path($id, ST_SHORT);
-	$path2 = pw_wiki_path($id, SHORT);
+// 	$fullpath = pw_wiki_path($id, ST_FULL);
+// 	$path = pw_wiki_path($id, ST_SHORT);
+// 	$path2 = pw_wiki_path($id, SHORT);
 
-	$fullns = pw_wiki_ns($id);
-	$pg = pw_wiki_pg($id);
+// 	$fullns = pw_wiki_ns($id);
+// 	$pg = pw_wiki_pg($id);
 
-	$ns = explode(':', rtrim($fullns, ':'));
-	if (strlen($ns[0]) > 0) {
-		$ns = array_pop($ns);
-		$id = $fullns.$pg;
-	} else {
-		$ns = "";
-		$id = $pg;
-	}
+// 	$ns = explode(':', rtrim($fullns, ':'));
+// 	if (strlen($ns[0]) > 0) {
+// 		$ns = array_pop($ns);
+// 		$id = $fullns.$pg;
+// 	} else {
+// 		$ns = "";
+// 		$id = $pg;
+// 	}
 
-	$fullns = pw_s2url($fullns);
-	$ns = pw_s2url($ns);
-	$id = pw_s2url($id);
-	$pg = pw_s2url($pg);
+// 	$fullns = pw_s2url($fullns);
+// 	$ns = pw_s2url($ns);
+// 	$id = pw_s2url($id);
+// 	$pg = pw_s2url($pg);
 
-	$_SESSION['pw_wiki']['fullpath'] = $fullpath;
-	$_SESSION['pw_wiki']['path'] = $path;
-	$_SESSION['pw_wiki']['path2'] = $path2;
-	$_SESSION['pw_wiki']['fullns'] = $fullns;
-	$_SESSION['pw_wiki']['ns'] = $ns;
-	$_SESSION['pw_wiki']['id'] = $id;
-	$_SESSION['pw_wiki']['pg'] = $pg;
-}
+// 	$_SESSION['pw_wiki']['fullpath'] = $fullpath;
+// 	$_SESSION['pw_wiki']['path'] = $path;
+// 	$_SESSION['pw_wiki']['path2'] = $path2;
+// 	$_SESSION['pw_wiki']['fullns'] = $fullns;
+// 	$_SESSION['pw_wiki']['ns'] = $ns;
+// 	$_SESSION['pw_wiki']['id'] = $id;
+// 	$_SESSION['pw_wiki']['pg'] = $pg;
+// }
 
 function pw_wiki_getcfg($what = "", $subcat = "") {
 

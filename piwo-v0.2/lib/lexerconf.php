@@ -7,12 +7,12 @@ require_once INC_PATH.'pwTools/data/IndexTable.php';require_once INC_PATH.'pwTo
 // include all parser token handler...$parserTokenList = glob(INC_PATH."piwo-v0.2/lib/tokens/*.php");
 foreach ($parserTokenList as $parserToken) {
 	require_once $parserToken;
-}function parse($txt) {	try {		$loglevel = pw_wiki_getcfg('debug');				if($loglevel === true) {			$loglevel = Log::DEBUG;		} else {			$loglevel = Log::INFO;		}		$lexer = new Lexer($txt, $loglevel);				$handlerList = array(				new Header(),				new Border(),				new BorderError(),				new BorderInfo(),				new BorderSuccess(),				new BorderValidation(),				new BorderWarning(),				new Plugin(),				new PluginParameter(),
+}function parse($txt) {	try {		$loglevel = Log::INFO;		if(pw_wiki_getcfg('debug') === true) {			$loglevel = Log::DEBUG;		}		$lexer = new Lexer($txt, $loglevel);				$handlerList = array(				new Header(),				new Border(),				new BorderError(),				new BorderInfo(),				new BorderSuccess(),				new BorderValidation(),				new BorderWarning(),				new Plugin(),				new PluginParameter(),
 				new InternalLink(),				new InternalLinkPos(),				new Url(),				new UrlNoProtocol(),				new Big(),				new Bold(),				new Em(),				new Hi(),				new Italic(),				new Lo(), 				new Monospace(),				new Small(),				new Strike(),				new Sub(),				new Sup(),				new Underline(),				new Code(),				new NoWiki(),				new NoWikiAlt(),				new Newline(),				new Multiline(),				new Preformat(),				new Align(),				new Justify(),				new Indent(),				new Right(),				new Left(),				new Constant(),				new Symbol(),				new Variable(),				new ExternalLink(),				new ExternalLinkPos(),				new Pre(),				new TableCell(),				new TableRow(),				new TableHeader(),				new Table(),				new TableSpan(),				new AlignInTable(),				new HorizontalRule(),				new DefTerm(),				new DefList(),				new DefItem(),				new ListItem(),				new Lists(),				new Footnote(),				new QuotedString(),				new Math(),				new NoToc(),				new Comment(),				new Comment2()		);						$lexer->registerHandlerList($handlerList);				//TODO No pattern? AST = #DOCUMENT with a single #TEXT node
 		$lexer->parse();		$parser = new Parser();		$parser->registerHandlerList($handlerList);
-		$parser->setUserInfo('indextable', WikiTocTools::createIndexTable($parser, $lexer->getRootNode()));		$parser->setUserInfo('lexerperformance', $lexer->getExecutionTime());		$parser->setUserInfo('piwoversion', PIWOVERSION);				$_SESSION["pw_wiki"]["error"] = false;		// 		TestingTools::inform($lexer->getRootNode());		 		$ta = new TreeWalker($lexer->getRootNode(), $parser);
+		$parser->setUserInfo('indextable', WikiTocTools::createIndexTable($parser, $lexer->getRootNode()));		$parser->setUserInfo('lexerperformance', $lexer->getExecutionTime());		$parser->setUserInfo('piwoversion', PIWOVERSION);				$_SESSION["pw_wiki"]["error"] = false;		 		$ta = new TreeWalker($lexer->getRootNode(), $parser);
  		$o = implode($ta->getResult());
-		// 		echo StringTools::preFormat(StringTools::showLineNumbers(pw_s2e($o)));// 		echo $o;    		TestingTools::informPrintNewline($lexer->getLog()->__toString());    		    	$treePrinter = new TreeWalker($lexer->getRootNode(), new TreePrinter());    	echo StringTools::preFormatShowLineNumbers($treePrinter->getResult());		return $o;	} catch (Exception $e) {		$o = "";
+	} catch (Exception $e) {		$o = "";
 		$src = "N/A";
 		$log = "N/A";
 		if (isset($lexer)) {
@@ -30,35 +30,35 @@ foreach ($parserTokenList as $parserToken) {
 		
 		echo $o;		if (isset($lexer)) {			$o = "<pre style='white-space: pre-wrap'>";			$o .= "\n\nPATTERNTABLE: \n";			$o .= $lexer->getPatternTableAsString();			$o .= "</pre>";			echo $o;		}	}		if (pw_wiki_getcfg('debug')) {
 	
-		$o .= "<div id='imdebug'>";
+		$o .= "<div id='imdebug'>";		$o .= "<h2>DEBUG</h2>";
 		$o .= "<h3>Lexer: Version und Kurzinfos.</h3>";
 		$o .= $lexer;
 	
 		$o .= "<h3>AST</h3>";
-		$o .= "<pre style='overflow: auto'>";
-		$o .= $lexer->getAST();
+		$o .= "<pre style='overflow: auto'>";		$treePrinter = new TreeWalker($lexer->getRootNode(), new TreePrinter());
+		$ast = $treePrinter->getResult();
+		$o .= StringTools::showLineNumbers($ast);
 		$o .= "</pre>";
 	
-		$o .= "<h3>Logdatei (ohne INFO-Zeilen)</h3>";
+		$o .= "<h3>Log</h3>";
 		$o .= "<pre style='overflow: auto'>";
 	
-		#$o .= utf8_encode(htmlentities(utf8_decode($lexer->getLogText(false))));
-		$logtext = $lexer->getLogText(false);
+		$logtext = $lexer->getLog()->toStringReversed();
 		$o .= pw_s2e($logtext);
 		$o .= "</pre>";
 	
-		#$o .= "<h3>Performance</h3>";
-		#$o .= "Text in ".$lexer->getExecutionTime()."s geparsed!";
+		$o .= "<h3>Performance</h3>";
+		$o .= "Text in ".$lexer->getExecutionTime()."s geparsed!";
 	
-		$o .= "<h3>Debug: Parser - Schritte</h3>";
-		$lexer->printDebugInfo(1,1);
+		//$o .= "<h3>Debug: Parser - Schritte (TODO: ADAPT TO NEW LEXER)</h3>";
+		//$lexer->printDebugInfo(1,1);
 	
-		#$o .= "<h3>Text, der geparsed werden soll (mit Zeilennummern).</h3>";
-		#$o .= "Die erste und letzte Zeile werden vom Lexer automatisch hinzugef&uuml;gt.";
-		#$lexer->printSource(true);
+		$o .= "<h3>Text, der geparsed werden soll (mit Zeilennummern).</h3>";
+		$o .= "Die erste und letzte Zeile werden vom Lexer automatisch hinzugef&uuml;gt.";
+		$o .= StringTools::preFormatShowLineNumbers($lexer->getSource());
 	
-		#$o .= "<h3>Lexer: PatternTable</h3>";
-		#$lexer->printPatternTable();
+		$o .= "<h3>Lexer: PatternTable</h3>";
+		$o .= StringTools::preFormatShowLineNumbers($lexer->getPatternTableAsString());
 		$o .= "</div>";
 	}
 	
