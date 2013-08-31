@@ -6,19 +6,11 @@ if (!defined('INC_PATH')) {
 require_once INC_PATH.'pwTools/string/encoding.php';
 require_once INC_PATH.'pwTools/string/StringTools.php';
 require_once INC_PATH.'pwTools/debug/TestingTools.php';
+require_once INC_PATH.'piwo-v0.2/lib/WikiID.php';
 
 function pw_wiki_getid() {
-// 	try {
-// 		$id = isset($_GET['id']) ? $_GET['id'] : pw_url2u(pw_wiki_getcfg('id'));
-// 	} catch (Exception $e) {
-		
-// 	}
-// 	if($id == "") {
-// 		$id = pw_url2u(pw_wiki_getcfg('startpage'));
-// 	}
-
 	$id = isset($_GET['id']) && $_GET['id'] != "" ? $_GET['id'] : pw_url2u(pw_wiki_getcfg('startpage'));
-	return pw_wiki_s2id($id);
+	return new WikiID($id, pw_wiki_getcfg('fileext'), pw_wiki_getcfg('storage'));
 }
 
 function pw_wiki_setmode($mode) {
@@ -205,51 +197,7 @@ function pw_wiki_path2id($path) {
 	return $id;
 }
 
-define ('ST_FULL', 0);		// Pfad mit Storageangabe, mit Dateinamen, mit Erweiterung
-define ('ST_SHORT', 1);	 // Pfad mit Storageangabe, ohne Dateinamen, ohne Erweiterung
-define ('ST_NOEXT', 2);	 // Pfad mit Storageangabe, mit Dateinamen, ohne Erweiterung
-define ('FULL', 3);			 // Pfad ohne Storageangabe, mit Dateinamen, mit Erweiterung
-define ('SHORT', 4);			// Pfad ohne Storageangabe, ohne Dateinamen, ohne Erweiterung
-define ('NOEXT', 5);			// Pfad ohne Storageangabe, mit Dateinamen, ohne Erweiterung
-define ('FNAME', 6);			// Nur Dateiname mit Erweiterung
-define ('FNAME_NOEXT', 7);// Nur Dateiname ohne Erweiterung
-define ('DNAME', 8);			// Innerstes Verzeichnis
 
-function pw_wiki_path($id, $type = SHORT) {
-	$id = pw_url2u($id);
-	$isdir = pw_wiki_isns($id);
-	$id = utf8_strtolower($id);
-	$pg = pw_wiki_pg($id);
-	$id = str_replace(":", "/", $id);
-	$storage = utf8_rtrim(pw_wiki_getcfg('storage'), '/').'/';
-
-	if (!pw_checkfilename($id) or !pw_checkfilename($storage)) {
-		return false;
-	}
-
-
-	$ext = "";
-	if (!$isdir) {
-		$ext = pw_wiki_getcfg('fileext');
-	}
-
-	switch ($type) {
-		case ST_FULL:		 $out = $storage.pw_dirname($id).$pg.$ext; break;
-		case ST_SHORT:		$out = $storage.pw_dirname($id); break;
-		case ST_NOEXT:		$out = $storage.pw_dirname($id).$pg; break;
-		case FULL:				$out = pw_dirname($id).$pg.$ext; break;
-		case SHORT:			 $out = pw_dirname($id) == '.' ? '' : pw_dirname($id); break;
-		case NOEXT:			 $out = pw_dirname($id).$pg; break;
-		case FNAME_NOEXT: $out = $pg; break;
-		case FNAME:			 $out = $pg.$ext; break;
-		case DNAME:			 $out = pw_dirname($id, true); break;
-
-	}
-
-	$out = str_replace('//', '/', $out);
-
-	return pw_u2t($out);
-}
 
 function pw_wiki_isns($id) {
 	$id = pw_s2u($id);
@@ -265,7 +213,9 @@ function pw_wiki_getfulltitle($sep = "&raquo;", $showuser = true) {
 	$title = utf8_ucfirst($title);
 	$title = pw_s2e($title);
 
-	$ns = pw_url2u(pw_wiki_getcfg('ns'));
+	//$ns = pw_url2u(pw_wiki_getcfg('ns'));
+	$id = pw_wiki_getid();
+	$ns = $id->getNS();
 	if ($ns) {
 		$ns = utf8_ucfirst($ns);
 		$ns = pw_s2e($ns);
@@ -277,7 +227,8 @@ function pw_wiki_getfulltitle($sep = "&raquo;", $showuser = true) {
 	if ($mode == 'showpages') {
 		$title .= " [Seiten&uuml;berblick]";
 	} else {
-		$pg = pw_url2u(pw_wiki_getcfg('pg'));
+		//$pg = pw_url2u(pw_wiki_getcfg('pg'));
+		$pg = $id->getPage();
 		$pg = utf8_ucfirst($pg);
 		$pg = pw_s2e($pg);
 		$title .= $sep.$pg;
@@ -378,13 +329,7 @@ function html_footer($modal) {
 /**
  * SPECIAL UTILITIES FOR WIKI...
  */
-function pw_wiki_s2id($id) {
-	$id = pw_s2u($id);
-	$id = pw_stripslashes($id);
-	$id = pw_s2url($id);
-	$id = utf8_strtolower($id);
-	return $id;
-}
+
 
 
 
@@ -399,50 +344,9 @@ function pw_wiki_fileinfo($subcat) {
 	return $o;
 }
 
-function pw_wiki_pg($fullid) {
-	$fullid = explode(":", $fullid);
-	$id = array_pop($fullid);
-
-	if (pw_wiki_isvalidid($id) and $id != ".." and $id != ".") {
-		return pw_s2u($id);
-	}
-
-	return false;
-
-}
-
-function pw_wiki_ns($ns) {
-	$ns = pw_s2u($ns);
-
-	$ns = str_replace(":", "/", $ns);
-	$ns = pw_dirname($ns);
-	$ns = str_replace("/", ":", $ns);
-
-	$ns = utf8_rtrim($ns, ':').':';
-	return utf8_ltrim($ns, ':');
-}
-
-function pw_wiki_fullns($ns) {
-	if (!isset($ns) || strlen($ns) == 0 || $ns == ":") {
-		return pw_wiki_ns(pw_wiki_getcfg('fullns'));
-	}
-
-	if ($ns[0] == ':') {
-	return pw_wiki_ns($ns);
-	}
-
-	return pw_wiki_ns(pw_wiki_getcfg('fullns').$ns);
-}
 
 
-function pw_wiki_isvalidid($fullid) {
-	$fullid = pw_url2u($fullid);
-	if (0 == preg_match('#[/?*;{}\\\]+#', $fullid)) {
-		return true;
-	}
 
-	return false;
-}
 
 function pw_wiki_trace($ns, $sep = "&raquo;") {
 
