@@ -23,7 +23,10 @@ class InternalLink extends ParserRule implements ParserRuleHandler, LexerRuleHan
 
 		$linkPositionNode = $node->getFirstChild();
 		$linkPositionText = $this->getTextFromNode($linkPositionNode);
-		$id = new WikiID($linkPositionText);
+		$curID = pw_wiki_getid();
+		TestingTools::inform($curID->getFullNS());
+		TestingTools::inform($linkPositionText);
+		$id = new WikiID($curID->getFullNS().$linkPositionText);
 		
 		$linkModus = null;
 		if($linkPositionNode->getFirstChild()->getName() == 'internallinkmode') {
@@ -36,7 +39,7 @@ class InternalLink extends ParserRule implements ParserRuleHandler, LexerRuleHan
 		}
 // 		TestingTools::inform($linkModus);
 // 		TestingTools::inform($linkPositionText);
-// 		TestingTools::inform($id);
+ 		TestingTools::inform($id);
 		
 		//@TODO: refactor... common function... bubble-up of an error until ????
 		if ($_SESSION['pw_wiki']['error']) {
