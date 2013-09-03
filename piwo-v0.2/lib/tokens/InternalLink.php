@@ -19,13 +19,24 @@ class InternalLink extends ParserRule implements ParserRuleHandler, LexerRuleHan
 	public function onEntry() {
 		//@TODO: clean redundant code... specially for encoding-functions!
 		$indextable = $this->getParser()->getUserInfo('indextable');
-		
 		$node = $this->getNode();
-		
+
 		$linkPositionNode = $node->getFirstChild();
 		$linkPositionText = $this->getTextFromNode($linkPositionNode);
+		$id = new WikiID($linkPositionText);
 		
-//    		TestingTools::inform($linkPositionText);
+		$linkModus = null;
+		if($linkPositionNode->getFirstChild()->getName() == 'internallinkmode') {
+			$linkModusData = $linkPositionNode->getFirstChild()->getData();
+			$linkModus = $linkModusData[0];
+			$modi = explode("|", self::MODITEXT);
+			if (!in_array($linkModus, $modi)) {
+				return nop("Interner Link mit falschem Modus '$linkModus'. Erlaubte Modi sind: ".self::MODITEXT);
+			}
+		}
+// 		TestingTools::inform($linkModus);
+// 		TestingTools::inform($linkPositionText);
+// 		TestingTools::inform($id);
 		
 		//@TODO: refactor... common function... bubble-up of an error until ????
 		if ($_SESSION['pw_wiki']['error']) {
@@ -34,18 +45,6 @@ class InternalLink extends ParserRule implements ParserRuleHandler, LexerRuleHan
 		}
 	
 		$fullid = $linkPositionText;
-		$modus = false;
-	
-		//TODO Move this part to WikiID
-		if (preg_match("#(.*)&gt;(.*)#", $linkPositionText, $xp_lpt)) {
-			$modus = $xp_lpt[1];
-			$fullid = $xp_lpt[2];
-	
-			$modi = explode("|", self::MODITEXT);
-			if (!in_array($modus, $modi)) {
-				return nop("Interner Link mit falschem Modus '$modus'. Erlaubte Modi sind: ".self::MODITEXT);
-			}
-		}
 	
 		if (!$fullid) {
 			return nop("Interner Wikilink ohne Zielangabe. Leerer Wikilink?", false);
@@ -87,9 +86,10 @@ class InternalLink extends ParserRule implements ParserRuleHandler, LexerRuleHan
 		$na = "";
 		$type = "INTERNAL";
 		$section = null;
+		
+		//TODO Move the # matching part to WikiID
 		if ($fullid[0] == "#") {
 			$idText = ltrim($fullid, "#");
-			$id = new WikiID($idText);
 // 			$idText = pw_s2u($idText);
 // 			$idText = utf8_strtolower($idText);
 			$type = "JUMP";
@@ -138,7 +138,7 @@ class InternalLink extends ParserRule implements ParserRuleHandler, LexerRuleHan
 			if ($idText[0] == ':') {
 				$idText = ltrim($idText, ':');
 			} else {
-				$ns = pw_wiki_getcfg('fullns');
+				$ns = $id->getFullns();
 				$idText = $ns ? $ns.$idText : $idText;
 			}
 	
@@ -151,15 +151,15 @@ class InternalLink extends ParserRule implements ParserRuleHandler, LexerRuleHan
 			#out2(utf8_check($filename));
 			#die();
 	
-			if (!file_exists($filename) and !$modus) {
+			if (!file_exists($filename) and !$linkModus) {
 				$na = ' class="pw_wiki_link_na"';
-				$modus = "edit";
+				$linkModus = "edit";
 				$found = false;
 			}
 			
 			if (!$text) {
 				//$text = pw_wiki_pg(pw_e2u($fullid));
-				$text = $idText->getPage();
+				$text = $id->getPage();
 				#out(pw_e2u($fullid));
 			}
 	
@@ -176,20 +176,20 @@ class InternalLink extends ParserRule implements ParserRuleHandler, LexerRuleHan
 		}
 	
 	
-		if ($modus == "edit" and $section) {
+		if ($linkModus == "edit" and $section) {
 			$href = "?id=".pw_wiki_getcfg('id');
 			$href .= "&mode=editpage&amp;section=$section";
 		}
 	
-		if ($type == "JUMP" and !$modus and $section) {
+		if ($type == "JUMP" and !$linkModus and $section) {
 			$href = "#header_".$section;
 		}
 	
 		if ($type == "INTERNAL") {
-			if ($modus == "edit" or !$found) {
+			if ($linkModus == "edit" or !$found) {
 				$href .= '&mode=editpage';
 			}
-			if ($modus == "showpages") {
+			if ($linkModus == "showpages") {
 				$href .= "&mode=showpages";
 				$na = '';
 			}

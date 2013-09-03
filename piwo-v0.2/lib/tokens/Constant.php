@@ -56,7 +56,7 @@ class Constant extends ParserRule implements ParserRuleHandler, LexerRuleHandler
 			case 'id': $txt = pw_url2u(pw_wiki_getcfg('pg')); break;
 			case 'wrongid':
 				try { 
-					$txt = pw_url2u(pw_wiki_getcfg('wrongid'));
+					$txt = pw_url2u(pw_wiki_getcfg('wrongid')->getID());
 				} catch (Exception $e) {
 					$txt = "";
 				} 

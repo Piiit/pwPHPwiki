@@ -18,7 +18,9 @@ class WikiID {
 	private $id;
 	private $ns;
 	private $path;
+	private $fullnspath;
 	private $fullns;
+	private $nsArray;
 	private $pg;
 	
 	public function __construct($id) {
@@ -28,20 +30,13 @@ class WikiID {
 		}
 		
 		$this->id = self::s2id($id);
-	
-		$this->fullns = self::ns($this->id);
-		$this->pg = self::pg($this->id);
-	
-		$this->ns = explode(':', rtrim($this->fullns, ':'));
-		if (strlen($this->ns[0]) > 0) {
-			$this->ns = array_pop($this->ns);
-			$this->id = $this->fullns.$this->pg;
-		} else {
-			$this->ns = "";
-			$this->id = $this->pg;
-		}
-
-		$this->path = str_replace(":", "/", $this->id);;
+		$this->fullns = ":".self::cleanNamespaceString($this->id);
+		$this->pg = self::cleanPageString($this->id);
+		$this->nsArray = preg_split("#:#", $this->fullns, null, PREG_SPLIT_NO_EMPTY);
+		$this->ns = end($this->nsArray);
+		$this->id = $this->fullns.$this->pg;
+		$this->path = str_replace(":", "/", $this->id);
+		$this->fullnspath = str_replace(":", "/", $this->fullns);
 	}
 	
 	public function getID() {
@@ -56,12 +51,24 @@ class WikiID {
 		return $this->path;
 	}
 	
+	public function getFullNSPath() {
+		return $this->fullnspath;
+	}
+	
 	public function getFullNS() {
 		return $this->fullns;
+	}
+	
+	public function getFullNSAsArray() {
+		return $this->nsArray; 
 	}
 
 	public function getPage() {
 		return $this->pg;
+	}
+	
+	public function isRootNS() {
+		return (utf8_strlen($this->ns) == 0);
 	}
 	
 	private static function s2id($id) {
@@ -80,7 +87,7 @@ class WikiID {
 		return false;
 	}
 	
-	private static function pg($fullid) {
+	private static function cleanPageString($fullid) {
 		$fullid = explode(":", $fullid);
 		$id = array_pop($fullid);
 		if ($id != ".." && $id != ".") {
@@ -89,7 +96,7 @@ class WikiID {
 		return "";
 	}
 	
-	private static function ns($ns) {
+	public static function cleanNamespaceString($ns) {
 		$ns = str_replace(":", "/", $ns);
 		$ns = pw_dirname($ns);
 		$ns = str_replace("/", ":", $ns);
