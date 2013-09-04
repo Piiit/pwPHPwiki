@@ -13,50 +13,9 @@ function pw_wiki_getid() {
 	return new WikiID($id, pw_wiki_getcfg('fileext'), pw_wiki_getcfg('storage'));
 }
 
-function pw_wiki_setmode($mode) {
-	$_SESSION['pw_wiki']['mode'] = $mode;
+function pw_wiki_getmode() {
+	return isset($_GET['mode']) ? $_GET['mode'] : null;
 }
-
-// function pw_wiki_setid($id) {
-
-// 	$id = pw_s2u($id);
-
-// 	if (! pw_wiki_isvalidid($id)) {
-// 		$_SESSION['pw_wiki']['wrongid'] = $id;
-// 		throw new Exception("Wrong id '$id'!");
-// 	}
-
-// 	$id = utf8_strtolower($id);
-
-// 	$fullpath = pw_wiki_path($id, ST_FULL);
-// 	$path = pw_wiki_path($id, ST_SHORT);
-// 	$path2 = pw_wiki_path($id, SHORT);
-
-// 	$fullns = pw_wiki_ns($id);
-// 	$pg = pw_wiki_pg($id);
-
-// 	$ns = explode(':', rtrim($fullns, ':'));
-// 	if (strlen($ns[0]) > 0) {
-// 		$ns = array_pop($ns);
-// 		$id = $fullns.$pg;
-// 	} else {
-// 		$ns = "";
-// 		$id = $pg;
-// 	}
-
-// 	$fullns = pw_s2url($fullns);
-// 	$ns = pw_s2url($ns);
-// 	$id = pw_s2url($id);
-// 	$pg = pw_s2url($pg);
-
-// 	$_SESSION['pw_wiki']['fullpath'] = $fullpath;
-// 	$_SESSION['pw_wiki']['path'] = $path;
-// 	$_SESSION['pw_wiki']['path2'] = $path2;
-// 	$_SESSION['pw_wiki']['fullns'] = $fullns;
-// 	$_SESSION['pw_wiki']['ns'] = $ns;
-// 	$_SESSION['pw_wiki']['id'] = $id;
-// 	$_SESSION['pw_wiki']['pg'] = $pg;
-// }
 
 function pw_wiki_getcfg($what = "", $subcat = "") {
 
@@ -186,25 +145,13 @@ function pw_wiki_path2id($path) {
 	}
 
 	$id = implode('/', $ida);
-
-
 	$id = str_replace("/", ":", $id);
-
 	$id = ltrim($id, ":");
 
 	$id = StringTools::rightTrim($id, pw_wiki_getcfg('fileext'));
 	$id = pw_s2url($id);
 	return $id;
 }
-
-
-
-function pw_wiki_isns($id) {
-	$id = pw_s2u($id);
-	return utf8_substr($id, -1) == ':' ? true : false;
-}
-
-
 
 function pw_wiki_getfulltitle($sep = "&raquo;", $showuser = true) {
 	$sep = ' '.$sep.' ';
@@ -222,7 +169,7 @@ function pw_wiki_getfulltitle($sep = "&raquo;", $showuser = true) {
 		$title .= $sep.$ns;
 	}
 
-	$mode = pw_wiki_getcfg('mode');
+	$mode = pw_wiki_getmode();
 
 	if ($mode == 'showpages') {
 		$title .= " [Seiten&uuml;berblick]";

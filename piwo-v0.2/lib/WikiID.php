@@ -67,6 +67,10 @@ class WikiID {
 		return $this->pg;
 	}
 	
+	public function isNS() {
+		return utf8_substr($this->id, -1) == ':';
+	}
+	
 	public function isRootNS() {
 		return (utf8_strlen($this->ns) == 0);
 	}
