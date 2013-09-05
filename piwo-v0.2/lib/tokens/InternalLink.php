@@ -24,8 +24,8 @@ class InternalLink extends ParserRule implements ParserRuleHandler, LexerRuleHan
 		$linkPositionNode = $node->getFirstChild();
 		$linkPositionText = $this->getTextFromNode($linkPositionNode);
 		$curID = pw_wiki_getid();
-		TestingTools::inform($curID->getFullNS());
-		TestingTools::inform($linkPositionText);
+// 		TestingTools::inform($curID->getFullNS());
+// 		TestingTools::inform($linkPositionText);
 		$id = new WikiID($curID->getFullNS().$linkPositionText);
 		
 		$linkModus = null;
@@ -39,7 +39,7 @@ class InternalLink extends ParserRule implements ParserRuleHandler, LexerRuleHan
 		}
 // 		TestingTools::inform($linkModus);
 // 		TestingTools::inform($linkPositionText);
- 		TestingTools::inform($id);
+//  		TestingTools::inform($id);
 		
 		//@TODO: refactor... common function... bubble-up of an error until ????
 		if ($_SESSION['pw_wiki']['error']) {
@@ -61,7 +61,7 @@ class InternalLink extends ParserRule implements ParserRuleHandler, LexerRuleHan
 	// 		$parser = new ParserRule($textNode, $this->getParser());
 	// 		$text = $parser->getText();
 			$text = $textNode->getData();
-// 			TestingTools::inform($text, "link text");
+//  		TestingTools::inform($text, "link text");
 		}
 	
 		//@TODO: refactor... common function... bubble-up of an error until ????
@@ -124,10 +124,8 @@ class InternalLink extends ParserRule implements ParserRuleHandler, LexerRuleHan
 			}
 	
 		} else {
-	
-			//out($fullid);
+
 			preg_match("/(.*)#(.*)/", $fullid, $lpt);
-			#out($lpt);
 	
 			$idText = isset($lpt[1]) ? $lpt[1] : $fullid;
 			$jump = "";
@@ -135,25 +133,18 @@ class InternalLink extends ParserRule implements ParserRuleHandler, LexerRuleHan
 				$jump = "#".utf8_strtolower(pw_s2url($lpt[2]));
 			}
 	
+ 			TestingTools::inform($idText);
 			$idText = pw_url2t($idText);
 	
 			// Absolute Pfadangabe...
 			if ($idText[0] == ':') {
 				$idText = ltrim($idText, ':');
 			} else {
-				$ns = $id->getFullns();
+				$ns = $id->getFullNSAsString();
 				$idText = $ns ? $ns.$idText : $idText;
 			}
-	
 			
 			$filename = pw_wiki_getcfg('storage')."/".$id->getPath().pw_wiki_getcfg('fileext');;
-			#out($id);
-			#$filename = pw_u2t($filename);
-			#out(file_exists($filename), $filename);
-			#out($filename);
-			#out2(utf8_check($filename));
-			#die();
-	
 			if (!file_exists($filename) and !$linkModus) {
 				$na = ' class="pw_wiki_link_na"';
 				$linkModus = "edit";
@@ -161,13 +152,10 @@ class InternalLink extends ParserRule implements ParserRuleHandler, LexerRuleHan
 			}
 			
 			if (!$text) {
-				//$text = pw_wiki_pg(pw_e2u($fullid));
-				$text = $id->getPage();
-				#out(pw_e2u($fullid));
+				$text = utf8_ucfirst($id->getPageAsString());
 			}
 	
 			$href = "?id=".pw_s2url($idText).$jump;
-	
 		}
 	
 		if ($type == "JUMP" and !$text) {

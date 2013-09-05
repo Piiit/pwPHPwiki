@@ -9,7 +9,7 @@ require_once INC_PATH.'pwTools/debug/TestingTools.php';
 require_once INC_PATH.'piwo-v0.2/lib/WikiID.php';
 
 function pw_wiki_getid() {
-	$id = isset($_GET['id']) && $_GET['id'] != "" ? $_GET['id'] : pw_url2u(pw_wiki_getcfg('startpage'));
+	$id = isset($_GET['id']) && $_GET['id'] != "" ? $_GET['id'] : pw_wiki_getcfg('startpage');
 	return new WikiID($id, pw_wiki_getcfg('fileext'), pw_wiki_getcfg('storage'));
 }
 

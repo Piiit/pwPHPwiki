@@ -24,23 +24,29 @@ class WikiID {
 	private $pg;
 	
 	public function __construct($id) {
+		$this->id = self::s2id($id);
 		
-		if (!self::isvalid($id)) {
-			throw new Exception("Invalid ID '$id'!");
+		if (!self::isvalid($this->id)) {
+			throw new Exception("Invalid ID '$this->id'!");
 		}
 		
-		$this->id = self::s2id($id);
+// 		TestingTools::inform($this->id);
+		
 		$this->fullns = ":".self::cleanNamespaceString($this->id);
 		$this->pg = self::cleanPageString($this->id);
 		$this->nsArray = preg_split("#:#", $this->fullns, null, PREG_SPLIT_NO_EMPTY);
 		$this->ns = end($this->nsArray);
 		$this->id = $this->fullns.$this->pg;
-		$this->path = str_replace(":", "/", $this->id);
+		$this->path = pw_url2t(str_replace(":", "/", $this->id));
 		$this->fullnspath = str_replace(":", "/", $this->fullns);
 	}
 	
 	public function getID() {
 		return $this->id;
+	}
+	
+	public function getIDAsString() {
+		return pw_url2e($this->id);
 	}
 
 	public function getNS() {
@@ -59,12 +65,20 @@ class WikiID {
 		return $this->fullns;
 	}
 	
+	public function getFullNSAsString() {
+		return pw_url2e($this->fullns);
+	}
+	
 	public function getFullNSAsArray() {
 		return $this->nsArray; 
 	}
 
 	public function getPage() {
 		return $this->pg;
+	}
+	
+	public function getPageAsString() {
+		return pw_url2e($this->pg);
 	}
 	
 	public function isNS() {
@@ -76,15 +90,16 @@ class WikiID {
 	}
 	
 	private static function s2id($id) {
-		$id = pw_s2u($id);
 		$id = pw_stripslashes($id);
+		$id = pw_e2url($id);
+// 		TestingTools::inform($id);
 		$id = pw_s2url($id);
 		$id = utf8_strtolower($id);
 		return $id;
 	}
 
 	private static function isvalid($fullid) {
-		$fullid = pw_url2u($fullid);
+		//$fullid = pw_url2u($fullid);
 		if (0 == preg_match('#[/?*;{}\\\]+#', $fullid)) {
 			return true;
 		}
