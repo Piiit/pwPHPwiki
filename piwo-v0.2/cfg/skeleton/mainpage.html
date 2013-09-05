@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+    <head>
+        <title>{{pagetitle}}</title>
+		<meta name="description" content="{{pagedescription}}" />
+		<meta name="keywords" content="{{pagekeywords}}" />
+		<meta http-equiv="Content-Script-Type" content="text/javascript" />
+		<link rel="shortcut icon" href="media/favicon.ico" type="image/ico" />
+		<link rel="stylesheet" type="text/css" media="screen" href="default.css" />
+		<link rel="stylesheet" type="text/css" media="screen" href="admin.css" />
+<!-- 		<script type="text/javascript" src="lib/js/scriptaculous/lib/prototype.js"></script> -->
+<!-- 		<script type="text/javascript" src="lib/js/scriptaculous/src/scriptaculous.js"></script> -->
+<!-- 		<script type="text/javascript" src="lib/js/pw_url.js"></script> -->
+<!-- 		<script type="text/javascript" src="lib/js/pw_array.js"></script> -->
+		<script type="text/javascript" src="lib/js/catchkeys.js"></script> <!-- Editorkeys: catch TAB, insert Spaces -->
+<!-- 		<script type="text/javascript" src="lib/js/shortcut.js"></script> -->
+<!-- 		<script type="text/javascript" src="lib/js/pw_ui.js"></script> -->
+		<script type="text/javascript">
+		    //<![CDATA[
+		    function setfocus() {
+			    var f = document.getElementsByTagName('input');
+			    if (f.length == 0) {
+				    f = document.getElementById('forminfo')
+                    if (!f) {
+                        f = document.getElementById('wikitxt')
+                        if (!f) {
+                            f = document.getElementById('submit')
+                        }
+                    }
+				    f.focus();
+				    return;
+ 			    }
+		        for (var i = 0; i < f.length; i++) {
+		            if (f[i].type != 'hidden') {
+		                f[i].focus();
+		                return;
+		            }
+		        }
+		    }
+		    //]]>
+		</script>
+		{{debugstyle}}
+    </head>
+    <body onload="setfocus()">
+        <div id='__fullsite'>
+        {{body}}
+        </div>
+
+<!--     if ($modal) { -->
+<!--         pw_ui_printDialogWrap(); -->
+<!--     } -->
+
+    </body>
+</html>

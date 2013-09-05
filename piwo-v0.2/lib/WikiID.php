@@ -99,7 +99,6 @@ class WikiID {
 	}
 
 	private static function isvalid($fullid) {
-		//$fullid = pw_url2u($fullid);
 		if (0 == preg_match('#[/?*;{}\\\]+#', $fullid)) {
 			return true;
 		}

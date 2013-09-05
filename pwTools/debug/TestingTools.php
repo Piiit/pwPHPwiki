@@ -17,7 +17,6 @@ class TestingTools {
 	const REPLACENEWLINE = 1;
 	
 	private static $_debugOn = false;
-	private static $_init = false;
 	
 	private static function printLine($type, $length, $out, $description = null, $debugInfo = null) {
 		isset($length) ? $length = "<span class='deblength'>$length</span>" : $length = "";
@@ -52,7 +51,7 @@ class TestingTools {
 	}
 	
 	private static function printAll($output, $description="", $call = 0, $type = self::INFORM, $newline = self::REPLACENEWLINE) {
-		self::init();
+		self::getCSS();
 		if ($call == 0) {
 			$debugInfo = $type.": SUM=".count($output, COUNT_RECURSIVE)."; ".self::getDebugInfoAsString($description);
 			echo "<div class='debdiv'><ul id='first'>\n";
@@ -88,23 +87,22 @@ class TestingTools {
 		self::$_debugOn = true;
 	}
 	
-	public static function init() {
-		if(self::$_init == false) {
-			StringTools::htmlIndentPrint ();
-			StringTools::htmlIndentPrint ("<!-- PW_DEBUG_INIT --------------------------------------------------->");
-			StringTools::htmlIndentPrint ("<style>", StringTools::START);
-			StringTools::htmlIndentPrint (".debpre {font-size: 12px; color: black; background-color: lightgray; margin: 1px; padding-top: 0px}");
-			StringTools::htmlIndentPrint (".debout {background-color: white; color: black; border: 1px solid black; padding-left: 2px; padding-right: 2px}");
-			StringTools::htmlIndentPrint (".debspecial {background-color: gray; color: white; margin-left: 2px; margin-right: 2px}");
-			StringTools::htmlIndentPrint (".debdiv {margin: 5px; border: 1px solid black; background-color: lightgray}");
-			StringTools::htmlIndentPrint (".debdiv ul {list-style-type: none}");
-			StringTools::htmlIndentPrint (".debdiv ul li {margin-top:3px;}");
-			StringTools::htmlIndentPrint (".debdiv ul#first {padding-left: 0px; margin-left: 0; margin-top: 3px; padding-bottom: 3px; margin-bottom:0}");
-			StringTools::htmlIndentPrint ("</style>", StringTools::END);
-			StringTools::htmlIndentPrint ("<!-- PW_DEBUG_INIT --------------------------------------------------->");
-			StringTools::htmlIndentPrint ();
-			self::$_init = true;
-		}
+	public static function getCSS() {
+		$o = "";
+		$o .= StringTools::htmlIndent ();
+		$o .= StringTools::htmlIndent ("<!-- PW_DEBUG_INIT --------------------------------------------------->");
+		$o .= StringTools::htmlIndent ("<style>", StringTools::START);
+		$o .= StringTools::htmlIndent (".debpre {font-size: 12px; color: black; background-color: lightgray; margin: 1px; padding-top: 0px}");
+		$o .= StringTools::htmlIndent (".debout {background-color: white; color: black; border: 1px solid black; padding-left: 2px; padding-right: 2px}");
+		$o .= StringTools::htmlIndent (".debspecial {background-color: gray; color: white; margin-left: 2px; margin-right: 2px}");
+		$o .= StringTools::htmlIndent (".debdiv {margin: 5px; border: 1px solid black; background-color: lightgray}");
+		$o .= StringTools::htmlIndent (".debdiv ul {list-style-type: none}");
+		$o .= StringTools::htmlIndent (".debdiv ul li {margin-top:3px;}");
+		$o .= StringTools::htmlIndent (".debdiv ul#first {padding-left: 0px; margin-left: 0; margin-top: 3px; padding-bottom: 3px; margin-bottom:0}");
+		$o .= StringTools::htmlIndent ("</style>", StringTools::END);
+		$o .= StringTools::htmlIndent ("<!-- PW_DEBUG_INIT --------------------------------------------------->");
+		$o .= StringTools::htmlIndent ();
+		return $o;
 	}
 	
 	public static function inform($output, $description = "") {

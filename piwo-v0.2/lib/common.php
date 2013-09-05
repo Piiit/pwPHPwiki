@@ -40,6 +40,10 @@ function pw_wiki_getcfg($what = "", $subcat = "") {
 	return $_SESSION['pw_wiki'][$what][$subcat];
 }
 
+function pw_wiki_setcfg($key, $value) {
+	$_SESSION['pw_wiki'][$key] = $value;
+}
+
 function pw_checkfilename($name) {
 	if (strpos($name, "*") or strpos($name, "\\") or strpos($name, "?")) {
 		return false;
@@ -194,90 +198,6 @@ function pw_wiki_getfulltitle($sep = "&raquo;", $showuser = true) {
 */
 	return $title;
 }
-
-
-function html_header() {
-	global $MODE;
-	StringTools::htmlIndentPrint ('<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">');
-	StringTools::htmlIndentPrint ('<html>', StringTools::START);
-	StringTools::htmlIndentPrint ('<!-- HEADER start -->');
-	StringTools::htmlIndentPrint ('<head>', StringTools::START);
-	StringTools::htmlIndentPrint ('<title>'.pw_wiki_getfulltitle().'</title>');
-	StringTools::htmlIndentPrint ('<meta name="description" content="'.pw_wiki_getcfg('description').'">');
-	StringTools::htmlIndentPrint ('<meta name="keywords" content="'.pw_wiki_getcfg('keywords').'">');
-	StringTools::htmlIndentPrint ('<meta http-equiv="Content-Type" content="text/html" charset="utf-8">');
-	StringTools::htmlIndentPrint ('<meta http-equiv="Content-Script-Type" content="text/javascript">');
-	StringTools::htmlIndentPrint ('<link rel="shortcut icon" href="media/favicon.ico" type="image/ico" />');
-	StringTools::htmlIndentPrint ('<link rel="stylesheet" type="text/css" media="screen" href="default.css">');
-	StringTools::htmlIndentPrint ('<link rel="stylesheet" type="text/css" media="screen" href="admin.css">');
-	#StringTools::htmlIndentPrint ('<script type="text/javascript" language="javascript" src="lib/js/scriptaculous/lib/prototype.js"></script>');
-	#StringTools::htmlIndentPrint ('<script type="text/javascript" language="javascript" src="lib/js/scriptaculous/src/scriptaculous.js"></script>');
-	#StringTools::htmlIndentPrint ('<script type="text/javascript" language="javascript" src="lib/js/pw_url.js"></script>');
-	#StringTools::htmlIndentPrint ('<script type="text/javascript" language="javascript" src="lib/js/pw_array.js"></script>');
-	StringTools::htmlIndentPrint ('<script type="text/javascript" language="javascript" src="lib/js/catchkeys.js"></script>'); // Editorkeys: catch TAB, insert Spaces
-	#StringTools::htmlIndentPrint ('<script type="text/javascript" language="javascript" src="lib/js/shortcut.js"></script>');
-	#StringTools::htmlIndentPrint ('<script type="text/javascript" language="javascript" src="lib/js/pw_ui.js"></script>');
-
-	echo "<script>function setfocus() {
-		var f = document.getElementsByTagName('input');
-
-		if (f.length == 0) {
-			f = document.getElementById('forminfo')
-			if (!f) {
-				f = document.getElementById('wikitxt')
-				if (!f) {
-					f = document.getElementById('submit')
-				}
-			}
-
-			f.focus();
-			return;
-		}
-
-		for (var i = 0; i < f.length; i++) {
-			if (f[i].type != 'hidden') {
-				f[i].focus();
-				return;
-			}
-		}
-	}
-
-	</script>";
-
-	if (pw_wiki_getcfg('debug')) {
-		TestingTools::init();
-		TestingTools::debugOn();
-	}
-
-	StringTools::htmlIndentPrint ('</head>', StringTools::END);
-	StringTools::htmlIndentPrint ('<body onload="setfocus()">', StringTools::START);
-	StringTools::htmlIndentPrint ('<!-- HEADER end -->');
-	StringTools::htmlIndentPrint ('<div id="INFO"></div>');
-}
-
-function html_footer($modal) {
-	echo "</div>
-			<div id='__bottom'>
-			</div>
-		</div>";
-
-	if ($modal) {
-		pw_ui_printDialogWrap();
-	}
-
-	StringTools::htmlIndentPrint ('<!-- FOOTER start -->');
-	StringTools::htmlIndentPrint ('</body>', StringTools::END);
-	StringTools::htmlIndentPrint ('</html>', StringTools::END);
-	StringTools::htmlIndentPrint ('<!-- FOOTER end -->');
-}
-
-
-
-/**
- * SPECIAL UTILITIES FOR WIKI...
- */
-
-
 
 
 function pw_wiki_fileinfo($subcat) {

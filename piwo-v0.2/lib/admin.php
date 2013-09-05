@@ -19,29 +19,6 @@ function pw_wiki_newpage (WikiID $id, $mode) {	if (!isset($_SESSION["pw_wiki"][
 
 }
 
-function pw_wiki_config (WikiID $id) {	if (!isset($_SESSION["pw_wiki"]["login"]["user"]))
-		return false;
-
-	global $MODE;
-
-	if (isset($_POST["config"])) {		if (isset($_POST['debug']) && $_POST['debug']) {			$_SESSION['pw_wiki']['debug'] = true;		} else {			$_SESSION['pw_wiki']['debug'] = false;			TestingTools::debugOff();		}				if (isset($_POST['useCache']) && $_POST['useCache']) {
-			$_SESSION['pw_wiki']['useCache'] = true;
-		} else {
-			$_SESSION['pw_wiki']['useCache'] = false;
-		}		return;
-	}
-	$debug_ch = "";
-	if (pw_wiki_getcfg('debug')) {		$debug_ch = " checked='checked' ";
-	}		$cache_ch = "";
-	if (pw_wiki_getcfg('useCache')) {
-		$cache_ch = " checked='checked' ";
-	}
-
-	$entries = StringTools::htmlIndent("<input type='hidden' name='oldmode' value='$MODE' />");	$entries .= StringTools::htmlIndent("<label for='debug'>Debug-Modus:</label> <input type='checkbox' name='debug' id='debug'$debug_ch />");	$entries .= StringTools::htmlIndent("<br />");	$entries .= StringTools::htmlIndent("<label for='useCache'>Use cache:</label> <input type='checkbox' name='useCache' id='useCache'$cache_ch />");
-	return pw_ui_getDialogQuestion("Einstellungen", $entries, "config", "OK", "id=$id&mode=$MODE");
-
-}
-
 function pw_wiki_savepage (WikiID $id, $data) {
 
 	// Kontrolliere die Berechtigungen	if (!isset($_SESSION["pw_wiki"]["login"]["user"]))
