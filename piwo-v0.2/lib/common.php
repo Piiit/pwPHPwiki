@@ -18,7 +18,7 @@ function pw_wiki_getmode() {
 }
 
 function pw_wiki_getcfg($what = "", $subcat = "") {
-
+	
 	if (!is_array($_SESSION['pw_wiki'])) {
 		throw new Exception("Session pw_wiki is not an ARRAY!");
 	}

@@ -3,34 +3,31 @@
 if (!defined('INC_PATH')) {
 	define ('INC_PATH', realpath(dirname(__FILE__).'/../../').'/');
 }
+require_once INC_PATH.'piwo-v0.2/lib/modules/ModuleHandler.php';
 require_once INC_PATH.'piwo-v0.2/lib/modules/Module.php';
 
-class ConfigModule implements Module {
+
+class ConfigModule implements ModuleHandler {
 	
 	public function getName() {
-		return strtolower(__CLASS__);
+		return "config";
 	}
 
 	public function getVersion() {
 		return "20130905";
 	}
 
-	public function activateIf() {
-		return array('config', 'configSave');
-	}
-
-	public function availableFor() {
-		return array('admin');
+	//TODO Change this granularity and make a permissions Class to handle this
+	public function permissionGranted($userData) {
+		return $userData['group'] == 'admin';
 	}
 	
 	public function getDialog() {
-		if (!isset($_SESSION["pw_wiki"]["login"]["user"]))
-			return false;
 		
 		$mode = pw_wiki_getmode();
 		$id = pw_wiki_getid();
 		
-		if (isset($_POST["configSave"])) {
+		if (isset($_POST["config"])) {
 			if (isset($_POST['debug']) && $_POST['debug']) {
 				pw_wiki_setcfg('debug', true);
 			} else {
@@ -43,7 +40,7 @@ class ConfigModule implements Module {
 			} else {
 				pw_wiki_setcfg('useCache', false);
 			}
-			return;
+			return pw_ui_getDialogInfo($this->getMenuText(), "Changes saved!", "id=".$id->getID());
 		}
 		
 		$debug_ch = "";
@@ -60,15 +57,15 @@ class ConfigModule implements Module {
 		$entries .= StringTools::htmlIndent("<label for='debug'>Debug-Modus:</label> <input type='checkbox' name='debug' id='debug'$debug_ch />");
 		$entries .= StringTools::htmlIndent("<br />");
 		$entries .= StringTools::htmlIndent("<label for='useCache'>Use cache:</label> <input type='checkbox' name='useCache' id='useCache'$cache_ch />");
-		return pw_ui_getDialogQuestion("Einstellungen", $entries, "configSave", "OK", "id=".$id->getID()."&mode=$mode");
+		return pw_ui_getDialogQuestion($this->getMenuText(), $entries, "config", "OK", "id=".$id->getID());
 	}
 	
 	public function getMenuText() {
-		return "Einstellungen";
+		return "Configuration";
 	}
 
 	public function getMenuAvailability($mode) {
-		return true; //For all menu 
+		return true; //For all modes available
 	}
 
 

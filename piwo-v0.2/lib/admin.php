@@ -200,28 +200,7 @@ function pw_wiki_delnamespaces($dir) {
 	$data = FileTools::setTextFileFormat($data, new TextFileFormat(TextFileFormat::UNIX));		$out = parse($data);	return $out;}
 function pw_wiki_showcontent(WikiID $id) {	if(isset($_SESSION['pw_wiki']['useCache']) && $_SESSION['pw_wiki']['useCache'] == false) {		return pw_wiki_get_parsed_file($id);	}		return pw_wiki_create_cached_page($id);
 }
-
-
-$user = "root";
-$pwd = "qwertz";
-
-function pw_wiki_login(WikiID $id) {	global $user;	global $pwd;
-	$mode = pw_wiki_getmode();
-
-	if (isset($_POST["login"])) {		$login = $_POST["username"];
-		$pass = $_POST["password"];
-
-		if ($user == $login && $pass == $pwd) {			$_SESSION["pw_wiki"]['login']["user"] = $login;			return pw_ui_getDialogInfo("Login", "Benutzerlogin erfolgreich...", "id=".$id->getID()."&mode=$mode");		} else {			unset($_SESSION["pw_wiki"]['login']["user"]);			return pw_ui_getDialogInfo("Login", "Benutzerlogin fehlgeschlagen...", "id=".$id->getID()."&mode=$mode");		}
-	}
-
-	if (isset($_POST["logout"])) {		unset($_SESSION["pw_wiki"]['login']["user"]);		session_destroy();		return pw_ui_getDialogInfo("Logout", "Sie sind nun abgemeldet...", "id=".$id->getID()."&mode=$mode");
-	}
-
-	if (isset($_SESSION["pw_wiki"]['login']["user"])) {		return pw_ui_getDialogQuestion("Logout", "Wollen Sie sich abmelden?", "logout", "Ja", "id=".$id->getID()."&mode=$mode");
-	}
-
-	$entries = "<label for='username'>Benutzer: </label><input type='text' class='textinput' name='username' /><br />";	$entries .= "<label for='password'>Passwort: </label><input type='password' class='textinput' name='password' />";	return pw_ui_getDialogQuestion("Login", $entries, "login", "OK", "id=".$id->getID()."&mode=$mode");
-}function pw_wiki_filenotfound(WikiID $id) {	//TODO get back to the previous mode and id	return pw_ui_getDialogInfo("Nicht gefunden", "Seite mit ID '".$id->getID()."' nicht gefunden.", "id=".pw_wiki_getcfg('startpage')."&mode=cleared");}
+function pw_wiki_filenotfound(WikiID $id) {	//TODO get back to the previous mode and id	return pw_ui_getDialogInfo("Nicht gefunden", "Seite mit ID '".$id->getID()."' nicht gefunden.", "id=".pw_wiki_getcfg('startpage')."&mode=cleared");}
 
 function pw_wiki_getfilelist(WikiID $id) {	#var_dump($id);
 	#var_dump(pw_wiki_getcfg());

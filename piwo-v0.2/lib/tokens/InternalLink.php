@@ -61,7 +61,8 @@ class InternalLink extends ParserRule implements ParserRuleHandler, LexerRuleHan
 	// 		$parser = new ParserRule($textNode, $this->getParser());
 	// 		$text = $parser->getText();
 			$text = $textNode->getData();
-//  		TestingTools::inform($text, "link text");
+			$text = pw_s2e($text);
+// 			TestingTools::inform($text, "link text");
 		}
 	
 		//@TODO: refactor... common function... bubble-up of an error until ????
@@ -133,7 +134,7 @@ class InternalLink extends ParserRule implements ParserRuleHandler, LexerRuleHan
 				$jump = "#".utf8_strtolower(pw_s2url($lpt[2]));
 			}
 	
- 			TestingTools::inform($idText);
+//  			TestingTools::inform($idText);
 			$idText = pw_url2t($idText);
 	
 			// Absolute Pfadangabe...
