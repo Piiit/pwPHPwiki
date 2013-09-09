@@ -3,8 +3,8 @@
 = Hyperlinks =
 == Interne und externe Links ==
 Wiki-Links haben einen Namensraum, einen Namen, Kapitelnamen und optional einen Titel.\\
-Zum Beispiel liegt dieser Wikitext im Namespace "''{{NS}}''" und heißt "''{{ID}}''". \\ 
-Daraus ergibt sich die vollständige ID: "''{{FULLID}}''".
+Zum Beispiel liegt dieser Wikitext im Namespace ''{{NS}}'' (komplett: ''{{FULLNS}}'') und heißt ''{{PAGE}}''. \\ 
+Daraus ergibt sich die vollständige ID: ''{{ID}}''.
 
 ^ Was es ist ^ Was du schreibst ^ Wie es dargestellt wird 
 | Einfacher externer Link\\(Texterkennung, optional) | {{{
@@ -29,13 +29,13 @@ $$ [mailto:someone@example.com E-Mail to SomeOne]
 $$ Ohne Text: [[Ausrichtung]]
 $$ Mit Text: [[Ausrichtung|Text ausrichten]]
 $$ Relative Pfadangabe: [[..:Textgestaltung]]
-$$ Absolute Pfadangabe: [[:Tests:xy]]
+$$ Absolute Pfadangabe: [[:Dokumentation:Todos]]
 $$ Dieser Link ist...: [[Nicht vorhanden]]
 }}} | {{{
 : [[Ausrichtung]]
 : [[Ausrichtung|Text ausrichten]]
 : [[..:Textgestaltung]]
-: [[:Tests:xy]]
+: [[:Dokumentation:Todos]]
 : [[Nicht vorhanden]]
 }}}
 | Adminfunktionen | {{{
@@ -54,7 +54,7 @@ Vor dem Link ein ''#'' setzen. Alle Links können als Parameter einen neuen Anze
 | Kapitelnummer                                      | ''<nowiki>[[#1.2]] - [[#1]]</nowiki>''                                         | :> [[#1.2]] - [[#1]]                                                                                    | Falls die Kapitelnummer angegeben wird, wird der Name des Titels ausgegeben.|
 | Kapitelname                                        | ''<nowiki>[[#Interne und externe Links]] - [[#Sonderzeichentest öäüß]]</nowiki>''                               | :> [[#Interne und externe Links]] - [[#Sonderzeichentest öäüß]]                                                | Alternativ kann auch der Titelname hergenommen werden.|
 | Kapitelname (neu definiert)                        | ''<nowiki>[[#Hyperlinks|Neuer Namen]]</nowiki>''                   | :> [[#Hyperlinks|Neuer Namen]]                          | Der selbe Link mit einem neu definierten Linktext.|
-| Fehlendes Kapitel                                  | ''<nowiki>[[#Nicht da]]</nowiki>''                                    | :> [[#Nicht da|abc]]                               | Fehlende Links werden markiert.|
+| Fehlendes Kapitel                                  | ''<nowiki>[[#Nicht da]] - [[#Nicht da|mit Text]]</nowiki>''                                    | :> [[#Nicht da]] - [[#Nicht da|mit Text]]                               | Fehlende Links werden markiert.|
 ^ Spezielle Kürzel \\ --(HINWEIS: Falls diese Kürzel als Kapitelnamen vorkommen, muss die Kapitelnummer als Sprungziel hergenommen werden.)-- ^^^^
 | Anfang der Seite                                   | ''<nowiki>[[#_TOP]]</nowiki>''                                         | :> [[#_TOP]]                                                | Springe zum Anfang der Seite (Defaulttext = Anfang).|
 | Anfang der Seite (neu def.)                        | ''<nowiki>[[#_TOP|Hier ist der Anfang]]</nowiki>''                     | :> [[#_TOP|Hier ist der Anfang]]    | Springe zum Anfang der Seite (Text wird als Parameter definiert).|

@@ -61,10 +61,9 @@ class IndexTable {
     }
 	
 	public function getByIdOrText($idOrText) {
-		$idOrText = utf8_strtolower(utf8_trim(pw_s2u($idOrText)));
+		$idOrText = self::normalizeText($idOrText);
 		foreach ($this->_cont as $item) {
-			$text = pw_s2e(utf8_strtolower(utf8_trim(pw_s2u($item->getText()))));
-			if ($text == $idOrText || $item->getId() == $idOrText) {
+			if (self::normalizeText($item->getText()) == $idOrText || $item->getId() == $idOrText) {
 				return $item;
 			}
 		}
@@ -83,14 +82,18 @@ class IndexTable {
 	}
 	
 	public function getByText($text) {
-		$text = strtolower(pw_s2u(trim($text)));
+		$text = self::normalizeText($text);
 		foreach ($this->_cont as $item) {
-			if ($item->getText() == $text) {
+			if (self::normalizeText($item->getText()) == $text) {
 				return $item;
 			}
 		}
 	
 		throw new Exception("Text '$text' not found in this index table.");
+	}
+	
+	private static function normalizeText($text) {
+		return pw_s2e(utf8_strtolower(utf8_trim(pw_s2u($text))));
 	}
 	
 }

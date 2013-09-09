@@ -52,8 +52,18 @@ class Constant extends ParserRule implements ParserRuleHandler, LexerRuleHandler
 			case 'time': $txt = date('H:i'); break;
 			case 'pi': $txt = str_replace('.',',',round(pi(), 5)); break;
 			case 'e': $txt = str_replace('.',',',round(2.718281828459045235, 5)); break;
-			case 'ns': $txt = pw_url2u(pw_wiki_getcfg('ns')); if ($txt === false) $txt = "[root]"; break;
-			case 'id': $txt = pw_url2u(pw_wiki_getcfg('pg')); break;
+			case 'ns': 
+				$id = pw_wiki_getid();
+				$txt = pw_url2u($id->getNS()); 
+			break;
+			case 'fullns': 
+				$id = pw_wiki_getid();
+				$txt = pw_url2u($id->getFullNS()); 
+			break;
+			case 'page':
+				$id = pw_wiki_getid();
+				$txt = pw_url2u($id->getPage()); 
+			break;
 			case 'wrongid':
 				try { 
 					$txt = pw_url2u(pw_wiki_getcfg('wrongid')->getID());
@@ -61,7 +71,10 @@ class Constant extends ParserRule implements ParserRuleHandler, LexerRuleHandler
 					$txt = "";
 				} 
 			break;
-			case 'fullid': $txt = pw_url2u(pw_wiki_getcfg('id')); break;
+			case 'id':
+				$id = pw_wiki_getid(); 
+				$txt = pw_url2u($id->getID()); 
+			break;
 			case 'startpage': $txt = ':'.pw_url2u(pw_wiki_getcfg('startpage')); break;
 			case 'version': $txt = $this->getParser()->getUserInfo('piwoversion'); break;
 			case 'lexerversion': $txt = Lexer::getVersion(); break;
@@ -112,7 +125,7 @@ class Constant extends ParserRule implements ParserRuleHandler, LexerRuleHandler
 				"bordersuccess", "bordervalidation", "border", "bold", "underline", "italic", "monospace", "small", "big", 
 				"strike", "sub", "sup", "hi", "lo", "em", "tablecell", "tableheader", "wptableheader", "wptablecell",
 				"align", "justify", "alignintable", "indent", "left", "right", "pluginparam", "header", "internallinkpos", 
-				"internallink", "externallink", "externallinkpos", "variable", "plugin", "pluginparameter"
+				"internallinktext", "externallink", "externallinkpos", "variable", "plugin", "pluginparameter"
 				);
 	}
 	

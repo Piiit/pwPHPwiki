@@ -17,17 +17,22 @@ class InternalLink extends ParserRule implements ParserRuleHandler, LexerRuleHan
 	}
 	
 	public function onEntry() {
-		//@TODO: clean redundant code... specially for encoding-functions!
 		$indextable = $this->getParser()->getUserInfo('indextable');
 		$node = $this->getNode();
 
 		$linkPositionNode = $node->getFirstChild();
 		$linkPositionText = $this->getTextFromNode($linkPositionNode);
+
 		$curID = pw_wiki_getid();
-// 		TestingTools::inform($curID->getFullNS());
-// 		TestingTools::inform($linkPositionText);
-		$id = new WikiID($curID->getFullNS().$linkPositionText);
+		if($linkPositionText[0] == ':') {
+			$id = new WikiID($linkPositionText);
+		} elseif($linkPositionText[0] == '#') {
+			$id = new WikiID($curID->getID().$linkPositionText);
+		} else {
+			$id = new WikiID($curID->getFullNS().$linkPositionText);
+		}
 		
+		// Find manually set modes like edit or showpages...
 		$linkModus = null;
 		if($linkPositionNode->getFirstChild()->getName() == 'internallinkmode') {
 			$linkModusData = $linkPositionNode->getFirstChild()->getData();
@@ -37,9 +42,6 @@ class InternalLink extends ParserRule implements ParserRuleHandler, LexerRuleHan
 				return nop("Interner Link mit falschem Modus '$linkModus'. Erlaubte Modi sind: ".self::MODITEXT);
 			}
 		}
-// 		TestingTools::inform($linkModus);
-// 		TestingTools::inform($linkPositionText);
-//  		TestingTools::inform($id);
 		
 		//@TODO: refactor... common function... bubble-up of an error until ????
 		if ($_SESSION['pw_wiki']['error']) {
@@ -47,157 +49,83 @@ class InternalLink extends ParserRule implements ParserRuleHandler, LexerRuleHan
 			return $linkPositionText.nop("Interner Link kann wegen interner Fehler nicht aufgel&ouml;st werden.");
 		}
 	
-		$fullid = $linkPositionText;
-	
-		if (!$fullid) {
+		if (!$linkPositionText) {
 			return nop("Interner Wikilink ohne Zielangabe. Leerer Wikilink?", false);
 		}
 	
-		//TODO loop to catch all parts until the end of the link
-		$textNode = $linkPositionNode->getNextSibling();
 		$text = null;
+		$textNode = $linkPositionNode->getNextSibling();
 		if ($textNode != null) {
-// 			TestingTools::inform($textNode->__toString());
-	// 		$parser = new ParserRule($textNode, $this->getParser());
-	// 		$text = $parser->getText();
-			$text = $textNode->getData();
-			$text = pw_s2e($text);
-// 			TestingTools::inform($text, "link text");
+			$text = $this->getTextFromNode($textNode);
 		}
-	
-		//@TODO: refactor... common function... bubble-up of an error until ????
-		if ($_SESSION['pw_wiki']['error']) {
-			$_SESSION['pw_wiki']['error'] = false;
-			//@TODO: refactor... Interner Link Token einfach ausgeben ohne ihn zu verarbeiten... restore! und darin enthalten die interne Fehlermeldung!!!
-			return pw_e2u($text)." ".nop("Interner Link kann wegen interner Fehler nicht aufgel&ouml;st werden.");
-		}
-	
-	/*
-		$text = "";
-		for ($textpos = $lexer->nextSibling($linkpos); $textpos != null; $textpos = $lexer->nextSibling($textpos)) {
-			$ret = $lexer->getText($textpos);
-			if (!$ret) {
-				$ret = $lexer->callFunction($textpos, ONENTRY);
-				$ret .= $lexer->callFunction($textpos, ONEXIT);
-	
-			}
-			$ret = utf8_encode(htmlentities(utf8_decode($ret)));
-			$text .= $ret;
-		}
-	*/
+		TestingTools::inform($text, "link text");
 	
 		$found = true;
-		$na = "";
-		$type = "INTERNAL";
-		$section = null;
+		$jump = null;
 		
-		//TODO Move the # matching part to WikiID
-		if ($fullid[0] == "#") {
-			$idText = ltrim($fullid, "#");
-// 			$idText = pw_s2u($idText);
-// 			$idText = utf8_strtolower($idText);
-			$type = "JUMP";
+		if ($id->hasAnchor()) {
 	
-			switch($id->getID()) {
-				case "_top": $href = "#__main"; break;
-				case "_bottom": $href = "#__bottom"; break;
-				case "_toc": $href = "#__toc"; break;
-				case "_maintitle": $href = "#__fullsite"; break;
-				default:
-					
-					try {
-	
-						$item = $indextable->getByIdOrText($idText);
-						$section = $item->getId();
-						if (!$text) {
-								$text = $item->getText();
-						}
-						$text = pw_s2e($text);
-							
-					} catch (Exception $e) {
-							$found = false;
-							$href = "#";
-							$text = pw_url2u($idText);
-							$na = ' class="pw_wiki_link_na"';
-					}
-	
+			switch($id->getAnchor()) {
+				case "_top": 
+					$jump = "#__main";
+				break;
+				case "_bottom": 
+					$jump = "#__bottom"; 
+				break;
+				case "_toc": 
+					$jump = "#__toc"; 
+				break;
+				case "_maintitle": 
+					$jump = "#__fullsite"; 
 				break;
 			}
-	
-		} else {
+			
+			try {
+				// To trigger an exception, also if a text is given...
+				$tmp = pw_wiki_getcfg('anchor_text', $id->getAnchor());
+				if(!$text) {
+					$text = $tmp;
+				}
+				$found = true;
+			} catch (Exception $e) {
+				try {
+					$item = $indextable->getByIdOrText(pw_url2t($id->getAnchor()));
+					$jump = "#header_".$item->getId();
+					if(!$text) {
+						$text = pw_s2e($item->getText());
+					}
+					$found = true;
+				} catch (Exception $e) {
+					$found = false;
+					if(!$text) {
+						$text = utf8_ucfirst(pw_url2e($id->getAnchor()));
+					}
+				}
+			}
+		} 
 
-			preg_match("/(.*)#(.*)/", $fullid, $lpt);
-	
-			$idText = isset($lpt[1]) ? $lpt[1] : $fullid;
-			$jump = "";
-			if (isset($lpt[2]) and strlen($lpt[2]) > 0) {
-				$jump = "#".utf8_strtolower(pw_s2url($lpt[2]));
-			}
-	
-//  			TestingTools::inform($idText);
-			$idText = pw_url2t($idText);
-	
-			// Absolute Pfadangabe...
-			if ($idText[0] == ':') {
-				$idText = ltrim($idText, ':');
-			} else {
-				$ns = $id->getFullNSAsString();
-				$idText = $ns ? $ns.$idText : $idText;
-			}
-			
-			$filename = pw_wiki_getcfg('storage')."/".$id->getPath().pw_wiki_getcfg('fileext');;
-			if (!file_exists($filename) and !$linkModus) {
-				$na = ' class="pw_wiki_link_na"';
-				$linkModus = "edit";
-				$found = false;
-			}
-			
-			if (!$text) {
-				$text = utf8_ucfirst($id->getPageAsString());
-			}
-	
-			$href = "?id=".pw_s2url($idText).$jump;
+		$filename = pw_wiki_getcfg('storage').$id->getPath().pw_wiki_getcfg('fileext');;
+		if (!file_exists($filename) && !$linkModus) {
+			$linkModus = "edit";
+			$found = false;
 		}
-	
-		if ($type == "JUMP" and !$text) {
-			$text = pw_wiki_getcfg('anchor_text', $idText);
-			if (!$text) {
-				$text = $item->getText();
-			}
-			$text = pw_s2e($text);
+		
+		if (!$text) {
+			$text = utf8_ucfirst($id->getPageAsString());
 		}
+
+		$href = "?id=".pw_s2url($id->getID());
 	
-	
-		if ($linkModus == "edit" and $section) {
-			$href = "?id=".pw_wiki_getcfg('id');
-			$href .= "&mode=editpage&amp;section=$section";
-		}
-	
-		if ($type == "JUMP" and !$linkModus and $section) {
-			$href = "#header_".$section;
-		}
-	
-		if ($type == "INTERNAL") {
+		if (!$id->hasAnchor()) {
 			if ($linkModus == "edit" or !$found) {
 				$href .= '&mode=editpage';
 			}
 			if ($linkModus == "showpages") {
 				$href .= "&mode=showpages";
-				$na = '';
 			}
 		}
 	
-	
-		// AJAX-Links...
-		#return '<a onclick="wikilink(\''.$fullid.'\'); return false;" href="#id='.$fullid.'"'.$na.'>'.$text.'</a>';
-		#out("LPTXT=$linkpostxt; MODUS=$modus; TEXT=$text; LINK=$fullid; TYPE=$type; \nID=$id; HREF=$href; FOUND=".($found?"TRUE":"FALSE")."; SECTION=$section;");
-		#return $linkpostxt.'|'.$textnode['VALUE'].' [a href="'.$href.'"'.$na.']'.$text.'[/a]';
-	
-		//@TODO alle hrefs encodieren und strtolower anwenden (achtung bei utf8-Sonderzeichen)
-		#$href = pw_wiki_urlencode($href);
-		#$text = pw_wiki_entities($text);
-		#$text = pw_s2e($text);
-		return '<a href="'.$href.'"'.$na.'>'.$text.'</a>';
+		return '<a href="'.$href.$jump.'"'.($found ? "" : ' class="pw_wiki_link_na"').'>'.$text.'</a>';
 	}
 
 	public function onExit() {

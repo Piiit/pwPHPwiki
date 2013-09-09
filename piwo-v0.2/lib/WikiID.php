@@ -22,6 +22,7 @@ class WikiID {
 	private $fullns;
 	private $nsArray;
 	private $pg;
+	private $anchor;
 	
 	public function __construct($id) {
 		$this->id = self::s2id($id);
@@ -30,7 +31,14 @@ class WikiID {
 			throw new Exception("Invalid ID '$this->id'!");
 		}
 		
-// 		TestingTools::inform($this->id);
+//  		TestingTools::inform($this->id);
+
+		preg_match("/(.*)#(.*)/", $this->id, $lpt);
+		$this->id = isset($lpt[1]) ? $lpt[1] : $this->id;
+		$this->anchor = null;
+		if (isset($lpt[2]) && strlen($lpt[2]) > 0) {
+			$this->anchor = $lpt[2];
+		}
 		
 		$this->fullns = ":".self::cleanNamespaceString($this->id);
 		$this->pg = self::cleanPageString($this->id);
@@ -81,6 +89,18 @@ class WikiID {
 		return pw_url2e($this->pg);
 	}
 	
+	public function getAnchor() {
+		return $this->anchor;
+	}
+	
+	public function getAnchorAsString() {
+		return pw_url2e($this->anchor);
+	}
+	
+	public function hasAnchor() {
+		return $this->anchor !== null;
+	}
+	
 	public function isNS() {
 		return utf8_substr($this->id, -1) == ':';
 	}
@@ -92,9 +112,8 @@ class WikiID {
 	private static function s2id($id) {
 		$id = pw_stripslashes($id);
 		$id = pw_e2url($id);
-// 		TestingTools::inform($id);
-		$id = pw_s2url($id);
 		$id = utf8_strtolower($id);
+		$id = pw_s2url($id);
 		return $id;
 	}
 

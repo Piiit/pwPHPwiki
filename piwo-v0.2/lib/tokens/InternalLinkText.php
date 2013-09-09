@@ -8,7 +8,7 @@ require_once INC_PATH.'pwTools/parser/ParserRuleHandler.php';
 require_once INC_PATH.'pwTools/parser/ParserRule.php';
 require_once INC_PATH.'pwTools/parser/Pattern.php';
 
-class InternalLinkPos extends ParserRule implements ParserRuleHandler, LexerRuleHandler {
+class InternalLinkText extends ParserRule implements ParserRuleHandler, LexerRuleHandler {
 	
 	public function getName() {
 		return strtolower(__CLASS__);
@@ -27,7 +27,7 @@ class InternalLinkPos extends ParserRule implements ParserRuleHandler, LexerRule
 	}
 
 	public function getPattern() {
-		return new Pattern($this->getName(), Pattern::TYPE_SECTION, '\[\[', '(?=\||\]\])');
+		return new Pattern($this->getName(), Pattern::TYPE_SECTION, '\|', '(?=\]\])');
 	}
 	
 	public function getAllowedModes() {
