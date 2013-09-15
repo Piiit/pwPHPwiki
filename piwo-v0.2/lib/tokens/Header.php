@@ -18,7 +18,7 @@ class Header extends ParserRule implements ParserRuleHandler, LexerRuleHandler {
 	}
 	
 	public function getPattern() {
-		return new Pattern($this->getName(), Pattern::TYPE_LINE, ' *(={1,5})', '={1,5}');
+		return new Pattern($this->getName(), Pattern::TYPE_LINE, ' *(={1,5})', '={1,5}[\s\t]*');
 	}
 
 	public function getAllowedModes() {

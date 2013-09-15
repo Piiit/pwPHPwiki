@@ -8,6 +8,8 @@ require_once INC_PATH.'pwTools/parser/ParserRuleHandler.php';
 require_once INC_PATH.'pwTools/parser/ParserRule.php';
 require_once INC_PATH.'pwTools/parser/Pattern.php';
 require_once INC_PATH.'piwo-v0.2/lib/tokens/Variable.php';
+require_once INC_PATH.'piwo-v0.2/lib/WikiID.php';
+
 
 class Constant extends ParserRule implements ParserRuleHandler, LexerRuleHandler {
 	
@@ -66,7 +68,9 @@ class Constant extends ParserRule implements ParserRuleHandler, LexerRuleHandler
 			break;
 			case 'wrongid':
 				try { 
-					$txt = pw_url2u(pw_wiki_getcfg('wrongid')->getID());
+					$wrongId = pw_wiki_getcfg('wrongid');
+					var_dump($wrongId);
+					$txt = pw_url2u($wrongId->getID());
 				} catch (Exception $e) {
 					$txt = "";
 				} 

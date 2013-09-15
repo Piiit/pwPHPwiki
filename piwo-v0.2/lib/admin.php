@@ -1,14 +1,7 @@
 <?php//@TODO: frontend und backend trennen... UserInterface in separate Datei ablegen!if (!defined('INC_PATH')) {
 	define ('INC_PATH', realpath(dirname(__FILE__).'/../').'/');
 }
-require_once INC_PATH.'piwo-v0.2/lib/common.php';require_once INC_PATH.'pwTools/string/encoding.php';require_once INC_PATH.'pwTools/debug/TestingTools.php';require_once INC_PATH.'pwTools/file/FileTools.php';function pw_wiki_showsource (WikiID $id) {	$filename = pw_wiki_getcfg('storage').$id->getPath().pw_wiki_getcfg('fileext');	$out = StringTools::htmlIndent("<h1>Quelltext von <tt>".$id->getID()."</tt></h1>");	$out .= StringTools::htmlIndent("<i>Sie sind nicht berechtigt diesen Quelltext zu bearbeiten.</i><br />");	if (file_exists($filename) and !isset($_POST['save'])) {		$data = file_get_contents($filename);		$data = pw_wiki_file2editor($data);		$out .= StringTools::htmlIndent("<br /><a href='?mode=cleared&id=".$id->getID()."'>&laquo; Zur&uuml;ck zur Seite</a>");		$out .= StringTools::htmlIndent("<a style='float: right' href='?mode=showpages&id=".$id->getID()."'>Zum Seiten&uuml;berblick &raquo;</a><hr />");		$out .= StringTools::htmlIndent("<textarea cols='80' rows='25' id='wikitxt' readonly='readonly' wrap='off'>$data</textarea>");		$out .= StringTools::htmlIndent("<hr /><a href='?mode=cleared&id=".$id->getID()."'>&laquo; Zur&uuml;ck zur Seite</a>");		$out .= StringTools::htmlIndent("<a style='float: right' href='?mode=showpages&id=".$id->getID()."'>Zum Seiten&uuml;berblick &raquo;</a>");		return $out;	}		throw new Exception("File not found!");}
-function pw_wiki_editpage (WikiID $id) {
-	#out(pw_wiki_isvalidid(pw_wiki_pg($id)));
-	$data = "";	$ret = "";	if (!isset($_SESSION["pw_wiki"]["login"]["user"]))		return false;
-	if ($id->isNS())
-		return;
-	$filename = pw_wiki_getcfg('storage').$id->getPath().pw_wiki_getcfg('fileext');	$filenameText = pw_url2e($filename);	#out2(utf8_check($filename));	if (file_exists($filename) && !isset($_POST['save'])) {		$data = file_get_contents($filename);		$data = FileTools::setTextFileFormat($data, new TextFileFormat(TextFileFormat::UNIX));		$ret = "<tt>Datei '$filenameText' wurde geladen</tt>";	}	if (isset($_POST["save"])) {		$data = $_POST['wikitxt'];		$data = pw_stripslashes($data);		$data = pw_s2u($data);		$data = FileTools::setTextFileFormat($data, new TextFileFormat(TextFileFormat::UNIX));		// @TODO: What is config?		$config = null;		$ret = pw_wiki_savepage ($id, $data, $config);	}	$data = pw_wiki_file2editor($data);	$OLDMODE = isset($_REQUEST['oldmode']) ? $_REQUEST['oldmode'] : "cleared";	$out = StringTools::htmlIndent();	$out .= StringTools::htmlIndent("<!-- EDITOR START -->", StringTools::START);	$out .= StringTools::htmlIndent("<form id='texteditor' name='texteditor' method='post' accept-charset='utf-8'>", StringTools::START);	$out .= StringTools::htmlIndent("<div id='editor_win' style='width: 100%; border: 0;'>", StringTools::START);	$out .= StringTools::htmlIndent("<button	value='save' name='save' id='save'>Speichern</button><a id='exiteditor' class='textinput' href='?id=".$id->getID()."&mode=$OLDMODE'>Abbrechen</a>");	$out .= StringTools::htmlIndent("<span style='float: right'>$ret</span>");	$out .= StringTools::htmlIndent("<label style='display: block; border: 0; padding: 0; margin: 0'>", StringTools::START);	$out .= StringTools::htmlIndent("<textarea cols='80' rows='25' name='wikitxt' id='wikitxt' wrap=off onkeydown='return catchTab(this,event)'>$data</textarea>");	$out .= StringTools::htmlIndent("</label>", StringTools::END);	$out .= StringTools::htmlIndent("</div>", StringTools::END);	$out .= StringTools::htmlIndent("</form>", StringTools::END);	$out .= StringTools::htmlIndent("<!-- EDITOR END -->", StringTools::END);	$out .= StringTools::htmlIndent();	return $out;}
-function pw_wiki_newpage (WikiID $id, $mode) {	if (!isset($_SESSION["pw_wiki"]["login"]["user"]))
+require_once INC_PATH.'piwo-v0.2/lib/common.php';require_once INC_PATH.'pwTools/string/encoding.php';require_once INC_PATH.'pwTools/debug/TestingTools.php';require_once INC_PATH.'pwTools/file/FileTools.php';function pw_wiki_newpage (WikiID $id, $mode) {	if (!isset($_SESSION["pw_wiki"]["login"]["user"]))
 		return false;
 
 	$idurl = $id->getID();
@@ -17,26 +10,6 @@ function pw_wiki_newpage (WikiID $id, $mode) {	if (!isset($_SESSION["pw_wiki"][
 	$entries = StringTools::htmlIndent("<input type='hidden' name='mode' value='editpage' />");	$entries .= StringTools::htmlIndent("<input type='hidden' name='oldmode' value='$mode' />");	$entries .= StringTools::htmlIndent("<input type='hidden' name='olddialog' value='newpage' />");	$entries .= StringTools::htmlIndent("<label for='id'>ID:</label> <input type='text' class='textinput' name='id' id='id' value='$idText' />");	$entries .= StringTools::htmlIndent("<br /><hr /><tt><small>Namensr&auml;ume werden mit : voneinander getrennt!<br />Bsp.: Handbuch:Seite1<br />Falls die Seite schon existiert, wird sie zum Bearbeiten ge&ouml;ffnet.</small></tt>");
 	return pw_ui_getDialogQuestion("Neue Seite erstellen", $entries, "create", "OK", "id=$idurl&mode=$mode", "get");
 
-}
-
-function pw_wiki_savepage (WikiID $id, $data) {
-
-	// Kontrolliere die Berechtigungen	if (!isset($_SESSION["pw_wiki"]["login"]["user"]))
-		return false;
-
-	$filename = pw_wiki_getcfg('storage').$id->getPath().pw_wiki_getcfg('fileext');	$dirname = pw_wiki_getcfg('storage').$id->getPath(); //pw_wiki_path($id, ST_SHORT);
-	$filenameText = pw_url2e($filename);
-	
-	// Kontrolliere, ob der Ordner existiert und lege ihn ggf. an	$dirnames = explode("/", $dirname);	$dn = "";	foreach ($dirnames as $dirname) {		$dn .= $dirname."/";		if (!file_exists($dn)) {			if (!mkdir($dn)) {				$ret = "<tt class='error'>Der Ordner '$dn' konnte nicht angelegt werden.</tt>";				return $ret;			}		}
-	}
-
-	$data = FileTools::setTextFileFormat($data, new TextFileFormat(TextFileFormat::UNIX));
-	$ret = file_put_contents($filename, $data);
-
-	if ($ret !== false) {		$ret = "<tt>Datei '$filenameText' wurde gespeichert.</tt>";	} else {		$ret = "<tt class='error'>Datei '$filenameText' konnte nicht gespeichert werden.</tt>";
-	}		pw_wiki_create_cached_page($id);
-
-	return $ret;
 }
 
 function pw_wiki_rename (WikiID $id) {

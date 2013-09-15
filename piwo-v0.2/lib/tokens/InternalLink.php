@@ -58,7 +58,7 @@ class InternalLink extends ParserRule implements ParserRuleHandler, LexerRuleHan
 		if ($textNode != null) {
 			$text = $this->getTextFromNode($textNode);
 		}
-		TestingTools::inform($text, "link text");
+// 		TestingTools::inform($text, "link text");
 	
 		$found = true;
 		$jump = null;

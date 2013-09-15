@@ -1,0 +1,852 @@
+<div class="section_border">
+Sie sind hier: <a href='?id=index'>Home</a> &raquo; <a href='?id=dokumentation'>Dokumentation</a> &raquo; Todos<span class="less_significant"> | <a href="?id=:dokumentation:todos">Todos anzeigen</a></span></div><h1 id="header_1">Changelog, Bugs and Todos...</h1><div class="section_info"><div align="center">Aktuelle Version:<br /><b>0.2.1 - Alpha</b><br /><small>(Lexerversion: 0.5 - newStyle)</small></div></div>
+
+<!--&lt;right alone&gt;&lt;border&gt;Inhaltsverzeichnis:~~TOC~~&lt;/border&gt;&lt;/right&gt;--><h2 id="header_1.1">Changelog</h2><dl><dt><a href="?id=:dokumentation:todos:newstyle&mode=editpage" class="pw_wiki_link_na">new styled lexer</a><dd>build up a memoizing parser that understands <a href="?id=:dokumentation:grammar-configuration-files">Grammar-configuration-files</a>.</dd></dt><dt><a href="?id=:dokumentation:todos:v0.01">&Uuml;berblick zur v0.01</a><dd>Singleuser-Login (hard-coded)</dd><dd>Funktionen: Debug-Modus, Bearbeiten, l&ouml;schen, verschieben, neu, Seiten&uuml;berblick, Quellcode anzeigen</dd><dd>Internals: utf8-Encoding, MAC|UNIX|PC-Lineendings</dd><dd><a href="?id=:dokumentation:textgestaltung">Wikisyntax</a> in der Version 0.1</dd></dt><dt><a href="?id=:dokumentation:todos:v0.02">&Uuml;berblick zur v0.02</a><dd>Konfigurationsmen&uuml; mit Einstellungen</dd><dd>tpl:header/footer - Handling &uuml;berlegen!</dd><dd>Tastenk&uuml;rzel mit Scriptaculous</dd><dd>Frontend und Backend voneinander trennen.</dd><dd>Editor ausbauen (autosave, Tastenk&uuml;rzel, Vorschau, Sektionen editieren,...)</dd><dd>AJAX oder iFrames einf&uuml;hren f&uuml;r GUI (Performance!)</dd></dt><dt><a href="?id=:dokumentation:todos:v0.03&mode=editpage" class="pw_wiki_link_na">&Uuml;berblick zur v0.03</a><dd>Cache f&uuml;r HTML</dd><dd>Bilder</dd></dt><dt><a href="?id=:dokumentation:todos:v0.04&mode=editpage" class="pw_wiki_link_na">&Uuml;berblick zur v0.04</a><dd>Multiuser </dd><dd>Permissions</dd><dd>Comments und Forum</dd></dt></dl><h2 id="header_1.2">Ideen</h2><ul></ul><ul><li>Einbinden von php-Quellcode Dokumentation ala phpDocumentor(?)</li><li><a target="_blank" href="https://github.com/selfthinker/dokuwiki_plugin_fontface/issues?sort=created&amp;direction=desc&amp;state=open">Texticons</a> einf&uuml;hren</li><li>Sch&ouml;ne Seiten...</li><ul><li>...im <a href="?id=:dokumentation:todos:nice:design">Design</a></li><li>...in der <a href="?id=:dokumentation:todos:nice:usability&mode=editpage" class="pw_wiki_link_na">Usability</a></li><li>...in der <a href="?id=:dokumentation:todos:nice:programming&mode=editpage" class="pw_wiki_link_na">Programmierung</a></li><li><a href="?id=:dokumentation:todos:nice:unsorted&mode=editpage" class="pw_wiki_link_na">(Unsortiertes)</a></li></ul></ul>
+
+
+<br /><div align="right"><span class="less_significant">Verarbeitet in 0,0663 Sek. | Dateiformat: UNIX</span></div><div id='imdebug'><h2>DEBUG</h2><h3>Lexer: Version und Kurzinfos.</h3>Lexer - Version: 0.5 - newStyle<h3>AST</h3><pre style='overflow: auto'>    1 [Node: border]
+    2   [Node: #TEXT='\nSie sind hier: ']
+    3   [Node: plugin='TRACE']
+    4   [Node: lo]
+    5     [Node: #TEXT=' | ']
+    6     [Node: internallink]
+    7       [Node: internallinkpos]
+    8         [Node: #TEXT=':dokumentation:todos']
+    9       [Node: internallinktext]
+   10         [Node: #TEXT='Todos anzeigen']
+   11 [Node: header='=']
+   12   [Node: #TEXT=' Changelog, Bugs and Todos... ']
+   13 [Node: borderinfo]
+   14   [Node: align]
+   15     [Node: #TEXT='Aktuelle Version:']
+   16     [Node: newline]
+   17     [Node: bold]
+   18       [Node: constant='version']
+   19     [Node: newline]
+   20     [Node: small]
+   21       [Node: #TEXT='(Lexerversion: ']
+   22       [Node: constant='lexerversion']
+   23       [Node: #TEXT=')']
+   24 [Node: #TEXT='\n\n']
+   25 [Node: comment2]
+   26   [Node: #TEXT='&lt;right alone&gt;&lt;border&gt;Inhaltsverzeichnis:~~TOC~~&lt;/border&gt;&lt;/right&gt;']
+   27 [Node: header='==']
+   28   [Node: #TEXT=' Changelog ']
+   29 [Node: deflist]
+   30   [Node: defterm]
+   31     [Node: internallink]
+   32       [Node: internallinkpos]
+   33         [Node: #TEXT='todos:newStyle']
+   34       [Node: internallinktext]
+   35         [Node: #TEXT='new styled lexer']
+   36     [Node: defitem='\n: ']
+   37       [Node: #TEXT='build up a memoizing parser that understands ']
+   38       [Node: internallink]
+   39         [Node: internallinkpos]
+   40           [Node: #TEXT='grammar-configuration-files']
+   41       [Node: #TEXT='.']
+   42   [Node: defterm]
+   43     [Node: internallink]
+   44       [Node: internallinkpos]
+   45         [Node: #TEXT='todos:v0.01']
+   46       [Node: internallinktext]
+   47         [Node: #TEXT='&Uuml;berblick zur v0.01']
+   48     [Node: defitem='\n: ']
+   49       [Node: #TEXT='Singleuser-Login (hard-coded)']
+   50     [Node: defitem='\n: ']
+   51       [Node: #TEXT='Funktionen: Debug-Modus, Bearbeiten, l&ouml;schen, verschieben, neu, Seiten&uuml;berblick, Quellcode anzeigen']
+   52     [Node: defitem='\n: ']
+   53       [Node: #TEXT='Internals: utf8-Encoding, MAC|UNIX|PC-Lineendings']
+   54     [Node: defitem='\n: ']
+   55       [Node: internallink]
+   56         [Node: internallinkpos]
+   57           [Node: #TEXT='textgestaltung']
+   58         [Node: internallinktext]
+   59           [Node: #TEXT='Wikisyntax']
+   60       [Node: #TEXT=' in der Version 0.1']
+   61   [Node: defterm]
+   62     [Node: internallink]
+   63       [Node: internallinkpos]
+   64         [Node: #TEXT='todos:v0.02']
+   65       [Node: internallinktext]
+   66         [Node: #TEXT='&Uuml;berblick zur v0.02']
+   67     [Node: defitem='\n: ']
+   68       [Node: #TEXT='Konfigurationsmen&uuml; mit Einstellungen']
+   69     [Node: defitem='\n: ']
+   70       [Node: #TEXT='tpl:header/footer - Handling &uuml;berlegen!']
+   71     [Node: defitem='\n: ']
+   72       [Node: #TEXT='Tastenk&uuml;rzel mit Scriptaculous']
+   73     [Node: defitem='\n: ']
+   74       [Node: #TEXT='Frontend und Backend voneinander trennen.']
+   75     [Node: defitem='\n: ']
+   76       [Node: #TEXT='Editor ausbauen (autosave, Tastenk&uuml;rzel, Vorschau, Sektionen editieren,...)']
+   77     [Node: defitem='\n: ']
+   78       [Node: #TEXT='AJAX oder iFrames einf&uuml;hren f&uuml;r GUI (Performance!)']
+   79   [Node: defterm]
+   80     [Node: internallink]
+   81       [Node: internallinkpos]
+   82         [Node: #TEXT='todos:v0.03']
+   83       [Node: internallinktext]
+   84         [Node: #TEXT='&Uuml;berblick zur v0.03']
+   85     [Node: defitem='\n: ']
+   86       [Node: #TEXT='Cache f&uuml;r HTML']
+   87     [Node: defitem='\n: ']
+   88       [Node: #TEXT='Bilder']
+   89   [Node: defterm]
+   90     [Node: internallink]
+   91       [Node: internallinkpos]
+   92         [Node: #TEXT='todos:v0.04']
+   93       [Node: internallinktext]
+   94         [Node: #TEXT='&Uuml;berblick zur v0.04']
+   95     [Node: defitem='\n: ']
+   96       [Node: #TEXT='Multiuser ']
+   97     [Node: defitem='\n: ']
+   98       [Node: #TEXT='Permissions']
+   99     [Node: defitem='\n: ']
+  100       [Node: #TEXT='Comments und Forum']
+  101 [Node: header='==']
+  102   [Node: #TEXT=' Ideen ']
+  103 [Node: lists]
+  104   [Node: listitem='(,)*']
+  105     [Node: #TEXT='Einbinden von php-Quellcode Dokumentation ala phpDocumentor(?)']
+  106   [Node: listitem='(,)*']
+  107     [Node: externallink]
+  108       [Node: externallinkpos]
+  109         [Node: #TEXT='https://github.com/selfthinker/dokuwiki_plugin_fontface/issues?sort=created&amp;direction=desc&amp;state=open']
+  110       [Node: #TEXT='Texticons']
+  111     [Node: #TEXT=' einf&uuml;hren']
+  112   [Node: listitem='(,)*']
+  113     [Node: #TEXT='Sch&ouml;ne Seiten...']
+  114   [Node: listitem=' (,)*']
+  115     [Node: #TEXT='...im ']
+  116     [Node: internallink]
+  117       [Node: internallinkpos]
+  118         [Node: #TEXT='todos:nice:design']
+  119       [Node: internallinktext]
+  120         [Node: #TEXT='Design']
+  121   [Node: listitem=' (,)*']
+  122     [Node: #TEXT='...in der ']
+  123     [Node: internallink]
+  124       [Node: internallinkpos]
+  125         [Node: #TEXT='todos:nice:usability']
+  126       [Node: internallinktext]
+  127         [Node: #TEXT='Usability']
+  128   [Node: listitem=' (,)*']
+  129     [Node: #TEXT='...in der ']
+  130     [Node: internallink]
+  131       [Node: internallinkpos]
+  132         [Node: #TEXT='todos:nice:programming']
+  133       [Node: internallinktext]
+  134         [Node: #TEXT='Programmierung']
+  135   [Node: listitem=' (,)*']
+  136     [Node: internallink]
+  137       [Node: internallinkpos]
+  138         [Node: #TEXT='todos:nice:unsorted']
+  139       [Node: internallinktext]
+  140         [Node: #TEXT='(Unsortiertes)']
+  141 [Node: #TEXT='\n\n\n']
+  142 [Node: newline]
+  143 [Node: align='&gt;']
+  144   [Node: lo]
+  145     [Node: #TEXT='Verarbeitet in ']
+  146     [Node: plugin='TEXT(,)comma']
+  147       [Node: pluginparameter]
+  148         [Node: constant='PERFORMANCE']
+  149     [Node: #TEXT=' Sek. | Dateiformat: ']
+  150     [Node: constant='FILE:type']
+  151 [Node: #EOF]
+  152 
+</pre><h3>Log</h3><pre style='overflow: auto'>2013/09/15 03:27:02 | INFO    | Lexer.php-&gt;parse@115                     | FINISHED: @1707 (line 50)
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [168][ADD NODE       ][Node: #EOF] to [Node: #DOCUMENT]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [168][TOKEN FOUND    ][Token: #EOF: , LENGTH=1, ENTRY] @1706
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [167][CLOSING NODE   ][Node: align='&amp;gt;']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [167][TOKEN FOUND    ][Token: align: \n, LENGTH=1, EXIT] @1706
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [166][CLOSING NODE   ][Node: lo]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [166][TOKEN FOUND    ][Token: lo: &amp;lt;/lo&amp;gt;, LENGTH=5, EXIT] @1701
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [165][ADD NODE       ][Node: constant='FILE:type'] to [Node: lo]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [165][ADD #TEXT      ][Node: #TEXT=' Sek. | Dateiformat: ']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [165][TOKEN FOUND    ][Token: constant: {{FILE:type}}, LENGTH=34, ENTRY] @1667
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [164][CLOSING NODE   ][Node: plugin='TEXT(,)comma']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [164][TOKEN FOUND    ][Token: plugin: ~~, LENGTH=2, EXIT] @1665
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [163][CLOSING NODE   ][Node: pluginparameter]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [163][TOKEN FOUND    ][Token: pluginparameter: , LENGTH=0, EXIT] @1665
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [162][ADD NODE       ][Node: constant='PERFORMANCE'] to [Node: pluginparameter]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [162][TOKEN FOUND    ][Token: constant: {{PERFORMANCE}}, LENGTH=15, ENTRY] @1650
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [161][ADD NODE       ][Node: pluginparameter] to [Node: plugin='TEXT(,)comma']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [161][TOKEN FOUND    ][Token: pluginparameter: |, LENGTH=1, ENTRY] @1649
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [160][ADD NODE       ][Node: plugin='TEXT(,)comma'] to [Node: lo]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [160][ADD #TEXT      ][Node: #TEXT='Verarbeitet in ']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [160][TOKEN FOUND    ][Token: plugin: ~~TEXT:comma, LENGTH=27, ENTRY] @1622
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [159][ADD NODE       ][Node: lo] to [Node: align='&amp;gt;']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [159][TOKEN FOUND    ][Token: lo: &amp;lt;lo&amp;gt;, LENGTH=4, ENTRY] @1618
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [158][ADD NODE       ][Node: align='&amp;gt;'] to [Node: #DOCUMENT]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [158][TOKEN FOUND    ][Token: align: \n:&amp;gt;&amp;gt; , LENGTH=5, ENTRY] @1613
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [157][ADD NODE       ][Node: newline] to [Node: #DOCUMENT]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [157][ADD #TEXT      ][Node: #TEXT='\n\n\n']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [157][CLOSING NODE   ][Node: lists]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [157][TOKEN FOUND    ][Token: newline: \\, LENGTH=5, ENTRY] @1608
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [156][CLOSING NODE   ][Node: listitem=' (,)*']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [156][TOKEN FOUND    ][Token: listitem: \n, LENGTH=1, EXIT] @1608
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [155][CLOSING NODE   ][Node: internallink]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [155][TOKEN FOUND    ][Token: internallink: ]], LENGTH=2, EXIT] @1606
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [154][CLOSING NODE   ][Node: internallinktext]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [154][ADD #TEXT      ][Node: #TEXT='(Unsortiertes)']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [154][TOKEN FOUND    ][Token: internallinktext: , LENGTH=14, EXIT] @1592
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [153][ADD NODE       ][Node: internallinktext] to [Node: internallink]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [153][TOKEN FOUND    ][Token: internallinktext: |, LENGTH=1, ENTRY] @1591
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [152][CLOSING NODE   ][Node: internallinkpos]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [152][ADD #TEXT      ][Node: #TEXT='todos:nice:unsorted']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [152][TOKEN FOUND    ][Token: internallinkpos: , LENGTH=19, EXIT] @1572
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [151][ADD NODE       ][Node: internallinkpos] to [Node: internallink]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [151][TOKEN FOUND    ][Token: internallinkpos: [[, LENGTH=2, ENTRY] @1570
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [150][ADD NODE       ][Node: internallink] to [Node: listitem=' (,)*']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [150][TOKEN FOUND    ][Token: internallink: , LENGTH=0, ENTRY] @1570
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [149][ADD NODE       ][Node: listitem=' (,)*'] to [Node: lists]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [149][TOKEN FOUND    ][Token: listitem: \n * , LENGTH=4, ENTRY] @1566
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [148][CLOSING NODE   ][Node: listitem=' (,)*']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [148][TOKEN FOUND    ][Token: listitem: \n, LENGTH=1, EXIT] @1566
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [147][CLOSING NODE   ][Node: internallink]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [147][TOKEN FOUND    ][Token: internallink: ]], LENGTH=2, EXIT] @1564
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [146][CLOSING NODE   ][Node: internallinktext]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [146][ADD #TEXT      ][Node: #TEXT='Programmierung']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [146][TOKEN FOUND    ][Token: internallinktext: , LENGTH=14, EXIT] @1550
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [145][ADD NODE       ][Node: internallinktext] to [Node: internallink]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [145][TOKEN FOUND    ][Token: internallinktext: |, LENGTH=1, ENTRY] @1549
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [144][CLOSING NODE   ][Node: internallinkpos]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [144][ADD #TEXT      ][Node: #TEXT='todos:nice:programming']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [144][TOKEN FOUND    ][Token: internallinkpos: , LENGTH=22, EXIT] @1527
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [143][ADD NODE       ][Node: internallinkpos] to [Node: internallink]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [143][TOKEN FOUND    ][Token: internallinkpos: [[, LENGTH=2, ENTRY] @1525
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [142][ADD NODE       ][Node: internallink] to [Node: listitem=' (,)*']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [142][ADD #TEXT      ][Node: #TEXT='...in der ']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [142][TOKEN FOUND    ][Token: internallink: , LENGTH=10, ENTRY] @1515
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [141][ADD NODE       ][Node: listitem=' (,)*'] to [Node: lists]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [141][TOKEN FOUND    ][Token: listitem: \n * , LENGTH=4, ENTRY] @1511
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [140][CLOSING NODE   ][Node: listitem=' (,)*']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [140][TOKEN FOUND    ][Token: listitem: \n, LENGTH=1, EXIT] @1511
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [139][CLOSING NODE   ][Node: internallink]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [139][TOKEN FOUND    ][Token: internallink: ]], LENGTH=2, EXIT] @1509
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [138][CLOSING NODE   ][Node: internallinktext]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [138][ADD #TEXT      ][Node: #TEXT='Usability']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [138][TOKEN FOUND    ][Token: internallinktext: , LENGTH=9, EXIT] @1500
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [137][ADD NODE       ][Node: internallinktext] to [Node: internallink]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [137][TOKEN FOUND    ][Token: internallinktext: |, LENGTH=1, ENTRY] @1499
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [136][CLOSING NODE   ][Node: internallinkpos]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [136][ADD #TEXT      ][Node: #TEXT='todos:nice:usability']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [136][TOKEN FOUND    ][Token: internallinkpos: , LENGTH=20, EXIT] @1479
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [135][ADD NODE       ][Node: internallinkpos] to [Node: internallink]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [135][TOKEN FOUND    ][Token: internallinkpos: [[, LENGTH=2, ENTRY] @1477
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [134][ADD NODE       ][Node: internallink] to [Node: listitem=' (,)*']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [134][ADD #TEXT      ][Node: #TEXT='...in der ']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [134][TOKEN FOUND    ][Token: internallink: , LENGTH=10, ENTRY] @1467
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [133][ADD NODE       ][Node: listitem=' (,)*'] to [Node: lists]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [133][TOKEN FOUND    ][Token: listitem: \n * , LENGTH=4, ENTRY] @1463
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [132][CLOSING NODE   ][Node: listitem=' (,)*']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [132][TOKEN FOUND    ][Token: listitem: \n, LENGTH=1, EXIT] @1463
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [131][CLOSING NODE   ][Node: internallink]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [131][TOKEN FOUND    ][Token: internallink: ]], LENGTH=2, EXIT] @1461
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [130][CLOSING NODE   ][Node: internallinktext]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [130][ADD #TEXT      ][Node: #TEXT='Design']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [130][TOKEN FOUND    ][Token: internallinktext: , LENGTH=6, EXIT] @1455
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [129][ADD NODE       ][Node: internallinktext] to [Node: internallink]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [129][TOKEN FOUND    ][Token: internallinktext: |, LENGTH=1, ENTRY] @1454
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [128][CLOSING NODE   ][Node: internallinkpos]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [128][ADD #TEXT      ][Node: #TEXT='todos:nice:design']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [128][TOKEN FOUND    ][Token: internallinkpos: , LENGTH=17, EXIT] @1437
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [127][ADD NODE       ][Node: internallinkpos] to [Node: internallink]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [127][TOKEN FOUND    ][Token: internallinkpos: [[, LENGTH=2, ENTRY] @1435
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [126][ADD NODE       ][Node: internallink] to [Node: listitem=' (,)*']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [126][ADD #TEXT      ][Node: #TEXT='...im ']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [126][TOKEN FOUND    ][Token: internallink: , LENGTH=6, ENTRY] @1429
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [125][ADD NODE       ][Node: listitem=' (,)*'] to [Node: lists]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [125][TOKEN FOUND    ][Token: listitem: \n * , LENGTH=4, ENTRY] @1425
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [124][CLOSING NODE   ][Node: listitem='(,)*']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [124][ADD #TEXT      ][Node: #TEXT='Sch&amp;ouml;ne Seiten...']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [124][TOKEN FOUND    ][Token: listitem: \n, LENGTH=18, EXIT] @1408
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [123][ADD NODE       ][Node: listitem='(,)*'] to [Node: lists]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [123][TOKEN FOUND    ][Token: listitem: \n* , LENGTH=3, ENTRY] @1405
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [122][CLOSING NODE   ][Node: listitem='(,)*']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [122][ADD #TEXT      ][Node: #TEXT=' einf&amp;uuml;hren']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [122][TOKEN FOUND    ][Token: listitem: \n, LENGTH=12, EXIT] @1394
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [121][CLOSING NODE   ][Node: externallink]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [121][ADD #TEXT      ][Node: #TEXT='Texticons']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [121][TOKEN FOUND    ][Token: externallink: ], LENGTH=10, EXIT] @1384
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [120][CLOSING NODE   ][Node: externallinkpos]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [120][ADD #TEXT      ][Node: #TEXT='https://github.com/selfthinker/dokuwiki_plugin_fontface/issues?sort=created&amp;amp;direction=desc&amp;amp;state=open']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [120][TOKEN FOUND    ][Token: externallinkpos:  , LENGTH=102, EXIT] @1282
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [119][ADD NODE       ][Node: externallinkpos] to [Node: externallink]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [119][TOKEN FOUND    ][Token: externallinkpos: [, LENGTH=1, ENTRY] @1281
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [118][ADD NODE       ][Node: externallink] to [Node: listitem='(,)*']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [118][TOKEN FOUND    ][Token: externallink: , LENGTH=0, ENTRY] @1281
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [117][ADD NODE       ][Node: listitem='(,)*'] to [Node: lists]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [117][TOKEN FOUND    ][Token: listitem: \n* , LENGTH=3, ENTRY] @1278
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [116][CLOSING NODE   ][Node: listitem='(,)*']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [116][ADD #TEXT      ][Node: #TEXT='Einbinden von php-Quellcode Dokumentation ala phpDocumentor(?)']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [116][TOKEN FOUND    ][Token: listitem: \n, LENGTH=63, EXIT] @1216
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [115][ADD NODE       ][Node: listitem='(,)*'] to [Node: lists]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addAbstractNode@444          | [115][ADD #ABSTRACT  ][Node: lists] @1216
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [115][TOKEN FOUND    ][Token: listitem: \n* , LENGTH=3, ENTRY] @1213
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [114][CLOSING NODE   ][Node: header='==']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [114][ADD #TEXT      ][Node: #TEXT=' Ideen ']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [114][TOKEN FOUND    ][Token: header: ==\n, LENGTH=10, EXIT] @1204
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [113][ADD NODE       ][Node: header='=='] to [Node: #DOCUMENT]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [113][CLOSING NODE   ][Node: deflist]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [113][TOKEN FOUND    ][Token: header: \n==, LENGTH=4, ENTRY] @1200
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [112][CLOSING NODE   ][Node: defterm]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [112][TOKEN FOUND    ][Token: defterm: \n, LENGTH=1, EXIT] @1200
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [111][CLOSING NODE   ][Node: defitem='\n: ']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [111][ADD #TEXT      ][Node: #TEXT='Comments und Forum']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [111][TOKEN FOUND    ][Token: defitem: , LENGTH=18, EXIT] @1182
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [110][ADD NODE       ][Node: defitem='\n: '] to [Node: defterm]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [110][TOKEN FOUND    ][Token: defitem: \n: , LENGTH=3, ENTRY] @1179
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [109][CLOSING NODE   ][Node: defitem='\n: ']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [109][ADD #TEXT      ][Node: #TEXT='Permissions']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [109][TOKEN FOUND    ][Token: defitem: , LENGTH=11, EXIT] @1168
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [108][ADD NODE       ][Node: defitem='\n: '] to [Node: defterm]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [108][TOKEN FOUND    ][Token: defitem: \n: , LENGTH=3, ENTRY] @1165
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [107][CLOSING NODE   ][Node: defitem='\n: ']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [107][ADD #TEXT      ][Node: #TEXT='Multiuser ']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [107][TOKEN FOUND    ][Token: defitem: , LENGTH=10, EXIT] @1155
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [106][ADD NODE       ][Node: defitem='\n: '] to [Node: defterm]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [106][TOKEN FOUND    ][Token: defitem: \n: , LENGTH=3, ENTRY] @1152
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [105][CLOSING NODE   ][Node: internallink]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [105][TOKEN FOUND    ][Token: internallink: ]], LENGTH=2, EXIT] @1150
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [104][CLOSING NODE   ][Node: internallinktext]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [104][ADD #TEXT      ][Node: #TEXT='&amp;Uuml;berblick zur v0.04']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [104][TOKEN FOUND    ][Token: internallinktext: , LENGTH=20, EXIT] @1130
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [103][ADD NODE       ][Node: internallinktext] to [Node: internallink]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [103][TOKEN FOUND    ][Token: internallinktext: |, LENGTH=1, ENTRY] @1129
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [102][CLOSING NODE   ][Node: internallinkpos]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [102][ADD #TEXT      ][Node: #TEXT='todos:v0.04']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [102][TOKEN FOUND    ][Token: internallinkpos: , LENGTH=11, EXIT] @1118
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [101][ADD NODE       ][Node: internallinkpos] to [Node: internallink]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [101][TOKEN FOUND    ][Token: internallinkpos: [[, LENGTH=2, ENTRY] @1116
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [100][ADD NODE       ][Node: internallink] to [Node: defterm]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [100][TOKEN FOUND    ][Token: internallink: , LENGTH=0, ENTRY] @1116
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 99][ADD NODE       ][Node: defterm] to [Node: deflist]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 99][TOKEN FOUND    ][Token: defterm: \n; , LENGTH=4, ENTRY] @1112
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 98][CLOSING NODE   ][Node: defterm]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 98][TOKEN FOUND    ][Token: defterm: \n, LENGTH=1, EXIT] @1112
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 97][CLOSING NODE   ][Node: defitem='\n: ']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 97][ADD #TEXT      ][Node: #TEXT='Bilder']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 97][TOKEN FOUND    ][Token: defitem: , LENGTH=6, EXIT] @1106
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 96][ADD NODE       ][Node: defitem='\n: '] to [Node: defterm]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 96][TOKEN FOUND    ][Token: defitem: \n: , LENGTH=3, ENTRY] @1103
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 95][CLOSING NODE   ][Node: defitem='\n: ']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 95][ADD #TEXT      ][Node: #TEXT='Cache f&amp;uuml;r HTML']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 95][TOKEN FOUND    ][Token: defitem: , LENGTH=15, EXIT] @1088
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 94][ADD NODE       ][Node: defitem='\n: '] to [Node: defterm]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 94][TOKEN FOUND    ][Token: defitem: \n: , LENGTH=3, ENTRY] @1085
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 93][CLOSING NODE   ][Node: internallink]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 93][TOKEN FOUND    ][Token: internallink: ]], LENGTH=2, EXIT] @1083
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 92][CLOSING NODE   ][Node: internallinktext]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 92][ADD #TEXT      ][Node: #TEXT='&amp;Uuml;berblick zur v0.03']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 92][TOKEN FOUND    ][Token: internallinktext: , LENGTH=20, EXIT] @1063
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 91][ADD NODE       ][Node: internallinktext] to [Node: internallink]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 91][TOKEN FOUND    ][Token: internallinktext: |, LENGTH=1, ENTRY] @1062
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 90][CLOSING NODE   ][Node: internallinkpos]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 90][ADD #TEXT      ][Node: #TEXT='todos:v0.03']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 90][TOKEN FOUND    ][Token: internallinkpos: , LENGTH=11, EXIT] @1051
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 89][ADD NODE       ][Node: internallinkpos] to [Node: internallink]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 89][TOKEN FOUND    ][Token: internallinkpos: [[, LENGTH=2, ENTRY] @1049
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 88][ADD NODE       ][Node: internallink] to [Node: defterm]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 88][TOKEN FOUND    ][Token: internallink: , LENGTH=0, ENTRY] @1049
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 87][ADD NODE       ][Node: defterm] to [Node: deflist]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 87][TOKEN FOUND    ][Token: defterm: \n; , LENGTH=4, ENTRY] @1045
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 86][CLOSING NODE   ][Node: defterm]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 86][TOKEN FOUND    ][Token: defterm: \n, LENGTH=1, EXIT] @1045
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 85][CLOSING NODE   ][Node: defitem='\n: ']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 85][ADD #TEXT      ][Node: #TEXT='AJAX oder iFrames einf&amp;uuml;hren f&amp;uuml;r GUI (Performance!)']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 85][TOKEN FOUND    ][Token: defitem: , LENGTH=52, EXIT] @993
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 84][ADD NODE       ][Node: defitem='\n: '] to [Node: defterm]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 84][TOKEN FOUND    ][Token: defitem: \n: , LENGTH=3, ENTRY] @990
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 83][CLOSING NODE   ][Node: defitem='\n: ']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 83][ADD #TEXT      ][Node: #TEXT='Editor ausbauen (autosave, Tastenk&amp;uuml;rzel, Vorschau, Sektionen editieren,...)']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 83][TOKEN FOUND    ][Token: defitem: , LENGTH=76, EXIT] @914
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 82][ADD NODE       ][Node: defitem='\n: '] to [Node: defterm]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 82][TOKEN FOUND    ][Token: defitem: \n: , LENGTH=3, ENTRY] @911
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 81][CLOSING NODE   ][Node: defitem='\n: ']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 81][ADD #TEXT      ][Node: #TEXT='Frontend und Backend voneinander trennen.']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 81][TOKEN FOUND    ][Token: defitem: , LENGTH=41, EXIT] @870
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 80][ADD NODE       ][Node: defitem='\n: '] to [Node: defterm]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 80][TOKEN FOUND    ][Token: defitem: \n: , LENGTH=3, ENTRY] @867
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 79][CLOSING NODE   ][Node: defitem='\n: ']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 79][ADD #TEXT      ][Node: #TEXT='Tastenk&amp;uuml;rzel mit Scriptaculous']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 79][TOKEN FOUND    ][Token: defitem: , LENGTH=31, EXIT] @836
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 78][ADD NODE       ][Node: defitem='\n: '] to [Node: defterm]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 78][TOKEN FOUND    ][Token: defitem: \n: , LENGTH=3, ENTRY] @833
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 77][CLOSING NODE   ][Node: defitem='\n: ']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 77][ADD #TEXT      ][Node: #TEXT='tpl:header/footer - Handling &amp;uuml;berlegen!']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 77][TOKEN FOUND    ][Token: defitem: , LENGTH=40, EXIT] @793
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 76][ADD NODE       ][Node: defitem='\n: '] to [Node: defterm]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 76][TOKEN FOUND    ][Token: defitem: \n: , LENGTH=3, ENTRY] @790
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 75][CLOSING NODE   ][Node: defitem='\n: ']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 75][ADD #TEXT      ][Node: #TEXT='Konfigurationsmen&amp;uuml; mit Einstellungen']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 75][TOKEN FOUND    ][Token: defitem: , LENGTH=37, EXIT] @753
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 74][ADD NODE       ][Node: defitem='\n: '] to [Node: defterm]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 74][TOKEN FOUND    ][Token: defitem: \n: , LENGTH=3, ENTRY] @750
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 73][CLOSING NODE   ][Node: internallink]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 73][TOKEN FOUND    ][Token: internallink: ]], LENGTH=2, EXIT] @748
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 72][CLOSING NODE   ][Node: internallinktext]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 72][ADD #TEXT      ][Node: #TEXT='&amp;Uuml;berblick zur v0.02']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 72][TOKEN FOUND    ][Token: internallinktext: , LENGTH=20, EXIT] @728
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 71][ADD NODE       ][Node: internallinktext] to [Node: internallink]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 71][TOKEN FOUND    ][Token: internallinktext: |, LENGTH=1, ENTRY] @727
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 70][CLOSING NODE   ][Node: internallinkpos]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 70][ADD #TEXT      ][Node: #TEXT='todos:v0.02']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 70][TOKEN FOUND    ][Token: internallinkpos: , LENGTH=11, EXIT] @716
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 69][ADD NODE       ][Node: internallinkpos] to [Node: internallink]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 69][TOKEN FOUND    ][Token: internallinkpos: [[, LENGTH=2, ENTRY] @714
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 68][ADD NODE       ][Node: internallink] to [Node: defterm]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 68][TOKEN FOUND    ][Token: internallink: , LENGTH=0, ENTRY] @714
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 67][ADD NODE       ][Node: defterm] to [Node: deflist]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 67][TOKEN FOUND    ][Token: defterm: \n; , LENGTH=4, ENTRY] @710
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 66][CLOSING NODE   ][Node: defterm]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 66][TOKEN FOUND    ][Token: defterm: \n, LENGTH=1, EXIT] @710
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 65][CLOSING NODE   ][Node: defitem='\n: ']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 65][ADD #TEXT      ][Node: #TEXT=' in der Version 0.1']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 65][TOKEN FOUND    ][Token: defitem: , LENGTH=19, EXIT] @691
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 64][CLOSING NODE   ][Node: internallink]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 64][TOKEN FOUND    ][Token: internallink: ]], LENGTH=2, EXIT] @689
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 63][CLOSING NODE   ][Node: internallinktext]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 63][ADD #TEXT      ][Node: #TEXT='Wikisyntax']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 63][TOKEN FOUND    ][Token: internallinktext: , LENGTH=10, EXIT] @679
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 62][ADD NODE       ][Node: internallinktext] to [Node: internallink]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 62][TOKEN FOUND    ][Token: internallinktext: |, LENGTH=1, ENTRY] @678
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 61][CLOSING NODE   ][Node: internallinkpos]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 61][ADD #TEXT      ][Node: #TEXT='textgestaltung']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 61][TOKEN FOUND    ][Token: internallinkpos: , LENGTH=14, EXIT] @664
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 60][ADD NODE       ][Node: internallinkpos] to [Node: internallink]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 60][TOKEN FOUND    ][Token: internallinkpos: [[, LENGTH=2, ENTRY] @662
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 59][ADD NODE       ][Node: internallink] to [Node: defitem='\n: ']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 59][TOKEN FOUND    ][Token: internallink: , LENGTH=0, ENTRY] @662
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 58][ADD NODE       ][Node: defitem='\n: '] to [Node: defterm]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 58][TOKEN FOUND    ][Token: defitem: \n: , LENGTH=3, ENTRY] @659
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 57][CLOSING NODE   ][Node: defitem='\n: ']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 57][ADD #TEXT      ][Node: #TEXT='Internals: utf8-Encoding, MAC|UNIX|PC-Lineendings']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 57][TOKEN FOUND    ][Token: defitem: , LENGTH=49, EXIT] @610
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 56][ADD NODE       ][Node: defitem='\n: '] to [Node: defterm]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 56][TOKEN FOUND    ][Token: defitem: \n: , LENGTH=3, ENTRY] @607
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 55][CLOSING NODE   ][Node: defitem='\n: ']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 55][ADD #TEXT      ][Node: #TEXT='Funktionen: Debug-Modus, Bearbeiten, l&amp;ouml;schen, verschieben, neu, Seiten&amp;uuml;berblick, Quellcode anzeigen']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 55][TOKEN FOUND    ][Token: defitem: , LENGTH=101, EXIT] @506
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 54][ADD NODE       ][Node: defitem='\n: '] to [Node: defterm]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 54][TOKEN FOUND    ][Token: defitem: \n: , LENGTH=3, ENTRY] @503
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 53][CLOSING NODE   ][Node: defitem='\n: ']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 53][ADD #TEXT      ][Node: #TEXT='Singleuser-Login (hard-coded)']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 53][TOKEN FOUND    ][Token: defitem: , LENGTH=29, EXIT] @474
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 52][ADD NODE       ][Node: defitem='\n: '] to [Node: defterm]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 52][TOKEN FOUND    ][Token: defitem: \n: , LENGTH=3, ENTRY] @471
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 51][CLOSING NODE   ][Node: internallink]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 51][TOKEN FOUND    ][Token: internallink: ]], LENGTH=2, EXIT] @469
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 50][CLOSING NODE   ][Node: internallinktext]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 50][ADD #TEXT      ][Node: #TEXT='&amp;Uuml;berblick zur v0.01']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 50][TOKEN FOUND    ][Token: internallinktext: , LENGTH=20, EXIT] @449
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 49][ADD NODE       ][Node: internallinktext] to [Node: internallink]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 49][TOKEN FOUND    ][Token: internallinktext: |, LENGTH=1, ENTRY] @448
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 48][CLOSING NODE   ][Node: internallinkpos]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 48][ADD #TEXT      ][Node: #TEXT='todos:v0.01']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 48][TOKEN FOUND    ][Token: internallinkpos: , LENGTH=11, EXIT] @437
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 47][ADD NODE       ][Node: internallinkpos] to [Node: internallink]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 47][TOKEN FOUND    ][Token: internallinkpos: [[, LENGTH=2, ENTRY] @435
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 46][ADD NODE       ][Node: internallink] to [Node: defterm]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 46][TOKEN FOUND    ][Token: internallink: , LENGTH=0, ENTRY] @435
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 45][ADD NODE       ][Node: defterm] to [Node: deflist]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 45][TOKEN FOUND    ][Token: defterm: \n; , LENGTH=4, ENTRY] @431
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 44][CLOSING NODE   ][Node: defterm]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 44][TOKEN FOUND    ][Token: defterm: \n, LENGTH=1, EXIT] @431
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 43][CLOSING NODE   ][Node: defitem='\n: ']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 43][ADD #TEXT      ][Node: #TEXT='.']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 43][TOKEN FOUND    ][Token: defitem: , LENGTH=1, EXIT] @430
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 42][CLOSING NODE   ][Node: internallink]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 42][TOKEN FOUND    ][Token: internallink: ]], LENGTH=2, EXIT] @428
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 41][CLOSING NODE   ][Node: internallinkpos]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 41][ADD #TEXT      ][Node: #TEXT='grammar-configuration-files']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 41][TOKEN FOUND    ][Token: internallinkpos: , LENGTH=27, EXIT] @401
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 40][ADD NODE       ][Node: internallinkpos] to [Node: internallink]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 40][TOKEN FOUND    ][Token: internallinkpos: [[, LENGTH=2, ENTRY] @399
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 39][ADD NODE       ][Node: internallink] to [Node: defitem='\n: ']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 39][ADD #TEXT      ][Node: #TEXT='build up a memoizing parser that understands ']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 39][TOKEN FOUND    ][Token: internallink: , LENGTH=45, ENTRY] @354
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 38][ADD NODE       ][Node: defitem='\n: '] to [Node: defterm]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 38][TOKEN FOUND    ][Token: defitem: \n: , LENGTH=3, ENTRY] @351
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 37][CLOSING NODE   ][Node: internallink]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 37][TOKEN FOUND    ][Token: internallink: ]], LENGTH=2, EXIT] @349
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 36][CLOSING NODE   ][Node: internallinktext]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 36][ADD #TEXT      ][Node: #TEXT='new styled lexer']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 36][TOKEN FOUND    ][Token: internallinktext: , LENGTH=16, EXIT] @333
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 35][ADD NODE       ][Node: internallinktext] to [Node: internallink]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 35][TOKEN FOUND    ][Token: internallinktext: |, LENGTH=1, ENTRY] @332
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 34][CLOSING NODE   ][Node: internallinkpos]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 34][ADD #TEXT      ][Node: #TEXT='todos:newStyle']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 34][TOKEN FOUND    ][Token: internallinkpos: , LENGTH=14, EXIT] @318
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 33][ADD NODE       ][Node: internallinkpos] to [Node: internallink]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 33][TOKEN FOUND    ][Token: internallinkpos: [[, LENGTH=2, ENTRY] @316
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 32][ADD NODE       ][Node: internallink] to [Node: defterm]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 32][TOKEN FOUND    ][Token: internallink: , LENGTH=0, ENTRY] @316
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 31][ADD NODE       ][Node: defterm] to [Node: deflist]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addAbstractNode@444          | [ 31][ADD #ABSTRACT  ][Node: deflist] @316
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 31][TOKEN FOUND    ][Token: defterm: \n; , LENGTH=3, ENTRY] @313
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 30][CLOSING NODE   ][Node: header='==']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 30][ADD #TEXT      ][Node: #TEXT=' Changelog ']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 30][TOKEN FOUND    ][Token: header: ==\n, LENGTH=14, EXIT] @300
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 29][ADD NODE       ][Node: header='=='] to [Node: #DOCUMENT]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 29][TOKEN FOUND    ][Token: header: \n==, LENGTH=4, ENTRY] @296
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 28][CLOSING NODE   ][Node: comment2]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 28][ADD #TEXT      ][Node: #TEXT='&amp;lt;right alone&amp;gt;&amp;lt;border&amp;gt;Inhaltsverzeichnis:~~TOC~~&amp;lt;/border&amp;gt;&amp;lt;/right&amp;gt;']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 28][TOKEN FOUND    ][Token: comment2: &amp;quot;&amp;quot;&amp;quot;, LENGTH=67, EXIT] @229
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 27][ADD NODE       ][Node: comment2] to [Node: #DOCUMENT]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 27][ADD #TEXT      ][Node: #TEXT='\n\n']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 27][TOKEN FOUND    ][Token: comment2: &amp;quot;&amp;quot;&amp;quot;, LENGTH=5, ENTRY] @224
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 26][CLOSING NODE   ][Node: borderinfo]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 26][TOKEN FOUND    ][Token: borderinfo: &amp;lt;/info&amp;gt;, LENGTH=8, EXIT] @216
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 25][CLOSING NODE   ][Node: align]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 25][TOKEN FOUND    ][Token: align: \n, LENGTH=1, EXIT] @216
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 24][CLOSING NODE   ][Node: small]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 24][ADD #TEXT      ][Node: #TEXT=')']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 24][TOKEN FOUND    ][Token: small: --, LENGTH=3, EXIT] @213
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 23][ADD NODE       ][Node: constant='lexerversion'] to [Node: small]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 23][ADD #TEXT      ][Node: #TEXT='(Lexerversion: ']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 23][TOKEN FOUND    ][Token: constant: {{lexerversion}}, LENGTH=31, ENTRY] @182
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 22][ADD NODE       ][Node: small] to [Node: align]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 22][TOKEN FOUND    ][Token: small: --, LENGTH=2, ENTRY] @180
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 21][ADD NODE       ][Node: newline] to [Node: align]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 21][TOKEN FOUND    ][Token: newline: \\, LENGTH=2, ENTRY] @178
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 20][CLOSING NODE   ][Node: bold]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 20][TOKEN FOUND    ][Token: bold: **, LENGTH=2, EXIT] @176
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 19][ADD NODE       ][Node: constant='version'] to [Node: bold]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 19][TOKEN FOUND    ][Token: constant: {{version}}, LENGTH=11, ENTRY] @165
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 18][ADD NODE       ][Node: bold] to [Node: align]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 18][TOKEN FOUND    ][Token: bold: **, LENGTH=2, ENTRY] @163
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 17][ADD NODE       ][Node: newline] to [Node: align]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 17][ADD #TEXT      ][Node: #TEXT='Aktuelle Version:']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 17][TOKEN FOUND    ][Token: newline: \\, LENGTH=19, ENTRY] @144
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 16][ADD NODE       ][Node: align] to [Node: borderinfo]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 16][TOKEN FOUND    ][Token: align: \n:&amp;gt; , LENGTH=4, ENTRY] @140
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 15][ADD NODE       ][Node: borderinfo] to [Node: #DOCUMENT]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 15][TOKEN FOUND    ][Token: borderinfo: &amp;lt;info&amp;gt;, LENGTH=7, ENTRY] @133
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 14][CLOSING NODE   ][Node: header='=']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 14][ADD #TEXT      ][Node: #TEXT=' Changelog, Bugs and Todos... ']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 14][TOKEN FOUND    ][Token: header: =    \n, LENGTH=36, EXIT] @98
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 13][ADD NODE       ][Node: header='='] to [Node: #DOCUMENT]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 13][TOKEN FOUND    ][Token: header: \n=, LENGTH=2, ENTRY] @96
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 12][CLOSING NODE   ][Node: border]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 12][TOKEN FOUND    ][Token: border: &amp;lt;/border&amp;gt;, LENGTH=10, EXIT] @86
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 11][CLOSING NODE   ][Node: lo]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 11][TOKEN FOUND    ][Token: lo: &amp;lt;/lo&amp;gt;, LENGTH=5, EXIT] @81
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 10][CLOSING NODE   ][Node: internallink]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 10][TOKEN FOUND    ][Token: internallink: ]], LENGTH=2, EXIT] @79
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [  9][CLOSING NODE   ][Node: internallinktext]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [  9][ADD #TEXT      ][Node: #TEXT='Todos anzeigen']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [  9][TOKEN FOUND    ][Token: internallinktext: , LENGTH=14, EXIT] @65
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [  8][ADD NODE       ][Node: internallinktext] to [Node: internallink]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [  8][TOKEN FOUND    ][Token: internallinktext: |, LENGTH=1, ENTRY] @64
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [  7][CLOSING NODE   ][Node: internallinkpos]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [  7][ADD #TEXT      ][Node: #TEXT=':dokumentation:todos']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [  7][TOKEN FOUND    ][Token: internallinkpos: , LENGTH=20, EXIT] @44
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [  6][ADD NODE       ][Node: internallinkpos] to [Node: internallink]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [  6][TOKEN FOUND    ][Token: internallinkpos: [[, LENGTH=2, ENTRY] @42
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [  5][ADD NODE       ][Node: internallink] to [Node: lo]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [  5][ADD #TEXT      ][Node: #TEXT=' | ']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [  5][TOKEN FOUND    ][Token: internallink: , LENGTH=3, ENTRY] @39
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [  4][ADD NODE       ][Node: lo] to [Node: border]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [  4][TOKEN FOUND    ][Token: lo: &amp;lt;lo&amp;gt;, LENGTH=5, ENTRY] @34
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [  3][CLOSING NODE   ][Node: plugin='TRACE']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [  3][TOKEN FOUND    ][Token: plugin: ~~, LENGTH=2, EXIT] @32
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [  2][ADD NODE       ][Node: plugin='TRACE'] to [Node: border]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [  2][ADD #TEXT      ][Node: #TEXT='\nSie sind hier: ']
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [  2][TOKEN FOUND    ][Token: plugin: ~~TRACE, LENGTH=23, ENTRY] @9
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [  1][ADD NODE       ][Node: border] to [Node: #DOCUMENT]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [  1][TOKEN FOUND    ][Token: border: &amp;lt;border&amp;gt;, LENGTH=9, ENTRY] @0
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: comment2 (TYPE_SECTION)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)], [Pattern: multiline (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: tableheader (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)], [Pattern: bold (TYPE_SECTION)], [Pattern: underline (TYPE_SECTION)], [Pattern: italic (TYPE_SECTION)], [Pattern: monospace (TYPE_SECTION)], [Pattern: small (TYPE_SECTION)], [Pattern: big (TYPE_SECTION)], [Pattern: strike (TYPE_SECTION)], [Pattern: sub (TYPE_SECTION)], [Pattern: sup (TYPE_SECTION)], [Pattern: hi (TYPE_SECTION)], [Pattern: lo (TYPE_SECTION)], [Pattern: em (TYPE_SECTION)], [Pattern: align (TYPE_SECTION)], [Pattern: justify (TYPE_SECTION)], [Pattern: alignintable (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)],
+2013/09/15 03:27:02 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: comment2 (TYPE_SECTION)] Item with name 'wptablecell' not found in this collection!
+2013/09/15 03:27:02 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: comment2 (TYPE_SECTION)] Item with name 'wptableheader' not found in this collection!
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: comment (TYPE_SECTION)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)], [Pattern: multiline (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: tableheader (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)], [Pattern: bold (TYPE_SECTION)], [Pattern: underline (TYPE_SECTION)], [Pattern: italic (TYPE_SECTION)], [Pattern: monospace (TYPE_SECTION)], [Pattern: small (TYPE_SECTION)], [Pattern: big (TYPE_SECTION)], [Pattern: strike (TYPE_SECTION)], [Pattern: sub (TYPE_SECTION)], [Pattern: sup (TYPE_SECTION)], [Pattern: hi (TYPE_SECTION)], [Pattern: lo (TYPE_SECTION)], [Pattern: em (TYPE_SECTION)], [Pattern: align (TYPE_SECTION)], [Pattern: justify (TYPE_SECTION)], [Pattern: alignintable (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)],
+2013/09/15 03:27:02 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: comment (TYPE_SECTION)] Item with name 'wptablecell' not found in this collection!
+2013/09/15 03:27:02 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: comment (TYPE_SECTION)] Item with name 'wptableheader' not found in this collection!
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: notoc (TYPE_SECTION)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)], [Pattern: multiline (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: tableheader (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)],
+2013/09/15 03:27:02 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: notoc (TYPE_SECTION)] Item with name 'wptablecell' not found in this collection!
+2013/09/15 03:27:02 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: notoc (TYPE_SECTION)] Item with name 'wptableheader' not found in this collection!
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: math (TYPE_SECTION)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)], [Pattern: multiline (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: tableheader (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)], [Pattern: bold (TYPE_SECTION)], [Pattern: underline (TYPE_SECTION)], [Pattern: italic (TYPE_SECTION)], [Pattern: monospace (TYPE_SECTION)], [Pattern: small (TYPE_SECTION)], [Pattern: big (TYPE_SECTION)], [Pattern: strike (TYPE_SECTION)], [Pattern: sub (TYPE_SECTION)], [Pattern: sup (TYPE_SECTION)], [Pattern: hi (TYPE_SECTION)], [Pattern: lo (TYPE_SECTION)], [Pattern: em (TYPE_SECTION)], [Pattern: align (TYPE_SECTION)], [Pattern: justify (TYPE_SECTION)], [Pattern: alignintable (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)],
+2013/09/15 03:27:02 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: math (TYPE_SECTION)] Item with name 'wptablecell' not found in this collection!
+2013/09/15 03:27:02 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: math (TYPE_SECTION)] Item with name 'wptableheader' not found in this collection!
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: quotedstring (TYPE_SECTION)] can be within [Pattern: variable (TYPE_LINE)],
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: footnote (TYPE_SECTION)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)], [Pattern: multiline (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: tableheader (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)], [Pattern: bold (TYPE_SECTION)], [Pattern: underline (TYPE_SECTION)], [Pattern: italic (TYPE_SECTION)], [Pattern: monospace (TYPE_SECTION)], [Pattern: small (TYPE_SECTION)], [Pattern: big (TYPE_SECTION)], [Pattern: strike (TYPE_SECTION)], [Pattern: sub (TYPE_SECTION)], [Pattern: sup (TYPE_SECTION)], [Pattern: hi (TYPE_SECTION)], [Pattern: lo (TYPE_SECTION)], [Pattern: em (TYPE_SECTION)], [Pattern: align (TYPE_SECTION)], [Pattern: justify (TYPE_SECTION)], [Pattern: alignintable (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)], [Pattern: defitem (TYPE_SECTION)], [Pattern: defterm (TYPE_SECTION; CONNECTED TO deflist)],
+2013/09/15 03:27:02 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: footnote (TYPE_SECTION)] Item with name 'wptablecell' not found in this collection!
+2013/09/15 03:27:02 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: footnote (TYPE_SECTION)] Item with name 'wptableheader' not found in this collection!
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: multiline (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)],
+2013/09/15 03:27:02 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)] Item with name 'wptablecell' not found in this collection!
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: defitem (TYPE_SECTION)] can be within [Pattern: defterm (TYPE_SECTION; CONNECTED TO deflist)],
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: defterm (TYPE_SECTION; CONNECTED TO deflist)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)], [Pattern: multiline (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)], [Pattern: align (TYPE_SECTION)], [Pattern: justify (TYPE_SECTION)], [Pattern: alignintable (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)],
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: horizontalrule (TYPE_LINE)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: multiline (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)],
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: alignintable (TYPE_SECTION)] can be within [Pattern: tablecell (TYPE_SECTION)],
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: tablespan (TYPE_WORD)] can be within [Pattern: tablecell (TYPE_SECTION)], [Pattern: tableheader (TYPE_SECTION)],
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: tableheader (TYPE_SECTION)] can be within [Pattern: tablerow (TYPE_SECTION; CONNECTED TO table)],
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: tablerow (TYPE_SECTION; CONNECTED TO table)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: multiline (TYPE_SECTION)], [Pattern: notoc (TYPE_SECTION)],
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: tablecell (TYPE_SECTION)] can be within [Pattern: tablerow (TYPE_SECTION; CONNECTED TO table)],
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: externallinkpos (TYPE_SECTION)] can be within [Pattern: externallink (TYPE_SECTION)],
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: externallink (TYPE_SECTION)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)], [Pattern: multiline (TYPE_SECTION)], [Pattern: bold (TYPE_SECTION)], [Pattern: underline (TYPE_SECTION)], [Pattern: italic (TYPE_SECTION)], [Pattern: monospace (TYPE_SECTION)], [Pattern: small (TYPE_SECTION)], [Pattern: big (TYPE_SECTION)], [Pattern: strike (TYPE_SECTION)], [Pattern: sub (TYPE_SECTION)], [Pattern: sup (TYPE_SECTION)], [Pattern: hi (TYPE_SECTION)], [Pattern: lo (TYPE_SECTION)], [Pattern: em (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: tableheader (TYPE_SECTION)], [Pattern: align (TYPE_SECTION)], [Pattern: justify (TYPE_SECTION)], [Pattern: alignintable (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)], [Pattern: footnote (TYPE_SECTION)], [Pattern: defitem (TYPE_SECTION)], [Pattern: defterm (TYPE_SECTION; CONNECTED TO deflist)],
+2013/09/15 03:27:02 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: externallink (TYPE_SECTION)] Item with name 'wptablecell' not found in this collection!
+2013/09/15 03:27:02 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: externallink (TYPE_SECTION)] Item with name 'wptableheader' not found in this collection!
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: variable (TYPE_LINE)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)], [Pattern: multiline (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)], [Pattern: bold (TYPE_SECTION)], [Pattern: underline (TYPE_SECTION)], [Pattern: italic (TYPE_SECTION)], [Pattern: monospace (TYPE_SECTION)], [Pattern: small (TYPE_SECTION)], [Pattern: big (TYPE_SECTION)], [Pattern: strike (TYPE_SECTION)], [Pattern: sub (TYPE_SECTION)], [Pattern: sup (TYPE_SECTION)], [Pattern: hi (TYPE_SECTION)], [Pattern: lo (TYPE_SECTION)], [Pattern: em (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: tableheader (TYPE_SECTION)], [Pattern: align (TYPE_SECTION)], [Pattern: justify (TYPE_SECTION)], [Pattern: alignintable (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)], [Pattern: pluginparameter (TYPE_SECTION)],
+2013/09/15 03:27:02 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: variable (TYPE_LINE)] Item with name 'wptablecell' not found in this collection!
+2013/09/15 03:27:02 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: variable (TYPE_LINE)] Item with name 'wptableheader' not found in this collection!
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: symbol (TYPE_WORD)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)], [Pattern: multiline (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)], [Pattern: bold (TYPE_SECTION)], [Pattern: underline (TYPE_SECTION)], [Pattern: italic (TYPE_SECTION)], [Pattern: monospace (TYPE_SECTION)], [Pattern: small (TYPE_SECTION)], [Pattern: big (TYPE_SECTION)], [Pattern: strike (TYPE_SECTION)], [Pattern: sub (TYPE_SECTION)], [Pattern: sup (TYPE_SECTION)], [Pattern: hi (TYPE_SECTION)], [Pattern: lo (TYPE_SECTION)], [Pattern: em (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: tableheader (TYPE_SECTION)], [Pattern: align (TYPE_SECTION)], [Pattern: justify (TYPE_SECTION)], [Pattern: alignintable (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)], [Pattern: math (TYPE_SECTION)], [Pattern: defitem (TYPE_SECTION)], [Pattern: defterm (TYPE_SECTION; CONNECTED TO deflist)],
+2013/09/15 03:27:02 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: symbol (TYPE_WORD)] Item with name 'wptablecell' not found in this collection!
+2013/09/15 03:27:02 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: symbol (TYPE_WORD)] Item with name 'wptableheader' not found in this collection!
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: constant (TYPE_WORD)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)], [Pattern: multiline (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)], [Pattern: bold (TYPE_SECTION)], [Pattern: underline (TYPE_SECTION)], [Pattern: italic (TYPE_SECTION)], [Pattern: monospace (TYPE_SECTION)], [Pattern: small (TYPE_SECTION)], [Pattern: big (TYPE_SECTION)], [Pattern: strike (TYPE_SECTION)], [Pattern: sub (TYPE_SECTION)], [Pattern: sup (TYPE_SECTION)], [Pattern: hi (TYPE_SECTION)], [Pattern: lo (TYPE_SECTION)], [Pattern: em (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: tableheader (TYPE_SECTION)], [Pattern: align (TYPE_SECTION)], [Pattern: justify (TYPE_SECTION)], [Pattern: alignintable (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)], [Pattern: header (TYPE_LINE)], [Pattern: internallinkpos (TYPE_SECTION)], [Pattern: internallinktext (TYPE_SECTION)], [Pattern: externallink (TYPE_SECTION)], [Pattern: externallinkpos (TYPE_SECTION)], [Pattern: variable (TYPE_LINE)], [Pattern: plugin (TYPE_SECTION)], [Pattern: pluginparameter (TYPE_SECTION)],
+2013/09/15 03:27:02 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: constant (TYPE_WORD)] Item with name 'pluginparam' not found in this collection!
+2013/09/15 03:27:02 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: constant (TYPE_WORD)] Item with name 'wptablecell' not found in this collection!
+2013/09/15 03:27:02 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: constant (TYPE_WORD)] Item with name 'wptableheader' not found in this collection!
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: left (TYPE_SECTION)] can be within [Pattern: #DOCUMENT (TYPE_BASE)],
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: right (TYPE_SECTION)] can be within [Pattern: #DOCUMENT (TYPE_BASE)],
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: indent (TYPE_SECTION)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)], [Pattern: multiline (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)],
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: justify (TYPE_SECTION)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)], [Pattern: multiline (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)], [Pattern: align (TYPE_SECTION)], [Pattern: justify (TYPE_SECTION)], [Pattern: alignintable (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)],
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: align (TYPE_SECTION)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)], [Pattern: multiline (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)], [Pattern: align (TYPE_SECTION)], [Pattern: justify (TYPE_SECTION)], [Pattern: alignintable (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)],
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: preformat (TYPE_LINE; CONNECTED TO pre)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)], [Pattern: multiline (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: tableheader (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)], [Pattern: align (TYPE_SECTION)], [Pattern: justify (TYPE_SECTION)], [Pattern: alignintable (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)],
+2013/09/15 03:27:02 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: preformat (TYPE_LINE; CONNECTED TO pre)] Item with name 'wptablecell' not found in this collection!
+2013/09/15 03:27:02 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: preformat (TYPE_LINE; CONNECTED TO pre)] Item with name 'wptableheader' not found in this collection!
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: multiline (TYPE_SECTION)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: multiline (TYPE_SECTION)], [Pattern: alignintable (TYPE_SECTION)], [Pattern: justify (TYPE_SECTION)], [Pattern: align (TYPE_SECTION)], [Pattern: defitem (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)],
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: newline (TYPE_WORD)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)], [Pattern: multiline (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)], [Pattern: bold (TYPE_SECTION)], [Pattern: underline (TYPE_SECTION)], [Pattern: italic (TYPE_SECTION)], [Pattern: monospace (TYPE_SECTION)], [Pattern: small (TYPE_SECTION)], [Pattern: big (TYPE_SECTION)], [Pattern: strike (TYPE_SECTION)], [Pattern: sub (TYPE_SECTION)], [Pattern: sup (TYPE_SECTION)], [Pattern: hi (TYPE_SECTION)], [Pattern: lo (TYPE_SECTION)], [Pattern: em (TYPE_SECTION)], [Pattern: align (TYPE_SECTION)], [Pattern: justify (TYPE_SECTION)], [Pattern: alignintable (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: tableheader (TYPE_SECTION)], [Pattern: footnote (TYPE_SECTION)],
+2013/09/15 03:27:02 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: newline (TYPE_WORD)] Item with name 'wptablecell' not found in this collection!
+2013/09/15 03:27:02 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: newline (TYPE_WORD)] Item with name 'wptableheader' not found in this collection!
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: nowikialt (TYPE_SECTION)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)], [Pattern: multiline (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)], [Pattern: bold (TYPE_SECTION)], [Pattern: underline (TYPE_SECTION)], [Pattern: italic (TYPE_SECTION)], [Pattern: monospace (TYPE_SECTION)], [Pattern: small (TYPE_SECTION)], [Pattern: big (TYPE_SECTION)], [Pattern: strike (TYPE_SECTION)], [Pattern: sub (TYPE_SECTION)], [Pattern: sup (TYPE_SECTION)], [Pattern: hi (TYPE_SECTION)], [Pattern: lo (TYPE_SECTION)], [Pattern: em (TYPE_SECTION)], [Pattern: defterm (TYPE_SECTION; CONNECTED TO deflist)], [Pattern: defitem (TYPE_SECTION)],
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: nowiki (TYPE_SECTION)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)], [Pattern: multiline (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)], [Pattern: bold (TYPE_SECTION)], [Pattern: underline (TYPE_SECTION)], [Pattern: italic (TYPE_SECTION)], [Pattern: monospace (TYPE_SECTION)], [Pattern: small (TYPE_SECTION)], [Pattern: big (TYPE_SECTION)], [Pattern: strike (TYPE_SECTION)], [Pattern: sub (TYPE_SECTION)], [Pattern: sup (TYPE_SECTION)], [Pattern: hi (TYPE_SECTION)], [Pattern: lo (TYPE_SECTION)], [Pattern: em (TYPE_SECTION)], [Pattern: defterm (TYPE_SECTION; CONNECTED TO deflist)], [Pattern: defitem (TYPE_SECTION)],
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: code (TYPE_SECTION)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)], [Pattern: multiline (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)], [Pattern: bold (TYPE_SECTION)], [Pattern: underline (TYPE_SECTION)], [Pattern: italic (TYPE_SECTION)], [Pattern: monospace (TYPE_SECTION)], [Pattern: small (TYPE_SECTION)], [Pattern: big (TYPE_SECTION)], [Pattern: strike (TYPE_SECTION)], [Pattern: sub (TYPE_SECTION)], [Pattern: sup (TYPE_SECTION)], [Pattern: hi (TYPE_SECTION)], [Pattern: lo (TYPE_SECTION)], [Pattern: em (TYPE_SECTION)],
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: underline (TYPE_SECTION)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: defitem (TYPE_SECTION)], [Pattern: footnote (TYPE_SECTION)], [Pattern: align (TYPE_SECTION)], [Pattern: justify (TYPE_SECTION)], [Pattern: alignintable (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: tableheader (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)], [Pattern: multiline (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)], [Pattern: bold (TYPE_SECTION)], [Pattern: underline (TYPE_SECTION)], [Pattern: italic (TYPE_SECTION)], [Pattern: monospace (TYPE_SECTION)], [Pattern: small (TYPE_SECTION)], [Pattern: big (TYPE_SECTION)], [Pattern: strike (TYPE_SECTION)], [Pattern: sub (TYPE_SECTION)], [Pattern: sup (TYPE_SECTION)], [Pattern: hi (TYPE_SECTION)], [Pattern: lo (TYPE_SECTION)], [Pattern: em (TYPE_SECTION)],
+2013/09/15 03:27:02 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: underline (TYPE_SECTION)] Item with name 'wptablecell' not found in this collection!
+2013/09/15 03:27:02 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: underline (TYPE_SECTION)] Item with name 'wptableheader' not found in this collection!
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: sup (TYPE_SECTION)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: defitem (TYPE_SECTION)], [Pattern: footnote (TYPE_SECTION)], [Pattern: align (TYPE_SECTION)], [Pattern: justify (TYPE_SECTION)], [Pattern: alignintable (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: tableheader (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)], [Pattern: multiline (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)], [Pattern: bold (TYPE_SECTION)], [Pattern: underline (TYPE_SECTION)], [Pattern: italic (TYPE_SECTION)], [Pattern: monospace (TYPE_SECTION)], [Pattern: small (TYPE_SECTION)], [Pattern: big (TYPE_SECTION)], [Pattern: strike (TYPE_SECTION)], [Pattern: sub (TYPE_SECTION)], [Pattern: sup (TYPE_SECTION)], [Pattern: hi (TYPE_SECTION)], [Pattern: lo (TYPE_SECTION)], [Pattern: em (TYPE_SECTION)],
+2013/09/15 03:27:02 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: sup (TYPE_SECTION)] Item with name 'wptablecell' not found in this collection!
+2013/09/15 03:27:02 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: sup (TYPE_SECTION)] Item with name 'wptableheader' not found in this collection!
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: sub (TYPE_SECTION)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: defitem (TYPE_SECTION)], [Pattern: footnote (TYPE_SECTION)], [Pattern: align (TYPE_SECTION)], [Pattern: justify (TYPE_SECTION)], [Pattern: alignintable (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: tableheader (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)], [Pattern: multiline (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)], [Pattern: bold (TYPE_SECTION)], [Pattern: underline (TYPE_SECTION)], [Pattern: italic (TYPE_SECTION)], [Pattern: monospace (TYPE_SECTION)], [Pattern: small (TYPE_SECTION)], [Pattern: big (TYPE_SECTION)], [Pattern: strike (TYPE_SECTION)], [Pattern: sub (TYPE_SECTION)], [Pattern: sup (TYPE_SECTION)], [Pattern: hi (TYPE_SECTION)], [Pattern: lo (TYPE_SECTION)], [Pattern: em (TYPE_SECTION)],
+2013/09/15 03:27:02 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: sub (TYPE_SECTION)] Item with name 'wptablecell' not found in this collection!
+2013/09/15 03:27:02 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: sub (TYPE_SECTION)] Item with name 'wptableheader' not found in this collection!
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: strike (TYPE_SECTION)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: defitem (TYPE_SECTION)], [Pattern: footnote (TYPE_SECTION)], [Pattern: align (TYPE_SECTION)], [Pattern: justify (TYPE_SECTION)], [Pattern: alignintable (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: tableheader (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)], [Pattern: multiline (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)], [Pattern: bold (TYPE_SECTION)], [Pattern: underline (TYPE_SECTION)], [Pattern: italic (TYPE_SECTION)], [Pattern: monospace (TYPE_SECTION)], [Pattern: small (TYPE_SECTION)], [Pattern: big (TYPE_SECTION)], [Pattern: strike (TYPE_SECTION)], [Pattern: sub (TYPE_SECTION)], [Pattern: sup (TYPE_SECTION)], [Pattern: hi (TYPE_SECTION)], [Pattern: lo (TYPE_SECTION)], [Pattern: em (TYPE_SECTION)],
+2013/09/15 03:27:02 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: strike (TYPE_SECTION)] Item with name 'wptablecell' not found in this collection!
+2013/09/15 03:27:02 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: strike (TYPE_SECTION)] Item with name 'wptableheader' not found in this collection!
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: small (TYPE_SECTION)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: defitem (TYPE_SECTION)], [Pattern: footnote (TYPE_SECTION)], [Pattern: align (TYPE_SECTION)], [Pattern: justify (TYPE_SECTION)], [Pattern: alignintable (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: tableheader (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)], [Pattern: multiline (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)], [Pattern: bold (TYPE_SECTION)], [Pattern: underline (TYPE_SECTION)], [Pattern: italic (TYPE_SECTION)], [Pattern: monospace (TYPE_SECTION)], [Pattern: small (TYPE_SECTION)], [Pattern: big (TYPE_SECTION)], [Pattern: strike (TYPE_SECTION)], [Pattern: sub (TYPE_SECTION)], [Pattern: sup (TYPE_SECTION)], [Pattern: hi (TYPE_SECTION)], [Pattern: lo (TYPE_SECTION)], [Pattern: em (TYPE_SECTION)],
+2013/09/15 03:27:02 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: small (TYPE_SECTION)] Item with name 'wptablecell' not found in this collection!
+2013/09/15 03:27:02 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: small (TYPE_SECTION)] Item with name 'wptableheader' not found in this collection!
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: monospace (TYPE_SECTION)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: defitem (TYPE_SECTION)], [Pattern: footnote (TYPE_SECTION)], [Pattern: align (TYPE_SECTION)], [Pattern: justify (TYPE_SECTION)], [Pattern: alignintable (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: tableheader (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)], [Pattern: multiline (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)], [Pattern: bold (TYPE_SECTION)], [Pattern: underline (TYPE_SECTION)], [Pattern: italic (TYPE_SECTION)], [Pattern: monospace (TYPE_SECTION)], [Pattern: small (TYPE_SECTION)], [Pattern: big (TYPE_SECTION)], [Pattern: strike (TYPE_SECTION)], [Pattern: sub (TYPE_SECTION)], [Pattern: sup (TYPE_SECTION)], [Pattern: hi (TYPE_SECTION)], [Pattern: lo (TYPE_SECTION)], [Pattern: em (TYPE_SECTION)],
+2013/09/15 03:27:02 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: monospace (TYPE_SECTION)] Item with name 'wptablecell' not found in this collection!
+2013/09/15 03:27:02 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: monospace (TYPE_SECTION)] Item with name 'wptableheader' not found in this collection!
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: lo (TYPE_SECTION)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: defitem (TYPE_SECTION)], [Pattern: footnote (TYPE_SECTION)], [Pattern: align (TYPE_SECTION)], [Pattern: justify (TYPE_SECTION)], [Pattern: alignintable (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: tableheader (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)], [Pattern: multiline (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)], [Pattern: bold (TYPE_SECTION)], [Pattern: underline (TYPE_SECTION)], [Pattern: italic (TYPE_SECTION)], [Pattern: monospace (TYPE_SECTION)], [Pattern: small (TYPE_SECTION)], [Pattern: big (TYPE_SECTION)], [Pattern: strike (TYPE_SECTION)], [Pattern: sub (TYPE_SECTION)], [Pattern: sup (TYPE_SECTION)], [Pattern: hi (TYPE_SECTION)], [Pattern: lo (TYPE_SECTION)], [Pattern: em (TYPE_SECTION)],
+2013/09/15 03:27:02 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: lo (TYPE_SECTION)] Item with name 'wptablecell' not found in this collection!
+2013/09/15 03:27:02 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: lo (TYPE_SECTION)] Item with name 'wptableheader' not found in this collection!
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: italic (TYPE_SECTION)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: defitem (TYPE_SECTION)], [Pattern: footnote (TYPE_SECTION)], [Pattern: align (TYPE_SECTION)], [Pattern: justify (TYPE_SECTION)], [Pattern: alignintable (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: tableheader (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)], [Pattern: multiline (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)], [Pattern: bold (TYPE_SECTION)], [Pattern: underline (TYPE_SECTION)], [Pattern: italic (TYPE_SECTION)], [Pattern: monospace (TYPE_SECTION)], [Pattern: small (TYPE_SECTION)], [Pattern: big (TYPE_SECTION)], [Pattern: strike (TYPE_SECTION)], [Pattern: sub (TYPE_SECTION)], [Pattern: sup (TYPE_SECTION)], [Pattern: hi (TYPE_SECTION)], [Pattern: lo (TYPE_SECTION)], [Pattern: em (TYPE_SECTION)],
+2013/09/15 03:27:02 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: italic (TYPE_SECTION)] Item with name 'wptablecell' not found in this collection!
+2013/09/15 03:27:02 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: italic (TYPE_SECTION)] Item with name 'wptableheader' not found in this collection!
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: hi (TYPE_SECTION)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: defitem (TYPE_SECTION)], [Pattern: footnote (TYPE_SECTION)], [Pattern: align (TYPE_SECTION)], [Pattern: justify (TYPE_SECTION)], [Pattern: alignintable (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: tableheader (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)], [Pattern: multiline (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)], [Pattern: bold (TYPE_SECTION)], [Pattern: underline (TYPE_SECTION)], [Pattern: italic (TYPE_SECTION)], [Pattern: monospace (TYPE_SECTION)], [Pattern: small (TYPE_SECTION)], [Pattern: big (TYPE_SECTION)], [Pattern: strike (TYPE_SECTION)], [Pattern: sub (TYPE_SECTION)], [Pattern: sup (TYPE_SECTION)], [Pattern: hi (TYPE_SECTION)], [Pattern: lo (TYPE_SECTION)], [Pattern: em (TYPE_SECTION)],
+2013/09/15 03:27:02 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: hi (TYPE_SECTION)] Item with name 'wptablecell' not found in this collection!
+2013/09/15 03:27:02 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: hi (TYPE_SECTION)] Item with name 'wptableheader' not found in this collection!
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: em (TYPE_SECTION)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: defitem (TYPE_SECTION)], [Pattern: footnote (TYPE_SECTION)], [Pattern: align (TYPE_SECTION)], [Pattern: justify (TYPE_SECTION)], [Pattern: alignintable (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: tableheader (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)], [Pattern: multiline (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)], [Pattern: bold (TYPE_SECTION)], [Pattern: underline (TYPE_SECTION)], [Pattern: italic (TYPE_SECTION)], [Pattern: monospace (TYPE_SECTION)], [Pattern: small (TYPE_SECTION)], [Pattern: big (TYPE_SECTION)], [Pattern: strike (TYPE_SECTION)], [Pattern: sub (TYPE_SECTION)], [Pattern: sup (TYPE_SECTION)], [Pattern: hi (TYPE_SECTION)], [Pattern: lo (TYPE_SECTION)], [Pattern: em (TYPE_SECTION)],
+2013/09/15 03:27:02 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: em (TYPE_SECTION)] Item with name 'wptablecell' not found in this collection!
+2013/09/15 03:27:02 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: em (TYPE_SECTION)] Item with name 'wptableheader' not found in this collection!
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: bold (TYPE_SECTION)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: defitem (TYPE_SECTION)], [Pattern: footnote (TYPE_SECTION)], [Pattern: align (TYPE_SECTION)], [Pattern: justify (TYPE_SECTION)], [Pattern: alignintable (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: tableheader (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)], [Pattern: multiline (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)], [Pattern: bold (TYPE_SECTION)], [Pattern: underline (TYPE_SECTION)], [Pattern: italic (TYPE_SECTION)], [Pattern: monospace (TYPE_SECTION)], [Pattern: small (TYPE_SECTION)], [Pattern: big (TYPE_SECTION)], [Pattern: strike (TYPE_SECTION)], [Pattern: sub (TYPE_SECTION)], [Pattern: sup (TYPE_SECTION)], [Pattern: hi (TYPE_SECTION)], [Pattern: lo (TYPE_SECTION)], [Pattern: em (TYPE_SECTION)],
+2013/09/15 03:27:02 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: bold (TYPE_SECTION)] Item with name 'wptablecell' not found in this collection!
+2013/09/15 03:27:02 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: bold (TYPE_SECTION)] Item with name 'wptableheader' not found in this collection!
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: big (TYPE_SECTION)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: defitem (TYPE_SECTION)], [Pattern: footnote (TYPE_SECTION)], [Pattern: align (TYPE_SECTION)], [Pattern: justify (TYPE_SECTION)], [Pattern: alignintable (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: tableheader (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)], [Pattern: multiline (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)], [Pattern: bold (TYPE_SECTION)], [Pattern: underline (TYPE_SECTION)], [Pattern: italic (TYPE_SECTION)], [Pattern: monospace (TYPE_SECTION)], [Pattern: small (TYPE_SECTION)], [Pattern: big (TYPE_SECTION)], [Pattern: strike (TYPE_SECTION)], [Pattern: sub (TYPE_SECTION)], [Pattern: sup (TYPE_SECTION)], [Pattern: hi (TYPE_SECTION)], [Pattern: lo (TYPE_SECTION)], [Pattern: em (TYPE_SECTION)],
+2013/09/15 03:27:02 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: big (TYPE_SECTION)] Item with name 'wptablecell' not found in this collection!
+2013/09/15 03:27:02 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: big (TYPE_SECTION)] Item with name 'wptableheader' not found in this collection!
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: urlnoprotocol (TYPE_WORD)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)], [Pattern: multiline (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)], [Pattern: bold (TYPE_SECTION)], [Pattern: underline (TYPE_SECTION)], [Pattern: italic (TYPE_SECTION)], [Pattern: monospace (TYPE_SECTION)], [Pattern: small (TYPE_SECTION)], [Pattern: big (TYPE_SECTION)], [Pattern: strike (TYPE_SECTION)], [Pattern: sub (TYPE_SECTION)], [Pattern: sup (TYPE_SECTION)], [Pattern: hi (TYPE_SECTION)], [Pattern: lo (TYPE_SECTION)], [Pattern: em (TYPE_SECTION)], [Pattern: externallink (TYPE_SECTION)], [Pattern: footnote (TYPE_SECTION)], [Pattern: defitem (TYPE_SECTION)],
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: url (TYPE_WORD)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)], [Pattern: multiline (TYPE_SECTION)], [Pattern: bold (TYPE_SECTION)], [Pattern: underline (TYPE_SECTION)], [Pattern: italic (TYPE_SECTION)], [Pattern: monospace (TYPE_SECTION)], [Pattern: small (TYPE_SECTION)], [Pattern: big (TYPE_SECTION)], [Pattern: strike (TYPE_SECTION)], [Pattern: sub (TYPE_SECTION)], [Pattern: sup (TYPE_SECTION)], [Pattern: hi (TYPE_SECTION)], [Pattern: lo (TYPE_SECTION)], [Pattern: em (TYPE_SECTION)], [Pattern: externallink (TYPE_SECTION)], [Pattern: footnote (TYPE_SECTION)], [Pattern: defitem (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)],
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: internallinkpos (TYPE_SECTION)] can be within [Pattern: internallink (TYPE_SECTION)],
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: internallinkmode (TYPE_WORD)] can be within [Pattern: internallinkpos (TYPE_SECTION)],
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: internallinktext (TYPE_SECTION)] can be within [Pattern: internallink (TYPE_SECTION)],
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: internallink (TYPE_SECTION)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)], [Pattern: multiline (TYPE_SECTION)], [Pattern: bold (TYPE_SECTION)], [Pattern: underline (TYPE_SECTION)], [Pattern: italic (TYPE_SECTION)], [Pattern: monospace (TYPE_SECTION)], [Pattern: small (TYPE_SECTION)], [Pattern: big (TYPE_SECTION)], [Pattern: strike (TYPE_SECTION)], [Pattern: sub (TYPE_SECTION)], [Pattern: sup (TYPE_SECTION)], [Pattern: hi (TYPE_SECTION)], [Pattern: lo (TYPE_SECTION)], [Pattern: em (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: tableheader (TYPE_SECTION)], [Pattern: align (TYPE_SECTION)], [Pattern: justify (TYPE_SECTION)], [Pattern: alignintable (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)], [Pattern: footnote (TYPE_SECTION)], [Pattern: defitem (TYPE_SECTION)], [Pattern: defterm (TYPE_SECTION; CONNECTED TO deflist)],
+2013/09/15 03:27:02 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: internallink (TYPE_SECTION)] Item with name 'wptablecell' not found in this collection!
+2013/09/15 03:27:02 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: internallink (TYPE_SECTION)] Item with name 'wptableheader' not found in this collection!
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: pluginparameter (TYPE_SECTION)] can be within [Pattern: plugin (TYPE_SECTION)],
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: plugin (TYPE_SECTION)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)], [Pattern: multiline (TYPE_SECTION)], [Pattern: bold (TYPE_SECTION)], [Pattern: underline (TYPE_SECTION)], [Pattern: italic (TYPE_SECTION)], [Pattern: monospace (TYPE_SECTION)], [Pattern: small (TYPE_SECTION)], [Pattern: big (TYPE_SECTION)], [Pattern: strike (TYPE_SECTION)], [Pattern: sub (TYPE_SECTION)], [Pattern: sup (TYPE_SECTION)], [Pattern: hi (TYPE_SECTION)], [Pattern: lo (TYPE_SECTION)], [Pattern: em (TYPE_SECTION)], [Pattern: multiline (TYPE_SECTION)], [Pattern: header (TYPE_LINE)], [Pattern: internallinkpos (TYPE_SECTION)], [Pattern: internallinktext (TYPE_SECTION)], [Pattern: externallink (TYPE_SECTION)], [Pattern: externallinkpos (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: tableheader (TYPE_SECTION)], [Pattern: align (TYPE_SECTION)], [Pattern: justify (TYPE_SECTION)], [Pattern: alignintable (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)],
+2013/09/15 03:27:02 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: plugin (TYPE_SECTION)] Item with name 'wptablecell' not found in this collection!
+2013/09/15 03:27:02 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: plugin (TYPE_SECTION)] Item with name 'wptableheader' not found in this collection!
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: borderwarning (TYPE_SECTION)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: multiline (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)],
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: bordervalidation (TYPE_SECTION)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: multiline (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)],
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: bordersuccess (TYPE_SECTION)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: multiline (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)],
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: borderinfo (TYPE_SECTION)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: multiline (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)],
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: bordererror (TYPE_SECTION)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: multiline (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)],
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: border (TYPE_SECTION)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: multiline (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)],
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: header (TYPE_LINE)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)], [Pattern: notoc (TYPE_SECTION)], [Pattern: multiline (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)],
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: comment2 (TYPE_SECTION)]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: comment (TYPE_SECTION)]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: notoc (TYPE_SECTION)]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: math (TYPE_SECTION)]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: quotedstring (TYPE_SECTION)]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: footnote (TYPE_SECTION)]
+2013/09/15 03:27:02 | INFO    | Lexer.php-&gt;_connectTo@286                | [ -1][CONNECTTO      ]'listitem-&gt;lists' connected.
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: listitem (TYPE_SECTION)]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: defitem (TYPE_SECTION)]
+2013/09/15 03:27:02 | INFO    | Lexer.php-&gt;_connectTo@286                | [ -1][CONNECTTO      ]'defterm-&gt;deflist' connected.
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: defterm (TYPE_SECTION)]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: horizontalrule (TYPE_LINE)]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: alignintable (TYPE_SECTION)]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: tablespan (TYPE_WORD)]
+2013/09/15 03:27:02 | INFO    | Lexer.php-&gt;_connectTo@286                | [ -1][CONNECTTO      ]'tablerow-&gt;table' connected.
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: tableheader (TYPE_SECTION)]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: tablerow (TYPE_SECTION)]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: tablecell (TYPE_SECTION)]
+2013/09/15 03:27:02 | INFO    | Lexer.php-&gt;_connectTo@286                | [ -1][CONNECTTO      ]'preformat-&gt;pre' connected.
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: externallinkpos (TYPE_SECTION)]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: externallink (TYPE_SECTION)]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: variable (TYPE_LINE)]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: symbol (TYPE_WORD)]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: constant (TYPE_WORD)]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: left (TYPE_SECTION)]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: right (TYPE_SECTION)]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: indent (TYPE_SECTION)]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: justify (TYPE_SECTION)]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: align (TYPE_SECTION)]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: preformat (TYPE_LINE)]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: multiline (TYPE_SECTION)]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: newline (TYPE_WORD)]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: nowikialt (TYPE_SECTION)]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: nowiki (TYPE_SECTION)]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: code (TYPE_SECTION)]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: underline (TYPE_SECTION)]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: sup (TYPE_SECTION)]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: sub (TYPE_SECTION)]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: strike (TYPE_SECTION)]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: small (TYPE_SECTION)]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: monospace (TYPE_SECTION)]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: lo (TYPE_SECTION)]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: italic (TYPE_SECTION)]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: hi (TYPE_SECTION)]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: em (TYPE_SECTION)]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: bold (TYPE_SECTION)]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: big (TYPE_SECTION)]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: urlnoprotocol (TYPE_WORD)]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: url (TYPE_WORD)]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: internallinkpos (TYPE_SECTION)]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: internallinkmode (TYPE_WORD)]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: internallinktext (TYPE_SECTION)]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: internallink (TYPE_SECTION)]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: pluginparameter (TYPE_SECTION)]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: plugin (TYPE_SECTION)]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: borderwarning (TYPE_SECTION)]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: bordervalidation (TYPE_SECTION)]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: bordersuccess (TYPE_SECTION)]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: borderinfo (TYPE_SECTION)]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: bordererror (TYPE_SECTION)]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: border (TYPE_SECTION)]
+2013/09/15 03:27:02 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: header (TYPE_LINE)]
+2013/09/15 03:27:02 | NOLEVEL | Lexer.php-&gt;setSource@149                 | STARTING: Lexer v0.5 - newStyle, debugLevel = DEBUG
+</pre><h3>Performance</h3>Text in 0.0663s geparsed!<h3>Text, der geparsed werden soll (mit Zeilennummern).</h3>Die erste und letzte Zeile werden vom Lexer automatisch hinzugef&uuml;gt.<pre>    1 
+    2 <border>
+    3 Sie sind hier: ~~TRACE~~
+    4 <lo> | [[:dokumentation:todos|Todos anzeigen]]</lo>
+    5 </border>
+    6 = Changelog, Bugs and Todos... =    
+    7 <info>
+    8 :> Aktuelle Version:\\**{{version}}**\\--(Lexerversion: {{lexerversion}})--
+    9 </info>
+   10 
+   11 """<right alone><border>Inhaltsverzeichnis:~~TOC~~</border></right>"""
+   12 
+   13 == Changelog ==
+   14 ; [[todos:newStyle|new styled lexer]]
+   15 : build up a memoizing parser that understands [[grammar-configuration-files]].
+   16 
+   17 ; [[todos:v0.01|Überblick zur v0.01]]
+   18 : Singleuser-Login (hard-coded)
+   19 : Funktionen: Debug-Modus, Bearbeiten, löschen, verschieben, neu, Seitenüberblick, Quellcode anzeigen
+   20 : Internals: utf8-Encoding, MAC|UNIX|PC-Lineendings
+   21 : [[textgestaltung|Wikisyntax]] in der Version 0.1
+   22 
+   23 ; [[todos:v0.02|Überblick zur v0.02]]
+   24 : Konfigurationsmenü mit Einstellungen
+   25 : tpl:header/footer - Handling überlegen!
+   26 : Tastenkürzel mit Scriptaculous
+   27 : Frontend und Backend voneinander trennen.
+   28 : Editor ausbauen (autosave, Tastenkürzel, Vorschau, Sektionen editieren,...)
+   29 : AJAX oder iFrames einführen für GUI (Performance!)
+   30 
+   31 ; [[todos:v0.03|Überblick zur v0.03]]
+   32 : Cache für HTML
+   33 : Bilder
+   34 
+   35 ; [[todos:v0.04|Überblick zur v0.04]]
+   36 : Multiuser 
+   37 : Permissions
+   38 : Comments und Forum
+   39 
+   40 == Ideen ==
+   41 * Einbinden von php-Quellcode Dokumentation ala phpDocumentor(?)
+   42 * [https://github.com/selfthinker/dokuwiki_plugin_fontface/issues?sort=created&direction=desc&state=open Texticons] einführen
+   43 * Schöne Seiten...
+   44  * ...im [[todos:nice:design|Design]]
+   45  * ...in der [[todos:nice:usability|Usability]]
+   46  * ...in der [[todos:nice:programming|Programmierung]]
+   47  * [[todos:nice:unsorted|(Unsortiertes)]]
+   48 
+   49 
+   50 \\
+   51 :>> <lo>Verarbeitet in ~~TEXT:comma|{{PERFORMANCE}}~~ Sek. | Dateiformat: {{FILE:type}}</lo>
+   52 
+</pre><h3>Lexer: PatternTable</h3><pre>    1 [Pattern: #DOCUMENT (TYPE_BASE)]
+    2 [Pattern: #EOF (TYPE_BASE)]
+    3 [Pattern: #TEXT (TYPE_BASE)]
+    4 [Pattern: align (TYPE_SECTION)]
+    5 [Pattern: alignintable (TYPE_SECTION)]
+    6 [Pattern: big (TYPE_SECTION)]
+    7 [Pattern: bold (TYPE_SECTION)]
+    8 [Pattern: border (TYPE_SECTION)]
+    9 [Pattern: bordererror (TYPE_SECTION)]
+   10 [Pattern: borderinfo (TYPE_SECTION)]
+   11 [Pattern: bordersuccess (TYPE_SECTION)]
+   12 [Pattern: bordervalidation (TYPE_SECTION)]
+   13 [Pattern: borderwarning (TYPE_SECTION)]
+   14 [Pattern: code (TYPE_SECTION)]
+   15 [Pattern: comment (TYPE_SECTION)]
+   16 [Pattern: comment2 (TYPE_SECTION)]
+   17 [Pattern: constant (TYPE_WORD)]
+   18 [Pattern: defitem (TYPE_SECTION)]
+   19 [Pattern: deflist (TYPE_ABSTRACT)]
+   20 [Pattern: defterm (TYPE_SECTION; CONNECTED TO deflist)]
+   21 [Pattern: em (TYPE_SECTION)]
+   22 [Pattern: externallink (TYPE_SECTION)]
+   23 [Pattern: externallinkpos (TYPE_SECTION)]
+   24 [Pattern: footnote (TYPE_SECTION)]
+   25 [Pattern: header (TYPE_LINE)]
+   26 [Pattern: hi (TYPE_SECTION)]
+   27 [Pattern: horizontalrule (TYPE_LINE)]
+   28 [Pattern: indent (TYPE_SECTION)]
+   29 [Pattern: internallink (TYPE_SECTION)]
+   30 [Pattern: internallinkmode (TYPE_WORD)]
+   31 [Pattern: internallinkpos (TYPE_SECTION)]
+   32 [Pattern: internallinktext (TYPE_SECTION)]
+   33 [Pattern: italic (TYPE_SECTION)]
+   34 [Pattern: justify (TYPE_SECTION)]
+   35 [Pattern: left (TYPE_SECTION)]
+   36 [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)]
+   37 [Pattern: lists (TYPE_ABSTRACT)]
+   38 [Pattern: lo (TYPE_SECTION)]
+   39 [Pattern: math (TYPE_SECTION)]
+   40 [Pattern: monospace (TYPE_SECTION)]
+   41 [Pattern: multiline (TYPE_SECTION)]
+   42 [Pattern: newline (TYPE_WORD)]
+   43 [Pattern: notoc (TYPE_SECTION)]
+   44 [Pattern: nowiki (TYPE_SECTION)]
+   45 [Pattern: nowikialt (TYPE_SECTION)]
+   46 [Pattern: plugin (TYPE_SECTION)]
+   47 [Pattern: pluginparameter (TYPE_SECTION)]
+   48 [Pattern: pre (TYPE_ABSTRACT)]
+   49 [Pattern: preformat (TYPE_LINE; CONNECTED TO pre)]
+   50 [Pattern: quotedstring (TYPE_SECTION)]
+   51 [Pattern: right (TYPE_SECTION)]
+   52 [Pattern: small (TYPE_SECTION)]
+   53 [Pattern: strike (TYPE_SECTION)]
+   54 [Pattern: sub (TYPE_SECTION)]
+   55 [Pattern: sup (TYPE_SECTION)]
+   56 [Pattern: symbol (TYPE_WORD)]
+   57 [Pattern: table (TYPE_ABSTRACT)]
+   58 [Pattern: tablecell (TYPE_SECTION)]
+   59 [Pattern: tableheader (TYPE_SECTION)]
+   60 [Pattern: tablerow (TYPE_SECTION; CONNECTED TO table)]
+   61 [Pattern: tablespan (TYPE_WORD)]
+   62 [Pattern: underline (TYPE_SECTION)]
+   63 [Pattern: url (TYPE_WORD)]
+   64 [Pattern: urlnoprotocol (TYPE_WORD)]
+   65 [Pattern: variable (TYPE_LINE)]
+   66 
+</pre></div>

@@ -53,8 +53,7 @@ class ConfigModule implements ModuleHandler {
 			$cache_ch = " checked='checked' ";
 		}
 		
-		$entries = StringTools::htmlIndent("<input type='hidden' name='oldmode' value='$mode' />");
-		$entries .= StringTools::htmlIndent("<label for='debug'>Debug-Modus:</label> <input type='checkbox' name='debug' id='debug'$debug_ch />");
+		$entries = StringTools::htmlIndent("<label for='debug'>Debug-Modus:</label> <input type='checkbox' name='debug' id='debug'$debug_ch />");
 		$entries .= StringTools::htmlIndent("<br />");
 		$entries .= StringTools::htmlIndent("<label for='useCache'>Use cache:</label> <input type='checkbox' name='useCache' id='useCache'$cache_ch />");
 		return pw_ui_getDialogQuestion($this->getMenuText(), $entries, "config", "OK", "id=".$id->getID());

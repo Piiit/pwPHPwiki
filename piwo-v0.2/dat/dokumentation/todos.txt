@@ -1,4 +1,4 @@
-= Changelog, Bugs and Todos... =
+= Changelog, Bugs and Todos... =    
 <info>
 :> Aktuelle Version:\\**{{version}}**\\--(Lexerversion: {{lexerversion}})--
 </info>
