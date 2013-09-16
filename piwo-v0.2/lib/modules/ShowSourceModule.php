@@ -17,8 +17,9 @@ class ShowSourceModule implements ModuleHandler {
 		return "20130915";
 	}
 
+	//FIXME: This is just a workaround for invisibility if editing is allowed, see TODO below!
 	public function permissionGranted($userData) {
-		return true;
+		return $userData['group'] != 'admin';
 	}
 	
 	public function getDialog() {
@@ -43,8 +44,10 @@ class ShowSourceModule implements ModuleHandler {
 		return "Show source";
 	}
 
+	//TODO should be possible to check against persmissions etc.
 	public function getMenuAvailability($mode) {
-		return true; //For all modes available
+		//ex. return $userData['group'] != 'admin';
+		return true; 
 	}
 
 

@@ -209,37 +209,5 @@ function pw_wiki_getfilelist(WikiID $id) {	#var_dump($id);
 
 }
 
-function pw_wiki_showpages(WikiID $id) {	$path = pw_wiki_getcfg('storage').$id->getFullNSPath();
-// 	TestingTools::inform($id);
-	
-	$strout = "";	$files = array();	$dirs = array();	if(!$id->isRootNS()) {		$dirs[] = array('NAME' => '..', 'TYPE' => 'DIR');	}
-	$data = glob ("$path/*");
-
-	// Leeres Verz. gefunden... Löschen!	if (!$data) {		if ($path != pw_wiki_getcfg('storage') && rmdir($path)) {			$strout .= "<tt>INFO: $path ist leer und wird entfernt!</tt>";		}	} else {		foreach ($data as $k => $i) {
-			$i = pw_s2u($i);			if ($i != utf8_strtolower($i)) {				rename(pw_u2t($i), pw_u2t(utf8_strtolower($i)));				// TODO: falls neue Datei bereits existiert ??? Fehler melden... Benutzereingabe fordern!			}
-			$i = utf8_strtolower($i);
-			$i = pw_u2t($i);
-
-			if (is_dir($i)) {				$dirs[] = array('NAME' => pw_basename($i), 'TYPE' => "DIR");			} else {				$files[] = array('NAME' => pw_basename($i, ".txt"), 'TYPE' => "TEXT", 'SIZE' => filesize($i));
-			}
-
-		}
-	}
-
-	if ($dirs) sort($dirs);
-	if ($files) sort($files);
-
-	$out = array_merge($dirs, $files);	//	 TestingTools::inform($out);		$strout .= "<h1>Seiten&uuml;berblick</h1>";	$strout .= "Sie sind hier: ".pw_wiki_trace($id->getFullNS())."";	$strout .= "<table id='overview'><tr><th style='width:15px'>#</th><th style='width: 380px'>ID (Vorschau)</th><th style='width: 70px'>Gr&ouml;&szlig;e</th><th style='width: 60px'>Typ</th><th>Optionen</th></tr>";	$nr = 0;	foreach ($out as $k => $i) {
-
-		$strout .= "<tr style='background: black'>";		$strout .= "<td style='text-align: right'>".($nr++)."</td>";		if ($i['TYPE'] == "TEXT") {			$strout .= "<td>";			$strout .= pw_url2e($i['NAME']);			$strout .= "<a style='float: right' href='?id=".pw_s2url($id->getFullNS().$i['NAME'])."&mode=cleared'>&laquo; anzeigen</a>";			$strout .= "</td>";		} else {			 $strout .= "<td><a href='?id=".pw_s2url(WikiID::cleanNamespaceString($id->getFullNS().$i['NAME'].':'))."&mode=showpages'>".pw_url2e($i['NAME'])."</a></td>";		}		$strout .= "<td style='text-align: right'>";		if ($i['TYPE'] == "TEXT") {			$strout .= "<tt>".pw_formatbytes($i['SIZE'], 2, false)."</tt>";		} else {			$strout .= "<tt>-</tt>";		}		$strout .= "<td>".$i['TYPE']."</td>";
-		$strout .= "<td>";
-
-		if ($i['TYPE'] == "TEXT") {			if (isset($_SESSION["pw_wiki"]["login"]["user"])) {				$strout .= "<a href='?id=".pw_s2url($id->getFullNS().$i['NAME'])."&mode=editpage&oldmode=showpages'>Bearbeiten</a> | ";				$strout .= "<a href='?id=".pw_s2url($id->getFullNS().$i['NAME'])."&mode=showpages&dialog=delpage'>L&ouml;schen</a> | ";				$strout .= "<a href='?id=".pw_s2url($id->getFullNS().$i['NAME'])."&mode=showpages&dialog=rename'>Umbenennen</a> | ";				$strout .= "<a href='?id=".pw_s2url($id->getFullNS().$i['NAME'])."&mode=showpages&dialog=movepage'>Verschieben</a>";				#$strout .= "[<a href='?id=".$ns.$i['NAME']."&mode=showpages&dialog=info'>Info</a>]";			} else {				$strout .= "<a href='?id=".pw_s2url($id->getFullNS().$i['NAME'])."&mode=showsource&oldmode=showpages'>Quelltext anzeigen</a>";			}		} else {			if ($i['NAME'] != '..') {				if (isset($_SESSION["pw_wiki"]["login"]["user"])) {					$strout .= "<a href='?id=".pw_s2url($id->getFullNS().$i['NAME'].":")."&mode=showpages&dialog=delpage'>L&ouml;schen</a> | ";					$strout .= "<a href='?id=".pw_s2url($id->getFullNS().$i['NAME'].":")."&mode=showpages&dialog=rename'>Umbenennen</a> | ";					$strout .= "<a href='?id=".pw_s2url($id->getFullNS().$i['NAME'].":")."&mode=showpages&dialog=movepage'>Verschieben</a>";				}			}		}		$strout .= "</td>";		$strout .= "</tr>";
-	}
-
-	$strout .= "</table>";	return $strout;
-}
-
-
 
 ?>
