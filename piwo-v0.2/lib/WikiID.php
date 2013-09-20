@@ -2,7 +2,6 @@
 
 // TODO move common pw_dirname to FileTools...
 // TODO check "isvalid"
-// TODO analysis and information collections only in constructor
 // TODO internal links possible (ex. ns1:ns2:page#chapter)
 
 if (!defined('INC_PATH')) {
@@ -31,8 +30,6 @@ class WikiID {
 			throw new Exception("Invalid ID '$this->id'!");
 		}
 		
-//  		TestingTools::inform($this->id);
-
 		preg_match("/(.*)#(.*)/", $this->id, $lpt);
 		$this->id = isset($lpt[1]) ? $lpt[1] : $this->id;
 		$this->anchor = null;

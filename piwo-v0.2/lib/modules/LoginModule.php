@@ -50,8 +50,8 @@ class LoginModule extends Module implements ModuleHandler {
 			return pw_ui_getDialogQuestion("Logout", "Wollen Sie sich abmelden?", "logout", "Ja", "id=".$id->getID());
 		}
 	
-		$entries = "<label for='username'>Benutzer: </label><input type='text' class='textinput' name='username' /><br />";
-		$entries .= "<label for='password'>Passwort: </label><input type='password' class='textinput' name='password' />";
+		$entries = GuiTools::textInput("User", "username");
+		$entries .= GuiTools::passwordInput("Password", "password");
 		return pw_ui_getDialogQuestion("Login", $entries, "login", "OK", "id=".$id->getID());
 	}
 

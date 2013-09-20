@@ -1,6 +1,9 @@
 <?php
 
-//TODO access not through data-keys... getData(key)!
+if (!defined('INC_PATH')) {
+	define ('INC_PATH', realpath(dirname(__FILE__).'/../').'/');
+}
+require_once INC_PATH.'pwTools/debug/LogEntry.php';
 
 class Log {
 	
@@ -68,15 +71,16 @@ class Log {
 	
 	public function toString($reversed = false) {
 		$out = "";
-		$logbook = $reversed ? $this->getLogReversed() : $this->getLog();
-		foreach ($logbook as $line) {
-			$date = date($this->_dateFormat, $line['TIME']);
-			$typeString = $this->_getTypeString($line['TYPE']);
+		$logBook = $reversed ? $this->getLogReversed() : $this->getLog();
+		foreach ($logBook as $logEntry) {
+			$date = date($this->_dateFormat, $logEntry->getTimestamp());
+			$typeString = $this->_getLogLevelString($logEntry->getLevel());
 			$debugString = "";
+			$backTrace = $logEntry->getDebugBackTrace();
 			if ($this->_logLevel == self::DEBUG) {
-				$debugString = sprintf("%s->%s@%s", $line["FILE"], $line["FUNC"], $line["LINE"]);
+				$debugString = sprintf("%s->%s@%s", $backTrace["file"], $backTrace["function"], $backTrace["line"]);
 			}
-			$out .= sprintf("%19s | %-7s | %-40s | %s\n", $date, trim($typeString), trim($debugString), trim($line['TEXT']));
+			$out .= sprintf("%19s | %-7s | %-40s | %s\n", $date, trim($typeString), trim($debugString), trim($logEntry->getDescription()));
 		}
 		return $out;
 	}
@@ -86,11 +90,11 @@ class Log {
 	}
 	
 	public function getLogLevelAsString() {
-		return $this->_getTypeString($this->_logLevel);
+		return $this->_getLogLevelString($this->_logLevel);
 	}
 	
 	
-	private function _getTypeString($type) {
+	private function _getLogLevelString($type) {
 		switch ($type) {
 			case self::NOLEVEL: return "NOLEVEL";
 			case self::DEBUG: return "DEBUG";
@@ -104,37 +108,7 @@ class Log {
 		if ($this->getLogLevel() < $loglevel) {
 			return;
 		}
-		$this->_logbook[] = array_merge(
-			array (	
-				'TIME' => time(),
-				'TYPE' => $loglevel, 
-				'TEXT' => $text, 
-				'DATA' => $data
-			),
-			$this->_getDebugInfo()
-		);
-	}
-	
-	//FIXME use TestingTools::getDebugInfo...
-	private function _getDebugInfo() {
-		if ($this->_logLevel < self::DEBUG) {
-			return array();
-		}
-		$deb = debug_backtrace();
-		$func = next($deb);
-		$func = next($deb);
-		$function = next($deb);
-		$class = isset($function["class"]) ? $function["class"] : null;
-		$function = $function["function"];
-		$file = basename($func["file"]);
-		$line = $func["line"];
-		
-		return array(
-			'FILE'  => $file,
-			'LINE'  => $line,
-			'FUNC'  => $function,
-			'CLASS' => $class
-		);
+		$this->_logbook[] = new LogEntry(time(), $loglevel, $text, $data, TestingTools::getDebugInfoAsArray());
 	}
 	
 }

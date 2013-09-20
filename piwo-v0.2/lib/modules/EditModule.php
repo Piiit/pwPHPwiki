@@ -55,13 +55,9 @@ class EditModule implements ModuleHandler, JavaScriptProvider {
 		$out = StringTools::htmlIndent("<a href='?id=".$id->getID()."'>&laquo; Back</a> | <a href='?mode=showpages&id=".$id->getFullNS()."'>Show Pages</a>");
 		$out .= StringTools::htmlIndent("<h1>Source code Editor</h1>ID = <tt>".$id->getID()."</tt>");
 		$out .= StringTools::htmlIndent("<form id='texteditor' name='texteditor' method='post' accept-charset='utf-8'>", StringTools::START);
-		$out .= StringTools::htmlIndent("<div id='editor_win' style='width: 100%; border: 0;'>", StringTools::START);
-		$out .= StringTools::htmlIndent("<button value='save' name='save' id='save'>Save</button>");
-		$out .= StringTools::htmlIndent("<span style='float: right'>$ret</span>");
-		$out .= StringTools::htmlIndent("<label style='display: block; border: 0; padding: 0; margin: 0'>", StringTools::START);
-		$out .= StringTools::htmlIndent("<textarea cols='80' rows='25' name='wikitxt' id='wikitxt' wrap=off onkeydown='return catchTab(this,event)'>$data</textarea>");
-		$out .= StringTools::htmlIndent("</label>", StringTools::END);
-		$out .= StringTools::htmlIndent("</div>", StringTools::END);
+		$out .= StringTools::htmlIndent("<div><button value='save' name='save' id='save'>Save</button>");
+		$out .= StringTools::htmlIndent("<span style='float: right'>$ret</span></div>");
+		$out .= StringTools::htmlIndent("<textarea rows='25' name='wikitxt' id='wikitxt' wrap=off onkeydown='return catchTab(this,event)'>$data</textarea>");
 		$out .= StringTools::htmlIndent("</form>", StringTools::END);
 	
 		return $out;

@@ -1,0 +1,1155 @@
+<div class="section_border">
+Sie sind hier: <a href='?id=index'>Home</a> &raquo; <a href='?id=dokumentation'>Dokumentation</a> &raquo; Decoding<span class="less_significant"> | <a href="?id=:dokumentation:todos">Todos anzeigen</a></span></div><h1 id="header_1">Formate: Encoding/Decoding</h1><h2 id="header_1.1">Globale Variablen &amp; globales Konfigurationsarray</h2><div class="section_warning">Check! Veraltet?</div><ul></ul><ul><li><span class="emphasised">ID</span>: <span class="code">lowercase</span>, <span class="code">urlencoded</span> und <span class="code">utf8</span>.</li><li><span class="emphasised">Pfade/Dateinamen</span>: <span class="code">lowercase</span>, <span class="code">urldecoded</span>, <span class="code">ascii</span> (sonst funktionieren Dateifkt. nicht)</li></ul><h2 id="header_1.2">Aktuell: encoding.php</h2><div class="tablediv"><table><tr><th> Typ     </th><th> Funktionsnamen             </th><th> Input                       </th><th> Output</th></tr><tr><th rowspan="4"> Text    </th><td> <span class="code">pw_s2e</span>                 </td><td> String (UTF8 or Ascii)      </td><td> Html entities (UTF8)</td></tr><tr><td> <span class="code">pw_s2u</span>                 </td><td> String (UTF8 or Ascii)      </td><td> String (UTF8)       </td></tr><tr><td> <span class="code">pw_u2t</span>                 </td><td> String (UTF8 only)          </td><td> String (Ascii)</td></tr><tr><td> <span class="code">pw_e2u</span>                 </td><td> Html entities (UTF8)        </td><td> String (UTF8)       </td></tr><tr><th rowspan="5"> URL     </th><td> <span class="code">pw_s2url</span>               </td><td> String (UTF8 or Ascii)      </td><td> URL (UTF8, urlencoded)</td></tr><tr><td> <span class="code">pw_url2u</span>               </td><td> URL (UTF8, urlencoded)      </td><td> String (UTF8)       </td></tr><tr><td> <span class="code">pw_url2e</span>               </td><td> URL (UTF8, urlencoded)      </td><td> Html entities (UTF8)</td></tr><tr><td> <span class="code">pw_e2url</span>               </td><td> Html entities (UTF8)        </td><td> URL (UTF8, urlencoded)</td></tr><tr><td> <span class="code">pw_url2t</span>               </td><td> URL (UTF8, urlencoded)      </td><td> String (Ascii)</td></tr><tr><th rowspan="4"> Slashes </th><td> <span class="code">pw_stripslashes</span>        </td><td> String (UTF8 or Ascii)      </td><td> String with stripped slashes</td></tr><tr><td> <span class="code">pw_check_stripslashes</span>  </td><td> --                      </td><td> system strips slashes? (boolean)</td></tr><tr><td> <span class="code">pw_stripslashes_deep</span>   </td><td> String or Array of Strings  </td><td> Array or String with stripped slashes</td></tr><tr><td> <span class="code">pw_stripslashes_array</span>  </td><td> Array of Strings            </td><td> Array with stripped slashes</td></tr><tr><th rowspan="2"> Spezial </th><td> <span class="code">pw_s2hex</span>               </td><td> String (UTF8 or Ascii)      </td><td> Hexadecimal value of all chars inside the String</td></tr><tr><td> <span class="code">pw_formatbytes</span>         </td><td> Integer of bytes, precision, showbytes? (bool) </td><td> Returns a human readable byte-String with endings like KB, MB, TB,...</td></tr></table></div>
+
+
+<br /><div align="right"><span class="less_significant">Verarbeitet in 0,1037 Sek. | Dateiformat: UNIX</span></div><div id='imdebug'><h2>DEBUG</h2><h3>Lexer: Version und Kurzinfos.</h3>Lexer - Version: 0.5 - newStyle<h3>AST</h3><pre style='overflow: auto'>    1 [Node: border]
+    2   [Node: #TEXT='\nSie sind hier: ']
+    3   [Node: plugin='TRACE']
+    4   [Node: lo]
+    5     [Node: #TEXT=' | ']
+    6     [Node: internallink]
+    7       [Node: internallinkpos]
+    8         [Node: #TEXT=':dokumentation:todos']
+    9       [Node: internallinktext]
+   10         [Node: #TEXT='Todos anzeigen']
+   11 [Node: header='=']
+   12   [Node: #TEXT=' Formate: Encoding/Decoding ']
+   13 [Node: header='==']
+   14   [Node: #TEXT=' Globale Variablen &amp; globales Konfigurationsarray ']
+   15 [Node: borderwarning]
+   16   [Node: #TEXT='Check! Veraltet?']
+   17 [Node: lists]
+   18   [Node: listitem='(,)*']
+   19     [Node: em]
+   20       [Node: #TEXT='ID']
+   21     [Node: #TEXT=': ']
+   22     [Node: monospace]
+   23       [Node: #TEXT='lowercase']
+   24     [Node: #TEXT=', ']
+   25     [Node: monospace]
+   26       [Node: #TEXT='urlencoded']
+   27     [Node: #TEXT=' und ']
+   28     [Node: monospace]
+   29       [Node: #TEXT='utf8']
+   30     [Node: #TEXT='.']
+   31   [Node: listitem='(,)*']
+   32     [Node: em]
+   33       [Node: #TEXT='Pfade/Dateinamen']
+   34     [Node: #TEXT=': ']
+   35     [Node: monospace]
+   36       [Node: #TEXT='lowercase']
+   37     [Node: #TEXT=', ']
+   38     [Node: monospace]
+   39       [Node: #TEXT='urldecoded']
+   40     [Node: #TEXT=', ']
+   41     [Node: monospace]
+   42       [Node: #TEXT='ascii']
+   43     [Node: #TEXT=' (sonst funktionieren Dateifkt. nicht)']
+   44 [Node: header='==']
+   45   [Node: #TEXT=' Aktuell: encoding.php ']
+   46 [Node: table]
+   47   [Node: tablerow]
+   48     [Node: tableheader]
+   49       [Node: #TEXT=' Typ     ']
+   50     [Node: tableheader]
+   51       [Node: #TEXT=' Funktionsnamen             ']
+   52     [Node: tableheader]
+   53       [Node: #TEXT=' Input                       ']
+   54     [Node: tableheader]
+   55       [Node: #TEXT=' Output']
+   56   [Node: tablerow]
+   57     [Node: tableheader]
+   58       [Node: #TEXT=' Text    ']
+   59     [Node: tablecell]
+   60       [Node: #TEXT=' ']
+   61       [Node: monospace]
+   62         [Node: #TEXT='pw_s2e']
+   63       [Node: #TEXT='                 ']
+   64     [Node: tablecell]
+   65       [Node: #TEXT=' String (UTF8 or Ascii)      ']
+   66     [Node: tablecell]
+   67       [Node: #TEXT=' Html entities (UTF8)']
+   68   [Node: tablerow]
+   69     [Node: tableheader]
+   70       [Node: tablespan]
+   71     [Node: tablecell]
+   72       [Node: #TEXT=' ']
+   73       [Node: monospace]
+   74         [Node: #TEXT='pw_s2u']
+   75       [Node: #TEXT='                 ']
+   76     [Node: tablecell]
+   77       [Node: #TEXT=' String (UTF8 or Ascii)      ']
+   78     [Node: tablecell]
+   79       [Node: #TEXT=' String (UTF8)       ']
+   80   [Node: tablerow]
+   81     [Node: tableheader]
+   82       [Node: tablespan]
+   83     [Node: tablecell]
+   84       [Node: #TEXT=' ']
+   85       [Node: monospace]
+   86         [Node: #TEXT='pw_u2t']
+   87       [Node: #TEXT='                 ']
+   88     [Node: tablecell]
+   89       [Node: #TEXT=' String (UTF8 only)          ']
+   90     [Node: tablecell]
+   91       [Node: #TEXT=' String (Ascii)']
+   92   [Node: tablerow]
+   93     [Node: tableheader]
+   94       [Node: tablespan]
+   95     [Node: tablecell]
+   96       [Node: #TEXT=' ']
+   97       [Node: monospace]
+   98         [Node: #TEXT='pw_e2u']
+   99       [Node: #TEXT='                 ']
+  100     [Node: tablecell]
+  101       [Node: #TEXT=' Html entities (UTF8)        ']
+  102     [Node: tablecell]
+  103       [Node: #TEXT=' String (UTF8)       ']
+  104   [Node: tablerow]
+  105     [Node: tableheader]
+  106       [Node: #TEXT=' URL     ']
+  107     [Node: tablecell]
+  108       [Node: #TEXT=' ']
+  109       [Node: monospace]
+  110         [Node: #TEXT='pw_s2url']
+  111       [Node: #TEXT='               ']
+  112     [Node: tablecell]
+  113       [Node: #TEXT=' String (UTF8 or Ascii)      ']
+  114     [Node: tablecell]
+  115       [Node: #TEXT=' URL (UTF8, urlencoded)']
+  116   [Node: tablerow]
+  117     [Node: tableheader]
+  118       [Node: tablespan]
+  119     [Node: tablecell]
+  120       [Node: #TEXT=' ']
+  121       [Node: monospace]
+  122         [Node: #TEXT='pw_url2u']
+  123       [Node: #TEXT='               ']
+  124     [Node: tablecell]
+  125       [Node: #TEXT=' URL (UTF8, urlencoded)      ']
+  126     [Node: tablecell]
+  127       [Node: #TEXT=' String (UTF8)       ']
+  128   [Node: tablerow]
+  129     [Node: tableheader]
+  130       [Node: tablespan]
+  131     [Node: tablecell]
+  132       [Node: #TEXT=' ']
+  133       [Node: monospace]
+  134         [Node: #TEXT='pw_url2e']
+  135       [Node: #TEXT='               ']
+  136     [Node: tablecell]
+  137       [Node: #TEXT=' URL (UTF8, urlencoded)      ']
+  138     [Node: tablecell]
+  139       [Node: #TEXT=' Html entities (UTF8)']
+  140   [Node: tablerow]
+  141     [Node: tableheader]
+  142       [Node: tablespan]
+  143     [Node: tablecell]
+  144       [Node: #TEXT=' ']
+  145       [Node: monospace]
+  146         [Node: #TEXT='pw_e2url']
+  147       [Node: #TEXT='               ']
+  148     [Node: tablecell]
+  149       [Node: #TEXT=' Html entities (UTF8)        ']
+  150     [Node: tablecell]
+  151       [Node: #TEXT=' URL (UTF8, urlencoded)']
+  152   [Node: tablerow]
+  153     [Node: tableheader]
+  154       [Node: tablespan]
+  155     [Node: tablecell]
+  156       [Node: #TEXT=' ']
+  157       [Node: monospace]
+  158         [Node: #TEXT='pw_url2t']
+  159       [Node: #TEXT='               ']
+  160     [Node: tablecell]
+  161       [Node: #TEXT=' URL (UTF8, urlencoded)      ']
+  162     [Node: tablecell]
+  163       [Node: #TEXT=' String (Ascii)']
+  164   [Node: tablerow]
+  165     [Node: tableheader]
+  166       [Node: #TEXT=' Slashes ']
+  167     [Node: tablecell]
+  168       [Node: #TEXT=' ']
+  169       [Node: monospace]
+  170         [Node: #TEXT='pw_stripslashes']
+  171       [Node: #TEXT='        ']
+  172     [Node: tablecell]
+  173       [Node: #TEXT=' String (UTF8 or Ascii)      ']
+  174     [Node: tablecell]
+  175       [Node: #TEXT=' String with stripped slashes']
+  176   [Node: tablerow]
+  177     [Node: tableheader]
+  178       [Node: tablespan]
+  179     [Node: tablecell]
+  180       [Node: #TEXT=' ']
+  181       [Node: monospace]
+  182         [Node: #TEXT='pw_check_stripslashes']
+  183       [Node: #TEXT='  ']
+  184     [Node: tablecell]
+  185       [Node: #TEXT=' ']
+  186       [Node: nowikialt]
+  187         [Node: #TEXT='--']
+  188       [Node: #TEXT='                      ']
+  189     [Node: tablecell]
+  190       [Node: #TEXT=' system strips slashes? (boolean)']
+  191   [Node: tablerow]
+  192     [Node: tableheader]
+  193       [Node: tablespan]
+  194     [Node: tablecell]
+  195       [Node: #TEXT=' ']
+  196       [Node: monospace]
+  197         [Node: #TEXT='pw_stripslashes_deep']
+  198       [Node: #TEXT='   ']
+  199     [Node: tablecell]
+  200       [Node: #TEXT=' String or Array of Strings  ']
+  201     [Node: tablecell]
+  202       [Node: #TEXT=' Array or String with stripped slashes']
+  203   [Node: tablerow]
+  204     [Node: tableheader]
+  205       [Node: tablespan]
+  206     [Node: tablecell]
+  207       [Node: #TEXT=' ']
+  208       [Node: monospace]
+  209         [Node: #TEXT='pw_stripslashes_array']
+  210       [Node: #TEXT='  ']
+  211     [Node: tablecell]
+  212       [Node: #TEXT=' Array of Strings            ']
+  213     [Node: tablecell]
+  214       [Node: #TEXT=' Array with stripped slashes']
+  215   [Node: tablerow]
+  216     [Node: tableheader]
+  217       [Node: #TEXT=' Spezial ']
+  218     [Node: tablecell]
+  219       [Node: #TEXT=' ']
+  220       [Node: monospace]
+  221         [Node: #TEXT='pw_s2hex']
+  222       [Node: #TEXT='               ']
+  223     [Node: tablecell]
+  224       [Node: #TEXT=' String (UTF8 or Ascii)      ']
+  225     [Node: tablecell]
+  226       [Node: #TEXT=' Hexadecimal value of all chars inside the String']
+  227   [Node: tablerow]
+  228     [Node: tableheader]
+  229       [Node: tablespan]
+  230     [Node: tablecell]
+  231       [Node: #TEXT=' ']
+  232       [Node: monospace]
+  233         [Node: #TEXT='pw_formatbytes']
+  234       [Node: #TEXT='         ']
+  235     [Node: tablecell]
+  236       [Node: #TEXT=' Integer of bytes, precision, showbytes? (bool) ']
+  237     [Node: tablecell]
+  238       [Node: #TEXT=' Returns a human readable byte-String with endings like KB, MB, TB,...']
+  239 [Node: #TEXT='\n\n\n']
+  240 [Node: newline]
+  241 [Node: align='&gt;']
+  242   [Node: lo]
+  243     [Node: #TEXT='Verarbeitet in ']
+  244     [Node: plugin='TEXT(,)comma']
+  245       [Node: pluginparameter]
+  246         [Node: constant='PERFORMANCE']
+  247     [Node: #TEXT=' Sek. | Dateiformat: ']
+  248     [Node: constant='FILE:type']
+  249 [Node: #EOF]
+  250 
+</pre><h3>Log</h3><pre style='overflow: auto'>2013/09/16 06:40:51 | INFO    | Lexer.php-&gt;parse@115                     | FINISHED: @2104 (line 32)
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [255][ADD NODE       ][Node: #EOF] to [Node: #DOCUMENT]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [255][TOKEN FOUND    ][Token: #EOF: , LENGTH=1, ENTRY] @2103
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [254][CLOSING NODE   ][Node: align='&amp;gt;']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [254][TOKEN FOUND    ][Token: align: \n, LENGTH=1, EXIT] @2103
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [253][CLOSING NODE   ][Node: lo]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [253][TOKEN FOUND    ][Token: lo: &amp;lt;/lo&amp;gt;, LENGTH=5, EXIT] @2098
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [252][ADD NODE       ][Node: constant='FILE:type'] to [Node: lo]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [252][ADD #TEXT      ][Node: #TEXT=' Sek. | Dateiformat: ']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [252][TOKEN FOUND    ][Token: constant: {{FILE:type}}, LENGTH=34, ENTRY] @2064
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [251][CLOSING NODE   ][Node: plugin='TEXT(,)comma']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [251][TOKEN FOUND    ][Token: plugin: ~~, LENGTH=2, EXIT] @2062
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [250][CLOSING NODE   ][Node: pluginparameter]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [250][TOKEN FOUND    ][Token: pluginparameter: , LENGTH=0, EXIT] @2062
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [249][ADD NODE       ][Node: constant='PERFORMANCE'] to [Node: pluginparameter]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [249][TOKEN FOUND    ][Token: constant: {{PERFORMANCE}}, LENGTH=15, ENTRY] @2047
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [248][ADD NODE       ][Node: pluginparameter] to [Node: plugin='TEXT(,)comma']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [248][TOKEN FOUND    ][Token: pluginparameter: |, LENGTH=1, ENTRY] @2046
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [247][ADD NODE       ][Node: plugin='TEXT(,)comma'] to [Node: lo]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [247][ADD #TEXT      ][Node: #TEXT='Verarbeitet in ']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [247][TOKEN FOUND    ][Token: plugin: ~~TEXT:comma, LENGTH=27, ENTRY] @2019
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [246][ADD NODE       ][Node: lo] to [Node: align='&amp;gt;']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [246][TOKEN FOUND    ][Token: lo: &amp;lt;lo&amp;gt;, LENGTH=4, ENTRY] @2015
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [245][ADD NODE       ][Node: align='&amp;gt;'] to [Node: #DOCUMENT]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [245][TOKEN FOUND    ][Token: align: \n:&amp;gt;&amp;gt; , LENGTH=5, ENTRY] @2010
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [244][ADD NODE       ][Node: newline] to [Node: #DOCUMENT]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [244][ADD #TEXT      ][Node: #TEXT='\n\n\n']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [244][CLOSING NODE   ][Node: table]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [244][TOKEN FOUND    ][Token: newline: \\, LENGTH=5, ENTRY] @2005
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [243][CLOSING NODE   ][Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [243][TOKEN FOUND    ][Token: tablerow: \n, LENGTH=1, EXIT] @2005
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [242][CLOSING NODE   ][Node: tablecell]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [242][ADD #TEXT      ][Node: #TEXT=' Returns a human readable byte-String with endings like KB, MB, TB,...']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [242][TOKEN FOUND    ][Token: tablecell: , LENGTH=70, EXIT] @1935
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [241][ADD NODE       ][Node: tablecell] to [Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [241][TOKEN FOUND    ][Token: tablecell: |, LENGTH=1, ENTRY] @1934
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [240][CLOSING NODE   ][Node: tablecell]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [240][ADD #TEXT      ][Node: #TEXT=' Integer of bytes, precision, showbytes? (bool) ']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [240][TOKEN FOUND    ][Token: tablecell: , LENGTH=48, EXIT] @1886
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [239][ADD NODE       ][Node: tablecell] to [Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [239][TOKEN FOUND    ][Token: tablecell: |, LENGTH=1, ENTRY] @1885
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [238][CLOSING NODE   ][Node: tablecell]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [238][ADD #TEXT      ][Node: #TEXT='         ']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [238][TOKEN FOUND    ][Token: tablecell: , LENGTH=9, EXIT] @1876
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [237][CLOSING NODE   ][Node: monospace]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [237][ADD #TEXT      ][Node: #TEXT='pw_formatbytes']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [237][TOKEN FOUND    ][Token: monospace: '', LENGTH=16, EXIT] @1860
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [236][ADD NODE       ][Node: monospace] to [Node: tablecell]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [236][ADD #TEXT      ][Node: #TEXT=' ']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [236][TOKEN FOUND    ][Token: monospace: '', LENGTH=3, ENTRY] @1857
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [235][ADD NODE       ][Node: tablecell] to [Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [235][TOKEN FOUND    ][Token: tablecell: |, LENGTH=1, ENTRY] @1856
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [234][CLOSING NODE   ][Node: tableheader]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [234][TOKEN FOUND    ][Token: tableheader: , LENGTH=0, EXIT] @1856
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [233][ADD NODE       ][Node: tablespan] to [Node: tableheader]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [233][TOKEN FOUND    ][Token: tablespan:  :::     , LENGTH=9, ENTRY] @1847
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [232][ADD NODE       ][Node: tableheader] to [Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [232][TOKEN FOUND    ][Token: tableheader: ^, LENGTH=1, ENTRY] @1846
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [231][ADD NODE       ][Node: tablerow] to [Node: table]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [231][TOKEN FOUND    ][Token: tablerow: \n, LENGTH=1, ENTRY] @1845
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [230][CLOSING NODE   ][Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [230][TOKEN FOUND    ][Token: tablerow: \n, LENGTH=1, EXIT] @1845
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [229][CLOSING NODE   ][Node: tablecell]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [229][ADD #TEXT      ][Node: #TEXT=' Hexadecimal value of all chars inside the String']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [229][TOKEN FOUND    ][Token: tablecell: , LENGTH=49, EXIT] @1796
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [228][ADD NODE       ][Node: tablecell] to [Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [228][TOKEN FOUND    ][Token: tablecell: |, LENGTH=1, ENTRY] @1795
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [227][CLOSING NODE   ][Node: tablecell]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [227][ADD #TEXT      ][Node: #TEXT=' String (UTF8 or Ascii)      ']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [227][TOKEN FOUND    ][Token: tablecell: , LENGTH=29, EXIT] @1766
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [226][ADD NODE       ][Node: tablecell] to [Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [226][TOKEN FOUND    ][Token: tablecell: |, LENGTH=1, ENTRY] @1765
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [225][CLOSING NODE   ][Node: tablecell]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [225][ADD #TEXT      ][Node: #TEXT='               ']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [225][TOKEN FOUND    ][Token: tablecell: , LENGTH=15, EXIT] @1750
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [224][CLOSING NODE   ][Node: monospace]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [224][ADD #TEXT      ][Node: #TEXT='pw_s2hex']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [224][TOKEN FOUND    ][Token: monospace: '', LENGTH=10, EXIT] @1740
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [223][ADD NODE       ][Node: monospace] to [Node: tablecell]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [223][ADD #TEXT      ][Node: #TEXT=' ']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [223][TOKEN FOUND    ][Token: monospace: '', LENGTH=3, ENTRY] @1737
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [222][ADD NODE       ][Node: tablecell] to [Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [222][TOKEN FOUND    ][Token: tablecell: |, LENGTH=1, ENTRY] @1736
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [221][CLOSING NODE   ][Node: tableheader]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [221][ADD #TEXT      ][Node: #TEXT=' Spezial ']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [221][TOKEN FOUND    ][Token: tableheader: , LENGTH=9, EXIT] @1727
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [220][ADD NODE       ][Node: tableheader] to [Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [220][TOKEN FOUND    ][Token: tableheader: ^, LENGTH=1, ENTRY] @1726
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [219][ADD NODE       ][Node: tablerow] to [Node: table]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [219][TOKEN FOUND    ][Token: tablerow: \n, LENGTH=1, ENTRY] @1725
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [218][CLOSING NODE   ][Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [218][TOKEN FOUND    ][Token: tablerow: \n, LENGTH=1, EXIT] @1725
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [217][CLOSING NODE   ][Node: tablecell]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [217][ADD #TEXT      ][Node: #TEXT=' Array with stripped slashes']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [217][TOKEN FOUND    ][Token: tablecell: , LENGTH=28, EXIT] @1697
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [216][ADD NODE       ][Node: tablecell] to [Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [216][TOKEN FOUND    ][Token: tablecell: |, LENGTH=1, ENTRY] @1696
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [215][CLOSING NODE   ][Node: tablecell]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [215][ADD #TEXT      ][Node: #TEXT=' Array of Strings            ']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [215][TOKEN FOUND    ][Token: tablecell: , LENGTH=29, EXIT] @1667
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [214][ADD NODE       ][Node: tablecell] to [Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [214][TOKEN FOUND    ][Token: tablecell: |, LENGTH=1, ENTRY] @1666
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [213][CLOSING NODE   ][Node: tablecell]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [213][ADD #TEXT      ][Node: #TEXT='  ']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [213][TOKEN FOUND    ][Token: tablecell: , LENGTH=2, EXIT] @1664
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [212][CLOSING NODE   ][Node: monospace]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [212][ADD #TEXT      ][Node: #TEXT='pw_stripslashes_array']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [212][TOKEN FOUND    ][Token: monospace: '', LENGTH=23, EXIT] @1641
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [211][ADD NODE       ][Node: monospace] to [Node: tablecell]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [211][ADD #TEXT      ][Node: #TEXT=' ']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [211][TOKEN FOUND    ][Token: monospace: '', LENGTH=3, ENTRY] @1638
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [210][ADD NODE       ][Node: tablecell] to [Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [210][TOKEN FOUND    ][Token: tablecell: |, LENGTH=1, ENTRY] @1637
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [209][CLOSING NODE   ][Node: tableheader]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [209][TOKEN FOUND    ][Token: tableheader: , LENGTH=0, EXIT] @1637
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [208][ADD NODE       ][Node: tablespan] to [Node: tableheader]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [208][TOKEN FOUND    ][Token: tablespan:  :::     , LENGTH=9, ENTRY] @1628
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [207][ADD NODE       ][Node: tableheader] to [Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [207][TOKEN FOUND    ][Token: tableheader: ^, LENGTH=1, ENTRY] @1627
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [206][ADD NODE       ][Node: tablerow] to [Node: table]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [206][TOKEN FOUND    ][Token: tablerow: \n, LENGTH=1, ENTRY] @1626
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [205][CLOSING NODE   ][Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [205][TOKEN FOUND    ][Token: tablerow: \n, LENGTH=1, EXIT] @1626
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [204][CLOSING NODE   ][Node: tablecell]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [204][ADD #TEXT      ][Node: #TEXT=' Array or String with stripped slashes']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [204][TOKEN FOUND    ][Token: tablecell: , LENGTH=38, EXIT] @1588
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [203][ADD NODE       ][Node: tablecell] to [Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [203][TOKEN FOUND    ][Token: tablecell: |, LENGTH=1, ENTRY] @1587
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [202][CLOSING NODE   ][Node: tablecell]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [202][ADD #TEXT      ][Node: #TEXT=' String or Array of Strings  ']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [202][TOKEN FOUND    ][Token: tablecell: , LENGTH=29, EXIT] @1558
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [201][ADD NODE       ][Node: tablecell] to [Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [201][TOKEN FOUND    ][Token: tablecell: |, LENGTH=1, ENTRY] @1557
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [200][CLOSING NODE   ][Node: tablecell]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [200][ADD #TEXT      ][Node: #TEXT='   ']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [200][TOKEN FOUND    ][Token: tablecell: , LENGTH=3, EXIT] @1554
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [199][CLOSING NODE   ][Node: monospace]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [199][ADD #TEXT      ][Node: #TEXT='pw_stripslashes_deep']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [199][TOKEN FOUND    ][Token: monospace: '', LENGTH=22, EXIT] @1532
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [198][ADD NODE       ][Node: monospace] to [Node: tablecell]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [198][ADD #TEXT      ][Node: #TEXT=' ']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [198][TOKEN FOUND    ][Token: monospace: '', LENGTH=3, ENTRY] @1529
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [197][ADD NODE       ][Node: tablecell] to [Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [197][TOKEN FOUND    ][Token: tablecell: |, LENGTH=1, ENTRY] @1528
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [196][CLOSING NODE   ][Node: tableheader]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [196][TOKEN FOUND    ][Token: tableheader: , LENGTH=0, EXIT] @1528
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [195][ADD NODE       ][Node: tablespan] to [Node: tableheader]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [195][TOKEN FOUND    ][Token: tablespan:  :::     , LENGTH=9, ENTRY] @1519
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [194][ADD NODE       ][Node: tableheader] to [Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [194][TOKEN FOUND    ][Token: tableheader: ^, LENGTH=1, ENTRY] @1518
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [193][ADD NODE       ][Node: tablerow] to [Node: table]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [193][TOKEN FOUND    ][Token: tablerow: \n, LENGTH=1, ENTRY] @1517
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [192][CLOSING NODE   ][Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [192][TOKEN FOUND    ][Token: tablerow: \n, LENGTH=1, EXIT] @1517
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [191][CLOSING NODE   ][Node: tablecell]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [191][ADD #TEXT      ][Node: #TEXT=' system strips slashes? (boolean)']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [191][TOKEN FOUND    ][Token: tablecell: , LENGTH=33, EXIT] @1484
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [190][ADD NODE       ][Node: tablecell] to [Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [190][TOKEN FOUND    ][Token: tablecell: |, LENGTH=1, ENTRY] @1483
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [189][CLOSING NODE   ][Node: tablecell]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [189][ADD #TEXT      ][Node: #TEXT='                      ']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [189][TOKEN FOUND    ][Token: tablecell: , LENGTH=22, EXIT] @1461
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [188][CLOSING NODE   ][Node: nowikialt]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [188][ADD #TEXT      ][Node: #TEXT='--']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [188][TOKEN FOUND    ][Token: nowikialt: %%, LENGTH=4, EXIT] @1457
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [187][ADD NODE       ][Node: nowikialt] to [Node: tablecell]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [187][ADD #TEXT      ][Node: #TEXT=' ']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [187][TOKEN FOUND    ][Token: nowikialt: %%, LENGTH=3, ENTRY] @1454
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [186][ADD NODE       ][Node: tablecell] to [Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [186][TOKEN FOUND    ][Token: tablecell: |, LENGTH=1, ENTRY] @1453
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [185][CLOSING NODE   ][Node: tablecell]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [185][ADD #TEXT      ][Node: #TEXT='  ']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [185][TOKEN FOUND    ][Token: tablecell: , LENGTH=2, EXIT] @1451
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [184][CLOSING NODE   ][Node: monospace]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [184][ADD #TEXT      ][Node: #TEXT='pw_check_stripslashes']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [184][TOKEN FOUND    ][Token: monospace: '', LENGTH=23, EXIT] @1428
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [183][ADD NODE       ][Node: monospace] to [Node: tablecell]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [183][ADD #TEXT      ][Node: #TEXT=' ']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [183][TOKEN FOUND    ][Token: monospace: '', LENGTH=3, ENTRY] @1425
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [182][ADD NODE       ][Node: tablecell] to [Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [182][TOKEN FOUND    ][Token: tablecell: |, LENGTH=1, ENTRY] @1424
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [181][CLOSING NODE   ][Node: tableheader]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [181][TOKEN FOUND    ][Token: tableheader: , LENGTH=0, EXIT] @1424
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [180][ADD NODE       ][Node: tablespan] to [Node: tableheader]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [180][TOKEN FOUND    ][Token: tablespan:  :::     , LENGTH=9, ENTRY] @1415
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [179][ADD NODE       ][Node: tableheader] to [Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [179][TOKEN FOUND    ][Token: tableheader: ^, LENGTH=1, ENTRY] @1414
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [178][ADD NODE       ][Node: tablerow] to [Node: table]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [178][TOKEN FOUND    ][Token: tablerow: \n, LENGTH=1, ENTRY] @1413
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [177][CLOSING NODE   ][Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [177][TOKEN FOUND    ][Token: tablerow: \n, LENGTH=1, EXIT] @1413
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [176][CLOSING NODE   ][Node: tablecell]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [176][ADD #TEXT      ][Node: #TEXT=' String with stripped slashes']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [176][TOKEN FOUND    ][Token: tablecell: , LENGTH=29, EXIT] @1384
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [175][ADD NODE       ][Node: tablecell] to [Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [175][TOKEN FOUND    ][Token: tablecell: |, LENGTH=1, ENTRY] @1383
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [174][CLOSING NODE   ][Node: tablecell]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [174][ADD #TEXT      ][Node: #TEXT=' String (UTF8 or Ascii)      ']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [174][TOKEN FOUND    ][Token: tablecell: , LENGTH=29, EXIT] @1354
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [173][ADD NODE       ][Node: tablecell] to [Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [173][TOKEN FOUND    ][Token: tablecell: |, LENGTH=1, ENTRY] @1353
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [172][CLOSING NODE   ][Node: tablecell]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [172][ADD #TEXT      ][Node: #TEXT='        ']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [172][TOKEN FOUND    ][Token: tablecell: , LENGTH=8, EXIT] @1345
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [171][CLOSING NODE   ][Node: monospace]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [171][ADD #TEXT      ][Node: #TEXT='pw_stripslashes']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [171][TOKEN FOUND    ][Token: monospace: '', LENGTH=17, EXIT] @1328
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [170][ADD NODE       ][Node: monospace] to [Node: tablecell]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [170][ADD #TEXT      ][Node: #TEXT=' ']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [170][TOKEN FOUND    ][Token: monospace: '', LENGTH=3, ENTRY] @1325
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [169][ADD NODE       ][Node: tablecell] to [Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [169][TOKEN FOUND    ][Token: tablecell: |, LENGTH=1, ENTRY] @1324
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [168][CLOSING NODE   ][Node: tableheader]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [168][ADD #TEXT      ][Node: #TEXT=' Slashes ']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [168][TOKEN FOUND    ][Token: tableheader: , LENGTH=9, EXIT] @1315
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [167][ADD NODE       ][Node: tableheader] to [Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [167][TOKEN FOUND    ][Token: tableheader: ^, LENGTH=1, ENTRY] @1314
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [166][ADD NODE       ][Node: tablerow] to [Node: table]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [166][TOKEN FOUND    ][Token: tablerow: \n, LENGTH=1, ENTRY] @1313
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [165][CLOSING NODE   ][Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [165][TOKEN FOUND    ][Token: tablerow: \n, LENGTH=1, EXIT] @1313
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [164][CLOSING NODE   ][Node: tablecell]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [164][ADD #TEXT      ][Node: #TEXT=' String (Ascii)']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [164][TOKEN FOUND    ][Token: tablecell: , LENGTH=15, EXIT] @1298
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [163][ADD NODE       ][Node: tablecell] to [Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [163][TOKEN FOUND    ][Token: tablecell: |, LENGTH=1, ENTRY] @1297
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [162][CLOSING NODE   ][Node: tablecell]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [162][ADD #TEXT      ][Node: #TEXT=' URL (UTF8, urlencoded)      ']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [162][TOKEN FOUND    ][Token: tablecell: , LENGTH=29, EXIT] @1268
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [161][ADD NODE       ][Node: tablecell] to [Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [161][TOKEN FOUND    ][Token: tablecell: |, LENGTH=1, ENTRY] @1267
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [160][CLOSING NODE   ][Node: tablecell]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [160][ADD #TEXT      ][Node: #TEXT='               ']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [160][TOKEN FOUND    ][Token: tablecell: , LENGTH=15, EXIT] @1252
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [159][CLOSING NODE   ][Node: monospace]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [159][ADD #TEXT      ][Node: #TEXT='pw_url2t']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [159][TOKEN FOUND    ][Token: monospace: '', LENGTH=10, EXIT] @1242
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [158][ADD NODE       ][Node: monospace] to [Node: tablecell]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [158][ADD #TEXT      ][Node: #TEXT=' ']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [158][TOKEN FOUND    ][Token: monospace: '', LENGTH=3, ENTRY] @1239
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [157][ADD NODE       ][Node: tablecell] to [Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [157][TOKEN FOUND    ][Token: tablecell: |, LENGTH=1, ENTRY] @1238
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [156][CLOSING NODE   ][Node: tableheader]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [156][TOKEN FOUND    ][Token: tableheader: , LENGTH=0, EXIT] @1238
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [155][ADD NODE       ][Node: tablespan] to [Node: tableheader]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [155][TOKEN FOUND    ][Token: tablespan:  :::     , LENGTH=9, ENTRY] @1229
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [154][ADD NODE       ][Node: tableheader] to [Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [154][TOKEN FOUND    ][Token: tableheader: ^, LENGTH=1, ENTRY] @1228
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [153][ADD NODE       ][Node: tablerow] to [Node: table]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [153][TOKEN FOUND    ][Token: tablerow: \n, LENGTH=1, ENTRY] @1227
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [152][CLOSING NODE   ][Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [152][TOKEN FOUND    ][Token: tablerow: \n, LENGTH=1, EXIT] @1227
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [151][CLOSING NODE   ][Node: tablecell]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [151][ADD #TEXT      ][Node: #TEXT=' URL (UTF8, urlencoded)']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [151][TOKEN FOUND    ][Token: tablecell: , LENGTH=23, EXIT] @1204
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [150][ADD NODE       ][Node: tablecell] to [Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [150][TOKEN FOUND    ][Token: tablecell: |, LENGTH=1, ENTRY] @1203
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [149][CLOSING NODE   ][Node: tablecell]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [149][ADD #TEXT      ][Node: #TEXT=' Html entities (UTF8)        ']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [149][TOKEN FOUND    ][Token: tablecell: , LENGTH=29, EXIT] @1174
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [148][ADD NODE       ][Node: tablecell] to [Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [148][TOKEN FOUND    ][Token: tablecell: |, LENGTH=1, ENTRY] @1173
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [147][CLOSING NODE   ][Node: tablecell]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [147][ADD #TEXT      ][Node: #TEXT='               ']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [147][TOKEN FOUND    ][Token: tablecell: , LENGTH=15, EXIT] @1158
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [146][CLOSING NODE   ][Node: monospace]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [146][ADD #TEXT      ][Node: #TEXT='pw_e2url']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [146][TOKEN FOUND    ][Token: monospace: '', LENGTH=10, EXIT] @1148
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [145][ADD NODE       ][Node: monospace] to [Node: tablecell]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [145][ADD #TEXT      ][Node: #TEXT=' ']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [145][TOKEN FOUND    ][Token: monospace: '', LENGTH=3, ENTRY] @1145
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [144][ADD NODE       ][Node: tablecell] to [Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [144][TOKEN FOUND    ][Token: tablecell: |, LENGTH=1, ENTRY] @1144
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [143][CLOSING NODE   ][Node: tableheader]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [143][TOKEN FOUND    ][Token: tableheader: , LENGTH=0, EXIT] @1144
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [142][ADD NODE       ][Node: tablespan] to [Node: tableheader]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [142][TOKEN FOUND    ][Token: tablespan:  :::     , LENGTH=9, ENTRY] @1135
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [141][ADD NODE       ][Node: tableheader] to [Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [141][TOKEN FOUND    ][Token: tableheader: ^, LENGTH=1, ENTRY] @1134
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [140][ADD NODE       ][Node: tablerow] to [Node: table]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [140][TOKEN FOUND    ][Token: tablerow: \n, LENGTH=1, ENTRY] @1133
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [139][CLOSING NODE   ][Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [139][TOKEN FOUND    ][Token: tablerow: \n, LENGTH=1, EXIT] @1133
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [138][CLOSING NODE   ][Node: tablecell]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [138][ADD #TEXT      ][Node: #TEXT=' Html entities (UTF8)']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [138][TOKEN FOUND    ][Token: tablecell: , LENGTH=21, EXIT] @1112
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [137][ADD NODE       ][Node: tablecell] to [Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [137][TOKEN FOUND    ][Token: tablecell: |, LENGTH=1, ENTRY] @1111
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [136][CLOSING NODE   ][Node: tablecell]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [136][ADD #TEXT      ][Node: #TEXT=' URL (UTF8, urlencoded)      ']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [136][TOKEN FOUND    ][Token: tablecell: , LENGTH=29, EXIT] @1082
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [135][ADD NODE       ][Node: tablecell] to [Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [135][TOKEN FOUND    ][Token: tablecell: |, LENGTH=1, ENTRY] @1081
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [134][CLOSING NODE   ][Node: tablecell]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [134][ADD #TEXT      ][Node: #TEXT='               ']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [134][TOKEN FOUND    ][Token: tablecell: , LENGTH=15, EXIT] @1066
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [133][CLOSING NODE   ][Node: monospace]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [133][ADD #TEXT      ][Node: #TEXT='pw_url2e']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [133][TOKEN FOUND    ][Token: monospace: '', LENGTH=10, EXIT] @1056
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [132][ADD NODE       ][Node: monospace] to [Node: tablecell]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [132][ADD #TEXT      ][Node: #TEXT=' ']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [132][TOKEN FOUND    ][Token: monospace: '', LENGTH=3, ENTRY] @1053
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [131][ADD NODE       ][Node: tablecell] to [Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [131][TOKEN FOUND    ][Token: tablecell: |, LENGTH=1, ENTRY] @1052
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [130][CLOSING NODE   ][Node: tableheader]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [130][TOKEN FOUND    ][Token: tableheader: , LENGTH=0, EXIT] @1052
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [129][ADD NODE       ][Node: tablespan] to [Node: tableheader]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [129][TOKEN FOUND    ][Token: tablespan:  :::     , LENGTH=9, ENTRY] @1043
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [128][ADD NODE       ][Node: tableheader] to [Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [128][TOKEN FOUND    ][Token: tableheader: ^, LENGTH=1, ENTRY] @1042
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [127][ADD NODE       ][Node: tablerow] to [Node: table]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [127][TOKEN FOUND    ][Token: tablerow: \n, LENGTH=1, ENTRY] @1041
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [126][CLOSING NODE   ][Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [126][TOKEN FOUND    ][Token: tablerow: \n, LENGTH=1, EXIT] @1041
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [125][CLOSING NODE   ][Node: tablecell]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [125][ADD #TEXT      ][Node: #TEXT=' String (UTF8)       ']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [125][TOKEN FOUND    ][Token: tablecell: , LENGTH=21, EXIT] @1020
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [124][ADD NODE       ][Node: tablecell] to [Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [124][TOKEN FOUND    ][Token: tablecell: |, LENGTH=1, ENTRY] @1019
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [123][CLOSING NODE   ][Node: tablecell]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [123][ADD #TEXT      ][Node: #TEXT=' URL (UTF8, urlencoded)      ']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [123][TOKEN FOUND    ][Token: tablecell: , LENGTH=29, EXIT] @990
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [122][ADD NODE       ][Node: tablecell] to [Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [122][TOKEN FOUND    ][Token: tablecell: |, LENGTH=1, ENTRY] @989
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [121][CLOSING NODE   ][Node: tablecell]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [121][ADD #TEXT      ][Node: #TEXT='               ']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [121][TOKEN FOUND    ][Token: tablecell: , LENGTH=15, EXIT] @974
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [120][CLOSING NODE   ][Node: monospace]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [120][ADD #TEXT      ][Node: #TEXT='pw_url2u']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [120][TOKEN FOUND    ][Token: monospace: '', LENGTH=10, EXIT] @964
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [119][ADD NODE       ][Node: monospace] to [Node: tablecell]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [119][ADD #TEXT      ][Node: #TEXT=' ']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [119][TOKEN FOUND    ][Token: monospace: '', LENGTH=3, ENTRY] @961
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [118][ADD NODE       ][Node: tablecell] to [Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [118][TOKEN FOUND    ][Token: tablecell: |, LENGTH=1, ENTRY] @960
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [117][CLOSING NODE   ][Node: tableheader]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [117][TOKEN FOUND    ][Token: tableheader: , LENGTH=0, EXIT] @960
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [116][ADD NODE       ][Node: tablespan] to [Node: tableheader]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [116][TOKEN FOUND    ][Token: tablespan:  :::     , LENGTH=9, ENTRY] @951
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [115][ADD NODE       ][Node: tableheader] to [Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [115][TOKEN FOUND    ][Token: tableheader: ^, LENGTH=1, ENTRY] @950
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [114][ADD NODE       ][Node: tablerow] to [Node: table]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [114][TOKEN FOUND    ][Token: tablerow: \n, LENGTH=1, ENTRY] @949
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [113][CLOSING NODE   ][Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [113][TOKEN FOUND    ][Token: tablerow: \n, LENGTH=1, EXIT] @949
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [112][CLOSING NODE   ][Node: tablecell]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [112][ADD #TEXT      ][Node: #TEXT=' URL (UTF8, urlencoded)']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [112][TOKEN FOUND    ][Token: tablecell: , LENGTH=23, EXIT] @926
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [111][ADD NODE       ][Node: tablecell] to [Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [111][TOKEN FOUND    ][Token: tablecell: |, LENGTH=1, ENTRY] @925
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [110][CLOSING NODE   ][Node: tablecell]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [110][ADD #TEXT      ][Node: #TEXT=' String (UTF8 or Ascii)      ']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [110][TOKEN FOUND    ][Token: tablecell: , LENGTH=29, EXIT] @896
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [109][ADD NODE       ][Node: tablecell] to [Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [109][TOKEN FOUND    ][Token: tablecell: |, LENGTH=1, ENTRY] @895
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [108][CLOSING NODE   ][Node: tablecell]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [108][ADD #TEXT      ][Node: #TEXT='               ']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [108][TOKEN FOUND    ][Token: tablecell: , LENGTH=15, EXIT] @880
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [107][CLOSING NODE   ][Node: monospace]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [107][ADD #TEXT      ][Node: #TEXT='pw_s2url']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [107][TOKEN FOUND    ][Token: monospace: '', LENGTH=10, EXIT] @870
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [106][ADD NODE       ][Node: monospace] to [Node: tablecell]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [106][ADD #TEXT      ][Node: #TEXT=' ']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [106][TOKEN FOUND    ][Token: monospace: '', LENGTH=3, ENTRY] @867
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [105][ADD NODE       ][Node: tablecell] to [Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [105][TOKEN FOUND    ][Token: tablecell: |, LENGTH=1, ENTRY] @866
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [104][CLOSING NODE   ][Node: tableheader]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [104][ADD #TEXT      ][Node: #TEXT=' URL     ']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [104][TOKEN FOUND    ][Token: tableheader: , LENGTH=9, EXIT] @857
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [103][ADD NODE       ][Node: tableheader] to [Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [103][TOKEN FOUND    ][Token: tableheader: ^, LENGTH=1, ENTRY] @856
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [102][ADD NODE       ][Node: tablerow] to [Node: table]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [102][TOKEN FOUND    ][Token: tablerow: \n, LENGTH=1, ENTRY] @855
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [101][CLOSING NODE   ][Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [101][TOKEN FOUND    ][Token: tablerow: \n, LENGTH=1, EXIT] @855
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [100][CLOSING NODE   ][Node: tablecell]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [100][ADD #TEXT      ][Node: #TEXT=' String (UTF8)       ']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [100][TOKEN FOUND    ][Token: tablecell: , LENGTH=21, EXIT] @834
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 99][ADD NODE       ][Node: tablecell] to [Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 99][TOKEN FOUND    ][Token: tablecell: |, LENGTH=1, ENTRY] @833
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 98][CLOSING NODE   ][Node: tablecell]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 98][ADD #TEXT      ][Node: #TEXT=' Html entities (UTF8)        ']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 98][TOKEN FOUND    ][Token: tablecell: , LENGTH=29, EXIT] @804
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 97][ADD NODE       ][Node: tablecell] to [Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 97][TOKEN FOUND    ][Token: tablecell: |, LENGTH=1, ENTRY] @803
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 96][CLOSING NODE   ][Node: tablecell]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 96][ADD #TEXT      ][Node: #TEXT='                 ']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 96][TOKEN FOUND    ][Token: tablecell: , LENGTH=17, EXIT] @786
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 95][CLOSING NODE   ][Node: monospace]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 95][ADD #TEXT      ][Node: #TEXT='pw_e2u']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 95][TOKEN FOUND    ][Token: monospace: '', LENGTH=8, EXIT] @778
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 94][ADD NODE       ][Node: monospace] to [Node: tablecell]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 94][ADD #TEXT      ][Node: #TEXT=' ']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 94][TOKEN FOUND    ][Token: monospace: '', LENGTH=3, ENTRY] @775
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 93][ADD NODE       ][Node: tablecell] to [Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 93][TOKEN FOUND    ][Token: tablecell: |, LENGTH=1, ENTRY] @774
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 92][CLOSING NODE   ][Node: tableheader]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 92][TOKEN FOUND    ][Token: tableheader: , LENGTH=0, EXIT] @774
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 91][ADD NODE       ][Node: tablespan] to [Node: tableheader]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 91][TOKEN FOUND    ][Token: tablespan:  :::     , LENGTH=9, ENTRY] @765
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 90][ADD NODE       ][Node: tableheader] to [Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 90][TOKEN FOUND    ][Token: tableheader: ^, LENGTH=1, ENTRY] @764
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 89][ADD NODE       ][Node: tablerow] to [Node: table]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 89][TOKEN FOUND    ][Token: tablerow: \n, LENGTH=1, ENTRY] @763
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 88][CLOSING NODE   ][Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 88][TOKEN FOUND    ][Token: tablerow: \n, LENGTH=1, EXIT] @763
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 87][CLOSING NODE   ][Node: tablecell]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 87][ADD #TEXT      ][Node: #TEXT=' String (Ascii)']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 87][TOKEN FOUND    ][Token: tablecell: , LENGTH=15, EXIT] @748
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 86][ADD NODE       ][Node: tablecell] to [Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 86][TOKEN FOUND    ][Token: tablecell: |, LENGTH=1, ENTRY] @747
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 85][CLOSING NODE   ][Node: tablecell]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 85][ADD #TEXT      ][Node: #TEXT=' String (UTF8 only)          ']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 85][TOKEN FOUND    ][Token: tablecell: , LENGTH=29, EXIT] @718
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 84][ADD NODE       ][Node: tablecell] to [Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 84][TOKEN FOUND    ][Token: tablecell: |, LENGTH=1, ENTRY] @717
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 83][CLOSING NODE   ][Node: tablecell]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 83][ADD #TEXT      ][Node: #TEXT='                 ']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 83][TOKEN FOUND    ][Token: tablecell: , LENGTH=17, EXIT] @700
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 82][CLOSING NODE   ][Node: monospace]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 82][ADD #TEXT      ][Node: #TEXT='pw_u2t']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 82][TOKEN FOUND    ][Token: monospace: '', LENGTH=8, EXIT] @692
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 81][ADD NODE       ][Node: monospace] to [Node: tablecell]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 81][ADD #TEXT      ][Node: #TEXT=' ']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 81][TOKEN FOUND    ][Token: monospace: '', LENGTH=3, ENTRY] @689
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 80][ADD NODE       ][Node: tablecell] to [Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 80][TOKEN FOUND    ][Token: tablecell: |, LENGTH=1, ENTRY] @688
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 79][CLOSING NODE   ][Node: tableheader]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 79][TOKEN FOUND    ][Token: tableheader: , LENGTH=0, EXIT] @688
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 78][ADD NODE       ][Node: tablespan] to [Node: tableheader]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 78][TOKEN FOUND    ][Token: tablespan:  :::     , LENGTH=9, ENTRY] @679
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 77][ADD NODE       ][Node: tableheader] to [Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 77][TOKEN FOUND    ][Token: tableheader: ^, LENGTH=1, ENTRY] @678
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 76][ADD NODE       ][Node: tablerow] to [Node: table]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 76][TOKEN FOUND    ][Token: tablerow: \n, LENGTH=1, ENTRY] @677
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 75][CLOSING NODE   ][Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 75][TOKEN FOUND    ][Token: tablerow: \n, LENGTH=1, EXIT] @677
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 74][CLOSING NODE   ][Node: tablecell]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 74][ADD #TEXT      ][Node: #TEXT=' String (UTF8)       ']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 74][TOKEN FOUND    ][Token: tablecell: , LENGTH=21, EXIT] @656
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 73][ADD NODE       ][Node: tablecell] to [Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 73][TOKEN FOUND    ][Token: tablecell: |, LENGTH=1, ENTRY] @655
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 72][CLOSING NODE   ][Node: tablecell]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 72][ADD #TEXT      ][Node: #TEXT=' String (UTF8 or Ascii)      ']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 72][TOKEN FOUND    ][Token: tablecell: , LENGTH=29, EXIT] @626
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 71][ADD NODE       ][Node: tablecell] to [Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 71][TOKEN FOUND    ][Token: tablecell: |, LENGTH=1, ENTRY] @625
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 70][CLOSING NODE   ][Node: tablecell]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 70][ADD #TEXT      ][Node: #TEXT='                 ']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 70][TOKEN FOUND    ][Token: tablecell: , LENGTH=17, EXIT] @608
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 69][CLOSING NODE   ][Node: monospace]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 69][ADD #TEXT      ][Node: #TEXT='pw_s2u']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 69][TOKEN FOUND    ][Token: monospace: '', LENGTH=8, EXIT] @600
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 68][ADD NODE       ][Node: monospace] to [Node: tablecell]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 68][ADD #TEXT      ][Node: #TEXT=' ']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 68][TOKEN FOUND    ][Token: monospace: '', LENGTH=3, ENTRY] @597
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 67][ADD NODE       ][Node: tablecell] to [Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 67][TOKEN FOUND    ][Token: tablecell: |, LENGTH=1, ENTRY] @596
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 66][CLOSING NODE   ][Node: tableheader]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 66][TOKEN FOUND    ][Token: tableheader: , LENGTH=0, EXIT] @596
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 65][ADD NODE       ][Node: tablespan] to [Node: tableheader]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 65][TOKEN FOUND    ][Token: tablespan:  :::     , LENGTH=9, ENTRY] @587
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 64][ADD NODE       ][Node: tableheader] to [Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 64][TOKEN FOUND    ][Token: tableheader: ^, LENGTH=1, ENTRY] @586
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 63][ADD NODE       ][Node: tablerow] to [Node: table]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 63][TOKEN FOUND    ][Token: tablerow: \n, LENGTH=1, ENTRY] @585
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 62][CLOSING NODE   ][Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 62][TOKEN FOUND    ][Token: tablerow: \n, LENGTH=1, EXIT] @585
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 61][CLOSING NODE   ][Node: tablecell]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 61][ADD #TEXT      ][Node: #TEXT=' Html entities (UTF8)']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 61][TOKEN FOUND    ][Token: tablecell: , LENGTH=21, EXIT] @564
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 60][ADD NODE       ][Node: tablecell] to [Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 60][TOKEN FOUND    ][Token: tablecell: |, LENGTH=1, ENTRY] @563
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 59][CLOSING NODE   ][Node: tablecell]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 59][ADD #TEXT      ][Node: #TEXT=' String (UTF8 or Ascii)      ']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 59][TOKEN FOUND    ][Token: tablecell: , LENGTH=29, EXIT] @534
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 58][ADD NODE       ][Node: tablecell] to [Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 58][TOKEN FOUND    ][Token: tablecell: |, LENGTH=1, ENTRY] @533
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 57][CLOSING NODE   ][Node: tablecell]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 57][ADD #TEXT      ][Node: #TEXT='                 ']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 57][TOKEN FOUND    ][Token: tablecell: , LENGTH=17, EXIT] @516
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 56][CLOSING NODE   ][Node: monospace]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 56][ADD #TEXT      ][Node: #TEXT='pw_s2e']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 56][TOKEN FOUND    ][Token: monospace: '', LENGTH=8, EXIT] @508
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 55][ADD NODE       ][Node: monospace] to [Node: tablecell]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 55][ADD #TEXT      ][Node: #TEXT=' ']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 55][TOKEN FOUND    ][Token: monospace: '', LENGTH=3, ENTRY] @505
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 54][ADD NODE       ][Node: tablecell] to [Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 54][TOKEN FOUND    ][Token: tablecell: |, LENGTH=1, ENTRY] @504
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 53][CLOSING NODE   ][Node: tableheader]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 53][ADD #TEXT      ][Node: #TEXT=' Text    ']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 53][TOKEN FOUND    ][Token: tableheader: , LENGTH=9, EXIT] @495
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 52][ADD NODE       ][Node: tableheader] to [Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 52][TOKEN FOUND    ][Token: tableheader: ^, LENGTH=1, ENTRY] @494
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 51][ADD NODE       ][Node: tablerow] to [Node: table]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 51][TOKEN FOUND    ][Token: tablerow: \n, LENGTH=1, ENTRY] @493
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 50][CLOSING NODE   ][Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 50][TOKEN FOUND    ][Token: tablerow: \n, LENGTH=1, EXIT] @493
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 49][CLOSING NODE   ][Node: tableheader]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 49][ADD #TEXT      ][Node: #TEXT=' Output']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 49][TOKEN FOUND    ][Token: tableheader: , LENGTH=7, EXIT] @486
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 48][ADD NODE       ][Node: tableheader] to [Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 48][TOKEN FOUND    ][Token: tableheader: ^, LENGTH=1, ENTRY] @485
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 47][CLOSING NODE   ][Node: tableheader]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 47][ADD #TEXT      ][Node: #TEXT=' Input                       ']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 47][TOKEN FOUND    ][Token: tableheader: , LENGTH=29, EXIT] @456
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 46][ADD NODE       ][Node: tableheader] to [Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 46][TOKEN FOUND    ][Token: tableheader: ^, LENGTH=1, ENTRY] @455
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 45][CLOSING NODE   ][Node: tableheader]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 45][ADD #TEXT      ][Node: #TEXT=' Funktionsnamen             ']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 45][TOKEN FOUND    ][Token: tableheader: , LENGTH=28, EXIT] @427
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 44][ADD NODE       ][Node: tableheader] to [Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 44][TOKEN FOUND    ][Token: tableheader: ^, LENGTH=1, ENTRY] @426
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 43][CLOSING NODE   ][Node: tableheader]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 43][ADD #TEXT      ][Node: #TEXT=' Typ     ']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 43][TOKEN FOUND    ][Token: tableheader: , LENGTH=9, EXIT] @417
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 42][ADD NODE       ][Node: tableheader] to [Node: tablerow]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 42][TOKEN FOUND    ][Token: tableheader: ^, LENGTH=1, ENTRY] @416
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 41][ADD NODE       ][Node: tablerow] to [Node: table]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addAbstractNode@444          | [ 41][ADD #ABSTRACT  ][Node: table] @416
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 41][TOKEN FOUND    ][Token: tablerow: \n, LENGTH=1, ENTRY] @415
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 40][CLOSING NODE   ][Node: header='==']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 40][ADD #TEXT      ][Node: #TEXT=' Aktuell: encoding.php ']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 40][TOKEN FOUND    ][Token: header: ==\n, LENGTH=26, EXIT] @390
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 39][ADD NODE       ][Node: header='=='] to [Node: #DOCUMENT]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 39][CLOSING NODE   ][Node: lists]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 39][TOKEN FOUND    ][Token: header: \n==, LENGTH=4, ENTRY] @386
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 38][CLOSING NODE   ][Node: listitem='(,)*']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 38][ADD #TEXT      ][Node: #TEXT=' (sonst funktionieren Dateifkt. nicht)']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 38][TOKEN FOUND    ][Token: listitem: \n, LENGTH=39, EXIT] @348
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 37][CLOSING NODE   ][Node: monospace]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 37][ADD #TEXT      ][Node: #TEXT='ascii']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 37][TOKEN FOUND    ][Token: monospace: '', LENGTH=7, EXIT] @341
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 36][ADD NODE       ][Node: monospace] to [Node: listitem='(,)*']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 36][ADD #TEXT      ][Node: #TEXT=', ']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 36][TOKEN FOUND    ][Token: monospace: '', LENGTH=4, ENTRY] @337
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 35][CLOSING NODE   ][Node: monospace]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 35][ADD #TEXT      ][Node: #TEXT='urldecoded']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 35][TOKEN FOUND    ][Token: monospace: '', LENGTH=12, EXIT] @325
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 34][ADD NODE       ][Node: monospace] to [Node: listitem='(,)*']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 34][ADD #TEXT      ][Node: #TEXT=', ']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 34][TOKEN FOUND    ][Token: monospace: '', LENGTH=4, ENTRY] @321
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 33][CLOSING NODE   ][Node: monospace]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 33][ADD #TEXT      ][Node: #TEXT='lowercase']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 33][TOKEN FOUND    ][Token: monospace: '', LENGTH=11, EXIT] @310
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 32][ADD NODE       ][Node: monospace] to [Node: listitem='(,)*']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 32][ADD #TEXT      ][Node: #TEXT=': ']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 32][TOKEN FOUND    ][Token: monospace: '', LENGTH=4, ENTRY] @306
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 31][CLOSING NODE   ][Node: em]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 31][ADD #TEXT      ][Node: #TEXT='Pfade/Dateinamen']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 31][TOKEN FOUND    ][Token: em: &amp;lt;/em&amp;gt;, LENGTH=21, EXIT] @285
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 30][ADD NODE       ][Node: em] to [Node: listitem='(,)*']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 30][TOKEN FOUND    ][Token: em: &amp;lt;em&amp;gt;, LENGTH=4, ENTRY] @281
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 29][ADD NODE       ][Node: listitem='(,)*'] to [Node: lists]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 29][TOKEN FOUND    ][Token: listitem: \n* , LENGTH=3, ENTRY] @278
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 28][CLOSING NODE   ][Node: listitem='(,)*']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 28][ADD #TEXT      ][Node: #TEXT='.']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 28][TOKEN FOUND    ][Token: listitem: \n, LENGTH=2, EXIT] @277
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 27][CLOSING NODE   ][Node: monospace]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 27][ADD #TEXT      ][Node: #TEXT='utf8']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 27][TOKEN FOUND    ][Token: monospace: '', LENGTH=6, EXIT] @271
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 26][ADD NODE       ][Node: monospace] to [Node: listitem='(,)*']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 26][ADD #TEXT      ][Node: #TEXT=' und ']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 26][TOKEN FOUND    ][Token: monospace: '', LENGTH=7, ENTRY] @264
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 25][CLOSING NODE   ][Node: monospace]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 25][ADD #TEXT      ][Node: #TEXT='urlencoded']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 25][TOKEN FOUND    ][Token: monospace: '', LENGTH=12, EXIT] @252
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 24][ADD NODE       ][Node: monospace] to [Node: listitem='(,)*']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 24][ADD #TEXT      ][Node: #TEXT=', ']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 24][TOKEN FOUND    ][Token: monospace: '', LENGTH=4, ENTRY] @248
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 23][CLOSING NODE   ][Node: monospace]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 23][ADD #TEXT      ][Node: #TEXT='lowercase']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 23][TOKEN FOUND    ][Token: monospace: '', LENGTH=11, EXIT] @237
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 22][ADD NODE       ][Node: monospace] to [Node: listitem='(,)*']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 22][ADD #TEXT      ][Node: #TEXT=': ']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 22][TOKEN FOUND    ][Token: monospace: '', LENGTH=4, ENTRY] @233
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 21][CLOSING NODE   ][Node: em]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 21][ADD #TEXT      ][Node: #TEXT='ID']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 21][TOKEN FOUND    ][Token: em: &amp;lt;/em&amp;gt;, LENGTH=7, EXIT] @226
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 20][ADD NODE       ][Node: em] to [Node: listitem='(,)*']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 20][TOKEN FOUND    ][Token: em: &amp;lt;em&amp;gt;, LENGTH=4, ENTRY] @222
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 19][ADD NODE       ][Node: listitem='(,)*'] to [Node: lists]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addAbstractNode@444          | [ 19][ADD #ABSTRACT  ][Node: lists] @222
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 19][TOKEN FOUND    ][Token: listitem: \n* , LENGTH=3, ENTRY] @219
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 18][CLOSING NODE   ][Node: borderwarning]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 18][ADD #TEXT      ][Node: #TEXT='Check! Veraltet?']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 18][TOKEN FOUND    ][Token: borderwarning: &amp;lt;/warning&amp;gt;, LENGTH=26, EXIT] @193
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 17][ADD NODE       ][Node: borderwarning] to [Node: #DOCUMENT]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 17][TOKEN FOUND    ][Token: borderwarning: &amp;lt;warning&amp;gt;, LENGTH=10, ENTRY] @183
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 16][CLOSING NODE   ][Node: header='==']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 16][ADD #TEXT      ][Node: #TEXT=' Globale Variablen &amp;amp; globales Konfigurationsarray ']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 16][TOKEN FOUND    ][Token: header: ==\n, LENGTH=53, EXIT] @131
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 15][ADD NODE       ][Node: header='=='] to [Node: #DOCUMENT]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 15][TOKEN FOUND    ][Token: header: \n==, LENGTH=3, ENTRY] @128
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 14][CLOSING NODE   ][Node: header='=']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [ 14][ADD #TEXT      ][Node: #TEXT=' Formate: Encoding/Decoding ']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 14][TOKEN FOUND    ][Token: header: =\n\n, LENGTH=31, EXIT] @98
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [ 13][ADD NODE       ][Node: header='='] to [Node: #DOCUMENT]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 13][TOKEN FOUND    ][Token: header: \n=, LENGTH=2, ENTRY] @96
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 12][CLOSING NODE   ][Node: border]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 12][TOKEN FOUND    ][Token: border: &amp;lt;/border&amp;gt;, LENGTH=10, EXIT] @86
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 11][CLOSING NODE   ][Node: lo]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 11][TOKEN FOUND    ][Token: lo: &amp;lt;/lo&amp;gt;, LENGTH=5, EXIT] @81
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [ 10][CLOSING NODE   ][Node: internallink]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [ 10][TOKEN FOUND    ][Token: internallink: ]], LENGTH=2, EXIT] @79
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [  9][CLOSING NODE   ][Node: internallinktext]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [  9][ADD #TEXT      ][Node: #TEXT='Todos anzeigen']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [  9][TOKEN FOUND    ][Token: internallinktext: , LENGTH=14, EXIT] @65
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [  8][ADD NODE       ][Node: internallinktext] to [Node: internallink]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [  8][TOKEN FOUND    ][Token: internallinktext: |, LENGTH=1, ENTRY] @64
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [  7][CLOSING NODE   ][Node: internallinkpos]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [  7][ADD #TEXT      ][Node: #TEXT=':dokumentation:todos']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [  7][TOKEN FOUND    ][Token: internallinkpos: , LENGTH=20, EXIT] @44
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [  6][ADD NODE       ][Node: internallinkpos] to [Node: internallink]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [  6][TOKEN FOUND    ][Token: internallinkpos: [[, LENGTH=2, ENTRY] @42
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [  5][ADD NODE       ][Node: internallink] to [Node: lo]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [  5][ADD #TEXT      ][Node: #TEXT=' | ']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [  5][TOKEN FOUND    ][Token: internallink: , LENGTH=3, ENTRY] @39
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [  4][ADD NODE       ][Node: lo] to [Node: border]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [  4][TOKEN FOUND    ][Token: lo: &amp;lt;lo&amp;gt;, LENGTH=5, ENTRY] @34
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_parentStackRemove@456        | [  3][CLOSING NODE   ][Node: plugin='TRACE']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [  3][TOKEN FOUND    ][Token: plugin: ~~, LENGTH=2, EXIT] @32
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [  2][ADD NODE       ][Node: plugin='TRACE'] to [Node: border]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addTextNode@569              | [  2][ADD #TEXT      ][Node: #TEXT='\nSie sind hier: ']
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [  2][TOKEN FOUND    ][Token: plugin: ~~TRACE, LENGTH=23, ENTRY] @9
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_addNodeOnOpen@498            | [  1][ADD NODE       ][Node: border] to [Node: #DOCUMENT]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;_getToken@263                 | [  1][TOKEN FOUND    ][Token: border: &amp;lt;border&amp;gt;, LENGTH=9, ENTRY] @0
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: comment2 (TYPE_SECTION)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)], [Pattern: multiline (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: tableheader (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)], [Pattern: bold (TYPE_SECTION)], [Pattern: underline (TYPE_SECTION)], [Pattern: italic (TYPE_SECTION)], [Pattern: monospace (TYPE_SECTION)], [Pattern: small (TYPE_SECTION)], [Pattern: big (TYPE_SECTION)], [Pattern: strike (TYPE_SECTION)], [Pattern: sub (TYPE_SECTION)], [Pattern: sup (TYPE_SECTION)], [Pattern: hi (TYPE_SECTION)], [Pattern: lo (TYPE_SECTION)], [Pattern: em (TYPE_SECTION)], [Pattern: align (TYPE_SECTION)], [Pattern: justify (TYPE_SECTION)], [Pattern: alignintable (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)],
+2013/09/16 06:40:51 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: comment2 (TYPE_SECTION)] Item with name 'wptablecell' not found in this collection!
+2013/09/16 06:40:51 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: comment2 (TYPE_SECTION)] Item with name 'wptableheader' not found in this collection!
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: comment (TYPE_SECTION)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)], [Pattern: multiline (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: tableheader (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)], [Pattern: bold (TYPE_SECTION)], [Pattern: underline (TYPE_SECTION)], [Pattern: italic (TYPE_SECTION)], [Pattern: monospace (TYPE_SECTION)], [Pattern: small (TYPE_SECTION)], [Pattern: big (TYPE_SECTION)], [Pattern: strike (TYPE_SECTION)], [Pattern: sub (TYPE_SECTION)], [Pattern: sup (TYPE_SECTION)], [Pattern: hi (TYPE_SECTION)], [Pattern: lo (TYPE_SECTION)], [Pattern: em (TYPE_SECTION)], [Pattern: align (TYPE_SECTION)], [Pattern: justify (TYPE_SECTION)], [Pattern: alignintable (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)],
+2013/09/16 06:40:51 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: comment (TYPE_SECTION)] Item with name 'wptablecell' not found in this collection!
+2013/09/16 06:40:51 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: comment (TYPE_SECTION)] Item with name 'wptableheader' not found in this collection!
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: notoc (TYPE_SECTION)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)], [Pattern: multiline (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: tableheader (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)],
+2013/09/16 06:40:51 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: notoc (TYPE_SECTION)] Item with name 'wptablecell' not found in this collection!
+2013/09/16 06:40:51 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: notoc (TYPE_SECTION)] Item with name 'wptableheader' not found in this collection!
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: math (TYPE_SECTION)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)], [Pattern: multiline (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: tableheader (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)], [Pattern: bold (TYPE_SECTION)], [Pattern: underline (TYPE_SECTION)], [Pattern: italic (TYPE_SECTION)], [Pattern: monospace (TYPE_SECTION)], [Pattern: small (TYPE_SECTION)], [Pattern: big (TYPE_SECTION)], [Pattern: strike (TYPE_SECTION)], [Pattern: sub (TYPE_SECTION)], [Pattern: sup (TYPE_SECTION)], [Pattern: hi (TYPE_SECTION)], [Pattern: lo (TYPE_SECTION)], [Pattern: em (TYPE_SECTION)], [Pattern: align (TYPE_SECTION)], [Pattern: justify (TYPE_SECTION)], [Pattern: alignintable (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)],
+2013/09/16 06:40:51 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: math (TYPE_SECTION)] Item with name 'wptablecell' not found in this collection!
+2013/09/16 06:40:51 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: math (TYPE_SECTION)] Item with name 'wptableheader' not found in this collection!
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: quotedstring (TYPE_SECTION)] can be within [Pattern: variable (TYPE_LINE)],
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: footnote (TYPE_SECTION)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)], [Pattern: multiline (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: tableheader (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)], [Pattern: bold (TYPE_SECTION)], [Pattern: underline (TYPE_SECTION)], [Pattern: italic (TYPE_SECTION)], [Pattern: monospace (TYPE_SECTION)], [Pattern: small (TYPE_SECTION)], [Pattern: big (TYPE_SECTION)], [Pattern: strike (TYPE_SECTION)], [Pattern: sub (TYPE_SECTION)], [Pattern: sup (TYPE_SECTION)], [Pattern: hi (TYPE_SECTION)], [Pattern: lo (TYPE_SECTION)], [Pattern: em (TYPE_SECTION)], [Pattern: align (TYPE_SECTION)], [Pattern: justify (TYPE_SECTION)], [Pattern: alignintable (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)], [Pattern: defitem (TYPE_SECTION)], [Pattern: defterm (TYPE_SECTION; CONNECTED TO deflist)],
+2013/09/16 06:40:51 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: footnote (TYPE_SECTION)] Item with name 'wptablecell' not found in this collection!
+2013/09/16 06:40:51 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: footnote (TYPE_SECTION)] Item with name 'wptableheader' not found in this collection!
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: multiline (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)],
+2013/09/16 06:40:51 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)] Item with name 'wptablecell' not found in this collection!
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: defitem (TYPE_SECTION)] can be within [Pattern: defterm (TYPE_SECTION; CONNECTED TO deflist)],
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: defterm (TYPE_SECTION; CONNECTED TO deflist)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)], [Pattern: multiline (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)], [Pattern: align (TYPE_SECTION)], [Pattern: justify (TYPE_SECTION)], [Pattern: alignintable (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)],
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: horizontalrule (TYPE_LINE)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: multiline (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)],
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: alignintable (TYPE_SECTION)] can be within [Pattern: tablecell (TYPE_SECTION)],
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: tablespan (TYPE_WORD)] can be within [Pattern: tablecell (TYPE_SECTION)], [Pattern: tableheader (TYPE_SECTION)],
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: tableheader (TYPE_SECTION)] can be within [Pattern: tablerow (TYPE_SECTION; CONNECTED TO table)],
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: tablerow (TYPE_SECTION; CONNECTED TO table)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: multiline (TYPE_SECTION)], [Pattern: notoc (TYPE_SECTION)],
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: tablecell (TYPE_SECTION)] can be within [Pattern: tablerow (TYPE_SECTION; CONNECTED TO table)],
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: externallinkpos (TYPE_SECTION)] can be within [Pattern: externallink (TYPE_SECTION)],
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: externallink (TYPE_SECTION)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)], [Pattern: multiline (TYPE_SECTION)], [Pattern: bold (TYPE_SECTION)], [Pattern: underline (TYPE_SECTION)], [Pattern: italic (TYPE_SECTION)], [Pattern: monospace (TYPE_SECTION)], [Pattern: small (TYPE_SECTION)], [Pattern: big (TYPE_SECTION)], [Pattern: strike (TYPE_SECTION)], [Pattern: sub (TYPE_SECTION)], [Pattern: sup (TYPE_SECTION)], [Pattern: hi (TYPE_SECTION)], [Pattern: lo (TYPE_SECTION)], [Pattern: em (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: tableheader (TYPE_SECTION)], [Pattern: align (TYPE_SECTION)], [Pattern: justify (TYPE_SECTION)], [Pattern: alignintable (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)], [Pattern: footnote (TYPE_SECTION)], [Pattern: defitem (TYPE_SECTION)], [Pattern: defterm (TYPE_SECTION; CONNECTED TO deflist)],
+2013/09/16 06:40:51 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: externallink (TYPE_SECTION)] Item with name 'wptablecell' not found in this collection!
+2013/09/16 06:40:51 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: externallink (TYPE_SECTION)] Item with name 'wptableheader' not found in this collection!
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: variable (TYPE_LINE)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)], [Pattern: multiline (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)], [Pattern: bold (TYPE_SECTION)], [Pattern: underline (TYPE_SECTION)], [Pattern: italic (TYPE_SECTION)], [Pattern: monospace (TYPE_SECTION)], [Pattern: small (TYPE_SECTION)], [Pattern: big (TYPE_SECTION)], [Pattern: strike (TYPE_SECTION)], [Pattern: sub (TYPE_SECTION)], [Pattern: sup (TYPE_SECTION)], [Pattern: hi (TYPE_SECTION)], [Pattern: lo (TYPE_SECTION)], [Pattern: em (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: tableheader (TYPE_SECTION)], [Pattern: align (TYPE_SECTION)], [Pattern: justify (TYPE_SECTION)], [Pattern: alignintable (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)], [Pattern: pluginparameter (TYPE_SECTION)],
+2013/09/16 06:40:51 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: variable (TYPE_LINE)] Item with name 'wptablecell' not found in this collection!
+2013/09/16 06:40:51 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: variable (TYPE_LINE)] Item with name 'wptableheader' not found in this collection!
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: symbol (TYPE_WORD)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)], [Pattern: multiline (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)], [Pattern: bold (TYPE_SECTION)], [Pattern: underline (TYPE_SECTION)], [Pattern: italic (TYPE_SECTION)], [Pattern: monospace (TYPE_SECTION)], [Pattern: small (TYPE_SECTION)], [Pattern: big (TYPE_SECTION)], [Pattern: strike (TYPE_SECTION)], [Pattern: sub (TYPE_SECTION)], [Pattern: sup (TYPE_SECTION)], [Pattern: hi (TYPE_SECTION)], [Pattern: lo (TYPE_SECTION)], [Pattern: em (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: tableheader (TYPE_SECTION)], [Pattern: align (TYPE_SECTION)], [Pattern: justify (TYPE_SECTION)], [Pattern: alignintable (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)], [Pattern: math (TYPE_SECTION)], [Pattern: defitem (TYPE_SECTION)], [Pattern: defterm (TYPE_SECTION; CONNECTED TO deflist)],
+2013/09/16 06:40:51 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: symbol (TYPE_WORD)] Item with name 'wptablecell' not found in this collection!
+2013/09/16 06:40:51 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: symbol (TYPE_WORD)] Item with name 'wptableheader' not found in this collection!
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: constant (TYPE_WORD)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)], [Pattern: multiline (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)], [Pattern: bold (TYPE_SECTION)], [Pattern: underline (TYPE_SECTION)], [Pattern: italic (TYPE_SECTION)], [Pattern: monospace (TYPE_SECTION)], [Pattern: small (TYPE_SECTION)], [Pattern: big (TYPE_SECTION)], [Pattern: strike (TYPE_SECTION)], [Pattern: sub (TYPE_SECTION)], [Pattern: sup (TYPE_SECTION)], [Pattern: hi (TYPE_SECTION)], [Pattern: lo (TYPE_SECTION)], [Pattern: em (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: tableheader (TYPE_SECTION)], [Pattern: align (TYPE_SECTION)], [Pattern: justify (TYPE_SECTION)], [Pattern: alignintable (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)], [Pattern: header (TYPE_LINE)], [Pattern: internallinkpos (TYPE_SECTION)], [Pattern: internallinktext (TYPE_SECTION)], [Pattern: externallink (TYPE_SECTION)], [Pattern: externallinkpos (TYPE_SECTION)], [Pattern: variable (TYPE_LINE)], [Pattern: plugin (TYPE_SECTION)], [Pattern: pluginparameter (TYPE_SECTION)],
+2013/09/16 06:40:51 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: constant (TYPE_WORD)] Item with name 'pluginparam' not found in this collection!
+2013/09/16 06:40:51 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: constant (TYPE_WORD)] Item with name 'wptablecell' not found in this collection!
+2013/09/16 06:40:51 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: constant (TYPE_WORD)] Item with name 'wptableheader' not found in this collection!
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: left (TYPE_SECTION)] can be within [Pattern: #DOCUMENT (TYPE_BASE)],
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: right (TYPE_SECTION)] can be within [Pattern: #DOCUMENT (TYPE_BASE)],
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: indent (TYPE_SECTION)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)], [Pattern: multiline (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)],
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: justify (TYPE_SECTION)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)], [Pattern: multiline (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)], [Pattern: align (TYPE_SECTION)], [Pattern: justify (TYPE_SECTION)], [Pattern: alignintable (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)],
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: align (TYPE_SECTION)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)], [Pattern: multiline (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)], [Pattern: align (TYPE_SECTION)], [Pattern: justify (TYPE_SECTION)], [Pattern: alignintable (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)],
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: preformat (TYPE_LINE; CONNECTED TO pre)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)], [Pattern: multiline (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: tableheader (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)], [Pattern: align (TYPE_SECTION)], [Pattern: justify (TYPE_SECTION)], [Pattern: alignintable (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)],
+2013/09/16 06:40:51 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: preformat (TYPE_LINE; CONNECTED TO pre)] Item with name 'wptablecell' not found in this collection!
+2013/09/16 06:40:51 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: preformat (TYPE_LINE; CONNECTED TO pre)] Item with name 'wptableheader' not found in this collection!
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: multiline (TYPE_SECTION)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: multiline (TYPE_SECTION)], [Pattern: alignintable (TYPE_SECTION)], [Pattern: justify (TYPE_SECTION)], [Pattern: align (TYPE_SECTION)], [Pattern: defitem (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)],
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: newline (TYPE_WORD)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)], [Pattern: multiline (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)], [Pattern: bold (TYPE_SECTION)], [Pattern: underline (TYPE_SECTION)], [Pattern: italic (TYPE_SECTION)], [Pattern: monospace (TYPE_SECTION)], [Pattern: small (TYPE_SECTION)], [Pattern: big (TYPE_SECTION)], [Pattern: strike (TYPE_SECTION)], [Pattern: sub (TYPE_SECTION)], [Pattern: sup (TYPE_SECTION)], [Pattern: hi (TYPE_SECTION)], [Pattern: lo (TYPE_SECTION)], [Pattern: em (TYPE_SECTION)], [Pattern: align (TYPE_SECTION)], [Pattern: justify (TYPE_SECTION)], [Pattern: alignintable (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: tableheader (TYPE_SECTION)], [Pattern: footnote (TYPE_SECTION)],
+2013/09/16 06:40:51 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: newline (TYPE_WORD)] Item with name 'wptablecell' not found in this collection!
+2013/09/16 06:40:51 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: newline (TYPE_WORD)] Item with name 'wptableheader' not found in this collection!
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: nowikialt (TYPE_SECTION)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)], [Pattern: multiline (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)], [Pattern: bold (TYPE_SECTION)], [Pattern: underline (TYPE_SECTION)], [Pattern: italic (TYPE_SECTION)], [Pattern: monospace (TYPE_SECTION)], [Pattern: small (TYPE_SECTION)], [Pattern: big (TYPE_SECTION)], [Pattern: strike (TYPE_SECTION)], [Pattern: sub (TYPE_SECTION)], [Pattern: sup (TYPE_SECTION)], [Pattern: hi (TYPE_SECTION)], [Pattern: lo (TYPE_SECTION)], [Pattern: em (TYPE_SECTION)], [Pattern: defterm (TYPE_SECTION; CONNECTED TO deflist)], [Pattern: defitem (TYPE_SECTION)],
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: nowiki (TYPE_SECTION)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)], [Pattern: multiline (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)], [Pattern: bold (TYPE_SECTION)], [Pattern: underline (TYPE_SECTION)], [Pattern: italic (TYPE_SECTION)], [Pattern: monospace (TYPE_SECTION)], [Pattern: small (TYPE_SECTION)], [Pattern: big (TYPE_SECTION)], [Pattern: strike (TYPE_SECTION)], [Pattern: sub (TYPE_SECTION)], [Pattern: sup (TYPE_SECTION)], [Pattern: hi (TYPE_SECTION)], [Pattern: lo (TYPE_SECTION)], [Pattern: em (TYPE_SECTION)], [Pattern: defterm (TYPE_SECTION; CONNECTED TO deflist)], [Pattern: defitem (TYPE_SECTION)],
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: code (TYPE_SECTION)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)], [Pattern: multiline (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)], [Pattern: bold (TYPE_SECTION)], [Pattern: underline (TYPE_SECTION)], [Pattern: italic (TYPE_SECTION)], [Pattern: monospace (TYPE_SECTION)], [Pattern: small (TYPE_SECTION)], [Pattern: big (TYPE_SECTION)], [Pattern: strike (TYPE_SECTION)], [Pattern: sub (TYPE_SECTION)], [Pattern: sup (TYPE_SECTION)], [Pattern: hi (TYPE_SECTION)], [Pattern: lo (TYPE_SECTION)], [Pattern: em (TYPE_SECTION)],
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: underline (TYPE_SECTION)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: defitem (TYPE_SECTION)], [Pattern: footnote (TYPE_SECTION)], [Pattern: align (TYPE_SECTION)], [Pattern: justify (TYPE_SECTION)], [Pattern: alignintable (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: tableheader (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)], [Pattern: multiline (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)], [Pattern: bold (TYPE_SECTION)], [Pattern: underline (TYPE_SECTION)], [Pattern: italic (TYPE_SECTION)], [Pattern: monospace (TYPE_SECTION)], [Pattern: small (TYPE_SECTION)], [Pattern: big (TYPE_SECTION)], [Pattern: strike (TYPE_SECTION)], [Pattern: sub (TYPE_SECTION)], [Pattern: sup (TYPE_SECTION)], [Pattern: hi (TYPE_SECTION)], [Pattern: lo (TYPE_SECTION)], [Pattern: em (TYPE_SECTION)],
+2013/09/16 06:40:51 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: underline (TYPE_SECTION)] Item with name 'wptablecell' not found in this collection!
+2013/09/16 06:40:51 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: underline (TYPE_SECTION)] Item with name 'wptableheader' not found in this collection!
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: sup (TYPE_SECTION)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: defitem (TYPE_SECTION)], [Pattern: footnote (TYPE_SECTION)], [Pattern: align (TYPE_SECTION)], [Pattern: justify (TYPE_SECTION)], [Pattern: alignintable (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: tableheader (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)], [Pattern: multiline (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)], [Pattern: bold (TYPE_SECTION)], [Pattern: underline (TYPE_SECTION)], [Pattern: italic (TYPE_SECTION)], [Pattern: monospace (TYPE_SECTION)], [Pattern: small (TYPE_SECTION)], [Pattern: big (TYPE_SECTION)], [Pattern: strike (TYPE_SECTION)], [Pattern: sub (TYPE_SECTION)], [Pattern: sup (TYPE_SECTION)], [Pattern: hi (TYPE_SECTION)], [Pattern: lo (TYPE_SECTION)], [Pattern: em (TYPE_SECTION)],
+2013/09/16 06:40:51 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: sup (TYPE_SECTION)] Item with name 'wptablecell' not found in this collection!
+2013/09/16 06:40:51 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: sup (TYPE_SECTION)] Item with name 'wptableheader' not found in this collection!
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: sub (TYPE_SECTION)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: defitem (TYPE_SECTION)], [Pattern: footnote (TYPE_SECTION)], [Pattern: align (TYPE_SECTION)], [Pattern: justify (TYPE_SECTION)], [Pattern: alignintable (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: tableheader (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)], [Pattern: multiline (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)], [Pattern: bold (TYPE_SECTION)], [Pattern: underline (TYPE_SECTION)], [Pattern: italic (TYPE_SECTION)], [Pattern: monospace (TYPE_SECTION)], [Pattern: small (TYPE_SECTION)], [Pattern: big (TYPE_SECTION)], [Pattern: strike (TYPE_SECTION)], [Pattern: sub (TYPE_SECTION)], [Pattern: sup (TYPE_SECTION)], [Pattern: hi (TYPE_SECTION)], [Pattern: lo (TYPE_SECTION)], [Pattern: em (TYPE_SECTION)],
+2013/09/16 06:40:51 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: sub (TYPE_SECTION)] Item with name 'wptablecell' not found in this collection!
+2013/09/16 06:40:51 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: sub (TYPE_SECTION)] Item with name 'wptableheader' not found in this collection!
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: strike (TYPE_SECTION)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: defitem (TYPE_SECTION)], [Pattern: footnote (TYPE_SECTION)], [Pattern: align (TYPE_SECTION)], [Pattern: justify (TYPE_SECTION)], [Pattern: alignintable (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: tableheader (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)], [Pattern: multiline (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)], [Pattern: bold (TYPE_SECTION)], [Pattern: underline (TYPE_SECTION)], [Pattern: italic (TYPE_SECTION)], [Pattern: monospace (TYPE_SECTION)], [Pattern: small (TYPE_SECTION)], [Pattern: big (TYPE_SECTION)], [Pattern: strike (TYPE_SECTION)], [Pattern: sub (TYPE_SECTION)], [Pattern: sup (TYPE_SECTION)], [Pattern: hi (TYPE_SECTION)], [Pattern: lo (TYPE_SECTION)], [Pattern: em (TYPE_SECTION)],
+2013/09/16 06:40:51 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: strike (TYPE_SECTION)] Item with name 'wptablecell' not found in this collection!
+2013/09/16 06:40:51 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: strike (TYPE_SECTION)] Item with name 'wptableheader' not found in this collection!
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: small (TYPE_SECTION)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: defitem (TYPE_SECTION)], [Pattern: footnote (TYPE_SECTION)], [Pattern: align (TYPE_SECTION)], [Pattern: justify (TYPE_SECTION)], [Pattern: alignintable (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: tableheader (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)], [Pattern: multiline (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)], [Pattern: bold (TYPE_SECTION)], [Pattern: underline (TYPE_SECTION)], [Pattern: italic (TYPE_SECTION)], [Pattern: monospace (TYPE_SECTION)], [Pattern: small (TYPE_SECTION)], [Pattern: big (TYPE_SECTION)], [Pattern: strike (TYPE_SECTION)], [Pattern: sub (TYPE_SECTION)], [Pattern: sup (TYPE_SECTION)], [Pattern: hi (TYPE_SECTION)], [Pattern: lo (TYPE_SECTION)], [Pattern: em (TYPE_SECTION)],
+2013/09/16 06:40:51 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: small (TYPE_SECTION)] Item with name 'wptablecell' not found in this collection!
+2013/09/16 06:40:51 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: small (TYPE_SECTION)] Item with name 'wptableheader' not found in this collection!
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: monospace (TYPE_SECTION)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: defitem (TYPE_SECTION)], [Pattern: footnote (TYPE_SECTION)], [Pattern: align (TYPE_SECTION)], [Pattern: justify (TYPE_SECTION)], [Pattern: alignintable (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: tableheader (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)], [Pattern: multiline (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)], [Pattern: bold (TYPE_SECTION)], [Pattern: underline (TYPE_SECTION)], [Pattern: italic (TYPE_SECTION)], [Pattern: monospace (TYPE_SECTION)], [Pattern: small (TYPE_SECTION)], [Pattern: big (TYPE_SECTION)], [Pattern: strike (TYPE_SECTION)], [Pattern: sub (TYPE_SECTION)], [Pattern: sup (TYPE_SECTION)], [Pattern: hi (TYPE_SECTION)], [Pattern: lo (TYPE_SECTION)], [Pattern: em (TYPE_SECTION)],
+2013/09/16 06:40:51 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: monospace (TYPE_SECTION)] Item with name 'wptablecell' not found in this collection!
+2013/09/16 06:40:51 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: monospace (TYPE_SECTION)] Item with name 'wptableheader' not found in this collection!
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: lo (TYPE_SECTION)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: defitem (TYPE_SECTION)], [Pattern: footnote (TYPE_SECTION)], [Pattern: align (TYPE_SECTION)], [Pattern: justify (TYPE_SECTION)], [Pattern: alignintable (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: tableheader (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)], [Pattern: multiline (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)], [Pattern: bold (TYPE_SECTION)], [Pattern: underline (TYPE_SECTION)], [Pattern: italic (TYPE_SECTION)], [Pattern: monospace (TYPE_SECTION)], [Pattern: small (TYPE_SECTION)], [Pattern: big (TYPE_SECTION)], [Pattern: strike (TYPE_SECTION)], [Pattern: sub (TYPE_SECTION)], [Pattern: sup (TYPE_SECTION)], [Pattern: hi (TYPE_SECTION)], [Pattern: lo (TYPE_SECTION)], [Pattern: em (TYPE_SECTION)],
+2013/09/16 06:40:51 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: lo (TYPE_SECTION)] Item with name 'wptablecell' not found in this collection!
+2013/09/16 06:40:51 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: lo (TYPE_SECTION)] Item with name 'wptableheader' not found in this collection!
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: italic (TYPE_SECTION)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: defitem (TYPE_SECTION)], [Pattern: footnote (TYPE_SECTION)], [Pattern: align (TYPE_SECTION)], [Pattern: justify (TYPE_SECTION)], [Pattern: alignintable (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: tableheader (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)], [Pattern: multiline (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)], [Pattern: bold (TYPE_SECTION)], [Pattern: underline (TYPE_SECTION)], [Pattern: italic (TYPE_SECTION)], [Pattern: monospace (TYPE_SECTION)], [Pattern: small (TYPE_SECTION)], [Pattern: big (TYPE_SECTION)], [Pattern: strike (TYPE_SECTION)], [Pattern: sub (TYPE_SECTION)], [Pattern: sup (TYPE_SECTION)], [Pattern: hi (TYPE_SECTION)], [Pattern: lo (TYPE_SECTION)], [Pattern: em (TYPE_SECTION)],
+2013/09/16 06:40:51 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: italic (TYPE_SECTION)] Item with name 'wptablecell' not found in this collection!
+2013/09/16 06:40:51 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: italic (TYPE_SECTION)] Item with name 'wptableheader' not found in this collection!
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: hi (TYPE_SECTION)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: defitem (TYPE_SECTION)], [Pattern: footnote (TYPE_SECTION)], [Pattern: align (TYPE_SECTION)], [Pattern: justify (TYPE_SECTION)], [Pattern: alignintable (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: tableheader (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)], [Pattern: multiline (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)], [Pattern: bold (TYPE_SECTION)], [Pattern: underline (TYPE_SECTION)], [Pattern: italic (TYPE_SECTION)], [Pattern: monospace (TYPE_SECTION)], [Pattern: small (TYPE_SECTION)], [Pattern: big (TYPE_SECTION)], [Pattern: strike (TYPE_SECTION)], [Pattern: sub (TYPE_SECTION)], [Pattern: sup (TYPE_SECTION)], [Pattern: hi (TYPE_SECTION)], [Pattern: lo (TYPE_SECTION)], [Pattern: em (TYPE_SECTION)],
+2013/09/16 06:40:51 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: hi (TYPE_SECTION)] Item with name 'wptablecell' not found in this collection!
+2013/09/16 06:40:51 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: hi (TYPE_SECTION)] Item with name 'wptableheader' not found in this collection!
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: em (TYPE_SECTION)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: defitem (TYPE_SECTION)], [Pattern: footnote (TYPE_SECTION)], [Pattern: align (TYPE_SECTION)], [Pattern: justify (TYPE_SECTION)], [Pattern: alignintable (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: tableheader (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)], [Pattern: multiline (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)], [Pattern: bold (TYPE_SECTION)], [Pattern: underline (TYPE_SECTION)], [Pattern: italic (TYPE_SECTION)], [Pattern: monospace (TYPE_SECTION)], [Pattern: small (TYPE_SECTION)], [Pattern: big (TYPE_SECTION)], [Pattern: strike (TYPE_SECTION)], [Pattern: sub (TYPE_SECTION)], [Pattern: sup (TYPE_SECTION)], [Pattern: hi (TYPE_SECTION)], [Pattern: lo (TYPE_SECTION)], [Pattern: em (TYPE_SECTION)],
+2013/09/16 06:40:51 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: em (TYPE_SECTION)] Item with name 'wptablecell' not found in this collection!
+2013/09/16 06:40:51 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: em (TYPE_SECTION)] Item with name 'wptableheader' not found in this collection!
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: bold (TYPE_SECTION)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: defitem (TYPE_SECTION)], [Pattern: footnote (TYPE_SECTION)], [Pattern: align (TYPE_SECTION)], [Pattern: justify (TYPE_SECTION)], [Pattern: alignintable (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: tableheader (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)], [Pattern: multiline (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)], [Pattern: bold (TYPE_SECTION)], [Pattern: underline (TYPE_SECTION)], [Pattern: italic (TYPE_SECTION)], [Pattern: monospace (TYPE_SECTION)], [Pattern: small (TYPE_SECTION)], [Pattern: big (TYPE_SECTION)], [Pattern: strike (TYPE_SECTION)], [Pattern: sub (TYPE_SECTION)], [Pattern: sup (TYPE_SECTION)], [Pattern: hi (TYPE_SECTION)], [Pattern: lo (TYPE_SECTION)], [Pattern: em (TYPE_SECTION)],
+2013/09/16 06:40:51 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: bold (TYPE_SECTION)] Item with name 'wptablecell' not found in this collection!
+2013/09/16 06:40:51 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: bold (TYPE_SECTION)] Item with name 'wptableheader' not found in this collection!
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: big (TYPE_SECTION)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: defitem (TYPE_SECTION)], [Pattern: footnote (TYPE_SECTION)], [Pattern: align (TYPE_SECTION)], [Pattern: justify (TYPE_SECTION)], [Pattern: alignintable (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: tableheader (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)], [Pattern: multiline (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)], [Pattern: bold (TYPE_SECTION)], [Pattern: underline (TYPE_SECTION)], [Pattern: italic (TYPE_SECTION)], [Pattern: monospace (TYPE_SECTION)], [Pattern: small (TYPE_SECTION)], [Pattern: big (TYPE_SECTION)], [Pattern: strike (TYPE_SECTION)], [Pattern: sub (TYPE_SECTION)], [Pattern: sup (TYPE_SECTION)], [Pattern: hi (TYPE_SECTION)], [Pattern: lo (TYPE_SECTION)], [Pattern: em (TYPE_SECTION)],
+2013/09/16 06:40:51 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: big (TYPE_SECTION)] Item with name 'wptablecell' not found in this collection!
+2013/09/16 06:40:51 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: big (TYPE_SECTION)] Item with name 'wptableheader' not found in this collection!
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: urlnoprotocol (TYPE_WORD)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)], [Pattern: multiline (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)], [Pattern: bold (TYPE_SECTION)], [Pattern: underline (TYPE_SECTION)], [Pattern: italic (TYPE_SECTION)], [Pattern: monospace (TYPE_SECTION)], [Pattern: small (TYPE_SECTION)], [Pattern: big (TYPE_SECTION)], [Pattern: strike (TYPE_SECTION)], [Pattern: sub (TYPE_SECTION)], [Pattern: sup (TYPE_SECTION)], [Pattern: hi (TYPE_SECTION)], [Pattern: lo (TYPE_SECTION)], [Pattern: em (TYPE_SECTION)], [Pattern: externallink (TYPE_SECTION)], [Pattern: footnote (TYPE_SECTION)], [Pattern: defitem (TYPE_SECTION)],
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: url (TYPE_WORD)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)], [Pattern: multiline (TYPE_SECTION)], [Pattern: bold (TYPE_SECTION)], [Pattern: underline (TYPE_SECTION)], [Pattern: italic (TYPE_SECTION)], [Pattern: monospace (TYPE_SECTION)], [Pattern: small (TYPE_SECTION)], [Pattern: big (TYPE_SECTION)], [Pattern: strike (TYPE_SECTION)], [Pattern: sub (TYPE_SECTION)], [Pattern: sup (TYPE_SECTION)], [Pattern: hi (TYPE_SECTION)], [Pattern: lo (TYPE_SECTION)], [Pattern: em (TYPE_SECTION)], [Pattern: externallink (TYPE_SECTION)], [Pattern: footnote (TYPE_SECTION)], [Pattern: defitem (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)],
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: internallinkpos (TYPE_SECTION)] can be within [Pattern: internallink (TYPE_SECTION)],
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: internallinkmode (TYPE_WORD)] can be within [Pattern: internallinkpos (TYPE_SECTION)],
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: internallinktext (TYPE_SECTION)] can be within [Pattern: internallink (TYPE_SECTION)],
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: internallink (TYPE_SECTION)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)], [Pattern: multiline (TYPE_SECTION)], [Pattern: bold (TYPE_SECTION)], [Pattern: underline (TYPE_SECTION)], [Pattern: italic (TYPE_SECTION)], [Pattern: monospace (TYPE_SECTION)], [Pattern: small (TYPE_SECTION)], [Pattern: big (TYPE_SECTION)], [Pattern: strike (TYPE_SECTION)], [Pattern: sub (TYPE_SECTION)], [Pattern: sup (TYPE_SECTION)], [Pattern: hi (TYPE_SECTION)], [Pattern: lo (TYPE_SECTION)], [Pattern: em (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: tableheader (TYPE_SECTION)], [Pattern: align (TYPE_SECTION)], [Pattern: justify (TYPE_SECTION)], [Pattern: alignintable (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)], [Pattern: footnote (TYPE_SECTION)], [Pattern: defitem (TYPE_SECTION)], [Pattern: defterm (TYPE_SECTION; CONNECTED TO deflist)],
+2013/09/16 06:40:51 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: internallink (TYPE_SECTION)] Item with name 'wptablecell' not found in this collection!
+2013/09/16 06:40:51 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: internallink (TYPE_SECTION)] Item with name 'wptableheader' not found in this collection!
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: pluginparameter (TYPE_SECTION)] can be within [Pattern: plugin (TYPE_SECTION)],
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: plugin (TYPE_SECTION)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)], [Pattern: multiline (TYPE_SECTION)], [Pattern: bold (TYPE_SECTION)], [Pattern: underline (TYPE_SECTION)], [Pattern: italic (TYPE_SECTION)], [Pattern: monospace (TYPE_SECTION)], [Pattern: small (TYPE_SECTION)], [Pattern: big (TYPE_SECTION)], [Pattern: strike (TYPE_SECTION)], [Pattern: sub (TYPE_SECTION)], [Pattern: sup (TYPE_SECTION)], [Pattern: hi (TYPE_SECTION)], [Pattern: lo (TYPE_SECTION)], [Pattern: em (TYPE_SECTION)], [Pattern: multiline (TYPE_SECTION)], [Pattern: header (TYPE_LINE)], [Pattern: internallinkpos (TYPE_SECTION)], [Pattern: internallinktext (TYPE_SECTION)], [Pattern: externallink (TYPE_SECTION)], [Pattern: externallinkpos (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)], [Pattern: tableheader (TYPE_SECTION)], [Pattern: align (TYPE_SECTION)], [Pattern: justify (TYPE_SECTION)], [Pattern: alignintable (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)],
+2013/09/16 06:40:51 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: plugin (TYPE_SECTION)] Item with name 'wptablecell' not found in this collection!
+2013/09/16 06:40:51 | WARNING | Lexer.php-&gt;setAllowedModes@401           | [ -1][ADD MODE       ][Pattern: plugin (TYPE_SECTION)] Item with name 'wptableheader' not found in this collection!
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: borderwarning (TYPE_SECTION)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: multiline (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)],
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: bordervalidation (TYPE_SECTION)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: multiline (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)],
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: bordersuccess (TYPE_SECTION)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: multiline (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)],
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: borderinfo (TYPE_SECTION)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: multiline (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)],
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: bordererror (TYPE_SECTION)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: multiline (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)],
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: border (TYPE_SECTION)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: multiline (TYPE_SECTION)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)], [Pattern: indent (TYPE_SECTION)], [Pattern: tablecell (TYPE_SECTION)],
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;setAllowedModes@404           | [ -1][ADD MODE       ][Pattern: header (TYPE_LINE)] can be within [Pattern: #DOCUMENT (TYPE_BASE)], [Pattern: left (TYPE_SECTION)], [Pattern: right (TYPE_SECTION)], [Pattern: notoc (TYPE_SECTION)], [Pattern: multiline (TYPE_SECTION)], [Pattern: bordererror (TYPE_SECTION)], [Pattern: borderinfo (TYPE_SECTION)], [Pattern: borderwarning (TYPE_SECTION)], [Pattern: bordersuccess (TYPE_SECTION)], [Pattern: bordervalidation (TYPE_SECTION)], [Pattern: border (TYPE_SECTION)],
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: comment2 (TYPE_SECTION)]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: comment (TYPE_SECTION)]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: notoc (TYPE_SECTION)]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: math (TYPE_SECTION)]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: quotedstring (TYPE_SECTION)]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: footnote (TYPE_SECTION)]
+2013/09/16 06:40:51 | INFO    | Lexer.php-&gt;_connectTo@286                | [ -1][CONNECTTO      ]'listitem-&gt;lists' connected.
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: listitem (TYPE_SECTION)]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: defitem (TYPE_SECTION)]
+2013/09/16 06:40:51 | INFO    | Lexer.php-&gt;_connectTo@286                | [ -1][CONNECTTO      ]'defterm-&gt;deflist' connected.
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: defterm (TYPE_SECTION)]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: horizontalrule (TYPE_LINE)]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: alignintable (TYPE_SECTION)]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: tablespan (TYPE_WORD)]
+2013/09/16 06:40:51 | INFO    | Lexer.php-&gt;_connectTo@286                | [ -1][CONNECTTO      ]'tablerow-&gt;table' connected.
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: tableheader (TYPE_SECTION)]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: tablerow (TYPE_SECTION)]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: tablecell (TYPE_SECTION)]
+2013/09/16 06:40:51 | INFO    | Lexer.php-&gt;_connectTo@286                | [ -1][CONNECTTO      ]'preformat-&gt;pre' connected.
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: externallinkpos (TYPE_SECTION)]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: externallink (TYPE_SECTION)]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: variable (TYPE_LINE)]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: symbol (TYPE_WORD)]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: constant (TYPE_WORD)]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: left (TYPE_SECTION)]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: right (TYPE_SECTION)]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: indent (TYPE_SECTION)]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: justify (TYPE_SECTION)]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: align (TYPE_SECTION)]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: preformat (TYPE_LINE)]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: multiline (TYPE_SECTION)]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: newline (TYPE_WORD)]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: nowikialt (TYPE_SECTION)]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: nowiki (TYPE_SECTION)]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: code (TYPE_SECTION)]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: underline (TYPE_SECTION)]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: sup (TYPE_SECTION)]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: sub (TYPE_SECTION)]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: strike (TYPE_SECTION)]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: small (TYPE_SECTION)]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: monospace (TYPE_SECTION)]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: lo (TYPE_SECTION)]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: italic (TYPE_SECTION)]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: hi (TYPE_SECTION)]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: em (TYPE_SECTION)]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: bold (TYPE_SECTION)]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: big (TYPE_SECTION)]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: urlnoprotocol (TYPE_WORD)]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: url (TYPE_WORD)]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: internallinkpos (TYPE_SECTION)]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: internallinkmode (TYPE_WORD)]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: internallinktext (TYPE_SECTION)]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: internallink (TYPE_SECTION)]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: pluginparameter (TYPE_SECTION)]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: plugin (TYPE_SECTION)]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: borderwarning (TYPE_SECTION)]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: bordervalidation (TYPE_SECTION)]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: bordersuccess (TYPE_SECTION)]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: borderinfo (TYPE_SECTION)]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: bordererror (TYPE_SECTION)]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: border (TYPE_SECTION)]
+2013/09/16 06:40:51 | DEBUG   | Lexer.php-&gt;addPattern@385                | [ -1][ADD PATTERN    ][Pattern: header (TYPE_LINE)]
+2013/09/16 06:40:51 | NOLEVEL | Lexer.php-&gt;setSource@149                 | STARTING: Lexer v0.5 - newStyle, debugLevel = DEBUG
+</pre><h3>Performance</h3>Text in 0.1037s geparsed!<h3>Text, der geparsed werden soll (mit Zeilennummern).</h3>Die erste und letzte Zeile werden vom Lexer automatisch hinzugef&uuml;gt.<pre>    1 
+    2 <border>
+    3 Sie sind hier: ~~TRACE~~
+    4 <lo> | [[:dokumentation:todos|Todos anzeigen]]</lo>
+    5 </border>
+    6 = Formate: Encoding/Decoding =
+    7 
+    8 == Globale Variablen & globales Konfigurationsarray ==
+    9 <warning>Check! Veraltet?</warning>
+   10 * <em>ID</em>: ''lowercase'', ''urlencoded'' und ''utf8''.
+   11 * <em>Pfade/Dateinamen</em>: ''lowercase'', ''urldecoded'', ''ascii'' (sonst funktionieren Dateifkt. nicht)
+   12 
+   13 == Aktuell: encoding.php ==
+   14 ^ Typ     ^ Funktionsnamen             ^ Input                       ^ Output
+   15 ^ Text    | ''pw_s2e''                 | String (UTF8 or Ascii)      | Html entities (UTF8)
+   16 ^ :::     | ''pw_s2u''                 | String (UTF8 or Ascii)      | String (UTF8)       
+   17 ^ :::     | ''pw_u2t''                 | String (UTF8 only)          | String (Ascii)
+   18 ^ :::     | ''pw_e2u''                 | Html entities (UTF8)        | String (UTF8)       
+   19 ^ URL     | ''pw_s2url''               | String (UTF8 or Ascii)      | URL (UTF8, urlencoded)
+   20 ^ :::     | ''pw_url2u''               | URL (UTF8, urlencoded)      | String (UTF8)       
+   21 ^ :::     | ''pw_url2e''               | URL (UTF8, urlencoded)      | Html entities (UTF8)
+   22 ^ :::     | ''pw_e2url''               | Html entities (UTF8)        | URL (UTF8, urlencoded)
+   23 ^ :::     | ''pw_url2t''               | URL (UTF8, urlencoded)      | String (Ascii)
+   24 ^ Slashes | ''pw_stripslashes''        | String (UTF8 or Ascii)      | String with stripped slashes
+   25 ^ :::     | ''pw_check_stripslashes''  | %%--%%                      | system strips slashes? (boolean)
+   26 ^ :::     | ''pw_stripslashes_deep''   | String or Array of Strings  | Array or String with stripped slashes
+   27 ^ :::     | ''pw_stripslashes_array''  | Array of Strings            | Array with stripped slashes
+   28 ^ Spezial | ''pw_s2hex''               | String (UTF8 or Ascii)      | Hexadecimal value of all chars inside the String
+   29 ^ :::     | ''pw_formatbytes''         | Integer of bytes, precision, showbytes? (bool) | Returns a human readable byte-String with endings like KB, MB, TB,...
+   30 
+   31 
+   32 \\
+   33 :>> <lo>Verarbeitet in ~~TEXT:comma|{{PERFORMANCE}}~~ Sek. | Dateiformat: {{FILE:type}}</lo>
+   34 
+</pre><h3>Lexer: PatternTable</h3><pre>    1 [Pattern: #DOCUMENT (TYPE_BASE)]
+    2 [Pattern: #EOF (TYPE_BASE)]
+    3 [Pattern: #TEXT (TYPE_BASE)]
+    4 [Pattern: align (TYPE_SECTION)]
+    5 [Pattern: alignintable (TYPE_SECTION)]
+    6 [Pattern: big (TYPE_SECTION)]
+    7 [Pattern: bold (TYPE_SECTION)]
+    8 [Pattern: border (TYPE_SECTION)]
+    9 [Pattern: bordererror (TYPE_SECTION)]
+   10 [Pattern: borderinfo (TYPE_SECTION)]
+   11 [Pattern: bordersuccess (TYPE_SECTION)]
+   12 [Pattern: bordervalidation (TYPE_SECTION)]
+   13 [Pattern: borderwarning (TYPE_SECTION)]
+   14 [Pattern: code (TYPE_SECTION)]
+   15 [Pattern: comment (TYPE_SECTION)]
+   16 [Pattern: comment2 (TYPE_SECTION)]
+   17 [Pattern: constant (TYPE_WORD)]
+   18 [Pattern: defitem (TYPE_SECTION)]
+   19 [Pattern: deflist (TYPE_ABSTRACT)]
+   20 [Pattern: defterm (TYPE_SECTION; CONNECTED TO deflist)]
+   21 [Pattern: em (TYPE_SECTION)]
+   22 [Pattern: externallink (TYPE_SECTION)]
+   23 [Pattern: externallinkpos (TYPE_SECTION)]
+   24 [Pattern: footnote (TYPE_SECTION)]
+   25 [Pattern: header (TYPE_LINE)]
+   26 [Pattern: hi (TYPE_SECTION)]
+   27 [Pattern: horizontalrule (TYPE_LINE)]
+   28 [Pattern: indent (TYPE_SECTION)]
+   29 [Pattern: internallink (TYPE_SECTION)]
+   30 [Pattern: internallinkmode (TYPE_WORD)]
+   31 [Pattern: internallinkpos (TYPE_SECTION)]
+   32 [Pattern: internallinktext (TYPE_SECTION)]
+   33 [Pattern: italic (TYPE_SECTION)]
+   34 [Pattern: justify (TYPE_SECTION)]
+   35 [Pattern: left (TYPE_SECTION)]
+   36 [Pattern: listitem (TYPE_SECTION; CONNECTED TO lists)]
+   37 [Pattern: lists (TYPE_ABSTRACT)]
+   38 [Pattern: lo (TYPE_SECTION)]
+   39 [Pattern: math (TYPE_SECTION)]
+   40 [Pattern: monospace (TYPE_SECTION)]
+   41 [Pattern: multiline (TYPE_SECTION)]
+   42 [Pattern: newline (TYPE_WORD)]
+   43 [Pattern: notoc (TYPE_SECTION)]
+   44 [Pattern: nowiki (TYPE_SECTION)]
+   45 [Pattern: nowikialt (TYPE_SECTION)]
+   46 [Pattern: plugin (TYPE_SECTION)]
+   47 [Pattern: pluginparameter (TYPE_SECTION)]
+   48 [Pattern: pre (TYPE_ABSTRACT)]
+   49 [Pattern: preformat (TYPE_LINE; CONNECTED TO pre)]
+   50 [Pattern: quotedstring (TYPE_SECTION)]
+   51 [Pattern: right (TYPE_SECTION)]
+   52 [Pattern: small (TYPE_SECTION)]
+   53 [Pattern: strike (TYPE_SECTION)]
+   54 [Pattern: sub (TYPE_SECTION)]
+   55 [Pattern: sup (TYPE_SECTION)]
+   56 [Pattern: symbol (TYPE_WORD)]
+   57 [Pattern: table (TYPE_ABSTRACT)]
+   58 [Pattern: tablecell (TYPE_SECTION)]
+   59 [Pattern: tableheader (TYPE_SECTION)]
+   60 [Pattern: tablerow (TYPE_SECTION; CONNECTED TO table)]
+   61 [Pattern: tablespan (TYPE_WORD)]
+   62 [Pattern: underline (TYPE_SECTION)]
+   63 [Pattern: url (TYPE_WORD)]
+   64 [Pattern: urlnoprotocol (TYPE_WORD)]
+   65 [Pattern: variable (TYPE_LINE)]
+   66 
+</pre></div>
