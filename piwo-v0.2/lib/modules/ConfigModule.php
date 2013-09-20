@@ -5,6 +5,7 @@ if (!defined('INC_PATH')) {
 }
 require_once INC_PATH.'piwo-v0.2/lib/modules/ModuleHandler.php';
 require_once INC_PATH.'piwo-v0.2/lib/modules/Module.php';
+require_once INC_PATH.'piwo-v0.2/lib/GuiTools.php';
 
 
 class ConfigModule implements ModuleHandler {
@@ -28,34 +29,17 @@ class ConfigModule implements ModuleHandler {
 		$id = pw_wiki_getid();
 		
 		if (isset($_POST["config"])) {
-			if (isset($_POST['debug']) && $_POST['debug']) {
-				pw_wiki_setcfg('debug', true);
-			} else {
-				pw_wiki_setcfg('debug', false);
+			pw_wiki_setcfg('debug', ArrayTools::getIfExistsNotNull(false, $_POST, 'debug'));
+			if (pw_wiki_getcfg('debug') == false) {
 				TestingTools::debugOff();
 			}
-			
-			if (isset($_POST['useCache']) && $_POST['useCache']) {
-				pw_wiki_setcfg('useCache', true);
-			} else {
-				pw_wiki_setcfg('useCache', false);
-			}
+			pw_wiki_setcfg('useCache', ArrayTools::getIfExistsNotNull(false, $_POST, 'useCache'));
 			return pw_ui_getDialogInfo($this->getMenuText(), "Changes saved!", "id=".$id->getID());
 		}
 		
-		$debug_ch = "";
-		if (pw_wiki_getcfg('debug')) {
-			$debug_ch = " checked='checked' ";
-		}
-		
-		$cache_ch = "";
-		if (pw_wiki_getcfg('useCache')) {
-			$cache_ch = " checked='checked' ";
-		}
-		
-		$entries = StringTools::htmlIndent("<label for='debug'>Debug-Modus:</label> <input type='checkbox' name='debug' id='debug'$debug_ch />");
-		$entries .= StringTools::htmlIndent("<br />");
-		$entries .= StringTools::htmlIndent("<label for='useCache'>Use cache:</label> <input type='checkbox' name='useCache' id='useCache'$cache_ch />");
+		$entries = GuiTools::checkbox("Debug-Modus", "debug", pw_wiki_getcfg('debug'));
+		$entries .= "<br />";
+		$entries .= GuiTools::checkbox("Use cache", "useCache", pw_wiki_getcfg('useCache'));
 		return pw_ui_getDialogQuestion($this->getMenuText(), $entries, "config", "OK", "id=".$id->getID());
 	}
 	
