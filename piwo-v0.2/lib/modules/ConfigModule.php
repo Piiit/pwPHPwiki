@@ -6,6 +6,7 @@ if (!defined('INC_PATH')) {
 require_once INC_PATH.'piwo-v0.2/lib/modules/ModuleHandler.php';
 require_once INC_PATH.'piwo-v0.2/lib/modules/Module.php';
 require_once INC_PATH.'piwo-v0.2/lib/GuiTools.php';
+require_once INC_PATH.'pwTools/data/ArrayTools.php';
 
 
 class ConfigModule implements ModuleHandler {
@@ -38,9 +39,8 @@ class ConfigModule implements ModuleHandler {
 		}
 		
 		$entries = GuiTools::checkbox("Debug-Modus", "debug", pw_wiki_getcfg('debug'));
-		$entries .= "<br />";
 		$entries .= GuiTools::checkbox("Use cache", "useCache", pw_wiki_getcfg('useCache'));
-		return pw_ui_getDialogQuestion($this->getMenuText(), $entries, "config", "OK", "id=".$id->getID());
+		return GuiTools::dialogQuestion($this->getMenuText(), $entries, "config", "OK", "cancel", "Cancel", "id=".$id->getID());
 	}
 	
 	public function getMenuText() {

@@ -7,6 +7,14 @@ class ArrayTools {
 		}
 		return null;		
 	}
+	
+	public static function getIfExistsNotNull($valueIfNull, array $array, $key) {
+		if (array_key_exists($key, $array)) {
+			return $array[$key];
+		}
+		return $valueIfNull;
+	}
+	
 }
 
 ?>

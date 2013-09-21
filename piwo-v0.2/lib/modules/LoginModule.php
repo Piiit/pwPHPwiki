@@ -33,26 +33,26 @@ class LoginModule extends Module implements ModuleHandler {
 	
 			if ($user == $login && $pass == $pwd) {
 				pw_wiki_setcfg('login', array('user' => $login, 'group' => 'admin'));
-				return pw_ui_getDialogInfo("Login", "Benutzerlogin erfolgreich...", "id=".$id->getID());
+				return pw_ui_getDialogInfo("Login", "Login successful...", "id=".$id->getID());
 			} else {
 				unset($_SESSION["pw_wiki"]['login']["user"]);
-				return pw_ui_getDialogInfo("Login", "Benutzerlogin fehlgeschlagen...", "id=".$id->getID()."&mode=$mode");
+				return pw_ui_getDialogInfo("Login", "Login failed...", "id=".$id->getID()."&mode=$mode");
 			}
 		}
 	
 		if (isset($_POST["logout"])) {
 			unset($_SESSION["pw_wiki"]['login']);
 			session_destroy();
-			return pw_ui_getDialogInfo("Logout", "Sie sind nun abgemeldet...", "id=".$id->getID());
+			return pw_ui_getDialogInfo("Logout", "You are logged out...", "id=".$id->getID());
 		}
 	
 		if (pw_wiki_getcfg('login', 'group') == 'admin') {
-			return pw_ui_getDialogQuestion("Logout", "Wollen Sie sich abmelden?", "logout", "Ja", "id=".$id->getID());
+			return GuiTools::dialogQuestion("Logout", "Do you want to logout?", "logout", "Yes", "cancel", "No", "id=".$id->getID());
 		}
 	
 		$entries = GuiTools::textInput("User", "username");
 		$entries .= GuiTools::passwordInput("Password", "password");
-		return pw_ui_getDialogQuestion("Login", $entries, "login", "OK", "id=".$id->getID());
+		return GuiTools::dialogQuestion("Login", $entries, "login", "OK", "id=".$id->getID());
 	}
 
 	//TODO how to return a non-link string?

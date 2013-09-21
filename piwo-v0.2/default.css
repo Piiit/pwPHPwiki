@@ -67,9 +67,10 @@ a:hover {
 }
 
 .admin form {
-	margin:0 auto;
+/* 	margin:0 auto; */
 	width:400px;
 	padding:14px;
+    padding-top: 0px;
 }
 
 .admin label {
@@ -89,17 +90,27 @@ a:hover {
 	margin:2px 0 20px 10px;
 }
 
+.admin input[type=checkbox] {
+	border: 1px solid red;
+    margin-left: 4px;
+    float:left;
+    width: 200px
+}
+
 .admin button {
 	clear:both;
-	margin-left:150px;
 	width:125px;
 	height:31px;
-/* 	background:#666666 url(img/button.png) no-repeat; */
 	text-align:center;
-	line-height:31px;
-	color:#FFFFFF;
-	font-size:11px;
+	color: black;
+	font-size:13px;
 	font-weight:bold;
+    margin-top: 20px;
+    margin-right: 15px
+}
+
+.admin h1 {
+	margin-bottom: 30px;
 }
 
 .admin table {

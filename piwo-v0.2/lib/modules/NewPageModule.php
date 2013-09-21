@@ -36,7 +36,7 @@ class NewPageModule implements ModuleHandler {
 		$entries .= StringTools::htmlIndent("<input type='hidden' name='olddialog' value='newpage' />");
 		$entries .= StringTools::htmlIndent("<label for='id'>ID:</label> <input type='text' class='textinput' name='id' id='id' value='$idText' />");
 		$entries .= StringTools::htmlIndent("<br /><hr /><tt><small>Namensr&auml;ume werden mit : voneinander getrennt!<br />Bsp.: Handbuch:Seite1<br />Falls die Seite schon existiert, wird sie zum Bearbeiten ge&ouml;ffnet.</small></tt>");
-		return pw_ui_getDialogQuestion("Neue Seite erstellen", $entries, "create", "OK", "id=$idurl", "get");
+		return GuiTools::dialogQuestion("Create a new page", $entries, "create", "OK", "cancel", "Cancel", "id=$idurl", "get");
 		
 	}
 	
