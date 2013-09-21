@@ -35,7 +35,7 @@ class ConfigModule implements ModuleHandler {
 				TestingTools::debugOff();
 			}
 			pw_wiki_setcfg('useCache', ArrayTools::getIfExistsNotNull(false, $_POST, 'useCache'));
-			return pw_ui_getDialogInfo($this->getMenuText(), "Changes saved!", "id=".$id->getID());
+			return GuiTools::dialogInfo($this->getMenuText(), "Changes saved!", "id=".$id->getID());
 		}
 		
 		$entries = GuiTools::checkbox("Debug-Modus", "debug", pw_wiki_getcfg('debug'));
