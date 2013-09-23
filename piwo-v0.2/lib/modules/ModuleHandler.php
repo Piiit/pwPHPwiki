@@ -5,7 +5,7 @@ interface ModuleHandler {
 	public function permissionGranted($userData);
 	public function getMenuText();
 	public function getMenuAvailability($mode);
-	public function getDialog();
+	public function execute();
 }
 
 ?>

@@ -31,11 +31,16 @@
 		            }
 		        }
 		    }
+		    setTimeout(function() {
+		    	note = document.getElementById("notification");
+		    	note.style.display = 'none';
+		    }, 1500);
 		    //]]>
 		</script>
 		{{debugstyle}}
     </head>
     <body onload="setfocus()">
+        {{notification}}
         <div id='__fullsite'>
             <div id='header'>
                 <div class='right'>

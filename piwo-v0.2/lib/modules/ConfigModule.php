@@ -5,11 +5,11 @@ if (!defined('INC_PATH')) {
 }
 require_once INC_PATH.'piwo-v0.2/lib/modules/ModuleHandler.php';
 require_once INC_PATH.'piwo-v0.2/lib/modules/Module.php';
-require_once INC_PATH.'piwo-v0.2/lib/GuiTools.php';
+require_once INC_PATH.'pwTools/gui/GuiTools.php';
 require_once INC_PATH.'pwTools/data/ArrayTools.php';
 
 
-class ConfigModule implements ModuleHandler {
+class ConfigModule extends Module implements ModuleHandler {
 	
 	public function getName() {
 		return "config";
@@ -24,7 +24,11 @@ class ConfigModule implements ModuleHandler {
 		return $userData['group'] == 'admin';
 	}
 	
-	public function getDialog() {
+	public function execute() {
+		
+		if (isset($_POST["cancel"])) {
+			return;	
+		}
 		
 		$mode = pw_wiki_getmode();
 		$id = pw_wiki_getid();
@@ -35,12 +39,13 @@ class ConfigModule implements ModuleHandler {
 				TestingTools::debugOff();
 			}
 			pw_wiki_setcfg('useCache', ArrayTools::getIfExistsNotNull(false, $_POST, 'useCache'));
-			return GuiTools::dialogInfo($this->getMenuText(), "Changes saved!", "id=".$id->getID());
+			$this->setNotification("Changes saved!");
+			return;
 		}
 		
 		$entries = GuiTools::checkbox("Debug-Modus", "debug", pw_wiki_getcfg('debug'));
 		$entries .= GuiTools::checkbox("Use cache", "useCache", pw_wiki_getcfg('useCache'));
-		return GuiTools::dialogQuestion($this->getMenuText(), $entries, "config", "OK", "cancel", "Cancel", "id=".$id->getID());
+		$this->setDialog(GuiTools::dialogQuestion($this->getMenuText(), $entries, "config", "OK", "cancel", "Cancel", "id=".$id->getID()."&mode=$mode"));
 	}
 	
 	public function getMenuText() {

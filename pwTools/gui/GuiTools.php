@@ -1,5 +1,9 @@
 <?php
 
+if (!defined('INC_PATH')) {
+	define ('INC_PATH', realpath(dirname(__FILE__).'/../../').'/');
+}
+
 class GuiTools {
 	
 	public static function checkbox($label, $name, $checked) {
@@ -8,7 +12,7 @@ class GuiTools {
 	}
 	
 	public static function textInput($label, $name, $default = "") {
-		return "<label for='$name'>$label</label><input type='text' name='$name' />";
+		return "<label for='$name'>$label</label><input type='text' name='$name' value='$default'/>";
 	}
 	
 	public static function passwordInput($label, $name) {

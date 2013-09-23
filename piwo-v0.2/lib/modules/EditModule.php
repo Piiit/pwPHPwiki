@@ -8,7 +8,7 @@ require_once INC_PATH.'piwo-v0.2/lib/modules/Module.php';
 require_once INC_PATH.'piwo-v0.2/lib/modules/JavaScriptProvider.php';
 
 
-class EditModule implements ModuleHandler, JavaScriptProvider {
+class EditModule extends Module implements ModuleHandler, JavaScriptProvider {
 	
 	public function getName() {
 		return "edit";
@@ -22,7 +22,8 @@ class EditModule implements ModuleHandler, JavaScriptProvider {
 		return $userData['group'] == 'admin';
 	}
 	
-	public function getDialog() {
+	public function execute() {
+		
 		$id = pw_wiki_getid();
 	
 		$data = "";
@@ -42,12 +43,12 @@ class EditModule implements ModuleHandler, JavaScriptProvider {
 			$data = pw_stripslashes($data);
 			$data = pw_s2u($data);
 			$data = FileTools::setTextFileFormat($data, new TextFileFormat(TextFileFormat::UNIX));
-			$ret = self::save($id, $data);
+			$this->save($id, $data);
 		} elseif (file_exists($filename)) {
 			$data = file_get_contents($filename);
 			$data = FileTools::setTextFileFormat($data, new TextFileFormat(TextFileFormat::UNIX));
 		} else {
-			$ret = "<tt>Creating a new page.</tt>";
+			$this->setNotification("Creating a new page.");
 		}
 	
 		$data = pw_wiki_file2editor($data);
@@ -60,7 +61,7 @@ class EditModule implements ModuleHandler, JavaScriptProvider {
 		$out .= StringTools::htmlIndent("<textarea rows='25' name='wikitxt' id='wikitxt' wrap=off onkeydown='return catchTab(this,event)'>$data</textarea>");
 		$out .= StringTools::htmlIndent("</form>", StringTools::END);
 	
-		return $out;
+		$this->setDialog($out);
 		
 	}
 	
@@ -72,7 +73,7 @@ class EditModule implements ModuleHandler, JavaScriptProvider {
 		return true; //For all modes available
 	}
 	
-	private static function save (WikiID $id, $data) {
+	private function save (WikiID $id, $data) {
 	
 		$filename = pw_wiki_getcfg('storage').$id->getPath().pw_wiki_getcfg('fileext');
 		$dirname = pw_wiki_getcfg('storage').$id->getPath();
@@ -81,17 +82,18 @@ class EditModule implements ModuleHandler, JavaScriptProvider {
 		try {
 			FileTools::createFolderIfNotExist($dirname);
 		} catch (Exception $e) {
-			return "<tt class='error'>".$e->getMessage()."</tt>";
+			$this->setNotification($e->getMessage(), Module::NOTIFICATION_ERROR);
+			return;
 		}
 	
 		$data = FileTools::setTextFileFormat($data, new TextFileFormat(TextFileFormat::UNIX));
 		if(file_put_contents($filename, $data) === false) {
-			return "<tt class='error'>'ERROR: Can not save '$filenameText'</tt>";
+			$this->setNotification("Can not save '$filenameText'", Module::NOTIFICATION_ERROR);
+			return;
 		}
 	
 		pw_wiki_create_cached_page($id);
-	
-		return "<tt>Changes saved.</tt>";
+		$this->setNotification("Changes saved.");
 	}
 	
 	public function getJavaScript() {

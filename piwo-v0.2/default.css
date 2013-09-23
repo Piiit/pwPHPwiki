@@ -23,6 +23,31 @@ a:hover {
     #color: #3465A4;
 }
 
+#notification {
+    position: fixed;
+    z-index: 200;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: 10px auto;
+    width: 300px;
+    background: black;
+    text-align: center;
+    line-height: 2;
+    overflow: hidden;
+    border-radius: 15px;
+}
+
+.info {
+    color: lightgreen;
+    border: 5px solid lightgreen;
+}
+
+.error {
+	color: rgb(255, 153, 0);
+    border: 5px solid rgb(255, 153, 0);
+}
+
 #texteditor {
     border: 3px solid gray;
     background-color: gray;
@@ -83,10 +108,10 @@ a:hover {
 
 .admin input {
 	float:left;
-	font-size:12px;
-	padding:4px 2px;
-	border:solid 1px #aacfe4;
-	width:200px;
+	font-size:14px;
+	padding: 4px 2px;
+	border: solid 1px #aacfe4;
+	width: 200px;
 	margin:2px 0 20px 10px;
 }
 

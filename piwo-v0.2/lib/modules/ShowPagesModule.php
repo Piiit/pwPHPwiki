@@ -6,7 +6,7 @@ if (!defined('INC_PATH')) {
 require_once INC_PATH.'piwo-v0.2/lib/modules/ModuleHandler.php';
 require_once INC_PATH.'piwo-v0.2/lib/modules/Module.php';
 
-class ShowPagesModule implements ModuleHandler {
+class ShowPagesModule extends Module implements ModuleHandler {
 	
 	public function getName() {
 		return "showpages";
@@ -20,7 +20,7 @@ class ShowPagesModule implements ModuleHandler {
 		return true;
 	}
 	
-	public function getDialog() {
+	public function execute() {
 		$id = pw_wiki_getid();
 		$path = pw_wiki_getcfg('storage').$id->getFullNSPath();
 		
@@ -32,7 +32,7 @@ class ShowPagesModule implements ModuleHandler {
 		}
 		$data = glob ("$path/*");
 	
-		// Leeres Verz. gefunden... Löschen!
+		// Delete empty folders!
 		if (!$data) {
 			if ($path != pw_wiki_getcfg('storage') && rmdir($path)) {
 				$strout .= "<tt>INFO: $path ist leer und wird entfernt!</tt>";
@@ -89,7 +89,7 @@ class ShowPagesModule implements ModuleHandler {
 			$strout .= "<td>";
 	
 			if ($i['TYPE'] == "TEXT") {
-				if (isset($_SESSION["pw_wiki"]["login"]["user"])) {
+				if (pw_wiki_getcfg('login', 'group') == 'admin') {
 					$strout .= "<a href='?id=".pw_s2url($id->getFullNS().$i['NAME'])."&mode=edit&oldmode=showpages'>Edit</a> | ";
 					$strout .= "<a href='?id=".pw_s2url($id->getFullNS().$i['NAME'])."&mode=showpages&dialog=delpage'>Delete</a> | ";
 					$strout .= "<a href='?id=".pw_s2url($id->getFullNS().$i['NAME'])."&mode=showpages&dialog=rename'>Rename</a> | ";
@@ -100,7 +100,7 @@ class ShowPagesModule implements ModuleHandler {
 				}
 			} else {
 				if ($i['NAME'] != '..') {
-					if (isset($_SESSION["pw_wiki"]["login"]["user"])) {
+					if (pw_wiki_getcfg('login', 'group') == 'admin') {
 						$strout .= "<a href='?id=".pw_s2url($id->getFullNS().$i['NAME'].":")."&mode=showpages&dialog=delpage'>Delete</a> | ";
 						$strout .= "<a href='?id=".pw_s2url($id->getFullNS().$i['NAME'].":")."&mode=showpages&dialog=rename'>Rename</a> | ";
 						$strout .= "<a href='?id=".pw_s2url($id->getFullNS().$i['NAME'].":")."&mode=showpages&dialog=movepage'>Move</a>";
@@ -112,7 +112,7 @@ class ShowPagesModule implements ModuleHandler {
 		}
 	
 		$strout .= "</table>";
-		return $strout;
+		$this->setDialog($strout);
 			
 	}
 	

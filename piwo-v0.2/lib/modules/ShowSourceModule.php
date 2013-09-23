@@ -7,7 +7,7 @@ require_once INC_PATH.'piwo-v0.2/lib/modules/ModuleHandler.php';
 require_once INC_PATH.'piwo-v0.2/lib/modules/Module.php';
 
 
-class ShowSourceModule implements ModuleHandler {
+class ShowSourceModule extends Module implements ModuleHandler {
 	
 	public function getName() {
 		return "showsource";
@@ -22,21 +22,27 @@ class ShowSourceModule implements ModuleHandler {
 		return $userData['group'] != 'admin';
 	}
 	
-	public function getDialog() {
+	public function execute() {
 		$id = pw_wiki_getid();
 		
 		$filename = pw_wiki_getcfg('storage').$id->getPath().pw_wiki_getcfg('fileext');
 		$out = StringTools::htmlIndent("<a href='?id=".$id->getID()."'>&laquo; Back</a> | <a href='?mode=showpages&id=".$id->getID()."'>Show Pages</a>");
 		$out .= StringTools::htmlIndent("<h1>Source code</h1>ID = <tt>".$id->getID()."</tt>");
 	
-		if (file_exists($filename) and !isset($_POST['save'])) {
+		if (file_exists($filename)) {
 			$data = file_get_contents($filename);
 			$data = pw_wiki_file2editor($data);
-			$out .= StringTools::htmlIndent("<textarea cols='80' rows='25' id='wikitxt' readonly='readonly' wrap='off'>$data</textarea>");
-			return $out;
-		}
 		
-		throw new Exception("File not found!");
+			$out = StringTools::htmlIndent("<h1>Show Source Code</h1>ID = <tt>".$id->getID()."</tt>");
+			$out .= StringTools::htmlIndent("<div id='texteditor'>", StringTools::START);
+			$out .= StringTools::htmlIndent("<textarea rows='25' name='wikitxt' id='wikitxt' wrap=off'>$data</textarea>");
+			$out .= StringTools::htmlIndent("</div>", StringTools::END);
+
+			$this->setDialog($out);
+		} else {
+			$this->setNotification("File not found!", Module::NOTIFICATION_ERROR);
+			$this->setDialog(GuiTools::dialogInfo("File does not exist!", "There is no page with ID '".$id->getID()."'!", "id=".pw_wiki_getcfg("startpage")));
+		}
 		
 	}
 	
