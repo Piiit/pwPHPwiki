@@ -1,4 +1,4 @@
-<?php//FIXME: BAD CODE SMELL... whole file!error_reporting(E_ALL);session_start();if (!defined('MODULE_PATH')) {
+<?phperror_reporting(E_ALL);session_start();//session_unset();if (!defined('MODULE_PATH')) {
 	define ('MODULE_PATH', realpath(dirname(__FILE__)).'/lib/modules/');
 }if (!defined('PLUGIN_PATH')) {
 	define ('PLUGIN_PATH', realpath(dirname(__FILE__)).'/plugins/');
@@ -12,10 +12,15 @@ foreach ($parserTokenList as $plugin) {
 }if (pw_wiki_getcfg('debug')) {
 	TestingTools::debugOn();
 }
-if (isset($_GET['clearsession'])) {	$login = $_SESSION["pw_wiki"]["login"];	$_SESSION["pw_wiki"] = array();	$_SESSION["pw_wiki"]["login"] = $login;	echo "SESSION CLEARED!";	return;}ini_set('auto_detect_line_endings', false);FileTools::createFolderIfNotExist(pw_wiki_getcfg("storage"));FileTools::createFolderIfNotExist(pw_wiki_getcfg("storage")."/tpl");FileTools::copyFileIfNotExist("cfg/skeleton/tpl/firststart.txt", pw_wiki_getcfg("storage")."/index.txt");FileTools::copyMultipleFilesIfNotExist("cfg/skeleton/tpl/*.txt", pw_wiki_getcfg("storage")."/tpl/");$mode = pw_wiki_getmode();// TestingTools::inform($_REQUEST);	//TODO handle modes before id checks, every mode has its own constraints...try {	$id = pw_wiki_getid();} catch (Exception $e) {}$wikiPageFilePath = pw_wiki_getcfg('storage').$id->getPath().pw_wiki_getcfg('fileext');try {		// Page with this id does not exist	if (!file_exists($wikiPageFilePath) && $mode != "edit" && $mode != "showpages" && $mode != "showsource") {		$_SESSION['pw_wiki']['wrongid'] = $id;		$id = new WikiID(":tpl:notfound");	}} catch (Exception $e) {	$id = new WikiID(":tpl:iderror");}$moduleLogin = new LoginModule();
+//TODO create a module for clearsession, or put it to configuration...if (isset($_GET['clearsession'])) {	$login = pw_wiki_getcfg("login");	session_unset();	pw_wiki_setcfg("login", $login);	echo "SESSION CLEARED!";	return;}ini_set('auto_detect_line_endings', false);FileTools::createFolderIfNotExist(pw_wiki_getcfg("storage"));FileTools::createFolderIfNotExist(pw_wiki_getcfg("storage")."/tpl");FileTools::copyFileIfNotExist("cfg/skeleton/tpl/firststart.txt", pw_wiki_getcfg("storage")."/index.txt");FileTools::copyMultipleFilesIfNotExist("cfg/skeleton/tpl/*.txt", pw_wiki_getcfg("storage")."/tpl/");$mode = pw_wiki_getmode();// TestingTools::inform($_REQUEST);// TestingTools::inform($_SESSION);	//TODO handle modes before id checks, every mode has its own constraints...try {	$id = pw_wiki_getid();} catch (Exception $e) {}$wikiPageFilePath = pw_wiki_getcfg('storage').$id->getPath().pw_wiki_getcfg('fileext');try {		// Page with this id does not exist	if (!file_exists($wikiPageFilePath) && $mode != "edit" && $mode != "showpages" && $mode != "showsource") {		$_SESSION['pw_wiki']['wrongid'] = $id;		$id = new WikiID(":tpl:notfound");	}} catch (Exception $e) {	$id = new WikiID(":tpl:iderror");}$moduleLogin = new LoginModule();
 $moduleConfig = new ConfigModule();$moduleShowSource = new ShowSourceModule();$moduleEdit = new EditModule();$moduleShowPages = new ShowPagesModule();$moduleNewPage = new NewPageModule();$modules = new Collection();$modules->add($moduleLogin->getName(), $moduleLogin);$modules->add($moduleConfig->getName(), $moduleConfig);$modules->add($moduleShowSource->getName(), $moduleShowSource);$modules->add($moduleEdit->getName(), $moduleEdit);
-$modules->add($moduleShowPages->getName(), $moduleShowPages);$modules->add($moduleNewPage->getName(), $moduleNewPage);$scriptsText = "";foreach($modules->getArray() as $module) {	if($module instanceof JavaScriptProvider && $module->getName() == pw_wiki_getmode()) {		$scriptsText .= $module->getJavaScript()."<!-- INSERTED BY MODULE ".$module->getName()." -->\n";	}}// TestingTools::inform($_POST);$module = null;$notification = "";if(isset($_GET['mode'])) {	try {		try {			$module = $modules->get($_GET['mode']);		} catch (Exception $e) {			throw new Exception("Mode with ID '".$_GET['mode']."' does not exist!");		}		if (!$module->permissionGranted(pw_wiki_getcfg('login'))) {			throw new Exception("Module '".$module->getName()."': Access denied.");		}		$module->execute();		$body = $module->getDialog();		$notificationType = $module->getNotificationType() == Module::NOTIFICATION_INFO ? "info" : "error";		$notification = $module->getNotification();		if($notification != null) {			$notification = "<div id='notification' class='$notificationType'>$notification</div>";		}
-	} catch (Exception $e) {		$body = GuiTools::dialogInfo("Error", $e->getMessage(), "id=".$id->getID());	}} $menu = pw_wiki_getmenu($id, $mode, $modules);
+$modules->add($moduleShowPages->getName(), $moduleShowPages);$modules->add($moduleNewPage->getName(), $moduleNewPage);$scriptsText = "";foreach($modules->getArray() as $module) {	if($module instanceof JavaScriptProvider && $module->getName() == pw_wiki_getmode()) {		$scriptsText .= $module->getJavaScript()."<!-- INSERTED BY MODULE ".$module->getName()." -->\n";	}}//  TestingTools::inform($_GET);//  TestingTools::inform($_POST); $module = null;$notification = "";$body = "<Nothing to show>";//TODO Mode-handling: change everything to an event-handling-pattern...try {	$mode = pw_wiki_getcfg("eventmode");// 	TestingTools::inform("EVENTMODE is ".pw_wiki_getcfg("eventmode"));		pw_wiki_setcfg("event", true);} catch (Exception $e) {	$mode = pw_wiki_getmode();} if($mode != null) {	try {		try {			$module = $modules->get($mode);		} catch (Exception $e) {			throw new Exception("Mode with ID '$mode' does not exist!");		}		if (!$module->permissionGranted(pw_wiki_getcfg('login'))) {			throw new Exception("Module '".$module->getName()."': Access denied.");		}// 		TestingTools::inform($module->getName());		$module->execute();				//TODO Eventhandling: use bind and trigger, or EventConsumer, EventProvider pattern, or similar...		try {// 	 		TestingTools::inform("EVENTMODE is ".pw_wiki_getcfg("eventmode"));	 		foreach($modules->getArray() as $m) {	 			if($m->getName() == pw_wiki_getcfg("eventmode")) {	 				$m->execute();	 				$module = $m;	 				break;	 			}	 		}		} catch (Exception $e) {		}			} catch (Exception $e) {		$notification = $e->getMessage();		$notificationType = "error";	}// 	TestingTools::inform($module->getName());
+	$body = $module->getDialog();
+	$notification = $notification == null ? $module->getNotification() : $notification;	$notificationType = $module->getNotificationType() == Module::NOTIFICATION_INFO ? "info" : "error";
+	if($notification != null) {
+		$notification = "<div id='notification' class='$notificationType'>$notification</div>";
+	}
+		if(pw_wiki_getcfg("event") == true) {		pw_wiki_setcfg("event", false);		pw_wiki_unsetcfg("eventmode"); 	}}$menu = pw_wiki_getmenu($id, $mode, $modules);
 
 $mainpage = file_get_contents(CFG_PATH."skeleton/mainpage.html");
 $mainpage = str_replace("{{pagetitle}}", pw_wiki_getfulltitle(), $mainpage);
@@ -29,85 +34,18 @@ $mainpage = str_replace("{{startpage}}", pw_wiki_getcfg('startpage'), $mainpage)
 	$body = str_replace("{{wikitext}}", $wikitext, $body);
 }$mainpage = str_replace("{{body}}", $body, $mainpage);$mainpage = str_replace("{{debugstyle}}", TestingTools::getCSS(), $mainpage);
 $mainpage = str_replace("{{mainmenu}}", $menu, $mainpage);
-echo $mainpage;// $dialogoutput = "";
-// $output = "";// switch ($mode) {// 	case "editpage":// // 		$tempid = $id;// // 		$id = $id->getNS().$id->getPage();// 		$output = pw_wiki_editpage($id);
-		// // 		if ($id != "" and $id != ":") {// // 		} else {// // 			$mode = "cleared";// // 			$_SESSION['pw_wiki']['wrongid'] = $tempid;// // 			$id = "tpl:iderror";// // 		}// 		if ($output === false) {// 			$OLDMODE = isset($_REQUEST['oldmode']) ? $_REQUEST['oldmode'] : "cleared";// 			$dialogoutput = pw_ui_getDialogInfo("Bearbeiten", "Sie sind nicht berechtigt diese Seite zu bearbeiten.", "id=$id&mode=$OLDMODE");// 		}// 	break;// 	case "cleared":// 		unset($mode);// 	break;// 	case "showpages":// 		$output = pw_wiki_showpages($id);// 	break;// 	case "showsource":// 		try {// 			$output = pw_wiki_showsource($id);// 		} catch (Exception $e) {// 			$dialogoutput = pw_wiki_filenotfound($id);// 			$output = "."; // 		}// 	break;	// 	case "update":// 		$output = pw_wiki_create_cached_page($id, true);// 	break;	// 	case "updatecache":// 		pw_wiki_update_cache();// 		$output = "UPDATING CACHE... DONE!";// 	break;	// 	case "updatecacheforced":// 		pw_wiki_update_cache(true);
+echo $mainpage;function pw_wiki_getmenu($id, $mode, Collection $modules) {	$loginData = pw_wiki_getcfg('login');	$o = "";	foreach ($modules->getArray() as $module) {		if($module->getMenuAvailability($mode) && $module->permissionGranted($loginData)) {			$o .= GuiTools::button($module->getMenuText(), "id=".$id->getID()."&mode=".$module->getName());			$o .= " | ";		}	}		return $o;}// 	case "update":
+// 		$output = pw_wiki_create_cached_page($id, true);
+// 	break;
+
+// 	case "updatecache":
+// 		pw_wiki_update_cache();
+// 		$output = "UPDATING CACHE... DONE!";
+// 	break;
+
+// 	case "updatecacheforced":
+// 		pw_wiki_update_cache(true);
 // 		$output = "FORCED UPDATING CACHE... DONE!";
-// 	break;// }// // if (! pw_wiki_isvalidid($id)) {// // 	$oldDialog = isset($_REQUEST['olddialog']) ? $_REQUEST['olddialog'] : "";// // 	$dialogoutput = pw_ui_getDialogInfo("Fehler: Ung&uuml;ltige ID!", "Die angegebene ID <tt>'$id'</tt> ist nicht g&uuml;ltig!", "id=&mode=&dialog=$oldDialog");// // } else {// 	switch ($dialog) {// 		case "delpage":// 			$dialogoutput = pw_wiki_delpage($id, pw_wiki_getmode());// 		break;// 		case "login":// 			$dialogoutput = pw_wiki_login($id);// 		break;// 		case "newpage":// 			$dialogoutput = pw_wiki_newpage($id, $mode);// 		break;// 		case "config":// 			$dialogoutput = $moduleConfig->getDialog();// 		break;// 		case "movepage":// 			$dialogoutput = pw_wiki_movepage($id);// 		break;// 		case "rename":// 			$dialogoutput = pw_wiki_rename($id);// 		break;// 	}// // }// if ($output == "") {// 	$mode = "cleared";// // 	if (substr($id, -1) == ":") {// // 		$id = substr($id, 0, -1);// // 	}// // 	pw_wiki_setid($id);// // 	pw_wiki_setmode($mode);// 	$output = pw_wiki_showcontent($id);// }// $modal = pw_ui_printDialogWrap($dialogoutput);// showheader($id);// if ($mode == "showpages") {// 	showpages($output);// } else {// 	showcontent($output);// }// html_footer($modal);function showpages($out) {	if ($out == "")		return;	echo "<div id='admin'>";	echo $out;	echo "</div>";}function pw_wiki_getmenu($id, $mode, Collection $modules) {	$loginData = pw_wiki_getcfg('login');	$o = "";	foreach ($modules->getArray() as $module) {		if($module->getMenuAvailability($mode) && $module->permissionGranted($loginData)) {			$o .= GuiTools::button($module->getMenuText(), "id=".$id->getID()."&mode=".$module->getName());			$o .= " | ";		}	}		return $o;}function showmenu($modules) {		$id = pw_wiki_getid();	$mode = pw_wiki_getmode();
-	$idText = $id->getID();
-	// 	TestingTools::inform($idText);
-	
-	$msep = " | ";	if (isset($_SESSION["pw_wiki"]["login"]["user"])) {
-		$u = pw_wiki_getcfg('login', 'user');
-	
-		$mnl = "<br />";
-		echo "Benutzer: $u ";
-		echo $msep;
-		echo GuiTools::button("Logout", "mode=$mode&dialog=login&id=$idText");
-		echo $msep;
-		#echo "<span class='edit'><a href='?mode=$MODE&dialog=login&id=$id'><span class='shortcut'>F12</span>Logout</a></span> | ";
-		#echo " <span class='edit'><a href='?mode=$MODE&dialog=config&id=$id'>Einstellungen</a></span><br />";
-		echo GuiTools::button("Einstellungen", "mode=$mode&dialog=config&id=$idText");
-	
-	
-		if ($mode != "editpage") {
-				echo $msep;
-	
-				#echo $mnl;
-				#echo "<span class='edit'><a href='?mode=editpage&id=$id'><span class='shortcut'>F6</span>Bearbeiten</a></span> |";
-				#echo "<span class='edit'><a href='?mode=$MODE&dialog=delpage&id=$id'><span class='shortcut'>F7</span>";
-				echo GuiTools::button("Bearbeiten", "mode=editpage&id=$idText");
-				echo $msep;
-				echo GuiTools::button("L&ouml;schen", "mode=$mode&dialog=delpage&id=$idText");
-				echo $msep;
-				#if ($MODE == "showpages") {
-				#	echo "<span class='shortcut'>Entf</span>";
-				#}
-				#echo "L&ouml;schen</a></span><br />";
-				#echo "<span class='edit'><a href='?mode=$MODE&dialog=movepage&id=$id'><span class='shortcut'>F8</span>Verschieben</a></span> |";
-				#echo "<span class='edit'><a href='?mode=$MODE&dialog=newpage&id=$id'><span class='shortcut'>F9</span>Neu</a></span>";
-				echo GuiTools::button("Verschieben", "mode=$mode&dialog=movepage&id=$idText");
-				echo $msep;
-				echo GuiTools::button("Neu", "mode=$mode&dialog=newpage&id=$idText");
-				echo $msep;
-				echo GuiTools::button("Umbenennen", "mode=$mode&dialog=rename&id=$idText");
-				echo $msep;
-				if ($mode != "showpages") {
-						#echo "<br /><span class='edit'><a href='?mode=showpages&id=$id'><span class='shortcut'>F10</span>Seiten&uuml;berblick</a></span> | ";
-							echo GuiTools::button("Seiten&uuml;berblick", "mode=showpages&id=$idText");
-						} else {
-						#echo " | <span class='edit'><a href='?mode=cleared&id='><span class='shortcut'>Esc</span>Schlie&szlig;en</a></span> | ";
-						echo GuiTools::button("Schlie&szlig;en", "mode=cleared&id=$idText");
-						}
-		}
-	
-		#if ($MODE == "showpages") {
-		#	echo "<span class='edit'>";
-		#	echo "<span class='shortcut'>&nbsp;&uArr;&nbsp;</span>";
-		#	echo "<span class='shortcut'>&nbsp;&dArr;&nbsp;</span>";
-		#	echo "Navigation</span>";
-		#}
-	
-		#echo "<span class='edit'>[<a href='#title=a' onclick=\"pw_ui_modaldialog('editmaintitle'); document.modal.maintitle.focus(); return false\">Bearbeiten</a>]</span>";
-	} else {
-		echo GuiTools::button("Login", "mode=$mode&dialog=login&id=$idText");
-	
-		if ($mode != "showpages") {
-	
-			if ($mode != 'showsource' and pw_wiki_getcfg("showsource")) {
-				echo $msep;
-				echo GuiTools::button("Quelltext anzeigen", "mode=showsource&id=$idText");
-			}
-	
-			if (pw_wiki_getcfg("showpages")) {
-				echo $msep;
-				echo GuiTools::button("Seiten&uuml;berblick", "mode=showpages&id=$idText");
-			}
-	
-		}
-	
-		if ( (pw_wiki_getcfg("showsource") and $mode == 'showsource') or (pw_wiki_getcfg("showpages") and $mode == 'showpages') ) {
-			echo $msep;
-			echo GuiTools::button("Zur&uuml;ck zur Seite", "mode=cleared&id=$idText");
-		}
-	}}?>
+// 	break;
+// }
+?>

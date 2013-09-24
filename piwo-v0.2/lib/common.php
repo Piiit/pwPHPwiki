@@ -44,6 +44,10 @@ function pw_wiki_setcfg($key, $value) {
 	$_SESSION['pw_wiki'][$key] = $value;
 }
 
+function pw_wiki_unsetcfg($key) {
+	unset($_SESSION['pw_wiki'][$key]);
+}
+
 function pw_checkfilename($name) {
 	if (strpos($name, "*") or strpos($name, "\\") or strpos($name, "?")) {
 		return false;
