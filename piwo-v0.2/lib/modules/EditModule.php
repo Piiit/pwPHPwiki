@@ -31,9 +31,6 @@ class EditModule extends Module implements ModuleHandler, JavaScriptProvider {
 		$id = pw_wiki_getid();
 		$data = "";
 	
-		if (!isset($_SESSION["pw_wiki"]["login"]["user"]))
-			return false;
-	
 		if ($id->isNS())
 			return;
 	
@@ -59,7 +56,6 @@ class EditModule extends Module implements ModuleHandler, JavaScriptProvider {
 		$out .= StringTools::htmlIndent("<h1>Source code Editor</h1>ID = <tt>".$id->getID()."</tt>");
 		$out .= StringTools::htmlIndent("<form id='texteditor' name='texteditor' method='post' accept-charset='utf-8'>", StringTools::START);
 		$out .= StringTools::htmlIndent("<div><button value='save' name='save' id='save'>Save</button>");
-		$out .= StringTools::htmlIndent("<span style='float: right'>$ret</span></div>");
 		$out .= StringTools::htmlIndent("<textarea rows='25' name='wikitxt' id='wikitxt' wrap=off onkeydown='return catchTab(this,event)'>$data</textarea>");
 		$out .= StringTools::htmlIndent("</form>", StringTools::END);
 	

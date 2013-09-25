@@ -31,25 +31,16 @@ class NewPageModule extends Module implements ModuleHandler {
 			return;
 		}
 		
+		if(isset($_POST["create"])) {
+			header("Location: index.php?mode=edit&id=".$_POST["id"]);
+		}
+		
 		$id = pw_wiki_getid();
 		$mode = pw_wiki_getmode();
 		
-		$idText = pw_s2e($id->getID());
-		
-		if(isset($_POST["create"])) {
-			pw_wiki_setcfg("eventmode", "edit");
-			pw_wiki_setcfg("eventid", $id);
-			pw_wiki_setcfg("eventfrom", $this->getName());
-// 			TestingTools::inform("SETTING");
-			return;
-		}
-		
 		$entries = "<p>Namespaces get separated by <tt>:</tt>, e.g. <tt>Manual:Page1</tt><br />If the page already exists, it will be opened for editing.</p>";
-		$entries .= GuiTools::textInput("ID", "id", $idText);
-		//$entries .= "<input type='hidden' name='mode' value='edit' />";
-		//FIXME Jumping to another mode without hidden fields and get, should come into this module ones more and then redirected to the other one...
+		$entries .= GuiTools::textInput("ID", "id", pw_s2e($id->getID()));
 		$this->setDialog(GuiTools::dialogQuestion("Create a new page", $entries, "create", "OK", "cancel", "Cancel", "mode=$mode&id=".$id->getID()));
-		
 	}
 	
 	public function getMenuText() {
