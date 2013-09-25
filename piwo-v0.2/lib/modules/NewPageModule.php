@@ -9,6 +9,10 @@ require_once INC_PATH.'pwTools/gui/GuiTools.php';
 
 class NewPageModule extends Module implements ModuleHandler {
 	
+	public function __construct() {
+		parent::__construct($this->getName(), $this);
+	}
+	
 	public function getName() {
 		return "newpage";
 	}

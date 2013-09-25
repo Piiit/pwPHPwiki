@@ -11,6 +11,10 @@ require_once INC_PATH.'pwTools/data/ArrayTools.php';
 
 class ConfigModule extends Module implements ModuleHandler {
 	
+	public function __construct() {
+		parent::__construct($this->getName(), $this);
+	}
+	
 	public function getName() {
 		return "config";
 	}
@@ -44,7 +48,7 @@ class ConfigModule extends Module implements ModuleHandler {
 		}
 		
 		$entries = GuiTools::checkbox("Debug-Modus", "debug", pw_wiki_getcfg('debug'));
-		$entries .= GuiTools::checkbox("Use cache", "useCache", pw_wiki_getcfg('useCache'));
+		$entries .= GuiTools::checkbox("Use cache", "useCache", pw_wiki_getcfg('useCache')); 
 		$this->setDialog(GuiTools::dialogQuestion($this->getMenuText(), $entries, "config", "OK", "cancel", "Cancel", "id=".$id->getID()."&mode=$mode"));
 	}
 	

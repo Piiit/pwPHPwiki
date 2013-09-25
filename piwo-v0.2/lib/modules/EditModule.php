@@ -10,6 +10,10 @@ require_once INC_PATH.'piwo-v0.2/lib/modules/JavaScriptProvider.php';
 
 class EditModule extends Module implements ModuleHandler, JavaScriptProvider {
 	
+	public function __construct() {
+		parent::__construct($this->getName(), $this);
+	}
+	
 	public function getName() {
 		return "edit";
 	}
@@ -25,9 +29,7 @@ class EditModule extends Module implements ModuleHandler, JavaScriptProvider {
 	public function execute() {
 		
 		$id = pw_wiki_getid();
-	
 		$data = "";
-		$ret = "";
 	
 		if (!isset($_SESSION["pw_wiki"]["login"]["user"]))
 			return false;

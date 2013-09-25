@@ -9,6 +9,19 @@ class Module {
 	private $notification = null;
 	private $notificationType = self::NOTIFICATION_INFO;
 	
+	private static $moduleList = null;
+	
+	protected function __construct($name, $obj) {
+		if(self::$moduleList == null) {
+			self::$moduleList = new Collection();
+		}
+		self::$moduleList->add($name, $obj);
+	}
+	
+	public static function getModuleList() {
+		return self::$moduleList;
+	}
+	
 	protected function setDialog($dialog) {
 		$this->dialog = $dialog;
 	}

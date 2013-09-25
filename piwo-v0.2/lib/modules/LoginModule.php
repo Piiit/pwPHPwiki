@@ -8,6 +8,10 @@ require_once INC_PATH.'piwo-v0.2/lib/modules/Module.php';
 require_once INC_PATH.'pwTools/gui/GuiTools.php';
 
 class LoginModule extends Module implements ModuleHandler {  
+	
+	public function __construct() {
+		parent::__construct($this->getName(), $this);
+	}
 
 	public function getName() {
 		return "login";
