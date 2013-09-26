@@ -11,6 +11,12 @@ require_once INC_PATH.'pwTools/parser/Pattern.php';
 class InternalLink extends ParserRule implements ParserRuleHandler, LexerRuleHandler {
 	
 	const MODITEXT = "edit|showpages";
+	private static $anchorText = array(
+			"_top" 		  => "Page Top",
+	        "_toc"        => "Content",	                                               
+			"_maintitle"  => "Title",	                                                
+			"_bottom"     => "Page Bottom"
+			);
 	
 	public function getName() {
 		return strtolower(__CLASS__);
@@ -82,7 +88,7 @@ class InternalLink extends ParserRule implements ParserRuleHandler, LexerRuleHan
 			
 			try {
 				// To trigger an exception, also if a text is given...
-				$tmp = pw_wiki_getcfg('anchor_text', $id->getAnchor());
+				$tmp = self::$anchorText[$id->getAnchor()];
 				if(!$text) {
 					$text = $tmp;
 				}
@@ -104,7 +110,7 @@ class InternalLink extends ParserRule implements ParserRuleHandler, LexerRuleHan
 			}
 		} 
 
-		$filename = pw_wiki_getcfg('storage').$id->getPath().pw_wiki_getcfg('fileext');;
+		$filename = WIKISTORAGE.$id->getPath().WIKIFILEEXT;;
 		if (!file_exists($filename) && !$linkModus) {
 			$linkModus = "edit";
 			$found = false;

@@ -2,7 +2,7 @@
 
 ^ Heading 1      ^ Heading 3                           ^^ heading 4   
 | Row 1 Col 1    | Row 1 Col 2     | Row 1 Col 3        | row 1 col 4 
-| Row 2 Col 1    | some colspan (note the double pipe)                  ||
+| Row 2 Col 1    || some colspan    ||
 | Row 3 Col 1    | Row 3 Col 2     | Row 3 Col 3        | row 3 col 4 
 
 = Konstanten =

@@ -1,9 +1,9 @@
-= {{ID}} =
+= {{PAGE}} =
 ; Bereich 
 : <hi 2>Wikisyntax</hi> <em>Konstanten</em>
 ; Erklärung
 : Erzeugt ein Leerzeichen zwischen den beiden Konstanten.
 ; Eingabe
-: ''%%[{{PATH}}{{ID}}]%%''
+: ''%%[{{PATH}}{{PAGE}}]%%''
 ; Ausgabe
-: [{{PATH}}{{ID}}]
+: [{{PATH}}{{PAGE}}]

@@ -26,7 +26,7 @@ class ShowPagesModule extends Module implements ModuleHandler {
 	
 	public function execute() {
 		$id = pw_wiki_getid();
-		$path = pw_wiki_getcfg('storage').$id->getFullNSPath();
+		$path = WIKISTORAGE.$id->getFullNSPath();
 		
 		$strout = "";
 		$files = array();
@@ -38,7 +38,7 @@ class ShowPagesModule extends Module implements ModuleHandler {
 	
 		// Delete empty folders!
 		if (!$data) {
-			if ($path != pw_wiki_getcfg('storage') && rmdir($path)) {
+			if ($path != WIKISTORAGE && rmdir($path)) {
 				$strout .= "<tt>INFO: $path ist leer und wird entfernt!</tt>";
 			}
 		} else {

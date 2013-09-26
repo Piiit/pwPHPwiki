@@ -7,6 +7,8 @@ require_once INC_PATH.'pwTools/parser/LexerRuleHandler.php';
 require_once INC_PATH.'pwTools/parser/ParserRuleHandler.php';
 require_once INC_PATH.'pwTools/parser/ParserRule.php';
 require_once INC_PATH.'pwTools/parser/Pattern.php';
+require_once INC_PATH.'pwTools/validator/pw_isvalid.php';
+
 
 class ExternalLink extends ParserRule implements ParserRuleHandler, LexerRuleHandler {
 	

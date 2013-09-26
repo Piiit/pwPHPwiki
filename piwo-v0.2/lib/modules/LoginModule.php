@@ -32,8 +32,6 @@ class LoginModule extends Module implements ModuleHandler {
 			return;
 		}
 		
-		global $user;
-		global $pwd;
 		$mode = pw_wiki_getmode();
 		$id = pw_wiki_getid();
 	
@@ -41,7 +39,7 @@ class LoginModule extends Module implements ModuleHandler {
 			$login = $_POST["username"];
 			$pass = $_POST["password"];
 
-			if ($user == $login && $pass == $pwd) {
+			if (WIKIADMINUSER == $login && WIKIADMINPASSWORD == $pass) {
 				pw_wiki_setcfg('login', array('user' => $login, 'group' => 'admin'));
 				$this->setNotification("Login successful!");
 				return;

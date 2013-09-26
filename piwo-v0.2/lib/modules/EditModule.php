@@ -31,10 +31,13 @@ class EditModule extends Module implements ModuleHandler, JavaScriptProvider {
 		$id = pw_wiki_getid();
 		$data = "";
 	
-		if ($id->isNS())
+		if ($id->isNS()) {
+			//TODO allow to create a default namespace page...
+			$this->setNotification("Namespaces can not be edited!");
 			return;
+		}
 	
-		$filename = pw_wiki_getcfg('storage').$id->getPath().pw_wiki_getcfg('fileext');
+		$filename = WIKISTORAGE.$id->getPath().WIKIFILEEXT;
 		$filenameText = pw_url2e($filename);
 	
 		if (isset($_POST["save"])) {
@@ -73,8 +76,8 @@ class EditModule extends Module implements ModuleHandler, JavaScriptProvider {
 	
 	private function save (WikiID $id, $data) {
 	
-		$filename = pw_wiki_getcfg('storage').$id->getPath().pw_wiki_getcfg('fileext');
-		$dirname = pw_wiki_getcfg('storage').$id->getPath();
+		$filename = WIKISTORAGE.$id->getPath().WIKIFILEEXT;
+		$dirname = WIKISTORAGE.$id->getPath();
 		$filenameText = pw_url2e($filename);
 		
 		try {

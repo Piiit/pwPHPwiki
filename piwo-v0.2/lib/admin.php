@@ -10,7 +10,7 @@ function pw_wiki_rename (WikiID $id) {
 	if (!isset($_SESSION["pw_wiki"]["login"]["user"])) {		return GuiTools::dialogInfo("Verschieben", "Sie sind nicht berechtigt eine Seite zu verschieben...", "id=$id&mode=$MODE");
 	}
 
-	$fullfilename = pw_wiki_getcfg('storage').$id->getPath().pw_wiki_getcfg('fileext');	$filename = $id->getPage().pw_wiki_getcfg('fileext');
+	$fullfilename = WIKISTORAGE.$id->getPath().WIKIFILEEXT;	$filename = $id->getPage().WIKIFILEEXT;
 	$fntext = pw_url2e($id->getID());
 
 	if (isset($_POST['rename'])) {
@@ -44,7 +44,7 @@ function pw_wiki_movepage (WikiID $id) {
 	}
 
 // 	$id = pw_wiki_ns($id).pw_wiki_pg($id);
-// 	$isns = pw_wiki_isns($id);	$fullfilename = pw_wiki_getcfg('storage').$id->getPath().pw_wiki_getcfg('fileext');	$filename = $id->getPage().pw_wiki_getcfg('fileext');
+// 	$isns = pw_wiki_isns($id);	$fullfilename = WIKISTORAGE.$id->getPath().WIKIFILEEXT;	$filename = $id->getPage().WIKIFILEEXT;
 
 	$fntext = pw_url2e($id);
 
@@ -92,14 +92,14 @@ function pw_wiki_movepage (WikiID $id) {
 	} else {
 		$entries .= StringTools::htmlIndent("Die Seite <tt>$fntext</tt> verschieben nach...<br />");	}
 	$entries .= StringTools::htmlIndent("<!--label for='id'>Ziel:</label--> <input type='text' class='textinput' autocomplete='off' name='target' id='target' value='' />");	$entries .= StringTools::htmlIndent("<br /><input type='checkbox' id='createfolder' name='createfolder' checked='checked' /><label for='createfolder'>Verzeichnisse anlegen</label>");	#$entries .= "<div id='autoc' name='autoc' style='position: relative; display: block; top: -20px; width: 500px; border: 3px solid gray'></div>";	#$entries .= "<script type=\"text/javascript\">document.observe('dom:loaded', function() {new Ajax.Autocompleter('target', 'autoc', 'bin/getfilelist.php')});</script>";	return pw_ui_getDialogQuestion("Verschieben", $entries, "move", "Verschieben", "id=$id&mode=$MODE");}
-function pw_wiki_delpage (WikiID $id, $mode) {	//@TODO: clean the code...	// --- rrmdir is not needed because pw_wiki_delnamespaces does the job!	if (!isset($_SESSION["pw_wiki"]["login"]["user"]) or $id->getFullNS() == ":tpl:") {		return GuiTools::dialogInfo("L&ouml;schen", "Sie sind nicht berechtigt diese Seite oder diesen Namensraum zu l&ouml;schen...", "id=$id&mode=$mode");	}	$filename = pw_wiki_getcfg('storage').$id->getPath().pw_wiki_getcfg('fileext');	TestingTools::inform($filename);	$fntext = pw_url2e($id);	if (isset($_POST["del"])) {		//@TODO: file_exists -> direxists??? redundant?		if (!file_exists($filename)) {			return GuiTools::dialogInfo("L&ouml;schen", "Die Seite '$fntext' existiert nicht.", "id=$id&mode=$mode");		}		if (is_file($filename)) {			if (!unlink($filename)) {				return GuiTools::dialogInfo("L&ouml;schen", "Die Seite '$fntext' konnte nicht gel&ouml;scht werden.", "id=$id&mode=$mode");			}			$dir = pw_wiki_getcfg('storage').$id->getPath(); //pw_wiki_path($id, ST_SHORT);			$oldid = $id;
+function pw_wiki_delpage (WikiID $id, $mode) {	//@TODO: clean the code...	// --- rrmdir is not needed because pw_wiki_delnamespaces does the job!	if (!isset($_SESSION["pw_wiki"]["login"]["user"]) or $id->getFullNS() == ":tpl:") {		return GuiTools::dialogInfo("L&ouml;schen", "Sie sind nicht berechtigt diese Seite oder diesen Namensraum zu l&ouml;schen...", "id=$id&mode=$mode");	}	$filename = WIKISTORAGE.$id->getPath().WIKIFILEEXT;	TestingTools::inform($filename);	$fntext = pw_url2e($id);	if (isset($_POST["del"])) {		//@TODO: file_exists -> direxists??? redundant?		if (!file_exists($filename)) {			return GuiTools::dialogInfo("L&ouml;schen", "Die Seite '$fntext' existiert nicht.", "id=$id&mode=$mode");		}		if (is_file($filename)) {			if (!unlink($filename)) {				return GuiTools::dialogInfo("L&ouml;schen", "Die Seite '$fntext' konnte nicht gel&ouml;scht werden.", "id=$id&mode=$mode");			}			$dir = WIKISTORAGE.$id->getPath(); //pw_wiki_path($id, ST_SHORT);			$oldid = $id;
 			$id = pw_wiki_delnamespaces($dir);			$outdelns = "";
 			if ($id == "") {
 				$id = $oldid;
 			} else {
 				$outdelns = "Der Namensraum '$id' ist leer. Er wird entfernt.<hr />";			}
 			//@TODO: getlastvalid namespace id			if ($id->isNS()) {				//out($id);
-				$id = substr($id,0,strlen($id)-1);			}			$newid = new WikiID($id->getID()."..");			return GuiTools::dialogInfo("L&ouml;schen", $outdelns."Die Seite '$fntext' wurde gel&ouml;scht.", "id=".$newid."&mode=$mode");		}		if (!is_dir($filename)) {			return GuiTools::dialogInfo("L&ouml;schen", "Der Namensraum '$fntext' existiert nicht.", "id=$id&mode=$mode");		}		try {			FileTools::removeDirectory($filename);		} catch (Exception $e) {			return GuiTools::dialogInfo("L&ouml;schen", "Der Namensraum '$fntext' konnte nicht gel&ouml;scht werden.", "id=$id&mode=$mode");		}		//@TODO: put this in a common function...// 		if ($id->isNS()) {// 			$id = substr($id,0,strlen($id)-1);// 		}		$newid = new WikiID($id->getID()."..");//pw_wiki_ns($id."..");		$dir = pw_wiki_getcfg('storage').$newid->getPath();//pw_wiki_path($newid, ST_SHORT);		$oldid = $id;
+				$id = substr($id,0,strlen($id)-1);			}			$newid = new WikiID($id->getID()."..");			return GuiTools::dialogInfo("L&ouml;schen", $outdelns."Die Seite '$fntext' wurde gel&ouml;scht.", "id=".$newid."&mode=$mode");		}		if (!is_dir($filename)) {			return GuiTools::dialogInfo("L&ouml;schen", "Der Namensraum '$fntext' existiert nicht.", "id=$id&mode=$mode");		}		try {			FileTools::removeDirectory($filename);		} catch (Exception $e) {			return GuiTools::dialogInfo("L&ouml;schen", "Der Namensraum '$fntext' konnte nicht gel&ouml;scht werden.", "id=$id&mode=$mode");		}		//@TODO: put this in a common function...// 		if ($id->isNS()) {// 			$id = substr($id,0,strlen($id)-1);// 		}		$newid = new WikiID($id->getID()."..");//pw_wiki_ns($id."..");		$dir = WIKISTORAGE.$newid->getPath();//pw_wiki_path($newid, ST_SHORT);		$oldid = $id;
 		$id = pw_wiki_delnamespaces($dir);
 		$outdelns = "";
 		if ($id == "") {
@@ -111,12 +111,12 @@ function pw_wiki_delpage (WikiID $id, $mode) {	//@TODO: clean the code...	// -
 
 // 		if ($id->isNS()) {// 			$id = substr($id,0,strlen($id)-1);// 		} 		$newid = new WikiID($id->getID()."..");//pw_wiki_ns($id."..");		return GuiTools::dialogInfo("L&ouml;schen", $outdelns."Der Namensraum '$fntext' wurde gel&ouml;scht.", "id=".$newid->getID()."&mode=$mode");	}	$type = "Die Seite";	if ($id->isNS()) {		$type = "Den Namensraum";	}	return pw_ui_getDialogQuestion("L&ouml;schen", "$type '$fntext' l&ouml;schen?", "del", "L&ouml;schen", "id=$id&mode=$mode");}
 function pw_wiki_delnamespaces($dir) {
-	if (!isset($_SESSION["pw_wiki"]["login"]["user"]))		return false;	if ($dir == pw_wiki_getcfg('storage')) {		return;	}	#out ($dir);	$dir = str_replace("//", "/", $dir);	$dir = str_replace("\\\\", "\\", $dir);	#out2($dir);
-	$dirnames = explode("/", $dir);	#out($dirnames);	$dirar = array();	$dn = "";	foreach ($dirnames as $dirname) {		if ($dirname != "") {			$dn .= $dirname."/";			$dirar[] = $dn;		}	}	$dirar = array_reverse($dirar);	#out($dirar);	#die();	$dirtxt = "";	foreach ($dirar as $dirname) {		if (rmdir($dirname)) {			$dirtxt = pw_wiki_path2id($dirname);			$dirtxt = pw_s2e($dirtxt);			#$dirtxt = pw_wiki_entities(pw_wiki_urldecode($dirtxt));			#$dirtxt = "Der Namensraum '$dirtxt' ist leer. Er wird entfernt.<hr />";		} else {			break;		}	}	return $dirtxt;}function pw_wiki_update_cache($forced = false) {	$storage = pw_wiki_getcfg('storage');	if (!is_dir($storage)) {
+	if (!isset($_SESSION["pw_wiki"]["login"]["user"]))		return false;	if ($dir == WIKISTORAGE) {		return;	}	#out ($dir);	$dir = str_replace("//", "/", $dir);	$dir = str_replace("\\\\", "\\", $dir);	#out2($dir);
+	$dirnames = explode("/", $dir);	#out($dirnames);	$dirar = array();	$dn = "";	foreach ($dirnames as $dirname) {		if ($dirname != "") {			$dn .= $dirname."/";			$dirar[] = $dn;		}	}	$dirar = array_reverse($dirar);	#out($dirar);	#die();	$dirtxt = "";	foreach ($dirar as $dirname) {		if (rmdir($dirname)) {			$dirtxt = pw_wiki_path2id($dirname);			$dirtxt = pw_s2e($dirtxt);			#$dirtxt = pw_wiki_entities(pw_wiki_urldecode($dirtxt));			#$dirtxt = "Der Namensraum '$dirtxt' ist leer. Er wird entfernt.<hr />";		} else {			break;		}	}	return $dirtxt;}function pw_wiki_update_cache($forced = false) {	$storage = WIKISTORAGE;	if (!is_dir($storage)) {
 		throw new Exception("Folder '$storage' does not exist!");
 	}		$files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($storage));
 	foreach($files as $filename) {		if(substr($filename, -4) == ".txt") {			$filename = str_replace("\\", "/", $filename);			try {				pw_wiki_create_cached_page(pw_wiki_path2id($filename), $forced);			} catch (Exception $e) {				echo "<pre>Exception: Skipping file '$filename': $e\n</pre>";			}		}
-	}}function pw_wiki_create_cached_page(WikiID $id, $forced = false) {	$filename = pw_wiki_getcfg('storage').$id->getPath().pw_wiki_getcfg('fileext');	$headerID = new WikiID("tpl:header", pw_wiki_getcfg('fileext'), pw_wiki_getcfg('storage'));	$footerID = new WikiID("tpl:footer", pw_wiki_getcfg('fileext'), pw_wiki_getcfg('storage'));	$headerFilename = pw_wiki_getcfg('storage').$headerID->getPath().pw_wiki_getcfg('fileext');	$footerFilename = pw_wiki_getcfg('storage').$footerID->getPath().pw_wiki_getcfg('fileext');		if (!is_file($filename)) {		throw new Exception("File '$filename' does not exist!");
+	}}function pw_wiki_create_cached_page(WikiID $id, $forced = false) {	$filename = WIKISTORAGE.$id->getPath().WIKIFILEEXT;	$headerID = new WikiID("tpl:header", WIKIFILEEXT, WIKISTORAGE);	$footerID = new WikiID("tpl:footer", WIKIFILEEXT, WIKISTORAGE);	$headerFilename = WIKISTORAGE.$headerID->getPath().WIKIFILEEXT;	$footerFilename = WIKISTORAGE.$footerID->getPath().WIKIFILEEXT;		if (!is_file($filename)) {		throw new Exception("File '$filename' does not exist!");
 	}	if (!is_file($headerFilename)) {
 		throw new Exception("File '$headerFilename' does not exist!");
 	}	if (!is_file($footerFilename)) {
@@ -138,9 +138,9 @@ function pw_wiki_delnamespaces($dir) {
 	}
 	
 	$out = parse($data);		FileTools::createFolderIfNotExist(dirname($cachedFilename));
-	if (file_put_contents($cachedFilename, $out) === false) {		throw new Exception("Unable to write file '$cachedFilename'!");	}		return $out;}function pw_wiki_get_parsed_file(WikiID $id) {		$filename = pw_wiki_getcfg('storage').$id->getPath().pw_wiki_getcfg('fileext');	$headerID = new WikiID("tpl:header");	$footerID = new WikiID("tpl:footer");
-	$headerFilename = pw_wiki_getcfg('storage')."/".$headerID->getPath().pw_wiki_getcfg('fileext');;
-	$footerFilename = pw_wiki_getcfg('storage')."/".$footerID->getPath().pw_wiki_getcfg('fileext');;
+	if (file_put_contents($cachedFilename, $out) === false) {		throw new Exception("Unable to write file '$cachedFilename'!");	}		return $out;}function pw_wiki_get_parsed_file(WikiID $id) {		$filename = WIKISTORAGE.$id->getPath().WIKIFILEEXT;	$headerID = new WikiID("tpl:header");	$footerID = new WikiID("tpl:footer");
+	$headerFilename = WIKISTORAGE."/".$headerID->getPath().WIKIFILEEXT;;
+	$footerFilename = WIKISTORAGE."/".$footerID->getPath().WIKIFILEEXT;;
 	
 	if (!is_file($filename)) {
 		throw new Exception("File '$filename' does not exist!");

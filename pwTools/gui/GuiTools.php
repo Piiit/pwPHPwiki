@@ -19,13 +19,17 @@ class GuiTools {
 		return "<label for='$name'>$label</label><input type='password' name='$name' />";
 	}
 	
-	public static function button($name, $href, $shortcut = null) {
+	public static function textButton($name, $href, $shortcut = null) {
 		$o  = "<span class='button'><a href='?$href'>";
 		if ($shortcut !== null) {
 			$o .= "<span class='shortcut'>$shortcut</span>";
 		}
 		$o .= "$name</a></span>";
 		return $o;
+	}
+	
+	public static function button($label, $name, $type = "submit") {
+		return "<button type='$type' name='$name'>$label</button>";
 	}
 	
 	public static function dialogQuestion($title, $desc, $byesname, $byestext, $bnoname, $bnotext, $href, $method = "post") {
@@ -36,8 +40,8 @@ class GuiTools {
 		$o .= "<form method='$method' action='?$href' accept-charset='utf-8' id='form'>";
 		$o .= "<h1>$title</h1>";
 		$o .= "<p>$desc</p>";
-		$o .= "<button type='submit' name='$byesname'>$byestext</button>";
-		$o .= "<button type='submit' name='$bnoname'>$bnotext</button>";
+		$o .= GuiTools::button($byestext, $byesname);
+		$o .= GuiTools::button($bnotext, $bnoname);
 		$o .= "</form>";
 		$o .= "</div>";
 		return $o;

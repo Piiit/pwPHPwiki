@@ -6,6 +6,8 @@ if (!defined('INC_PATH')) {
 require_once INC_PATH.'pwTools/parser/ParserRule.php';
 require_once INC_PATH.'pwTools/tree/Node.php';
 
+
+//TODO make PLUGINS object oriented!
 function plugin_text(Parser $parser, Node $node) {
 
   	$nodeData = $node->getData();

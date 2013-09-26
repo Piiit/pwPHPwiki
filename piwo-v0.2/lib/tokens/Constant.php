@@ -69,7 +69,7 @@ class Constant extends ParserRule implements ParserRuleHandler, LexerRuleHandler
 			case 'wrongid':
 				try { 
 					$wrongId = pw_wiki_getcfg('wrongid');
-					var_dump($wrongId);
+// 					var_dump($wrongId);
 					$txt = pw_url2u($wrongId->getID());
 				} catch (Exception $e) {
 					$txt = "";
@@ -79,15 +79,14 @@ class Constant extends ParserRule implements ParserRuleHandler, LexerRuleHandler
 				$id = pw_wiki_getid(); 
 				$txt = pw_url2u($id->getID()); 
 			break;
-			case 'startpage': $txt = ':'.pw_url2u(pw_wiki_getcfg('startpage')); break;
+			case 'startpage': $txt = ':'.pw_url2u(WIKISTARTPAGE); break;
 			case 'version': $txt = $this->getParser()->getUserInfo('piwoversion'); break;
 			case 'lexerversion': $txt = Lexer::getVersion(); break;
 			case 'path': $txt = 'http://'.$_SERVER['SERVER_NAME'].pw_dirname($_SERVER['PHP_SELF']); break;
 			case 'countsubs':
 				// count all wikipages within the current namespace
-				$path = pw_wiki_getcfg('path');
-				$ext = pw_wiki_getcfg('fileext');
-				$txt = count(glob($path."/*".$ext));
+				$path = pw_dirname($_SERVER['PHP_SELF']);
+				$txt = count(glob($path."/*".WIKIFILEEXT));
 			break;
 			case 'performance':
 				$txt = $this->getParser()->getUserInfo('lexerperformance');

@@ -28,7 +28,7 @@ class ShowSourceModule extends Module implements ModuleHandler {
 	public function execute() {
 		$id = pw_wiki_getid();
 		
-		$filename = pw_wiki_getcfg('storage').$id->getPath().pw_wiki_getcfg('fileext');
+		$filename = WIKISTORAGE.$id->getPath().WIKIFILEEXT;
 		$out = StringTools::htmlIndent("<a href='?id=".$id->getID()."'>&laquo; Back</a> | <a href='?mode=showpages&id=".$id->getID()."'>Show Pages</a>");
 		$out .= StringTools::htmlIndent("<h1>Source code</h1>ID = <tt>".$id->getID()."</tt>");
 	

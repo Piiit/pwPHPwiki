@@ -37,6 +37,14 @@ class ConfigModule extends Module implements ModuleHandler {
 		$mode = pw_wiki_getmode();
 		$id = pw_wiki_getid();
 		
+		if (isset($_POST['clearsession'])) {
+			pw_wiki_unsetcfg();
+			pw_wiki_loadconfig();
+			unset($_POST['clearsession']);
+			$this->setNotification("Session cleared!");
+			return;
+		}
+		
 		if (isset($_POST["config"])) {
 			pw_wiki_setcfg('debug', ArrayTools::getIfExistsNotNull(false, $_POST, 'debug'));
 			if (pw_wiki_getcfg('debug') == false) {
@@ -48,7 +56,8 @@ class ConfigModule extends Module implements ModuleHandler {
 		}
 		
 		$entries = GuiTools::checkbox("Debug-Modus", "debug", pw_wiki_getcfg('debug'));
-		$entries .= GuiTools::checkbox("Use cache", "useCache", pw_wiki_getcfg('useCache')); 
+		$entries .= GuiTools::checkbox("Use cache", "useCache", pw_wiki_getcfg('useCache'));
+		$entries .= GuiTools::button("Clear Session", "clearsession"); 
 		$this->setDialog(GuiTools::dialogQuestion($this->getMenuText(), $entries, "config", "OK", "cancel", "Cancel", "id=".$id->getID()."&mode=$mode"));
 	}
 	

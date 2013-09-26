@@ -9,8 +9,8 @@ require_once INC_PATH.'pwTools/debug/TestingTools.php';
 require_once INC_PATH.'piwo-v0.2/lib/WikiID.php';
 
 function pw_wiki_getid() {
-	$id = isset($_GET['id']) && $_GET['id'] != "" ? $_GET['id'] : pw_wiki_getcfg('startpage');
-	return new WikiID($id, pw_wiki_getcfg('fileext'), pw_wiki_getcfg('storage'));
+	$id = isset($_GET['id']) && $_GET['id'] != "" ? $_GET['id'] : WIKISTARTPAGE;
+	return new WikiID($id, WIKIFILEEXT, WIKISTORAGE);
 }
 
 function pw_wiki_getmode() {
@@ -44,8 +44,27 @@ function pw_wiki_setcfg($key, $value) {
 	$_SESSION['pw_wiki'][$key] = $value;
 }
 
-function pw_wiki_unsetcfg($key) {
-	unset($_SESSION['pw_wiki'][$key]);
+function pw_wiki_unsetcfg($key = "") {
+	if($key == "") {
+		unset($_SESSION['pw_wiki']);
+	} else {
+		unset($_SESSION['pw_wiki'][$key]);
+	}
+}
+
+function pw_wiki_loadconfig() {
+	
+	ini_set('auto_detect_line_endings', false);
+	
+	if (! isset($_SESSION['pw_wiki'])) {
+		global $WIKIDEFAULTCONFIG;
+		$config  = $WIKIDEFAULTCONFIG;
+		if (isset($_SESSION['pw_wiki']) && is_array($_SESSION['pw_wiki'])) {
+			$_SESSION['pw_wiki'] = array_merge($_SESSION['pw_wiki'], $config);
+		} else {
+			$_SESSION['pw_wiki'] = $config;
+		}
+	}
 }
 
 function pw_checkfilename($name) {
@@ -148,7 +167,7 @@ function pw_wiki_path2id($path) {
 	#$id = utf8_strtolower($path);
 
 	$ida = explode('/', $id);
-	if ($ida[0] == pw_wiki_getcfg('storage')) {
+	if ($ida[0] == WIKISTORAGE) {
 		$ida = array_slice($ida, 1, sizeof($ida));
 	}
 
@@ -156,7 +175,7 @@ function pw_wiki_path2id($path) {
 	$id = str_replace("/", ":", $id);
 	$id = ltrim($id, ":");
 
-	$id = StringTools::rightTrim($id, pw_wiki_getcfg('fileext'));
+	$id = StringTools::rightTrim($id, WIKIFILEEXT);
 	$id = pw_s2url($id);
 	return $id;
 }

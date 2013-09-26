@@ -7,6 +7,7 @@ require_once INC_PATH.'piwo-v0.2/lib/modules/ModuleHandler.php';
 require_once INC_PATH.'piwo-v0.2/lib/modules/Module.php';
 require_once INC_PATH.'pwTools/gui/GuiTools.php';
 require_once INC_PATH.'pwTools/data/ArrayTools.php';
+require_once INC_PATH.'piwo-v0.2/lib/WikiID.php';
 
 
 class ShowContentModule extends Module implements ModuleHandler {
@@ -36,7 +37,22 @@ class ShowContentModule extends Module implements ModuleHandler {
 
 	public function execute() {
 		$id = pw_wiki_getid();
-		$wikitext = pw_wiki_showcontent($id);
+		$filepath = WIKISTORAGE.$id->getPath().WIKIFILEEXT;
+		
+		if($id->isNS()) {
+			$namespacePageID = new WikiID(rtrim($id->getID(), ":"));
+			$filepathNS = WIKISTORAGE.$namespacePageID->getPath().WIKIFILEEXT;
+			if(file_exists($filepathNS)) {
+				$wikitext = pw_wiki_showcontent($namespacePageID);
+			} else {
+				$wikitext = pw_wiki_showcontent(new WikiID(":tpl:namespace"));
+			}
+		} elseif (file_exists($filepath)) {
+			$wikitext = pw_wiki_showcontent($id);
+		} else {
+			$wikitext = pw_wiki_showcontent(new WikiID(":tpl:notfound"));
+		}
+		
 		$body = file_get_contents(CFG_PATH."skeleton/wiki.html");
 		$body = str_replace("{{wikitext}}", $wikitext, $body);
 		$this->setDialog($body);
