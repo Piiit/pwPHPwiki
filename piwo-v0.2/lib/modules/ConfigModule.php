@@ -9,7 +9,7 @@ require_once INC_PATH.'pwTools/gui/GuiTools.php';
 require_once INC_PATH.'pwTools/data/ArrayTools.php';
 
 
-class ConfigModule extends Module implements ModuleHandler {
+class ConfigModule extends Module implements ModuleHandler, PermissionProvider, MenuItemProvider {
 	
 	public function __construct() {
 		parent::__construct($this->getName(), $this);
@@ -23,9 +23,9 @@ class ConfigModule extends Module implements ModuleHandler {
 		return "20130905";
 	}
 
-	//TODO Change this granularity and make a permissions Class to handle this
-	public function permissionGranted($userData) {
-		return $userData['group'] == 'admin';
+	public function permissionGranted() {
+		$loginGroup = pw_wiki_getcfg("login", "group");
+		return $loginGroup == "admin";
 	}
 	
 	public function execute() {
@@ -55,18 +55,19 @@ class ConfigModule extends Module implements ModuleHandler {
 			return;
 		}
 		
+		$out = StringTools::htmlIndent("<a href='?id=".$id->getID()."'>&laquo; Back</a><hr />");
 		$entries = GuiTools::checkbox("Debug-Modus", "debug", pw_wiki_getcfg('debug'));
 		$entries .= GuiTools::checkbox("Use cache", "useCache", pw_wiki_getcfg('useCache'));
 		$entries .= GuiTools::button("Clear Session", "clearsession"); 
-		$this->setDialog(GuiTools::dialogQuestion($this->getMenuText(), $entries, "config", "OK", "cancel", "Cancel", "id=".$id->getID()."&mode=$mode"));
+		$this->setDialog($out.GuiTools::dialogQuestion($this->getMenuText(), $entries, "config", "OK", "cancel", "Cancel", "id=".$id->getID()."&mode=$mode"));
 	}
 	
 	public function getMenuText() {
 		return "Configuration";
 	}
 
-	public function getMenuAvailability($mode) {
-		return true; //For all modes available
+	public function getMenuAvailability() {
+		return true;
 	}
 
 

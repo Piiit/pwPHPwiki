@@ -6,7 +6,7 @@ if (!defined('INC_PATH')) {
 require_once INC_PATH.'piwo-v0.2/lib/modules/ModuleHandler.php';
 require_once INC_PATH.'piwo-v0.2/lib/modules/Module.php';
 
-class ShowPagesModule extends Module implements ModuleHandler {
+class ShowPagesModule extends Module implements ModuleHandler, MenuItemProvider {
 	
 	public function __construct() {
 		parent::__construct($this->getName(), $this);
@@ -20,112 +20,97 @@ class ShowPagesModule extends Module implements ModuleHandler {
 		return "20130915";
 	}
 
-	public function permissionGranted($userData) {
-		return true;
-	}
-	
 	public function execute() {
 		$id = pw_wiki_getid();
+		
+		//FIXME getFullNSPath gives a url and not a filesystem path! BUG!!!
 		$path = WIKISTORAGE.$id->getFullNSPath();
 		
-		$strout = "";
+		
 		$files = array();
 		$dirs = array();
-		if(!$id->isRootNS()) {
-			$dirs[] = array('NAME' => '..', 'TYPE' => 'DIR');
-		}
-		$data = glob ("$path/*");
+		$directoryContent = glob("$path/*");
 	
 		// Delete empty folders!
-		if (!$data) {
+		if (!$directoryContent) { 
 			if ($path != WIKISTORAGE && rmdir($path)) {
-				$strout .= "<tt>INFO: $path ist leer und wird entfernt!</tt>";
+				$this->setNotification("$path is empty. It has been deleted!");
 			}
 		} else {
-			foreach ($data as $k => $i) {
-				$i = pw_s2u($i);
-				if ($i != utf8_strtolower($i)) {
-					rename(pw_u2t($i), pw_u2t(utf8_strtolower($i)));
+			foreach ($directoryContent as $fileOrDir) {
+				$fileOrDir = pw_s2u($fileOrDir);
+				if ($fileOrDir != utf8_strtolower($fileOrDir)) {
+					rename(pw_u2t($fileOrDir), pw_u2t(utf8_strtolower($fileOrDir)));
 					// TODO: falls neue Datei bereits existiert ??? Fehler melden... Benutzereingabe fordern!
 				}
-				$i = utf8_strtolower($i);
-				$i = pw_u2t($i);
+				$fileOrDir = utf8_strtolower($fileOrDir);
+				$fileOrDir = pw_u2t($fileOrDir);
 	
-				if (is_dir($i)) {
-					$dirs[] = array('NAME' => pw_basename($i), 'TYPE' => "DIR");
+				if (is_dir($fileOrDir)) {
+					$dirs[] = array('NAME' => pw_basename($fileOrDir), 'TYPE' => "DIR");
 				} else {
-					$files[] = array('NAME' => pw_basename($i, ".txt"), 'TYPE' => "TEXT", 'SIZE' => filesize($i));
+					$files[] = array('NAME' => pw_basename($fileOrDir, ".txt"), 'TYPE' => "TEXT", 'SIZE' => filesize($fileOrDir), 'MODIFIED' => filemtime($fileOrDir));
 				}
 	
 			}
 		}
 	
-		if ($dirs) sort($dirs);
-		if ($files) sort($files);
-	
-		$out = array_merge($dirs, $files);
+		sort($dirs);
+		sort($files);
 		
-	//	 TestingTools::inform($out);
-		
-		$strout .= "<h1>Pages</h1>";
-		$strout .= "You are here: ".pw_wiki_trace($id->getFullNS())."";
-		$strout .= "<table id='overview'><tr><th style='width:15px'>#</th><th style='width: 380px'>ID (Preview)</th><th style='width: 70px'>Size</th><th style='width: 60px'>Type</th><th>Options</th></tr>";
-		$nr = 0;
-		foreach ($out as $k => $i) {
+		$out = "<div class='admin'><a href='?id=".$id->getID()."'>&laquo; Back</a><hr />";
+		$out .= "<h1>Pages</h1>";
+		$out .= "You are here: ".pw_wiki_trace($id->getFullNS())."";
+		$out .= "<table class='overview' style='width: 100%'><tr><th style='width: 40%'>Name</th><th style='width: 10%'>Size</th><th style='width: 17%'>Modified</th><th>Options</th></tr>";
+
+		foreach (array_merge($dirs, $files) as $fileOrDir) {
 	
-			$strout .= "<tr style='background: black'>";
-			$strout .= "<td style='text-align: right'>".($nr++)."</td>";
-			if ($i['TYPE'] == "TEXT") {
-				$strout .= "<td>";
-				$strout .= pw_url2e($i['NAME']);
-				$strout .= "<a style='float: right' href='?id=".pw_s2url($id->getFullNS().$i['NAME'])."'>&laquo; show</a>";
-				$strout .= "</td>";
+			$out .= "<tr style='height: 40px'>";
+			if ($fileOrDir['TYPE'] == "TEXT") {
+				$out .= "<td><small>[TXT]</small> <a href='?id=".$id->getFullNS().pw_s2url($fileOrDir['NAME'])."'>".pw_url2e($fileOrDir['NAME'])."</a></td>";
+				$out .= "<td style='text-align: right'><tt>".StringTools::showReadableFilesize($fileOrDir['SIZE'], 2, false)."</tt></td>";
+				$out .= "<td style='text-align: right'>".date("d.m.Y H:i", $fileOrDir['MODIFIED'])."</td>";
 			} else {
-				 $strout .= "<td><a href='?id=".pw_s2url(WikiID::cleanNamespaceString($id->getFullNS().$i['NAME'].':'))."&mode=showpages'>".pw_url2e($i['NAME'])."</a></td>";
+				$out .= "<td><a href='?id=".pw_s2url(WikiID::cleanNamespaceString($id->getFullNS().$fileOrDir['NAME'].':'))."&mode=showpages'>".pw_url2e($fileOrDir['NAME'])."</a></td>";
+				$out .= "<td>&nbsp</td>";
+				$out .= "<td>&nbsp</td>";
 			}
-			$strout .= "<td style='text-align: right'>";
-			if ($i['TYPE'] == "TEXT") {
-				$strout .= "<small><tt>".pw_formatbytes($i['SIZE'], 2, false)."</tt></small>";
-			} else {
-				$strout .= "<small><tt>-</tt></small>";
-			}
-			$strout .= "<td>".$i['TYPE']."</td>";
-			$strout .= "<td>";
+
+			$out .= "<td style='padding-left: 20px'>";
 	
-			if ($i['TYPE'] == "TEXT") {
+			if ($fileOrDir['TYPE'] == "TEXT") {
 				if (pw_wiki_getcfg('login', 'group') == 'admin') {
-					$strout .= "<a href='?id=".pw_s2url($id->getFullNS().$i['NAME'])."&mode=edit&oldmode=showpages'>Edit</a> | ";
-					$strout .= "<a href='?id=".pw_s2url($id->getFullNS().$i['NAME'])."&mode=showpages&dialog=delpage'>Delete</a> | ";
-					$strout .= "<a href='?id=".pw_s2url($id->getFullNS().$i['NAME'])."&mode=showpages&dialog=rename'>Rename</a> | ";
-					$strout .= "<a href='?id=".pw_s2url($id->getFullNS().$i['NAME'])."&mode=showpages&dialog=movepage'>Move</a>";
-					#$strout .= "[<a href='?id=".$ns.$i['NAME']."&mode=showpages&dialog=info'>Info</a>]";
+					$out .= "<a href='?id=".$id->getFullNS().pw_s2url($fileOrDir['NAME'])."&mode=edit'>Edit</a> | ";
+					$out .= "<a href='?id=".$id->getFullNS().pw_s2url($fileOrDir['NAME'])."&mode=showpages&dialog=delpage'>Delete</a> | ";
+					$out .= "<a href='?id=".$id->getFullNS().pw_s2url($fileOrDir['NAME'])."&mode=showpages&dialog=rename'>Rename</a> | ";
+					$out .= "<a href='?id=".$id->getFullNS().pw_s2url($fileOrDir['NAME'])."&mode=showpages&dialog=movepage'>Move</a>";
 				} else {
-					$strout .= "<a href='?id=".pw_s2url($id->getFullNS().$i['NAME'])."&mode=showsource&oldmode=showpages'>Show Source</a>";
+					$out .= "<a href='?id=".pw_s2url($id->getFullNS().$fileOrDir['NAME'])."&mode=showsource&oldmode=showpages'>Show Source</a>";
 				}
 			} else {
-				if ($i['NAME'] != '..') {
+				if ($fileOrDir['NAME'] != '..') {
 					if (pw_wiki_getcfg('login', 'group') == 'admin') {
-						$strout .= "<a href='?id=".pw_s2url($id->getFullNS().$i['NAME'].":")."&mode=showpages&dialog=delpage'>Delete</a> | ";
-						$strout .= "<a href='?id=".pw_s2url($id->getFullNS().$i['NAME'].":")."&mode=showpages&dialog=rename'>Rename</a> | ";
-						$strout .= "<a href='?id=".pw_s2url($id->getFullNS().$i['NAME'].":")."&mode=showpages&dialog=movepage'>Move</a>";
+						$out .= "<a href='?id=".pw_s2url($id->getFullNS().$fileOrDir['NAME'].":")."&mode=showpages&dialog=delpage'>Delete</a> | ";
+						$out .= "<a href='?id=".pw_s2url($id->getFullNS().$fileOrDir['NAME'].":")."&mode=showpages&dialog=rename'>Rename</a> | ";
+						$out .= "<a href='?id=".pw_s2url($id->getFullNS().$fileOrDir['NAME'].":")."&mode=showpages&dialog=movepage'>Move</a>";
 					}
 				}
 			}
-			$strout .= "</td>";
-			$strout .= "</tr>";
+			$out .= "</td>";
+			$out .= "</tr>";
 		}
 	
-		$strout .= "</table>";
-		$this->setDialog($strout);
+		$out .= "</table></div>";
+		$this->setDialog($out);
 			
 	}
 	
 	public function getMenuText() {
-		return "Show Pages";
+		return "Show&nbsp;Pages";
 	}
 
-	public function getMenuAvailability($mode) {
-		return true; //For all modes available
+	public function getMenuAvailability() {
+		return true; 
 	}
 	
 }

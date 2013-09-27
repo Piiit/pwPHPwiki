@@ -24,17 +24,6 @@ class ShowContentModule extends Module implements ModuleHandler {
 		return "20130924";
 	}
 
-	public function permissionGranted($userData) {
-		return true;
-	}
-
-	public function getMenuText() {
-	}
-
-	public function getMenuAvailability($mode) {
-		return false;
-	}
-
 	public function execute() {
 		$id = pw_wiki_getid();
 		$filepath = WIKISTORAGE.$id->getPath().WIKIFILEEXT;

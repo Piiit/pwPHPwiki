@@ -25,6 +25,28 @@ class StringTools {
 		return $t;
 	}
 	
+	public static function showReadableFilesize($bytes, $precision = 2, $showbytes = true) {
+		$units = array('B&nbsp;', 'KB', 'MB', 'GB', 'TB');
+	
+		$bytes = max($bytes, 0);
+		if ($bytes < 1024 and !$showbytes) {
+			$pow = 1;
+		} else {
+			$pow = floor(($bytes ? log($bytes) : 0) / log(1024));
+			$pow = min($pow, count($units) - 1);
+		}
+		$bytes /= pow(1024, $pow);
+	
+		// Round up to 0.1 if bytes are not zero!
+		$fl = $bytes;
+		$bytes = round($bytes, $precision);
+		if ($bytes == 0 and $fl > 0) {
+			$bytes = "0.10"; // sprintf... add zeros for normalized output with given precision!
+		}
+	
+		return str_replace(".", ",", $bytes).' '.$units[$pow];
+	}
+	
 	public static function preFormat($textInput) {
 		if(strlen($textInput) == 0) {
 			return "";

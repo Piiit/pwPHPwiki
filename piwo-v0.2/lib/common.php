@@ -10,7 +10,7 @@ require_once INC_PATH.'piwo-v0.2/lib/WikiID.php';
 
 function pw_wiki_getid() {
 	$id = isset($_GET['id']) && $_GET['id'] != "" ? $_GET['id'] : WIKISTARTPAGE;
-	return new WikiID($id, WIKIFILEEXT, WIKISTORAGE);
+	return new WikiID($id);
 }
 
 function pw_wiki_getmode() {
@@ -65,6 +65,22 @@ function pw_wiki_loadconfig() {
 			$_SESSION['pw_wiki'] = $config;
 		}
 	}
+}
+
+function pw_wiki_getmenu($id, $mode, Collection $modules) {
+	$loginData = pw_wiki_getcfg('login');
+
+	$o = "";
+	foreach ($modules->getArray() as $module) {
+		if($module instanceof MenuItemProvider && $module->getMenuAvailability()) {
+			if(!($module instanceof PermissionProvider) || $module instanceof PermissionProvider && $module->permissionGranted()) {
+				$o .= GuiTools::textButton($module->getMenuText(), "id=".$id->getID()."&mode=".$module->getName());
+				$o .= " | ";
+			}
+		}
+	}
+
+	return $o;
 }
 
 function pw_checkfilename($name) {

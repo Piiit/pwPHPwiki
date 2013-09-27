@@ -14,23 +14,11 @@ new ConfigModule();new ShowSourceModule();new EditModule();new ShowPagesModul
 try {	try {		$module = Module::getModuleList()->get($mode);		$scriptsText = "";
 		if($module instanceof JavaScriptProvider) {
 			$scriptsText .= $module->getJavaScript()."<!-- INSERTED BY MODULE ".$module->getName()." -->\n";		}
-			} catch (Exception $e) {		throw new Exception("Mode with ID '$mode' does not exist!");	}	if (!$module->permissionGranted(pw_wiki_getcfg('login'))) {		throw new Exception("Module '".$module->getName()."': Access denied.");	}	$module->execute();		} catch (Exception $e) {	$notification = $e->getMessage();	$notificationType = "error";}$notification = $notification == null ? $module->getNotification() : $notification;$notificationType = $module->getNotificationType() == Module::NOTIFICATION_INFO ? "info" : "error";
+			} catch (Exception $e) {		throw new Exception("Mode with ID '$mode' does not exist!");	}	if ($module instanceof PermissionProvider && !$module->permissionGranted()) {		throw new Exception("Module '".$module->getName()."': Access denied.");	}	$module->execute();		} catch (Exception $e) {	$notification = $e->getMessage();	$notificationType = "error";}$notification = $notification == null ? $module->getNotification() : $notification;$notificationType = $module->getNotificationType() == Module::NOTIFICATION_INFO ? "info" : "error";
 if($notification != null) {
 	$notification = "<div id='notification' class='$notificationType'>$notification</div>";
 }
-$body = $module->getDialog();if($body == null) {	$defaultModule->execute();	$body = $defaultModule->getDialog();}//TODO handle modes before id checks, every mode has its own constraints...
-$id = pw_wiki_getid();
-// $wikiPageFilePath = WIKISTORAGE.$id->getPath().WIKIFILEEXT;
-// try {
-// 	// Page with this id does not exist
-// 	if (!file_exists($wikiPageFilePath) && $mode != "edit" && $mode != "showpages" && $mode != "showsource") {
-// 		$_SESSION['pw_wiki']['wrongid'] = $id;
-// 		$id = new WikiID(":tpl:notfound");
-// 	}
-// } catch (Exception $e) {
-// 	$id = new WikiID(":tpl:iderror");
-// }
-$menu = pw_wiki_getmenu($id, $mode, Module::getModuleList());
+$body = $module->getDialog();if($body == null) {	$defaultModule->execute();	$body = $defaultModule->getDialog();}$menu = pw_wiki_getmenu(pw_wiki_getid(), $mode, Module::getModuleList()); 
 
 $mainpage = file_get_contents(CFG_PATH."skeleton/mainpage.html");
 $mainpage = str_replace("{{pagetitle}}", pw_wiki_getfulltitle(), $mainpage);
@@ -42,7 +30,7 @@ $mainpage = str_replace("{{titledesc}}", pw_wiki_getcfg('titledesc'), $mainpage)
 $mainpage = str_replace("{{startpage}}", WIKISTARTPAGE, $mainpage);
 $mainpage = str_replace("{{body}}", $body, $mainpage);$mainpage = str_replace("{{debugstyle}}", TestingTools::getCSS(), $mainpage);
 $mainpage = str_replace("{{mainmenu}}", $menu, $mainpage);
-echo $mainpage;function pw_wiki_getmenu($id, $mode, Collection $modules) {	$loginData = pw_wiki_getcfg('login');	$o = "";	foreach ($modules->getArray() as $module) {		if($module->getMenuAvailability($mode) && $module->permissionGranted($loginData)) {			$o .= GuiTools::textButton($module->getMenuText(), "id=".$id->getID()."&mode=".$module->getName()); 			$o .= " | ";		}	}		return $o;}// 	case "update":
+echo $mainpage;// 	case "update":
 // 		$output = pw_wiki_create_cached_page($id, true);
 // 	break;
 

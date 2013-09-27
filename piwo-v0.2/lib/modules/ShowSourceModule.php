@@ -6,7 +6,7 @@ if (!defined('INC_PATH')) {
 require_once INC_PATH.'piwo-v0.2/lib/modules/ModuleHandler.php';
 require_once INC_PATH.'piwo-v0.2/lib/modules/Module.php';
 
-class ShowSourceModule extends Module implements ModuleHandler {
+class ShowSourceModule extends Module implements ModuleHandler, MenuItemProvider {
 	
 	public function __construct() {
 		parent::__construct($this->getName(), $this);
@@ -20,11 +20,6 @@ class ShowSourceModule extends Module implements ModuleHandler {
 		return "20130915";
 	}
 
-	//FIXME: This is just a workaround for invisibility if editing is allowed, see TODO below!
-	public function permissionGranted($userData) {
-		return $userData['group'] != 'admin';
-	}
-	
 	public function execute() {
 		$id = pw_wiki_getid();
 		
@@ -36,7 +31,8 @@ class ShowSourceModule extends Module implements ModuleHandler {
 			$data = file_get_contents($filename);
 			$data = pw_wiki_file2editor($data);
 		
-			$out = StringTools::htmlIndent("<h1>Show Source Code</h1>ID = <tt>".$id->getID()."</tt>");
+			$out = StringTools::htmlIndent("<a href='?id=".$id->getID()."'>&laquo; Back</a><hr />");
+			$out .= StringTools::htmlIndent("<h1>Show Source Code</h1>ID = <tt>".$id->getID()."</tt>");
 			$out .= StringTools::htmlIndent("<div id='texteditor'>", StringTools::START);
 			$out .= StringTools::htmlIndent("<textarea rows='25' name='wikitxt' id='wikitxt' wrap=off'>$data</textarea>");
 			$out .= StringTools::htmlIndent("</div>", StringTools::END);
@@ -50,13 +46,12 @@ class ShowSourceModule extends Module implements ModuleHandler {
 	}
 	
 	public function getMenuText() {
-		return "Show source";
+		return "Show&nbsp;source";
 	}
 
-	//TODO should be possible to check against persmissions etc.
-	public function getMenuAvailability($mode) {
-		//ex. return $userData['group'] != 'admin';
-		return true; 
+	public function getMenuAvailability() {
+		$loginGroup = pw_wiki_getcfg("login", "group");
+		return $loginGroup != "admin"; 
 	}
 
 

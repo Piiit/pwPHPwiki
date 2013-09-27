@@ -7,7 +7,7 @@ require_once INC_PATH.'piwo-v0.2/lib/modules/ModuleHandler.php';
 require_once INC_PATH.'piwo-v0.2/lib/modules/Module.php';
 require_once INC_PATH.'pwTools/gui/GuiTools.php';
 
-class LoginModule extends Module implements ModuleHandler {  
+class LoginModule extends Module implements ModuleHandler, MenuItemProvider {  
 	
 	public function __construct() {
 		parent::__construct($this->getName(), $this);
@@ -19,11 +19,6 @@ class LoginModule extends Module implements ModuleHandler {
 
 	public function getVersion() {
 		return "20130905";
-	}
-
-	//TODO Change this granularity and make a permissions Class to handle this
-	public function permissionGranted($userData) {
-		return true;
 	}
 
 	public function execute() {
@@ -60,9 +55,10 @@ class LoginModule extends Module implements ModuleHandler {
 			return;
 		}
 	
+		$out = StringTools::htmlIndent("<a href='?id=".$id->getID()."'>&laquo; Back</a>");
 		$entries = GuiTools::textInput("User", "username");
 		$entries .= GuiTools::passwordInput("Password", "password");
-		$this->setDialog(GuiTools::dialogQuestion("Login", $entries, "login", "OK", "cancel", "Cancel", "id=".$id->getID()."&mode=$mode"));
+		$this->setDialog($out.GuiTools::dialogQuestion("Login", $entries, "login", "OK", "cancel", "Cancel", "id=".$id->getID()."&mode=$mode"));
 	}
 
 	//TODO how to return a non-link string?
@@ -74,8 +70,8 @@ class LoginModule extends Module implements ModuleHandler {
 		return "Login";
 	}
 
-	public function getMenuAvailability($mode) {
-		return true; //For all modes available
+	public function getMenuAvailability() {
+		return true; 
 	}
 
 }

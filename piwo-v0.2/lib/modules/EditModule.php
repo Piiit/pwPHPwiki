@@ -7,8 +7,7 @@ require_once INC_PATH.'piwo-v0.2/lib/modules/ModuleHandler.php';
 require_once INC_PATH.'piwo-v0.2/lib/modules/Module.php';
 require_once INC_PATH.'piwo-v0.2/lib/modules/JavaScriptProvider.php';
 
-
-class EditModule extends Module implements ModuleHandler, JavaScriptProvider {
+class EditModule extends Module implements ModuleHandler, JavaScriptProvider, PermissionProvider, MenuItemProvider {
 	
 	public function __construct() {
 		parent::__construct($this->getName(), $this);
@@ -22,8 +21,9 @@ class EditModule extends Module implements ModuleHandler, JavaScriptProvider {
 		return "20130915";
 	}
 
-	public function permissionGranted($userData) {
-		return $userData['group'] == 'admin';
+	public function permissionGranted() {
+		$loginGroup = pw_wiki_getcfg("login", "group");
+		return $loginGroup == "admin";
 	}
 	
 	public function execute() {
@@ -55,7 +55,7 @@ class EditModule extends Module implements ModuleHandler, JavaScriptProvider {
 	
 		$data = pw_wiki_file2editor($data);
 		
-		$out = StringTools::htmlIndent("<a href='?id=".$id->getID()."'>&laquo; Back</a> | <a href='?mode=showpages&id=".$id->getFullNS()."'>Show Pages</a>");
+		$out = StringTools::htmlIndent("<a href='?id=".$id->getID()."'>&laquo; Back</a><hr />");
 		$out .= StringTools::htmlIndent("<h1>Source code Editor</h1>ID = <tt>".$id->getID()."</tt>");
 		$out .= StringTools::htmlIndent("<form id='texteditor' name='texteditor' method='post' accept-charset='utf-8'>", StringTools::START);
 		$out .= StringTools::htmlIndent("<div><button value='save' name='save' id='save'>Save</button>");
@@ -70,8 +70,8 @@ class EditModule extends Module implements ModuleHandler, JavaScriptProvider {
 		return "Edit";
 	}
 
-	public function getMenuAvailability($mode) {
-		return true; //For all modes available
+	public function getMenuAvailability() {
+		return true; 
 	}
 	
 	private function save (WikiID $id, $data) {

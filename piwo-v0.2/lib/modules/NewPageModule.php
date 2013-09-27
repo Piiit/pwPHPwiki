@@ -7,7 +7,7 @@ require_once INC_PATH.'piwo-v0.2/lib/modules/ModuleHandler.php';
 require_once INC_PATH.'piwo-v0.2/lib/modules/Module.php';
 require_once INC_PATH.'pwTools/gui/GuiTools.php';
 
-class NewPageModule extends Module implements ModuleHandler {
+class NewPageModule extends Module implements ModuleHandler, PermissionProvider, MenuItemProvider {
 	
 	public function __construct() {
 		parent::__construct($this->getName(), $this);
@@ -21,8 +21,9 @@ class NewPageModule extends Module implements ModuleHandler {
 		return "20130915";
 	}
 
-	public function permissionGranted($userData) {
-		return $userData['group'] == 'admin';
+	public function permissionGranted() {
+		$loginGroup = pw_wiki_getcfg("login", "group");
+		return $loginGroup == "admin";
 	}
 	
 	public function execute() {
@@ -38,16 +39,17 @@ class NewPageModule extends Module implements ModuleHandler {
 		$id = pw_wiki_getid();
 		$mode = pw_wiki_getmode();
 		
+		$out = StringTools::htmlIndent("<a href='?id=".$id->getID()."'>&laquo; Back</a>");
 		$entries = "<p>Namespaces get separated by <tt>:</tt>, e.g. <tt>Manual:Page1</tt><br />If the page already exists, it will be opened for editing.</p>";
 		$entries .= GuiTools::textInput("ID", "id", pw_s2e($id->getID()));
-		$this->setDialog(GuiTools::dialogQuestion("Create a new page", $entries, "create", "OK", "cancel", "Cancel", "mode=$mode&id=".$id->getID()));
+		$this->setDialog($out.GuiTools::dialogQuestion("Create a new page", $entries, "create", "OK", "cancel", "Cancel", "mode=$mode&id=".$id->getID()));
 	}
 	
 	public function getMenuText() {
 		return "New";
 	}
 
-	public function getMenuAvailability($mode) {
+	public function getMenuAvailability() {
 		return true; 
 	}
 

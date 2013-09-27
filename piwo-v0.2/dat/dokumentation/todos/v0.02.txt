@@ -13,12 +13,12 @@
 : <hi 3>&nbsp;</hi> = Code/Codierung
 : <hi 4>&nbsp;</hi> = Editor
 
-== CLEANUP v0.01 FIRST ==
+== CLEANUP v0.1 FIRST ==
 * <hi 3>Code</hi> Frontend und Backend voneinander trennen (UI-Bibliothek anlegen)
  * ''pw_fileutils.php'' anlegen (Permissions des Filesystems kontrollieren, Fehlermeldungen übersetzen und ausgeben, ...)
  * Abhängigkeiten auflösen... zu viele *.php-Files sind voneinander abhängig. Einzeln testen, einzeln testbar machen...
 
-== v0.02 ==
+== v0.2 ==
 * <hi>Admin</hi> WIKICSV implementieren...
  * Korrekte Schreibweise für Dateinamen (Groß- und Kleinschreibung), lange und kurze Titel, Benutzer, Datum, ...
  * Dateiinfo speichern, Wiki-Config speichern
