@@ -81,7 +81,7 @@ class ShowPagesModule extends Module implements ModuleHandler, MenuItemProvider 
 			if ($fileOrDir['TYPE'] == "TEXT") {
 				if (pw_wiki_getcfg('login', 'group') == 'admin') {
 					$out .= "<a href='?id=".$id->getFullNS().pw_s2url($fileOrDir['NAME'])."&mode=edit'>Edit</a> | ";
-					$out .= "<a href='?id=".$id->getFullNS().pw_s2url($fileOrDir['NAME'])."&mode=showpages&dialog=delpage'>Delete</a> | ";
+					$out .= "<a href='?id=".$id->getFullNS().pw_s2url($fileOrDir['NAME'])."&mode=deletepage'>Delete</a> | ";
 					$out .= "<a href='?id=".$id->getFullNS().pw_s2url($fileOrDir['NAME'])."&mode=showpages&dialog=rename'>Rename</a> | ";
 					$out .= "<a href='?id=".$id->getFullNS().pw_s2url($fileOrDir['NAME'])."&mode=showpages&dialog=movepage'>Move</a>";
 				} else {
@@ -90,7 +90,7 @@ class ShowPagesModule extends Module implements ModuleHandler, MenuItemProvider 
 			} else {
 				if ($fileOrDir['NAME'] != '..') {
 					if (pw_wiki_getcfg('login', 'group') == 'admin') {
-						$out .= "<a href='?id=".pw_s2url($id->getFullNS().$fileOrDir['NAME'].":")."&mode=showpages&dialog=delpage'>Delete</a> | ";
+						$out .= "<a href='?id=".pw_s2url($id->getFullNS().$fileOrDir['NAME'].":")."&mode=deletenamespace'>Delete</a> | ";
 						$out .= "<a href='?id=".pw_s2url($id->getFullNS().$fileOrDir['NAME'].":")."&mode=showpages&dialog=rename'>Rename</a> | ";
 						$out .= "<a href='?id=".pw_s2url($id->getFullNS().$fileOrDir['NAME'].":")."&mode=showpages&dialog=movepage'>Move</a>";
 					}

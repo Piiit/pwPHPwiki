@@ -87,7 +87,7 @@ function pw_wiki_movepage (WikiID $id) {
 
 	}
 
-	$entries	= StringTools::htmlIndent("<input type='hidden' name='mode' value='editpage' />");	$entries .= StringTools::htmlIndent("<input type='hidden' name='oldmode' value='$MODE' />");	$entries .= StringTools::htmlIndent("<input type='hidden' name='olddialog' value='movepage' />");	if ($id->isNS()) {
+	$entries = StringTools::htmlIndent("<input type='hidden' name='mode' value='editpage' />");	$entries .= StringTools::htmlIndent("<input type='hidden' name='oldmode' value='$MODE' />");	$entries .= StringTools::htmlIndent("<input type='hidden' name='olddialog' value='movepage' />");	if ($id->isNS()) {
 		$entries .= StringTools::htmlIndent("Den Namensraum <tt>$fntext</tt> verschieben nach...<br />");
 	} else {
 		$entries .= StringTools::htmlIndent("Die Seite <tt>$fntext</tt> verschieben nach...<br />");	}
@@ -165,9 +165,7 @@ function pw_wiki_delnamespaces($dir) {
 	$data = FileTools::setTextFileFormat($data, new TextFileFormat(TextFileFormat::UNIX));		$out = parse($data);	return $out;}
 function pw_wiki_showcontent(WikiID $id) {	if(isset($_SESSION['pw_wiki']['useCache']) && $_SESSION['pw_wiki']['useCache'] == false) {		return pw_wiki_get_parsed_file($id);	}		return pw_wiki_create_cached_page($id);
 }
-function pw_wiki_filenotfound(WikiID $id) {	//TODO get back to the previous mode and id	return GuiTools::dialogInfo("Nicht gefunden", "Seite mit ID '".$id->getID()."' nicht gefunden.", "id=".pw_wiki_getcfg('startpage')."&mode=cleared");}
-
-function pw_wiki_getfilelist(WikiID $id) {	#var_dump($id);
+function pw_wiki_getfilelist(WikiID $id) {	#var_dump($id);
 	#var_dump(pw_wiki_getcfg());
 
 	$ns = $id->getNS();

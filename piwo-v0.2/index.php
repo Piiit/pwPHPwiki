@@ -10,15 +10,13 @@ if (!defined('CFG_PATH')) {	define ('CFG_PATH', INC_PATH.'piwo-v0.2/cfg/');}
 session_start();pw_wiki_loadconfig();
 // TestingTools::inform($_REQUEST);
 // TestingTools::inform($_SESSION);FileTools::createFolderIfNotExist(WIKISTORAGE);FileTools::createFolderIfNotExist(WIKISTORAGE."/tpl");FileTools::copyFileIfNotExist("cfg/skeleton/tpl/firststart.txt", WIKISTORAGE."/index.txt");FileTools::copyMultipleFilesIfNotExist("cfg/skeleton/tpl/*.txt", WIKISTORAGE."/tpl/");new LoginModule();
-new ConfigModule();new ShowSourceModule();new EditModule();new ShowPagesModule();new NewPageModule();$defaultModule = new ShowContentModule();//  TestingTools::inform($_GET);//  TestingTools::inform($_POST); $module = null;$notification = "";$mode = pw_wiki_getmode() == null ? $defaultModule->getName() : pw_wiki_getmode();
-try {	try {		$module = Module::getModuleList()->get($mode);		$scriptsText = "";
-		if($module instanceof JavaScriptProvider) {
+new ConfigModule();new ShowSourceModule();new EditModule();new ShowPagesModule();new NewPageModule();new DeletePageModule();$defaultModule = new ShowContentModule();//  TestingTools::inform($_GET);//  TestingTools::inform($_POST); $module = null;$notification = "";$scriptsText = "";$mode = pw_wiki_getmode() == null ? $defaultModule->getName() : pw_wiki_getmode();
+try {	try {		$module = Module::getModuleList()->get($mode);		if($module instanceof JavaScriptProvider) {
 			$scriptsText .= $module->getJavaScript()."<!-- INSERTED BY MODULE ".$module->getName()." -->\n";		}
-			} catch (Exception $e) {		throw new Exception("Mode with ID '$mode' does not exist!");	}	if ($module instanceof PermissionProvider && !$module->permissionGranted()) {		throw new Exception("Module '".$module->getName()."': Access denied.");	}	$module->execute();		} catch (Exception $e) {	$notification = $e->getMessage();	$notificationType = "error";}$notification = $notification == null ? $module->getNotification() : $notification;$notificationType = $module->getNotificationType() == Module::NOTIFICATION_INFO ? "info" : "error";
-if($notification != null) {
-	$notification = "<div id='notification' class='$notificationType'>$notification</div>";
+			} catch (Exception $e) {		throw new Exception("Mode with ID '$mode' does not exist!");	}	if ($module instanceof PermissionProvider && !$module->permissionGranted()) {		throw new Exception("Module '".$module->getName()."': Access denied.");	}	$module->execute();		} catch (Exception $e) {	$notification = $e->getMessage();	$notificationType = "error";}$notification = $notification == null ? $module->getNotification() : $notification;if($notification != null) {	if($notificationType == null) {
+		$notificationType = $module->getNotificationType() == Module::NOTIFICATION_INFO ? "info" : "error";	}	$notification = "<div id='notification' class='$notificationType'>$notification</div>";
 }
-$body = $module->getDialog();if($body == null) {	$defaultModule->execute();	$body = $defaultModule->getDialog();}$menu = pw_wiki_getmenu(pw_wiki_getid(), $mode, Module::getModuleList()); 
+$body = $module == null ? null : $module->getDialog();if($body == null) {	$defaultModule->execute();	$body = $defaultModule->getDialog();}$menu = pw_wiki_getmenu(pw_wiki_getid(), $mode, Module::getModuleList()); 
 
 $mainpage = file_get_contents(CFG_PATH."skeleton/mainpage.html");
 $mainpage = str_replace("{{pagetitle}}", pw_wiki_getfulltitle(), $mainpage);
