@@ -55,7 +55,7 @@ class LoginModule extends Module implements ModuleHandler, MenuItemProvider {
 			return;
 		}
 	
-		$out = StringTools::htmlIndent("<a href='?id=".$id->getID()."'>&laquo; Back</a>");
+		$out = StringTools::htmlIndent("<a href='?id=".$id->getID()."'>&laquo; Back</a><hr />");
 		$entries = GuiTools::textInput("User", "username");
 		$entries .= GuiTools::passwordInput("Password", "password");
 		$this->setDialog($out.GuiTools::dialogQuestion("Login", $entries, "login", "OK", "cancel", "Cancel", "id=".$id->getID()."&mode=$mode"));
