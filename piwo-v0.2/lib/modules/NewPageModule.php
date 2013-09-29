@@ -39,7 +39,7 @@ class NewPageModule extends Module implements ModuleHandler, PermissionProvider,
 		$id = pw_wiki_getid();
 		$mode = pw_wiki_getmode();
 		
-		$out = StringTools::htmlIndent("<a href='?id=".$id->getID()."'>&laquo; Back</a>");
+		$out = StringTools::htmlIndent("<a href='?id=".$id->getID()."'>&laquo; Back</a><hr />");
 		$entries = "<p>Namespaces get separated by <tt>:</tt>, e.g. <tt>Manual:Page1</tt><br />If the page already exists, it will be opened for editing.</p>";
 		$entries .= GuiTools::textInput("ID", "id", pw_s2e($id->getID()));
 		$this->setDialog($out.GuiTools::dialogQuestion("Create a new page", $entries, "create", "OK", "cancel", "Cancel", "mode=$mode&id=".$id->getID()));
