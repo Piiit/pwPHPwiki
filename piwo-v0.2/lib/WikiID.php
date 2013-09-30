@@ -3,6 +3,7 @@
 // TODO move common pw_dirname to FileTools...
 // TODO check "isvalid"
 // TODO internal links possible (ex. ns1:ns2:page#chapter)
+// TODO Function to go up in hierarchy (no need for a workaround like "$newid = new WikiID($id->getID()."..")")
 
 if (!defined('INC_PATH')) {
 	define ('INC_PATH', realpath(dirname(__FILE__).'/../').'/');
@@ -42,8 +43,8 @@ class WikiID {
 		$this->nsArray = preg_split("#:#", $this->fullns, null, PREG_SPLIT_NO_EMPTY);
 		$this->ns = end($this->nsArray);
 		$this->id = $this->fullns.$this->pg;
-		$this->path = pw_url2t(str_replace(":", "/", $this->id));
-		$this->fullnspath = str_replace(":", "/", $this->fullns);
+		$this->path = pw_url2t(str_replace(":", "/", pw_url2t($this->id)));
+		$this->fullnspath = str_replace(":", "/", pw_url2t($this->fullns));
 	}
 	
 	public function getID() {
@@ -57,7 +58,11 @@ class WikiID {
 	public function getNS() {
 		return $this->ns;
 	}
-
+	
+	public function getNSAsString() {
+		return pw_url2e($this->ns);
+	}
+	
 	public function getPath() {
 		return $this->path;
 	}

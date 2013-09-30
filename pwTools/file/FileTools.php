@@ -49,13 +49,13 @@ class FileTools {
 		}
 	}
 	
-	public static function removeDirectory($dir) {
+	private static function removeDirectoryRec($dir) {
 		if (is_dir($dir)) {
 			$objects = scandir($dir);
 			foreach ($objects as $object) {
 				if ($object != "." && $object != "..") {
 					if (filetype($dir."/".$object) == "dir") {
-						self::removeDirectory($dir."/".$object);
+						self::removeDirectoryRec($dir."/".$object);
 					} else {
 						if (!unlink($dir."/".$object)) {
 							throw new Exception("Unable to remove directory '".$dir."/".$object."'");
@@ -68,6 +68,13 @@ class FileTools {
 				throw new Exception("Unable to remove directory '".$dir."'");
 			}
 		}
+	}
+	
+	public static function removeDirectory($dir) {
+		if(!is_dir($dir)) {
+			throw new Exception("Unable to find directory '".$dir."'");
+		}
+		self::removeDirectoryRec($dir);
 	}
 	
 	public static function getTextFileFormat($text) {

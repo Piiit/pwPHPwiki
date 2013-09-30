@@ -36,7 +36,7 @@ class Plugin extends ParserRule implements ParserRuleHandler, LexerRuleHandler {
 		$pluginname = strtolower($nodeData[0]);
 		$funcname = "plugin_".$pluginname;
 		if (!function_exists($funcname)) {
-			return nop("PLUGIN '$pluginname' nicht verf&uuml;gbar.",false);
+			return nop("PLUGIN '$pluginname' not found.",false);
 		}
 		return call_user_func($funcname, $this->getParser(), $node);
 	}

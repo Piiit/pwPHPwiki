@@ -1,4 +1,4 @@
 <border>
-Sie sind hier: ~~TRACE~~
-<lo> | [[:dokumentation:todos|Todos anzeigen]]</lo>
+You are here: ~~TRACE~~
+<lo> | [[:dokumentation:todos|Show Todos]]</lo>
 </border>

@@ -31,10 +31,15 @@ class ShowPagesModule extends Module implements ModuleHandler, MenuItemProvider 
 		$dirs = array();
 		$directoryContent = glob("$path/*");
 	
-		// Delete empty folders!
+		//TODO Delete empty folders!  should be optional!
 		if (!$directoryContent) { 
-			if ($path != WIKISTORAGE && rmdir($path)) {
-				$this->setNotification("$path is empty. It has been deleted!");
+			if ($path != WIKISTORAGE) {
+				try {
+					FileTools::removeDirectory($path);
+					$this->setNotification("'".$id->getNSAsString()."' is empty.<br />It has been deleted!");
+				} catch (Exception $e) {
+					$this->setNotification("Unable to delete '".$id->getNSAsString()."'!<br />".$e->getMessage(), Module::NOTIFICATION_ERROR);
+				}
 			}
 		} else {
 			foreach ($directoryContent as $fileOrDir) {
