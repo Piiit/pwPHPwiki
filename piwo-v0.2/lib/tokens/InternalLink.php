@@ -113,7 +113,7 @@ class InternalLink extends ParserRule implements ParserRuleHandler, LexerRuleHan
 			}
 			
 			if (!$text) {
-				$text = utf8_ucfirst($id->getPageAsString());
+				$text = utf8_ucfirst($id->getPageAsHtmlEntities());
 			}
 	
 			$href = "?id=".pw_s2url($id->getID());

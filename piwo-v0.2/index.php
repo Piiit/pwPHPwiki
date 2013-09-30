@@ -14,7 +14,7 @@ new ConfigModule();new ShowSourceModule();new EditModule();new ShowPagesModul
 try {	try {		$module = Module::getModuleList()->get($mode);		if($module instanceof JavaScriptProvider) {
 			$scriptsText .= $module->getJavaScript()."<!-- INSERTED BY MODULE ".$module->getName()." -->\n";		}
 			} catch (Exception $e) {		throw new Exception("Mode with ID '$mode' does not exist!");	}	if ($module instanceof PermissionProvider && !$module->permissionGranted()) {		throw new Exception("Module '".$module->getName()."': Access denied.");	}	$module->execute();		} catch (Exception $e) {	$notification = $e->getMessage();	$notificationType = "error";}$notification = $notification == null ? $module->getNotification() : $notification;if($notification != null) {	if(!isset($notificationType)) {
-		$notificationType = $module->getNotificationType() == Module::NOTIFICATION_INFO ? "info" : "error";	}	$notification = "<div id='notification' class='$n	otificationType'>$notification</div>";
+		$notificationType = $module->getNotificationType() == Module::NOTIFICATION_INFO ? "info" : "error";	}	$notification = "<div id='notification' class='$notificationType'>$notification</div>";
 }
 $body = $module == null ? null : $module->getDialog();if($body == null) {	$defaultModule->execute();	$body = $defaultModule->getDialog();}$menu = pw_wiki_getmenu(pw_wiki_getid(), $mode, Module::getModuleList()); 
 
