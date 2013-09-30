@@ -74,7 +74,7 @@ function pw_wiki_getmenu($id, $mode, Collection $modules) {
 	foreach ($modules->getArray() as $module) {
 		if($module instanceof MenuItemProvider && $module->getMenuAvailability()) {
 			if(!($module instanceof PermissionProvider) || $module instanceof PermissionProvider && $module->permissionGranted()) {
-				$o .= GuiTools::textButton($module->getMenuText(), "id=".$id->getID()."&mode=".$module->getName());
+				$o .= GuiTools::textButton($module->getMenuText(), "id=".$id->getIDAsUrl()."&mode=".$module->getName());
 				$o .= " | ";
 			}
 		}
@@ -254,9 +254,10 @@ function pw_wiki_fileinfo($subcat) {
 
 
 
-function pw_wiki_trace($ns, $sep = "&raquo;") {
+function pw_wiki_trace(WikiID $id, $sep = "&raquo;") {
+	
+	$ns = $id->getFullNS();
 
-	$ns = pw_url2t($ns);
 	$sep = ' '.$sep.' ';
 
 	$ns = preg_split("#:#", $ns, null, PREG_SPLIT_NO_EMPTY);

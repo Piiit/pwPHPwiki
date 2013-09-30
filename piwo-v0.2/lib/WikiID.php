@@ -26,7 +26,6 @@ class WikiID {
 	
 	public function __construct($id) {
 		$this->id = self::s2id($id);
-		
 		if (!self::isvalid($this->id)) {
 			throw new Exception("Invalid ID '$this->id'!");
 		}
@@ -43,24 +42,32 @@ class WikiID {
 		$this->nsArray = preg_split("#:#", $this->fullns, null, PREG_SPLIT_NO_EMPTY);
 		$this->ns = end($this->nsArray);
 		$this->id = $this->fullns.$this->pg;
-		$this->path = pw_url2t(str_replace(":", "/", pw_url2t($this->id)));
-		$this->fullnspath = str_replace(":", "/", pw_url2t($this->fullns));
+		$this->path = pw_u2t(str_replace(":", "/", $this->id));
+		$this->fullnspath = pw_u2t(str_replace(":", "/", $this->fullns));
 	}
 	
 	public function getID() {
 		return $this->id;
 	}
 	
-	public function getIDAsString() {
-		return pw_url2e($this->id);
+	public function getIDAsHtmlEntities() {
+		return pw_s2e($this->id);
+	}
+	
+	public function getIDAsUrl() {
+		return pw_s2url($this->id);
 	}
 
 	public function getNS() {
 		return $this->ns;
 	}
 	
-	public function getNSAsString() {
-		return pw_url2e($this->ns);
+	public function getNSAsHtmlEntities() {
+		return pw_s2e($this->ns);
+	}
+	
+	public function getNSAsUrl() {
+		return pw_s2url($this->ns);
 	}
 	
 	public function getPath() {
@@ -75,8 +82,12 @@ class WikiID {
 		return $this->fullns;
 	}
 	
-	public function getFullNSAsString() {
-		return pw_url2e($this->fullns);
+	public function getFullNSAsHtmlEntities() {
+		return pw_s2e($this->fullns);
+	}
+	
+	public function getFullNSAsUrl() {
+		return pw_s2url($this->fullns);
 	}
 	
 	public function getFullNSAsArray() {
@@ -87,8 +98,8 @@ class WikiID {
 		return $this->pg;
 	}
 	
-	public function getPageAsString() {
-		return pw_url2e($this->pg);
+	public function getPageAsHtmlEntities() {
+		return pw_s2e($this->pg);
 	}
 	
 	public function getAnchor() {
@@ -112,10 +123,9 @@ class WikiID {
 	}
 	
 	private static function s2id($id) {
+		$id = pw_s2u($id);
 		$id = pw_stripslashes($id);
-		$id = pw_e2url($id);
 		$id = utf8_strtolower($id);
-		$id = pw_s2url($id);
 		return $id;
 	}
 

@@ -27,6 +27,8 @@ class ShowContentModule extends Module implements ModuleHandler {
 	public function execute() {
 		$id = pw_wiki_getid();
 		$filepath = WIKISTORAGE.$id->getPath().WIKIFILEEXT;
+// 		TestingTools::inform($id);
+// 		TestingTools::inform(file_exists($filepath));
 		
 		if($id->isNS()) {
 			$namespacePageID = new WikiID(rtrim($id->getID(), ":"));

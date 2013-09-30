@@ -30,12 +30,12 @@ a:hover {
     left: 0;
     right: 0;
     margin: 10px auto;
-    width: 300px;
+    width: 400px;
     background: black;
     text-align: center;
     line-height: 2;
     overflow: hidden;
-    border-radius: 15px;
+    border-radius: 25px;
 }
 
 .info {

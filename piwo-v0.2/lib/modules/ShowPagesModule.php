@@ -26,7 +26,6 @@ class ShowPagesModule extends Module implements ModuleHandler, MenuItemProvider 
 		//FIXME getFullNSPath gives a url and not a filesystem path! BUG!!!
 		$path = WIKISTORAGE.$id->getFullNSPath();
 		
-		
 		$files = array();
 		$dirs = array();
 		$directoryContent = glob("$path/*");
@@ -36,9 +35,9 @@ class ShowPagesModule extends Module implements ModuleHandler, MenuItemProvider 
 			if ($path != WIKISTORAGE) {
 				try {
 					FileTools::removeDirectory($path);
-					$this->setNotification("'".$id->getNSAsString()."' is empty.<br />It has been deleted!");
+					$this->setNotification("'".$id->getNSAsHtmlEntities()."' is empty.<br />It has been deleted!");
 				} catch (Exception $e) {
-					$this->setNotification("Unable to delete '".$id->getNSAsString()."'!<br />".$e->getMessage(), Module::NOTIFICATION_ERROR);
+					$this->setNotification("Unable to delete '".$id->getNSAsHtmlEntities()."'!<br />".$e->getMessage(), Module::NOTIFICATION_ERROR);
 				}
 			}
 		} else {
@@ -63,20 +62,20 @@ class ShowPagesModule extends Module implements ModuleHandler, MenuItemProvider 
 		sort($dirs);
 		sort($files);
 		
-		$out = "<div class='admin'><a href='?id=".$id->getID()."'>&laquo; Back</a><hr />";
+		$out = "<div class='admin'><a href='?id=".$id->getIDAsUrl()."'>&laquo; Back</a><hr />";
 		$out .= "<h1>Pages</h1>";
-		$out .= "You are here: ".pw_wiki_trace($id->getFullNS())."";
+		$out .= "You are here: ".pw_wiki_trace($id)."";
 		$out .= "<table class='overview' style='width: 100%'><tr><th style='width: 40%'>Name</th><th style='width: 10%'>Size</th><th style='width: 17%'>Modified</th><th>Options</th></tr>";
 
 		foreach (array_merge($dirs, $files) as $fileOrDir) {
 	
 			$out .= "<tr style='height: 40px'>";
 			if ($fileOrDir['TYPE'] == "TEXT") {
-				$out .= "<td><small>[TXT]</small> <a href='?id=".$id->getFullNS().pw_s2url($fileOrDir['NAME'])."'>".pw_url2e($fileOrDir['NAME'])."</a></td>";
+				$out .= "<td><small>[TXT]</small> <a href='?id=".pw_s2url($id->getFullNS().$fileOrDir['NAME'])."'>".pw_s2e($fileOrDir['NAME'])."</a></td>";
 				$out .= "<td style='text-align: right'><tt>".StringTools::showReadableFilesize($fileOrDir['SIZE'], 2, false)."</tt></td>";
 				$out .= "<td style='text-align: right'>".date("d.m.Y H:i", $fileOrDir['MODIFIED'])."</td>";
 			} else {
-				$out .= "<td><a href='?id=".pw_s2url(WikiID::cleanNamespaceString($id->getFullNS().$fileOrDir['NAME'].':'))."&mode=showpages'>".pw_url2e($fileOrDir['NAME'])."</a></td>";
+				$out .= "<td><a href='?id=".pw_s2url(WikiID::cleanNamespaceString($id->getFullNS().$fileOrDir['NAME'].':'))."&mode=showpages'>".pw_s2e($fileOrDir['NAME'])."</a></td>";
 				$out .= "<td>&nbsp</td>";
 				$out .= "<td>&nbsp</td>";
 			}
@@ -85,10 +84,10 @@ class ShowPagesModule extends Module implements ModuleHandler, MenuItemProvider 
 	
 			if ($fileOrDir['TYPE'] == "TEXT") {
 				if (pw_wiki_getcfg('login', 'group') == 'admin') {
-					$out .= "<a href='?id=".$id->getFullNS().pw_s2url($fileOrDir['NAME'])."&mode=edit'>Edit</a> | ";
-					$out .= "<a href='?id=".$id->getFullNS().pw_s2url($fileOrDir['NAME'])."&mode=deletepage'>Delete</a> | ";
-					$out .= "<a href='?id=".$id->getFullNS().pw_s2url($fileOrDir['NAME'])."&mode=showpages&dialog=rename'>Rename</a> | ";
-					$out .= "<a href='?id=".$id->getFullNS().pw_s2url($fileOrDir['NAME'])."&mode=showpages&dialog=movepage'>Move</a>";
+					$out .= "<a href='?id=".pw_s2url($id->getFullNS().$fileOrDir['NAME'])."&mode=edit'>Edit</a> | ";
+					$out .= "<a href='?id=".pw_s2url($id->getFullNS().$fileOrDir['NAME'])."&mode=deletepage'>Delete</a> | ";
+					$out .= "<a href='?id=".pw_s2url($id->getFullNS().$fileOrDir['NAME'])."&mode=showpages&dialog=rename'>Rename</a> | ";
+					$out .= "<a href='?id=".pw_s2url($id->getFullNS().$fileOrDir['NAME'])."&mode=showpages&dialog=movepage'>Move</a>";
 				} else {
 					$out .= "<a href='?id=".pw_s2url($id->getFullNS().$fileOrDir['NAME'])."&mode=showsource&oldmode=showpages'>Show Source</a>";
 				}

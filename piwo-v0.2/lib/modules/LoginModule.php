@@ -51,14 +51,14 @@ class LoginModule extends Module implements ModuleHandler, MenuItemProvider {
 		}
 	
 		if (pw_wiki_getcfg('login', 'group') == 'admin') {
-			$this->setDialog(GuiTools::dialogQuestion("Logout", "Do you want to logout?", "logout", "Yes", "cancel", "No", "id=".$id->getID()."&mode=$mode"));
+			$this->setDialog(GuiTools::dialogQuestion("Logout", "Do you want to logout?", "logout", "Yes", "cancel", "No", "id=".$id->getIDAsUrl()."&mode=$mode"));
 			return;
 		}
 	
-		$out = StringTools::htmlIndent("<a href='?id=".$id->getID()."'>&laquo; Back</a><hr />");
+		$out = StringTools::htmlIndent("<a href='?id=".$id->getIDAsUrl()."'>&laquo; Back</a><hr />");
 		$entries = GuiTools::textInput("User", "username");
 		$entries .= GuiTools::passwordInput("Password", "password");
-		$this->setDialog($out.GuiTools::dialogQuestion("Login", $entries, "login", "OK", "cancel", "Cancel", "id=".$id->getID()."&mode=$mode"));
+		$this->setDialog($out.GuiTools::dialogQuestion("Login", $entries, "login", "OK", "cancel", "Cancel", "id=".$id->getIDAsUrl()."&mode=$mode"));
 	}
 
 	//TODO how to return a non-link string?

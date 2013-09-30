@@ -42,18 +42,18 @@ class DeletePageModule extends Module implements ModuleHandler, PermissionProvid
 			if (is_file($filename)) {
 				if (unlink($filename)) {
 					//TODO show only a notification and redirect to the NS page if existent, else go NS levels up until startpage...
-					$this->setDialog(GuiTools::dialogInfo("Delete", "The page '".$id->getIDAsString()."' has been deleted.", "id=".$id->getNS()));
+					$this->setDialog(GuiTools::dialogInfo("Delete", "The page '".$id->getIDAsHtmlEntities()."' has been deleted.", "id=".$id->getNSAsUrl()));
 				} else {
-					$this->setNotification("Unable to delete the page '".$id->getIDAsString()."'.", Module::NOTIFICATION_ERROR);
+					$this->setNotification("Unable to delete the page '".$id->getIDAsHtmlEntities()."'.", Module::NOTIFICATION_ERROR);
 				}
 			} else {
-				$this->setNotification("The page '".$id->getIDAsString()."' does not exist.", Module::NOTIFICATION_ERROR);
+				$this->setNotification("The page '".$id->getIDAsHtmlEntities()."' does not exist.", Module::NOTIFICATION_ERROR);
 			}
 			return;
 		}
 
-		$out = StringTools::htmlIndent("<a href='?id=".$id->getID()."'>&laquo; Back</a><hr />");
-		$this->setDialog(GuiTools::dialogQuestion("Delete", "Do you want to delete the page '".$id->getPageAsString()."'?", "delete", "Yes", "cancel", "No", "id=".$id->getID()."&mode=$mode"));
+		$out = StringTools::htmlIndent("<a href='?id=".$id->getIDAsUrl()."'>&laquo; Back</a><hr />");
+		$this->setDialog(GuiTools::dialogQuestion("Delete", "Do you want to delete the page '".$id->getPageAsHtmlEntities()."'?", "delete", "Yes", "cancel", "No", "id=".$id->getID()."&mode=$mode"));
 	}
 	
 	public function getMenuText() {

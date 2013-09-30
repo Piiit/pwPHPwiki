@@ -43,7 +43,7 @@ class Header extends ParserRule implements ParserRuleHandler, LexerRuleHandler {
 		
  		$htxt = trim($this->getText($node));
  		if (strlen($htxt) == 0) {
- 			$o .= nop("Leere Titel sind nicht erlaubt!");
+ 			$o .= nop("Empty headers are not allowed!");
  		}
  		$o .= $htxt;
 		return $o;

@@ -37,7 +37,7 @@ class DeleteNamespaceModule extends Module implements ModuleHandler, PermissionP
 		$id = pw_wiki_getid();
 		
 		if(!$id->isNS()) {
-			$this->setNotification("The ID '".$id->getIDAsString()."' is not a namespace!");
+			$this->setNotification("The ID '".$id->getIDAsHtmlEntities()."' is not a namespace!");
 			return;
 		}
 		
@@ -49,18 +49,18 @@ class DeleteNamespaceModule extends Module implements ModuleHandler, PermissionP
 				try {
 					FileTools::removeDirectory($filename);
 					$newid = new WikiID($id->getID()."..");
-					$this->setDialog(GuiTools::dialogInfo("Delete", "The namespace '".$id->getIDAsString()."' has been deleted.", "id=".$newid->getFullNS()));
+					$this->setDialog(GuiTools::dialogInfo("Delete", "The namespace '".$id->getIDAsHtmlEntities()."' has been deleted.", "id=".$newid->getFullNSAsUrl()));
 				} catch (Exception $e) {
-					$this->setNotification("Unable to delete the namespace '".$id->getIDAsString()."'.", Module::NOTIFICATION_ERROR);
+					$this->setNotification("Unable to delete the namespace '".$id->getIDAsHtmlEntities()."'.", Module::NOTIFICATION_ERROR);
 				}
 			} else {
-				$this->setNotification("The namespace '".$id->getIDAsString()."' does not exist.", Module::NOTIFICATION_ERROR);
+				$this->setNotification("The namespace '".$id->getIDAsHtmlEntities()."' does not exist.", Module::NOTIFICATION_ERROR);
 			}
 			return;
 		}
 
-		$out = StringTools::htmlIndent("<a href='?id=".$id->getID()."'>&laquo; Back</a><hr />");
-		$this->setDialog(GuiTools::dialogQuestion("Delete", "Do you want to delete the namespace '".$id->getFullNSAsString()."'?", "delete", "Yes", "cancel", "No", "id=".$id->getID()."&mode=$mode"));
+		$out = StringTools::htmlIndent("<a href='?id=".$id->getIDAsUrl()."'>&laquo; Back</a><hr />");
+		$this->setDialog(GuiTools::dialogQuestion("Delete", "Do you want to delete the namespace '".$id->getFullNSAsHtmlEntities()."'?", "delete", "Yes", "cancel", "No", "id=".$id->getIDAsUrl()."&mode=$mode"));
 	}
 	
 }
