@@ -39,15 +39,12 @@ class DeletePageModule extends Module implements ModuleHandler, PermissionProvid
 		if (isset($_POST["delete"])) {
 			$filename = WIKISTORAGE.$id->getPath().WIKIFILEEXT; 
 	
-			if (is_file($filename)) {
-				if (unlink($filename)) {
-					//TODO show only a notification and redirect to the NS page if existent, else go NS levels up until startpage...
-					$this->setDialog(GuiTools::dialogInfo("Delete", "The page '".$id->getIDAsHtmlEntities()."' has been deleted.", "id=".$id->getNSAsUrl()));
-				} else {
-					$this->setNotification("Unable to delete the page '".$id->getIDAsHtmlEntities()."'.", Module::NOTIFICATION_ERROR);
-				}
-			} else {
-				$this->setNotification("The page '".$id->getIDAsHtmlEntities()."' does not exist.", Module::NOTIFICATION_ERROR);
+			try {
+				FileTools::removeFile($filename);
+				//TODO show only a notification and redirect to the NS page if existent, else go NS levels up until startpage...
+				$this->setDialog(GuiTools::dialogInfo("Delete", "The page '".$id->getIDAsHtmlEntities()."' has been deleted.", "id=".$id->getFullNSAsUrl()));
+			} catch (Exception $e) {
+				$this->setNotification("Unable to delete the page '".$id->getIDAsHtmlEntities()."'.<br />".$e->getMessage(), Module::NOTIFICATION_ERROR);
 			}
 			return;
 		}

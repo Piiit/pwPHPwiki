@@ -1,9 +1,9 @@
 <error>
-:> ++**Fehler**++
-:> Die Seite '{{WRONGID}}' existiert nicht.
+:> ++**Error**++
+:> The page '{{ID}}' does not exist.
 </error>
 
-Bitte wählen...
-* Die Seite [[edit>:{{WRONGID}}|neu anlegen]]? 
-* [[{{STARTPAGE}}|Zurück zur Startseite]] 
-* [[showpages>:{{WRONGID}}|Seitenüberblick anzeigen]]
+Please choose...
+* Create a [[edit>:{{ID}}|new page]]? 
+* Back to [[{{STARTPAGE}}|Home]] 
+* [[showpages>:{{ID}}|Show all pages]]

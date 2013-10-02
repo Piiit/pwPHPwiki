@@ -120,7 +120,7 @@ class InternalLink extends ParserRule implements ParserRuleHandler, LexerRuleHan
 		
 			if (!$id->hasAnchor()) {
 				if ($linkModus == "edit" or !$found) {
-					$href .= '&mode=editpage';
+					$href .= '&mode=edit';
 				}
 				if ($linkModus == "showpages") {
 					$href .= "&mode=showpages";
