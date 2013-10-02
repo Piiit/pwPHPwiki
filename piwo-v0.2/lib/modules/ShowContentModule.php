@@ -39,7 +39,9 @@ class ShowContentModule extends Module implements ModuleHandler {
 				$wikitext = pw_wiki_showcontent(new WikiID(":tpl:namespace"));
 			}
 		} elseif (file_exists($filepath)) {
-			$wikitext = pw_wiki_showcontent($id);
+			if($id->getPage() == WIKINSDEFAULTPAGE) {
+				$wikitext = pw_wiki_showcontent(new WikiID($id->getFullNS()));
+			}
 		} else {
 			$wikitext = pw_wiki_showcontent(new WikiID(":tpl:notfound"));
 		}

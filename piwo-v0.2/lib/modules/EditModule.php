@@ -58,7 +58,7 @@ class EditModule extends Module implements ModuleHandler, JavaScriptProvider, Pe
 		$out = StringTools::htmlIndent("<a href='?id=".$id->getIDAsUrl()."'>&laquo; Back</a><hr />");
 		$out .= StringTools::htmlIndent("<h1>Source code Editor</h1>ID = <tt>".$id->getIDAsHtmlEntities()."</tt>");
 		$out .= StringTools::htmlIndent("<form id='texteditor' name='texteditor' method='post' accept-charset='utf-8'>", StringTools::START);
-		$out .= StringTools::htmlIndent("<div><button value='save' name='save' id='save'>Save</button>");
+		$out .= StringTools::htmlIndent("<div><button value='save' name='save' id='save'>Save</button>"); 
 		$out .= StringTools::htmlIndent("<textarea rows='25' name='wikitxt' id='wikitxt' wrap=off onkeydown='return catchTab(this,event)'>$data</textarea>");
 		$out .= StringTools::htmlIndent("</form>", StringTools::END);
 	
