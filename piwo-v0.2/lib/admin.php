@@ -118,7 +118,7 @@ function pw_wiki_delnamespaces($dir) {
 	foreach($files as $filename) {		if(substr($filename, -4) == ".txt") {			$filename = str_replace("\\", "/", $filename);			try {				pw_wiki_create_cached_page(pw_wiki_path2id($filename), $forced);			} catch (Exception $e) {				echo "<pre>Exception: Skipping file '$filename': $e\n</pre>";			}		}
 	}}function pw_wiki_create_cached_page(WikiID $id, $forced = false) {	$filename = WIKISTORAGE.$id->getPath().WIKIFILEEXT;	$headerID = new WikiID("tpl:header", WIKIFILEEXT, WIKISTORAGE);	$footerID = new WikiID("tpl:footer", WIKIFILEEXT, WIKISTORAGE);	$headerFilename = WIKISTORAGE.$headerID->getPath().WIKIFILEEXT;	$footerFilename = WIKISTORAGE.$footerID->getPath().WIKIFILEEXT;		if (!is_file($filename)) {		throw new Exception("File '$filename' does not exist!");
 	}	if (!is_file($headerFilename)) {
-		throw new Exception("File '$headerFilename' does not exist!");
+		throw new Exception("File '$headerFilename' does not exist!"); 
 	}	if (!is_file($footerFilename)) {
 		throw new Exception("File '$footerFilename' does not exist!");
 	}		// If the cached file is still up-to-date do nothing! Except forced overwriting!	$cachedFilename = "home/".$id->getPath().".html";	if(!$forced && is_file($cachedFilename)) {		$cachedMTime = filemtime($cachedFilename);		if($cachedMTime >= filemtime($filename) && $cachedMTime >= filemtime($headerFilename) && $cachedMTime >= filemtime($footerFilename)) {			$data = file_get_contents($cachedFilename);			if ($data === false) {				throw new Exception("Unable to read data file '$cachedFilename'!");			}			TestingTools::inform($cachedFilename);			return $data;		}	}		$data = file_get_contents($filename);	if ($data === false) {

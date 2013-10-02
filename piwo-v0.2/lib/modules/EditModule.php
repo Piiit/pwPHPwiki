@@ -9,7 +9,7 @@ require_once INC_PATH.'piwo-v0.2/lib/modules/JavaScriptProvider.php';
 
 class EditModule extends Module implements ModuleHandler, JavaScriptProvider, PermissionProvider, MenuItemProvider {
 	
-	public function __construct() {
+	public function __construct() { 
 		parent::__construct($this->getName(), $this);
 	}
 	
@@ -30,15 +30,25 @@ class EditModule extends Module implements ModuleHandler, JavaScriptProvider, Pe
 		
 		$id = pw_wiki_getid();
 		$data = "";
-	
+		$filename = WIKISTORAGE.$id->getPath().WIKIFILEEXT;
+		
 		if ($id->isNS()) {
-			//TODO allow to create a default namespace page...
-			$this->setNotification("Namespaces can not be edited!");
-			return;
+			$nsDefaultId = new WikiID($id->getFullNS().WIKINSDEFAULTPAGE);
+			
+			header("Location: ?id=".$nsDefaultId->getIDAsUrl()."&mode=edit");
+			
+// 			$nsDefaultFilename = WIKISTORAGE.$nsDefaultId->getPath().WIKIFILEEXT;
+// 			if(file_exists($nsDefaultFilename)) {
+// 				$this->setNotification("Loading default namespace page! ".$nsDefaultFilename);
+// 				$filename = $nsDefaultFilename;
+// 				$id = $nsDefaultId;
+// 			} else {
+// 				if(file_put_contents($nsDefaultFilename, "") === false) {
+// 					$this->setNotification("Unable to create file '$nsDefaultFilename'!", Module::NOTIFICATION_ERROR);
+// 				}
+// 			}
 		}
 	
-		$filename = WIKISTORAGE.$id->getPath().WIKIFILEEXT;
-		$filenameText = pw_url2e($filename);
 	
 		if (isset($_POST["save"])) {
 			$data = $_POST['wikitxt'];
@@ -77,24 +87,20 @@ class EditModule extends Module implements ModuleHandler, JavaScriptProvider, Pe
 	private function save (WikiID $id, $data) {
 	
 		$filename = WIKISTORAGE.$id->getPath().WIKIFILEEXT;
-		$dirname = WIKISTORAGE.$id->getPath();
-		$filenameText = pw_url2e($filename);
+		$dirname = WIKISTORAGE.$id->getFullNSPath();
 		
 		try {
 			FileTools::createFolderIfNotExist($dirname);
+			$data = FileTools::setTextFileFormat($data, new TextFileFormat(TextFileFormat::UNIX));
+			if(file_put_contents($filename, $data) === false) {
+				throw new Exception("Can not save '".$id->getIDAsHtmlEntities()."'");
+			}
+			pw_wiki_create_cached_page($id);
+			$this->setNotification("Changes saved.");
 		} catch (Exception $e) {
 			$this->setNotification($e->getMessage(), Module::NOTIFICATION_ERROR);
-			return;
 		}
 	
-		$data = FileTools::setTextFileFormat($data, new TextFileFormat(TextFileFormat::UNIX));
-		if(file_put_contents($filename, $data) === false) {
-			$this->setNotification("Can not save '$filenameText'", Module::NOTIFICATION_ERROR);
-			return;
-		}
-	
-		pw_wiki_create_cached_page($id);
-		$this->setNotification("Changes saved.");
 	}
 	
 	public function getJavaScript() {
