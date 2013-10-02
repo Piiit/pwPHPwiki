@@ -13,7 +13,7 @@ class FileTools {
 			throw new Exception("Folder string cannot be empty");
 		}
 		if (!file_exists($folder)) {
-			if(!mkdir($folder, 0755, TRUE)) {
+			if(!mkdir($folder, 0755, true)) {
 				throw new Exception("Creating folder '$folder' failed!");
 			}
 		}
@@ -45,7 +45,7 @@ class FileTools {
 			throw new Exception("Pattern '$sourceWithWildcards' does not match any file!");
 		}
 		foreach ($files as $file) {
-			FileTools::copyFileIfNotExist($file, $dest.basename($file));
+			self::copyFileIfNotExist($file, $dest.basename($file));
 		}
 	}
 	
