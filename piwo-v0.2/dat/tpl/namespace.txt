@@ -1,3 +1,4 @@
+<info>This is the default namespace page, edit the namespace if you want to change this.</info>
 = {{NS}} =
 Contents:
 ~~NSTOC|{{FULLNS}}|TITLE~~
