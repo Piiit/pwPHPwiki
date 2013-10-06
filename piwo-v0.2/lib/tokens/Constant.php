@@ -79,7 +79,9 @@ class Constant extends ParserRule implements ParserRuleHandler, LexerRuleHandler
 				$id = pw_wiki_getid(); 
 				$txt = pw_url2u($id->getID()); 
 			break;
-			case 'startpage': $txt = ':'.pw_url2u(WIKISTARTPAGE); break;
+			case 'startpage': 
+				$txt = ':'.pw_url2u(WIKINSDEFAULTPAGE); 
+			break;
 			case 'version': $txt = $this->getParser()->getUserInfo('piwoversion'); break;
 			case 'lexerversion': $txt = Lexer::getVersion(); break;
 			case 'path': $txt = 'http://'.$_SERVER['SERVER_NAME'].pw_dirname($_SERVER['PHP_SELF']); break;
