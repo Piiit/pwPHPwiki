@@ -163,11 +163,9 @@ function pw_wiki_delnamespaces($dir) {
 		throw new Exception("Unable to read template file '$footerFilename'!");
 	}		$data = $headerData."\n".$data."\n".$footerData;	$_SESSION['pw_wiki']['file']['format'] = FileTools::getTextFileFormat($data)->getString();
 	$data = FileTools::setTextFileFormat($data, new TextFileFormat(TextFileFormat::UNIX));		$out = parse($data);	return $out;}
-function pw_wiki_showcontent(WikiID $id) {	if(isset($_SESSION['pw_wiki']['useCache']) && $_SESSION['pw_wiki']['useCache'] == false) {		return pw_wiki_get_parsed_file($id);	}	return pw_wiki_create_cached_page($id);
+function pw_wiki_showcontent(WikiID $id) {	if(!isset($_SESSION['pw_wiki']['useCache']) || $_SESSION['pw_wiki']['useCache'] == false) {		return pw_wiki_get_parsed_file($id);	}	return pw_wiki_create_cached_page($id);
 }
-function pw_wiki_getfilelist(WikiID $id) {	#var_dump($id);
-	#var_dump(pw_wiki_getcfg());
-
+function pw_wiki_getfilelist(WikiID $id) {
 	$ns = $id->getNS();
 	$path = $id->getFullNSPath();
 

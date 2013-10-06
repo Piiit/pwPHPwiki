@@ -52,6 +52,8 @@ class WikiID {
 	
 		$path = str_replace("//", "/", $path);
 		$pathFragments = explode('/', $path);
+		
+		//TODO WIKISTORAGE creates a independence to the project, not good :( !
 		if ($pathFragments[0] == WIKISTORAGE) {
 			$pathFragments = array_slice($pathFragments, 1, sizeof($pathFragments));
 		}
@@ -60,7 +62,6 @@ class WikiID {
 		$path = str_replace("/", ":", $path);
 		$path = ltrim($path, ":");
 		$path = StringTools::rightTrim($path, WIKIFILEEXT);
-		$path = pw_s2url($path);
 		return new WikiID($path);
 	}
 	
