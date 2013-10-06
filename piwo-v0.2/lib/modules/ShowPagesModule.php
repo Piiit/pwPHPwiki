@@ -68,7 +68,12 @@ class ShowPagesModule extends Module implements ModuleHandler, MenuItemProvider 
 		$out .= "<table class='overview' style='width: 100%'><tr><th style='width: 40%'>Name</th><th style='width: 10%'>Size</th><th style='width: 17%'>Modified</th><th>Options</th></tr>";
 
 		foreach (array_merge($dirs, $files) as $fileOrDir) {
-	
+// 			TestingTools::inform($fileOrDir);
+			//Do not show default namespace pages and template folders.
+			if(($fileOrDir['NAME'] == WIKINSDEFAULTPAGE && $fileOrDir['TYPE'] == "TEXT") ||
+			   ($fileOrDir['NAME'] == trim(WIKITEMPLATESNS, ":")) && $fileOrDir['TYPE'] == "DIR") {
+				continue;
+			}
 			$out .= "<tr style='height: 40px'>";
 			if ($fileOrDir['TYPE'] == "TEXT") {
 				$out .= "<td><small>[TXT]</small> <a href='?id=".pw_s2url($id->getFullNS().$fileOrDir['NAME'])."'>".pw_s2e($fileOrDir['NAME'])."</a></td>";

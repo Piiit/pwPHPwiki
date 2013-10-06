@@ -46,6 +46,25 @@ class WikiID {
 		$this->fullnspath = pw_u2t(str_replace(":", "/", $this->fullns));
 	}
 	
+	public static function fromPath($path) {
+	
+		$path = utf8_strtolower($path);
+	
+		$path = str_replace("//", "/", $path);
+		$pathFragments = explode('/', $path);
+		if ($pathFragments[0] == WIKISTORAGE) {
+			$pathFragments = array_slice($pathFragments, 1, sizeof($pathFragments));
+		}
+	
+		$path = implode('/', $pathFragments);
+		$path = str_replace("/", ":", $path);
+		$path = ltrim($path, ":");
+		$path = StringTools::rightTrim($path, WIKIFILEEXT);
+		$path = pw_s2url($path);
+		return new WikiID($path);
+	}
+	
+	
 	public function getID() {
 		return $this->id;
 	}

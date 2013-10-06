@@ -29,25 +29,23 @@ class ShowContentModule extends Module implements ModuleHandler {
 		$filepath = WIKISTORAGE.$id->getPath().WIKIFILEEXT;
 // 		TestingTools::inform($id);
 // 		TestingTools::inform(file_exists($filepath));
+
+		if($id->getPage() == WIKINSDEFAULTPAGE) {
+			header("Location: ?id=".$id->getFullNSAsUrl());
+		}
 		
 		if($id->isNS()) {
-			$namespacePageID = new WikiID(rtrim($id->getID(), ":"));
-			$filepathNS = WIKISTORAGE.$namespacePageID->getPath().WIKIFILEEXT;
+			$filepathNS = WIKISTORAGE.$id->getPath().WIKINSDEFAULTPAGE.WIKIFILEEXT;
 			if(file_exists($filepathNS)) {
-				$wikitext = pw_wiki_showcontent($namespacePageID);
+				$wikitext = pw_wiki_showcontent(new WikiID($id->getFullNS().WIKINSDEFAULTPAGE));
 			} else {
 				$wikitext = pw_wiki_showcontent(new WikiID(":tpl:namespace"));
 			}
 		} elseif (file_exists($filepath)) {
-			if($id->getPage() == WIKINSDEFAULTPAGE) { 
-				$wikitext = pw_wiki_showcontent(new WikiID($id->getFullNS()));
-			} else {
-				$wikitext = pw_wiki_showcontent($id);
-			}
+			$wikitext = pw_wiki_showcontent($id);
 		} else {
 			$wikitext = pw_wiki_showcontent(new WikiID(":tpl:notfound"));
 		}
-		
 		$body = file_get_contents(CFG_PATH."skeleton/wiki.html");
 		$body = str_replace("{{wikitext}}", $wikitext, $body);
 		$this->setDialog($body);

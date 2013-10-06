@@ -9,7 +9,7 @@ require_once INC_PATH.'pwTools/debug/TestingTools.php';
 require_once INC_PATH.'piwo-v0.2/lib/WikiID.php';
 
 function pw_wiki_getid() {
-	$id = isset($_GET['id']) && $_GET['id'] != "" ? $_GET['id'] : WIKISTARTPAGE;
+	$id = isset($_GET['id']) && $_GET['id'] != "" ? $_GET['id'] : (":".WIKINSDEFAULTPAGE);
 	return new WikiID($id);
 }
 
@@ -177,24 +177,6 @@ function pw_wiki_file2editor($data) {
 	return $data;
 }
 
-function pw_wiki_path2id($path) {
-
-	$id = $path;
-	#$id = utf8_strtolower($path);
-
-	$ida = explode('/', $id);
-	if ($ida[0] == WIKISTORAGE) {
-		$ida = array_slice($ida, 1, sizeof($ida));
-	}
-
-	$id = implode('/', $ida);
-	$id = str_replace("/", ":", $id);
-	$id = ltrim($id, ":");
-
-	$id = StringTools::rightTrim($id, WIKIFILEEXT);
-	$id = pw_s2url($id);
-	return $id;
-}
 
 function pw_wiki_getfulltitle($sep = "&raquo;", $showuser = true) {
 	$sep = ' '.$sep.' ';
