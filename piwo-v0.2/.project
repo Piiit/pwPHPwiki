@@ -3,6 +3,7 @@
 	<name>piwo-v0.2</name>
 	<comment></comment>
 	<projects>
+		<project>pwTools</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
