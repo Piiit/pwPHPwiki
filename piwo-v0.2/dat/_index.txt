@@ -1,0 +1,11 @@
+<info>
+\\
+:> ++ **Welcome \\ ...to piwo {{version}}...**++
+\\
+</info>
+
+----
+:> <lo>
+&raquo; Piwo:Version **{{version}}** %%~~%% Wikisyntax:Version **0.1** %%~~%% Lexer:Version **{{lexerversion}}** &laquo;
+</lo>
+----
