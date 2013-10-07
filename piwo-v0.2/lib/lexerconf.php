@@ -1,13 +1,12 @@
 <?phpif (!defined('INC_PATH')) {
 	define ('INC_PATH', realpath(dirname(__FILE__).'/../').'/');
 }
-require_once INC_PATH.'piwo-v0.2/lib/common.php';require_once INC_PATH.'piwo-v0.2/lib/WikiTocTools.php';require_once INC_PATH.'piwo-v0.2/plugins/toc.php';
-require_once INC_PATH.'piwo-v0.2/cfg/main.php';
-require_once INC_PATH.'pwTools/data/IndexTable.php';require_once INC_PATH.'pwTools/parser/Lexer.php';require_once INC_PATH.'pwTools/parser/Parser.php';require_once INC_PATH.'pwTools/tree/TreePrinter.php';
+require_once INC_PATH.'piwo-v0.2/lib/common.php';require_once INC_PATH.'piwo-v0.2/plugins/toc.php';
+require_once INC_PATH.'piwo-v0.2/cfg/main.php';require_once INC_PATH.'piwo-v0.2/lib/WikiTocTools.php';
 // include all parser token handler...$parserTokenList = glob(INC_PATH."piwo-v0.2/lib/tokens/*.php");
 foreach ($parserTokenList as $parserToken) {
 	require_once $parserToken;
-}function parse($txt) {	try {		$loglevel = Log::INFO;		if(pw_wiki_getcfg('debug') === true) {			$loglevel = Log::DEBUG;		}		$lexer = new Lexer($txt, $loglevel);				$handlerList = array(				new Header(),				new Border(),				new BorderError(),				new BorderInfo(),				new BorderSuccess(),				new BorderValidation(),				new BorderWarning(),				new Plugin(),				new PluginParameter(),
+}function parse($txt) {	try {		$loglevel = Log::INFO;		if(pw_wiki_getcfg('debug') === true) {			$loglevel = Log::DEBUG;		}		$lexer = new Lexer($txt, $loglevel);				$handlerList = array(				new Header(),				new Border(),				new BorderError(),				new BorderInfo(),				new BorderSuccess(),				new BorderValidation(),				new BorderWarning(),				new Plugin(),				new PluginParameter(),
 				new InternalLink(),				new InternalLinkText(),				new InternalLinkMode(),				new InternalLinkPos(),				new Url(),				new UrlNoProtocol(),				new Big(),				new Bold(),				new Em(),				new Hi(),				new Italic(),				new Lo(), 				new Monospace(),				new Small(),				new Strike(),				new Sub(),				new Sup(),				new Underline(),				new Code(),				new NoWiki(),				new NoWikiAlt(),				new Newline(),				new Multiline(),				new Preformat(),				new Align(),				new Justify(),				new Indent(),				new Right(),				new Left(),				new Constant(),				new Symbol(),				new Variable(),				new ExternalLink(),				new ExternalLinkPos(),				new Pre(),				new TableCell(),				new TableRow(),				new TableHeader(),				new Table(),				new TableSpan(),				new AlignInTable(),				new HorizontalRule(),				new DefTerm(),				new DefList(),				new DefItem(),				new ListItem(),				new Lists(),				new Footnote(),				new QuotedString(),				new Math(),				new NoToc(),				new Comment(),				new Comment2()		);						$lexer->registerHandlerList($handlerList);				//TODO No pattern? AST = #DOCUMENT with a single #TEXT node
 		$lexer->parse();		$parser = new Parser();		$parser->registerHandlerList($handlerList);
 		$parser->setUserInfo('indextable', WikiTocTools::createIndexTable($parser, $lexer->getRootNode()));		$parser->setUserInfo('lexerperformance', $lexer->getExecutionTime());		$parser->setUserInfo('piwoversion', PIWOVERSION);				$_SESSION["pw_wiki"]["error"] = false;		 		$ta = new TreeWalker($lexer->getRootNode(), $parser);

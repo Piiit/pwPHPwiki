@@ -1,4 +1,9 @@
 <?php
+
+if (!defined('INC_PATH')) {
+	define ('INC_PATH', realpath(dirname(__FILE__).'/../../').'/');
+}
+
 class WikiTocTools {
 	
 	public static function createIndexTable(Parser $parser, Node $node) {
