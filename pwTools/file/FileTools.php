@@ -193,8 +193,120 @@ class FileTools {
 				return str_replace("\n", "\r\n", $text);
 			break;
 		}
-		
 	}
+
+	//TODO Handle .. and . in a separate private method, do reuse it within self::basename!
+	//TODO write test-cases for basename, dirname, isFilename
+	
+	/**
+	 * This basename handels also filepath constructs like ".."
+	 * It is made for utf-8 compliant strings.
+	 * @param unknown_type $filename
+	 * @param unknown_type $extension
+	 * @return boolean|Ambigous <mixed, string>
+	 */
+	public static function basename($filename, $extension = null) {
+	
+		$filename = pw_s2u($filename);
+	
+		if (!self::isFilename($filename)) {
+			return false;
+		}
+	
+		#$isdir = (utf8_substr($dn, -1) == '/') ? true : false;
+	
+		$filename = explode("/", $filename);
+	
+		$filename = array_pop($filename);
+	
+		if ($extension != null) {
+			$filename = StringTools::rightTrim($filename, $extension);
+		}
+		return $filename;
+	}
+	
+	/**
+	 * This dirname handels also filepath constructs like ".."
+	 * It is made for utf-8 compliant strings.
+	 * @param unknown_type $dirname
+	 * @param unknown_type $single
+	 * @return boolean|Ambigous <string, mixed>
+	 */
+	public static function dirname($dirname, $single = false) {
+		$dirname = pw_s2u($dirname);
+	
+		if (!self::isFilename($dirname)) {
+			return false;
+		}
+
+		$isDirectory = false;
+		if(utf8_substr($dirname, -1) == '/' || utf8_substr($dirname, -2) == '/.' || utf8_substr($dirname, -3) == '/..') {
+			$isDirectory = true;
+		}
+	
+		// Absolute paths start with '/'
+		$isAbsolute = (utf8_substr($dirname, 0, 1) == '/');
+	
+		$dirname = utf8_strtolower($dirname);
+		$dirname = str_replace('\\', '/', $dirname);
+	
+		$directoryList = explode("/", $dirname);
+	
+		$basename = array_pop($directoryList);
+	
+		$dirname = array();
+		foreach ($directoryList as $i => $directory) {
+			if ($directory != ".." && $directory != "." && $directory != "") {
+				$dirname[] = $directory;
+			}
+			if (isset($directoryList[$i+1]) and $directoryList[$i+1] == "..") {
+				array_pop($dirname);
+			}
+		}
+	
+		if ($basename == "..") {
+			array_pop($dirname);
+		}
+	
+	
+		$dirname = implode($dirname, "/");
+		if (utf8_strlen($dirname) > 0) {
+			$dirname .= '/';
+		}
+	
+		if ($isDirectory) {
+			if ($basename == "..") {
+				$basename = "";
+			}
+			$dirname = $dirname.$basename;
+		}
+	
+		$out = str_replace('//', '/', ($isAbsolute ? '/' : '').utf8_rtrim($dirname, '/').'/');
+	
+		// Return only the inner directory...
+		if ($single) {
+			$dirs = explode('/', $out);
+			array_pop($dirs);
+			$out = array_pop($dirs);
+		}
+	
+		#out($out." >>> ".$remember_abs);
+	
+		if ($out == '/' && !$isDirectory) {
+			$out = "";
+		}
+		return $out;
+	}
+	
+	//TODO isFilename: add full pattern for mac, unix and windows
+	public static function isFilename($name) {
+		if (strpos($name, "*") || strpos($name, "\\") || strpos($name, "?")) {
+			return false;
+		}
+		return true;
+	}
+	
+	
 }
 
 ?>
