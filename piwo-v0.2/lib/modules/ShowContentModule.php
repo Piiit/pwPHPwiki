@@ -5,10 +5,6 @@ if (!defined('INC_PATH')) {
 }
 require_once INC_PATH.'piwo-v0.2/lib/modules/ModuleHandler.php';
 require_once INC_PATH.'piwo-v0.2/lib/modules/Module.php';
-require_once INC_PATH.'pwTools/gui/GuiTools.php';
-require_once INC_PATH.'pwTools/data/ArrayTools.php';
-require_once INC_PATH.'piwo-v0.2/lib/WikiID.php';
-
 
 class ShowContentModule extends Module implements ModuleHandler {
 	

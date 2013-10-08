@@ -6,6 +6,7 @@
   const WIKISTORAGE = "dat";
   const WIKIFILEEXT = ".txt";
   const WIKINSDEFAULTPAGE = "_index";
+  const WIKITEMPLATE = "tpl";
   const WIKITEMPLATESNS = ":tpl:";
   const WIKIDESCRIPTION = "coding, brainstorming, testing, hoffen und suden";
   const WIKIKEYWORDS = "php, javascript, java, cms, wiki, tests";

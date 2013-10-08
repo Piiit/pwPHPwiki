@@ -51,9 +51,9 @@ class ShowPagesModule extends Module implements ModuleHandler, MenuItemProvider 
 				$fileOrDir = pw_u2t($fileOrDir);
 	
 				if (is_dir($fileOrDir)) {
-					$dirs[] = array('NAME' => pw_basename($fileOrDir), 'TYPE' => "DIR");
+					$dirs[] = array('NAME' => FileTools::basename($fileOrDir), 'TYPE' => "DIR");
 				} else {
-					$files[] = array('NAME' => pw_basename($fileOrDir, ".txt"), 'TYPE' => "TEXT", 'SIZE' => filesize($fileOrDir), 'MODIFIED' => filemtime($fileOrDir));
+					$files[] = array('NAME' => FileTools::basename($fileOrDir, ".txt"), 'TYPE' => "TEXT", 'SIZE' => filesize($fileOrDir), 'MODIFIED' => filemtime($fileOrDir));
 				}
 	
 			}

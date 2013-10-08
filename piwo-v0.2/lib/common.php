@@ -6,7 +6,7 @@ if (!defined('INC_PATH')) {
 require_once INC_PATH.'pwTools/string/encoding.php';
 require_once INC_PATH.'pwTools/string/StringTools.php';
 require_once INC_PATH.'pwTools/debug/TestingTools.php';
-require_once INC_PATH.'piwo-v0.2/lib/WikiID.php';
+require_once INC_PATH.'pwTools/wiki/WikiID.php';
 
 function pw_wiki_getid() {
 	$id = isset($_GET['id']) && $_GET['id'] != "" ? $_GET['id'] : (":".WIKINSDEFAULTPAGE);
@@ -67,6 +67,17 @@ function pw_wiki_loadconfig() {
 	}
 }
 
+function pw_wiki_removeStorageFromPath($path) {
+	$pathFragments = explode('/', $path);
+	
+	if ($pathFragments[0] == WIKISTORAGE) {
+		$pathFragments = array_slice($pathFragments, 1, sizeof($pathFragments));
+	}
+	
+	return implode('/', $pathFragments);
+	
+}
+
 function pw_wiki_getmenu($id, $mode, Collection $modules) {
 	$loginData = pw_wiki_getcfg('login');
 
@@ -83,93 +94,8 @@ function pw_wiki_getmenu($id, $mode, Collection $modules) {
 	return $o;
 }
 
-function pw_checkfilename($name) {
-	if (strpos($name, "*") or strpos($name, "\\") or strpos($name, "?")) {
-		return false;
-	}
-	return true;
-}
-
-function pw_dirname($dn, $single = false) {
-	$dn = pw_s2u($dn);
-
-	if (!pw_checkfilename($dn)) {
-		return false;
-	}
-	//@TODO: BUG(?) if .. at the end! || utf8_substr($dn, -3) == '/..'
-	$isdir = (utf8_substr($dn, -1) == '/') ? true : false;
-
-	// Absolute paths start with '/'
-	$remember_abs = (utf8_substr($dn, 0, 1) == '/') ? '/' : '';
-
-	$dn = utf8_strtolower($dn);
-	$dn = str_replace('\\', '/', $dn);
-
-	$xpf = explode("/", $dn);
-
-	$bn = array_pop($xpf);
-
-	$dn = array();
-	foreach ($xpf as $i => $f) {
-		if ($f != ".." and $f != "." and $f != "") {
-			$dn[] = $f;
-		}
-		if (isset($xpf[$i+1]) and $xpf[$i+1] == "..") {
-			array_pop($dn);
-		}
-	}
-
-	if ($bn == "..") {
-		array_pop($dn);
-	}
 
 
-	$dn = implode($dn, "/");
-	if (utf8_strlen($dn) > 0) {
-		$dn .= '/';
-	}
-
-	if ($isdir) {
-		if ($bn == "..") $bn = "";
-		$dn = $dn.$bn;
-	}
-
-	$out = str_replace('//', '/', $remember_abs.utf8_rtrim($dn, '/').'/');
-
-	// Return only the inner directory...
-	if ($single) {
-		$dirs = explode('/', $out);
-		array_pop($dirs);
-		$out = array_pop($dirs);
-	}
-
-	#out($out." >>> ".$remember_abs);
-
-	if ($out == '/' and !$isdir) {
-		$out = "";
-	}
-	return $out;
-}
-
-function pw_basename($fn, $ext = null) {
-
-	$fn = pw_s2u($fn);
-
-	if (!pw_checkfilename($fn)) {
-		return false;
-	}
-
-	#$isdir = (utf8_substr($dn, -1) == '/') ? true : false;
-
-	$fn = explode("/", $fn);
-
-	$fn = array_pop($fn);
-
-	if ($ext) {
-		$fn = StringTools::rightTrim($fn, $ext);
-	}
-	return $fn;
-}
 
 function pw_wiki_file2editor($data) {
 	$data = FileTools::setTextFileFormat($data, new TextFileFormat(TextFileFormat::UNIX));
@@ -197,15 +123,16 @@ function pw_wiki_getfulltitle($sep = "&raquo;", $showuser = true) {
 	$mode = pw_wiki_getmode();
 
 	if ($mode == 'showpages') {
-		$title .= " [Seiten&uuml;berblick]";
+		$title .= " [Page&nbsp;Overview]";
 	} else {
 		//$pg = pw_url2u(pw_wiki_getcfg('pg'));
 		$pg = $id->getPage();
 		$pg = utf8_ucfirst($pg);
 		$pg = pw_s2e($pg);
 		$title .= $sep.$pg;
+		StringTools::rightTrim($title, $sep);
 		if ($mode == 'editpage') {
-			$title .= " [Seite bearbeiten]";
+			$title .= " [Editing]";
 		}
 	}
 

@@ -3,12 +3,7 @@
 if (!defined('INC_PATH')) {
 	define ('INC_PATH', realpath(dirname(__FILE__).'/../../').'/');
 }
-require_once INC_PATH.'pwTools/parser/LexerRuleHandler.php';
-require_once INC_PATH.'pwTools/parser/ParserRuleHandler.php';
-require_once INC_PATH.'pwTools/parser/ParserRule.php';
-require_once INC_PATH.'pwTools/parser/Pattern.php';
 require_once INC_PATH.'piwo-v0.2/lib/tokens/Variable.php';
-require_once INC_PATH.'piwo-v0.2/lib/WikiID.php';
 
 
 class Constant extends ParserRule implements ParserRuleHandler, LexerRuleHandler {
@@ -84,10 +79,10 @@ class Constant extends ParserRule implements ParserRuleHandler, LexerRuleHandler
 			break;
 			case 'version': $txt = $this->getParser()->getUserInfo('piwoversion'); break;
 			case 'lexerversion': $txt = Lexer::getVersion(); break;
-			case 'path': $txt = 'http://'.$_SERVER['SERVER_NAME'].pw_dirname($_SERVER['PHP_SELF']); break;
+			case 'path': $txt = 'http://'.$_SERVER['SERVER_NAME'].FileTools::dirname($_SERVER['PHP_SELF']); break;
 			case 'countsubs':
 				// count all wikipages within the current namespace
-				$path = pw_dirname($_SERVER['PHP_SELF']);
+				$path = FileTools::dirname($_SERVER['PHP_SELF']);
 				$txt = count(glob($path."/*".WIKIFILEEXT));
 			break;
 			case 'performance':

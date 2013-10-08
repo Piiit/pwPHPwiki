@@ -183,7 +183,7 @@ function pw_wiki_showcontent(WikiID $id) {	if(!isset($_SESSION['pw_wiki']['useC
 	foreach ($data as $k => $i) {		$i = pw_s2u($i);		$i = utf8_strtolower($i);
 		$i = pw_u2t($i);
 
-		if (is_dir($i)) {			$dirs[] = array('NAME' => pw_basename($i), 'TYPE' => "DIR");		} else {			$files[] = array('NAME' => pw_basename($i, ".txt"), 'TYPE' => "TEXT", 'SIZE' => filesize($i));
+		if (is_dir($i)) {			$dirs[] = array('NAME' => FileTools::basename($i), 'TYPE' => "DIR");		} else {			$files[] = array('NAME' => FileTools::basename($i, ".txt"), 'TYPE' => "TEXT", 'SIZE' => filesize($i));
 		}
 
 	}
