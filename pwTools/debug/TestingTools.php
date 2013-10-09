@@ -4,7 +4,7 @@
 //TODO replace var_dump(?) or replace all other output mechanisms with var_dump(???)
 
 if (!defined('INC_PATH')) {
-	define ('INC_PATH', realpath(dirname(__FILE__).'/../').'/');
+	define ('INC_PATH', realpath(dirname(__FILE__).'/../../').'/');
 }
 require_once INC_PATH.'pwTools/string/StringTools.php';
 require_once INC_PATH.'pwTools/data/ArrayTools.php';

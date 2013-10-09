@@ -1,7 +1,7 @@
 <?php
 
 if (!defined('INC_PATH')) {
-	define ('INC_PATH', realpath(dirname(__FILE__).'/../').'/');
+	define ('INC_PATH', realpath(dirname(__FILE__).'/../../').'/');
 }
 require_once INC_PATH.'pwTools/string/encoding.php';
 require_once INC_PATH.'pwTools/string/StringTools.php';
@@ -67,16 +67,7 @@ function pw_wiki_loadconfig() {
 	}
 }
 
-function pw_wiki_removeStorageFromPath($path) {
-	$pathFragments = explode('/', $path);
-	
-	if ($pathFragments[0] == WIKISTORAGE) {
-		$pathFragments = array_slice($pathFragments, 1, sizeof($pathFragments));
-	}
-	
-	return implode('/', $pathFragments);
-	
-}
+
 
 function pw_wiki_getmenu($id, $mode, Collection $modules) {
 	$loginData = pw_wiki_getcfg('login');

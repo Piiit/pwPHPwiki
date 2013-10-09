@@ -6,7 +6,7 @@
 // TODO Function to go up in hierarchy (no need for a workaround like "$newid = new WikiID($id->getID()."..")")
 
 if (!defined('INC_PATH')) {
-	define ('INC_PATH', realpath(dirname(__FILE__).'/../').'/');
+	define ('INC_PATH', realpath(dirname(__FILE__).'/../../').'/');
 }
 require_once INC_PATH.'pwTools/string/encoding.php';
 require_once INC_PATH.'pwTools/string/StringTools.php';
@@ -46,12 +46,26 @@ class WikiID {
 		$this->fullnspath = pw_u2t(str_replace(":", "/", $this->fullns));
 	}
 	
-	public static function fromPath($path) {
+	public static function fromPath($path, $storagePath = null, $fileExtension = null) {
 		$path = utf8_strtolower($path);
 		$path = str_replace("//", "/", $path);
+
+		TestingTools::inform($path);
+		$storageSegment = substr($path, 0, strlen($storagePath));
+		TestingTools::inform($storageSegment);
+		if($storagePath != null && $storageSegment == $storagePath) {
+			$path = substr($path, strlen($storageSegment));
+		}
+		
 		$path = str_replace("/", ":", $path);
 		$path = ltrim($path, ":");
-		$path = StringTools::rightTrim($path, WIKIFILEEXT);
+		
+		TestingTools::inform($path);
+		
+		if($fileExtension != null) {
+			$path = StringTools::rightTrim($path, $fileExtension);
+		}
+		
 		return new WikiID($path);
 	}
 	

@@ -1,10 +1,11 @@
 <?php
 
 if (!defined('INC_PATH')) {
-	define ('INC_PATH', realpath(dirname(__FILE__).'/../').'/');
+	define ('INC_PATH', realpath(dirname(__FILE__).'/../../').'/');
 }
 require_once INC_PATH.'pwTools/file/TextFileFormat.php';
 require_once INC_PATH.'pwTools/debug/TestingTools.php';
+require_once INC_PATH.'pwTools/string/encoding.php';
 
 class FileTools {
 	
@@ -199,103 +200,33 @@ class FileTools {
 	//TODO write test-cases for basename, dirname, isFilename
 	
 	/**
+	 * Return the last path segment (directory or filename)
 	 * This basename handels also filepath constructs like ".."
 	 * It is made for utf-8 compliant strings.
-	 * @param unknown_type $filename
+	 * @param unknown_type $path
 	 * @param unknown_type $extension
 	 * @return boolean|Ambigous <mixed, string>
 	 */
-	public static function basename($filename, $extension = null) {
-	
-		$filename = pw_s2u($filename);
-	
-		if (!self::isFilename($filename)) {
-			return false;
-		}
-	
-		#$isdir = (utf8_substr($dn, -1) == '/') ? true : false;
-	
-		$filename = explode("/", $filename);
-	
-		$filename = array_pop($filename);
-	
-		if ($extension != null) {
-			$filename = StringTools::rightTrim($filename, $extension);
-		}
-		return $filename;
+	public static function basename($path, $extension = null) {
+		$path = self::normalizePath($path);
+		return basename($path, $extension);
 	}
 	
 	/**
 	 * This dirname handels also filepath constructs like ".."
 	 * It is made for utf-8 compliant strings.
-	 * @param unknown_type $dirname
+	 * @param unknown_type $path
 	 * @param unknown_type $single
 	 * @return boolean|Ambigous <string, mixed>
 	 */
-	public static function dirname($dirname, $single = false) {
-		$dirname = pw_s2u($dirname);
-	
-		if (!self::isFilename($dirname)) {
-			return false;
+	public static function dirname($path) {
+		$path = self::normalizePath($path);
+		if(substr($path, -1) == '/') {
+			return $path;
 		}
-
-		$isDirectory = false;
-		if(utf8_substr($dirname, -1) == '/' || utf8_substr($dirname, -2) == '/.' || utf8_substr($dirname, -3) == '/..') {
-			$isDirectory = true;
-		}
-	
-		// Absolute paths start with '/'
-		$isAbsolute = (utf8_substr($dirname, 0, 1) == '/');
-	
-		$dirname = utf8_strtolower($dirname);
-		$dirname = str_replace('\\', '/', $dirname);
-	
-		$directoryList = explode("/", $dirname);
-	
-		$basename = array_pop($directoryList);
-	
-		$dirname = array();
-		foreach ($directoryList as $i => $directory) {
-			if ($directory != ".." && $directory != "." && $directory != "") {
-				$dirname[] = $directory;
-			}
-			if (isset($directoryList[$i+1]) and $directoryList[$i+1] == "..") {
-				array_pop($dirname);
-			}
-		}
-	
-		if ($basename == "..") {
-			array_pop($dirname);
-		}
-	
-	
-		$dirname = implode($dirname, "/");
-		if (utf8_strlen($dirname) > 0) {
-			$dirname .= '/';
-		}
-	
-		if ($isDirectory) {
-			if ($basename == "..") {
-				$basename = "";
-			}
-			$dirname = $dirname.$basename;
-		}
-	
-		$out = str_replace('//', '/', ($isAbsolute ? '/' : '').utf8_rtrim($dirname, '/').'/');
-	
-		// Return only the inner directory...
-		if ($single) {
-			$dirs = explode('/', $out);
-			array_pop($dirs);
-			$out = array_pop($dirs);
-		}
-	
-		#out($out." >>> ".$remember_abs);
-	
-		if ($out == '/' && !$isDirectory) {
-			$out = "";
-		}
-		return $out;
+		
+		$path = dirname($path).'/';
+		return ($path == './' ? '' : $path);
 	}
 	
 	//TODO isFilename: add full pattern for mac, unix and windows
@@ -306,6 +237,39 @@ class FileTools {
 		return true;
 	}
 	
+	public static function normalizePath($path) {
+		if (!self::isFilename($path)) {
+			throw new Exception("'$path' is not a valid filename");
+		}
+		
+		$path = str_replace("\\", "/", $path);
+		
+		//Preserve last directory separator.
+		$last = substr($path, -1);
+		if ($last != '/') { 
+			$last = "";
+		}  
+		
+		$out=array();
+		foreach(explode('/', $path) as $i => $fold){
+			if ($fold=='' || $fold=='.') { 
+				continue;
+			}
+			if ($fold == '..' && $i > 0 && end($out) != '..') {
+				array_pop($out);
+			} else {
+				$out[]= $fold;
+			}
+		} 
+		
+		$path = ($path[0] == '/' ? '/' : '').join('/', $out);
+		
+		//Restore last directory separator, if it is not already present.
+		if(substr($path, -1) != '/') {
+			$path .= $last; 
+		}
+		return $path;
+	}
 	
 }
 

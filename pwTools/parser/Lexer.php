@@ -24,7 +24,7 @@ FIXME LEXER SHOULD ONLY PRODUCE AN AST; PUT EVERYTHING ELSE TO NODE, TREE OR A N
 */
 
 if (!defined('INC_PATH')) {
-	define ('INC_PATH', realpath(dirname(__FILE__).'/../').'/');
+	define ('INC_PATH', realpath(dirname(__FILE__).'/../../').'/');
 }
 
 require_once INC_PATH.'pwTools/string/encoding.php';
