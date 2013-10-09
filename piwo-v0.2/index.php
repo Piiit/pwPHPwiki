@@ -6,7 +6,7 @@ if (!defined('MODULE_PATH')) {
 }if (!defined('PLUGIN_PATH')) {
 	define ('PLUGIN_PATH', INC_PATH.'piwo-v0.2/plugins/');
 }
-if (!defined('CFG_PATH')) {	define ('CFG_PATH', INC_PATH.'piwo-v0.2/cfg/');}require_once INC_PATH.'piwo-v0.2/lib/common.php';require_once INC_PATH.'piwo-v0.2/lib/lexerconf.php';require_once INC_PATH.'piwo-v0.2/lib/admin.php';require_once CFG_PATH."main.php";require_once INC_PATH.'pwTools/system/SystemTools.php';SystemTools::autoloadInit(	array(		PLUGIN_PATH, 		MODULE_PATH, 		INC_PATH."pwTools",		INC_PATH."piwo-v0.2/lib"	));
+if (!defined('CFG_PATH')) {	define ('CFG_PATH', INC_PATH.'piwo-v0.2/cfg/');}require_once INC_PATH.'piwo-v0.2/lib/common.php';require_once INC_PATH.'piwo-v0.2/lib/lexerconf.php';require_once INC_PATH.'piwo-v0.2/lib/admin.php';require_once CFG_PATH.'main.php';require_once INC_PATH.'pwTools/system/SystemTools.php';SystemTools::autoloadInit(	array(		PLUGIN_PATH, 		MODULE_PATH, 		INC_PATH."pwTools",		INC_PATH."piwo-v0.2/lib"	));
 session_start();pw_wiki_loadconfig();
 // TestingTools::inform($_REQUEST);
 // TestingTools::inform($_SESSION);FileTools::createFolderIfNotExist(WIKISTORAGE);FileTools::createFolderIfNotExist(WIKISTORAGE."/tpl");FileTools::copyFileIfNotExist("cfg/skeleton/tpl/firststart.txt", WIKISTORAGE."/".WIKINSDEFAULTPAGE.WIKIFILEEXT);FileTools::copyMultipleFilesIfNotExist("cfg/skeleton/tpl/*.txt", WIKISTORAGE."/".WIKITEMPLATE);	new LoginModule();
