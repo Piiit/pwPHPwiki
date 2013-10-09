@@ -26,6 +26,7 @@ class WikiID {
 	
 	public function __construct($id) {
 		$this->id = self::s2id($id);
+		
 		if (!self::isvalid($this->id)) {
 			throw new Exception("Invalid ID '$this->id'!");
 		}
@@ -171,9 +172,8 @@ class WikiID {
 	
 	public static function cleanNamespaceString($ns) {
 		$ns = str_replace(":", "/", $ns);
-		$ns = FileTools::dirname($ns); 
+		$ns = FileTools::dirname($ns);
 		$ns = str_replace("/", ":", $ns);
-		$ns = utf8_rtrim($ns, ':').':';
 		return utf8_ltrim($ns, ':');
 	}
 	

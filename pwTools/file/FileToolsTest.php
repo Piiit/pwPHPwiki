@@ -20,7 +20,8 @@ class FileToolsTest extends PHPUnit_Framework_TestCase {
 			"dat/h1/h2/../../zwei ebenen zurück.txt",
 			"dat/tests/x/",
 			"/",
-			"hallo/../zwei.txt"
+			"hallo/../zwei.txt",
+			"/_index"
 	);
 	
 	protected function setUp() {
@@ -51,7 +52,8 @@ class FileToolsTest extends PHPUnit_Framework_TestCase {
 				"zwei ebenen zurück.txt",
 				"x",
 				"",
-				"zwei.txt"
+				"zwei.txt",
+				"_index"
 		);
 		
 		foreach ($this->inputList as $i => $input) {
@@ -78,7 +80,8 @@ class FileToolsTest extends PHPUnit_Framework_TestCase {
 			  "dat/",
 			  "dat/tests/x/",
 			  "/",
-			  ""
+			  "",
+			  "/"
 		);
 		
 		foreach ($this->inputList as $i => $input) {
@@ -92,11 +95,18 @@ class FileToolsTest extends PHPUnit_Framework_TestCase {
 		}
 	}
 	
-	public function testIsFilename() {
+	public function testIsValidPath() {
 		// TODO Auto-generated FileToolsTest::testIsFilename()
-		$this->markTestIncomplete ( "isFilename test not implemented" );
+		$this->markTestIncomplete ( "test not implemented" );
 		
-		FileTools::isFilename(/* parameters */);
+		FileTools::isValidPath(/* parameters */);
+	}
+	
+	public function testIsValidFilename() {
+		// TODO Auto-generated FileToolsTest::testIsFilename()
+		$this->markTestIncomplete ( "test not implemented" );
+	
+		FileTools::isValidFilename(/* parameters */);
 	}
 	
 	public function testNormalizePath() {
@@ -112,7 +122,8 @@ class FileToolsTest extends PHPUnit_Framework_TestCase {
 				"dat/zwei ebenen zurück.txt",
 				"dat/tests/x/",
 				"/",
-				"zwei.txt"
+				"zwei.txt",
+				"/_index"
 		);
 		
 		foreach ($this->inputList as $i => $input) {

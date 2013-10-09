@@ -9,7 +9,10 @@ require_once INC_PATH.'pwTools/debug/TestingTools.php';
 require_once INC_PATH.'pwTools/wiki/WikiID.php';
 
 function pw_wiki_getid() {
-	$id = isset($_GET['id']) && $_GET['id'] != "" ? $_GET['id'] : (":".WIKINSDEFAULTPAGE);
+	$id = ":".WIKINSDEFAULTPAGE;
+	if(isset($_GET['id']) && $_GET['id'] != "") {
+		$id = $_GET['id'];
+	}
 	return new WikiID($id);
 }
 

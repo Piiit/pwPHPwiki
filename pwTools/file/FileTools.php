@@ -224,21 +224,30 @@ class FileTools {
 		if(substr($path, -1) == '/') {
 			return $path;
 		}
-		
-		$path = dirname($path).'/';
+		$path = str_replace("\\", "/", dirname($path)).'/';
+		$path = str_replace("//", "/", $path);
 		return ($path == './' ? '' : $path);
 	}
 	
-	//TODO isFilename: add full pattern for mac, unix and windows
-	public static function isFilename($name) {
-		if (strpos($name, "*") || strpos($name, "\\") || strpos($name, "?")) {
+	public static function isValidPath($name) {
+// 		if (strpos($name, "*") || strpos($name, "\\") || strpos($name, "?")) {
+// 			return false;
+// 		}
+		if (0 == preg_match("=[^?*:;{}]+=", $name)) {
+			return false;
+		}
+		return true;
+	}
+	
+	public static function isValidFilename($name) {
+		if (preg_match("=[^/?*:;{}\\\]+=", $name)) {
 			return false;
 		}
 		return true;
 	}
 	
 	public static function normalizePath($path) {
-		if (!self::isFilename($path)) {
+		if (!self::isValidPath($path)) {
 			throw new Exception("'$path' is not a valid filename");
 		}
 		
@@ -250,7 +259,7 @@ class FileTools {
 			$last = "";
 		}  
 		
-		$out=array();
+		$out = array();
 		foreach(explode('/', $path) as $i => $fold){
 			if ($fold=='' || $fold=='.') { 
 				continue;
