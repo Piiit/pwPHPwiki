@@ -150,6 +150,25 @@ class FileTools {
 		}
 	}
 	
+	public static function renameFile($filename, $newFilename) {
+		if (self::isValidFilename($newFilename)) {
+			throw new Exception("'$newFilename' is not a valid filename!");
+		}
+		if (!is_file($filename)) {
+			throw new Exception("The file '$filename' does not exist!");
+		}
+		if(!is_readable($filename)) {
+			throw new Exception("Your are not allowed to read:<br />'$filename'!<br />Permissions are ".self::getUnixFilePermission($filename));
+		}
+		if(is_file($newFilename)) {
+			throw new Exception("'$newFilename' already exists.");
+		}
+		$newFile = self::dirname($filename).$newFilename;
+		if (!rename($filename, $newFile)) {
+			throw new Exception("Unable to rename file '$filename' to '$newFile'.");
+		}
+	}
+	
 	public static function getTextFileFormat($text) {
 		if (strpos($text,"\n") && strpos($text,"\r")===false) {
 			return new TextFileFormat(TextFileFormat::UNIX);
@@ -240,7 +259,7 @@ class FileTools {
 	}
 	
 	public static function isValidFilename($name) {
-		if (preg_match("=[^/?*:;{}\\\]+=", $name)) {
+		if (preg_match('=[^/?*:;{}\\\]+=', $name)) {
 			return false;
 		}
 		return true;
