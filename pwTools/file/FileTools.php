@@ -160,12 +160,32 @@ class FileTools {
 		if(!is_readable($filename)) {
 			throw new Exception("Your are not allowed to read:<br />'$filename'!<br />Permissions are ".self::getUnixFilePermission($filename));
 		}
+		$newFilename = self::normalizePath(self::dirname($filename).$newFilename);
 		if(is_file($newFilename)) {
 			throw new Exception("'$newFilename' already exists.");
 		}
-		$newFile = self::dirname($filename).$newFilename;
-		if (!rename($filename, $newFile)) {
-			throw new Exception("Unable to rename file '$filename' to '$newFile'.");
+		if (!rename($filename, $newFilename)) {
+			throw new Exception("Unable to rename file '$filename' to '$newFilename'.");
+		}
+	}
+	
+	public static function renameFolder($dirname, $newDirname) {
+		// isValidFilename because newDirname should contain only a single directory name, not a whole path.
+		if (self::isValidFilename($newDirname)) {
+			throw new Exception("'$newDirname' is not a valid directory name!");
+		}
+		if (!is_dir($dirname)) {
+			throw new Exception("The directory '$dirname' does not exist!");
+		}
+		if(!is_readable($dirname)) {
+			throw new Exception("Your are not allowed to read:<br />'$dirname'!<br />Permissions are ".self::getUnixFilePermission($dirname));
+		}
+		$newDirname = self::normalizePath(self::dirname($dirname."..").$newDirname);
+		if(is_dir($newDirname)) {
+			throw new Exception("'$newDirname' already exists.");
+		}
+		if (!rename($dirname, $newDirname)) {
+			throw new Exception("Unable to rename file '$dirname' to '$newDirname'.");
 		}
 	}
 	
@@ -273,9 +293,9 @@ class FileTools {
 		$path = str_replace("\\", "/", $path);
 		
 		//Preserve last directory separator.
-		$last = substr($path, -1);
-		if ($last != '/') { 
-			$last = "";
+		$last = "";
+		if (substr($path, -1) == '/' || substr($path, -3) == '/..' || substr($path, -2) == '/.') { 
+			$last = "/";
 		}  
 		
 		$out = array();

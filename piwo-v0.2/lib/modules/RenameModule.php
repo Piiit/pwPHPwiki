@@ -37,24 +37,41 @@ class RenameModule extends Module implements ModuleHandler, PermissionProvider, 
 		$id = pw_wiki_getid();
 	
 		if (isset($_POST["rename"])) {
-			$filename = WIKISTORAGE.$id->getPath().WIKIFILEEXT;
-	
 			try {
-				FileTools::renameFile($filename, $newFilename);
-				//TODO show only a notification and redirect to the NS page if existent, else go NS levels up until startpage...
-				$this->setDialog(GuiTools::dialogInfo("Delete", "The page '".$id->getIDAsHtmlEntities()."' has been deleted.", "id=".$id->getFullNSAsUrl()));
+				if($id->isNS()) {
+					$filename = WIKISTORAGE.$id->getPath();
+					$newId = new WikiID($id->getFullNS()."..:".$_POST['newname'].":");
+					FileTools::renameFolder($filename, $newId->getPath());
+					$this->setDialog(GuiTools::dialogInfo("Rename", "The namespace '".$id->getIDAsHtmlEntities()."' has been renamed to '".$newId->getIDAsHtmlEntities()."'", "id=".$newId->getFullNSAsUrl()));
+				} else {
+					$filename = WIKISTORAGE.$id->getPath().WIKIFILEEXT;
+					$newId = new WikiID($id->getFullNS()."..:".$_POST['newname']);
+					FileTools::renameFile($filename, $newId->getPath().WIKIFILEEXT);
+					$this->setDialog(GuiTools::dialogInfo("Rename", "The page '".$id->getIDAsHtmlEntities()."' has been renamed to '".$newId->getIDAsHtmlEntities()."'", "id=".$newId->getIDAsUrl()));
+				}
 			} catch (Exception $e) {
-				$this->setNotification("Unable to delete the page '".$id->getIDAsHtmlEntities()."'.<br />".$e->getMessage(), Module::NOTIFICATION_ERROR);
+				$this->setNotification("Unable to rename the page '".$id->getIDAsHtmlEntities()."'.<br />".$e->getMessage(), Module::NOTIFICATION_ERROR);
 			}
 			return;
 		}
 	
+		if($id->isRootNS()) {
+			$this->setNotification("You can not rename the root namespace!", Module::NOTIFICATION_ERROR);
+			return;
+		}
+		
+		if($id->isNS()) {
+			$entries = "Renaming the namespace '".$id->getNSAsHtmlEntities()."'?<br />";
+		} else {
+			$entries = "Renaming the file '".$id->getPageAsHtmlEntities()."'?<br />";
+		}
+		$entries .= GuiTools::textInput("New name", "newname");
 		$out = StringTools::htmlIndent("<a href='?id=".$id->getIDAsUrl()."'>&laquo; Back</a><hr />");
-		$this->setDialog(GuiTools::dialogQuestion("Delete", "Do you want to delete the page '".$id->getPageAsHtmlEntities()."'?", "delete", "Yes", "cancel", "No", "id=".$id->getID()."&mode=$mode"));
+		$this->setDialog($out.GuiTools::dialogQuestion("Rename", $entries, "rename", "OK", "cancel", "Cancel", "id=".$id->getID()."&mode=$mode"));
 	}
 	
 	public function getMenuText() {
-		return "Delete";
+		return "Rename";
 	}
 	
 	public function getMenuAvailability() {

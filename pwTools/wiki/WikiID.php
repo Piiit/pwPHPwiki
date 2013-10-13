@@ -1,6 +1,5 @@
 <?php
 
-// TODO move common pw_dirname to FileTools...
 // TODO check "isvalid"
 // TODO internal links possible (ex. ns1:ns2:page#chapter)
 // TODO Function to go up in hierarchy (no need for a workaround like "$newid = new WikiID($id->getID()."..")")
@@ -51,17 +50,13 @@ class WikiID {
 		$path = utf8_strtolower($path);
 		$path = str_replace("//", "/", $path);
 
-		TestingTools::inform($path);
 		$storageSegment = substr($path, 0, strlen($storagePath));
-		TestingTools::inform($storageSegment);
 		if($storagePath != null && $storageSegment == $storagePath) {
 			$path = substr($path, strlen($storageSegment));
 		}
 		
 		$path = str_replace("/", ":", $path);
 		$path = ltrim($path, ":");
-		
-		TestingTools::inform($path);
 		
 		if($fileExtension != null) {
 			$path = StringTools::rightTrim($path, $fileExtension);
@@ -143,8 +138,12 @@ class WikiID {
 		return utf8_substr($this->id, -1) == ':';
 	}
 	
-	public function isRootNS() {
+	public function isInRootNS() {
 		return (utf8_strlen($this->ns) == 0);
+	}
+	
+	public function isRootNS() {
+		return $this->id == ":"; 
 	}
 	
 	private static function s2id($id) {

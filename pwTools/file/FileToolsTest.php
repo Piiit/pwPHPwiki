@@ -21,7 +21,8 @@ class FileToolsTest extends PHPUnit_Framework_TestCase {
 			"dat/tests/x/",
 			"/",
 			"hallo/../zwei.txt",
-			"/_index"
+			"/_index",
+			"dat/c/.."
 	);
 	
 	protected function setUp() {
@@ -53,7 +54,8 @@ class FileToolsTest extends PHPUnit_Framework_TestCase {
 				"x",
 				"",
 				"zwei.txt",
-				"_index"
+				"_index",
+				"dat"
 		);
 		
 		foreach ($this->inputList as $i => $input) {
@@ -81,7 +83,8 @@ class FileToolsTest extends PHPUnit_Framework_TestCase {
 			  "dat/tests/x/",
 			  "/",
 			  "",
-			  "/"
+			  "/",
+		 	  "dat/"
 		);
 		
 		foreach ($this->inputList as $i => $input) {
@@ -123,7 +126,8 @@ class FileToolsTest extends PHPUnit_Framework_TestCase {
 				"dat/tests/x/",
 				"/",
 				"zwei.txt",
-				"/_index"
+				"/_index",
+				"dat/"
 		);
 		
 		foreach ($this->inputList as $i => $input) {
