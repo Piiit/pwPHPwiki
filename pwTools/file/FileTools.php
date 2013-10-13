@@ -113,29 +113,30 @@ class FileTools {
 						self::removeDirectoryRec($dir."/".$object);
 					} else {
 						if(!is_writeable($dir."/".$object)) {
-							throw new Exception("Your are not allowed to delete:<br />'$dir'!<br />Permissions are ".self::getUnixFilePermission($dir."/".$object));
+							throw new Exception("Your are not allowed to delete:<br />'".self::normalizePath($dir)."'!<br />Permissions are ".self::getUnixFilePermission($dir."/".$object));
 						}
 						if (!unlink($dir."/".$object)) {
-							throw new Exception("Unable to remove directory '".$dir."/".$object."'");
+							throw new Exception("Unable to remove directory '".self::normalizePath($dir."/".$object)."'");
 						}
 					}
 				}
 			}
 			reset($objects);
 			if (!rmdir($dir)) {
-				throw new Exception("Unable to remove directory '".$dir."'");
+				throw new Exception("Unable to remove directory '".self::normalizePath($dir)."'");
 			}
 		}
 	}
 	
 	public static function removeDirectory($dir) {
 		if(!is_dir($dir)) {
-			throw new Exception("Unable to find directory '".$dir."'");
+			throw new Exception("Unable to find directory '".self::normalizePath($dir)."'");
 		}
 		self::removeDirectoryRec($dir);
 	}
 	
 	public static function removeFile($filename) {
+		$filename = self::normalizePath($filename);
 		if (strlen($filename) == 0) {
 			throw new Exception("File strings cannot be empty");
 		}
