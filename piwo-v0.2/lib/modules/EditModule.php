@@ -95,10 +95,15 @@ class EditModule extends Module implements ModuleHandler, JavaScriptProvider, Pe
 			if(file_put_contents($filename, $data) === false) {
 				throw new Exception("Can not save '".$id->getIDAsHtmlEntities()."'");
 			}
-			pw_wiki_create_cached_page($id);
-			$this->setNotification("Changes saved.");
+			if(pw_wiki_getcfg("useCache")) {
+				pw_wiki_create_cached_page($id);
+				$this->setNotification("Changes saved. Cache updated!");
+			} else {
+				$this->setNotification("Changes saved.");
+			}
 		} catch (Exception $e) {
 			$this->setNotification($e->getMessage(), Module::NOTIFICATION_ERROR);
+			TestingTools::informPrintNewline($e->getTraceAsString());
 		}
 	
 	}
