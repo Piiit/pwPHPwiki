@@ -4,65 +4,9 @@
 require_once INC_PATH.'piwo-v0.2/lib/common.php';require_once INC_PATH.'pwTools/string/encoding.php';require_once INC_PATH.'pwTools/debug/TestingTools.php';require_once INC_PATH.'pwTools/file/FileTools.php';
 require_once INC_PATH.'pwTools/gui/GuiTools.php';
 
-function pw_wiki_movepage (WikiID $id) {
-	global $MODE;
 
-	if (!isset($_SESSION["pw_wiki"]["login"]["user"])) {		return GuiTools::dialogInfo("Verschieben", "Sie sind nicht berechtigt eine Seite zu verschieben...", "id=$id&mode=$MODE");
-	}
-
-// 	$id = pw_wiki_ns($id).pw_wiki_pg($id);
-// 	$isns = pw_wiki_isns($id);	$fullfilename = WIKISTORAGE.$id->getPath().WIKIFILEEXT;	$filename = $id->getPage().WIKIFILEEXT;
-
-	$fntext = pw_url2e($id);
-
-	if (isset($_POST["move"]) || isset($_POST["overwrite"])) {
-
-		$target = $_POST['target'];		$targetid = pw_wiki_s2id($target);		$targetfn = pw_wiki_path($targetid, ST_NOEXT);
-		$targettext = pw_s2e($target);
-
-		if (!file_exists($fullfilename)) {			return GuiTools::dialogInfo("Verschieben", "Die Datei '$fntext' existiert nicht.", "id=$id&mode=$MODE");
-		}
-
-		if (!is_dir($targetfn)) {			if (!isset($_POST['createfolder'])) {				return GuiTools::dialogInfo("Verschieben", "Das Zielverzeichnis '$targettext' existiert nicht.", "id=$id&mode=$MODE");
-			}
-
-			if(!mkdir($targetfn, 0777, true)) {				return GuiTools::dialogInfo("Verschieben", "Das Erstellen des Zielverzeichnisses '$targettext' schlug fehl.", "id=$id&mode=$MODE");
-			}
-
-		}
-
-		if (!isset($_POST["overwrite"])) {			$targetfn = $targetfn."/".$filename;			if (file_exists($targetfn) && !$id->isNS()) {				$entries = StringTools::htmlIndent("<input type='hidden' name='target' value='$target' />");				return pw_ui_getDialogQuestion("Verschieben", $entries."Die Zieldatei '$targetid:$filename' existiert bereits.<br />Soll sie überschrieben werden?", "overwrite", "Ja", "id=$id&mode=$MODE");			}		} else {			$targetfn = pw_wiki_path($_POST['target'], ST_NOEXT)."/".$filename;			if ($fullfilename != $targetfn) {				if (!unlink($targetfn)) {					return GuiTools::dialogInfo("Verschieben", "Fehler beim Verschieben der Datei<br />$fntext<br />nach<br />$targettext.<br />Die existierende Zieldatei konnte nicht gelöscht werden.", "id=$id&mode=$MODE");				}
-			}
-
-			#return GuiTools::dialogInfo("Verschieben", "OVERWRITE: $id; $t", "id=$id&mode=$MODE");
-		}
-
-		if ($fullfilename == $targetfn) {			return GuiTools::dialogInfo("Verschieben", "Fehler beim Verschieben...<br />Die Quell- und Zieldateien sind identisch.", "id=$id&mode=$MODE");
-		}
-
-		$t = "";
-		if ($id->isNS()) {
-			$t = pw_wiki_path($id, DNAME);
-		}
-
-		if (!rename($fullfilename, $targetfn.$t)) {			return GuiTools::dialogInfo("Verschieben", "Fehler beim Verschieben der Datei<br />$fntext<br />nach<br />$targettext.", "id=$id&mode=$MODE&dialog=");
-		}
-
-		$newid = pw_s2url(pw_wiki_path2id($targetfn));
-
-		return GuiTools::dialogInfo("Verschieben", "Die Datei wurde nach <tt>$targettext</tt> verschoben.", "id=$newid&mode=$MODE");
-
-	}
-
-	$entries = StringTools::htmlIndent("<input type='hidden' name='mode' value='editpage' />");	$entries .= StringTools::htmlIndent("<input type='hidden' name='oldmode' value='$MODE' />");	$entries .= StringTools::htmlIndent("<input type='hidden' name='olddialog' value='movepage' />");	if ($id->isNS()) {
-		$entries .= StringTools::htmlIndent("Den Namensraum <tt>$fntext</tt> verschieben nach...<br />");
-	} else {
-		$entries .= StringTools::htmlIndent("Die Seite <tt>$fntext</tt> verschieben nach...<br />");	}
-	$entries .= StringTools::htmlIndent("<!--label for='id'>Ziel:</label--> <input type='text' class='textinput' autocomplete='off' name='target' id='target' value='' />");	$entries .= StringTools::htmlIndent("<br /><input type='checkbox' id='createfolder' name='createfolder' checked='checked' /><label for='createfolder'>Verzeichnisse anlegen</label>");	#$entries .= "<div id='autoc' name='autoc' style='position: relative; display: block; top: -20px; width: 500px; border: 3px solid gray'></div>";	#$entries .= "<script type=\"text/javascript\">document.observe('dom:loaded', function() {new Ajax.Autocompleter('target', 'autoc', 'bin/getfilelist.php')});</script>";	return pw_ui_getDialogQuestion("Verschieben", $entries, "move", "Verschieben", "id=$id&mode=$MODE");}
-function pw_wiki_update_cache($forced = false) {	$storage = WIKISTORAGE;	if (!is_dir($storage)) {
-		throw new Exception("Folder '$storage' does not exist!");
-	}		$files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($storage));
-	foreach($files as $filename) {		if(substr($filename, -4) == ".txt") {			$filename = str_replace("\\", "/", $filename);			try {				pw_wiki_create_cached_page(pw_wiki_path2id($filename), $forced);			} catch (Exception $e) {				echo "<pre>Exception: Skipping file '$filename': $e\n</pre>";			}		}
+function pw_wiki_update_cache($forced = false) {	$files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator(WIKISTORAGE));
+	foreach($files as $filename) {		if(substr($filename, (-1) * strlen(WIKIFILEEXT)) == WIKIFILEEXT) {			try {				pw_wiki_create_cached_page(WikiID::fromPath($filename, WIKISTORAGE, WIKIFILEEXT), $forced);			} catch (Exception $e) {				echo "<pre>Exception: Skipping file '$filename': $e\n</pre>";			}		}
 	}}function pw_wiki_create_cached_page(WikiID $id, $forced = false) {	$filename = WIKISTORAGE.$id->getPath().WIKIFILEEXT;	$headerID = new WikiID("tpl:header", WIKIFILEEXT, WIKISTORAGE);	$footerID = new WikiID("tpl:footer", WIKIFILEEXT, WIKISTORAGE);	$headerFilename = WIKISTORAGE.$headerID->getPath().WIKIFILEEXT;	$footerFilename = WIKISTORAGE.$footerID->getPath().WIKIFILEEXT;		if (!is_file($filename)) {		throw new Exception("File '$filename' does not exist!");
 	}	if (!is_file($headerFilename)) {
 		throw new Exception("File '$headerFilename' does not exist!"); 
