@@ -38,19 +38,16 @@ class MoveModule extends Module implements ModuleHandler, PermissionProvider, Me
 	
 		if (isset($_POST["move"])) {
 			try {
+				$newId = new WikiID(":".$_POST['newname'].":");
 				if($id->isNS()) {
-					$filename = WIKISTORAGE.$id->getPath();
-					$newId = new WikiID($id->getFullNS()."..:".$_POST['newname'].":");
-					FileTools::move($filename, $newId->getPath());
+					FileTools::moveFolder(WIKISTORAGE.$id->getPath(), WIKISTORAGE.$newId->getPath());
 					$this->setDialog(GuiTools::dialogInfo("Move", "The namespace '".$id->getIDAsHtmlEntities()."' has been moved to '".$newId->getIDAsHtmlEntities()."'", "id=".$newId->getFullNSAsUrl()));
 				} else {
-					$filename = WIKISTORAGE.$id->getPath().WIKIFILEEXT;
-					$newId = new WikiID($id->getFullNS()."..:".$_POST['newname']);
-					FileTools::move($filename, $newId->getPath().WIKIFILEEXT);
+					FileTools::moveFile(WIKISTORAGE.$id->getPath().WIKIFILEEXT, WIKISTORAGE.$newId->getPath());
 					$this->setDialog(GuiTools::dialogInfo("Move", "The page '".$id->getIDAsHtmlEntities()."' has been moved to '".$newId->getIDAsHtmlEntities()."'", "id=".$newId->getIDAsUrl()));
 				}
 			} catch (Exception $e) {
-				$this->setNotification("Unable to move the page '".$id->getIDAsHtmlEntities()."'.<br />".$e->getMessage(), Module::NOTIFICATION_ERROR);
+				$this->setNotification("Unable to move '".$id->getIDAsHtmlEntities()."'.<br />".$e->getMessage(), Module::NOTIFICATION_ERROR);
 			}
 			return;
 		}
@@ -65,7 +62,7 @@ class MoveModule extends Module implements ModuleHandler, PermissionProvider, Me
 		} else {
 			$entries = "Moving the file '".$id->getPageAsHtmlEntities()."'?<br />";
 		}
-		$entries .= GuiTools::textInput("New name", "newname");
+		$entries .= GuiTools::textInput("Destination", "newname");
 		$out = StringTools::htmlIndent("<a href='?id=".$id->getIDAsUrl()."'>&laquo; Back</a><hr />");
 		$this->setDialog($out.GuiTools::dialogQuestion("Move", $entries, "move", "OK", "cancel", "Cancel", "id=".$id->getID()."&mode=$mode"));
 	}

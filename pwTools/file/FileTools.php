@@ -170,30 +170,10 @@ class FileTools {
 		if(is_file($newFilename)) {
 			throw new Exception("'$newFilename' already exists.");
 		}
-		if (!rename($filename, $newFilename)) {
-			throw new Exception("Unable to rename file '$filename' to '$newFilename'.");
-		}
-	}
-	
-	public static function move($from, $to) {
-		if (!is_file($from)) {
-			throw new Exception("The file '$from' does not exist!");
-		}
-		if(!is_readable($from)) {
-			throw new Exception("Your are not allowed to read:<br />'$from'! Permissions are ".self::getUnixFilePermission($from));
-		}
-		if(!is_dir($to)) {
-			throw new Exception("'$to' does not exist!");
-		}
-		if(!is_writable($to)) {
-			throw new Exception("'$to' is not writeable! Permissions are ".self::getUnixFilePermission($to));
-		}
-		$newFilename = self::normalizePath($to.self::basename($from));
-		if(is_file($newFilename)) {
-			throw new Exception("'$newFilename' already exists.");
-		}
-		if (!rename($from, $newFilename)) {
-			throw new Exception("Unable to move file '$from' to '$newFilename'.");
+		if (!@rename($filename, $newFilename)) {
+			$lastError = error_get_last();
+			$lastError = $lastError["message"];
+			throw new Exception("Unable to rename file '$filename' to '$newFilename'. $lastError");
 		}
 	}
 	
@@ -212,10 +192,62 @@ class FileTools {
 		if(is_dir($newDirname)) {
 			throw new Exception("'$newDirname' already exists.");
 		}
-		if (!rename($dirname, $newDirname)) {
-			throw new Exception("Unable to rename file '$dirname' to '$newDirname'.");
+		$newDirname = rtrim($newDirname, "/");
+		if (!@rename($dirname, $newDirname)) {
+			$lastError = error_get_last();
+			$lastError = $lastError["message"];
+			throw new Exception("Unable to rename file '$dirname' to '$newDirname'. $lastError");
 		}
 	}
+	
+	public static function moveFile($from, $to) {
+		if (!is_file($from)) {
+			throw new Exception("The file '$from' does not exist!");
+		}
+		if(!is_readable($from)) {
+			throw new Exception("Your are not allowed to read:<br />'$from'! Permissions are ".self::getUnixFilePermission($from));
+		}
+		if(!is_dir($to)) {
+			throw new Exception("'$to' does not exist!");
+		}
+		if(!is_writable($to)) {
+			throw new Exception("'$to' is not writeable! Permissions are ".self::getUnixFilePermission($to));
+		}
+		$newFilename = self::normalizePath($to.self::basename($from));
+		if(is_file($newFilename)) {
+			throw new Exception("'$newFilename' already exists.");
+		}
+		if (!@rename($from, $newFilename)) {
+			$lastError = error_get_last();
+			$lastError = $lastError["message"];
+			throw new Exception("Unable to move file '$from' to '$newFilename'. $lastError");
+		}
+	}
+
+	public static function moveFolder($from, $to) {
+		if (!is_dir($from)) {
+			throw new Exception("The folder '$from' does not exist!");
+		}
+		if(!is_readable($from)) {
+			throw new Exception("Your are not allowed to read:<br />'$from'! Permissions are ".self::getUnixFilePermission($from));
+		}
+		if(!is_dir($to)) {
+			throw new Exception("'$to' does not exist!");
+		}
+		if(!is_writable($to)) {
+			throw new Exception("'$to' is not writeable! Permissions are ".self::getUnixFilePermission($to));
+		}
+		$newDirname = self::normalizePath($to.self::basename($from)."/");
+		if(is_dir($newDirname)) {
+			throw new Exception("'$newDirname' already exists.");
+		}
+		if (!@rename($from, $newDirname)) {
+			$lastError = error_get_last();
+			$lastError = $lastError["message"];
+			throw new Exception("Unable to move folder '$from' to '$newDirname'. $lastError");
+		}
+	}
+	
 	
 	public static function getTextFileFormat($text) {
 		if (strpos($text,"\n") && strpos($text,"\r")===false) {
