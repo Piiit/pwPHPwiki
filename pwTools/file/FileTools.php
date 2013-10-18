@@ -1,5 +1,7 @@
 <?php
 
+//TODO write test-cases for basename, dirname, isFilename
+
 if (!defined('INC_PATH')) {
 	define ('INC_PATH', realpath(dirname(__FILE__).'/../../').'/');
 }
@@ -247,8 +249,7 @@ class FileTools {
 			throw new Exception("Unable to move folder '$from' to '$newDirname'. $lastError");
 		}
 	}
-	
-	
+		
 	public static function getTextFileFormat($text) {
 		if (strpos($text,"\n") && strpos($text,"\r")===false) {
 			return new TextFileFormat(TextFileFormat::UNIX);
@@ -295,9 +296,6 @@ class FileTools {
 		}
 	}
 
-	//TODO Handle .. and . in a separate private method, do reuse it within self::basename!
-	//TODO write test-cases for basename, dirname, isFilename
-	
 	/**
 	 * Return the last path segment (directory or filename)
 	 * This basename handels also filepath constructs like ".."
