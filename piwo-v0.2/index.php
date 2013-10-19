@@ -7,7 +7,7 @@ if (!defined('MODULE_PATH')) {
 	define ('PLUGIN_PATH', INC_PATH.'piwo-v0.2/plugins/');
 }
 if (!defined('CFG_PATH')) {	define ('CFG_PATH', INC_PATH.'piwo-v0.2/cfg/');}require_once INC_PATH.'piwo-v0.2/lib/common.php';require_once INC_PATH.'piwo-v0.2/lib/lexerconf.php';require_once INC_PATH.'piwo-v0.2/lib/admin.php';require_once CFG_PATH.'main.php';require_once INC_PATH.'pwTools/system/SystemTools.php';SystemTools::autoloadInit(	array(		PLUGIN_PATH, 		MODULE_PATH, 		INC_PATH."pwTools",		INC_PATH."piwo-v0.2/lib"	));
-session_start();pw_wiki_loadconfig();
+session_start();pw_wiki_loadconfig();TestingTools::logOn();
 // TestingTools::inform($_REQUEST);
 // TestingTools::inform($_SESSION);FileTools::createFolderIfNotExist(WIKISTORAGE);FileTools::createFolderIfNotExist(WIKISTORAGE."/tpl");FileTools::copyFileIfNotExist("cfg/skeleton/tpl/firststart.txt", WIKISTORAGE."/".WIKINSDEFAULTPAGE.WIKIFILEEXT);FileTools::copyMultipleFilesIfNotExist("cfg/skeleton/tpl/*.txt", WIKISTORAGE."/".WIKITEMPLATE."/");	new LoginModule();
 new ConfigModule();new ShowSourceModule();new EditModule(); new ShowPagesModule();new NewPageModule();new DeletePageModule();new DeleteNamespaceModule();new RenameModule();new MoveModule();$defaultModule = new ShowContentModule();//  TestingTools::inform($_GET);//  TestingTools::inform($_POST); $module = null;$notification = "";$scriptsText = "";$mode = pw_wiki_getmode() == null ? $defaultModule->getName() : pw_wiki_getmode();
@@ -28,7 +28,7 @@ new ConfigModule();new ShowSourceModule();new EditModule(); new ShowPagesModu
 	$mainpage = str_replace("{{startpage}}", ":".WIKINSDEFAULTPAGE, $mainpage);
 	$mainpage = str_replace("{{body}}", $body, $mainpage);	$mainpage = str_replace("{{debugstyle}}", TestingTools::getCSS(), $mainpage);
 	$mainpage = str_replace("{{mainmenu}}", $menu, $mainpage);
-		echo $mainpage;} catch (Exception $e) {	echo "<pre>".$e->getMessage()."<hr />".$e->getTraceAsString()."</pre>";}// 	case "update":
+		echo $mainpage;} catch (Exception $e) {	echo "<pre>".$e->getMessage()."<hr />".$e->getTraceAsString()."</pre>";}echo "<pre>Log:<br />".TestingTools::getLog()."</pre>";// 	case "update":
 // 		$output = pw_wiki_create_cached_page($id, true);
 // 	break;
 

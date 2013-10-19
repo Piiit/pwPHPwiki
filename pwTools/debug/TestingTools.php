@@ -17,6 +17,10 @@ class TestingTools {
 	const REPLACENEWLINE = 1;
 	
 	private static $_debugOn = false;
+	private static $_logOn = false;
+	private static $_outputOn = false;
+	
+	private static $log;
 	
 	private static function printLine($type, $length, $out, $description = null, $debugInfo = null) {
 		isset($length) ? $length = "<span class='deblength'>$length</span>" : $length = "";
@@ -87,6 +91,27 @@ class TestingTools {
 		self::$_debugOn = true;
 	}
 	
+	public static function logOff() {
+		self::$_logOn = false;
+	}
+	
+	public static function logOn() {
+		self::$_logOn = true;
+		self::$log = new Log();
+	}
+	
+	public static function outputOff() {
+		self::$_outputOn = false;
+	}
+	
+	public static function outputOn() {
+		self::$_outputOn = true;
+	}
+	
+	public static function getLog() {
+		return self::$log;
+	}
+	
 	public static function getCSS() {
 		$o = "";
 		$o .= StringTools::htmlIndent ();
@@ -106,7 +131,15 @@ class TestingTools {
 	}
 	
 	public static function inform($output, $description = "") {
+		ob_start(); 
 		self::printAll($output, $description);
+		$content = ob_get_flush();
+		if(self::$_logOn) {
+			self::$log->addInfo($description, $content);
+		}
+		if(self::$_outputOn){
+			echo $content;
+		}
 	}
 	
 	public static function informPrintNewline($output, $description = "") {

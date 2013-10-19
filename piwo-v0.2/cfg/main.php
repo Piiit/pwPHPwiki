@@ -4,7 +4,9 @@
   const WIKIADMINUSER = "root";
   const WIKIADMINPASSWORD = "qwertz"; //TODO Security issue... Encryption needed!!!
   const WIKISTORAGE = "dat";
+  const WIKICACHE = "home";
   const WIKIFILEEXT = ".txt";
+  const WIKICACHEFILEEXT = ".html";
   const WIKINSDEFAULTPAGE = "_index";
   const WIKITEMPLATE = "tpl";	//TODO should be outside STORAGE
   const WIKITEMPLATESNS = ":tpl:";	//TODO no ns for templates, should be outside STORAGE

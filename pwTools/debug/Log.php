@@ -16,7 +16,7 @@ class Log {
 	const OFF     = 5;
 	
 	private $_logbook = array();
-	private $_dateFormat = "Y/m/d h:i:s";
+	private $_dateFormat = "Y-m-d h:i:s";
 	private $_logLevel = self::INFO;
 	
 	public function __construct($level = self::INFO) {

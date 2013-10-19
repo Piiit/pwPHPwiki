@@ -36,12 +36,12 @@ class ShowContentModule extends Module implements ModuleHandler {
 			if(file_exists($filepathNS)) {
 				$wikitext = pw_wiki_showcontent(new WikiID($id->getFullNS().WIKINSDEFAULTPAGE));
 			} else {
-				$wikitext = pw_wiki_showcontent(new WikiID(":tpl:namespace"));
+				$wikitext = pw_wiki_showcontent(new WikiID(WIKITEMPLATESNS."namespace"));
 			}
 		} elseif (file_exists($filepath)) {
 			$wikitext = pw_wiki_showcontent($id);
 		} else {
-			$wikitext = pw_wiki_showcontent(new WikiID(":tpl:notfound"));
+			$wikitext = pw_wiki_showcontent(new WikiID(WIKITEMPLATESNS."notfound"));
 		}
 		$body = file_get_contents(CFG_PATH."skeleton/wiki.html");
 		$body = str_replace("{{wikitext}}", $wikitext, $body);
