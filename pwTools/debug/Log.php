@@ -32,6 +32,7 @@ class Log {
 	}
 	
 	public function addInfo($text, $data = null) {
+		var_dump($data);
 		$this->_add(self::INFO, $text, $data);
 	}
 	
@@ -105,10 +106,13 @@ class Log {
 	}
 	
 	private function _add($loglevel, $text, $data) {
+		var_dump($loglevel);
+		var_dump($this->getLogLevel());
 		if ($this->getLogLevel() < $loglevel) {
 			return;
 		}
 		$this->_logbook[] = new LogEntry(time(), $loglevel, $text, $data, TestingTools::getDebugInfoAsArray());
+// 		var_dump(end($this->_logbook));
 	}
 	
 }

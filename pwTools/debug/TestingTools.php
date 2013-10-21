@@ -22,21 +22,21 @@ class TestingTools {
 	
 	private static $log;
 	
-	private static function printLine($type, $length, $out, $description = null, $debugInfo = null) {
-		isset($length) ? $length = "<span class='deblength'>$length</span>" : $length = "";
-		isset($description) && strlen($description) > 0 ? $description = "$description = " : $description = "";
-		isset($out) && $type != "array" ? $out = "<span class='debout'>$out</span>" : $out = "";
-		return "<li><pre class='debpre !important'> $debugInfo ($type, $length)\n $description$out</pre></li>\n";
+	private static function getLine($type, $length, $out, $description = null, $debugInfo = null) {
+		$length = isset($length) ? $length : "";
+		$description = isset($description) && strlen($description) > 0 ? "$description = " : "";
+		$out = isset($out) && $type != "array" ? $out : "";
+		return "$debugInfo ($type, $length)\n $description$out\n";
 	}
 	
 	private static function printItem($item, $name = null, $debugInfo = null, $newline = self::REPLACENEWLINE) {
 		$name = htmlentities($name);
 		if (is_array($item)) {
-			echo self::printLine(gettype($item), count($item), "", $name, $debugInfo);
+			echo self::getLine(gettype($item), count($item), "", $name, $debugInfo);
 		} elseif (is_bool($item)) {
-			echo self::printLine("boolean", 1, $item ? $item = "true" : $item = "false", $name, $debugInfo);
+			echo self::getLine("boolean", 1, $item ? $item = "true" : $item = "false", $name, $debugInfo);
 		} elseif (is_null($item)) {
-			echo self::printLine("null", "", "", $name, $debugInfo);
+			echo self::getLine("null", "", "", $name, $debugInfo);
 		} elseif (is_string($item)) {
 			$itemClean = htmlentities($item);
 			if($newline == self::REPLACENEWLINE) {
@@ -44,13 +44,13 @@ class TestingTools {
 				$itemClean = preg_replace("#\r#", "<code class='debspecial'> R </code>", $itemClean);
 			}
 			$itemClean = preg_replace("#\t#", "<code class='debspecial'> T </code>", $itemClean);
-			echo self::printLine("string", strlen($item), $itemClean, $name, $debugInfo);
+			echo self::getLine("string", strlen($item), $itemClean, $name, $debugInfo);
 		} elseif (is_object($item)) {
 			echo "<pre class='debpre !important'>".$debugInfo; //FIXME output with printLine or similar
 			var_dump($item);
 			echo "</pre>";
 		} else {
-			echo self::printLine(gettype($item), count($item), $item, $name, $debugInfo);
+			echo self::getLine(gettype($item), count($item), $item, $name, $debugInfo);
 		}
 	}
 	
@@ -117,7 +117,7 @@ class TestingTools {
 		$o .= StringTools::htmlIndent ();
 		$o .= StringTools::htmlIndent ("<!-- PW_DEBUG_INIT --------------------------------------------------->");
 		$o .= StringTools::htmlIndent ("<style>", StringTools::START);
-		$o .= StringTools::htmlIndent (".debpre {font-size: 12px; color: black; background-color: lightgray; margin: 1px; padding-top: 0px}");
+		$o .= StringTools::htmlIndent (".debpre {font-size: 12px; color: black; background-color: white; margin: 1px; padding-top: 0px}");
 		$o .= StringTools::htmlIndent (".debout {background-color: white; color: black; border: 1px solid black; padding-left: 2px; padding-right: 2px}");
 		$o .= StringTools::htmlIndent (".debspecial {background-color: gray; color: white; margin-left: 2px; margin-right: 2px}");
 		$o .= StringTools::htmlIndent (".debdiv {margin: 5px; border: 1px solid black; background-color: lightgray}");
@@ -133,11 +133,11 @@ class TestingTools {
 	public static function inform($output, $description = "") {
 		ob_start(); 
 		self::printAll($output, $description);
-		$content = ob_get_flush();
+		$content = ob_get_clean();
 		if(self::$_logOn) {
 			self::$log->addInfo($description, $content);
 		}
-		if(self::$_outputOn){
+		if(self::$_outputOn) {
 			echo $content;
 		}
 	}
