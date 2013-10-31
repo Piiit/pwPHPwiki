@@ -8,6 +8,58 @@ class StringTools {
 	const MIDDLE = 0;
 	const START = 1;
 	const END = 2;
+	const PRINTNEWLINE = 0;
+	const REPLACENEWLINE = 1;
+	
+	private static function getLine($type, $length, $out, $name = null) {
+		$name = ($name == null ? "" : $name);
+		if($length == -1) {
+			return "$name ($type) $out";
+		}
+		return "$name ($type, $length) $out";
+	}
+	
+	public static function getItemWithTypeAndSize($item, $name = null, $newline = self::PRINTNEWLINE) {
+		$name = htmlentities($name);
+		
+		if (is_array($item)) {
+			return self::getLine("array", count($item), "", $name);
+		}
+		
+		if (is_bool($item)) {
+			return self::getLine("boolean", -1, $item ? $item = "true" : $item = "false", $name);
+		}
+		
+		if (is_null($item)) {
+			return self::getLine("null", -1, "", $name);
+		}
+		
+		if (is_string($item)) {
+			$itemClean = htmlentities($item);
+			if($newline == self::REPLACENEWLINE) {
+				$itemClean = self::replaceNewlines($itemClean);
+			}
+			$itemClean = preg_replace("#\t#", '\\t', $itemClean);
+			return self::getLine("string", strlen($item), $itemClean, $name);
+		}
+			
+		//TODO Remove var_dump and replace it with an own method!
+		if (is_object($item)) {
+			ob_start();
+			var_dump($item);
+			$content = ob_get_clean();
+			return self::getLine("object", -1, $content, $name);
+		}
+			
+		return self::getLine(gettype($item), count($item), $item, $name);
+	}
+	
+	public static function replaceNewlines($text) {
+		$text = preg_replace("#\r#", '\\r', $text);
+		$text = preg_replace("#\n#", '\\n', $text);
+		return $text;
+	}
+	
 	
 	public static function showLineNumbers($textInput) {
 		if (!is_string($textInput)) {

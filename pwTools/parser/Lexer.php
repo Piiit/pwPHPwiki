@@ -62,7 +62,6 @@ class Lexer {
 	private $_remtext = "";
 	private $_parentStack = array();
 	private $_executiontime = 0;
-	private $_log;
 	private $_cycle = -1;
 	private $_parsed = false;
 	private $_patternTable;
@@ -75,9 +74,7 @@ class Lexer {
 		if (!is_string($text)) {
 			throw new InvalidArgumentException("No Text to parse given! Wrong datatype!");
 		}
-		$this->_log = new Log($loglevel);
 		$this->_handlerTable = new Collection();
-		
 		$this->_patternTable = new Collection();
 		$this->_patternTable->add(Token::DOC, new Pattern(Token::DOC));
 		$this->_patternTable->add(Token::TXT, new Pattern(Token::TXT));
@@ -112,7 +109,7 @@ class Lexer {
 
 		$this->_parsed = true;
 		
-		$this->_log->addInfo("FINISHED: @$this->_textPosition (line $this->_currentLineNumber)");
+		TestingTools::log("Lexer: FINISHED: @$this->_textPosition (line $this->_currentLineNumber)");
 	}
 
 	public function getExecutionTime() {
@@ -146,7 +143,7 @@ class Lexer {
 		$this->_lastNode = $node;
 		$this->_parentStack = array();
 		
-		$this->_log->add("STARTING: Lexer v".$this->getVersion().", debugLevel = ".$this->_log->getLogLevelAsString());
+		TestingTools::log("Lexer: STARTING: Lexer v".$this->getVersion());
 	}
 
 
@@ -260,7 +257,7 @@ class Lexer {
 			"TXTPOS"       => $this->_textPosition,
 			"PARENTSTACK"  => $this->_parentStack,
 		);
-		$this->_log->addDebug($this->_logFormat("TOKEN FOUND", "$token @$this->_textPosition"), $debugInfo);
+		TestingTools::log("Lexer: ".$this->_logFormat("TOKEN FOUND", "$token @$this->_textPosition"), $debugInfo);
 
 		$this->_textPosition += $token->getTextLength();
 		
@@ -272,18 +269,18 @@ class Lexer {
 		
 		if ($pattern->isAbstract()) {
 			$logText = "CONNECTTO: Can't connect two ABSTRACT Nodes! '$name->$to' failed!";
-			$this->_log->addWarning($logText);
+			TestingTools::log("Lexer: Warning: ".$logText);
 			throw new Exception($logText);
 		}
 
 		if ($pattern->getConnectTo() !== null) {
-			$this->_log->addInfo("CONNECTTO for '$name->".$this->_patternTable->get($name)->getConnectTo()."' already set in patterntable! Will be altered to '$name->$to'!");
+			TestingTools::log("Lexer: "."CONNECTTO for '$name->".$this->_patternTable->get($name)->getConnectTo()."' already set in patterntable! Will be altered to '$name->$to'!");
 		}
 
 		$pattern->setConnectTo($to);
 		$this->_patternTable->add($to, new Pattern($to, Pattern::TYPE_ABSTRACT), Collection::UPDATE);
 		
-		$this->_log->addInfo($this->_logFormat("CONNECTTO", "'$name->$to' connected."));
+		TestingTools::log("Lexer: ".$this->_logFormat("CONNECTTO", "'$name->$to' connected."));
 	}
 	
 	public function registerAbstractHandler(LexerRuleHandlerAbstract $handler) {
@@ -382,7 +379,7 @@ class Lexer {
 				throw new InvalidArgumentException("Pattern object must be of the following types: TYPE_SECTION, TYPE_LINE or TYPE_WORD!");
 		}
 		$this->_patternTable->add($pattern->getName(), $pattern);
-		$this->_log->addDebug($this->_logFormat("ADD PATTERN", $pattern));
+		TestingTools::log("Lexer: ".$this->_logFormat("ADD PATTERN", $pattern));
 	}
 
 	
@@ -398,10 +395,10 @@ class Lexer {
 				$pattern->addMode($pattern2Add);
 				$patternLogString .= $pattern.", ";
 			} catch (Exception $e) {
-				$this->_log->addWarning($this->_logFormat("ADD MODE", $pattern2Add." ".$e->getMessage()));
+				TestingTools::log("Lexer: Warning: ".$this->_logFormat("ADD MODE", $pattern2Add." ".$e->getMessage()));
 			}
 		}
-		$this->_log->addDebug($this->_logFormat("ADD MODE", "$pattern2Add can be within $patternLogString"));
+		TestingTools::log("Lexer: ".$this->_logFormat("ADD MODE", "$pattern2Add can be within $patternLogString"));
 	}
 
 	public function getPatternTable() {
@@ -437,7 +434,7 @@ class Lexer {
 
 		$this->_parentStackAdd($node);
 
-		$this->_log->addDebug($this->_logFormat("ADD #ABSTRACT", "$node @$this->_textPosition"), array(
+		TestingTools::log("Lexer: ".$this->_logFormat("ADD #ABSTRACT", "$node @$this->_textPosition"), array(
 			"LASTNODE"	   => $this->_lastNode,
 			"PARENT"       => $parent,
 			"PARENTSTACK"  => $this->_parentStack
@@ -453,7 +450,7 @@ class Lexer {
 
 	private function _parentStackRemove() {
 		$value = array_pop($this->_parentStack);
-		$this->_log->addDebug($this->_logFormat("CLOSING NODE", "$value"));
+		TestingTools::log("Lexer: ".$this->_logFormat("CLOSING NODE", "$value"));
 		
 	}
 
@@ -495,7 +492,7 @@ class Lexer {
 		$node = new Node($token->getName(), $token->getConfig());
 		$parent->addChild($node);
 		$this->_lastNode = $node;
-		$this->_log->addDebug($this->_logFormat("ADD NODE", "$node to $parent"));
+		TestingTools::log("Lexer: ".$this->_logFormat("ADD NODE", "$node to $parent"));
 
 		// WORD-patterns get closed right after opening (no parent ID gets stored within the stack)
 		$pattern = $this->_patternTable->get($token->getName());
@@ -566,7 +563,7 @@ class Lexer {
 		#$node = new Token(Token::TXT, $text);
 		$parent->addChild($node);
 		$this->_lastNode = $node;
-		$this->_log->addDebug($this->_logFormat("ADD #TEXT", $node));
+		TestingTools::log("Lexer: ".$this->_logFormat("ADD #TEXT", $node));
 	}
 
 	private function _rememberText($text) {
@@ -603,10 +600,10 @@ class Lexer {
 		// Close abstract parent-nodes, if a new mode has to be started!
 		$parent = $this->_getParentFromStack();
 		$connectToName = $pattern->getConnectTo();
-// 		$this->_log->addDebug($this->_logFormat("YYY", $parent));
+// 		TestingTools::log("Lexer: ".$this->_logFormat("YYY", $parent));
 		if ($connectToName === null || $connectToName != $parent->getName()) {
 			$parentPattern = $this->_patternTable->get($parent->getName());
-// 			$this->_log->addDebug($this->_logFormat("XXX", $parent));
+// 			TestingTools::log("Lexer: ".$this->_logFormat("XXX", $parent));
 			if ($parentPattern->isAbstract()) {
 				$this->_parentStackRemove();
 			}
@@ -635,10 +632,6 @@ class Lexer {
 		return sprintf("[%3d][%-15s]%s", $this->_cycle, $command, $info); 
 	}
 	
-	public function getLog() {
-		return $this->_log;
-	}
-
 }
 
 ?>

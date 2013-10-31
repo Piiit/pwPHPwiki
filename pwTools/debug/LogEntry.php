@@ -2,14 +2,12 @@
 class LogEntry {
 	private $timestamp;
 	private $level;
-	private $description;
 	private $data;
 	private $debugBackTrace;
 	
-	public function __construct($timestamp, $level, $description, $data, $debugBackTrace) {
+	public function __construct($timestamp, $level, $data, $debugBackTrace) {
 		$this->timestamp = $timestamp;
 		$this->level = $level;
-		$this->description = $description;
 		$this->data = $data;
 		$this->debugBackTrace = $debugBackTrace;
 	}
@@ -20,10 +18,6 @@ class LogEntry {
 
 	public function getLevel() {
 		return $this->level;
-	}
-
-	public function getDescription() {
-		return $this->description;
 	}
 
 	public function getData() {

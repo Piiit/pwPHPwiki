@@ -1,93 +1,43 @@
 <?php
 
-//TODO getDebugInfo should return a debug info object not an array or string
-//TODO replace var_dump(?) or replace all other output mechanisms with var_dump(???)
-
 if (!defined('INC_PATH')) {
 	define ('INC_PATH', realpath(dirname(__FILE__).'/../../').'/');
 }
 require_once INC_PATH.'pwTools/string/StringTools.php';
 require_once INC_PATH.'pwTools/data/ArrayTools.php';
+require_once INC_PATH.'pwTools/debug/Log.php';
+require_once INC_PATH.'pwTools/data/ArrayPrinter.php';
 
 class TestingTools {
 	
 	const INFORM = "INFORM";
 	const DEBUG = "DEBUG";
-	const PRINTNEWLINE = 0;
-	const REPLACENEWLINE = 1;
 	
 	private static $_debugOn = false;
 	private static $_logOn = false;
 	private static $_outputOn = false;
-	
 	private static $log;
 	
-	private static function getLine($type, $length, $out, $description = null, $debugInfo = null) {
-		$length = isset($length) ? $length : "";
-		$description = isset($description) && strlen($description) > 0 ? "$description = " : "";
-		$out = isset($out) && $type != "array" ? $out : "";
-		return "$debugInfo ($type, $length)\n $description$out\n";
-	}
-	
-	private static function printItem($item, $name = null, $debugInfo = null, $newline = self::REPLACENEWLINE) {
-		$name = htmlentities($name);
-		if (is_array($item)) {
-			echo self::getLine(gettype($item), count($item), "", $name, $debugInfo);
-		} elseif (is_bool($item)) {
-			echo self::getLine("boolean", 1, $item ? $item = "true" : $item = "false", $name, $debugInfo);
-		} elseif (is_null($item)) {
-			echo self::getLine("null", "", "", $name, $debugInfo);
-		} elseif (is_string($item)) {
-			$itemClean = htmlentities($item);
-			if($newline == self::REPLACENEWLINE) {
-// 				$itemClean = preg_replace("#\n#", "<code class='debspecial'> N </code>", $itemClean);
-// 				$itemClean = preg_replace("#\r#", "<code class='debspecial'> R </code>", $itemClean);
-				$itemClean = preg_replace("#\r#", '\\r', $itemClean);
-				$itemClean = preg_replace("#\n#", '\\n', $itemClean);
+	private static function _createLogAndOutput($output, $level, $newline) {
+		$dbg = self::getDebugInfoAsString();
+		$out = "";
+		if(is_array($output)) {
+			$arrayPrinter = new ArrayPrinter();
+			$arrayWalker = new ArrayWalker($output, $arrayPrinter);
+			$out = $arrayWalker->getResult();
+			if($newline == StringTools::REPLACENEWLINE) {
+				$out = StringTools::replaceNewlines($out);
 			}
-			$itemClean = preg_replace("#\t#", '\\t', $itemClean);
-// 			$itemClean = preg_replace("#\t#", "<code class='debspecial'> T </code>", $itemClean);
-			echo self::getLine("string", strlen($item), $itemClean, $name, $debugInfo);
-		} elseif (is_object($item)) {
-// 			echo "<pre class='debpre !important'>".$debugInfo; //FIXME output with printLine or similar
-			var_dump($item);
-// 			echo "</pre>";
 		} else {
-			echo self::getLine(gettype($item), count($item), $item, $name, $debugInfo);
+			$out = StringTools::getItemWithTypeAndSize($output, "", $newline);
 		}
-	}
-	
-	private static function printAll($output, $description="", $call = 0, $type = self::INFORM, $newline = self::REPLACENEWLINE) {
-		self::getCSS();
-		if ($call == 0) {
-			$debugInfo = $type.": SUM=".count($output, COUNT_RECURSIVE)."; ".self::getDebugInfoAsString($description);
-// 			echo "<div class='debdiv'><ul id='first'>\n";
-			echo "\n";
-  			self::printItem($output, $description, $debugInfo, $newline);
+		if(self::$_logOn) {
+			self::$log->addInfo($dbg." |".(is_array($output) ? "\n" : "").$out);
+		}
+		if(self::$_outputOn) {
+			echo "<pre>$dbg$out</pre>";
 		}
 		
-		if (!is_array($output)) {
-// 			echo "</ul>\n</div>";
-			echo "\n";
-			return;
-		}
-		
-// 		echo "<ul>\n";
-		echo "\n";
-		
-		foreach ($output as $name => $item) {
-			self::printItem($item, $name);
-			if (is_array($item)) {
-				self::printAll($item, "", ++$call);
-				$call--;
-			}
-		}
-		
-// 		echo "</ul>\n";
-		if ($call == 0) {
-// 			echo "</ul>\n</div>";
-			echo "\n";
-		}
 	}
 	
 	public static function debugOff() {
@@ -118,52 +68,39 @@ class TestingTools {
 	public static function getLog() {
 		return self::$log;
 	}
-	
-	public static function getCSS() {
-		$o = "";
-		$o .= StringTools::htmlIndent ();
-		$o .= StringTools::htmlIndent ("<!-- PW_DEBUG_INIT --------------------------------------------------->");
-		$o .= StringTools::htmlIndent ("<style>", StringTools::START);
-		$o .= StringTools::htmlIndent (".debpre {font-size: 12px; color: black; background-color: white; margin: 1px; padding-top: 0px}");
-		$o .= StringTools::htmlIndent (".debout {background-color: white; color: black; border: 1px solid black; padding-left: 2px; padding-right: 2px}");
-		$o .= StringTools::htmlIndent (".debspecial {background-color: gray; color: white; margin-left: 2px; margin-right: 2px}");
-		$o .= StringTools::htmlIndent (".debdiv {margin: 5px; border: 1px solid black; background-color: lightgray}");
-		$o .= StringTools::htmlIndent (".debdiv ul {list-style-type: none}");
-		$o .= StringTools::htmlIndent (".debdiv ul li {margin-top:3px;}");
-		$o .= StringTools::htmlIndent (".debdiv ul#first {padding-left: 0px; margin-left: 0; margin-top: 3px; padding-bottom: 3px; margin-bottom:0}");
-		$o .= StringTools::htmlIndent ("</style>", StringTools::END);
-		$o .= StringTools::htmlIndent ("<!-- PW_DEBUG_INIT --------------------------------------------------->");
-		$o .= StringTools::htmlIndent ();
-		return $o;
-	}
-	
-	public static function log($data, $description = "") {
-		self::$log->addInfo($description, $data);
-	}
-	
-	public static function inform($output, $description = "") {
-		ob_start(); 
-		self::printAll($output, $description);
-		$content = ob_get_clean();
-		if(self::$_logOn) {
-			self::$log->addInfo($description, $content);
-		}
-		if(self::$_outputOn) {
-			echo $content;
+
+	public static function log($output) {
+		$tempOutputStatus = self::$_outputOn;
+		self::outputOff(); 
+		self::_createLogAndOutput($output, self::INFORM, StringTools::PRINTNEWLINE);
+		if($tempOutputStatus) {
+			self::outputOn();
 		}
 	}
 	
-	public static function informPrintNewline($output, $description = "") {
-		self::printAll($output, $description, 0, self::INFORM, self::PRINTNEWLINE);
+	public static function inform($output) {
+		self::_createLogAndOutput($output, self::INFORM, StringTools::PRINTNEWLINE);
 	}
 	
-	public static function debug($output, $description="") {
+	public static function informReplaceNewlines($output) {
+		self::_createLogAndOutput($output, self::INFORM, StringTools::REPLACENEWLINE);
+	}
+	
+	public static function debug($output) {
 	  	if (self::$_debugOn == false) {
 	  		return;
 	  	}
-	  	self::printAll($output, $description, 0, self::DEBUG);
+	  	self::_createLogAndOutput($output, self::DEBUG, StringTools::PRINTNEWLINE);
 	}
 	
+	public static function debugReplaceNewlines($output) {
+		if (self::$_debugOn == false) {
+	  		return;
+	  	}
+		self::_createLogAndOutput($output, self::DEBUG, StringTools::REPLACENEWLINE);
+	}
+	
+	//TODO getDebugInfo should return a debug info object not an array or string
 	public static function getDebugInfoAsArray() {
 		$debugInfo = debug_backtrace();
 		$debug = $debugInfo[0];
@@ -182,9 +119,9 @@ class TestingTools {
 		$debugInfo = self::getDebugInfoAsArray();
 		$funcText = ArrayTools::getIfExists($debugInfo, "class").ArrayTools::getIfExists($debugInfo, "type").ArrayTools::getIfExists($debugInfo, "function");
 		if(strlen($funcText) != 0) {
-			$funcText = "; FUNC=".$funcText;
+			$funcText = ":".$funcText;
 		}
-		return "FILE=".basename($debugInfo["file"])."; LINE=".$debugInfo["line"].$funcText;
+		return basename($debugInfo["file"]).$funcText." (".$debugInfo["line"].")";
 	}
 	
 }

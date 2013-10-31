@@ -23,24 +23,24 @@ class Log {
 		$this->setLogLevel($level);
 	}
 	
-	public function add($text, $data = null) {
-		$this->_add(self::NOLEVEL, $text, $data);
+	public function add($text) {
+		$this->_add(self::NOLEVEL, $text);
 	}
 	
-	public function addDebug($text, $data = null) {
-		$this->_add(self::DEBUG, $text, $data);
+	public function addDebug($text) {
+		$this->_add(self::DEBUG, $text);
 	}
 	
-	public function addInfo($text, $data = null) {
-		$this->_add(self::INFO, $text, $data);
+	public function addInfo($text) {
+		$this->_add(self::INFO, $text);
 	}
 	
-	public function addWarning($text, $data = null) {
-		$this->_add(self::WARNING, $text, $data);
+	public function addWarning($text) {
+		$this->_add(self::WARNING, $text);
 	}
 	
-	public function addError($text, $data = null) {
-		$this->_add(self::ERROR, $text, $data);
+	public function addError($text) {
+		$this->_add(self::ERROR, $text);
 	}
 	
 	public function setLogLevel($level) {
@@ -76,8 +76,7 @@ class Log {
 		foreach ($logBook as $logEntry) {
 			$date = date($this->_dateFormat, $logEntry->getTimestamp());
 			$typeString = $this->_getLogLevelString($logEntry->getLevel());
-			$debugString = TestingTools::getDebugInfoAsString();
-			$out .= sprintf("%19s | %-7s | %-40s | %s | %s\n", $date, trim($typeString), trim($debugString), trim($logEntry->getDescription()), trim($logEntry->getData()));
+			$out .= sprintf("%19s | %-7s | %s\n", $date, trim($typeString), $logEntry->getData());
 		}
 		return $out;
 	}
@@ -100,13 +99,13 @@ class Log {
 		}
 	}
 	
-	private function _add($loglevel, $text, $data) {
+	private function _add($loglevel, $text) {
 // 		var_dump($loglevel);
 // 		var_dump($this->getLogLevel());
 		if ($this->getLogLevel() < $loglevel) {
 			return;
 		}
-		$this->_logbook[] = new LogEntry(time(), $loglevel, $text, $data, TestingTools::getDebugInfoAsArray());
+		$this->_logbook[] = new LogEntry(time(), $loglevel, $text, TestingTools::getDebugInfoAsArray());
 // 		var_dump(end($this->_logbook));
 	}
 	
