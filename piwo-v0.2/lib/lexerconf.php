@@ -13,49 +13,27 @@ foreach ($parserTokenList as $parserToken) {
 		$lexer->parse();		$parser = new Parser();		$parser->registerHandlerList($handlerList);
 		$parser->setUserInfo('indextable', WikiTocTools::createIndexTable($parser, $lexer->getRootNode()));		$parser->setUserInfo('lexerperformance', $lexer->getExecutionTime());		$parser->setUserInfo('piwoversion', PIWOVERSION);				$_SESSION["pw_wiki"]["error"] = false;		 		$ta = new TreeWalker($lexer->getRootNode(), $parser);
  		$o = implode($ta->getResult());
-	} catch (Exception $e) {		$debugCatchedException = true;		$src = "N/A";		$log = "N/A";		if (isset($lexer)) {			$err = $lexer->getLog()->getLastLog();			$log = $lexer->getLog();			$src = $lexer->getSource();		}		$debugString .= "<h3>Exception catched! Logfile output...</h3>";		$debugString .= "<pre style='white-space: pre-wrap'>";		$debugString .= "ERROR MESSAGE: \n".pw_s2e(print_r($e->getMessage(), true));		$debugString .= "\n\nERROR TRACE: \n".pw_s2e($e->getTraceAsString());		$debugString .= "\n\nSOURCE: \n".pw_s2e(StringTools::showLineNumbers($src));		$debugString .= "\n\nLOG: \n".$log;		$debugString .= "</pre>";	}		if ($debugCatchedException || pw_wiki_getcfg('debug')) {			
-// 		echo $debugString;
-		if (isset($lexer)) {
-			$debugString = "<pre style='white-space: pre-wrap'>";
-			$debugString .= "\n\nPATTERNTABLE: \n";
+	} catch (Exception $e) {		$debugCatchedException = true;		$src = "N/A";		$log = "N/A";		if (isset($lexer)) {			$err = $lexer->getLog()->getLastLog();			$log = $lexer->getLog();			$src = $lexer->getSource();		}		$debugString .= "<h3>Exception catched! Logfile output...</h3>";		$debugString .= "<pre style='white-space: pre-wrap'>";		$debugString .= "ERROR MESSAGE: \n".pw_s2e(print_r($e->getMessage(), true));		$debugString .= "\n\nERROR TRACE: \n".pw_s2e($e->getTraceAsString());		$debugString .= "\n\nSOURCE: \n".pw_s2e(StringTools::showLineNumbers($src));		$debugString .= "\n\nLOG: \n".$log;		$debugString .= "</pre>";	}		if ($debugCatchedException || pw_wiki_getcfg('debug')) {			if (isset($lexer)) {
+			$debugString .= "PATTERNTABLE: \n";
 			$debugString .= $lexer->getPatternTableAsString();
-			$debugString .= "</pre>";
-// 			echo $debugString;
 		}
-		
-		$debugString .= "<div id='imdebug'>";		$debugString .= "<h2>DEBUG</h2>";
-		$debugString .= "<h3>Lexer</h3>";
+				$debugString .= "LEXER: \n";
 		$debugString .= $lexer;
 	
-		$debugString .= "<h3>AST</h3>";
-		$debugString .= "<pre style='overflow: auto'>";		$treePrinter = new TreeWalker($lexer->getRootNode(), new TreePrinter());
+		$debugString .= "AST: \n";
+		$treePrinter = new TreeWalker($lexer->getRootNode(), new TreePrinter());
 		$ast = $treePrinter->getResult();
 		$debugString .= StringTools::showLineNumbers($ast);
-		$debugString .= "</pre>";
 	
-		$debugString .= "<h3>Log</h3>";
-		$debugString .= "<pre style='overflow: auto'>";
-	
-		$logtext = $lexer->getLog()->toStringReversed();
-		$debugString .= pw_s2e($logtext);
-		$debugString .= "</pre>";
-	
-		$debugString .= "<h3>Performance</h3>";
-		$debugString .= "Text in ".$lexer->getExecutionTime()."s geparsed!";
+		$debugString .= "Performance:\n";
+		$debugString .= "Text parsed in ".$lexer->getExecutionTime()."s!";
 	
 		//$debugString .= "<h3>Debug: Parser - Schritte (TODO: ADAPT TO NEW LEXER)</h3>";
 		//$lexer->printDebugInfo(1,1);
 	
-		$debugString .= "<h3>Text, der geparsed werden soll (mit Zeilennummern).</h3>";
-		$debugString .= "Die erste und letzte Zeile werden vom Lexer automatisch hinzugef&uuml;gt.";
-		$debugString .= StringTools::preFormatShowLineNumbers($lexer->getSource());
+		$debugString .= "SOURCE:\n";		$debugString .= StringTools::preFormatShowLineNumbers($lexer->getSource());
 	
-		$debugString .= "<h3>Lexer: PatternTable</h3>";
-		$debugString .= StringTools::preFormatShowLineNumbers($lexer->getPatternTableAsString());
-		$debugString .= "</div>";
-	}	TestingTools::outputOff(); 	TestingTools::inform($debugString);
-	
-	return $o;
+	}	return $o;
 }function pw_wiki_lexerconf(Lexer $lexer) {
 	$lexer->addWordPattern("newline", '(?<=\n)\n');
 	$lexer->addSectionPattern("wptable", '\n\{\|', '\|\}');
