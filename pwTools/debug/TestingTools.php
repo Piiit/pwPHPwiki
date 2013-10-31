@@ -40,15 +40,18 @@ class TestingTools {
 		} elseif (is_string($item)) {
 			$itemClean = htmlentities($item);
 			if($newline == self::REPLACENEWLINE) {
-				$itemClean = preg_replace("#\n#", "<code class='debspecial'> N </code>", $itemClean);
-				$itemClean = preg_replace("#\r#", "<code class='debspecial'> R </code>", $itemClean);
+// 				$itemClean = preg_replace("#\n#", "<code class='debspecial'> N </code>", $itemClean);
+// 				$itemClean = preg_replace("#\r#", "<code class='debspecial'> R </code>", $itemClean);
+				$itemClean = preg_replace("#\r#", '\\r', $itemClean);
+				$itemClean = preg_replace("#\n#", '\\n', $itemClean);
 			}
-			$itemClean = preg_replace("#\t#", "<code class='debspecial'> T </code>", $itemClean);
+			$itemClean = preg_replace("#\t#", '\\t', $itemClean);
+// 			$itemClean = preg_replace("#\t#", "<code class='debspecial'> T </code>", $itemClean);
 			echo self::getLine("string", strlen($item), $itemClean, $name, $debugInfo);
 		} elseif (is_object($item)) {
-			echo "<pre class='debpre !important'>".$debugInfo; //FIXME output with printLine or similar
+// 			echo "<pre class='debpre !important'>".$debugInfo; //FIXME output with printLine or similar
 			var_dump($item);
-			echo "</pre>";
+// 			echo "</pre>";
 		} else {
 			echo self::getLine(gettype($item), count($item), $item, $name, $debugInfo);
 		}
@@ -58,16 +61,19 @@ class TestingTools {
 		self::getCSS();
 		if ($call == 0) {
 			$debugInfo = $type.": SUM=".count($output, COUNT_RECURSIVE)."; ".self::getDebugInfoAsString($description);
-			echo "<div class='debdiv'><ul id='first'>\n";
+// 			echo "<div class='debdiv'><ul id='first'>\n";
+			echo "\n";
   			self::printItem($output, $description, $debugInfo, $newline);
 		}
 		
 		if (!is_array($output)) {
-			echo "</ul>\n</div>";
+// 			echo "</ul>\n</div>";
+			echo "\n";
 			return;
 		}
 		
-		echo "<ul>\n";
+// 		echo "<ul>\n";
+		echo "\n";
 		
 		foreach ($output as $name => $item) {
 			self::printItem($item, $name);
@@ -77,9 +83,10 @@ class TestingTools {
 			}
 		}
 		
-		echo "</ul>\n";
+// 		echo "</ul>\n";
 		if ($call == 0) {
-			echo "</ul>\n</div>";
+// 			echo "</ul>\n</div>";
+			echo "\n";
 		}
 	}
 	
@@ -128,6 +135,10 @@ class TestingTools {
 		$o .= StringTools::htmlIndent ("<!-- PW_DEBUG_INIT --------------------------------------------------->");
 		$o .= StringTools::htmlIndent ();
 		return $o;
+	}
+	
+	public static function log($data, $description = "") {
+		self::$log->addInfo($description, $data);
 	}
 	
 	public static function inform($output, $description = "") {

@@ -15,9 +15,9 @@ class FileToolsTest extends PHPUnit_Framework_TestCase {
 			"////hallo//du/",
 			"start/../anfang/",
 			"/../../",
-			"/Ähm/",
+			"/Ã„hm/",
 			"1/2/3/../../Hallo.php",
-			"dat/h1/h2/../../zwei ebenen zurück.txt",
+			"dat/h1/h2/../../zwei ebenen zurÃ¼ck.txt",
 			"dat/tests/x/",
 			"/",
 			"hallo/../zwei.txt",
@@ -48,9 +48,9 @@ class FileToolsTest extends PHPUnit_Framework_TestCase {
 				"du",
 				"anfang",
 				"",
-				"Ähm",
+				"Ã„hm",
 				"Hallo.php",
-				"zwei ebenen zurück.txt",
+				"zwei ebenen zurÃ¼ck.txt",
 				"x",
 				"",
 				"zwei.txt",
@@ -63,7 +63,7 @@ class FileToolsTest extends PHPUnit_Framework_TestCase {
 		}
 		
 		try {
-			FileTools::basename("öäü/SOnderzeichen/Öä*");
+			FileTools::basename("Ã¶Ã¤Ã¼/SOnderzeichen/ÃŸÃ–*");
 			$this->fail('An expected exception has not been raised.');
 		} catch (Exception $e) {
 		}
@@ -77,7 +77,7 @@ class FileToolsTest extends PHPUnit_Framework_TestCase {
 			  "/hallo/du/",
 			  "anfang/",
 			  "/",
-			  "/Ähm/",
+			  "/Ã„hm/",
 			  "1/",
 			  "dat/",
 			  "dat/tests/x/",
@@ -92,7 +92,7 @@ class FileToolsTest extends PHPUnit_Framework_TestCase {
 		}
 		
 		try {
-			FileTools::dirname("öäü/SOnderzeichen/Öä*");
+			FileTools::dirname("Ã¶Ã¤Ã¼/SOnderzeichen/ÃŸÃ–*");
 			$this->fail('An expected exception has not been raised.');
 		} catch (Exception $e) {
 		}
@@ -120,9 +120,9 @@ class FileToolsTest extends PHPUnit_Framework_TestCase {
 				"/hallo/du/",
 				"anfang/",
 				"/",
-				"/Ähm/",
+				"/Ã„hm/",
 				"1/Hallo.php",
-				"dat/zwei ebenen zurück.txt",
+				"dat/zwei ebenen zurÃ¼ck.txt",
 				"dat/tests/x/",
 				"/",
 				"zwei.txt",
@@ -135,7 +135,7 @@ class FileToolsTest extends PHPUnit_Framework_TestCase {
 		}
 		
 		try {
-			FileTools::normalizePath("öäü/SOnderzeichen/Öä*");
+			FileTools::normalizePath("Ã¶Ã¤Ã¼/SOnderzeichen/ÃŸÃ–*");
 			$this->fail('An expected exception has not been raised.');
 		} catch (Exception $e) {
 		}

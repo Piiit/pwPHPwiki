@@ -32,7 +32,6 @@ class Log {
 	}
 	
 	public function addInfo($text, $data = null) {
-		var_dump($data);
 		$this->_add(self::INFO, $text, $data);
 	}
 	
@@ -77,12 +76,8 @@ class Log {
 		foreach ($logBook as $logEntry) {
 			$date = date($this->_dateFormat, $logEntry->getTimestamp());
 			$typeString = $this->_getLogLevelString($logEntry->getLevel());
-			$debugString = "";
-			$backTrace = $logEntry->getDebugBackTrace();
-			if ($this->_logLevel == self::DEBUG) {
-				$debugString = sprintf("%s->%s@%s", $backTrace["file"], $backTrace["function"], $backTrace["line"]);
-			}
-			$out .= sprintf("%19s | %-7s | %-40s | %s\n", $date, trim($typeString), trim($debugString), trim($logEntry->getDescription()));
+			$debugString = TestingTools::getDebugInfoAsString();
+			$out .= sprintf("%19s | %-7s | %-40s | %s | %s\n", $date, trim($typeString), trim($debugString), trim($logEntry->getDescription()), trim($logEntry->getData()));
 		}
 		return $out;
 	}
@@ -106,8 +101,8 @@ class Log {
 	}
 	
 	private function _add($loglevel, $text, $data) {
-		var_dump($loglevel);
-		var_dump($this->getLogLevel());
+// 		var_dump($loglevel);
+// 		var_dump($this->getLogLevel());
 		if ($this->getLogLevel() < $loglevel) {
 			return;
 		}

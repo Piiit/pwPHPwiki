@@ -8,7 +8,7 @@ require_once INC_PATH.'pwTools/parser/ParserRuleHandler.php';
 require_once INC_PATH.'pwTools/parser/ParserRule.php';
 require_once INC_PATH.'pwTools/parser/Pattern.php';
 
-class Align extends ParserRule implements ParserRuleHandler, LexerRuleHandler {
+class Align extends ParserRule implements ParserRuleHandler, LexerRuleHandler { 
 	
 	public function getName() {
 		return strtolower(__CLASS__);

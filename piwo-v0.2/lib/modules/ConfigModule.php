@@ -12,7 +12,7 @@ require_once INC_PATH.'pwTools/data/ArrayTools.php';
 class ConfigModule extends Module implements ModuleHandler, PermissionProvider, MenuItemProvider {
 	
 	public function __construct() {
-		parent::__construct($this->getName(), $this);
+		parent::__construct($this->getName(), $this); 
 	}
 	
 	public function getName() {
