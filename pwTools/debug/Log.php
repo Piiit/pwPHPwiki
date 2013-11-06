@@ -8,12 +8,10 @@ require_once INC_PATH.'pwTools/debug/TestingTools.php';
 
 class Log {
 	
-	const NOLEVEL = 0;
 	const ERROR   = 1;  
 	const WARNING = 2;  
 	const INFO    = 3;  
 	const DEBUG   = 4;  
-	const OFF     = 5;
 	
 	private $_logbook = array();
 	private $_dateFormat = "Y-m-d h:i:s";
@@ -24,7 +22,7 @@ class Log {
 	}
 	
 	public function add($text) {
-		$this->_add(self::NOLEVEL, $text);
+		$this->_add($this->_logLevel, $text);
 	}
 	
 	public function addDebug($text) {
@@ -44,8 +42,8 @@ class Log {
 	}
 	
 	public function setLogLevel($level) {
-		if ($level < 1 || $level > 5) {
-			throw new InvalidArgumentException("Valid severity levels are 1=ERROR, 2=WARNING, 3=INFO, 4=DEBUG or 5=OFF. $level given!");
+		if ($level < 1 || $level > 4) {
+			throw new InvalidArgumentException("Valid severity levels are 1=ERROR, 2=WARNING, 3=INFO or 4=DEBUG. $level given!");
 		}
 		$this->_logLevel = $level;
 	}
@@ -91,7 +89,6 @@ class Log {
 	
 	private function _getLogLevelString($type) {
 		switch ($type) {
-			case self::NOLEVEL: return "NOLEVEL";
 			case self::DEBUG: return "DEBUG";
 			case self::INFO: return "INFO";
 			case self::WARNING: return "WARNING";
@@ -100,13 +97,10 @@ class Log {
 	}
 	
 	private function _add($loglevel, $text) {
-// 		var_dump($loglevel);
-// 		var_dump($this->getLogLevel());
 		if ($this->getLogLevel() < $loglevel) {
 			return;
 		}
 		$this->_logbook[] = new LogEntry(time(), $loglevel, $text, TestingTools::getDebugInfoAsArray());
-// 		var_dump(end($this->_logbook));
 	}
 	
 }

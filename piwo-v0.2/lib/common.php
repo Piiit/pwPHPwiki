@@ -98,46 +98,21 @@ function pw_wiki_file2editor($data) {
 }
 
 
-function pw_wiki_getfulltitle($sep = "&raquo;", $showuser = true) {
+//TODO Put pw_wiki_getfulltitle to WikiID, getFullPath or similar... 
+//TODO WikiID: add getRealPageName that returns also WIKINSDEFAULTPAGEs etc. correctly!
+function pw_wiki_getfulltitle($sep = "&laquo;") {
 	$sep = ' '.$sep.' ';
-
-	$title = pw_url2u(pw_wiki_getcfg('wikititle'));
-	$title = utf8_ucfirst($title);
-	$title = pw_s2e($title);
-
-	//$ns = pw_url2u(pw_wiki_getcfg('ns'));
 	$id = pw_wiki_getid();
-	$ns = $id->getNS();
-	if ($ns) {
-		$ns = utf8_ucfirst($ns);
-		$ns = pw_s2e($ns);
-		$title .= $sep.$ns;
+	
+	foreach ($id->getFullNSAsArray() as $index => $namespace) {
+		$title = pw_s2e(utf8_ucfirst($namespace)).$sep.$title;
 	}
-
-	$mode = pw_wiki_getmode();
-
-	if ($mode == 'showpages') {
-		$title .= " [Page&nbsp;Overview]";
-	} else {
-		//$pg = pw_url2u(pw_wiki_getcfg('pg'));
-		$pg = $id->getPage();
-		$pg = utf8_ucfirst($pg);
-		$pg = pw_s2e($pg);
-		$title .= $sep.$pg;
-		StringTools::rightTrim($title, $sep);
-		if ($mode == 'editpage') {
-			$title .= " [Editing]";
-		}
+	
+	if(!$id->isNS() && $id->getPage() != WIKINSDEFAULTPAGE) {
+		$title = pw_s2e(utf8_ucfirst($id->getPage())).$sep.$title;
 	}
-
-/*
-	$user = pw_wiki_getcfg('user');
-	out($user);
-	if (pw_wiki_getcfg('showuser') and ($user)) {
-		$user = pw_wiki_encode($user);
-		$title .= " [".$user."]";
-	}
-*/
+	
+	$title .= pw_s2e(utf8_ucfirst(pw_wiki_getcfg('wikititle')));
 	return $title;
 }
 

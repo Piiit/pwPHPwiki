@@ -2,7 +2,20 @@
 \\
 :> ++ **Welcome \\ ...to piwo {{version}}...**++
 \\
+
 </info>
+
+:> ++//
+Every task involves constraint,\\
+Solve the thing without complaint;\\
+There are magic links and chains\\
+Forged to loose our rigid brains.\\
+Structures, strictures, though they bind,\\
+Strangely liberate the mind.
+//++
+
+:>> James Falen
+
 
 ----
 :> <lo>

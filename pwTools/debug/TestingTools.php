@@ -16,7 +16,7 @@ class TestingTools {
 	private static $_debugOn = false;
 	private static $_logOn = false;
 	private static $_outputOn = false;
-	private static $log;
+	private static $_log;
 	
 	private static function _createLogAndOutput($output, $level, $newline) {
 		$dbg = self::getDebugInfoAsString();
@@ -32,7 +32,7 @@ class TestingTools {
 			$out = StringTools::getItemWithTypeAndSize($output, "", $newline);
 		}
 		if(self::$_logOn) {
-			self::$log->addInfo($dbg." |".(is_array($output) ? "\n" : "").$out);
+			self::$_log->add($dbg." |".(is_array($output) ? "\n" : "").$out);
 		}
 		if(self::$_outputOn) {
 			echo "<pre>$dbg$out</pre>";
@@ -54,7 +54,7 @@ class TestingTools {
 	
 	public static function logOn() {
 		self::$_logOn = true;
-		self::$log = new Log();
+		self::$_log = new Log();
 	}
 	
 	public static function outputOff() {
@@ -66,7 +66,7 @@ class TestingTools {
 	}
 	
 	public static function getLog() {
-		return self::$log;
+		return self::$_log;
 	}
 
 	public static function log($output) {
