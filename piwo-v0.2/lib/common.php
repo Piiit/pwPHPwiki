@@ -100,10 +100,9 @@ function pw_wiki_file2editor($data) {
 
 //TODO Put pw_wiki_getfulltitle to WikiID, getFullPath or similar... 
 //TODO WikiID: add getRealPageName that returns also WIKINSDEFAULTPAGEs etc. correctly!
-function pw_wiki_getfulltitle($sep = "&laquo;") {
-	$sep = ' '.$sep.' ';
+function pw_wiki_getfulltitle($sep = " &laquo; ") {
 	$id = pw_wiki_getid();
-	
+	$title = "";
 	foreach ($id->getFullNSAsArray() as $index => $namespace) {
 		$title = pw_s2e(utf8_ucfirst($namespace)).$sep.$title;
 	}

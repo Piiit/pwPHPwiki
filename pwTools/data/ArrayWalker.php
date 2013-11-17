@@ -17,7 +17,7 @@ class ArrayWalker {
 	}
 	
 	public function getResult() {
-		$this->_arrayWalker($this->_array, 0, 0);
+		$this->_arrayWalker($this->_array, 0, 0, 0);
 		return $this->_arrayWalkerConfig->getResult();
 	}
 	

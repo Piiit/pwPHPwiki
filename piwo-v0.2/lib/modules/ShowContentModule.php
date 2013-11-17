@@ -27,7 +27,7 @@ class ShowContentModule extends Module implements ModuleHandler {
 // 		TestingTools::inform(file_exists($filepath));
 
 		if($id->getPage() == WIKINSDEFAULTPAGE) {
-			TestingTools::inform($id);
+			//TestingTools::inform($id);
 			header("Location: ?id=".$id->getFullNSAsUrl());
 		}
 		
