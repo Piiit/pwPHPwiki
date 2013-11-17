@@ -15,6 +15,11 @@ class ArrayTools {
 		return $valueIfNull;  
 	}
 	
+	public static function getArrayAsString(array $array, $maxDepth = 0) {
+		$arrayWalker = new ArrayWalker($array, new ArrayPrinter(), $maxDepth);
+		return $arrayWalker->getResult();
+	}
+	
 }
 
 ?>
