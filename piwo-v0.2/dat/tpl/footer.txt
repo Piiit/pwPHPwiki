@@ -1,2 +1,2 @@
 \\
-:>> <lo>Processed in ~~TEXT:comma|{{PERFORMANCE}}~~ seconds | File format: {{FILE:type}}</lo>
+:>> <lo>Processed in {{PERFORMANCE}} seconds | File format: {{FILE:type}}</lo>
