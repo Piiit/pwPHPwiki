@@ -16,9 +16,17 @@ class Log {
 	private $_logbook = array();
 	private $_dateFormat = "Y-m-d h:i:s";
 	private $_logLevel = self::INFO;
+	private $_dateTimezone = "Europe/Rome";
 	
 	public function __construct($level = self::INFO) {
+		$this->setTimezone($this->_dateTimezone);
 		$this->setLogLevel($level);
+	}
+	
+	public function setTimezone($zone) {
+		if(!date_default_timezone_set($zone)) {
+			throw new Exception("Invalid timezone: ".$zone);
+		}
 	}
 	
 	public function add($text) {
