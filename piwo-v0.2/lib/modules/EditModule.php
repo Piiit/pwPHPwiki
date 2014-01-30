@@ -63,7 +63,9 @@ class EditModule extends Module implements ModuleHandler, JavaScriptProvider, Pe
 			$this->setNotification("Creating a new page.");
 		}
 	
+		TestingTools::debug("DATA = ".$data);
 		$data = pw_wiki_file2editor($data);
+		TestingTools::debug("DATA = ".$data);
 		
 		$out = StringTools::htmlIndent("<a href='?id=".$id->getIDAsUrl()."'>&laquo; Back</a><hr />");
 		$out .= StringTools::htmlIndent("<h1>Source code Editor</h1>ID = <tt>".$id->getIDAsHtmlEntities()."</tt>");
