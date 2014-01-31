@@ -84,12 +84,17 @@ class InternalLink extends ParserRule implements ParserRuleHandler, LexerRuleHan
 				
 				try {
 					// To trigger an exception, also if a text is given...
+					//TODO remove try/catch, handled through if, anchorText deprecated? -> check
+					if(!array_key_exists($id->getAnchor(), self::$anchorText)) {
+						throw new Exception("Anchor '".$id->getAnchor()."' not found!");
+					}
 					$tmp = self::$anchorText[$id->getAnchor()];
 					if(!$text) {
 						$text = $tmp;
 					}
 					$found = true;
 				} catch (Exception $e) {
+					TestingTools::debug($e->getMessage());
 					try {
 						$item = $indextable->getByIdOrText(pw_url2t($id->getAnchor()));
 						$jump = "#header_".$item->getId();
