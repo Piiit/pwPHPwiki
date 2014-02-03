@@ -367,6 +367,10 @@ if(!function_exists('utf8_ucfirst')){
                 return utf8_strtoupper($str);
             default:
                 preg_match('/^(.{1})(.*)$/us', $str, $matches);
+                //Something wrong... keep string!
+                if(sizeof($matches) < 3) {
+                	return $str;
+                } 
                 return utf8_strtoupper($matches[1]).$matches[2];
         }
     }

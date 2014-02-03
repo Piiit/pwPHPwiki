@@ -23,8 +23,11 @@ class IndexTable {
 	}
 	
 	public function add($level, $text) {
+		if(!is_int($level) || $level > self::$MAXLEVEL || $level < 1) {
+			throw new Exception("IndexTable: add: Invalid level '$level'. MAXLEVEL=".self::$MAXLEVEL);
+		}
+		
 		if ($this->_lastlevel > $level) {
-			TestingTools::debug("RESET");
 			for($i = $level+1; $i <= self::$MAXLEVEL; $i++) {
 				$this->_levels[$i] = 0;
 			}
