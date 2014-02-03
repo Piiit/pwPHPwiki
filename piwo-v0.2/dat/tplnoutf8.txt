@@ -1,6 +1,0 @@
-<error>
-:> ++**Fehler**++
-:> Die Datei ist nicht utf8 codiert! 
-</error>
-Zurück zu...
-~~NSTOC~~
