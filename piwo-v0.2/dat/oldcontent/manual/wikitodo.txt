@@ -6,7 +6,7 @@ Wichtig wäre ein bugtracker und eine einfache todo-liste mit Prioritäten
 # Fußnoten
 # :ok: hoch- und tiefgestellter Text
 # :ok: 3 Textgrößen: klein, normal/mittel, groß
-# [[manual:tabellen#Tabellen auch zeilenweise zulassen]]
+# [[tabellen#Tabellen auch zeilenweise zulassen]]
 # Sections
  * Openoffice Math Syntax support
  * Download-Plugin

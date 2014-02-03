@@ -14,23 +14,28 @@ class IndexTable {
 	private $_cont;
 	private $_lastlevel;
 	private $_levels;
+	private static $MAXLEVEL = 6;
 	
 	public function __construct() {
 		$this->_cont = array();
-		$this->_levels = array(1=>0, 2=>0, 3=>0, 4=>0, 5=>0);
+		$this->_levels = array(1=>0, 2=>0, 3=>0, 4=>0, 5=>0, 6=>0);
 		$this->_lastlevel = 0;
 	}
 	
 	public function add($level, $text) {
 		
-		if ($this->_lastlevel < $level) {
-			$this->_levels[$level+1] = 0;
-			$this->_levels[$level+2] = 0;
-			$this->_levels[$level+3] = 0;
-			$this->_levels[$level+4] = 0;
+		
+		TestingTools::debug("RESET: ".$this->_lastlevel."; $level");
+		if ($this->_lastlevel > $level) {
+			TestingTools::debug("RESET");
+			for($i = $level+1; $i <= self::$MAXLEVEL; $i++) {
+				$this->_levels[$i] = 0;
+			}
 		}
 
 		$this->_levels[$level]++;
+		TestingTools::debug("TXT=$text; LVL=$level");
+		TestingTools::debug($this->_levels);
 		
 		$l = $this->_levels;
 		$id = StringTools::rightTrim("$l[1].$l[2].$l[3].$l[4].$l[5]", ".0");
