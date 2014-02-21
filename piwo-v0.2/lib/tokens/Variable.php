@@ -21,7 +21,7 @@ class Variable extends ParserRule implements ParserRuleHandler, LexerRuleHandler
 		$varname = utf8_strtolower($nodeData[0]);
   		$value = $this->getText();
 
-  		if ($_SESSION['pw_wiki']['error']) {
+  		if (isset($_SESSION['pw_wiki']['error']) && $_SESSION['pw_wiki']['error'] == true) {
     		$_SESSION['pw_wiki']['error'] = false;
     		return $value.nop("Die Variable '$varname' kann wegen interner Fehler nicht gesetzt werden.");
   		}
