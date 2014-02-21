@@ -22,41 +22,27 @@ class ShowPagesModule extends Module implements ModuleHandler, MenuItemProvider 
 
 	public function execute() {
 		$id = pw_wiki_getid();
-		
-		//FIXME getFullNSPath gives a url and not a filesystem path! BUG!!!
 		$path = WIKISTORAGE.$id->getFullNSPath();
 		
 		$files = array();
 		$dirs = array();
 		$directoryContent = glob("$path/*");
 	
-		//TODO Delete empty folders!  should be optional!
-		if (!$directoryContent) { 
-			if ($path != WIKISTORAGE) {
-				try {
-					FileTools::removeDirectory($path);
-					$this->setNotification("'".$id->getNSAsHtmlEntities()."' is empty.<br />It has been deleted!");
-				} catch (Exception $e) {
-					$this->setNotification("Unable to delete '".$id->getNSAsHtmlEntities()."'!<br />".$e->getMessage(), Module::NOTIFICATION_ERROR);
-				}
+		foreach ($directoryContent as $fileOrDir) {
+			$fileOrDir = pw_s2u($fileOrDir);
+			if ($fileOrDir != utf8_strtolower($fileOrDir)) {
+				rename(pw_u2t($fileOrDir), pw_u2t(utf8_strtolower($fileOrDir)));
+				// TODO: falls neue Datei bereits existiert ??? Fehler melden... Benutzereingabe fordern!
 			}
-		} else {
-			foreach ($directoryContent as $fileOrDir) {
-				$fileOrDir = pw_s2u($fileOrDir);
-				if ($fileOrDir != utf8_strtolower($fileOrDir)) {
-					rename(pw_u2t($fileOrDir), pw_u2t(utf8_strtolower($fileOrDir)));
-					// TODO: falls neue Datei bereits existiert ??? Fehler melden... Benutzereingabe fordern!
-				}
-				$fileOrDir = utf8_strtolower($fileOrDir);
-				$fileOrDir = pw_u2t($fileOrDir);
-	
-				if (is_dir($fileOrDir)) {
-					$dirs[] = array('NAME' => FileTools::basename($fileOrDir), 'TYPE' => "DIR");
-				} else {
-					$files[] = array('NAME' => FileTools::basename($fileOrDir, ".txt"), 'TYPE' => "TEXT", 'SIZE' => filesize($fileOrDir), 'MODIFIED' => filemtime($fileOrDir));
-				}
-	
+			$fileOrDir = utf8_strtolower($fileOrDir);
+			$fileOrDir = pw_u2t($fileOrDir);
+
+			if (is_dir($fileOrDir)) {
+				$dirs[] = array('NAME' => FileTools::basename($fileOrDir), 'TYPE' => "DIR");
+			} else {
+				$files[] = array('NAME' => FileTools::basename($fileOrDir, ".txt"), 'TYPE' => "TEXT", 'SIZE' => filesize($fileOrDir), 'MODIFIED' => filemtime($fileOrDir));
 			}
+
 		}
 	
 		sort($dirs);
@@ -68,7 +54,7 @@ class ShowPagesModule extends Module implements ModuleHandler, MenuItemProvider 
 		$out .= "<table class='overview' style='width: 100%'><tr><th style='width: 40%'>Name</th><th style='width: 10%'>Size</th><th style='width: 17%'>Modified</th><th>Options</th></tr>";
 
 		foreach (array_merge($dirs, $files) as $fileOrDir) {
-// 			TestingTools::inform($fileOrDir);
+
 			//Do not show default namespace pages and template folders.
 			if(($fileOrDir['NAME'] == WIKINSDEFAULTPAGE && $fileOrDir['TYPE'] == "TEXT") ||
 			   ($fileOrDir['NAME'] == trim(WIKITEMPLATESNS, ":")) && $fileOrDir['TYPE'] == "DIR") {

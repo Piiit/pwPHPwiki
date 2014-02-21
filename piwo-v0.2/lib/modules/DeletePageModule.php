@@ -50,7 +50,16 @@ class DeletePageModule extends Module implements ModuleHandler, PermissionProvid
 		}
 
 		$out = StringTools::htmlIndent("<a href='?id=".$id->getIDAsUrl()."'>&laquo; Back</a><hr />");
-		$this->setDialog(GuiTools::dialogQuestion("Delete", "Do you want to delete the page '".$id->getPageAsHtmlEntities()."'?", "delete", "Yes", "cancel", "No", "id=".$id->getID()."&mode=$mode"));
+		
+		if($id->getPage() == "") {
+			$filename = WIKISTORAGE.$id->getPath().WIKINSDEFAULTPAGE.WIKIFILEEXT;
+			if(file_exists($filename)) {
+				$this->setDialog(GuiTools::dialogQuestion("Delete", "Do you want to delete the default page of the namespace '".$id->getFullNSAsHtmlEntities()."'?", "delete", "Yes", "cancel", "No", "id=".$id->getFullNS().WIKINSDEFAULTPAGE."&mode=$mode"));
+			} 
+			$this->setNotification("Can not delete default page of this namespace. It is not present!".$filename);
+		} else {
+			$this->setDialog(GuiTools::dialogQuestion("Delete", "Do you want to delete the page '".$id->getIDAsHtmlEntities()."'?", "delete", "Yes", "cancel", "No", "id=".$id->getID()."&mode=$mode"));
+		}
 	}
 	
 	public function getMenuText() {
