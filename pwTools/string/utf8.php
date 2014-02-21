@@ -103,7 +103,7 @@ if(!function_exists('utf8_check')){
      */
     function utf8_check($Str) {
         if (is_array($Str)) {
-          #out2($Str, "utf8_check: array to string conversation!");
+          //TestingTools::debug($Str, "utf8_check: array to string conversation!");
           $Str = (string)$Str;
         }
         $len = strlen($Str);
@@ -116,7 +116,6 @@ if(!function_exists('utf8_check')){
             elseif (($b & 0xFC) == 0xF8) $n=4; # 111110bb
             elseif (($b & 0xFE) == 0xFC) $n=5; # 1111110b
             else return false; # Does not match any model
-
             for ($j=0; $j<$n; $j++) { # n bytes matching 10bbbbbb follow ?
                 if ((++$i == $len) || ((ord($Str[$i]) & 0xC0) != 0x80))
                     return false;
