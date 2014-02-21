@@ -146,6 +146,20 @@ class WikiID {
 		return $this->id == ":"; 
 	}
 	
+	public function isAbsolute() {
+		return self::isValidAndAbsolute($this->id);
+	}
+	
+	public static function isValidAndAbsolute($id) {
+		if(!is_string($id)) {
+			throw new InvalidArgumentException("Argument must be a string!");
+		}
+		if(!self::isvalid($id)) {
+			throw new Exception("Argument is not a valid wiki id!");
+		}
+		return $id[0] == ":"; 
+	}
+	
 	private static function s2id($id) {
 		$id = pw_s2u($id);
 		$id = pw_stripslashes($id);
@@ -153,7 +167,7 @@ class WikiID {
 		return $id;
 	}
 
-	private static function isvalid($fullid) {
+	private static function isValid($fullid) {
 		if (0 == preg_match('#[/?*;{}\\\]+#', $fullid)) {
 			return true;
 		}

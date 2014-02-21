@@ -22,8 +22,8 @@ class ExternalLink extends ParserRule implements ParserRuleHandler, LexerRuleHan
 		$urlnode = $node->getFirstChild();
 		$url = $this->getTextFromNode($urlnode);
 		
-		//@TODO: refactor... common function... bubble-up of an error until ????
-		if ($_SESSION['pw_wiki']['error']) {
+		//TODO: refactor... common function... bubble-up of an error until ????
+		if (isset($_SESSION['pw_wiki']['error'])) {
 			$_SESSION['pw_wiki']['error'] = false;
 			return $url." ".nop("Externer Link kann wegen interner Fehler nicht aufgel&ouml;st werden.");
 		}
