@@ -14,6 +14,7 @@
   const WIKIKEYWORDS = "php, javascript, java, cms, wiki, tests";
   const NOTIFICATION_DELAY_MINIMUM = 1500; //in ms
   const NOTIFICATION_DELAY_PER_LETTER = 30;
+  const DEFAULT_LANGUAGE = "en";
   
   $WIKIDEFAULTCONFIG = array ( 
 			"debug"    	=> true,
