@@ -223,7 +223,7 @@ class Lexer {
 			);
 
 			$errorMsg = "Exit of $pattern not found: '$expected' expected but '$found' found @$this->_textPosition (line $this->_currentLineNumber).";
-			$this->_log->addError($errorMsg, $dbginf);
+			TestingTools::logError($errorMsg);
 			throw new Exception($errorMsg);
 		}
 
