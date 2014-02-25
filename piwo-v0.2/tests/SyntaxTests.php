@@ -55,17 +55,17 @@ class SyntaxTests extends PHPUnit_Framework_TestCase {
 	
 	public function testPreBlock01() {
 		$input = "$$ test\n= title =";
-		$expected = "<pre><div>test\n</div></pre><h1 id=\"header_1\">title</h1>";
+		$expected = "<pre><div> test\n</div></pre><h1 id=\"header_1\">title</h1>";
 		$result = parse($input);
-		$this->assertEquals($expected, $result, "RES: $result;\n EXP: $expected; INPUT: $input;");
+		$this->assertEquals($expected, $result, "RES: $result;\n EXP: $expected; DIFF: ".StringTools::deleteUntilDiff($result, $expected)."INPUT: $input;");
 	}
 	
-// 	public function testPreBlockAttachedToListitems() {
-// 		$input = "* ListItem\n$$ pre-block-Text";
-// 		$expected = "<ul><li> ListItem<li></ul><pre><div>pre-block-Text</div></pre>";
-// 		$result = parse($input);
-// 		$this->assertEquals($expected, $result, "RES: $result;\n EXP: $expected; INPUT: $input;");
-// 	}
+	public function testPreBlockAttachedToListitems() {
+		$input = "* ListItem\n$$ pre-block-Text";
+		$expected = "<ul><li>ListItem</li></ul><pre><div> pre-block-Text\n</div></pre>";
+		$result = parse($input);
+		$this->assertEquals($expected, $result, "RES: $result;\n EXP: $expected; DIFF: ".StringTools::deleteUntilDiff($result, $expected)."INPUT: $input;");
+	}
 	
 }
 

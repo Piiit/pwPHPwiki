@@ -172,6 +172,20 @@ class StringTools {
 		return implode($strip, array_merge($lines, array($last)));
 	}
 	
+	public static function deleteUntilDiff($string1, $string2) {
+		if(strlen($string1) < strlen($string2)) {
+			$minLength = strlen($string1);
+		} else {
+			$minLength = strlen($string2);
+		}
+		for($i = 0; $i < $minLength; $i++) {
+			if($string1[$i] != $string2[$i]) {
+				return substr($string1, $i);
+			}
+		}
+		return substr($string2, $minLength);
+	}
+	
 	public static function equals($string1, $string2) {
 		throw new Exception("Not implemented yet!");
 	}

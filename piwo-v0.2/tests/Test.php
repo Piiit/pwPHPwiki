@@ -8,7 +8,7 @@ TestingTools::logOn();
 TestingTools::debugOn();
 
 $input = "* ListItem\n$$ pre-block-Text";
-$expected = "<ul><li>ListItem</li></ul><pre><div>pre-block-Text</div></pre>";
+$expected = "<ul><li>ListItem</li></ul><pre><div> pre-block-Text\n</div></pre>";
 $result = parse($input);
 
 echo StringTools::preFormat("RESULT: Code");
@@ -20,6 +20,9 @@ echo StringTools::preFormat("EXPECTED: Code");
 echo StringTools::preFormatShowLineNumbers(pw_s2e($expected));
 echo StringTools::preFormat("EXPECTED: Output");
 echo $expected;
+
+echo StringTools::preFormat("DIFF: Code");
+echo StringTools::preFormatShowLineNumbers(pw_s2e(StringTools::deleteUntilDiff($result, $expected)));
 
 echo "<hr />";
 echo StringTools::preFormat("DEBUG:\n".pw_s2e(TestingTools::getLog()->toStringReversed()));
