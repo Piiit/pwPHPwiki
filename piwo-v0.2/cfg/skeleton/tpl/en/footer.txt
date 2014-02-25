@@ -1,2 +1,2 @@
 \\
-:>> <lo>Parsed in ~~TEXT:comma|{{PERFORMANCE}}~~ sec. | File format: {{FILE:type}}</lo>
+:>> <lo>Parsed in {{PERFORMANCE}} sec. | File format: {{FILE:type}}</lo>
