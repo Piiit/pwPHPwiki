@@ -2,12 +2,12 @@
  
 <left>
 <border>
-; [[Textgestaltung:Text formatieren]]
+; [[Text formatieren]]
 : Diese Seite erklärt, wie du Text formatierst. 
 : Beispiel: **fett**, //kursiv//, <em>hervorgehoben</em>, ...
 </border>
 <border>
-; [[Textgestaltung:Listen]]
+; [[Listen]]
 : Diese Seite erklärt, wie du Listen erstellst.
 : Beispiel: {{{
 * Ungeordnete Liste
@@ -17,19 +17,19 @@ usw.
 }}}
 </border>
 <border>
-; [[Textgestaltung:Ausrichtung]]
+; [[Ausrichtung]]
 : Diese Seite erklärt, wie du einen Text ausrichtest.
 : Beispiel: Linksbündig, rechtsbündig, zentriert, Blocksatz, Einzüge, ...
 </border>
 <border>
-; [[Textgestaltung:Tabellen]]
+; [[Tabellen]]
 : Diese Seite erklärt, wie du einfache Tabellen (ähnlich [http://www.dokuwiki.org/syntax#tables Dokuwiki-Tabellen], ohne Ausrichtung) anlegst.
 : Beispiel: {{{
 | Eins | Zwei | Drei
 }}}
 </border>
 <border>
-; [[Textgestaltung:Spezial]]
+; [[Spezial]]
 : Diese Seite erklärt verschiedene spezielle Befehle, wie z.B. Horizontale Linien, Fußzeilen, Variablen, Konstanten, ...
 : Beispiel: {{{
 Das ist eine...
@@ -40,26 +40,26 @@ Das ist eine...
 </left>
 <right>
 <border>
-; [[Textgestaltung:Überschriften]]
+; [[Überschriften]]
 : Diese Seite erklärt, wie man Überschriften erstellt und im Inhaltsverzeichnis darstellt.
 : Beispiel: {{{
 ===== Überschrift der 5. Ebene =====
 }}}
 </border>
 <border>
-; [[Textgestaltung:Hyperlinks]]
+; [[Hyperlinks]]
 : Diese Seite erklärt, wie man Seiten innerhalb der Wiki verlinkt und Links auf externe Seiten setzt.
 : Beispiel: [[{{startpage}}|Startseite]], [http://www.wikipedia.org], ...
 </border>
 <border>
-; [[Textgestaltung:Sektionen]]
+; [[Sektionen]]
 : Diese Seite erklärt, wie man Rahmen zeichnet, Boxen mit farbigem Hintergrund darstellt und Kommentare im Text unterbringt.
 : Beispiel: {{{
 <code>Ein Rahmen für Programmcode</code>
 }}}
 </border>
 <border>
-; [[Textgestaltung:Symbole]]
+; [[Symbole]]
 : Diese Seite erklärt, wie man Sonderzeichen in den Wikitext einfügt.
 : Beispiel: Kartensymbole &rarr; &#9824; &#9827; &#9829; &#9830;
 </border>
