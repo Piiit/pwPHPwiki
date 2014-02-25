@@ -85,7 +85,7 @@ foreach ($parserTokenList as $parserToken) {
 		$ta = new TreeWalker($lexer->getRootNode(), $parser);
 		$o = implode($ta->getResult());
 	} catch (Exception $e) {		$debugCatchedException = true;		TestingTools::inform("Exception catched! ERROR MESSAGE: ".pw_s2e(print_r($e->getMessage(), true)));		TestingTools::inform("ERROR TRACE: \n".pw_s2e($e->getTraceAsString()));	}		if ($debugCatchedException || $forse_debug) {			TestingTools::inform("LEXER: ".$lexer, TestingTools::NOTYPEINFO);				if (isset($lexer)) {
-			TestingTools::inform("PATTERN TABLE: \n" . $lexer->getPatternTableAsString());
+			TestingTools::debug("PATTERN TABLE: \n" . $lexer->getPatternTableAsString());
 			$treePrinter = new TreeWalker($lexer->getRootNode(), new TreePrinter());			TestingTools::inform("PARSE TREE: \n".StringTools::showLineNumbers($treePrinter->getResult()));			TestingTools::inform("SPEED: Text parsed in ".$lexer->getExecutionTime()." seconds!");			TestingTools::inform("SOURCE:\n".StringTools::showLineNumbers($lexer->getSource()));		}
 	
 		//$debugString .= "<h3>Debug: Parser - Schritte (TODO: ADAPT TO NEW LEXER)</h3>";

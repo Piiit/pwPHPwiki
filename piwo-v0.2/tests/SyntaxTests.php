@@ -2,7 +2,6 @@
 if (!defined('INC_PATH')) {
 	define ('INC_PATH', realpath(dirname(__FILE__).'/../../').'/');
 }
-
 require_once INC_PATH.'piwo-v0.2/lib/lexerconf.php';
 require_once 'PHPUnit/Framework/TestCase.php';
 
@@ -23,9 +22,36 @@ class SyntaxTests extends PHPUnit_Framework_TestCase {
 		$input = "# hallo";
 		$expected = "<ol><li>hallo</li></ol>";
 		$result = parse($input);
-		$this->assertEquals($expected, $result, "RES: $result; EXP: $expected; INP: $input;");
+		$this->assertEquals($expected, $result, "RES: $result;\n EXP: $expected; INPUT: $input;");
 	}	
 	
+	public function testOrderedList02() {
+		$input = "# hallo\n# item 2";
+		$expected = "<ol><li>hallo</li><li>item 2</li></ol>";
+		$result = parse($input);
+		$this->assertEquals($expected, $result, "RES: $result;\n EXP: $expected; INPUT: $input;");
+	}
+	
+	public function testOrderedList03() {
+		$input = "# hallo\n  # item 2";
+		$expected = "<ol><li>hallo</li><ol><li>item 2</li></ol></ol>";
+		$result = parse($input);
+		$this->assertEquals($expected, $result, "RES: $result;\n EXP: $expected; INPUT: $input;");
+	}
+
+	public function testOrderedList04() {
+		$input = "# hallo\n  # item 2\n# hallo2";
+		$expected = "<ol><li>hallo</li><ol><li>item 2</li></ol><li>hallo2</li></ol>";
+		$result = parse($input);
+		$this->assertEquals($expected, $result, "RES: $result;\n EXP: $expected; INPUT: $input;");
+	}
+
+	public function testMixedList01() {
+		$input = "# hallo\n  * item 2\n# hallo2";
+		$expected = "<ol><li>hallo</li><ul><li>item 2</li></ul><li>hallo2</li></ol>";
+		$result = parse($input);
+		$this->assertEquals($expected, $result, "RES: $result;\n EXP: $expected; INPUT: $input;");
+	}
 	
 }
 

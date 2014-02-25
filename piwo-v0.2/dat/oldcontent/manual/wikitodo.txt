@@ -8,8 +8,8 @@ Wichtig wäre ein bugtracker und eine einfache todo-liste mit Prioritäten
 # :ok: 3 Textgrößen: klein, normal/mittel, groß
 # [[tabellen#Tabellen auch zeilenweise zulassen]]
 # Sections
- * Openoffice Math Syntax support
- * Download-Plugin
+  * Openoffice Math Syntax support
+  * Download-Plugin
 # Vordefinierte Templates für z.B. Steckbrief etc.
 # Informationen ausgeben
  * CSV-Werte und Tabellen bzw. Listen

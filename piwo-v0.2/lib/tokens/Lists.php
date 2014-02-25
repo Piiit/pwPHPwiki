@@ -17,6 +17,7 @@ class Lists extends ParserRule implements ParserRuleHandler, LexerRuleHandlerAbs
 	}
 	
 	public function onEntry() {
+		TestingTools::inform("Lists: onentry");
 		ListItem::$listitems = array();
 		$node = $this->getNode();
   		$fc = $node->getFirstChild();
