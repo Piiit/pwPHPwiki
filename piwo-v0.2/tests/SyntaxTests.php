@@ -18,35 +18,35 @@ class SyntaxTests extends PHPUnit_Framework_TestCase {
 	public function __construct() {
 	}
 	
-	public function testOrderedList01() {
+	public function testListsOrdered01() {
 		$input = "# hallo";
 		$expected = "<ol><li>hallo</li></ol>";
 		$result = parse($input);
 		$this->assertEquals($expected, $result, "RES: $result;\n EXP: $expected; INPUT: $input;");
 	}	
 	
-	public function testOrderedList02() {
+	public function testListsOrdered02() {
 		$input = "# hallo\n# item 2";
 		$expected = "<ol><li>hallo</li><li>item 2</li></ol>";
 		$result = parse($input);
 		$this->assertEquals($expected, $result, "RES: $result;\n EXP: $expected; INPUT: $input;");
 	}
 	
-	public function testOrderedList03() {
+	public function testListsOrdered03() {
 		$input = "# hallo\n  # item 2";
 		$expected = "<ol><li>hallo</li><ol><li>item 2</li></ol></ol>";
 		$result = parse($input);
 		$this->assertEquals($expected, $result, "RES: $result;\n EXP: $expected; INPUT: $input;");
 	}
 
-	public function testOrderedList04() {
+	public function testListsOrdered04() {
 		$input = "# hallo\n  # item 2\n# hallo2";
 		$expected = "<ol><li>hallo</li><ol><li>item 2</li></ol><li>hallo2</li></ol>";
 		$result = parse($input);
 		$this->assertEquals($expected, $result, "RES: $result;\n EXP: $expected; INPUT: $input;");
 	}
 
-	public function testMixedList01() {
+	public function testListsMixed01() {
 		$input = "# hallo\n  * item 2\n# hallo2";
 		$expected = "<ol><li>hallo</li><ul><li>item 2</li></ul><li>hallo2</li></ol>";
 		$result = parse($input);

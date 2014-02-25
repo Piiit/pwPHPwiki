@@ -33,7 +33,7 @@ class ListItem extends ParserRule implements ParserRuleHandler, LexerRuleHandler
 		}
 		
 		$thislevel = strlen($nodeData[0]) / 2;
-		TestingTools::inform("thislevel=".$thislevel);
+		TestingTools::inform("thislevel=".$thislevel."; oldlevel=".$oldlevel);
 		if ($oldlevel < $thislevel) {
 			$difflevel = $thislevel - $oldlevel;
 			
@@ -42,17 +42,7 @@ class ListItem extends ParserRule implements ParserRuleHandler, LexerRuleHandler
 				self::$listitems[] = $nodeData[1];
 				$o .= $listtype;
 			}
-		} elseif ($oldlt != null && $thislt != $oldlt) {
-				
-			$listtype = array_pop(self::$listitems);
-			$listtype = $listtype == "#" ? '</ol>' : '</ul>';
-			$o .= $listtype;
-			TestingTools::inform($o);
-		
-			$listtype = $nodeData[1] == "#" ? '<ol>' : '<ul>';
-			self::$listitems[] = $nodeData[1];
-			$o .= $listtype;
-		}
+		} 
 		
 		$o .= "<li>";
 		TestingTools::inform($o);
@@ -64,13 +54,14 @@ class ListItem extends ParserRule implements ParserRuleHandler, LexerRuleHandler
 		$o = "</li>";
 		$node = $this->getNode();
   		$ns = $node->getNextSibling();
-  		if ($ns != NULL) {
+  		if ($ns != null) {
 
   			$nodeData = $node->getData();
   			$nsData = $ns->getData();
     		$thislevel = strlen($nodeData[0]) / 2;
     		$nextlevel = strlen($nsData[0]) / 2;
 
+    		TestingTools::inform($nextlevel." ".$thislevel);
     		if ($nextlevel < $thislevel) {
       			$difflevel = $thislevel - $nextlevel;
       			for ($i = 0; $i < $difflevel; $i++) {
