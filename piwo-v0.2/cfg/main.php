@@ -17,7 +17,7 @@
   const DEFAULT_LANGUAGE = "en";
   
   $WIKIDEFAULTCONFIG = array ( 
-			"debug"    	=> true,
+			"debug"    	=> false,
  		    "useCache"	=> false,
     		"login"	 	=> array('group' => 'users', 'user' => 'guest'),
             "wikititle" => "piwo",

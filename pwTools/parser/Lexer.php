@@ -42,17 +42,9 @@ class Lexer {
 	
 	public static $version = "0.5.1";
 	
-	/**
-	 * TODO Refactor = move to a new class Parser
-	 * @deprecated
-	 */
-	const ONENTRY		= 0;
-	const ONEXIT  		= 1;
-	const NO_SHIFT 		= 1;
-	const TEXTEMPTY		= 8;  // Im Token darf kein #Text vorkommen
-	const TEXTNOTEMPTY	= 16; // Im Token muss #Text vorkommen (NOT EMPTY)
+	const TEXTNOTEMPTY	= 16; // Token must have a #Text node (NOT EMPTY)
 	
-	private $_textInput = "";			// Given string to analyze!
+	private $_textInput = null;			// Given string to analyze!
 	private $_textPosition = 0;			// Current text position inside the string.
 	private $_currentMode;
 	private $_aftermatch = "";
@@ -70,24 +62,24 @@ class Lexer {
 	private $_handlerTable = null;
 	
 
-	public function __construct($text) {
-		if (!is_string($text)) {
-			throw new InvalidArgumentException("No Text to parse given! Wrong datatype!");
-		}
+	public function __construct() {
 		$this->_handlerTable = new Collection();
 		$this->_patternTable = new Collection();
 		$this->_patternTable->add(Token::DOC, new Pattern(Token::DOC));
 		$this->_patternTable->add(Token::TXT, new Pattern(Token::TXT));
 		$this->_patternTable->add(Token::EOF, new Pattern(Token::EOF));
-		$this->setSource($text);
 	}
 
 	public function parse() {
+		if($this->_textInput == null) {
+			throw new Exception("No text given. Can not parse!");
+		}
+		
 		foreach($this->_handlerTable->getArray() as $handler) {
 			$this->setAllowedModes($handler->getName(), $handler->getAllowedModes());
 		}
 		
-		$timer = new timer();
+		$timer = new Timer();
 		$this->_cycle = 0;
 		$this->_parsed = false;
 

@@ -28,7 +28,7 @@ function pw_wiki_update_cache($forced = false) {	$files = new RecursiveIterator
 		throw new Exception("File '$filename' is not an UTF8-encoded file!");
 	}
 	
-	$out = parse($data);		FileTools::createFolderIfNotExist(dirname($cachedFilename));
+	$out = parse($data, pw_wiki_getcfg('debug'));		FileTools::createFolderIfNotExist(dirname($cachedFilename));
 	if (file_put_contents($cachedFilename, $out) === false) {		throw new Exception("Unable to write file '$cachedFilename'!");	}		return $out;}function pw_wiki_get_parsed_file(WikiID $id) {		$filename = WIKISTORAGE.$id->getPath().WIKIFILEEXT;	$headerID = new WikiID(WIKITEMPLATESNS."header");	$footerID = new WikiID(WIKITEMPLATESNS."footer");
 	$headerFilename = WIKISTORAGE."/".$headerID->getPath().WIKIFILEEXT;;
 	$footerFilename = WIKISTORAGE."/".$footerID->getPath().WIKIFILEEXT;;
@@ -53,7 +53,7 @@ function pw_wiki_update_cache($forced = false) {	$files = new RecursiveIterator
 	if ($footerFilename === false) {
 		throw new Exception("Unable to read template file '$footerFilename'!");
 	}		$data = $headerData."\n".$data."\n".$footerData;	$_SESSION['pw_wiki']['file']['format'] = FileTools::getTextFileFormat($data)->getString();
-	$data = FileTools::setTextFileFormat($data, new TextFileFormat(TextFileFormat::UNIX));		$out = parse($data);		return $out;}
+	$data = FileTools::setTextFileFormat($data, new TextFileFormat(TextFileFormat::UNIX));		$out = parse($data, pw_wiki_getcfg('debug'));		return $out;}
 function pw_wiki_showcontent(WikiID $id) {	if(!isset($_SESSION['pw_wiki']['useCache']) || $_SESSION['pw_wiki']['useCache'] == false) {		return pw_wiki_get_parsed_file($id);	}	return pw_wiki_create_cached_page($id);
 }
 

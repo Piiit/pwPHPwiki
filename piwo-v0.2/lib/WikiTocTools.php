@@ -3,6 +3,7 @@
 if (!defined('INC_PATH')) {
 	define ('INC_PATH', realpath(dirname(__FILE__).'/../../').'/');
 }
+require_once INC_PATH.'pwTools/data/IndexTable.php';
 
 class WikiTocTools {
 	
