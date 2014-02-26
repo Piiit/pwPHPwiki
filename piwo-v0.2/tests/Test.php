@@ -5,10 +5,10 @@ if (!defined('INC_PATH')) {
 
 require_once INC_PATH.'piwo-v0.2/lib/lexerconf.php';
 TestingTools::logOn();
-TestingTools::debugOn();
+//TestingTools::debugOn();
 
-$input = "* ListItem\n$$ pre-block-Text";
-$expected = "<ul><li>ListItem</li></ul><pre><div> pre-block-Text\n</div></pre>";
+$input = "[[Überschriften]]";
+$expected = '<a href="?id=:%FCberschriften&mode=edit" class="pw_wiki_link_na">&Uuml;berschriften</a>';
 $result = parse($input);
 
 echo StringTools::preFormat("RESULT: Code");
@@ -22,7 +22,12 @@ echo StringTools::preFormat("EXPECTED: Output");
 echo $expected;
 
 echo StringTools::preFormat("DIFF: Code");
-echo StringTools::preFormatShowLineNumbers(pw_s2e(StringTools::deleteUntilDiff($result, $expected)));
+$diff = StringTools::deleteUntilDiff($result, $expected);
+if(strlen($diff) == 0) {
+	echo "TEST SUCCEEDED: NO DIFF!";
+} else {
+	echo StringTools::preFormatShowLineNumbers(pw_s2e());
+}
 
 echo "<hr />";
 echo StringTools::preFormat("DEBUG:\n".pw_s2e(TestingTools::getLog()->toStringReversed()));

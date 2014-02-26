@@ -37,7 +37,7 @@ class InternalLink extends ParserRule implements ParserRuleHandler, LexerRuleHan
 			} elseif($linkPositionText[0] == '#') {
 				$id = new WikiID($curID->getID().$linkPositionText);
 			} else {
-				$id = new WikiID($curID->getFullNS().$linkPositionText);
+				$id = new WikiID($curID->getFullNS().pw_e2u($linkPositionText));
 			}
 			
 			// Find manually set modes like edit or showpages...
@@ -57,10 +57,11 @@ class InternalLink extends ParserRule implements ParserRuleHandler, LexerRuleHan
 		
 			$text = null;
 			$textNode = $linkPositionNode->getNextSibling();
+			TestingTools::inform($textNode);
 			if ($textNode != null) {
 				$text = $this->getTextFromNode($textNode);
 			}
-	// 		TestingTools::inform($text, "link text");
+	 		TestingTools::inform($text);
 		
 			$found = true;
 			$jump = null;
@@ -94,6 +95,7 @@ class InternalLink extends ParserRule implements ParserRuleHandler, LexerRuleHan
 						$text = $tmp;
 					}
 					$found = true;
+					TestingTools::inform($text);
 				} catch (Exception $e) {
 					
 					try {
@@ -103,6 +105,7 @@ class InternalLink extends ParserRule implements ParserRuleHandler, LexerRuleHan
 							$text = pw_s2e($item->getText());
 						}
 						$found = true;
+						TestingTools::inform($text);
 					} catch (Exception $e) {
 						$found = false;
 						if(!$text) {
@@ -110,6 +113,7 @@ class InternalLink extends ParserRule implements ParserRuleHandler, LexerRuleHan
 						}
 						TestingTools::debug($e->getMessage());
 						TestingTools::debug($indextable);
+						TestingTools::inform($text);
 					}
 				}
 			} 
@@ -121,9 +125,9 @@ class InternalLink extends ParserRule implements ParserRuleHandler, LexerRuleHan
 			}
 			
 			if (!$text) {
-				$text = utf8_ucfirst($id->getPageAsHtmlEntities());
+				$text = $linkPositionText;
 			}
-	
+			TestingTools::inform($text);
 			$href = "?id=".pw_s2url($id->getID());
 		
 			if (!$id->hasAnchor()) {

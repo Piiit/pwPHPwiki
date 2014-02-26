@@ -67,5 +67,11 @@ class SyntaxTests extends PHPUnit_Framework_TestCase {
 		$this->assertEquals($expected, $result, "RES: $result;\n EXP: $expected; DIFF: ".StringTools::deleteUntilDiff($result, $expected)."INPUT: $input;");
 	}
 	
+	public function testInternalLinkSpecialChars() {
+		$input = "[[Überschriften]]";
+		$expected = '<a href="?id=:%FCberschriften&mode=edit" class="pw_wiki_link_na">&Uuml;berschriften</a>';
+		$result = parse($input);
+		$this->assertEquals($expected, $result, "RES: $result;\n EXP: $expected; DIFF: ".StringTools::deleteUntilDiff($result, $expected)."INPUT: $input;");
+	}
 }
 
