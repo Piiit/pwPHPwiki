@@ -73,5 +73,5 @@ class SyntaxTests extends PHPUnit_Framework_TestCase {
 		$result = parse($input);
 		$this->assertEquals($expected, $result, "RES: $result;\n EXP: $expected; DIFF: ".StringTools::deleteUntilDiff($result, $expected)."INPUT: $input;");
 	}
-}
+} 
 
