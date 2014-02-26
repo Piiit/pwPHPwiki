@@ -51,7 +51,7 @@ class DeleteNamespaceModule extends Module implements ModuleHandler, PermissionP
 					$newid = new WikiID($id->getID()."..");
 					$this->setDialog(GuiTools::dialogInfo("Delete", "The namespace '".$id->getIDAsHtmlEntities()."' has been deleted.", "id=".$newid->getFullNSAsUrl()));
 				} catch (Exception $e) {
-					$this->setNotification("Unable to delete the namespace '".$id->getIDAsHtmlEntities()."'.", Module::NOTIFICATION_ERROR);
+					$this->setNotification("Unable to delete the namespace '".$id->getIDAsHtmlEntities()."'. <br />".$e->getMessage(), Module::NOTIFICATION_ERROR);
 				}
 			} else {
 				$this->setNotification("The namespace '".$id->getIDAsHtmlEntities()."' does not exist.", Module::NOTIFICATION_ERROR);
