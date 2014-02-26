@@ -52,9 +52,9 @@ x={{x}}, y={{y}}
 == Variablen ==
 
 === Setzen und ausgeben ===
-$$ !! Zahl = 1000"""(Diese Zeile wird nicht angezeigt)"""
+$$ !! Zahl = 1000 <--[Diese Zeile wird nicht angezeigt]
 $$ Die Zahl lautet: {{Zahl}}.
-!! Zahl = 1000"""(Diese Zeile wird nicht angezeigt)"""
+!! Zahl = 1000
 Die Zahl lautet: {{Zahl}}.
 
 \\\\
