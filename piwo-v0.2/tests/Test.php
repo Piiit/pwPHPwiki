@@ -7,8 +7,8 @@ require_once INC_PATH.'piwo-v0.2/lib/lexerconf.php';
 TestingTools::logOn();
 //TestingTools::debugOn();
 
-$input = "[[Überschriften]]";
-$expected = '<a href="?id=:%FCberschriften&mode=edit" class="pw_wiki_link_na">&Uuml;berschriften</a>';
+$input = "[[Ãœberschriften]]";
+$expected = '<a href="?id=:%fcberschriften&mode=edit" class="pw_wiki_link_na">&Uuml;berschriften</a>';
 $result = parse($input);
 
 echo StringTools::preFormat("RESULT: Code");
@@ -26,7 +26,7 @@ $diff = StringTools::deleteUntilDiff($result, $expected);
 if(strlen($diff) == 0) {
 	echo "TEST SUCCEEDED: NO DIFF!";
 } else {
-	echo StringTools::preFormatShowLineNumbers(pw_s2e());
+	echo StringTools::preFormatShowLineNumbers(pw_s2e($diff));
 }
 
 echo "<hr />";

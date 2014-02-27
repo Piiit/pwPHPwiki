@@ -1,3 +1,4 @@
+<code>
 !! title = Comma Separated Values - Engine
 !! tags = {Engine, wiki, csv, manual} # einzeilige listen sind noch nicht implementiert!!!
 !! include(wiki_vars) # includes sind noch nicht implementiert!!!
@@ -9,6 +10,7 @@
 !!    x = 3
 !!    y = 4
 !! []
+</code>
 
 = Inhalt =
 ~~toc:sub~~
