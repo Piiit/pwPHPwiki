@@ -29,8 +29,8 @@ Link: [[lexer:v0.42#Lexer v0.42 Dokumentation]]
 * Debugfunktionen
 
 == Lexer 0.4 (done) ==
-Link: [http://localhost/projekte/home/lib/tests/lexer4.php Lexer4] \\
-Link: [http://localhost/projekte/home/lib/tests/lexer41.php Lexer4.1] \\
+Link: [http://localhost/projekte/home/lib/tests/lexer4.php|Lexer4] \\
+Link: [http://localhost/projekte/home/lib/tests/lexer41.php|Lexer4.1] \\
 
 * :ok: (veraltet) ''LEXER_TYPE_SECTION'' -> handling über mehrere Zeilen, ''call_user_function'' um checks durchzuführen...  \\ section-types wird aus Lexer ausgelagert (passt nur zu ''<nowiki><section></nowiki>'' sectiontypen! \\ Vielleicht sollte man alle einzeln definieren nicht allgemein für alle Sections... performance?
 * :ok: (veraltet) ''LEXER_TYPE_LINE'' -> pattern ausdenken, damit automatisch zeilen erkannt werden. Achtung bei ''substr'', weil \n etc. verloren gehen

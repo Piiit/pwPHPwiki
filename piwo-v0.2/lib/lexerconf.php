@@ -2,91 +2,14 @@
 	define ('INC_PATH', realpath(dirname(__FILE__).'/../../').'/');
 }
 require_once INC_PATH.'piwo-v0.2/lib/common.php';require_once INC_PATH.'piwo-v0.2/plugins/toc.php';
-require_once INC_PATH.'piwo-v0.2/cfg/main.php';require_once INC_PATH.'piwo-v0.2/lib/WikiTocTools.php';require_once INC_PATH.'pwTools/parser/Lexer.php';require_once INC_PATH.'pwTools/tree/TreePrinter.php';
-// include all parser token handler...$parserTokenList = glob(INC_PATH."piwo-v0.2/lib/tokens/*.php");
-foreach ($parserTokenList as $parserToken) {
-	require_once $parserToken;
-}function getTokenHandlerList() {	$handlerList = array(
-		new Header(),
-		new Border(),
-		new BorderError(),
-		new BorderInfo(),
-		new BorderSuccess(),
-		new BorderValidation(),
-		new BorderWarning(),
-		new Plugin(),
-		new PluginParameter(),
-		new InternalLink(),
-		new InternalLinkText(),
-		new InternalLinkMode(),
-		new InternalLinkPos(),
-		new Url(),
-		new UrlNoProtocol(),
-		new Big(),
-		new Bold(),
-		new Em(),
-		new Hi(),
-		new Italic(),
-		new Lo(),
-		new Monospace(),
-		new Small(),
-		new Strike(),
-		new Sub(),
-		new Sup(),
-		new Underline(),
-		new Code(),
-		new NoWiki(),
-		new NoWikiAlt(),
-		new Newline(),
-		new Multiline(),
-		new Preformat(),
-		new Align(),
-		new Justify(),
-		new Indent(),
-		new Right(),
-		new Left(),
-		new Constant(),
-		new Symbol(),
-		new Variable(),
-		new ExternalLink(),
-		new ExternalLinkPos(),
-		new Pre(),
-		new TableCell(),
-		new TableRow(),
-		new TableHeader(),
-		new Table(),
-		new TableSpan(),
-		new AlignInTable(),
-		new HorizontalRule(),
-		new DefTerm(),
-		new DefList(),
-		new DefItem(),
-		new ListItem(),
-		new Lists(),
-		new Footnote(),
-		new QuotedString(),
-		new Math(),
-		new NoToc(),
-		new Comment(),
-		new Comment2()
-	);
-	return $handlerList;
-}function parse($txt, $forse_debug = true) {		$debugCatchedException = false;
-		try {		$handlerList = getTokenHandlerList();				$lexer = new Lexer();
-		$lexer->registerHandlerList($handlerList);		$lexer->setSource($txt);
-		$lexer->parse(); //TODO No pattern? AST = #DOCUMENT with a single #TEXT node
+require_once INC_PATH.'piwo-v0.2/cfg/main.php';require_once INC_PATH.'piwo-v0.2/lib/WikiTocTools.php';require_once INC_PATH.'piwo-v0.2/lib/WikiParser.php';require_once INC_PATH.'pwTools/parser/Lexer.php';require_once INC_PATH.'pwTools/tree/TreePrinter.php';
+function parse($text, $forse_debug = true) {		$debugCatchedException = false;
+	$wikiParser = new WikiParser();
+	$o = "";		try {		TestingTools::inform($text);		$wikiParser->setUserInfo('piwoversion', PIWOVERSION);				//TODO lexerperformance should be set automatically... no need to set it outside!		//TODO create a hierarchy like: lexer.performance.milliseconds for example		$wikiParser->setUserInfo('lexerperformance', $wikiParser->getLexer()->getExecutionTime());		$wikiParser->parse($text);		//TODO Move create index table iterations into Header-token handling...		$wikiParser->setUserInfo('indextable', WikiTocTools::createIndexTable($wikiParser->getParser(), $wikiParser->getLexer()->getRootNode()));
 		
-		$parser = new Parser();
-		$parser->registerHandlerList($handlerList);
-		$parser->setUserInfo('indextable', WikiTocTools::createIndexTable($parser, $lexer->getRootNode()));
-		$parser->setUserInfo('lexerperformance', $lexer->getExecutionTime());
-		$parser->setUserInfo('piwoversion', PIWOVERSION);
-		
-		$ta = new TreeWalker($lexer->getRootNode(), $parser);
-		$o = implode($ta->getResult());
-	} catch (Exception $e) {		$debugCatchedException = true;		TestingTools::inform("Exception catched! ERROR MESSAGE: ".pw_s2e(print_r($e->getMessage(), true)));		TestingTools::inform("ERROR TRACE: \n".pw_s2e($e->getTraceAsString()));	}		if ($debugCatchedException || $forse_debug) {			TestingTools::inform("LEXER: ".$lexer, TestingTools::NOTYPEINFO);				if (isset($lexer)) {
-			TestingTools::debug("PATTERN TABLE: \n" . $lexer->getPatternTableAsString());
-			$treePrinter = new TreeWalker($lexer->getRootNode(), new TreePrinter());			TestingTools::inform("PARSE TREE: \n".StringTools::showLineNumbers($treePrinter->getResult()));			TestingTools::inform("SPEED: Text parsed in ".$lexer->getExecutionTime()." seconds!");			TestingTools::inform("SOURCE:\n".StringTools::showLineNumbers($lexer->getSource()));		}
+		$o = $wikiParser->getResult();	} catch (Exception $e) {		$debugCatchedException = true;		TestingTools::inform("Exception catched! ERROR MESSAGE: ".pw_s2e(print_r($e->getMessage(), true)));		TestingTools::inform("ERROR TRACE: \n".pw_s2e($e->getTraceAsString()));	}		if ($debugCatchedException || $forse_debug) {			TestingTools::inform("LEXER: ".$wikiParser->getLexer(), TestingTools::NOTYPEINFO);				if (isset($lexer)) {
+			TestingTools::debug("PATTERN TABLE: \n" . $wikiParser->getLexer()->getPatternTableAsString());
+			$treePrinter = new TreeWalker($wikiParser->getLexer()->getRootNode(), new TreePrinter());			TestingTools::inform("PARSE TREE: \n".StringTools::showLineNumbers($treePrinter->getResult()));			TestingTools::inform("SPEED: Text parsed in ".$wikiParser->getLexer()->getExecutionTime()." seconds!");			TestingTools::inform("SOURCE:\n".StringTools::showLineNumbers($wikiParser->getSource()));		}
 	
 		//$debugString .= "<h3>Debug: Parser - Schritte (TODO: ADAPT TO NEW LEXER)</h3>";
 		//$lexer->printDebugInfo(1,1);

@@ -3,13 +3,16 @@ if (!defined('INC_PATH')) {
 	define ('INC_PATH', realpath(dirname(__FILE__).'/../../').'/');
 }
 
-require_once INC_PATH.'piwo-v0.2/lib/lexerconf.php';
+require_once INC_PATH.'piwo-v0.2/lib/WikiParser.php';
 TestingTools::logOn();
 //TestingTools::debugOn();
 
+$wikiParser = new WikiParser();
+
 $input = "[[Überschriften]]";
 $expected = '<a href="?id=:%fcberschriften&mode=edit" class="pw_wiki_link_na">&Uuml;berschriften</a>';
-$result = parse($input);
+$wikiParser->parse($input);
+$result = $wikiParser->getResult();
 
 echo StringTools::preFormat("RESULT: Code");
 echo StringTools::preFormatShowLineNumbers(pw_s2e($result));

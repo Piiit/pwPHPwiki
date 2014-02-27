@@ -25,7 +25,6 @@ class InternalLink extends ParserRule implements ParserRuleHandler, LexerRuleHan
 	public function onEntry() {
 		try {
 		
-			$indextable = $this->getParser()->getUserInfo('indextable');
 			$node = $this->getNode();
 	
 			$linkPositionNode = $node->getFirstChild();
@@ -98,7 +97,8 @@ class InternalLink extends ParserRule implements ParserRuleHandler, LexerRuleHan
 					$found = true;
 					TestingTools::inform($text);
 				} catch (Exception $e) {
-					
+					$indextable = $this->getParser()->getUserInfo('indextable');
+						
 					try {
 						$item = $indextable->getByIdOrText(pw_url2t($id->getAnchor()));
 						$jump = "#header_".$item->getId();

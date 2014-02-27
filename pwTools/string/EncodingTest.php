@@ -16,7 +16,7 @@ class EncodingTest extends PHPUnit_Framework_TestCase {
 	}
 	
 	public function testPw_s2e() {
-		$this->assertEquals("&auml;", pw_s2e("ä"), "Result: ".pw_s2e("ä"));		
+		$this->assertEquals("&auml;", pw_s2e("Ã¤"), "Result: ".pw_s2e("Ã¤"));		
 	}
 }
 	
