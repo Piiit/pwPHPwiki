@@ -37,6 +37,7 @@ class InternalLink extends ParserRule implements ParserRuleHandler, LexerRuleHan
 			} elseif($linkPositionText[0] == '#') {
 				$id = new WikiID($curID->getID().$linkPositionText);
 			} else {
+				TestingTools::inform(pw_e2u($linkPositionText));
 				$id = new WikiID($curID->getFullNS().pw_e2u($linkPositionText));
 			}
 			
