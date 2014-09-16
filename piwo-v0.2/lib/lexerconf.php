@@ -3,9 +3,10 @@
 }
 require_once INC_PATH.'piwo-v0.2/lib/common.php';require_once INC_PATH.'piwo-v0.2/plugins/toc.php';
 require_once INC_PATH.'piwo-v0.2/cfg/main.php';require_once INC_PATH.'piwo-v0.2/lib/WikiTocTools.php';require_once INC_PATH.'piwo-v0.2/lib/WikiParser.php';require_once INC_PATH.'pwTools/parser/Lexer.php';require_once INC_PATH.'pwTools/tree/TreePrinter.php';
-function parse($text, $forse_debug = true) {		$debugCatchedException = false;
+function parse($text, $forse_debug = true) {		$debugCatchedException = false; 
 	$wikiParser = new WikiParser();
-	$o = "";		try {		TestingTools::inform($text);		$wikiParser->setUserInfo('piwoversion', PIWOVERSION);				//TODO lexerperformance should be set automatically... no need to set it outside!		//TODO create a hierarchy like: lexer.performance.milliseconds for example		$wikiParser->setUserInfo('lexerperformance', $wikiParser->getLexer()->getExecutionTime());		$wikiParser->parse($text);		//TODO Move create index table iterations into Header-token handling...		$wikiParser->setUserInfo('indextable', WikiTocTools::createIndexTable($wikiParser->getParser(), $wikiParser->getLexer()->getRootNode()));
+	$o = "";		try {		TestingTools::inform($text);		$wikiParser->setUserInfo('piwoversion', PIWOVERSION);		$wikiParser->setUserInfo('indextable', new IndexTable());
+				//TODO lexerperformance should be set automatically... no need to set it outside!		//TODO create a hierarchy like: lexer.performance.milliseconds for example		$wikiParser->setUserInfo('lexerperformance', $wikiParser->getLexer()->getExecutionTime());		$wikiParser->parse($text);		//TODO Move create index table iterations into Header-token handling...		//$wikiParser->setUserInfo('indextable', WikiTocTools::createIndexTable($wikiParser->getParser(), $wikiParser->getLexer()->getRootNode()));
 		
 		$o = $wikiParser->getResult();	} catch (Exception $e) {		$debugCatchedException = true;		TestingTools::inform("Exception catched! ERROR MESSAGE: ".pw_s2e(print_r($e->getMessage(), true)));		TestingTools::inform("ERROR TRACE: \n".pw_s2e($e->getTraceAsString()));	}		if ($debugCatchedException || $forse_debug) {			TestingTools::inform("LEXER: ".$wikiParser->getLexer(), TestingTools::NOTYPEINFO);				if (isset($lexer)) {
 			TestingTools::debug("PATTERN TABLE: \n" . $wikiParser->getLexer()->getPatternTableAsString());

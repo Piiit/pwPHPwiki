@@ -5,7 +5,7 @@ if (!defined('INC_PATH')) {
 require_once INC_PATH.'piwo-v0.2/lib/lexerconf.php';
 require_once 'PHPUnit/Framework/TestCase.php';
 
-class SyntaxTests extends PHPUnit_Framework_TestCase {
+class TestsSyntax extends PHPUnit_Framework_TestCase {
 	
 	protected function setUp() {
 		parent::setUp ();
@@ -73,5 +73,13 @@ class SyntaxTests extends PHPUnit_Framework_TestCase {
 		$result = parse($input);
 		$this->assertEquals($expected, $result, "RES: $result;\n EXP: $expected; DIFF: ".StringTools::deleteUntilDiff($result, $expected)."INPUT: $input;");
 	}
+
+	public function testIndexTable() {
+		$input = "= h1 =";
+		$expected = '<a href="?id=:%fcberschriften&mode=edit" class="pw_wiki_link_na">&Uuml;berschriften</a>';
+		$result = parse($input);
+		$this->assertEquals($expected, $result, "RES: $result;\n EXP: $expected; DIFF: ".StringTools::deleteUntilDiff($result, $expected)."INPUT: $input;");
+	}
+	
 } 
 

@@ -28,23 +28,29 @@ class Header extends ParserRule implements ParserRuleHandler, LexerRuleHandler {
 	}
 	
 	public function onEntry() {
-		$indextable = $this->getParser()->getUserInfo('indextable');
+		$indexTable = $this->getParser()->getUserInfo('indextable');
 
 		$node = $this->getNode();
 		$nodeData = $node->getData();
 		$this->level = strlen($nodeData[0]);
-	
+		
+		$htxt = trim($this->getText($node));
+		if (strlen($htxt) == 0) {
+			$htxt = nop("Empty headers are not allowed!");
+		}
+		
 		if ($node->isInside("notoc")) {
 			$o = '<h'.$this->level.'>';
 		} else {
-			$o = '<h'.$this->level.' id="header_'.$indextable->getByIndex($this->headerIndex)->getId().'">';
+			$config = $node->getData();
+			$level = utf8_strlen($config[0]);
+			$indexTable->add($level, $htxt);
+				
+			$o = '<h'.$this->level.' id="header_'.$this->headerIndex.'">';
 			$this->headerIndex++;
 		}
+
 		
- 		$htxt = trim($this->getText($node));
- 		if (strlen($htxt) == 0) {
- 			$o .= nop("Empty headers are not allowed!");
- 		}
  		$o .= $htxt;
 		return $o;
 	}

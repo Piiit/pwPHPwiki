@@ -1,16 +1,23 @@
 <?php
+error_reporting(E_ALL | E_STRICT);
+ini_set('display_errors', true);
+
+
 if (!defined('INC_PATH')) {
 	define ('INC_PATH', realpath(dirname(__FILE__).'/../../').'/');
 }
 
 require_once INC_PATH.'piwo-v0.2/lib/WikiParser.php';
 TestingTools::logOn();
-//TestingTools::debugOn();
+TestingTools::debugOn();
+
+$indexTable = new IndexTable();
 
 $wikiParser = new WikiParser();
+$wikiParser->setUserInfo('indextable', $indexTable);
 
-$input = "[[Überschriften]]";
-$expected = '<a href="?id=:%fcberschriften&mode=edit" class="pw_wiki_link_na">&Uuml;berschriften</a>';
+$input = "= h1 =\n== h1.1 ==\n= h2 =";
+$expected = '<h1 id="header_0">h1</h1><h2 id="header_1">h1.1</h2><h1 id="header_2">h2</h1>';
 $wikiParser->parse($input);
 $result = $wikiParser->getResult();
 
@@ -31,6 +38,9 @@ if(strlen($diff) == 0) {
 } else {
 	echo StringTools::preFormatShowLineNumbers(pw_s2e($diff));
 }
+
+echo "<hr />";
+echo $indexTable->__toString();
 
 echo "<hr />";
 echo StringTools::preFormat("DEBUG:\n".pw_s2e(TestingTools::getLog()->toStringReversed()));
