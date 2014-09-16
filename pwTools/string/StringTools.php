@@ -173,8 +173,10 @@ class StringTools {
 	}
 	
 	public static function deleteUntilDiff($string1, $string2) {
+		$string1Shorter = false;
 		if(strlen($string1) < strlen($string2)) {
 			$minLength = strlen($string1);
+			$string1Shorter = true;
 		} else {
 			$minLength = strlen($string2);
 		}
@@ -183,7 +185,10 @@ class StringTools {
 				return substr($string1, $i);
 			}
 		}
-		return substr($string2, $minLength);
+		if($string1Shorter) {
+			return substr($string2, $minLength);
+		}
+		return substr($string1, $minLength);
 	}
 	
 	public static function equals($string1, $string2) {
