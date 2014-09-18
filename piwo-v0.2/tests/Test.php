@@ -16,8 +16,14 @@ $indexTable = new IndexTable();
 $wikiParser = new WikiParser();
 $wikiParser->setUserInfo('indextable', $indexTable);
 
-$input = "= h1 =\n== h1.1 ==\n= h2 =";
-$expected = '<h1 id="header_0">h1</h1><h2 id="header_1">h1.1</h2><h1 id="header_2">h2</h1>';
+$input = "$$ test\n= title =";
+$expected = "<pre><div> test\n</div></pre><h1 id=\"header_1\">title</h1>";
+
+// $input = "= h1 =\n== h1.1 ==\n= h2 =";
+// $expected = '<h1 id="header_0">h1</h1><h2 id="header_1">h1.1</h2><h1 id="header_2">h2</h1>';
+// $input = "[[Überschriften]]";
+// $expected = '<a href="?id=:%fcberschriften&mode=edit" class="pw_wiki_link_na">&Uuml;berschriften</a>';
+
 $wikiParser->parse($input);
 $result = $wikiParser->getResult();
 
