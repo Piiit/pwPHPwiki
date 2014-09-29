@@ -16,8 +16,8 @@ $indexTable = new IndexTable();
 $wikiParser = new WikiParser();
 $wikiParser->setUserInfo('indextable', $indexTable);
 
-$input = "$$ test\n= title =";
-$expected = "<pre><div> test\n</div></pre><h1 id=\"header_1\">title</h1>";
+$input = "~~TOC~~\n= h1 =\n~~TOC~~";
+$expected = "<pre><div> test\n</div></pre><h1 id=\"header_0\">title</h1>";
 
 // $input = "= h1 =\n== h1.1 ==\n= h2 =";
 // $expected = '<h1 id="header_0">h1</h1><h2 id="header_1">h1.1</h2><h1 id="header_2">h2</h1>';

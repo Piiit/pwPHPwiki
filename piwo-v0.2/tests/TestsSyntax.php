@@ -55,7 +55,7 @@ class TestsSyntax extends PHPUnit_Framework_TestCase {
 	
 	public function testPreBlock01() {
 		$input = "$$ test\n= title =";
-		$expected = "<pre><div> test\n</div></pre><h1 id=\"header_1\">title</h1>";
+		$expected = "<pre><div> test\n</div></pre><h1 id=\"header_0\">title</h1>";
 		$result = parse($input);
 		$this->assertEquals($expected, $result, "RES: $result;\n EXP: $expected; DIFF: ".StringTools::deleteUntilDiff($result, $expected)."INPUT: $input;");
 	}
@@ -75,11 +75,13 @@ class TestsSyntax extends PHPUnit_Framework_TestCase {
 	}
 
 	public function testIndexTable() {
-		$input = "= h1 =";
-		$expected = '<a href="?id=:%fcberschriften&mode=edit" class="pw_wiki_link_na">&Uuml;berschriften</a>';
+		$input = "= h1 =\n= h2 =";
+		$expected = '<h1 id="header_0">h1</h1>';
 		$result = parse($input);
 		$this->assertEquals($expected, $result, "RES: $result;\n EXP: $expected; DIFF: ".StringTools::deleteUntilDiff($result, $expected)."INPUT: $input;");
 	}
+	
+	
 	
 } 
 

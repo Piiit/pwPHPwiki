@@ -28,7 +28,7 @@ class Header extends ParserRule implements ParserRuleHandler, LexerRuleHandler {
 	}
 	
 	public function onEntry() {
-		$indexTable = $this->getParser()->getUserInfo('indextable');
+		$indexTable = $this->getParser()->getUserInfoOrNew('indextable', new IndexTable());
 
 		$node = $this->getNode();
 		$nodeData = $node->getData();

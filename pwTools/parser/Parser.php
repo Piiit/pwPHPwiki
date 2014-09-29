@@ -27,10 +27,14 @@ class Parser implements TreeWalkerConfig {
 	}
 	
 	public function getUserInfo($key) {
-		if(!array_key_exists($key, $this->_userInfo)) {
+		if(!$this->isUserInfo($key)) {
 			throw new Exception("UserInfo '$key' does not exists!");
 		}
 		return $this->_userInfo[$key];
+	}
+	
+	public function isUserInfo($key) {
+		return array_key_exists($key, $this->_userInfo);
 	}
 		
 	public function registerHandler(ParserRuleHandler $tokenHandler) {
