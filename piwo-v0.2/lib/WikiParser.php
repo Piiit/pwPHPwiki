@@ -27,6 +27,11 @@ class WikiParser {
 	public function parse($text) {
 		$this->lexer->setSource($text);
 		$this->lexer->parse();
+		
+		$this->setUserInfo('lexer.performance', $this->lexer->getExecutionTime());
+		$this->setUserInfo('lexer.version', $this->lexer->getVersion());
+		$this->setUserInfo('indextable', WikiTocTools::createIndexTable($this->parser, $this->lexer->getRootNode()));
+		
 		$treeWalker = new TreeWalker($this->lexer->getRootNode(), $this->parser);
 		$this->result = implode($treeWalker->getResult());
 	}

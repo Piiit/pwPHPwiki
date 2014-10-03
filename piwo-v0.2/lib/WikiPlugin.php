@@ -1,5 +1,5 @@
 <?php
-abstract class Plugin {
+abstract class WikiPlugin {
 	
 	private $_data = array();
 	
@@ -10,15 +10,7 @@ abstract class Plugin {
 		
 	}
 	
-	public function getData() {
-		
-	}
-	
-	public function registerMethod($id, $name) {
-		
-	}
-	
-	public function callMethod($id) {
+	public function getData($id) {
 		
 	}
 }

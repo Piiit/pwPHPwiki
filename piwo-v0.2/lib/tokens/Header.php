@@ -4,14 +4,16 @@ if (!defined('INC_PATH')) {
 	define ('INC_PATH', realpath(dirname(__FILE__).'/../../').'/');
 }
 require_once INC_PATH.'pwTools/parser/LexerRuleHandler.php';
+require_once INC_PATH.'pwTools/parser/LexerRuleHandlerActive.php';
 require_once INC_PATH.'pwTools/parser/ParserRuleHandler.php';
 require_once INC_PATH.'pwTools/parser/ParserRule.php';
 require_once INC_PATH.'pwTools/parser/Pattern.php';
 
-class Header extends ParserRule implements ParserRuleHandler, LexerRuleHandler {
+class Header extends ParserRule implements ParserRuleHandler, LexerRuleHandler, LexerRuleHandlerActive {
 	
 	private $headerIndex = 0;
 	private $level;
+	private $indexTable = null;
 	
 	public function getName() {
 		return strtolower(__CLASS__);
@@ -28,7 +30,6 @@ class Header extends ParserRule implements ParserRuleHandler, LexerRuleHandler {
 	}
 	
 	public function onEntry() {
-		$indexTable = $this->getParser()->getUserInfoOrNew('indextable', new IndexTable());
 
 		$node = $this->getNode();
 		$nodeData = $node->getData();
@@ -44,7 +45,6 @@ class Header extends ParserRule implements ParserRuleHandler, LexerRuleHandler {
 		} else {
 			$config = $node->getData();
 			$level = utf8_strlen($config[0]);
-			$indexTable->add($level, $htxt);
 				
 			$o = '<h'.$this->level.' id="header_'.$this->headerIndex.'">';
 			$this->headerIndex++;
@@ -62,6 +62,21 @@ class Header extends ParserRule implements ParserRuleHandler, LexerRuleHandler {
 	public function doRecursion() {
 		return false;
 	}
+	
+	public function onNewNodeOnEntry() {
+		
+		$node = $this->getNode();
+		$nodeData = $node->getData();
+		$level = strlen($nodeData[0]);
+		$htxt = trim($this->getText($node));
+		$this->indexTable->add($level, $htxt);
+		
+		TestingTools::debug($this->indexTable);
+	}
+
+	public function onNewNodeOnExit() {
+	}
+
 
 }
 
