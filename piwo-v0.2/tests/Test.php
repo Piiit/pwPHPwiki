@@ -13,11 +13,11 @@ TestingTools::debugOn();
 
 $indexTable = new IndexTable();
 
-$wikiParser = new WikiParser();
+$wikiParser = new WikiParser(INC_PATH."piwo-v0.2/lib/tokens/*.php");
 $wikiParser->setUserInfo('indextable', $indexTable);
 
-$input = "~~TOC~~\n= h1 =\n~~TOC~~";
-$expected = "<pre><div> test\n</div></pre><h1 id=\"header_0\">title</h1>";
+$input = "~~TOC~~\n= h1 =\n= h2 =";
+$expected = '<div class="toc" id="__toc"><ul><li><a href="#header_1">1 h1</a></li><li><a href="#header_2">2 h2</a></li></ul></div><h1 id="header_0">h1</h1><h1 id="header_1">h2</h1>';
 
 // $input = "= h1 =\n== h1.1 ==\n= h2 =";
 // $expected = '<h1 id="header_0">h1</h1><h2 id="header_1">h1.1</h2><h1 id="header_2">h2</h1>';
@@ -26,6 +26,9 @@ $expected = "<pre><div> test\n</div></pre><h1 id=\"header_0\">title</h1>";
 
 $wikiParser->parse($input);
 $result = $wikiParser->getResult();
+
+echo StringTools::preFormat("INPUT: Code");
+echo StringTools::preFormatShowLineNumbers(pw_s2e($input));
 
 echo StringTools::preFormat("RESULT: Code");
 echo StringTools::preFormatShowLineNumbers(pw_s2e($result));

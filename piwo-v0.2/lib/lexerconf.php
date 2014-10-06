@@ -4,7 +4,7 @@
 require_once INC_PATH.'piwo-v0.2/lib/common.php';require_once INC_PATH.'piwo-v0.2/plugins/toc.php';
 require_once INC_PATH.'piwo-v0.2/cfg/main.php';require_once INC_PATH.'piwo-v0.2/lib/WikiTocTools.php';require_once INC_PATH.'piwo-v0.2/lib/WikiParser.php';require_once INC_PATH.'pwTools/parser/Lexer.php';require_once INC_PATH.'pwTools/tree/TreePrinter.php';
 function parse($text, $forse_debug = true) {		$debugCatchedException = false; 
-	$wikiParser = new WikiParser();
+	$wikiParser = new WikiParser(INC_PATH."piwo-v0.2/lib/tokens/*.php");
 	$o = "";		try {		TestingTools::inform($text);		$wikiParser->setUserInfo('piwoversion', PIWOVERSION);		//$wikiParser->setUserInfo('indextable', new IndexTable());
 				$wikiParser->parse($text);		//TODO Move create index table iterations into plug-in handling...// 		$wikiParser->setUserInfo(// 			'indextable', // 			WikiTocTools::createIndexTable($wikiParser->getParser(), $wikiParser->getLexer()->getRootNode())// 			);		// 		var_dump(WikiTocTools::createIndexTable($wikiParser->getParser(), $wikiParser->getLexer()->getRootNode()));
 		

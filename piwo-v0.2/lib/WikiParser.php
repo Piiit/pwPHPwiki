@@ -15,9 +15,10 @@ class WikiParser {
 	private $parser = null;
 	private $handlerList = null;
 	private $result = null;
+	private $pluginList = null;
 	
-	public function __construct() {
-		$this->loadTokensHandlerList();
+	public function __construct($pathToTokens) {
+		$this->loadTokensHandlerList($pathToTokens);
 		$this->lexer = new Lexer();
 		$this->parser = new Parser();
 		$this->lexer->registerHandlerList($this->handlerList);
@@ -32,8 +33,21 @@ class WikiParser {
 		$this->setUserInfo('lexer.version', $this->lexer->getVersion());
 		$this->setUserInfo('indextable', WikiTocTools::createIndexTable($this->parser, $this->lexer->getRootNode()));
 		
+		foreach($this->handlerList as $handler) {
+			if($handler instanceof WikiPlugin) {
+				$handler->runBefore();
+			}
+		}
+		
 		$treeWalker = new TreeWalker($this->lexer->getRootNode(), $this->parser);
 		$this->result = implode($treeWalker->getResult());
+		
+		foreach($this->handlerList as $handler) {
+			if($handler instanceof WikiPlugin) {
+				$handler->runAfter();
+			}
+		}
+		
 	}
 	
 	public function getSource() {
@@ -59,9 +73,13 @@ class WikiParser {
 		return $this->parser;
 	}
 
-	private function loadTokensHandlerList() {
-		// include all parser token handler...
-		$parserTokenList = glob(INC_PATH."piwo-v0.2/lib/tokens/*.php");
+	private function loadTokensHandlerList($pathToToken) {
+		// include all parser token handlers...
+		if(strlen($pathToToken) == 0) {
+			throw new Exception("'$pathToToken' is not a valid token path!");	
+		}
+		
+		$parserTokenList = glob($pathToToken);
 		foreach ($parserTokenList as $parserToken) {
 			require_once $parserToken;
 		}

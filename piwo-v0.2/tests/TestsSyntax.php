@@ -75,8 +75,8 @@ class TestsSyntax extends PHPUnit_Framework_TestCase {
 	}
 
 	public function testIndexTable() {
-		$input = "= h1 =\n= h2 =";
-		$expected = '<h1 id="header_0">h1</h1>';
+		$input = "~~TOC~~\n= h1 =\n= h2 =";
+		$expected = '<h1 id="header_0">h1</h1><h1 id="header_1">h2</h1>';
 		$result = parse($input);
 		$this->assertEquals($expected, $result, "RES: $result;\n EXP: $expected; DIFF: ".StringTools::deleteUntilDiff($result, $expected)."INPUT: $input;");
 	}

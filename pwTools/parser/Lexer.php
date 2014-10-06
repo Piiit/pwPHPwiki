@@ -60,10 +60,12 @@ class Lexer {
 	private $_lastNode = null;
 	private $_rootNode = null;  // root of the AST (=Abstract Syntax Tree)
 	private $_handlerTable = null;
+	private $_handlerTableActive = null;
 	
 
 	public function __construct() {
 		$this->_handlerTable = new Collection();
+		$this->_handlerTableActive = new Collection();
 		$this->_patternTable = new Collection();
 		$this->_patternTable->add(Token::DOC, new Pattern(Token::DOC));
 		$this->_patternTable->add(Token::TXT, new Pattern(Token::TXT));
@@ -272,13 +274,23 @@ class Lexer {
 		TestingTools::logDebug($this->_logFormat("CONNECTTO", "'$name->$to' connected."));
 	}
 	
-	public function registerAbstractHandler(LexerRuleHandlerAbstract $handler) {
+	public function registerHandlerAbstract(LexerRuleHandlerAbstract $handler) {
 		$children = $handler->getConnectTo();
 		foreach($children as $child) {
 			$this->_connectTo($child, $handler->getName());
 		}
 	}
 	
+	public function registerHandlerActive(LexerRuleHandlerActive $handler) {
+		if(strlen($handler->getName()) == 0) {
+			throw new Exception("Cannot register a handler without a name!");
+		}
+		if(array_key_exists($handler->getName(), $this->_handlerTableActive)) {
+			throw new Exception("Active handler '".$handler->getName()."' already registered!");
+		}
+		$this->_handlerTableActive->add($handler->getName(), $handler);
+	}
+		
 	public function registerHandler(LexerRuleHandler $handler) {
 		if(strlen($handler->getName()) == 0) {
 			throw new Exception("Cannot register a handler without a name!");
@@ -299,7 +311,10 @@ class Lexer {
 				$this->registerHandler($handler);
 			}
 			if($handler instanceof LexerRuleHandlerAbstract) {
-				$this->registerAbstractHandler($handler);
+				$this->registerHandlerAbstract($handler);
+			}
+			if($handler instanceof LexerRuleHandlerActive) {
+				$this->registerHandlerActive($handler);
 			}
 		}
 	}
@@ -482,6 +497,12 @@ class Lexer {
 		$parent->addChild($node);
 		$this->_lastNode = $node;
 		TestingTools::logDebug($this->_logFormat("ADD NODE", "$node to $parent"));
+		
+		if(array_key_exists($node->getName(), $this->_handlerTableActive->getArray())) {
+			$handlerActive = $this->_handlerTableActive->get($node->getName());
+			$handlerActive->setNode($node);
+			$handlerActive->onNewNodeOnEntry();
+		}
 
 		// WORD-patterns get closed right after opening (no parent ID gets stored within the stack)
 		$pattern = $this->_patternTable->get($token->getName());
@@ -596,6 +617,14 @@ class Lexer {
 		}
 		
 		$this->_parentStackRemove();
+		
+		$node = $parent;
+		if(array_key_exists($node->getName(), $this->_handlerTableActive->getArray())) {
+			$handlerActive = $this->_handlerTableActive->get($node->getName());
+			$handlerActive->setNode($node);
+			$handlerActive->onNewNodeOnExit();
+		}
+		
 	}
 
 	private function _updateTextPosition() {

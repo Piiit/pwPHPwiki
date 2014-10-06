@@ -64,7 +64,9 @@ class Header extends ParserRule implements ParserRuleHandler, LexerRuleHandler, 
 	}
 	
 	public function onNewNodeOnEntry() {
-		
+	}
+
+	public function onNewNodeOnExit() {
 		$node = $this->getNode();
 		$nodeData = $node->getData();
 		$level = strlen($nodeData[0]);
@@ -73,11 +75,7 @@ class Header extends ParserRule implements ParserRuleHandler, LexerRuleHandler, 
 		
 		TestingTools::debug($this->indexTable);
 	}
-
-	public function onNewNodeOnExit() {
-	}
-
-
+	
 }
 
 ?>
