@@ -515,8 +515,9 @@ class Lexer {
 			}
 		} else {
 			$this->_parentStackAdd($node);
-			
 		}
+		
+		
 	}
 	
 	

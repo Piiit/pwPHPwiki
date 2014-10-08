@@ -9,12 +9,12 @@ require_once INC_PATH.'pwTools/parser/ParserRuleHandler.php';
 require_once INC_PATH.'pwTools/parser/ParserRule.php';
 require_once INC_PATH.'pwTools/parser/Pattern.php';
 
-class Header extends ParserRule implements ParserRuleHandler, LexerRuleHandler, LexerRuleHandlerActive {
+class Header extends ParserRule implements ParserRuleHandler, LexerRuleHandler {
 	
 	private $headerIndex = 0;
 	private $level;
 	private $indexTable = null;
-	
+		
 	public function getName() {
 		return strtolower(__CLASS__);
 	}
@@ -61,19 +61,6 @@ class Header extends ParserRule implements ParserRuleHandler, LexerRuleHandler, 
 
 	public function doRecursion() {
 		return false;
-	}
-	
-	public function onNewNodeOnEntry() {
-	}
-
-	public function onNewNodeOnExit() {
-		$node = $this->getNode();
-		$nodeData = $node->getData();
-		$level = strlen($nodeData[0]);
-		$htxt = trim($this->getText($node));
-		$this->indexTable->add($level, $htxt);
-		
-		TestingTools::debug($this->indexTable);
 	}
 	
 }

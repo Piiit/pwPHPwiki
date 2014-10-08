@@ -13,7 +13,10 @@ TestingTools::debugOn();
 
 $indexTable = new IndexTable();
 
-$wikiParser = new WikiParser(INC_PATH."piwo-v0.2/lib/tokens/*.php");
+$pathToTokens = INC_PATH."piwo-v0.2/lib/tokens";
+$pathToPlugins = INC_PATH."piwo-v0.2/lib/plugins";
+$wikiParser = new WikiParser($pathToTokens, $pathToPlugins);
+
 $wikiParser->setUserInfo('indextable', $indexTable);
 
 $input = "~~TOC~~\n= h1 =\n= h2 =";

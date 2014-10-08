@@ -4,25 +4,56 @@ if (!defined('INC_PATH')) {
 	define ('INC_PATH', realpath(dirname(__FILE__).'/../../').'/');
 }
 require_once INC_PATH.'piwo-v0.2/lib/common.php';
-require_once INC_PATH.'piwo-v0.2/plugins/toc.php';
+require_once INC_PATH.'piwo-v0.2/lib/plugins/toc.php';
 require_once INC_PATH.'piwo-v0.2/cfg/main.php';
 require_once INC_PATH.'piwo-v0.2/lib/WikiTocTools.php';
 require_once INC_PATH.'pwTools/parser/Lexer.php';
+require_once INC_PATH.'pwTools/parser/Parser.php';
 require_once INC_PATH.'pwTools/tree/TreePrinter.php';
 
 class WikiParser {
 	private $lexer = null;
 	private $parser = null;
-	private $handlerList = null;
 	private $result = null;
-	private $pluginList = null;
+	private $pluginList = array();
 	
-	public function __construct($pathToTokens) {
-		$this->loadTokensHandlerList($pathToTokens);
+	public function __construct($pathToTokens, $pathToPlugins) {
 		$this->lexer = new Lexer();
 		$this->parser = new Parser();
-		$this->lexer->registerHandlerList($this->handlerList);
-		$this->parser->registerHandlerList($this->handlerList);
+		
+		// include all parser token handlers...
+		if(strlen($pathToTokens) == 0 || !is_dir($pathToTokens)) {
+			throw new Exception("'$pathToTokens' is not a valid token path!");
+		}
+		
+		//Plugins are optional
+		if($pathToPlugins != null && strlen($pathToPlugins) > 0 && !is_dir($pathToPlugins)) {
+			throw new Exception("'$pathToPlugins' is not a valid plugin path!");
+		}
+		
+		$handlerList = array_merge(glob($pathToTokens."/*.php"), glob($pathToPlugins."/*.php"));
+		
+		foreach ($handlerList as $handler) {
+			require_once $handler;
+			$className = FileTools::basename($handler, ".php");
+			if (class_exists($className)) {
+				$class = null;
+				$interfaces = class_implements($className);
+				if (array_search('LexerRuleHandler', $interfaces)) {
+					$class = new $className;
+					$this->lexer->registerHandler($class);
+				}
+				if (array_search('ParserRuleHandler', $interfaces)) {
+					$class = ($class == null ? new $className : $class);
+					$this->parser->registerHandler($class);
+				}
+				if (array_search('WikiPluginHandler', $interfaces)) {
+					$class = ($class == null ? new $className : $class);
+					$this->pluginList[] = $class;
+				}
+			}
+		}
+		
 	}
 	
 	public function parse($text) {
@@ -31,21 +62,20 @@ class WikiParser {
 		
 		$this->setUserInfo('lexer.performance', $this->lexer->getExecutionTime());
 		$this->setUserInfo('lexer.version', $this->lexer->getVersion());
-		$this->setUserInfo('indextable', WikiTocTools::createIndexTable($this->parser, $this->lexer->getRootNode()));
+// 		$this->setUserInfo('indextable', WikiTocTools::createIndexTable($this->parser, $this->lexer->getRootNode()));
 		
-		foreach($this->handlerList as $handler) {
-			if($handler instanceof WikiPlugin) {
-				$handler->runBefore();
-			}
+// 		var_dump($this->pluginList);
+		foreach($this->pluginList as $pluginHandler) {
+// 			$pluginHandler->setParser($this->parser);
+// 			var_dump($pluginHandler);
+			$pluginHandler->runBefore($this->parser);
 		}
 		
 		$treeWalker = new TreeWalker($this->lexer->getRootNode(), $this->parser);
 		$this->result = implode($treeWalker->getResult());
 		
-		foreach($this->handlerList as $handler) {
-			if($handler instanceof WikiPlugin) {
-				$handler->runAfter();
-			}
+		foreach($this->pluginList as $pluginHandler) {
+			$pluginHandler->runAfter();
 		}
 		
 	}
@@ -72,87 +102,7 @@ class WikiParser {
 	public function getParser() {
 		return $this->parser;
 	}
-
-	private function loadTokensHandlerList($pathToToken) {
-		// include all parser token handlers...
-		if(strlen($pathToToken) == 0) {
-			throw new Exception("'$pathToToken' is not a valid token path!");	
-		}
-		
-		$parserTokenList = glob($pathToToken);
-		foreach ($parserTokenList as $parserToken) {
-			require_once $parserToken;
-		}
-		
-		if($this->handlerList != null) {
-			return;
-		}
-		
-		$this->handlerList = array(
-				new Header(),
-				new Border(),
-				new BorderError(),
-				new BorderInfo(),
-				new BorderSuccess(),
-				new BorderValidation(),
-				new BorderWarning(),
-				new Plugin(),
-				new PluginParameter(),
-				new InternalLink(),
-				new InternalLinkText(),
-				new InternalLinkMode(),
-				new InternalLinkPos(),
-				new Url(),
-				new UrlNoProtocol(),
-				new Big(),
-				new Bold(),
-				new Em(),
-				new Hi(),
-				new Italic(),
-				new Lo(),
-				new Monospace(),
-				new Small(),
-				new Strike(),
-				new Sub(),
-				new Sup(),
-				new Underline(),
-				new Code(),
-				new NoWiki(),
-				new NoWikiAlt(),
-				new Newline(),
-				new Multiline(),
-				new Preformat(),
-				new Align(),
-				new Justify(),
-				new Indent(),
-				new Right(),
-				new Left(),
-				new Constant(),
-				new Symbol(),
-				new Variable(),
-				new ExternalLink(),
-				new ExternalLinkPos(),
-				new Pre(),
-				new TableCell(),
-				new TableRow(),
-				new TableHeader(),
-				new Table(),
-				new TableSpan(),
-				new AlignInTable(),
-				new HorizontalRule(),
-				new DefTerm(),
-				new DefList(),
-				new DefItem(),
-				new ListItem(),
-				new Lists(),
-				new Footnote(),
-				new QuotedString(),
-				new Math(),
-				new NoToc(),
-				new Comment(),
-				new Comment2()
-		);
-	}
+	
 }
 
 ?>

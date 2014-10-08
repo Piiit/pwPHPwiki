@@ -7,9 +7,10 @@ require_once INC_PATH.'pwTools/parser/LexerRuleHandler.php';
 require_once INC_PATH.'pwTools/parser/ParserRuleHandler.php';
 require_once INC_PATH.'pwTools/parser/ParserRule.php';
 require_once INC_PATH.'pwTools/parser/Pattern.php';
+require_once INC_PATH.'piwo-v0.2/lib/WikiPluginHandler.php';
 
 
-class Plugin extends ParserRule implements ParserRuleHandler, LexerRuleHandler {
+class Plugin extends ParserRule implements ParserRuleHandler, LexerRuleHandler, WikiPluginHandler {
 	
 	public function getName() {
 		return strtolower(__CLASS__);
@@ -46,6 +47,24 @@ class Plugin extends ParserRule implements ParserRuleHandler, LexerRuleHandler {
 
 	public function doRecursion() {
 		return false;
+	}
+
+	public function runBefore(Parser $parser) {
+		var_dump($parser);
+		$this->getParser()->setUserInfo(
+				'indextable', 
+				WikiTocTools::createIndexTable($this->getParser(), $this->getLexer()->getRootNode())
+				);
+	}
+
+	public function runOnTokenFound() {
+	}
+
+	public function runAfter() {
+	}
+
+	public function getPluginName() {
+		return "toc";
 	}
 
 }

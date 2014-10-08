@@ -3,9 +3,8 @@
 }
 require_once INC_PATH.'piwo-v0.2/lib/common.php';require_once INC_PATH.'piwo-v0.2/plugins/toc.php';
 require_once INC_PATH.'piwo-v0.2/cfg/main.php';require_once INC_PATH.'piwo-v0.2/lib/WikiTocTools.php';require_once INC_PATH.'piwo-v0.2/lib/WikiParser.php';require_once INC_PATH.'pwTools/parser/Lexer.php';require_once INC_PATH.'pwTools/tree/TreePrinter.php';
-function parse($text, $forse_debug = true) {		$debugCatchedException = false; 
-	$wikiParser = new WikiParser(INC_PATH."piwo-v0.2/lib/tokens/*.php");
-	$o = "";		try {		TestingTools::inform($text);		$wikiParser->setUserInfo('piwoversion', PIWOVERSION);		//$wikiParser->setUserInfo('indextable', new IndexTable());
+function parse($text, $forse_debug = true) {		$pathToTokens = INC_PATH."piwo-v0.2/lib/tokens";	$pathToPlugins = INC_PATH."piwo-v0.2/lib/plugins";		$debugCatchedException = false; 
+	$wikiParser = new WikiParser($pathToTokens, $pathToPlugins);	$o = "";		try {		TestingTools::inform($text);		$wikiParser->setUserInfo('piwoversion', PIWOVERSION);		//$wikiParser->setUserInfo('indextable', new IndexTable());
 				$wikiParser->parse($text);		//TODO Move create index table iterations into plug-in handling...// 		$wikiParser->setUserInfo(// 			'indextable', // 			WikiTocTools::createIndexTable($wikiParser->getParser(), $wikiParser->getLexer()->getRootNode())// 			);		// 		var_dump(WikiTocTools::createIndexTable($wikiParser->getParser(), $wikiParser->getLexer()->getRootNode()));
 		
 		$o = $wikiParser->getResult();	} catch (Exception $e) {		$debugCatchedException = true;		TestingTools::inform("Exception catched! ERROR MESSAGE: ".pw_s2e(print_r($e->getMessage(), true)));		TestingTools::inform("ERROR TRACE: \n".pw_s2e($e->getTraceAsString()));	}		if ($debugCatchedException || $forse_debug) {			TestingTools::inform("LEXER: ".$wikiParser->getLexer(), TestingTools::NOTYPEINFO);				if (isset($lexer)) {

@@ -1,8 +1,8 @@
 <?php
 
 interface WikiPluginHandler {
-	public function getName();
-	public function runBefore();
+	public function getPluginName();
+	public function runBefore(Parser $parser);
 	public function runOnTokenFound();
 	public function runAfter();
 }
