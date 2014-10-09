@@ -32,6 +32,7 @@ class WikiParser {
 		}
 		
 		$handlerList = array_merge(glob($pathToTokens."/*.php"), glob($pathToPlugins."/*.php"));
+		$handlerListAbstract = array();
 		
 		foreach ($handlerList as $handler) {
 			require_once $handler;
@@ -42,6 +43,10 @@ class WikiParser {
 				if (array_search('LexerRuleHandler', $interfaces)) {
 					$class = new $className;
 					$this->lexer->registerHandler($class);
+				}
+				if (array_search('LexerRuleHandlerAbstract', $interfaces)) {
+					$class = ($class == null ? new $className : $class);
+					$handlerListAbstract[] = new $class;
 				}
 				if (array_search('ParserRuleHandler', $interfaces)) {
 					$class = ($class == null ? new $className : $class);
@@ -54,6 +59,7 @@ class WikiParser {
 			}
 		}
 		
+		$this->lexer->registerHandlerList($handlerListAbstract);
 	}
 	
 	public function parse($text) {
@@ -62,20 +68,16 @@ class WikiParser {
 		
 		$this->setUserInfo('lexer.performance', $this->lexer->getExecutionTime());
 		$this->setUserInfo('lexer.version', $this->lexer->getVersion());
-// 		$this->setUserInfo('indextable', WikiTocTools::createIndexTable($this->parser, $this->lexer->getRootNode()));
 		
-// 		var_dump($this->pluginList);
 		foreach($this->pluginList as $pluginHandler) {
-// 			$pluginHandler->setParser($this->parser);
-// 			var_dump($pluginHandler);
-			$pluginHandler->runBefore($this->parser);
+			$pluginHandler->runBefore($this->parser, $this->lexer);
 		}
 		
 		$treeWalker = new TreeWalker($this->lexer->getRootNode(), $this->parser);
 		$this->result = implode($treeWalker->getResult());
 		
 		foreach($this->pluginList as $pluginHandler) {
-			$pluginHandler->runAfter();
+			$pluginHandler->runAfter($this->parser, $this->lexer);
 		}
 		
 	}

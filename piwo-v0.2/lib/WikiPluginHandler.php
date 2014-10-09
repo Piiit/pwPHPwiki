@@ -2,9 +2,8 @@
 
 interface WikiPluginHandler {
 	public function getPluginName();
-	public function runBefore(Parser $parser);
-	public function runOnTokenFound();
-	public function runAfter();
+	public function runBefore(Parser $parser, Lexer $lexer);
+	public function runAfter(Parser $parser, Lexer $lexer);
 }
 
 ?>

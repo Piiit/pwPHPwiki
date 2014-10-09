@@ -49,18 +49,14 @@ class Plugin extends ParserRule implements ParserRuleHandler, LexerRuleHandler, 
 		return false;
 	}
 
-	public function runBefore(Parser $parser) {
-		var_dump($parser);
-		$this->getParser()->setUserInfo(
+	public function runBefore(Parser $parser, Lexer $lexer) {
+		$parser->setUserInfo(
 				'indextable', 
-				WikiTocTools::createIndexTable($this->getParser(), $this->getLexer()->getRootNode())
+				WikiTocTools::createIndexTable($parser, $lexer->getRootNode())
 				);
 	}
 
-	public function runOnTokenFound() {
-	}
-
-	public function runAfter() {
+	public function runAfter(Parser $parser, Lexer $lexer) {
 	}
 
 	public function getPluginName() {

@@ -11,16 +11,12 @@ require_once INC_PATH.'piwo-v0.2/lib/WikiParser.php';
 TestingTools::logOn();
 TestingTools::debugOn();
 
-$indexTable = new IndexTable();
-
 $pathToTokens = INC_PATH."piwo-v0.2/lib/tokens";
 $pathToPlugins = INC_PATH."piwo-v0.2/lib/plugins";
 $wikiParser = new WikiParser($pathToTokens, $pathToPlugins);
 
-$wikiParser->setUserInfo('indextable', $indexTable);
-
 $input = "~~TOC~~\n= h1 =\n= h2 =";
-$expected = '<div class="toc" id="__toc"><ul><li><a href="#header_1">1 h1</a></li><li><a href="#header_2">2 h2</a></li></ul></div><h1 id="header_0">h1</h1><h1 id="header_1">h2</h1>';
+$expected = '<div class="toc" id="__toc"><ul><li><a href="#header_0">1 h1</a></li><li><a href="#header_1">2 h2</a></li></ul></div><h1 id="header_0">h1</h1><h1 id="header_1">h2</h1>';
 
 // $input = "= h1 =\n== h1.1 ==\n= h2 =";
 // $expected = '<h1 id="header_0">h1</h1><h2 id="header_1">h1.1</h2><h1 id="header_2">h2</h1>';
@@ -50,9 +46,6 @@ if(strlen($diff) == 0) {
 } else {
 	echo StringTools::preFormatShowLineNumbers(pw_s2e($diff));
 }
-
-echo "<hr />";
-echo $indexTable->__toString();
 
 echo "<hr />";
 echo StringTools::preFormat("DEBUG:\n".pw_s2e(TestingTools::getLog()->toStringReversed()));
