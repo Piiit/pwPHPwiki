@@ -1,0 +1,73 @@
+= Ungeordnete Liste =
+$$ * Ein 
+$$ * Another **bullet**
+$$  * Ein Level tiefer
+$$   * noch eines
+$$  * zurück
+$$ * an den Anfang
+* One bullet
+* Another **bullet**
+ * Ein Level tiefer
+  * noch eines
+ * zurück
+* an den Anfang
+
+= Geordnete Liste =
+$$ # Ein Listenelement
+$$  # Zweite Ebene 
+$$  # Ein anderes Listenelement
+$$ # Noch eines auf der 1. Ebene
+$$  # Die zweite Liste auf der 2. Ebene (neu begonnen)
+$$  # Noch eines
+$$   # blablabla...
+$$  # Eine Ebene tiefer
+$$ # ganz zurück
+# Ein Listenelement
+ # Zweite Ebene 
+ # Ein anderes Listenelement
+# Noch eines auf der 1. Ebene
+ # Die zweite Liste auf der 2. Ebene (neu begonnen)
+ # Noch eines
+  # blablabla...
+ # Eine Ebene tiefer
+# ganz zurück
+
+= Gemischte Liste =
+**ACHTUNG**: Listenelemente auf gleichem Level werden immer so geparst, wie die erste (=oberste) Angabe. \\
+Siehe Beispiel...
+$$ # Das erste Element (Level 1: Definition, gültig für die ganze Liste)
+$$  * hier wird das 2. Level definiert
+$$ # wieder zurück zum 1. Level
+$$  * again
+$$   * one
+$$    * lala
+$$  # zurück (wird als bullet geparst, obwohl ordered angegeben wurde)
+$$ # ganz zurück
+# Das erste Element (Level 1: Definition, gültig für die ganze Liste)
+ * hier wird das 2. Level definiert
+# wieder zurück zum 1. Level
+ * again
+  * one
+   * lala
+ # zurück (wird als bullet geparst, obwohl ordered angegeben wurde)
+# ganz zurück
+
+= Multilines in Listen =
+$$ * Element 1
+$$ * {{{
+$$ Element 2: Mehrzeiliger Inhalt...
+$$ $$ PREFORMAT INNERHALB EINER LISTE (MEHRZEILIG)
+$$ $$ PREFORMAT INNERHALB EINER LISTE (MEHRZEILIG)
+$$ $$ PREFORMAT INNERHALB EINER LISTE (MEHRZEILIG)
+$$ $$ PREFORMAT INNERHALB EINER LISTE (MEHRZEILIG)
+$$ }}}
+$$ * Element 3
+* Element 1
+* {{{
+Element 2: Mehrzeiliger Inhalt...
+$$ PREFORMAT INNERHALB EINER LISTE (MEHRZEILIG)
+$$ PREFORMAT INNERHALB EINER LISTE (MEHRZEILIG)
+$$ PREFORMAT INNERHALB EINER LISTE (MEHRZEILIG)
+$$ PREFORMAT INNERHALB EINER LISTE (MEHRZEILIG)
+}}}
+* Element 3

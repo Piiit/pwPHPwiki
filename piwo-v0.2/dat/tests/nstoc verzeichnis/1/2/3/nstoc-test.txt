@@ -1,0 +1,16 @@
+= {{ID}} =
+----
+$$ ~~NSTOC||TITLE~~
+~~NSTOC||TITLE~~
+$$ ~~NSTOC|..|TITLE~~
+~~NSTOC|..|TITLE~~
+$$ ~~NSTOC~~
+~~NSTOC~~
+$$~~NSTOC|:dokumentation~~
+~~NSTOC|:dokumentation~~
+$$ ~~NSTOC|:nothere|TITLE~~
+~~NSTOC|:nothere|TITLE~~
+$$ ~~NSTOC|..:..:..|TITLE~~
+~~NSTOC|..:..:..|TITLE~~
+$$ ~~NSTOC|:tests:..|TITLE~~
+~~NSTOC|:tests:..|TITLE~~

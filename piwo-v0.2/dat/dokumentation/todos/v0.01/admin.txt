@@ -1,0 +1,20 @@
+= Admin =
+   
+== todos ==
+* Quellcode anzeigen (ohne Login, konfigurierbar)
+
+== bugs ==
+* [[utf8|Codierungsfehler]] utf8, htmlentities, filesystem, ...
+* First Start: tpl-Ordner anlegen, header, footer, etc. anlegen, startseite, die diese operationen vom benutzer fordern...
+
+== done ==
+* Datei oder Namensraum verschieben/umbenennen
+* Namensräume löschen
+* Login-Dialog zeigt ''Logout'' als Überschrift
+* Tastenkürzel: für alle Funktionen festlegen... JS location.href = mit besserer Funktion versehen (setMode...)
+* Dateinamen in einem ungültigen Format können weder geöffnet, noch gelöscht werden (Bsp.: ''%%\\Name%%'').
+* Dateien mit ungültigen Namen löschen
+* Autofocus in Dialogen (InfoDialog erhält noch kein focus, da OK-Button als Link <a> definiert wurde)
+* Debugmodus ein- und ausschalten über ''Einstellungen''.
+* Modaldialog in der Mitte anzeigen... nicht bei 300px
+* Abbrechen im Modaldialog springt immer zur Startseite, da ID in der URL leer ist. 

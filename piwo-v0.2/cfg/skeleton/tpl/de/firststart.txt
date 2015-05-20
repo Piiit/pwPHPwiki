@@ -1,0 +1,20 @@
+<info>
+\\
+:> ++ **Willkommen \\ ...bei PIWO...**++
+\\
+:> Achtung: Dies ist eine ALPHA-Version! \\\\**pitiz29a@gmail.com**
+
+----
+
+:> Erster Start von ++PIWO++ 
+:> Vorlagen wurden erstellt...
+:> Du kannst [[showpages>:tpl:|Vorlagen verändern]], wenn du möchtest.
+
+----
+:> <lo>
+&raquo; Piwo:Version **{{version}}** %%~~%% Wikisyntax:Version **0.1** %%~~%% Lexer:Version **{{lexerversion}}** &laquo;
+</lo>
+----
+
+</info>
+

@@ -1,0 +1,147 @@
+~~NSTOC|wptable|TITLE~~
+
+= Wikipedia - Tabellen =
+
+<warning>Wurde noch nicht implementiert!</warning>
+
+
+
+''<nowiki>
+
+{| TITELTEST
+
+|+ TITEL DIESER TABELLE
+
+|-
+
+! Name !! Regierungszeit                                !! Abstammung
+
+|-
+
+| [[Stephan II. (Bayern)|Stephan II.]]     || <tt>1347?1375</tt> Herzog von Bayern          || Sohn Kaiser Ludwigs IV.
+
+|-
+
+| [[Friedrich (Bayern)|Friedrich]]              || <tt>1375?1393</tt> Herzog von Bayern-Landshut || Sohn Stephans II.
+
+|-
+
+| [[Heinrich XVI. (Bayern)|Heinrich XVI.]] || <tt>1393?1450</tt> Herzog von Bayern-Landshut || Sohn Friedrichs
+
+|-
+
+| [[Ludwig IX. (Bayern)|Ludwig IX.]]       || <tt>1450?1479</tt> Herzog von Bayern-Landshut || Sohn Heinrichs XVI.
+
+|-
+
+| [[Georg (Bayern)|Georg]]                      || <tt>1479?1503</tt> Herzog von Bayern-Landshut || Sohn Ludwigs IX.
+
+|}
+
+
+
+----
+
+
+
+{| class='wikitable sortable'
+
+! ABC !! Länge !! Breite !! Farbe !! class='unsortable' | Bemerkung
+
+|-
+
+| [[a]]
+
+| style='text-align:right' | 1100
+
+| style='text-align:right' | 1000
+
+| hellblau
+
+| Blau ist der Himmel
+
+|-
+
+| [[b]]
+
+| style='text-align:right' | 30
+
+| style='text-align:right' | 2
+
+| grün
+
+| Grün ist das Gras
+
+{|
+
+| tabelle
+
+| in
+
+| tabelle
+
+|}
+
+|-
+
+| [[c]]
+
+| style='text-align:right' | 100
+
+| style='text-align:right' | 90
+
+| rot
+
+| Rot ist die Liebe
+
+* eine liste
+
+* in einer tabelle
+
+|}
+
+
+
+----
+
+
+
+{| class='wikitable sortable'
+
+|+ style='padding-bottom:1em;' | Kaiser der Flavischen Dynastie [[?]]
+
+|- class='hintergrundfarbe6'
+
+! width='15%' | Kaiser !! width='30%' | Vollständiger Name
+
+! width='15%' | Regierungszeit !! class='unsortable' width='40%' | Anmerkungen
+
+|-
+
+| [[Vespasian]] || Titus Flavius Vespasianus
+
+| style='text-align:right' | 69?79 || konsolidierte Verwaltung und Finanzen des Reiches
+
+|-
+
+| [[Titus]] || Titus Flavius Vespasianus
+
+| style='text-align:right' | {{SortKey|79-81}}Mitte 79?81 || eröffnete das [[Kolosseum]] in Rom
+
+|-
+
+| [[Domitian]] || Titus Flavius Domitianus
+
+| style='text-align:right' | 81?96 || beendete römische Expansion in Germanien
+
+|-
+
+| [[Lucius Antonius Saturninus|Saturninus]] || Lucius Antonius Saturninus
+
+| style='text-align:right' class='hintergrundfarbe5' | 89   || Gegenkaiser in Germanien, gefallen
+
+|}
+
+
+
+</nowiki>''

@@ -1,0 +1,9 @@
+!! small_title = WikiParser Manual
+
+= Inhaltsverzeichnis =
+~~NSTOC|oldcontent:manual|TITLE~~
+
+Insgesamt gibt es {{COUNTSUBS}} Artikel im Handbuch.
+
+----
+--ps. Anstelle von Plugins, wie style:header, wären Vorlagen angebracht: Aufgerufen mit ''<nowiki>{{Vorlage:foobar#param1#param2#...#paramn}}</nowiki>''--

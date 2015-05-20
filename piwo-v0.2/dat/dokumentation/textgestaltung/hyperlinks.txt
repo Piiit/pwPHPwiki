@@ -1,0 +1,71 @@
+<right alone><border>Inhaltsverzeichnis:\\~~TOC~~</border></right>
+
+= Hyperlinks =
+== Interne und externe Links ==
+Wiki-Links haben einen Namensraum, einen Namen, Kapitelnamen und optional einen Titel.\\
+Zum Beispiel liegt dieser Wikitext im Namespace ''{{NS}}'' (komplett: ''{{FULLNS}}'') und heißt ''{{PAGE}}''. \\ 
+Daraus ergibt sich die vollständige ID: ''{{ID}}''.
+
+^ Was es ist ^ Was du schreibst ^ Wie es dargestellt wird 
+| Einfacher externer Link\\(Texterkennung, optional) | {{{
+$$ http://www.google.de
+$$ www.google.de
+}}} | {{{
+http://www.google.de \\
+www.google.de \\
+}}} 
+| Externe Links\\(veraltet)| {{{
+$$ [http://www.google.de] 
+$$ [http://www.google.de Google Suche]
+$$ [mailto:someone@example.com]
+$$ [mailto:someone@example.com E-Mail to SomeOne]
+}}} | {{{
+: [http://www.google.de] 
+: [http://www.google.de Google Suche]
+: [mailto:someone@example.com]
+: [mailto:someone@example.com E-Mail to SomeOne]
+}}}
+| Interne Links | {{{
+$$ Ohne Text: [[Ausrichtung]]
+$$ Mit Text: [[Ausrichtung|Text ausrichten]]
+$$ Relative Pfadangabe: [[..:Textgestaltung]]
+$$ Absolute Pfadangabe: [[:Dokumentation:Todos]]
+$$ Dieser Link ist...: [[Nicht vorhanden]]
+}}} | {{{
+: [[Ausrichtung]]
+: [[Ausrichtung|Text ausrichten]]
+: [[..:Textgestaltung]]
+: [[:Dokumentation:Todos]]
+: [[Nicht vorhanden]]
+}}}
+| Adminfunktionen | {{{
+$$ Seite bearbeiten: [[edit>Ausrichtung]]
+$$ Die aktuelle Seite bearbeiten: [[edit>{{ID}}]]
+}}} | {{{
+: [[edit>Ausrichtung]]
+: [[edit>{{ID}}]]
+}}}
+
+== Sprungbefehle ==
+Vor dem Link ein ''#'' setzen. Alle Links können als Parameter einen neuen Anzeige-Namen erhalten. \\
+**Hinweis**: Überschriften, die in ''%%<notoc>%%''-Sektionen stehen können nicht angesprungen werden.
+^ Identifizierung bzw. Ziel                     ^ Befehl                                                                ^ Ausgabe - Beispiel                ^ Hinweise ^
+^ Kapitelauswahl ^^^^
+| Kapitelnummer                                      | ''<nowiki>[[#1.2]] - [[#1]]</nowiki>''                                         | :> [[#1.2]] - [[#1]]                                                                                    | Falls die Kapitelnummer angegeben wird, wird der Name des Titels ausgegeben.|
+| Kapitelname                                        | ''<nowiki>[[#Interne und externe Links]] - [[#Sonderzeichentest öäüß]]</nowiki>''                               | :> [[#Interne und externe Links]] - [[#Sonderzeichentest öäüß]]                                                | Alternativ kann auch der Titelname hergenommen werden.|
+| Kapitelname (neu definiert)                        | ''<nowiki>[[#Hyperlinks|Neuer Namen]]</nowiki>''                   | :> [[#Hyperlinks|Neuer Namen]]                          | Der selbe Link mit einem neu definierten Linktext.|
+| Fehlendes Kapitel                                  | ''<nowiki>[[#Nicht da]] - [[#Nicht da|mit Text]]</nowiki>''                                    | :> [[#Nicht da]] - [[#Nicht da|mit Text]]                               | Fehlende Links werden markiert.|
+^ Spezielle Kürzel \\ --(HINWEIS: Falls diese Kürzel als Kapitelnamen vorkommen, muss die Kapitelnummer als Sprungziel hergenommen werden.)-- ^^^^
+| Anfang der Seite                                   | ''<nowiki>[[#_TOP]]</nowiki>''                                         | :> [[#_TOP]]                                                | Springe zum Anfang der Seite (Defaulttext = Anfang).|
+| Anfang der Seite (neu def.)                        | ''<nowiki>[[#_TOP|Hier ist der Anfang]]</nowiki>''                     | :> [[#_TOP|Hier ist der Anfang]]    | Springe zum Anfang der Seite (Text wird als Parameter definiert).|
+| Hauptverzeichnis                                   | ''<nowiki>[[#_TOC]]</nowiki>''                                         | :> [[#_TOC]]                                                | Springe zum Inhaltsverzeichnis aller Seiten (Defaulttext = Inhalt).|
+| Ende der Seite                                     | ''<nowiki>[[#_BOTTOM]]</nowiki>''                                      | :> [[#_BOTTOM]]                                 | Springe zum Ende der Seite (Defaulttext = Ende).|
+| Haupttitel                                         | ''<nowiki>[[#_MAINTITLE]]</nowiki>''                                   | :> [[#_MAINTITLE]]                              | Springe zum Haupttitel (Defaulttext = Titel).\\ --(TODO: Fehlerhandling)--|
+^  Noch nicht implementiert ^^^^
+| Sprung in eine andere Seite                        | ''<nowiki>[[..:Textgestaltung:Spezial#Übersicht]]</nowiki>''                                    | :> [[..:Textgestaltung:Spezial#Übersicht]]                               | Springt zur Seite ''Symbole'' und zum Absatz ''Numerische Notation''|
+| Seitenübersicht                                    | ''<nowiki>[[#_SITEMAP]]</nowiki>''                                     | :> [[#_SITEMAP]]                                | Springe zur Sitemap. \\ --(TODO: alles)--|
+| Inhaltsverzeichnis                                 | ''<nowiki>[[#_PAGETOC]]</nowiki>''                                     | :> [[#_PAGETOC]]                                | Springe zum Inhaltsverzeichnis dieser Seite (Defaulttext = Inhalt).|
+
+
+= Sonderzeichentest öäüß =
+Dieser Abschnitt dient nur als Sprungziel für das //"Sonderzeichentest-Beispiel"//.

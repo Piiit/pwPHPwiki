@@ -1,0 +1,9 @@
+<error>
+:> ++**Error**++
+:> The page '{{ID}}' does not exist.
+</error>
+
+Please choose...
+* Create a [[edit>:{{ID}}|new page]]? 
+* Back to [[{{STARTPAGE}}|Home]] 
+* [[showpages>:{{ID}}|Show all pages]]

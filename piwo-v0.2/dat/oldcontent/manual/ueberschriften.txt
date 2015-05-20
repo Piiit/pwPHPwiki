@@ -1,0 +1,26 @@
+Zur Zeit unterstützt pw_wiki nur 3 Ebenen. Dabei wird auch ein neuer Absatz begonnen und je nach Ebene entsprechend eingerückt.
+
+= Überschrift der Ebene 1 =
+$$ = Überschrift der Ebene 1 =
+== Überschrift der Ebene 2 ==
+$$ == Überschrift der Ebene 2 ==
+=== Überschrift der Ebene 3 ===
+$$ === Überschrift der Ebene 3 ===
+==== Überschrift der Ebene 4 ====
+$$ ==== Überschrift der Ebene 4 ====
+===== Überschrift der Ebene 5 =====
+$$ ===== Überschrift der Ebene 5 =====
+
+
+= Ü1 =
+
+* {{{
+Multiline test für include
+* Liste im include
+* Liste im include2
+$$ pre im include
+}}}
+
+* {{{
+Zweites multiline
+}}}

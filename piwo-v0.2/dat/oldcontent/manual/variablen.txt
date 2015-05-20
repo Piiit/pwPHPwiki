@@ -1,0 +1,50 @@
+= Variablen und Konstanten =
+Alle Variablen und Konstanten werden in zwei geschwungene Klammern eingeschlossen. \\
+Syntax: ''<nowiki>{{VARIABLENAME}}</nowiki>''
+
+== Datum und Zeit ==
+$$ {{DAYNAME}}, am {{DAY}}. {{MONTHNAME}} {{YEAR}}. Monat in Zahlen: {{MONTH}}.
+{{DAYNAME}}, am {{DAY}}. {{MONTHNAME}} {{YEAR}}. Monat in Zahlen: {{MONTH}}.
+
+
+$$ Die aktuelle Zeit ist {{TIME}}.
+Die aktuelle Zeit ist {{TIME}}.
+
+
+$$ Das aktuelle Datum ist {{DATE}}.
+Die aktuelle Datum ist {{DATE}}.
+
+**TODO**: Default-Dateformat bestimmen und konfigurierbar machen!
+
+== Wikivariablen ==
+
+=== BUILD-IN ===
+Eingebaute Variablen.
+^ Variable 	^ Ausgabe 					^ Beschreibung 					  			^
+| ID	   	| Die aktuelle Seite heißt "{{ID}}". 	| Gibt den Namen (ID) der aktuellen Wikiseite aus 			|
+| NS	   	| Sie liegt unter "{{NS}}".			| Gibt den Namespace der aktuellen Seite aus    				|
+| FULLID   	| Ihr voller Namen lautet "{{FULLID}}".	| Die volle ID (über eine solche ID identifiziert das CMS die Datei)	|
+| COUNTSUBS	| Untergeordnete Seiten: {{COUNTSUBS}}.	| Die Anzahl der untergeordneten Seiten	\\ --(Bsp.: Siehe Startseite des Manuals -> Anzahl der Artikel)--|
+
+<info>
+**TODO**
+
+Weitere Variablen/Bereiche: 
+
+* MAINPAGE: falls mehr als eine Seite auf dem Server liegt. Bsp.: hoferhof und pitizWORLD... \\ Wird über die URL festgelegt: Separate media, conf, cont, user, ...
+* PORTAL: unter pitizWORLD eine weitere Unterscheidung. Bsp.: Fussn und Pitiz... \\ Wird über die Dateistruktur festgelegt...
+* ROOM: unter Pitiz noch eine Unterscheidung. Bsp.: CSV-Manual \\ Wird über die Dateistruktur festgelegt...
+* NS: CSV-Manual -> BUGS...\\ Wird über die Dateistruktur festgelegt...
+* ID: CSV-Manual -> BUGS -> CO0001 \\ Wird über die Dateistruktur festgelegt...
+:!: Somit gibt es eine Ordnertiefe von 5.
+</info>
+
+=== FREI DEFINIERBAR ===
+Variablen können auch frei definiert werden. Es gibt 2 Arten von Definitionen:
+# **LOKAL**: innerhalb der aktuellen Datei \\ Syntax: \\ ''<nowiki>!! VARIABLENAME = WERT</nowiki>''
+# **GLOBAL**: Zugriff im gesamten Wiki möglich \\ siehe "''Adminbereich -> Configs -> wiki_vars''"
+__**++Beispiele:++**__\\
+$$ !! Zahl = 1000
+$$ Die Zahl lautet: {{Zahl}}
+!! Zahl = 1000
+Die Zahl lautet: {{Zahl}}

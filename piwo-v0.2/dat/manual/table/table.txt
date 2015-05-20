@@ -1,0 +1,31 @@
+= Einfache Tabellen =
+
+^ Heading 1      ^ Heading 3                           ^^ heading 4   
+| Row 1 Col 1    | Row 1 Col 2     | Row 1 Col 3        | row 1 col 4 
+| Row 2 Col 1    || some colspan    ||
+| Row 3 Col 1    | Row 3 Col 2     | Row 3 Col 3        | row 3 col 4 
+
+= Konstanten =
+
+^ Kategorie             ^ Was es ist                        ^ Was du schreibst                              ^ Wie es dargestellt wird
+^ Mathematik            | Kreiszahl Pi und Eulersche Zahl   | ''%%{{PI}} oder <math>&pi;</math>%%''         | {{PI}} oder <math>&pi;</math>
+^ :::                   | :::                               | ''%%{{E}} oder <math>e</math>%%''             | {{E}} oder <math>e</math>
+^  Datum                | Tag (Name, in Zahlen)             | ''%%{{DAYNAME}} {{DAY}}%%''                   | {{DAYNAME}} {{DAY}}
+^ :::                   | Monat (Name, in Zahlen)           | ''%%{{MONTHNAME}} {{MONTH}}%%''               | {{MONTHNAME}} {{MONTH}}
+^ :::                   | :> Jahr                           | ''%%{{YEAR}}%%''                              | {{YEAR}}
+^ :::                   | :>> Das aktuelle Datum            | ''%%{{DATE}}%%''                              | {{DATE}}
+^ Zeit                  | Die aktuelle Zeit                 | ''%%{{TIME}}%%''                              | {{TIME}}
+
+
+= Wikivariablen =
+
+^ Variable              ^ Ausgabe                                       ^ Beschreibung                                                                                              
+| ID                    | Die aktuelle Seite heißt "{{ID}}".            | Gibt den Namen (ID) der aktuellen Wikiseite aus                                   
+| NS                    | Sie liegt unter "{{NS}}".                     | Gibt den Namespace der aktuellen Seite aus                                                    
+| FULLID                | Ihr voller Namen lautet "{{FULLID}}".         | Die volle ID (über eine solche ID identifiziert das CMS die Datei)    
+| COUNTSUBS             | Untergeordnete Seiten: {{COUNTSUBS}}.         | Die Anzahl der untergeordneten Seiten \\ --(Bsp.: Siehe Startseite des Manuals -> Anzahl der Artikel)--
+
+
+
+
+

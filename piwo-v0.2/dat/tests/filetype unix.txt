@@ -1,0 +1,10 @@
+= Zeilenende: UNIX =
+<info>
+Alle Dateien werden auf das UNIX-Format angepasst. \\
+Diese Datei ist vom Format ''{{FILE:type}}''.
+</info>
+
+Diese Datei hat ''\n'' als LineEndings!
+
+UNIX-Style...
+

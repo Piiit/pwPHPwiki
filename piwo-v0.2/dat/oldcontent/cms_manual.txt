@@ -1,0 +1,42 @@
+= CMS Handbuch =
+
+== Editor ==
+
+<info>
+++Aktuelle Version: {{EDITORVERSION}}++ \\
+:todo: Code aufräumen, Editor als separate Datei speichern, objektorientiert und aufgeräumt!
+</info>
+
+
+=== Version 0.11 ===
+
+ # Oberfläche (CSS, div-Blöcke etc.) aufräumen (alle Bereiche müssen immer sichtbar sein)
+ # Preview-Feature
+  * :ok:  PRE0001: Preview-Button auf die linke Seite
+  * :ok:  PRE0002: Ungespeicherte Zeilen verschwinden nach Rückkehr aus der Vorschau-Ansicht
+  * :buggy: PRE0003: Speichern in der Vorschau springt zu Editor zurück
+  * :w:   PRE0004: Speichern im Textmodus springt an den Anfang des Textes, wenn Scrollbalken vorhanden. Cursor soll sich die Position merken
+  * :w:   PRE0005: Links im Vorschaumodus müssen deaktiviert werden
+ # tabs in leerzeichen umwandeln
+ # :todo: Zeilennummerierung von [http://codepress.sourceforge.net/ Codepress] verwenden, später mit Syntaxhighlighting, auto-completion, blockindent etc.
+ # Seitenleiste, wie bei wordpress schließen und öffnen (Icons müssen erhalten bleiben)
+
+
+=== Version 0.12 ===
+
+ # Autosave alle n Minuten (ajax?)
+ # Vorschau mit definierten Auflösungen (1024 x 768, ...)
+ # Dialoge für Schließen usw. "Datei wurde noch nicht gespeichert"
+
+
+=== Version 0.13 ===
+
+ # [[#Symbolleiste]] mit allen Funktionen (usability, shortcuts)
+ # Enter erkennt Zeile vorher und führt den aktuellen Modus weiter (Einrücken, Listenelemnt, ...)
+
+
+=== Symbolleiste ===
+* Text-Auswahl erkennen und entsprechend Button-Funktion anwenden (Bsp. vor jeder Zeile ein Listenelement einfügen/entfernen)
+* Suchen/Ersetzen-Funktionen
+* Bilder einfügen -> Bilderdialog (drag'n'drop)
+* Sektionen einfügen (Liste zum Auswählen anzeigen -> mit Beispielbild?)

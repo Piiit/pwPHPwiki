@@ -1,0 +1,37 @@
+= Dialoge =
+Dialoge gehören noch zum Default-Lexer (pw_wiki_array).
+
+== Type: Input ==
+
+<dialog Benutzerdaten>
+:w: --Bitte Daten eingeben...--
+
+Alle Input-Felder haben folgende Eigenschaften:
+* "Namespace" = __input__
+* Nach dem Doppelpunkt kommt der __Typ__
+* Parameterliste:
+ # Element-ID
+ # Label
+ # Config:
+  * length = xy
+  * not_null = true|false (default = false)
+  * ...
+
+Beispiel:
+$$ [[input:text#vorname#Vorname]] [[input:text#nachname#Nachname]]
+[[input:text#vorname#Vorname]] [[input:text#nachname#Nachname]]
+</dialog>
+
+=== TEST: USERACCOUNTS ===
+**Auftrag:** 
+* Liste alle Useraccounts auf
+* Erlaube add, change und delete (wenn user eingeloggt)
+* sonst zeige nur eine Liste der Accounts
+* Abfrage mit <nowiki><if csv:permissions#useraccounts> ... </if> oder <if error == 3 or error == 2> Fehler 2 oder 3 </if> </nowiki>
+
+<nowiki>
+<dialog Benutzerdaten bearbeiten>
+:w: Bitte Daten eingeben...
+<nowiki>~~CSV:dialog#useraccounts~~</nowiki>
+</dialog>
+</nowiki>

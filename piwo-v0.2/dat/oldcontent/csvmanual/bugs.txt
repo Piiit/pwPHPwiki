@@ -1,0 +1,27 @@
+= STRUCT =
+* :e: #ST0001: Strukturzeile kann nicht auskommentiert werden (''# !! test3:int(1,100) | d:date()'')
+* :) -+#ST0002: UNIQUE, NULL: NULL-Werte brauchen nicht UNIQUE sein... NULL sollte immer erlaubt sein (Ausnahme: PRIMARY_KEY)+-
+
+= CONTENT =
+== AUTO_INC ==
+* :e: #CO0001: lastkey wird nicht auf MINIMUM oder 0 gesetzt falls kein AUTO_INC eintrag, sondern ein direkter mit Zahl gemacht wird
+
+== DATATYPE: LIST ==
+* :e: #CO0002: maximal-einträge für listen erlauben
+
+== DEFAULTS ==
+* :e: #[[csvbugs:CO0003]]: default werte für alle datentypen definieren
+
+= DEBUG =
+* :!: #DE0001: keine richtige fehlermeldungen -> siehe pw_log.php für idee
+
+= FILE-HANDLING =
+== PERFORMANCE-UPGRADES ==
+* :*: :!: #PE0001: pw_csv_put sollte geparste Textzeilen zurückgeben, damit die datei nicht neu geladen werden muss
+
+= Legende =
+:e: -> gefunden\\
+:!: -> arbeite dran\\
+:) -> erledigt\\
+:*: -> Fehlendes Feature\\
+:ok: -> erledigt und ausführlich getestet

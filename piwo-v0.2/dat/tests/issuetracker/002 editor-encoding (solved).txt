@@ -1,0 +1,17 @@
+* ''%%&nbsp;%%'' &auml; verschwindet, andere Symbole, wie ''%%&pi;%%'' werden richtig angezeigt.
+* &nbsp; &pi; &frac34;
+
+&...; = symbol ==> darf nur Zahlen und Buchstaben enthalten (html-spezifikation anschauen!!!) öä
+
+: &pi; 
+: ¼ ß 
+: &Pi; 
+: &#936; 
+: &#12#;
+
+&#9824;
+&#9827;
+&#9829;
+&#9830;
+
+&#xF8;

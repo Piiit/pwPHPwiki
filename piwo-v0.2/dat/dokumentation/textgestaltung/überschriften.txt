@@ -1,0 +1,43 @@
+= Überschriften =
+
+<notoc>
+^ Was du schreibst ^ Wie es dargestellt wird
+| ''%%= Überschrift A =%%''   | {{{ 
+= Überschrift A =
+}}}
+| ''%%== Überschrift B ==%%'' | {{{
+== Überschrift B ==
+}}}
+| ''%%=== Überschrift C ===%%'' | {{{
+=== Überschrift C ===
+}}}
+| ''%%==== Überschrift D ====%%'' | {{{
+==== Überschrift D ====
+}}}
+| ''%%===== Überschrift E =====%%'' | {{{
+===== Überschrift E =====
+}}}
+</notoc>
+
+== <notoc> - Sektion ==
+<border>
+Innerhalb der ''%%<notoc>%%''-Sektion werden Überschriften __nicht__ ins Inhaltsverzeichnis aufgenommen.
+$$ <notoc>
+$$ = Überschrift A =
+$$ == Überschrift B ==
+$$ </notoc>
+$$ === Überschrift C ===
+$$ ==== Überschrift D ====
+$$ ===== Überschrift E =====
+<notoc>
+= Überschrift A =
+== Überschrift B ==
+</notoc>
+=== Überschrift C ===
+==== Überschrift D ====
+===== Überschrift E =====
+
+
+Beachte: Die Überschriften A und B fehlen im Inhaltsverzeichnis. 
+~~TOC~~
+</border>

@@ -1,0 +1,132 @@
+= CDATA =
+
+Siehe [[lexer:cdata#Lexer->CDATA]]
+
+= Nowiki =
+Parser lässt alles in dieser Sektion aus. Nur UTF8 Konvertierungen werden durchgeführt.
+Text zweite Zeile.
+$$ <nowiki>[...]</nowiki>
+
+
+== Mehrzeilig ==
+$$ <nowiki>
+$$ = Diese Wikiüberschrift wird nicht geparst =
+$$ </nowiki>
+<nowiki>
+= Diese Wikiüberschrift wird nicht geparst =
+</nowiki>
+
+
+
+== Einzeiler ==
+$$ **Vor NOWIKI** <nowiki>**Innerhalb NOWIKI. Sonderzeichentest: äöüß**</nowiki> **Nach NOWIKI**
+
+**Vor NOWIKI** <nowiki>**Innerhalb NOWIKI. Sonderzeichentest: äöüß**</nowiki> **Nach NOWIKI**
+
+= Spaltenkontrolle: left/right =
+++Spaltenkontrolle: Linke/Rechte Spalte++
+
+$$ <left>[...]</left>
+$$ <right>[...]</right>
+
+Beispiel:
+$$ <left>
+$$ = Linke Spalte =
+$$ Dieser Inhalt ist links.
+$$ </left>
+$$ <right>
+$$ = Rechte Spalte =
+$$ Dieser Inhalt ist rechts.
+$$ </right>
+<left>
+= Linke Spalte =
+Dieser Inhalt ist links.
+* EINE LISTE
+* EINE LISTE
+   * EINE LISTE
+ * EINE LISTE
+</left>
+<right>
+= Rechte Spalte =
+Dieser Inhalt ist rechts.
+</right>
+
+
+= Boxen =
+:!: (Eine abgerundete Box für Informationen, Warnungen, Fehler, ...)	
+<error>
+test
+</error>
+$$ <error>
+$$ test
+$$ </error>
+<info>
+test
+</info>
+$$ <info>
+$$ test
+$$ </info>
+<success>
+test
+</success>
+$$ <success>
+$$ test
+$$ </success>
+<validation>
+Benutzername fehlt \\
+Geburtsdatum fehlt \\
+Passwort falsch
+</validation>	
+$$ <validation>
+$$ Benutzername fehlt \\
+$$ Geburtsdatum fehlt \\
+$$ Passwort falsch
+$$ </validation>	
+<warning>
+test
+</warning>						
+$$ <warning>
+$$ test
+$$ </warning>						
+
+= Code (noch nicht implementiert) =
+$$ <code php>
+$$ while (!asleep()) 
+$$   sheep++; 
+$$ </code>
+Syntaxhighliting und indents richtig angeben...
+
+TEST
+= Sektionen =
+<left>
+= Linke Spalte =
+Dieser Inhalt ist links. ((Das ist eine Fußzeile))
+* EINE LISTE
+</left>
+<right>
+= Rechte Spalte =
+Dieser Inhalt ist rechts.
+</right>
+
+<error>
+test
+</error>
+<info>
+test
+</info>
+<success>
+test
+</success>
+<validation>
+Benutzername fehlt \\
+Geburtsdatum fehlt \\
+Passwort falsch
+</validation>
+<warning>
+test
+</warning>
+<code php>
+  while (!asleep())
+    sheep++;
+</code>
+<!-- Kommentare -->

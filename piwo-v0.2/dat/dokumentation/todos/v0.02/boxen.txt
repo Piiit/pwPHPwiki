@@ -1,0 +1,3 @@
+Boxen müssen allg. gültige Paramterliste erhalten, damit float, width, height, etc. angegeben werden kann
+in lexerconf einführen...
+''boxparameter'' oder ähnliches
