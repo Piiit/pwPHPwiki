@@ -252,7 +252,7 @@ $$ ^ Zeilenkopf 1                                              | Zeile 3 Spalte 
 $$ ^ Zeilenkopf 2                                              | Zeile 4 Spalte 2     | Zeile 4 Spalte 3                    | Zeile 4 Spalte 4 
 ^ Spaltenkopf 1                                             ^ Spaltenkopf 3 (auf zwei Spalten ausgedehnt)               ^^ Spaltenkopf 4   
 | Zeile 1 Spalte 1 \\ (auf zwei Zeilen ausgedehnt)          | Zeile 1 Spalte 2     | Zeile 1 Spalte 3                    | Zeile 1 Spalte 4 
-| :::                                                       | Zeile 2 Spalte 2 (auf zwei Spalten ausgedehnt)            ||
+| :::                                                       | Zeile 2 Spalte 2 (auf zwei Spalten ausgedehnt)            || |
 ^ Zeilenkopf 1                                              | Zeile 3 Spalte 2     | Zeile 3 Spalte 3                    | Zeile 3 Spalte 4 
 ^ Zeilenkopf 2                                              | Zeile 4 Spalte 2     | Zeile 4 Spalte 3                    | Zeile 4 Spalte 4 
 

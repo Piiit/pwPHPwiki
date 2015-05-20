@@ -1,2 +1,2 @@
 = Tabellen =
-~~NSTOC|{{FULLID}}|TITLE~~
+~~NSTOC|{{ID}}|TITLE~~

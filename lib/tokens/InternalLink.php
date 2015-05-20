@@ -1,13 +1,5 @@
 <?php
 
-if (!defined('INC_PATH')) {
-	define ('INC_PATH', realpath(dirname(__FILE__).'/../../').'/');
-}
-require_once INC_PATH.'pwTools/parser/LexerRuleHandler.php';
-require_once INC_PATH.'pwTools/parser/ParserRuleHandler.php';
-require_once INC_PATH.'pwTools/parser/ParserRule.php';
-require_once INC_PATH.'pwTools/parser/Pattern.php';
-
 class InternalLink extends ParserRule implements ParserRuleHandler, LexerRuleHandler {
 	
 	const MODITEXT = "edit|showpages";
@@ -29,14 +21,24 @@ class InternalLink extends ParserRule implements ParserRuleHandler, LexerRuleHan
 	
 			$linkPositionNode = $node->getFirstChild();
 			$linkPositionText = $this->getTextFromNode($linkPositionNode);
-	
 			$curID = pw_wiki_getid();
-			if($linkPositionText[0] == ':') {
+				
+			/*
+			 * This is the first char of the linkPositionText, it is a look 
+			 * ahead, that can be one of the following:
+			 * 	# = anchor ID (e.g., #chapter), which must be extended with the 
+			 * 		current ID, that keeps it as a relative path
+			 *  : = absolute ID (e.g., :manual:links), which must not be 
+			 *      extended 
+			 *  default = relative ID, which must be extended with the full 
+			 *      current namespace, because we need an absolute path 
+			 */
+			$lookAhead = utf8_substr($linkPositionText, 0, 1);
+			if($lookAhead == ':') {
 				$id = new WikiID($linkPositionText);
-			} elseif($linkPositionText[0] == '#') {
+			} elseif($lookAhead == '#') {
 				$id = new WikiID($curID->getID().$linkPositionText);
 			} else {
-				TestingTools::inform(pw_e2u($linkPositionText));
 				$id = new WikiID($curID->getFullNS().pw_e2u($linkPositionText));
 			}
 			
