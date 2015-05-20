@@ -252,13 +252,12 @@ a:hover {
 
 #wikitext .pw_wiki_link_na:hover {
 	text-decoration: none;
-	#color: yellow;
-	border: 1px dotted lightgreen;
+	border-bottom: 1px solid yellow;
 }
 
 #wikitext .pw_wiki_link_na {
-	color: lightgreen;
-	border-bottom: 1px dotted lightgreen;
+	color: yellow;
+	border-bottom: 1px dotted yellow;
 	text-decoration: none;
 }
 

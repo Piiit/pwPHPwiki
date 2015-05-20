@@ -118,7 +118,7 @@ class Constant extends ParserRule implements ParserRuleHandler, LexerRuleHandler
 	}
 
 	public function getPattern() {
-		return new Pattern($this->getName(), Pattern::TYPE_WORD, '{{(.*?)}}');
+		return new Pattern($this->getName(), Pattern::TYPE_WORD, '{{([^{]*?)}}');
 	}
 	
 	public function getAllowedModes() {

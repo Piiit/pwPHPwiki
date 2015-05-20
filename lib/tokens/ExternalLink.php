@@ -7,7 +7,7 @@ require_once INC_PATH.'pwTools/parser/LexerRuleHandler.php';
 require_once INC_PATH.'pwTools/parser/ParserRuleHandler.php';
 require_once INC_PATH.'pwTools/parser/ParserRule.php';
 require_once INC_PATH.'pwTools/parser/Pattern.php';
-require_once INC_PATH.'pwTools/validator/pw_isvalid.php';
+require_once INC_PATH.'pwTools/validator/Validator.php';
 
 
 class ExternalLink extends ParserRule implements ParserRuleHandler, LexerRuleHandler {
@@ -22,14 +22,7 @@ class ExternalLink extends ParserRule implements ParserRuleHandler, LexerRuleHan
 		$urlnode = $node->getFirstChild();
 		$url = $this->getTextFromNode($urlnode);
 		
-		//TODO: refactor... common function... bubble-up of an error until ????
-		if (isset($_SESSION['pw_wiki']['error'])) {
-			$_SESSION['pw_wiki']['error'] = false;
-			return $url." ".nop("Externer Link kann wegen interner Fehler nicht aufgel&ouml;st werden.");
-		}
-	
-	
-		if (!pw_isvalid_url($url)) {
+		if (!Validator::isURL($url)) {
 			return "[".$this->getTextFromNode($node)."]";
 		}
 	

@@ -21,19 +21,14 @@ class ListItem extends ParserRule implements ParserRuleHandler, LexerRuleHandler
 		$node = $this->getNode();
 		$nodeData = $node->getData();
 		
-		$thislt = $nodeData[1];
-		
 		$oldlevel = 0;
-		$oldlt = null;
 		if ($node->getPreviousSibling() !== null) {
 			$psData = $node->getPreviousSibling()->getData();
-			$oldlt = $psData[1];
 			$oldlevel = strlen($psData[0]) / 2;
 			TestingTools::inform($psData);
 		}
 		
 		$thislevel = strlen($nodeData[0]) / 2;
-		TestingTools::inform("thislevel=".$thislevel."; oldlevel=".$oldlevel);
 		if ($oldlevel < $thislevel) {
 			$difflevel = $thislevel - $oldlevel;
 			
@@ -45,8 +40,6 @@ class ListItem extends ParserRule implements ParserRuleHandler, LexerRuleHandler
 		} 
 		
 		$o .= "<li>";
-		TestingTools::inform($o);
-		
 		return $o;
 	}
 

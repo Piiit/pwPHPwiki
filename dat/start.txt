@@ -50,7 +50,7 @@ www.google.ru \\
 | Wikisyntax für externe Links | {{{
 $$ Der erste Link [http://www.google.de] 
 $$ und der zweite [http://www.hoferhof.net].
-$$ [http://www.hoferhof.net Urlaub am Bauernhof]
+$$ [http://www.hoferhof.net|Urlaub am Bauernhof]
 }}} | {{{
 Der erste Link [http://www.google.de] \\
 und der zweite [http://www.hoferhof.net]. \\
