@@ -3,10 +3,10 @@
 Inhaltsverzeichnis:\\
 ~~TOC~~
 
-
+<notoc>
 == Text ==
 Das ist ein Text mit einigen Sonderzeichen äöüß... &pi; [[manual:indent|Einzüge]] [[manual:ilink|Interne Links]]
-
+</notoc>
 == Formatierung ==
 ^ Was es ist                                    ^ Was du schreibst                                                      ^ Wie es dargestellt wird 
 | fett                                          | ''%%**fett**%%''                                                      | **fett**                                                  

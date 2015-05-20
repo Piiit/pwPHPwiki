@@ -18,9 +18,10 @@ class Constant extends ParserRule implements ParserRuleHandler, LexerRuleHandler
   		$conf = pw_s2u($nodeData[0]);
 
   		//TODO do this with quoted string tokens...
-  		if (preg_match("#(.*) *= *(.*)#i", $conf, $ass)) {
-    		$varname = utf8_strtolower(utf8_trim($ass[1]));
-    		$value = utf8_trim($ass[2]);
+  		$matches = array();
+  		if (preg_match("#(.*) *= *(.*)#i", $conf, $matches)) {
+    		$varname = utf8_strtolower(utf8_trim($matches[1]));
+    		$value = utf8_trim($matches[2]);
     		Variable::$variables[$varname] = $value;
     		return;
   		}
@@ -86,7 +87,7 @@ class Constant extends ParserRule implements ParserRuleHandler, LexerRuleHandler
 				$txt = count(glob($path."/*".WIKIFILEEXT));
 			break;
 			case 'performance':
-				$txt = $this->getParser()->getUserInfo('lexerperformance');
+				$txt = $this->getParser()->getUserInfo('lexer.performance');
 			break;
 			case 'file':
 				$txt = pw_wiki_fileinfo($subcat);

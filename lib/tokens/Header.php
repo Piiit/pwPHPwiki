@@ -30,6 +30,13 @@ class Header extends ParserRule implements ParserRuleHandler, LexerRuleHandler {
 	}
 	
 	public function onEntry() {
+		
+		/*
+		 * Load index table on first entry
+		 */
+		if($this->indexTable == null) {
+			$this->indexTable = $this->getParser()->getUserInfo('indextable')->getAsArray();
+		}
 
 		$node = $this->getNode();
 		$nodeData = $node->getData();
@@ -44,12 +51,12 @@ class Header extends ParserRule implements ParserRuleHandler, LexerRuleHandler {
 			$o = '<h'.$this->level.'>';
 		} else {
 			$config = $node->getData();
-			$level = utf8_strlen($config[0]);
-				
-			$o = '<h'.$this->level.' id="header_'.$this->headerIndex.'">';
+			$this->level = utf8_strlen($config[0]);
+			
+			$indexitem = $this->indexTable[$this->headerIndex];
+			$o = '<h'.$this->level.' id="header_'.$indexitem->getID().'">';
 			$this->headerIndex++;
 		}
-
 		
  		$o .= $htxt;
 		return $o;

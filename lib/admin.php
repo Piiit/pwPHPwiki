@@ -29,7 +29,7 @@ function pw_wiki_update_cache($forced = false) {	$files = new RecursiveIterator
 	}
 	
 	$out = parse($data, pw_wiki_getcfg('debug'));		FileTools::createFolderIfNotExist(dirname($cachedFilename));
-	if (file_put_contents($cachedFilename, $out) === false) {		throw new Exception("Unable to write file '$cachedFilename'!");	}		return $out;}function pw_wiki_get_parsed_file(WikiID $id) {		$filename = WIKISTORAGE.$id->getPath().WIKIFILEEXT;	$headerID = new WikiID(WIKITEMPLATESNS."header");	$footerID = new WikiID(WIKITEMPLATESNS."footer");
+	if (file_put_contents($cachedFilename, $out) === false) {		throw new Exception("Unable to write file '$cachedFilename'!");	}		return $out;}function pw_wiki_get_parsed_file(WikiID $id) {		TestingTools::debug( "pw_wiki_get_parsed_file");		$filename = WIKISTORAGE.$id->getPath().WIKIFILEEXT;	$headerID = new WikiID(WIKITEMPLATESNS."header");	$footerID = new WikiID(WIKITEMPLATESNS."footer");
 	$headerFilename = WIKISTORAGE."/".$headerID->getPath().WIKIFILEEXT;;
 	$footerFilename = WIKISTORAGE."/".$footerID->getPath().WIKIFILEEXT;;
 	
@@ -52,8 +52,8 @@ function pw_wiki_update_cache($forced = false) {	$files = new RecursiveIterator
 	$footerData = file_get_contents($footerFilename);
 	if ($footerFilename === false) {
 		throw new Exception("Unable to read template file '$footerFilename'!");
-	}		$data = $headerData."\n".$data."\n".$footerData;	$_SESSION['pw_wiki']['file']['format'] = FileTools::getTextFileFormat($data)->getString();
-	$data = FileTools::setTextFileFormat($data, new TextFileFormat(TextFileFormat::UNIX));		$out = parse($data, pw_wiki_getcfg('debug'));		return $out;}
+	}		$data = $headerData."\n".$data."\n".$footerData;	$_SESSION['pw_wiki']['file']['format'] = FileTools::getTextFileFormat($data)->getString();
+	$data = FileTools::setTextFileFormat($data, new TextFileFormat(TextFileFormat::UNIX));		TestingTools::debug($data);		$out = parse($data, pw_wiki_getcfg('debug'));			return $out;}
 function pw_wiki_showcontent(WikiID $id) {	if(!isset($_SESSION['pw_wiki']['useCache']) || $_SESSION['pw_wiki']['useCache'] == false) {		return pw_wiki_get_parsed_file($id);	}	return pw_wiki_create_cached_page($id);
 }
 

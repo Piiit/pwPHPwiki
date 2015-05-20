@@ -23,11 +23,11 @@ class ShowContentModule extends Module implements ModuleHandler {
 	public function execute() {
 		$id = pw_wiki_getid();
 		$filepath = WIKISTORAGE.$id->getPath().WIKIFILEEXT;
-// 		TestingTools::inform($id);
-// 		TestingTools::inform(file_exists($filepath));
+//  		TestingTools::inform("executingXXX: ".$id->getIDAsUrl());
+//  		TestingTools::inform(file_exists($filepath));
 
 		if($id->getPage() == WIKINSDEFAULTPAGE) {
-			//TestingTools::inform($id);
+// 			TestingTools::inform($id);
 			header("Location: ?id=".$id->getFullNSAsUrl());
 		}
 		
@@ -44,6 +44,8 @@ class ShowContentModule extends Module implements ModuleHandler {
 			$wikitext = pw_wiki_showcontent(new WikiID(WIKITEMPLATESNS."notfound"));
 		}
 		$body = file_get_contents(CFG_PATH."skeleton/wiki.html");
+		
+// 		TestingTools::inform($wikitext);
 		$body = str_replace("{{wikitext}}", $wikitext, $body);
 		$this->setDialog($body);
 	}

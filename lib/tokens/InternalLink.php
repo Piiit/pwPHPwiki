@@ -161,7 +161,7 @@ class InternalLink extends ParserRule implements ParserRuleHandler, LexerRuleHan
 	public function getAllowedModes() {
 		return array(
 				"#DOCUMENT", "tablecell", "listitem", "multiline", "bold", "underline", 
-				"italic", "monospace", "small", "big", "strike", "sub", "sup", "hi", "lo", 
+				"italic", "monospace", "small", "big", "strike", "sub", "sup", "hi", "lo", "notoc",
 				"em", "bordererror", "borderinfo", "borderwarning", "bordersuccess", "bordervalidation", "border", 
 				"tablecell", "tableheader", "wptableheader", "wptablecell", "align", 
 				"justify", "alignintable", "indent", "left", "right", "footnote", "defitem", "defterm");

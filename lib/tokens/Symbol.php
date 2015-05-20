@@ -38,7 +38,7 @@ class Symbol extends ParserRule implements ParserRuleHandler, LexerRuleHandler {
 	public function getAllowedModes() {
 		return array("#DOCUMENT", "tablecell", "listitem", "multiline", "bordererror", "borderinfo", "borderwarning", 
 				"bordersuccess", "bordervalidation", "border", "bold", "underline", "italic", "monospace", "small", "big", 
-				"strike", "sub", "sup", "hi", "lo", "em", "tablecell", "tableheader", "wptableheader", "wptablecell",
+				"strike", "sub", "sup", "hi", "lo", "em", "tablecell", "tableheader", "wptableheader", "wptablecell", "notoc",
 				"align", "justify", "alignintable", "indent", "left", "right", "math", "defitem", "defterm");
 	}
 }
