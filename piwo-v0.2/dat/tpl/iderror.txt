@@ -1,4 +1,0 @@
-<error>
-:> Die angegebenen ID ist ungültig.
-:> ID: "{{WRONGID}}"
-</error>

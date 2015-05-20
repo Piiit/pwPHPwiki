@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<buildpath>
-	<buildpathentry kind="con" path="org.eclipse.php.core.LANGUAGE"/>
-	<buildpathentry combineaccessrules="false" kind="prj" path="/piwo-v0.2"/>
-	<buildpathentry combineaccessrules="false" kind="prj" path="/pwTools"/>
-	<buildpathentry excluding="tmp/" kind="src" path=""/>
-</buildpath>

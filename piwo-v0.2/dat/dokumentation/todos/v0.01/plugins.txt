@@ -1,4 +1,0 @@
-= Plugins =
-
-== bugs ==
-* <em>NSTOC</em> Pfadangabe muss in der aktuellen Version immer absolut sein. Das ist falsch! Pfade können immer relativ und absolut angegeben werden. Sie sollten über eine Funktion (''common'') stets richtig ausgelesen werden.

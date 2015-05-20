@@ -1,7 +1,0 @@
-eclipse.preferences.version=1
-include_path=0;/piwo-v0.2\u00050;/piwo-v0.2/lib/tokens\u00050;/piwo-v0.2/lib/modules\u00050;/piwo-v0.2/lib\u00055;com.zend.php.phpunit.CONTAINER\u00052;/pwTools
-org.eclipse.php.core.phpDoc=false
-org.eclipse.php.core.phpForamtterIndentationSize=1
-org.eclipse.php.core.phpForamtterUseTabs=true
-phpVersion=php5.4
-useShortTags=true

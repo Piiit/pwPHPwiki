@@ -1,6 +1,0 @@
-''<nowiki>\\<![CDATA[Inhalt]]></nowiki>''
-
-<info>
-   pwLexer::parse -> Parameter #1 set to false; no CDATA-recognition! \\
-   FIXIT für andere Anwendungen des Lexers!
-</info>

@@ -1,9 +1,0 @@
-= {{PAGE}} =
-; Bereich 
-: <hi 2>Wikisyntax</hi> <em>Konstanten</em>
-; Erklärung
-: Erzeugt ein Leerzeichen zwischen den beiden Konstanten.
-; Eingabe
-: ''%%[{{PATH}}{{PAGE}}]%%''
-; Ausgabe
-: [{{PATH}}{{PAGE}}]

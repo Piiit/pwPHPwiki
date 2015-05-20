@@ -1,3 +1,0 @@
-Ein fetter Text steht zwischen zwei *. **FETT**
-** fett *
-FEHLER!!!

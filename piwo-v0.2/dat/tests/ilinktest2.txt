@@ -1,9 +1,0 @@
-<code>
-[[edit>{{ID}}]] \\
-[[edit>{{ID}}|bearbeiten]] \\
-[[edit>{{ID}}|{{ID}} bearbeiten]]
-</code>
-
-[[edit>{{ID}}]] \\
-[[edit>{{ID}}|bearbeiten]] \\
-[[edit>{{ID}}|{{ID}} bearbeiten]]

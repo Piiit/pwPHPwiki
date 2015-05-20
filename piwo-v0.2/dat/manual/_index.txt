@@ -1,5 +1,0 @@
-= piwo-Syntax Handbuch =
-
-
-
-~~NSTOC|manual|TITLE~~

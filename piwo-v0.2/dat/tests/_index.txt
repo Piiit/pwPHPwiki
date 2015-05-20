@@ -1,7 +1,0 @@
-= Test - Ordner =
-<info>
-@TODO: Schreibe UNIT-TESTS für Wikisyntax!
-</info>
-[[tests:nstoc verzeichnis:1:2:3:nstoc-test|NSTOC Test]]
-----
-~~NSTOC|tests|TITLE~~

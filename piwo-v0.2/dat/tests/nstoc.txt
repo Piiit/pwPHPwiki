@@ -1,9 +1,0 @@
-= Namespace TOC - Plugin: Tests =
-<left>
-$$ ~~NSTOC~~
-~~NSTOC~~
-</left>
-<right>
-$$ ~~NSTOC||TITLE~~
-~~NSTOC||TITLE~~
-</right>

@@ -1,9 +1,0 @@
-<error>
-:> ++**Fehler**++
-:> Die Seite '{{WRONGID}}' existiert nicht.
-</error>
-
-Bitte wählen...
-* Die Seite [[edit>:{{WRONGID}}|neu anlegen]]? 
-* [[{{STARTPAGE}}|Zurück zur Startseite]] 
-* [[showpages>:{{WRONGID}}|Seitenüberblick anzeigen]]

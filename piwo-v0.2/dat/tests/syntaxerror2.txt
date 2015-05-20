@@ -1,3 +1,0 @@
-* &''%%nbsp;%%'' verschwindet, andere Symbole, wie ''%%&pi;%%'' werden richtig angezeigt.
-
-&...; = symbol ==> darf nur Zahlen und Buchstaben enthalten (html-spezifikation anschauen!!!)

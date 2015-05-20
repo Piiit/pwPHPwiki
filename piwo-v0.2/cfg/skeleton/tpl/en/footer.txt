@@ -1,2 +1,0 @@
-\\
-:>> <lo>Parsed in {{PERFORMANCE}} sec. | File format: {{FILE:type}}</lo>

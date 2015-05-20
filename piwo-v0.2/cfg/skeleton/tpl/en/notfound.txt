@@ -1,9 +1,0 @@
-<error>
-:> ++**Error**++
-:> The site '{{WRONGID}}' doesn't exist.
-</error>
-
-Please choose...
-* Create [[edit>:{{WRONGID}}|a new site]] 
-* [[{{STARTPAGE}}|Return to home]] 
-* [[showpages>:{{WRONGID}}|Show pages]]

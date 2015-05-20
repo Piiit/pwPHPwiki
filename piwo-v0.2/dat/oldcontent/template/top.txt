@@ -1,3 +1,0 @@
-~~TOC:wiki~~
-~~STYLE:header#{{ID}}##chat2.png~~
-~~WIKI:trace~~

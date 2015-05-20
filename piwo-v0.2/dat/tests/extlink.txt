@@ -1,4 +1,0 @@
-: [{{PATH}}tests/ Hallo]
-: [...]
-: [keine adresse asf]
-: [~~TEXT:COMMA|{{PERFORMANCE}}~~Sekunden]
