@@ -1,0 +1,2 @@
+$$ WWW-Browser wird als Link erkannt.
+WWW-Browser wird als Link erkannt.

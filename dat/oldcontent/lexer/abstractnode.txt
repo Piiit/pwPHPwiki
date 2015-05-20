@@ -1,0 +1,63 @@
+= Abstrakte Knoten erzeugen mit connectTo =
+
+Synopsis: ''connectTo($name, $abstractnode)''
+
+= Beispiel =
+
+Alle ''tablerow''-Knoten werden in einem abstrakten Knoten namens ''table'' zusammengefasst.
+$$ $lexer->connectTo("tablerow", "table");
+
+Alle ''multiline''-Knoten werden in einem abstrakten Knoten namens ''ml'' zusammengefasst.
+$$ $lexer->connectTo("multiline", "ml");
+
+Falls ein Knoten gefunden wird, der nicht per ''connectTo''-Funktion mit einem offenen abstrakten Knoten verbunden werden darf,
+wird dieser geschlossen.
+
+== Folgender Code wird also... ==
+$$ | {{{
+$$ | x1 | x2 |
+$$ | x3 | x4 |
+$$ }}} **lala** {{{ hallo }}} {{{ hallo2 }}} |";
+
+== ...zu diesem AST geparsed. ==
+$$   #DOCUMENT[] (0){
+$$     table[] (1){
+$$       tablerow[] (2){
+$$         tablecell[] (3){
+$$           ml[] (4){
+$$             multiline[] (5){
+$$               table[] (6){
+$$                 tablerow[] (7){
+$$                   tablecell[] (8){
+$$                     #TEXT (9) {' x1 '}
+$$                   }
+$$                   tablecell[] (10){
+$$                     #TEXT (11) {' x2 '}
+$$                   }
+$$                 }
+$$                 tablerow[] (12){
+$$                   tablecell[] (13){
+$$                     #TEXT (14) {' x3 '}
+$$                   }
+$$                   tablecell[] (15){
+$$                     #TEXT (16) {' x4 '}
+$$                   }
+$$                 }
+$$               }
+$$             }
+$$           }
+$$           bold[] (17){
+$$             #TEXT (18) {'lala'}
+$$           }
+$$           ml[] (19){
+$$             multiline[] (20){
+$$               #TEXT (21) {' hallo '}
+$$             }
+$$             multiline[] (22){
+$$               #TEXT (23) {' hallo2 '}
+$$             }
+$$           }
+$$         }
+$$       }
+$$     }
+$$   }

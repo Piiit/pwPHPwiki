@@ -1,0 +1,56 @@
+!! pfad = Die ID lautet {{ID}} und liegt im {{NS}}.
+
+= {{ID}} =
+; Bereich
+: <hi 2>Wikisyntax</hi> <em>Variablen und Konstanten</em>
+; Erklärung
+: Einige interne Fehler werden angezeigt, obwohl keine aufgetreten sind.
+: Fehler werden mitgeschleift auch über ihren Scope hinaus. 
+: Wann müssen Fehlermeldungen wieder auf Null gestetzt werden? 
+: Wann wird ein Gültigkeitsbereich verlassen?
+: "Text" nicht ausgeben, sondern nur vorhandene Fehler-bubbles bündeln und ausgeben.
+; Beispiel
+: {{{ <code>!! pfad = Die ID lautet {{ID}} und liegt im {{NS}}.
+{{pfad}}
+</code>
+}}}
+; Ausgabe
+: {{{ {{pfad}} }}}
+
+== Tests ==
+<code>
+!! var = 3
+{{var}}
+{{var = 7}}
+{{var}}
+{{varö = "Hallo Cavallo"}}
+{{i}}
+{{i = 3}}
+{{i}}
+{{i = 4}}
+{{i}}
+Teste Variablen: {{varö}}
+
+\\\\
+!! pfad = Die ID lautet {{ID}} und liegt im {{NS}}.
+{{pfad}}
+</code>
+
+''
+!! var = 3
+{{var}}
+{{var = 7}}
+{{var}}
+{{varö = "Hallo Cavallo"}}
+{{i}}
+{{i = 3}}
+{{i}}
+{{i = 4}}
+{{i}}
+Teste Variablen: {{varö}}
+
+\\\\
+!! pfad = Die ID lautet {{ID}} und liegt im {{NS}} {{WTF}}.
+{{pfad}}
+''
+

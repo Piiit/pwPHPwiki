@@ -1,0 +1,42 @@
+<warning>
+Veraltet, wird seit Version 0.4 nicht mehr verwendet.
+</warning>
+
+= Section-Types =
+
+== Neue Sektionstypen definieren ==
+Alle Sektionen, die nicht definiert und erlaubt sind ([[#config-datei]]) werden je nach Einstellung entweder ignoriert oder 
+per default als \\ ''<nowiki><div class='sectionname'>[...]</div></nowiki>'' geparst. Falls ''strict'' eingestellt wird,
+wird ein Fehler ausgegeben und der Parser wird beenden.
+
+== Typische Fehler ==
+
+=== Tag im Tag ===
+Der erste auftretende Closetag wird akzeptiert! \\
+Beispiel: code-Tag ist vom Typ ''BLOCKED''
+$$ <code>
+$$  <tag1> <code> $id=3; </code>
+$$ </code>
+Der Lexer startet mit dem ersten ''<nowiki>code</nowiki>''-Tag, setzt den Status auf ''BLOCKED'' und ignoriert alle weiteren Tags, 
+bis er in der 2. Zeile auf ''<nowiki></code></nowiki>'' stößt und den Code-Block als beendet annimmt.
+Danach findet er einen schließenden Code-Tag (''<nowiki></code></nowiki>''), der aber nie geöffnet wurde -> FEHLER! Lexer wird beendet.
+
+
+=== Config-Datei ===
+:todo:
+
+== Erklärung am Beispiel ==
+$$ <code>
+$$   <blabla>
+$$ </code>
+
+Falls ''code'' auf ''BLOCKED'' gesetzt wurde, wird der Inhalt nicht geparst: Alle Sektionen werden ignoriert und als Plaintext ausgegeben.
+Dieser Plaintext kann dann über CSS formatiert werden.
+
+== Parameterliste ==
+^ Status ^ Parametername ^ Beschreibung ^ Code ^ Parseroutput ^
+| :ok:   | ''NORMAL''  | Normal geparsed (Default) |  |  |
+| :todo: | ''BLOCKED'' | nur Sonderzeichen (htmlentities und utf8-Konvertierung), wie ''nowiki'' |  |  |
+| :todo: | ''REPLACE'' | Wikiparser läuft über diese Sektion, einige Standardfunktionen werden aber anders verarbeitet... \\ Bsp. Eine dynamische Todo-Liste \\ ''<nowiki><todo file="todos.pwcsv">* Das muss ich machen...</todo></nowiki>'' |  |  |
+| :todo: | ''PLUGIN''  | Komplett erhalten, wird später an PLUGIN-Parser übergeben ''<nowiki><math></nowiki>'' |  |  |
+| :todo: | ''CONTROL'' | Kontrollstrukturen, wie z.B. \\ ''<nowiki><on_include>Diese Seite wurde mit include eingebunden.</on_include></nowiki>'' |  |  |

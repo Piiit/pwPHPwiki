@@ -1,0 +1,34 @@
+; Links
+: [[edit>ÄÜÖ]]
+
+
+
+
+: [[edit>{{FULLID}}|EDITORöäü]]
+: [[edit>:manual:table:wptable:ööö mit Leer.zeichen|Wikipedia Tabelle]]
+: [[#HALLO]]
+: [[edit>|xy]]
+: [[delete>ÄÜÖ]]
+: [[edit>#ÄÖÜ]]
+: [[#Sonderzeichentest öäüß <$%?\>]]
+: [[edit>#1.2]]                                                                         
+: [[#Externe Links]]
+: [[#Sonderzeichentest öäüß <$%?>]]
+: [[#Externe Links|Neuer Namen]]           
+: [[#Nicht da|abc]]                        
+: [[#_TOP]]                       
+: [[#_TOP|Hier ist der Anfang]]   
+: [[#_TOC]]                       
+: [[#_BOTTOM]]                    
+: [[#_MAINTITLE]]                 
+: [[#_SITEMAP]]                           
+: [[#_PAGETOC]]      
+: [[#3]]
+=ÄÖÜ=
+== ZWEI ==
+== ZWEI ==
+= a =
+=Sonderzeichentest öäüß <$%?>=
+=Externe Links=
+
+[[:manual:table:..:ilink|Tabelle]]

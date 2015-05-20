@@ -1,0 +1,8 @@
+= Berechtigungen =
+Es gibt 6 verschiedene Benutzertypen:
+# Besucher
+# Priviligierter Besucher (angemeldet)
+# Autor
+# Redakteur
+# Admin
+# Spezial (manuell konfiguriert)

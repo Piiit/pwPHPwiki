@@ -1,0 +1,93 @@
+= Einfache Tabellen =
+$$ ^ Heading 1      ^ Heading 3                           ^^ heading 4   ^
+$$ | Row 1 Col 1    | Row 1 Col 2     | Row 1 Col 3        | row 1 col 4 |
+$$ | Row 2 Col 1    | some colspan (note the double pipe)              |||
+$$ | Row 3 Col 1    | Row 3 Col 2     | Row 3 Col 3        | row 3 col 4 |
+^ Heading 1      ^ Heading 3          ^^ heading 4   ^
+| Row 1 Col 1    | Row 1 Col 2     | Row 1 Col 3        | row 1 col 4 |
+| Row 2 Col 1    | some colspan (note the double pipe)              |||
+| Row 3 Col 1    | Row 3 Col 2     | Row 3 Col 3        | == row 3 col 4 == |
+
+$$ ^              ^ Heading 1            ^ Heading 2                               ^
+$$ ^ Heading 3    | Row 1 Col 2          |  [http://www.google.de google]          |
+$$ ^ Heading 4    | :>> >> colspan (align: right)                                 ||  
+$$ ^ Heading 5    | :> Row 2 Col 2       | [[manual:hyperlinks#hypalink]]          |           
+$$ ^ Heading 6    | no colspan this time |                                         |           
+^              ^ Heading 1            ^ Heading 2                            ^
+^ Heading 3    | Row 1 Col 2          |  [http://www.google.ca google]       |
+^ Heading 4    | :>> >> colspan (align: right)                              ||
+^ Heading 5    | :> Row 2 Col 2       | [[manual:hyperlinks#hypalinks]]      |
+^ Heading 6    | no colspan this time |                                      |
+
+== Syntax Verschachtelung (Multilines in Tabellen) ==
+Viele Syntaxanweisungen können in Tabellen noch nicht aufgelöst werden. \\
+z.B. werden Listen, Emoticons usw. innerhalb von Tabellen noch nicht (richtig) unterstützt.
+
+$$ ^ Heading 5    | :> Row 2 Col 2       | [[manual:hyperlinks#hypalinks]]      |
+$$ ^ Heading 6    | {{{
+$$ * Liste test
+$$ * liste 2
+$$ }}} | Inhalt letzte Zelle |
+
+
+= Komplexe Tabellen =
+
+== Eigene Idee ==
+:todo: Syntax
+
+$$ |#| {{Formatvorlage für gesamte Tabelle(css)}} <-- Tabellenanfang (normale Tabelle oder |##| für sortierbare Tabellen) 
+$$ ^ Heading 1
+$$ ^ Heading 2
+$$ |- {{Formatvorlage für diese Zeile (css)}}    <-- Neue Zeile
+$$ * Test (Liste innerhalb einer Tabelle)
+$$ * Test2
+$$ | {{Formatvorlage für diese Zelle (css)}}     <--Zur nächsten Spalte springen
+$$ Einfacher Text
+$$ |-
+$$ Zweite Zeile (colspan = 2; automatisch, da kein Spaltenwechsel da ist)
+$$ |-
+$$ || Dritte Zeile (colspan = 2; manuell mit doppelter pipe)
+$$ |#| <-- Tabellenende
+
+$$ WURDE NOCH NICHT IMPLEMENTIERT...
+$$ 
+$$ |#| {{Formatvorlage für gesamte Tabelle(css)}}
+$$ ^ Heading 1
+$$ ^ Heading 2
+$$ |- {{Formatvorlage für diese Zeile (css)}}
+$$ * Test (Liste innerhalb einer Tabelle)
+$$ * Test2
+$$ | {{Formatvorlage für diese Zelle (css)}}
+$$ Einfacher Text
+$$ |-
+$$ Zweite Zeile (colspan = 2; automatisch, da kein Spaltenwechsel da ist)
+$$ |-
+$$ || Dritte Zeile (colspan = 2; manuell mit doppelter pipe)
+$$ |#|
+
+== Wikipedia: Tabellen ==
+
+Eine mögliche Idee. Link: [http://de.wikipedia.org/wiki/Wikipedia:Tabellen#Tabellencode Wikipedia: Tabellencode]
+
+$$ {| class="wikitable sortable"
+$$ |+Nur die Liebe ist rot…
+$$ ! ABC !! Länge !! Breite !! Farbe !! class="unsortable" | Bemerkung
+$$ |-
+$$ | [[a]]
+$$ | 30
+$$ | 170
+$$ | grün
+$$ | Grün ist das Gras
+$$ |-
+$$ | [[b]]
+$$ | 20
+$$ | 330
+$$ | rot
+$$ | Rot ist die Liebe
+$$ |-
+$$ | [[c]]
+$$ | 10
+$$ | 120
+$$ | hellblau
+$$ | Blau ist der Himmel
+$$ |}

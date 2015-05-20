@@ -1,0 +1,25 @@
+= Formate: Encoding/Decoding =
+
+== Globale Variablen & globales Konfigurationsarray ==
+<warning>Check! Veraltet?</warning>
+* <em>ID</em>: ''lowercase'', ''urlencoded'' und ''utf8''.
+* <em>Pfade/Dateinamen</em>: ''lowercase'', ''urldecoded'', ''ascii'' (sonst funktionieren Dateifkt. nicht)
+
+== Aktuell: encoding.php ==
+^ Typ     ^ Funktionsnamen             ^ Input                       ^ Output
+^ Text    | ''pw_s2e''                 | String (UTF8 or Ascii)      | Html entities (UTF8)
+^ :::     | ''pw_s2u''                 | String (UTF8 or Ascii)      | String (UTF8)       
+^ :::     | ''pw_u2t''                 | String (UTF8 only)          | String (Ascii)
+^ :::     | ''pw_e2u''                 | Html entities (UTF8)        | String (UTF8)       
+^ URL     | ''pw_s2url''               | String (UTF8 or Ascii)      | URL (UTF8, urlencoded)
+^ :::     | ''pw_url2u''               | URL (UTF8, urlencoded)      | String (UTF8)       
+^ :::     | ''pw_url2e''               | URL (UTF8, urlencoded)      | Html entities (UTF8)
+^ :::     | ''pw_e2url''               | Html entities (UTF8)        | URL (UTF8, urlencoded)
+^ :::     | ''pw_url2t''               | URL (UTF8, urlencoded)      | String (Ascii)
+^ Slashes | ''pw_stripslashes''        | String (UTF8 or Ascii)      | String with stripped slashes
+^ :::     | ''pw_check_stripslashes''  | %%--%%                      | system strips slashes? (boolean)
+^ :::     | ''pw_stripslashes_deep''   | String or Array of Strings  | Array or String with stripped slashes
+^ :::     | ''pw_stripslashes_array''  | Array of Strings            | Array with stripped slashes
+^ Spezial | ''pw_s2hex''               | String (UTF8 or Ascii)      | Hexadecimal value of all chars inside the String
+^ :::     | ''pw_formatbytes''         | Integer of bytes, precision, showbytes? (bool) | Returns a human readable byte-String with endings like KB, MB, TB,...
+

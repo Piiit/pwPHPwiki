@@ -1,0 +1,367 @@
+= PIWO: Wikisyntax v0.1 =
+
+Inhaltsverzeichnis:\\
+~~TOC~~
+
+
+== Text ==
+Das ist ein Text mit einigen Sonderzeichen äöüß... &pi; [[manual:indent|Einzüge]] [[manual:ilink|Interne Links]]
+
+== Formatierung ==
+^ Was es ist                                    ^ Was du schreibst                                                      ^ Wie es dargestellt wird 
+| fett                                          | ''%%**fett**%%''                                                      | **fett**                                                  
+| kursiv                                        | ''%%//kursiv//%%''                                                    | //kursiv//                                                
+| unterstrichen                                 | ''%%__unterstrichen__%%''                                             | __unterstrichen__                                         
+| Fixe Textbreite (monospace)                   | ''%%''Fixe Textbreite''%%''                                           | ''Fixe Textbreite''                                       
+| Kleine Schrift                                | ''%%--Kleine Schrift--%%''                                            | --Kleine Schrift--                                        
+| Große Schrift                                 | ''%%++Große Schrift++%%''                                             | ++Große Schrift++                                         
+| Hervorgehobener Hintergrund                   | ''%%<hi>Hervorgehobener Hintergrund</hi>%%''                          | <hi>Hervorgehobener Hintergrund</hi>                                         
+| Hervorgehobener Text                          | ''%%<em>Hervorgehobener Text</em>%%''                                 | <em>Hervorgehobener Text</em>                                         
+| Unwichtiger Text                              | ''%%<lo>Unwichtiger Text</lo>%%''                                     | <lo>Unwichtiger Text</lo>                                         
+| durchgestrichen                               | ''%%-+Durchgestrichen+-%%''                                           | -+Durchgestrichen+-                                      
+| tiefgestellt                                  | ''%%H_{2}O%%'' oder ''%%H_{16}%%''                                    | H_{2}O oder H_{16}                          
+| hochgestellt                                  | ''%%dm^{3}%%'' oder ''%%x^{-5}%%''                                    | dm^{3} oder x^{-5}       
+| unformatiert  (Standard)                      | ''%%<nowiki>**Ich bin nicht fett!**</nowiki>%%''                      | <nowiki>**Ich bin nicht fett!**</nowiki>
+| unformatiert  (kurze Schreibweise)            | ''<nowiki>%%**Ich bin nicht fett!**%%</nowiki>''                      | %%**Ich bin nicht fett!**%%
+| Horizontale Linie                             | ''%%Das ist eine horizontale...%%''\\''%%----%%''\\''%%...Linie.%%''  | {{{ Das ist eine horizontale...
+----
+...Linie. }}}
+
+
+== Hyperlinks ==
+^ Was es ist ^ Was du schreibst                                      ^ Wie es dargestellt wird 
+| Einfacher externer Link \\ (Texterkennung, optional) | {{{
+$$ http://www.google.de
+$$ http://localhost/projekte/home/lib/tests/lexertests/
+$$ http://de.wikipedia.org/wiki/Hilfe:Links
+$$ http://pitizworld.co.de/doku.php?do=index&id=start
+$$ http://www.dokuwiki.org/syntax#tables
+$$ ftp://joe:password@ftp.filetransferprotocal.com
+$$ www.google.ru
+}}} | {{{
+http://www.google.de \\
+http://localhost/projekte/home/lib/tests/lexertests/ \\
+http://de.wikipedia.org/wiki/Hilfe:Links \\
+http://pitizworld.co.de/doku.php?do=index&id=start \\
+http://www.dokuwiki.org/syntax#tables \\
+ftp://joe:password@ftp.filetransferprot.com \\
+www.google.ru \\
+}}} 
+| Wikisyntax für externe Links | {{{
+$$ Der erste Link [http://www.google.de] 
+$$ und der zweite [http://www.hoferhof.net].
+$$ [http://www.hoferhof.net Urlaub am Bauernhof]
+}}} | {{{
+Der erste Link [http://www.google.de] \\
+und der zweite [http://www.hoferhof.net]. \\
+[http://www.hoferhof.net Urlaub am Bauernhof]
+}}}
+| Wikisyntax für interne Links | {{{
+$$ [[Namespace:Name|Text des Links (mit Erweiterung)]]
+$$ [[Namespace:Name auch mit Leerzeichen|Text des Links]]
+$$ [[Namespace:Name auch mit Leerzeichen ohne Linktext]]
+}}} | {{{
+[[Namespace:Name|Text des Links (mit Erweiterung)]] \\
+[[Namespace:Name auch mit Leerzeichen|Text des Links]] \\
+[[Namespace:Name auch mit Leerzeichen ohne Linktext]]
+}}}
+
+=== Hyperlink Tests ===
+$$ http://www.google.com/search?q=good+url+regex&rls=com.microsoft:*&ie=UTF-8&oe=UTF-8&startIndex=&startPage=1
+http://www.google.com/search?q=good+url+regex&rls=com.microsoft:*&ie=UTF-8&oe=UTF-8&startIndex=&startPage=1
+$$ https://some-url.com?query=&name=joe?filter=*.*#some_anchor
+https://some-url.com?query=&name=joe?filter=*.*#some_anchor
+
+
+== Ausrichtung ==
+=== Blocksatz ===
+$$ :<> {{{...}}}
+:<> {{{
+Bitte beachte die Wikipedia-Richtlinien zur Formatierung, insbesondere: Kleiner- und größergeschriebenen Text, harte 
+Zeilenumbrüche mit br-Tags, Absätze durch doppelte oder mehrfache Leerzeilen, Farben und ähnliche Spezialformatierungen 
+solltest du nicht in Artikeln, sondern nur in Tabellen oder Textbausteinen verwenden, um ein einheitliches Aussehen der 
+Artikel zu gewährleisten. Ansonsten bietet die Wikiauszeichnungssprache genügend Möglichkeiten, den Text zu formatieren. Fett- 
+und Kursivschreibung soll nicht mit HTML-Tags formatiert werden.
+}}}
+
+=== Zentriert ===
+$$ :> {{{...}}}
+:> {{{
+Bitte beachte die Wikipedia-Richtlinien zur Formatierung, insbesondere: Kleiner- und größergeschriebenen Text, harte 
+Zeilenumbrüche mit br-Tags, Absätze durch doppelte oder mehrfache Leerzeilen, Farben und ähnliche Spezialformatierungen 
+solltest du nicht in Artikeln, sondern nur in Tabellen oder Textbausteinen verwenden, um ein einheitliches Aussehen der 
+Artikel zu gewährleisten. Ansonsten bietet die Wikiauszeichnungssprache genügend Möglichkeiten, den Text zu formatieren. Fett- 
+und Kursivschreibung soll nicht mit HTML-Tags formatiert werden.
+}}}
+
+=== Rechtsbündig ===
+$$ :>> {{{...}}}
+:>> {{{
+Bitte beachte die Wikipedia-Richtlinien zur Formatierung, insbesondere: Kleiner- und größergeschriebenen Text, harte 
+Zeilenumbrüche mit br-Tags, Absätze durch doppelte oder mehrfache Leerzeilen, Farben und ähnliche Spezialformatierungen 
+solltest du nicht in Artikeln, sondern nur in Tabellen oder Textbausteinen verwenden, um ein einheitliches Aussehen der 
+Artikel zu gewährleisten. Ansonsten bietet die Wikiauszeichnungssprache genügend Möglichkeiten, den Text zu formatieren. Fett- 
+und Kursivschreibung soll nicht mit HTML-Tags formatiert werden.
+}}}
+
+=== Standard: Flattersatz (Linksbündig) ===
+<info>Standard: Kein Wikisyntax notwendig...</info>
+Bitte beachte die Wikipedia-Richtlinien zur Formatierung, insbesondere: Kleiner- und größergeschriebenen Text, harte 
+Zeilenumbrüche mit br-Tags, Absätze durch doppelte oder mehrfache Leerzeilen, Farben und ähnliche Spezialformatierungen 
+solltest du nicht in Artikeln, sondern nur in Tabellen oder Textbausteinen verwenden, um ein einheitliches Aussehen der 
+Artikel zu gewährleisten. Ansonsten bietet die Wikiauszeichnungssprache genügend Möglichkeiten, den Text zu formatieren. Fett- 
+und Kursivschreibung soll nicht mit HTML-Tags formatiert werden.
+
+=== Einzug ===
+$$ :: Einzug (lvl1)
+$$ ::: Einzug bis auf Ebene 2
+$$ :: Wieder Ebene 1
+$$ :: Immernoch Ebene 1 (erstellt ein neues DIV, damit Zeilen nicht aneinandergehängt werden...)
+$$ ::: Ebene 2
+$$ :::::::::: Große Einzüge sollten nur in Ausnahmefällen benützt werden. (lvl 10)
+
+:: Einzug (lvl1)
+::: Einzug bis auf Ebene 2
+:: Wieder Ebene 1
+:: Immernoch Ebene 1 (erstellt ein neues DIV, damit Zeilen nicht aneinandergehängt werden...)
+::: Ebene 2
+::::::::::: Große Einzüge sollten nur in Ausnahmefällen benützt werden. (lvl 10)
+
+
+==== Einzüge über mehrere Zeilen ====
+$$ :::: {{{
+$$ Einzug über mehrere Zeilen...
+$$ Dies ist die zweite Zeile. Sie wird mit der ersten ohne NEUE ZEILE verbunden.
+$$ }}}
+
+:::: {{{
+Einzug über mehrere Zeilen...
+Dies ist die zweite Zeile. Sie wird mit der ersten ohne NEUE ZEILE verbunden.
+}}}
+
+=== Spaltenkontrolle ===
+$$ <left>...</left>
+$$ <right>...</right>
+<left>
+Bitte beachte die Wikipedia-Richtlinien zur Formatierung, insbesondere: Kleiner- und größergeschriebenen Text, harte 
+Zeilenumbrüche mit br-Tags, Absätze durch doppelte oder mehrfache Leerzeilen, Farben und ähnliche Spezialformatierungen 
+solltest du nicht in Artikeln, sondern nur in Tabellen oder Textbausteinen verwenden, um ein einheitliches Aussehen der 
+Artikel zu gewährleisten. Ansonsten bietet die Wikiauszeichnungssprache genügend Möglichkeiten, den Text zu formatieren. Fett- 
+und Kursivschreibung soll nicht mit HTML-Tags formatiert werden.
+</left>
+<right>
+Bitte beachte die Wikipedia-Richtlinien zur Formatierung, insbesondere: Kleiner- und größergeschriebenen Text, harte 
+Zeilenumbrüche mit br-Tags, Absätze durch doppelte oder mehrfache Leerzeilen, Farben und ähnliche Spezialformatierungen 
+solltest du nicht in Artikeln, sondern nur in Tabellen oder Textbausteinen verwenden, um ein einheitliches Aussehen der 
+Artikel zu gewährleisten. Ansonsten bietet die Wikiauszeichnungssprache genügend Möglichkeiten, den Text zu formatieren. Fett- 
+und Kursivschreibung soll nicht mit HTML-Tags formatiert werden.
+</right>
+<info>
+**Parameter**: \\
+''%%<left[ Parameter]>...</left>%%'' \\
+''%%<right[ Parameter]>...</right>%%''
+; alone : Eine einzige Spalte, d.h. weitere Inhalte fließen um die Spalte herum.
+</info>
+
+
+== Listen ==
+^ Was es ist ^ Was du schreibst                                      ^ Wie es dargestellt wird 
+| Nummerierte Liste | {{{
+$$ # Nummeriert
+$$  # Nummeriert Ebene 2
+$$   # Punkt in der 3. Ebene
+$$  # Zurück zur 2.
+$$  # Noch eines
+$$  # Abschluss
+}}} | {{{
+# Nummeriert
+ # Nummeriert Ebene 2
+  # Punkt in der 3. Ebene
+ # Zurück zur 2.
+ # Noch eines
+ # Abschluss
+}}}
+| Ungeordnete Liste | {{{
+$$ * Ungeordnet
+$$  * Ungeordnet 2
+$$   * Ungeordnet 3
+$$    * Ungeordnet 4
+}}} | {{{
+* Ungeordnet
+ * Ungeordnet 2
+  * Ungeordnet 3
+   * Ungeordnet 4
+}}}
+| Definitionsliste | {{{
+$$ ; Definitionsliste 
+$$ : Eine Definition 
+$$ : Eine andere Definition 
+$$ ; Begriff 
+$$ : Definition des Begriffs 
+}}} | {{{
+; Definitionsliste
+: Eine Definition
+: Eine andere Definition
+; Begriff
+: Definition des Begriffs
+}}} 
+| Definitionsliste (verschachtelt) | {{{
+Definitionslisten verschachtelt man mit Multilines: ''%%{{{...}}}%%''
+$$ ; Das Haus : {{{
+$$ hat ein 
+$$ ; Fenster : aus Glas
+$$ ; eine Tür : aus Holz
+$$ ; einen Kamin : aus Stein
+$$ }}}
+}}} | {{{
+; Das Haus : {{{
+hat ein 
+; Fenster : aus Glas
+; eine Tür : aus Holz
+; einen Kamin : aus Stein
+}}}
+}}}
+
+== Überschriften ==
+<left>
+<info>Eine Überschrift der ersten Ebene sollte nur als Seitentitel Verwendung finden.</info>
+<notoc>
+== Überschrift 2 ==
+=== Überschrift 3 ===
+==== Überschrift 4 ====
+===== Überschrift 5 =====
+</notoc>
+</left>
+<right>
+Innerhalb der ''%%<notoc>%%''-Sektion werden Überschriften nicht ins Inhaltsverzeichnis aufgenommen.
+$$ <notoc>
+$$ == Überschrift 2 ==
+$$ === Überschrift 3 ===
+$$ ==== Überschrift 4 ====
+$$ ===== Überschrift 5 =====
+$$ </notoc>
+</right>
+
+== Tabellen ==
+=== Einfache Tabellen ===
+Syntax im Stil von [http://www.dokuwiki.org/syntax#tables Dokuwiki].
+$$ ^ Spaltenkopf 1                                             ^ Spaltenkopf 3 (auf zwei Spalten ausgedehnt)               ^^ Spaltenkopf 4   
+$$ | Zeile 1 Spalte 1 \\ (auf zwei Zeilen ausgedehnt)          | Zeile 1 Spalte 2     | Zeile 1 Spalte 3                    | Zeile 1 Spalte 4 
+$$ | :::                                                       | Zeile 2 Spalte 2 (auf zwei Spalten ausgedehnt)            ||
+$$ ^ Zeilenkopf 1                                              | Zeile 3 Spalte 2     | Zeile 3 Spalte 3                    | Zeile 3 Spalte 4 
+$$ ^ Zeilenkopf 2                                              | Zeile 4 Spalte 2     | Zeile 4 Spalte 3                    | Zeile 4 Spalte 4 
+^ Spaltenkopf 1                                             ^ Spaltenkopf 3 (auf zwei Spalten ausgedehnt)               ^^ Spaltenkopf 4   
+| Zeile 1 Spalte 1 \\ (auf zwei Zeilen ausgedehnt)          | Zeile 1 Spalte 2     | Zeile 1 Spalte 3                    | Zeile 1 Spalte 4 
+| :::                                                       | Zeile 2 Spalte 2 (auf zwei Spalten ausgedehnt)            ||
+^ Zeilenkopf 1                                              | Zeile 3 Spalte 2     | Zeile 3 Spalte 3                    | Zeile 3 Spalte 4 
+^ Zeilenkopf 2                                              | Zeile 4 Spalte 2     | Zeile 4 Spalte 3                    | Zeile 4 Spalte 4 
+
+== Boxen ==
+Eine InfoBox für Informationen, Warnungen, Fehler, ...   
+^ Was es ist ^ Was du schreibst                                      ^ Wie es dargestellt wird 
+| Fehler anzeigen | {{{
+$$ <error>
+$$ test
+$$ </error>
+}}} | <error>test</error>
+| Informationen anzeigen | {{{
+$$ <info>
+$$ test
+$$ </info>
+}}} | <info>test</info>
+| Rückmeldung einer erfolgreichen Eingabe | {{{
+$$ <success>
+$$ Die Eingabe ist korrekt!
+$$ </success>
+}}} | <success>Die Eingabe ist korrekt!</success>
+| Kontrolle einer Eingabe | {{{
+$$ <validation>
+$$ Benutzername fehlt \\
+$$ Geburtsdatum fehlt \\
+$$ Passwort falsch
+$$ </validation>    
+}}} | <validation>Benutzername fehlt \\Geburtsdatum fehlt \\Passwort falsch</validation>
+| Allgemeine Warnhinweise| {{{
+$$ <warning>
+$$ test
+$$ </warning>
+}}} | <warning>test</warning>
+| Rahmen zeichnen | {{{
+$$ <border>
+$$ test
+$$ </border>
+}}} | <border>test</border>
+| Codeblöcke \\ (Farben und Einzüge richtig darstellen)| {{{
+$$ <code>
+$$ while (!asleep()) 
+$$   $sheep++; 
+$$ </code>
+}}} | {{{
+<code>
+while (!asleep())
+  $sheep++;
+</code>
+}}}
+| Unsichtbare Kommentare im Wikitext | {{{
+<info>Kommentare werden als eigenständige Wiki-Elemente erkannt und beenden daher logische Blöcke, wie bspw. Tabellen.</info>
+$$ Ein unsichtbarer Kommentar. <!-- Kommentar -->
+}}} | Ein unsichtbarer Kommentar. <!-- Kommentar -->
+
+== Variablen und Konstanten ==
+Alle Variablen und Konstanten werden in zwei geschwungene Klammern eingeschlossen. \\
+Syntax: ''<nowiki>{{VARIABLENAME}}</nowiki>''
+=== Variablen ===
+^ Was es ist ^ Was du schreibst                                      ^ Wie es dargestellt wird 
+| Setzen einer Variable \\ (Format: String) | {{{
+$$ !! Variable = Wert 
+}}} | {{{
+<info>Es wird nichts dargestellt.</info>
+!! Variable = Wert
+}}}
+| Setzen einer Variable \\ (Format: String über mehrere Zeilen) | {{{
+$$ !! Variable2 = "String
+$$ über mehrere 
+$$ Zeilen mit \"escaped\" Parenthesis!" 
+}}} | {{{
+<info>Es wird nichts dargestellt.</info>
+!! Variable2 = "String
+über mehrere 
+Zeilen mit \"escaped\" Parenthesis!"
+}}}
+| Wiedergabe der beiden Variablen | {{{
+$$ **{{Variable}}** und **{{Variable2}}** 
+}}} | {{{
+**{{Variable}}** und **{{Variable2}}**
+}}}
+
+=== Konstanten ===
+^ Kategorie             ^ Was es ist                        ^ Was du schreibst                              ^ Wie es dargestellt wird
+^ Mathematik            | Kreiszahl Pi                      | ''%%{{PI}} oder <math>&pi;</math>%%''         | {{PI}} oder <math>&pi;</math>
+^ :::                   | Eulersche Zahl e                  | ''%%{{E}} oder <math>e</math>%%''             | {{E}} oder <math>e</math>
+^ Datum                 | Tag (Name, in Zahlen)             | ''%%{{DAYNAME}} {{DAY}}%%''                   | {{DAYNAME}} {{DAY}}
+^ :::                   | Monat (Name, in Zahlen)           | ''%%{{MONTHNAME}} {{MONTH}}%%''               | {{MONTHNAME}} {{MONTH}}
+^ :::                   | Jahr                              | ''%%{{YEAR}}%%''                              | {{YEAR}}
+^ :::                   | Das aktuelle Datum                | ''%%{{DATE}}%%''                              | {{DATE}}
+^ Zeit                  | Die aktuelle Zeit                 | ''%%{{TIME}}%%''                              | {{TIME}}
+
+**TODO**: Default-Dateformat((siehe [http://php.net/manual/de/function.date.php PHP Funktion date])) bestimmen und konfigurierbar machen!
+
+=== Wikivariablen ===
+^ Variable             ^ Was du schreibst                                       ^ Wie es dargestellt wird                                       ^ Beschreibung                                                                                              
+| ID                   | ''%%Die aktuelle Seite heißt "{{ID}}".%%''             | Die aktuelle Seite heißt "{{ID}}".            | Gibt den Namen (ID) der aktuellen Wikiseite aus                                   
+| NS                   | ''%%Sie liegt unter "{{NS}}".%%''                      | Sie liegt unter "{{NS}}".                     | Gibt den Namespace der aktuellen Seite aus                                                    
+| FULLID               | ''%%Ihr voller Namen lautet "{{FULLID}}".%%''          | Ihr voller Namen lautet "{{FULLID}}".         | Die volle ID (über eine solche ID identifiziert das CMS die Datei)    
+| COUNTSUBS            | ''%%Untergeordnete Seiten: {{COUNTSUBS}}%%'' | Untergeordnete Seiten: {{COUNTSUBS}} | Die Anzahl der untergeordneten Seiten \\ --(Bsp.: Siehe Startseite des Manuals -> Anzahl der Artikel)--
+
+Alle Artikel {{COUNTSUBS}} im aktuellen Namensraum: {{NS}}
+~~NSTOC~~
+
+ 
+=== HTML-Zeichen-Symbole ===
+^ Was es ist                        ^ Was du schreibst                              ^ Wie es dargestellt wird
+| Doppelte Anführungszeichen((für deutsche Texte))        | ''%%Alle riefen: &bdquo;Hurra!!!&rdquo;%%''    | Alle riefen: &bdquo;Hurra!!!&rdquo;
+
+
+
+== Fußzeilen ==
+~~FOOTNOTES~~

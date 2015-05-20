@@ -1,0 +1,3 @@
+= Todos: Dokumentation =
+
+* Zeichen in der Sonderzeichentabelle nach Art/Typ (Mathe, Griechisch, Interpunktion, ...) sortieren, nicht nach Codierung

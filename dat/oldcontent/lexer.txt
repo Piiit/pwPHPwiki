@@ -1,0 +1,88 @@
+= Inhalt =
+~~NSTOC~~
+
+= Changelog & Todos = 
+
+== Wunschliste ==
+* Tag Encapsulation throws exception -> Fehlercodes und Zeile (LOGS!)
+* Kommentare im Code & autom. Manual schreiben -> phpDoc???
+
+== Lexer 0.44 (future) ==
+* Neues Feature: Mapping von Variablen \\ Bsp: ''a = 3'' => ''a'' darf nur einmal gespeichert werden.
+* Funktion, um zusätzliche Aufgaben beim Betreten (entry) oder verlassen (exit) eines Status zu erledigen. Bsp.: Ein Inhaltsverzeichnis erzeugen.
+* Escape-Symbole aufnehmen (andere Möglichkeiten für zB. Smileys erörtern)
+
+== Lexer 0.43 (future) ==
+* Fehlermeldungen, wenn Tokens in nicht erlaubten Sektionen erkannt werden. \\ Bsp.: ''<nowiki>= {{{ hallo }}} =</nowiki>'' => **FEHLER: ''multiline'' darf in ''header'' nicht vorkommen.**
+* Fehlermeldungen, wenn ein hinzugefügter Pattern kein gültiger regulärer Ausdruck ist.
+* Weitere preg_match Fehlermeldungen und Lösungsvorschläge hinzufügen.
+* ''eof''-Pattern fix in Lexer integrieren.
+
+== Lexer 0.42 (working) ==
+Link: [[lexer:v0.42#Lexer v0.42 Dokumentation]]
+
+* entry und exit-pattern für gesamte syntax
+* allg. gültige config für lexer ausdenken, damit er auch für plugins verwendet werden kann...
+* Funktionen für AST-Handling ([[lexer:DOM-Funktionen#DOM]]) definieren -> nextSibling/firstChild/... 
+* Funktionen für AST-Manipulation ([[lexer:DOM-Funktionen#DOM]]) definieren -> createElement/insertBefore/... 
+* Abstrakte Knoten (TABLE)
+* Debugfunktionen
+
+== Lexer 0.4 (done) ==
+Link: [http://localhost/projekte/home/lib/tests/lexer4.php|Lexer4] \\
+Link: [http://localhost/projekte/home/lib/tests/lexer41.php|Lexer4.1] \\
+
+* :ok: (veraltet) ''LEXER_TYPE_SECTION'' -> handling über mehrere Zeilen, ''call_user_function'' um checks durchzuführen...  \\ section-types wird aus Lexer ausgelagert (passt nur zu ''<nowiki><section></nowiki>'' sectiontypen! \\ Vielleicht sollte man alle einzeln definieren nicht allgemein für alle Sections... performance?
+* :ok: (veraltet) ''LEXER_TYPE_LINE'' -> pattern ausdenken, damit automatisch zeilen erkannt werden. Achtung bei ''substr'', weil \n etc. verloren gehen
+* :ok: Cachen der preg_patterns (geht das?)
+* :ok: (veraltet) Preformat-Sektionen etc. erkennen, die keine Multilines und Sektionen zulassen, sondern nur die Zeichen ausgeben...
+* :ok: entry und exit-pattern tests für sections, multiline, preformat und title
+
+== Lexer 0.3 (done) ==
+Link: [http://localhost/projekte/home/lib/tests/lexer3.php Lexer3]
+
+* :ok: objektorientiert
+* :ok: bessere variablenamen und code übersichtlicher gestalten... functionen auslagern?
+* :ok: [[lexer:CDATA#CDATA]]-Replace in lexer einbinden: ''<nowiki><![CDATA[Inhalt]]></nowiki>''
+* :ok: [[manual:multiline#multilines]] aufnehmen...
+* :ok: [[lexer:section-types#section-types]] einführen (Funktion ''registerSection($name, $type)'')
+
+
+
+== Lexer 0.2 (done) ==
+Link: [http://localhost/projekte/home/lib/tests/lexer2.php Lexer2]
+
+* :ok: DOM (Document Object Model) erzeugen
+* :ok: nachfolgende texte (TestTxt2) an die richtige stelle zurückgeben
+* :ok: ''#~-num-~#'' einfügen
+* :ok: alle texte auserhalb der sektionen erhalten... ''_BASE_'' als hauptsektion einführen
+
+== Lexer 0.1 (done) ==
+Link: [http://localhost/projekte/home/lib/tests/lexer1.php Lexer1]
+* :ok: CDATA-Replace
+* :ok: ''_BASE_'' für Text vor und nach Sektionen
+* :ok: Vereinfachten DOM-Tree erzeugen. 
+* :ok: Einfache Fehlererkennung (EOF, nicht alle Tags wurden geschlossen und Tag-Encapsulation-Error)
+
+Beispiel für Text: ''<nowiki>Anfang <code> lala </code> Ende</nowiki>'' 
+
+$$ [0]
+$$   context   	"_BASE_"
+$$   content   	"Anfang #~-1-~# Ende"
+$$   children
+$$        [0]  	"1"  
+$$ [1]
+$$   context   	"code"
+$$   content   	" lala "
+$$   permtree
+$$        [0]
+$$          ID 	"0"
+$$          NAME 	"_BASE_" 
+$$   config    	"html"
+$$   parent  	"0"
+
+:ok: -+PERFORMANCE: Drei preg_match aufrufe... REDUZIEREN! siehe Lexer2...+-
+
+
+= Quellenangaben =
+Idee von phpPatterns -> [http://www.phppatterns.com/docs/develop/simple_test_lexer_notes|SimpleTestLexer]

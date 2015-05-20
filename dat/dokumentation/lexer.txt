@@ -1,0 +1,53 @@
+= Lexer =
+== Beispiel 01: UnitTest Dateien ==
+<warning>Muss noch ausführlicher getestet werden!</warning>
+
+=== Beispiel-Code ===
+<code>
+[CONFIG]
+  syntax = wiki
+  encoding = utf-8
+  ...
+
+[DESC]
+Beschreibung... WIKISYNTAX MÖGLICH!
+
+[TEST]
+  foreach ($filenames as $i => $filename) {
+    var_dump (pw_dirname($filename, true));
+
+[INPUT]
+dat/dok/todos/v0.01.txt
+dat/dok/todos/
+dat/dok/todos
+
+
+[EXPECTED]
+dat/dok/todos/
+dat/dok/todos/
+dat/dok/
+
+</code>
+
+=== Implementierung ===
+<code>
+
+// $text = ...siehe oben!
+// parameter Nummer 2 = debugmodus (true, false)
+$lexer = new pwLexer($text, true);
+
+// Diese Tokens sollen erkannt werden...
+$lexer->addSectionPattern("SEC_DESC", '\[DESC\]\n', '(?=\[[a-zA-Z]*\])');
+$lexer->addSectionPattern("SEC_INPUT", '\[INPUT\]\n', '(?=\[[a-zA-Z]*\])');
+$lexer->addSectionPattern("SEC_EXPECTED", '\[EXPECTED\]\n', '(?=\[[a-zA-Z]*\])');
+$lexer->addSectionPattern("SEC_TEST", '\[TEST\]\n', '(?=\[[a-zA-Z]*\])');
+$lexer->addSectionPattern("SEC_CONFIG", '\[CONFIG\]\n', '(?=\[[a-zA-Z]*\])');
+
+// Sie dürfen nur in der Dokumentebene vorkommen, d.h. sie dürfen nicht verschachtelt ineinander liegen.
+$lexer->setAllowedModes("SEC_DESC", array("#DOCUMENT"));
+$lexer->setAllowedModes("SEC_INPUT", array("#DOCUMENT"));
+$lexer->setAllowedModes("SEC_EXPECTED", array("#DOCUMENT"));
+$lexer->setAllowedModes("SEC_TEST", array("#DOCUMENT"));
+$lexer->setAllowedModes("SEC_CONFIG", array("#DOCUMENT"));
+
+</code>

@@ -1,0 +1,24 @@
+= {{ID}} =
+; Bereich
+: <hi 2>Wikisyntax</hi> <em>Warnungen</em>
+; Erklärung
+: Fehler, falls Warnung innerhalb eines Tokens auftritt, der trotzdem verarbeitet wird. Verarbeitung müsste unterbunden werden und ein einheitlicher Fehler ausgegeben werden. 
+; Beispiel
+: ''%%[[{{VARXY}}|{{VARXY}}]]%%''
+; Ausgabe
+: [[{{VARXY}}|{{VARXY}}]]
+
+== Tests ==
+----
+[[:dokumentation:todos|Todos anzeigen]]
+[[Hallo|{{X}}]]
+[{{x}}]
+!! x = {{nop}}
+
+{{x = 3}}
+
+= {{x}} =
+
+[[:dokumentation:todos2|Todos2 anzeigen]]
+
+= xy =

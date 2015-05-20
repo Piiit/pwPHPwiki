@@ -1,0 +1,10 @@
+<code >
+test
+</code>
+<code php>
+while (!asleep())
+  sheep++;
+</code>
+<code php v3>
+lala
+</code>

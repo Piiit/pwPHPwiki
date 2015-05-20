@@ -1,0 +1,99 @@
+= AST (Abstract Syntax Tree) =
+
+Der folgende Wikicode erzeugt einen Baum, den sogenannten "Abstract Syntax Tree".  
+
+== Wikicode (Beispiel) ==
+
+$$   0 	 
+$$   1 	 === header ===
+$$   2 	 | __test__ | **test2** |
+$$   3 	 | //weiter// | __**//lala//**__ | asdf |
+$$   4 	 | {{{
+$$   5 	   * liste
+$$   6 	   | tabelle2 | lala |
+$$   7 	   | 23 | 254 |
+$$   8 	   }}} |
+$$   9 	 
+
+== Ausgabe des AST ==
+--Diese Ausgabe wurde mit dem Lexer v0.42c vom 3.8.2010 erzeugt.--
+
+$$  header[===] {
+$$    #TEXT {" header "}
+$$  }
+$$  tablerow[] {
+$$    tablecell[] {
+$$      underline[] {
+$$        #TEXT {"test"}
+$$      }
+$$    }
+$$    tablecell[] {
+$$      bold[] {
+$$        #TEXT {"test2"}
+$$      }
+$$    }
+$$  }
+$$  tablerow[] {
+$$    tablecell[] {
+$$      italic[] {
+$$        #TEXT {"weiter"}
+$$      }
+$$    }
+$$    tablecell[] {
+$$      underline[] {
+$$        bold[] {
+$$          italic[] {
+$$            #TEXT {"lala"}
+$$          }
+$$        }
+$$      }
+$$    }
+$$    tablecell[] {
+$$      #TEXT {" asdf "}
+$$    }
+$$  }
+$$  tablerow[] {
+$$    tablecell[] {
+$$      multiline[] {
+$$        listitem[  , *] {
+$$          #TEXT {"liste"}
+$$        }
+$$        tablerow[] {
+$$          tablecell[] {
+$$            #TEXT {" tabelle2 "}
+$$          }
+$$          tablecell[] {
+$$            #TEXT {" lala "}
+$$          }
+$$        }
+$$        tablerow[] {
+$$          tablecell[] {
+$$            #TEXT {" 23 "}
+$$          }
+$$          tablecell[] {
+$$            #TEXT {" 254 "}
+$$          }
+$$        }
+$$      }
+$$    }
+$$  }
+
+== Konfiguration des Lexers ==
+
+$$ $lexer->addLinePattern("header", '\n *(={1,5})', '={1,5}');
+$$ $lexer->addSectionPattern("tablerow", '\n *(?=\|)', '\| *\n');
+$$ $lexer->addSectionPattern("tablecell", '\|(?! *\n)', '(?=\|)');
+$$ $lexer->addSectionPattern("listitem", '\n( *)([\*\#]) ', '\n');
+$$ $lexer->addSectionPattern("bold", '\*\*', '\*\*');
+$$ $lexer->addSectionPattern("underline", '__', '__');
+$$ $lexer->addSectionPattern("italic", '\/\/', '\/\/');
+$$ $lexer->addSectionPattern("multiline", '{{{', '}}}');
+$$ 
+$$ $lexer->setAllowedModes("header", array("#DOCUMENT", "section"));
+$$ $lexer->setAllowedModes("tablecell", array("tablerow"));
+$$ $lexer->setAllowedModes("tablerow", array("#DOCUMENT", "section", "multiline"));
+$$ $lexer->setAllowedModes("listitem", array("#DOCUMENT", "multiline", "section"));
+$$ $lexer->setAllowedModes("bold", array("#DOCUMENT", "tablecell", "italic", "underline"));
+$$ $lexer->setAllowedModes("italic", array("#DOCUMENT", "tablecell", "underline", "bold"));
+$$ $lexer->setAllowedModes("underline", array("#DOCUMENT", "tablecell", "bold", "italic"));
+$$ $lexer->setAllowedModes("multiline", array("#DOCUMENT", "listitem", "tablecell"));

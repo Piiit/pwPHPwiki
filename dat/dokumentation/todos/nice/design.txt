@@ -1,0 +1,18 @@
+= Designideen =
+
+; Einfach und übersichtlich
+: [http://www.sabineauer.com/gallerien/werkbank_2009_II/index.html Bildergalerie]: sehr einfach, dunkel, übersichtlich
+: [http://www.phpbox.de/ PHPBox]: Einfaches Menü an der linken Seite, Standarddesign für eine Webseite mit Menü, in v0.02 von Piwo integrieren (als WYSIWYG-Editor mit iGoogle ähnlichem [http://www.dhtmlgoodies.com/submitted-scripts/i-google-like-drag-drop/index.html drag'n'drop]?)
+: [http://www.mindmeister.com/de/help/ Mindmeister]: Tolles Menü, einfache übersichtliche Farbgebung, schöne Menüleisten und GUI
+
+; Leserlichkeit super (für Kinder)
+: [http://www.labbe.de/zzzebra/ Zzzebra]: Schriftgröße varierbar, "Leseschalter" (Ausschalten des ges. Drumherums, damit Kinder nicht abgelenkt werden)
+
+; Designed for Speed
+: [https://github.com/selfthinker/dokuwiki_plugin_fontface/issues GitHub]: Bugreport/Tracker, Texticons zur Kategorisierung, Listeneinträge werden rasch erkannt, "feature", "todo", ...
+
+; Andere CMS/Wikis (have a look!)
+: [http://www.redaxo.org/ Redaxo]: Menüs, Webdesign (erster Eindruck gut), Programmierung von Templates etc. über PHP (besser wäre DSL)
+
+; Plugins
+: [http://www.dokuwiki.org/plugin:wrap Wrap-Plugin] (aus DokuWiki) ([http://www.dokuwiki.org/_media/plugin:wrap_plugin_example5.png Vorschau]): columns, Zusammenführen aller Boxen mit allg. gültigen Parametern [[:todos:v0.02:boxen]], ...

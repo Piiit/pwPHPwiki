@@ -1,0 +1,2 @@
+= BUG: {{ID}} =
+Default-Werte für alle CSV-Datentypen definieren.
