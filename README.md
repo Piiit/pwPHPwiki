@@ -1,7 +1,5 @@
-# piwo
-Automatically exported from code.google.com/p/piwo
+# pwPHPwiki
 
-## Introduction
 A simple PHP wiki to test my wiki-parser...
 It supports only a singleuser wiki cms with some main file management features.
 Mainly implemented to test the lexer and parser.
