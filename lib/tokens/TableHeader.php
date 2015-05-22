@@ -18,7 +18,6 @@ class TableHeader extends ParserRule implements ParserRuleHandler, LexerRuleHand
 	
 	public function onEntry() {
 		$o = "";
-  		$chid = $this->getNode()->getChildIndex();
   		$rowspan = TableCell::getRowspanText($this->getNode());
   		$colspan = TableCell::getColspanText($this->getNode());
 

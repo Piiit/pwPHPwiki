@@ -37,9 +37,9 @@ x={{x}}, y={{y}}
 ^ :::                   | Jahr                                            | ''%%{{YEAR}}%%''                             | {{YEAR}}
 ^ :::                   | Das aktuelle Datum                              | ''%%{{DATE}}%%''                             | {{DATE}}
 ^ Zeit                  | Die aktuelle Zeit                               | ''%%{{TIME}}%%''                             | {{TIME}}
-^ Wiki                  | Der Name der aktuellen Seite                    | ''%%{{ID}}%%''                               | {{ID}}
+^ Wiki                  | Der Name der aktuellen Seite                    | ''%%{{PAGE}}%%''                             | {{PAGE}}
 ^ :::                   | Der Namensraum der aktuellen Seite              | ''%%{{NS}}%%''                               | {{NS}}
-^ :::                   | Die vollständige ID der aktuellen Seite         | ''%%{{FULLID}}%%''                           | {{FULLID}}
+^ :::                   | Die vollständige ID der aktuellen Seite         | ''%%{{ID}}%%''                               | {{ID}}
 ^ :::                   | Die aktuelle fehlerhafte ID (nur Ausgabe)       | ''%%{{WRONGID}}%%''                          | {{WRONGID}}\\//--(Falls noch keine fehlerhafte ID aufgerufen wurde, ist sie hier leer. Nützlich für Fehlermeldungen innerhalb eines Wikitextes.)--//
 ^ :::                   | Untergeordnete Seiten dieses Namensraumes       | ''%%{{COUNTSUBS}}%%''                        | {{COUNTSUBS}}
 ^ :::                   | Die Startseite der Wiki (siehe Konfiguration)   | ''%%{{STARTPAGE}}%%''                        | {{STARTPAGE}}

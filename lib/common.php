@@ -73,8 +73,6 @@ function pw_wiki_loadconfig() {
 
 
 function pw_wiki_getmenu($id, $mode, Collection $modules) {
-	$loginData = pw_wiki_getcfg('login');
-
 	$o = "";
 	foreach ($modules->getArray() as $module) {
 		if($module instanceof MenuItemProvider && $module->getMenuAvailability()) {
@@ -103,7 +101,7 @@ function pw_wiki_file2editor($data) {
 function pw_wiki_getfulltitle($sep = " &laquo; ") {
 	$id = pw_wiki_getid();
 	$title = "";
-	foreach ($id->getFullNSAsArray() as $index => $namespace) {
+	foreach ($id->getFullNSAsArray() as $namespace) { 
 		$title = pw_s2e(utf8_ucfirst($namespace)).$sep.$title;
 	}
 	

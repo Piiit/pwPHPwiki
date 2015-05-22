@@ -57,6 +57,7 @@ class EditModule extends Module implements ModuleHandler, JavaScriptProvider, Pe
 			$data = FileTools::setTextFileFormat($data, new TextFileFormat(TextFileFormat::UNIX));
 			$this->save($id, $data);
 		} elseif (file_exists($filename)) {
+			TestingTools::debug("exists");
 			$data = file_get_contents($filename);
 			$data = FileTools::setTextFileFormat($data, new TextFileFormat(TextFileFormat::UNIX));
 		} else {
@@ -95,7 +96,7 @@ class EditModule extends Module implements ModuleHandler, JavaScriptProvider, Pe
 			FileTools::createFolderIfNotExist($dirname);
 			$data = FileTools::setTextFileFormat($data, new TextFileFormat(TextFileFormat::UNIX));
 			if(file_put_contents($filename, $data) === false) {
-				throw new Exception("Can not save '".$id->getIDAsHtmlEntities()."'");
+				throw new Exception("Can not save '".$id->getIDAsHtmlEntities()."'. <br />Details: ".error_get_last()["message"]);
 			}
 			if(pw_wiki_getcfg("useCache")) {
 				pw_wiki_create_cached_page($id);
@@ -105,7 +106,7 @@ class EditModule extends Module implements ModuleHandler, JavaScriptProvider, Pe
 			}
 		} catch (Exception $e) {
 			$this->setNotification($e->getMessage(), Module::NOTIFICATION_ERROR);
-			TestingTools::informPrintNewline($e->getTraceAsString());
+			TestingTools::inform($e->getTraceAsString());
 		}
 	
 	}

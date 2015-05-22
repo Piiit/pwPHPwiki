@@ -15,13 +15,11 @@
   const NOTIFICATION_DELAY_MINIMUM = 1500; //in ms
   const NOTIFICATION_DELAY_PER_LETTER = 30;
   const DEFAULT_LANGUAGE = "en";
-  
-  $WIKIDEFAULTCONFIG = array ( 
-			"debug"    	=> false,
- 		    "useCache"	=> false,
-    		"login"	 	=> array('group' => 'users', 'user' => 'guest'),
-            "wikititle" => "piwo",
-            "titledesc" => PIWOVERSION
-            );
+  const DEFAULT_DEBUG = false;
+  const DEFAULT_USECACHE = false;
+  const DEFAULT_LOGIN_GROUP = 'users';
+  const DEFAULT_LOGIN_USER = 'guest';
+  const DEFAULT_WIKITITLE = 'piwo';
+  const DEFAULT_WIKITITLE_DESCRIPTION = PIWOVERSION;
 
 ?>

@@ -1,4 +1,4 @@
-= ~~TEXT:ucfirst|{{ID}}~~ =
+= ~~TEXT:ucfirst|{{PAGE}}~~ =
 ^ Was es ist                                    ^ Was du schreibst                                                      ^ Wie es dargestellt wird 
 | fett                                          | ''%%**fett**%%''                                                      | **fett**                                                  
 | kursiv                                        | ''%%//kursiv//%%''                                                    | //kursiv//                                                

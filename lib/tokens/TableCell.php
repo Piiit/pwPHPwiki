@@ -16,7 +16,6 @@ class TableCell extends ParserRule implements ParserRuleHandler, LexerRuleHandle
 	
 	public function onEntry() {
 		$o = "";
-  		$chid = $this->getNode()->getChildIndex();
   		$rowspan = self::getRowspanText($this->getNode());
   		$colspan = self::getColspanText($this->getNode());
 

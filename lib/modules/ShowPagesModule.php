@@ -35,14 +35,26 @@ class ShowPagesModule extends Module implements ModuleHandler, MenuItemProvider 
 				// TODO: falls neue Datei bereits existiert ??? Fehler melden... Benutzereingabe fordern!
 			}
 			$fileOrDir = utf8_strtolower($fileOrDir);
-			$fileOrDir = pw_u2t($fileOrDir);
 
-			if (is_dir($fileOrDir)) {
-				$dirs[] = array('NAME' => FileTools::basename($fileOrDir), 'TYPE' => "DIR");
-			} else {
-				$files[] = array('NAME' => FileTools::basename($fileOrDir, ".txt"), 'TYPE' => "TEXT", 'SIZE' => filesize($fileOrDir), 'MODIFIED' => filemtime($fileOrDir));
+			if(!is_readable($fileOrDir)) {
+				throw new Exception("File '".$fileOrDir."' is not readable. Can not execute module '".$this->getName()."'.");
 			}
-
+				
+			if (is_dir($fileOrDir)) {
+				$dirs[] = array(
+							'NAME' => FileTools::basename(pw_s2e($fileOrDir)), 
+							'TYPE' => "DIR",
+							'SPECIALCHAR' => (pw_s2e($fileOrDir) != $fileOrDir)
+							);
+			} else {
+				$files[] = array(
+						'NAME' => FileTools::basename(pw_s2e($fileOrDir), ".txt"),
+						'TYPE' => "TEXT",
+						'SIZE' => filesize($fileOrDir),
+						'MODIFIED' => filemtime($fileOrDir),
+						'SPECIALCHAR' => (pw_s2e($fileOrDir) != $fileOrDir)
+				);
+			}
 		}
 	
 		sort($dirs);
@@ -55,14 +67,25 @@ class ShowPagesModule extends Module implements ModuleHandler, MenuItemProvider 
 
 		foreach (array_merge($dirs, $files) as $fileOrDir) {
 
-			//Do not show default namespace pages and template folders.
+			/*
+			 * Do not show default namespace pages and template folders.
+			 */
 			if(($fileOrDir['NAME'] == WIKINSDEFAULTPAGE && $fileOrDir['TYPE'] == "TEXT") ||
 			   ($fileOrDir['NAME'] == trim(WIKITEMPLATESNS, ":")) && $fileOrDir['TYPE'] == "DIR") {
 				continue;
 			}
+			
+			/*
+			 * Build the file and directory table, first dirs, then files.
+			 */
 			$out .= "<tr style='height: 40px'>";
+			$encDisplayName = $fileOrDir['SPECIALCHAR'] ? $fileOrDir['NAME'] : pw_s2e($fileOrDir['NAME']);
+			$encID = $fileOrDir['SPECIALCHAR'] ? pw_u2t($fileOrDir['NAME']) : $fileOrDir['NAME'];
+			$encFullIDAsURL = pw_s2url($id->getFullNS().$encID);
 			if ($fileOrDir['TYPE'] == "TEXT") {
-				$out .= "<td><small>[TXT]</small> <a href='?id=".pw_s2url($id->getFullNS().$fileOrDir['NAME'])."'>".pw_s2e($fileOrDir['NAME'])."</a></td>";
+				$out .= "<td><small>[TXT]</small> <a href='?id=".$encFullIDAsURL."'>";
+				$out .= $encDisplayName;
+				$out .= "</a></td>";
 				$out .= "<td style='text-align: right'><tt>".StringTools::showReadableFilesize($fileOrDir['SIZE'], 2, false)."</tt></td>";
 				$out .= "<td style='text-align: right'>".date("d.m.Y H:i", $fileOrDir['MODIFIED'])."</td>";
 			} else {
@@ -73,21 +96,22 @@ class ShowPagesModule extends Module implements ModuleHandler, MenuItemProvider 
 
 			$out .= "<td style='padding-left: 20px'>";
 	
+			
 			if ($fileOrDir['TYPE'] == "TEXT") {
 				if (pw_wiki_getcfg('login', 'group') == 'admin') {
-					$out .= "<a href='?id=".pw_s2url($id->getFullNS().$fileOrDir['NAME'])."&mode=edit'>Edit</a> | ";
-					$out .= "<a href='?id=".pw_s2url($id->getFullNS().$fileOrDir['NAME'])."&mode=deletepage'>Delete</a> | ";
-					$out .= "<a href='?id=".pw_s2url($id->getFullNS().$fileOrDir['NAME'])."&mode=rename'>Rename</a> | ";
-					$out .= "<a href='?id=".pw_s2url($id->getFullNS().$fileOrDir['NAME'])."&mode=move'>Move</a>";
+					$out .= "<a href='?id=".$encFullIDAsURL."&mode=edit'>Edit</a> | ";
+					$out .= "<a href='?id=".$encFullIDAsURL."&mode=deletepage'>Delete</a> | ";
+					$out .= "<a href='?id=".$encFullIDAsURL."&mode=rename'>Rename</a> | ";
+					$out .= "<a href='?id=".$encFullIDAsURL."&mode=move'>Move</a>";
 				} else {
-					$out .= "<a href='?id=".pw_s2url($id->getFullNS().$fileOrDir['NAME'])."&mode=showsource'>Show Source</a>";
+					$out .= "<a href='?id=".$encFullIDAsURL."&mode=showsource'>Show Source</a>";
 				}
 			} else {
 				if ($fileOrDir['NAME'] != '..') {
 					if (pw_wiki_getcfg('login', 'group') == 'admin') {
-						$out .= "<a href='?id=".pw_s2url($id->getFullNS().$fileOrDir['NAME'].":")."&mode=deletenamespace'>Delete</a> | ";
-						$out .= "<a href='?id=".pw_s2url($id->getFullNS().$fileOrDir['NAME'].":")."&mode=rename'>Rename</a> | ";
-						$out .= "<a href='?id=".pw_s2url($id->getFullNS().$fileOrDir['NAME'].":")."&mode=move'>Move</a>";
+						$out .= "<a href='?id=".$encFullIDAsURL.":"."&mode=deletenamespace'>Delete</a> | ";
+						$out .= "<a href='?id=".$encFullIDAsURL.":"."&mode=rename'>Rename</a> | ";
+						$out .= "<a href='?id=".$encFullIDAsURL.":"."&mode=move'>Move</a>";
 					}
 				}
 			}
