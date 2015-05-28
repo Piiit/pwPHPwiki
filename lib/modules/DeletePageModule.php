@@ -49,7 +49,7 @@ class DeletePageModule extends Module implements ModuleHandler, PermissionProvid
 			return;
 		}
 
-		$out = StringTools::htmlIndent("<a href='?id=".$id->getIDAsUrl()."'>&laquo; Back</a><hr />");
+// 		$out = StringTools::htmlIndent("<a href='?id=".$id->getIDAsUrl()."'>&laquo; Back</a><hr />");
 		
 		if($id->getPage() == "") {
 			$filename = WIKISTORAGE.$id->getPath().WIKINSDEFAULTPAGE.WIKIFILEEXT;

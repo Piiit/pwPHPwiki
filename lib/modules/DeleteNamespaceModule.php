@@ -59,7 +59,7 @@ class DeleteNamespaceModule extends Module implements ModuleHandler, PermissionP
 			return;
 		}
 
-		$out = StringTools::htmlIndent("<a href='?id=".$id->getIDAsUrl()."'>&laquo; Back</a><hr />");
+// 		$out = StringTools::htmlIndent("<a href='?id=".$id->getIDAsUrl()."'>&laquo; Back</a><hr />");
 		$this->setDialog(GuiTools::dialogQuestion("Delete", "Do you want to delete the namespace '".$id->getFullNSAsHtmlEntities()."'?", "delete", "Yes", "cancel", "No", "id=".$id->getIDAsUrl()."&mode=$mode"));
 	}
 	

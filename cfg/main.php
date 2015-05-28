@@ -22,4 +22,18 @@
   const DEFAULT_WIKITITLE = 'piwo';
   const DEFAULT_WIKITITLE_DESCRIPTION = PIWOVERSION;
 
+  //TODO Remove this global variables...
+  $WIKIDEFAULTCONFIG = array (
+  		"debug"    	=> DEFAULT_DEBUG,
+  		"useCache"	=> DEFAULT_USECACHE,
+  		"login"	 	=> array(
+  			'group' => DEFAULT_LOGIN_GROUP, 
+  			'user'  => DEFAULT_LOGIN_USER
+  		),
+  		"wikititle" => DEFAULT_WIKITITLE,
+  		"titledesc" => DEFAULT_WIKITITLE_DESCRIPTION
+  );
+  
+  // Keep PHP warnings quite...
+  $WIKIDEFAULTCONFIG;
 ?>

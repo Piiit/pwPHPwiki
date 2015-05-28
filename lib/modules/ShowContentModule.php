@@ -43,7 +43,9 @@ class ShowContentModule extends Module implements ModuleHandler {
 		} else {
 			$wikitext = pw_wiki_showcontent(new WikiID(WIKITEMPLATESNS."notfound"));
 		}
-		$body = file_get_contents(CFG_PATH."skeleton/wiki.html");
+		
+		//TODO make template filenames and paths configurable...
+		$body = file_get_contents(CFG_PATH."skeleton/wiki.tmpl");
 		
 // 		TestingTools::inform($wikitext);
 		$body = str_replace("{{wikitext}}", $wikitext, $body);
