@@ -1,5 +1,66 @@
-= piwo-Syntax Handbuch =
+= Wiki Syntax Manual =
+ 
+<left>
+<border>
+; [[Text formatting]]
+: This page describes how you can format text. 
+: Example: **bold**, //italic//, <em>emphasized</em>, ...
+</border>
+<border>
+; [[Lists]]
+: This page describes how you can create lists.
+: Example: {{{
+* Unordered list
 
-
-
-~~NSTOC|manual|TITLE~~
+# Ordered list
+usw.
+}}}
+</border>
+<border>
+; [[Alignment]]
+: This page describes how you can align text and other things.
+: Example: Left, right, center, block, indentation, ...
+</border>
+<border>
+; [[Tables]]
+: This page describe how you can create tables (similar to [http://www.dokuwiki.org/syntax#tables Dokuwiki-Tables], without alignment).
+: Example: {{{
+| One | Two | Three
+}}}
+</border>
+<border>
+; [[Special]]
+: This page describe several special command, e.g., horizontal lines, footnotes, variables, constants, ...
+: Example: {{{
+This is a...
+----
+...horizontal line.
+}}}
+</border>
+</left>
+<right>
+<border>
+; [[Headers]]
+: This page describes how you can create headers and define a table of content.
+: Example: {{{
+===== Header of level 5 =====
+}}}
+</border>
+<border>
+; [[Hyperlinks]]
+: This page describes how you can link internal and external sources.
+: Example: [[{{startpage}}|Startpage]], [http://www.wikipedia.org], ...
+</border>
+<border>
+; [[Sections]]
+: This page describes how you can draw different boxes with colorful backgrounds and comments inside your wiki source code.
+: Example: {{{
+<code>Box for Programmcode</code>
+}}}
+</border>
+<border>
+; [[Symbols]]
+: This page describes how you can include symbols and special characters in your wiki text.
+: Example: Symbols of cards &rarr; &#9824; &#9827; &#9829; &#9830;
+</border>
+</right>

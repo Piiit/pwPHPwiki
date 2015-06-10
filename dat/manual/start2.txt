@@ -1,20 +1,4 @@
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 = Einfache Tabellen =
 $$ ^ Heading 1      ^ Heading 3                           ^^ heading 4   ^
 $$ | Row 1 Col 1    | Row 1 Col 2     | Row 1 Col 3        | row 1 col 4 |

@@ -16,6 +16,8 @@ Strangely liberate the mind.
 
 :>> James Falen
 
+[[:manual:_index|Wiki Syntax Manual]]
+
 
 ----
 :> <lo>

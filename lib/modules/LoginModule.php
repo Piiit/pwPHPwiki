@@ -35,11 +35,23 @@ class LoginModule extends Module implements ModuleHandler, MenuItemProvider {
 			$pass = $_POST["password"];
 
 			if (WIKIADMINUSER == $login && WIKIADMINPASSWORD == $pass) {
-				pw_wiki_setcfg('login', array('user' => $login, 'group' => 'admin'));
+				pw_wiki_setcfg(
+					'login', 
+					array(
+						'user' => $login, 
+						'group' => 'admin'
+					)
+				);
 				$this->setNotification("Login successful!");
 				return;
 			} else { 
-				pw_wiki_setcfg('login', array('user' => 'guest', 'group' => 'users'));
+				pw_wiki_setcfg(
+					'login', 
+					array(
+						'user' => 'guest', 
+						'group' => 'users'
+					)
+				);
 				$this->setNotification("Login failed!", Module::NOTIFICATION_ERROR);
 			}
 		}
@@ -51,14 +63,31 @@ class LoginModule extends Module implements ModuleHandler, MenuItemProvider {
 		}
 	
 		if (pw_wiki_getcfg('login', 'group') == 'admin') {
-			$this->setDialog(GuiTools::dialogQuestion("Logout", "Do you want to logout?", "logout", "Yes", "cancel", "No", "id=".$id->getIDAsUrl()."&mode=$mode"));
+			$this->setDialog(
+				GuiTools::dialogQuestion(
+					"Logout", "Do you want to logout?", 
+					"logout", "Yes", 
+					"cancel", "No", 
+					"id=".$id->getIDAsUrl()."&mode=$mode"
+				)
+			);
 			return;
 		}
 	
-		$out = StringTools::htmlIndent("<a href='?id=".$id->getIDAsUrl()."'>&laquo; Back</a><hr />");
-		$entries = GuiTools::textInput("User", "username");
-		$entries .= GuiTools::passwordInput("Password", "password");
-		$this->setDialog($out.GuiTools::dialogQuestion("Login", $entries, "login", "OK", "cancel", "Cancel", "id=".$id->getIDAsUrl()."&mode=$mode"));
+		$this->setDialog(
+			StringTools::htmlIndent(
+				"<a href='?id=".$id->getIDAsUrl()."'>&laquo; Back</a>".
+				"<hr />"
+			) .
+			GuiTools::dialogQuestion(
+				"Login", 
+				GuiTools::textInput("User", "username") .
+				GuiTools::passwordInput("Password", "password"),
+				"login", "OK", 
+				"cancel", "Cancel", 
+				"id=".$id->getIDAsUrl()."&mode=$mode"
+			)
+		);
 	}
 
 	//TODO how to return a non-link string?
@@ -66,7 +95,7 @@ class LoginModule extends Module implements ModuleHandler, MenuItemProvider {
 		if (pw_wiki_getcfg('login', 'group') == 'admin') {
 			$u = pw_wiki_getcfg('login', 'user');
 			return "Logout ($u)"; 
-		}
+		} 
 		return "Login";
 	}
 

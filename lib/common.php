@@ -113,22 +113,6 @@ function pw_wiki_getfulltitle($sep = " &laquo; ") {
 	return $title;
 }
 
-
-function pw_wiki_fileinfo($subcat) {
-	switch($subcat) {
-		case 'type':
-			// TODO use FileTools to get this file information...
-			$o = $_SESSION['pw_wiki']['file']['format'];
-		break;
-	}
-
-	return $o;
-}
-
-
-
-
-
 function pw_wiki_trace(WikiID $id, $sep = "&raquo;") {
 	
 	$ns = $id->getFullNS();
