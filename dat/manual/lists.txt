@@ -1,0 +1,57 @@
+= Listen =
+^ Was es ist ^ Was du schreibst                                      ^ Wie es dargestellt wird 
+| Nummerierte Liste | {{{
+$$ # Nummeriert
+$$  # Nummeriert Ebene 2
+$$   # Punkt in der 3. Ebene
+$$  # Zurück zur 2.
+$$  # Noch eines
+$$  # Abschluss
+}}} | {{{
+# Nummeriert
+ # Nummeriert Ebene 2
+  # Punkt in der 3. Ebene
+ # Zurück zur 2.
+ # Noch eines
+ # Abschluss
+}}}
+| Ungeordnete Liste | {{{
+$$ * Ungeordnet
+$$  * Ungeordnet 2
+$$   * Ungeordnet 3
+$$    * Ungeordnet 4
+}}} | {{{
+* Ungeordnet
+ * Ungeordnet 2
+  * Ungeordnet 3
+   * Ungeordnet 4
+}}}
+| Definitionsliste | {{{
+$$ ; Definitionsliste 
+$$ : Eine Definition 
+$$ : Eine andere Definition 
+$$ ; Begriff 
+$$ : Definition des Begriffs 
+}}} | {{{
+; Definitionsliste
+: Eine Definition
+: Eine andere Definition
+; Begriff
+: Definition des Begriffs
+}}} 
+| Definitionsliste (verschachtelt) | {{{
+Definitionslisten verschachtelt man mit Multilines: ''%%{{{...}}}%%''
+$$ ; Das Haus : {{{
+$$ hat ein 
+$$ ; Fenster : aus Glas
+$$ ; eine Tür : aus Holz
+$$ ; einen Kamin : aus Stein
+$$ }}}
+}}} | {{{
+; Das Haus : {{{
+hat ein 
+; Fenster : aus Glas
+; eine Tür : aus Holz
+; einen Kamin : aus Stein
+}}}
+}}}

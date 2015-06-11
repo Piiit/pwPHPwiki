@@ -1,0 +1,47 @@
+{{toc}}
+
+= {{text.ucfirst|{{PAGE}}}} =
+^ What it is                                   ^ What do you write                                                      ^ How does it look 
+| bold                                          | ''%%**bold**%%''                                                      | **bold**                                                  
+| italic                                        | ''%%//italic//%%''                                                    | //italic//                                                
+| underline                                 | ''%%__underline__%%''                                             | __underline__                                         
+| monospace                   | ''%%''monospace''%%''                                           | ''monospace''                                       
+| Small font                                | ''%%--Small font--%%''                                            | --Small font--                                        
+| Big font                                 | ''%%++Big font++%%''                                             | ++Big font++                                         
+| Emphasized background\\--([[#Emphasized background|additional usage possibilities]])--             | ''%%<hi>Emphasized background</hi>%%''                          | <hi>Emphasized background</hi>                                         
+| Emphasized text                          | ''%%<em>Emphasized text</em>%%''                                 | <em>Emphasized text</em>                                         
+| Not important text                              | ''%%<lo>Not important text</lo>%%''                                     | <lo>Not important text</lo>                                         
+| crossed out                               | ''%%-+crossed out+-%%''                                           | -+crossed out+-                                      
+| subscript                                  | ''%%H_{2}O%%'' or ''%%H_{16}%%''                                    | H_{2}O or H_{16}                          
+| superscript                                  | ''%%dm^{3}%%'' or ''%%x^{-5}%%''                                    | dm^{3} or x^{-5}       
+| unformatted  (default)                      | ''%%<nowiki>**I am not fad!**</nowiki>%%''                      | <nowiki>**I am not fad!**</nowiki>
+| unformatted  (shortcut)            | ''<nowiki>%%**I am not fad!**%%</nowiki>''                      | %%**I am not fad!**%%
+| Horizontal line                             | ''%%This is a horizontal...%%''\\''%%----%%''\\''%%...line.%%''  | {{{ This is a horizontal...
+----
+...line. }}}
+
+== Emphasized background ==
+
+^ What it is ^ How does it look  ^ What do you write ^
+| Background\\without parameters (default) | {{{
+:> <hi>Default</hi>
+}}} | ''%%<hi>Default</hi>%%''
+| Parameters as text |  {{{
+:> <hi orange>Orange</hi>
+:> <hi blue>Blue</hi>
+:> <hi green>Green</hi>
+:> <hi red>Red</hi>
+:> <hi yellow>Yellow</hi>
+}}} | ''%%<hi color-code>Text</hi>%%''\\''Color-code'' can be one of the following keywords: ''orange'', ''blue'', ''green'', ''red'' or ''yellow''.
+| Numerical parameters | {{{
+:> <hi 0>0=Orange</hi>
+:> <hi 1>1=Green</hi>
+:> <hi 2>2=Yellow</hi>
+:> <hi 3>3=Red</hi>
+:> <hi 4>4=Blue</hi>
+}}} | ''%%<hi X>Text</hi>%%''\\''X'' can be a number from ''0'' to ''4''.
+| How to create key tables?\\--(No text between tags, i.e., ''%%&nbsp;%%'')-- | {{{
+: <hi 3></hi> = Empty field
+: <hi 3>&nbsp;</hi> = Broader presentation
+}}} | ''%%<hi 3></hi> = Empty field%%''\\''%%<hi 3>&nbsp;</hi> = Broader presentation%%''
+

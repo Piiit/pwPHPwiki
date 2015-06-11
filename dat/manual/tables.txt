@@ -1,0 +1,66 @@
+= Tabellen =
+Schreibweise im Stil von [http://www.dokuwiki.org/syntax#tables Dokuwiki].
+
+^ Was du schreibst ^ Wie es aussieht ^ Beschreibung
+| {{{
+$$ | A | B
+$$ | C | D
+}}} | {{{
+| A | B
+| C | D
+}}} | Eine einfache Tabelle.
+| {{{
+$$ | A | B 
+$$ | C ||
+}}} | {{{
+| A | B 
+| C ||
+}}} | Tabellenzellen in horizontaler Richtung verbinden.\\Beachte den Doppelstrich (ohne Leerzeichen dazwischen) \\am Ende der Zelle C.
+| {{{
+$$ | A | B 
+$$ | C | |
+}}} | {{{
+| A | B 
+| C | |
+}}} | Eine leere Zelle entsteht, wenn zwischen einem \\begrenzenden Strich und dem nächsten Leerzeichen stehen.
+| {{{
+$$ | A   | B
+$$ | ::: | D
+}}} | {{{
+| A   | B
+| ::: | D
+}}} | Tabellenzellen in vertikaler Richtung verbinden.
+| {{{
+$$ ^ Kopf A ^ Kopf B 
+$$ | C      | D 
+}}} | {{{
+^ Kopf A ^ Kopf B
+| C      | D
+}}} | Eine Tabelle mit horizontalem Tabellenkopf.
+| {{{
+$$ ^ Kopf A ^ Kopf B
+$$ ^ Kopf C | D
+}}} | {{{
+^ Kopf A ^ Kopf B
+^ Kopf C | D
+}}} | Eine Tabelle mit horizontalem und vertikalem Tabellenkopf. 
+| {{{
+$$ |        ^ Kopf B
+$$ ^ Kopf C | D
+}}} | {{{
+| ^ Kopf B
+^ Kopf C | D
+}}} | Eine Tabelle mit einer leeren Zelle.
+| {{{
+$$ | A | B
+$$ | {{{
+$$ | 1 | 2
+$$ | 3 | 4
+$$ }}} | D
+}}} | {{{
+| A | B
+| {{{
+| 1 | 2
+| 3 | 4
+}}} | D
+}}} | Verschachtelte Tabellen:\\Eine Tabelle in einer anderen erzeugt man mit Multilines. ''%%{{{...}}}%%''
