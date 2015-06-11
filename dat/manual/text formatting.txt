@@ -1,5 +1,7 @@
 {{toc}}
 
+{{text.ucfirst|test}}
+
 = {{text.ucfirst|{{PAGE}}}} =
 ^ What it is                                   ^ What do you write                                                      ^ How does it look 
 | bold                                          | ''%%**bold**%%''                                                      | **bold**                                                  
