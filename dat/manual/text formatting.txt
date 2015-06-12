@@ -2,7 +2,7 @@
 
 {{text.ucfirst|test}}
 
-= {{text.ucfirst|{{PAGE}}}} =
+= {{text.ucfirst|{{wiki.page}}}} =
 ^ What it is                                   ^ What do you write                                                      ^ How does it look 
 | bold                                          | ''%%**bold**%%''                                                      | **bold**                                                  
 | italic                                        | ''%%//italic//%%''                                                    | //italic//                                                

@@ -1,6 +1,6 @@
 <error>
 :> ++**Error**++
-:> The page '{{ID}}' does not exist.
+:> The page '{{wiki.id}}' does not exist.
 </error>
 
 Please choose...

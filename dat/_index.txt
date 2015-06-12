@@ -1,6 +1,6 @@
 <info>
 \\
-:> ++ **Welcome \\ ...to piwo {{version}}...**++
+:> ++ **Welcome \\ ...to piwo {{wiki.version}}...**++
 \\
 
 </info>
@@ -21,6 +21,6 @@ Strangely liberate the mind.
 
 ----
 :> <lo>
-&raquo; Piwo:Version **{{version}}** %%~~%% Wikisyntax:Version **0.1** %%~~%% Lexer:Version **{{lexerversion}}** &laquo;
+&raquo; Piwo:Version **{{wiki.version}}** %%~~%% Wikisyntax:Version **0.1** %%~~%% Lexer:Version **{{wiki.lexer.version}}** &laquo;
 </lo>
 ----

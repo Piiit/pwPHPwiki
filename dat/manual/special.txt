@@ -7,7 +7,7 @@
 == Übersicht ==
 
 ^ Was es ist           ^ Was du schreibst                                                      ^ Wie es dargestellt wird 
-| [[#Konstanten]]      | ''%%{{Name der Konstante}}%%''\\Bsp.: ''%%{{version}}%%''   | Bsp.: {{version}}
+| [[#Konstanten]]      | ''%%{{Name der Konstante}}%%''\\Bsp.: ''%%{{wiki.version}}%%''   | Bsp.: {{wiki.version}}
 | [[#Variablen]]       | Variable setzen: ''%%!! Name = Wert%%'' oder ''%%{{Name = Wert}}%%'' \\ Variable ausgeben: ''%%{{Name der Variable}}%%'' | {{{
 $$ !! x = 3.5
 $$ {{y = 0}}
@@ -30,24 +30,24 @@ x={{x}}, y={{y}}
 : ''%%{{Name der Konstante|Parameter1|Parameter2|...}}%%'' Parameter werden durch ''|'' voneinander getrennt.
 
 ^ Kategorie             ^ Was es ist                                      ^ Was du schreibst                             ^ Wie es dargestellt wird
-^ Mathematik            | Kreiszahl Pi                                    | ''%%{{PI}}%%''                               | {{PI}}
-^ :::                   | Eulersche Zahl                                  | ''%%{{E}}%%''                                | {{E}}
-^ Datum                 | Tag (Name, in Zahlen)                           | ''%%{{DAYNAME}}%%''\\''%%{{DAY}}%%''         | {{DAYNAME}}\\{{DAY}}
-^ :::                   | Monat (Name, in Zahlen)                         | ''%%{{MONTHNAME}}%%''\\''%%{{MONTH}}%%''     | {{MONTHNAME}}\\{{MONTH}}
-^ :::                   | Jahr                                            | ''%%{{YEAR}}%%''                             | {{YEAR}}
-^ :::                   | Das aktuelle Datum                              | ''%%{{DATE}}%%''                             | {{DATE}}
-^ Zeit                  | Die aktuelle Zeit                               | ''%%{{TIME}}%%''                             | {{TIME}}
-^ Wiki                  | Der Name der aktuellen Seite                    | ''%%{{PAGE}}%%''                             | {{PAGE}}
-^ :::                   | Der Namensraum der aktuellen Seite              | ''%%{{NS}}%%''                               | {{NS}}
-^ :::                   | Die vollständige ID der aktuellen Seite         | ''%%{{ID}}%%''                               | {{ID}}
-^ :::                   | Die aktuelle fehlerhafte ID (nur Ausgabe)       | ''%%{{WRONGID}}%%''                          | {{WRONGID}}\\//--(Falls noch keine fehlerhafte ID aufgerufen wurde, ist sie hier leer. Nützlich für Fehlermeldungen innerhalb eines Wikitextes.)--//
-^ :::                   | Untergeordnete Seiten dieses Namensraumes       | ''%%{{COUNTSUBS}}%%''                        | {{COUNTSUBS}}
-^ :::                   | Die Startseite der Wiki (siehe Konfiguration)   | ''%%{{STARTPAGE}}%%''                        | {{STARTPAGE}}
-^ Informationen         | Version von **piwo**                            | ''%%{{VERSION}}%%''                          | {{VERSION}}
-^ :::                   | Version des Lexers                              | ''%%{{LEXERVERSION}}%%''                     | {{LEXERVERSION}}
-^ :::                   | Geschwindigkeit des Lexers in Sekunden          | ''%%{{PERFORMANCE}}%%''                      | {{PERFORMANCE}}
-^ :::                   | Information zur Datei (je nach Unterkategorie)  | ''%%{{FILE:TYPE}}%%''                        | {{FILE:TYPE}}
-^ Pfadangabe            | URL des piwo-Wurzelverzeichnisses               | ''%%{{PATH}}%%''                             | {{PATH}}
+^ Mathematik            | Kreiszahl Pi                                    | ''%%{{math.pi}}%%''                               | {{math.pi}}
+^ :::                   | Eulersche Zahl                                  | ''%%{{math.e}}%%''                                | {{math.e}}
+^ Datum                 | Tag (Name, in Zahlen)                           | ''%%{{date.DAYNAME}}%%''\\''%%{{date.DAY}}%%''         | {{date.DAYNAME}}\\{{date.DAY}}
+^ :::                   | Monat (Name, in Zahlen)                         | ''%%{{date.MONTHNAME}}%%''\\''%%{{date.MONTH}}%%''     | {{date.MONTHNAME}}\\{{date.MONTH}}
+^ :::                   | Jahr                                            | ''%%{{date.YEAR}}%%''                             | {{date.YEAR}}
+^ :::                   | Das aktuelle Datum                              | ''%%{{date.now}}%%''                             | {{date.now}}
+^ Zeit                  | Die aktuelle Zeit                               | ''%%{{date.TIME}}%%''                             | {{date.TIME}}
+^ Wiki                  | Der Name der aktuellen Seite                    | ''%%{{wiki.PAGE}}%%''                             | {{wiki.PAGE}}
+^ :::                   | Der Namensraum der aktuellen Seite              | ''%%{{wiki.NS}}%%''                               | {{wiki.NS}}
+^ :::                   | Die vollständige ID der aktuellen Seite         | ''%%{{wiki.ID}}%%''                               | {{wiki.ID}}
+^ :::                   | Die aktuelle fehlerhafte ID (nur Ausgabe)       | ''%%{{wiki.WRONGID}}%%''                          | {{wiki.WRONGID}}\\//--(Falls noch keine fehlerhafte ID aufgerufen wurde, ist sie hier leer. Nützlich für Fehlermeldungen innerhalb eines Wikitextes.)--//
+^ :::                   | Untergeordnete Seiten dieses Namensraumes       | ''%%{{wiki.ns.COUNTSUBS}}%%''                        | {{wiki.ns.COUNTSUBS}}
+^ :::                   | Die Startseite der Wiki (siehe Konfiguration)   | ''%%{{wiki.STARTPAGE}}%%''                        | {{wiki.STARTPAGE}}
+^ Informationen         | Version von **piwo**                            | ''%%{{wiki.VERSION}}%%''                          | {{wiki.VERSION}}
+^ :::                   | Version des Lexers                              | ''%%{{wiki.LEXER.VERSION}}%%''                     | {{wiki.LEXER.VERSION}}
+^ :::                   | Geschwindigkeit des Lexers in Sekunden          | ''%%{{wiki.lexer.PERFORMANCE}}%%''                      | {{wiki.lexer.PERFORMANCE}}
+^ :::                   | Information zur Datei (je nach Unterkategorie)  | ''%%{{wiki.FILE.TYPE}}%%''                        | {{wiki.FILE.TYPE}}
+^ Pfadangabe            | URL des piwo-Wurzelverzeichnisses               | ''%%{{wiki.file.PATH}}%%''                             | {{wiki.file.PATH}}
 
 == Variablen ==
 

@@ -1,2 +1,2 @@
 \\
-:>> <lo>Processed in {{PERFORMANCE}} seconds | File format: {{FILE:type}}</lo>
+:>> <lo>Processed in {{wiki.lexer.performance}} seconds | File format: {{wiki.file.type}}</lo>
