@@ -26,10 +26,12 @@ class ShowContentModule extends Module implements ModuleHandler {
 //  		TestingTools::inform("executingXXX: ".$id->getIDAsUrl());
 //  		TestingTools::inform(file_exists($filepath));
 
+
 		if($id->getPage() == WIKINSDEFAULTPAGE) {
 // 			TestingTools::inform($id);
 			header("Location: ?id=".$id->getFullNSAsUrl());
 		}
+		
 		
 		if($id->isNS()) {
 			$filepathNS = WIKISTORAGE.$id->getPath().WIKINSDEFAULTPAGE.WIKIFILEEXT;
@@ -43,10 +45,10 @@ class ShowContentModule extends Module implements ModuleHandler {
 		} else {
 			$wikitext = pw_wiki_showcontent(new WikiID(WIKITEMPLATESNS."notfound"));
 		}
-		
+			
 		//TODO make template filenames and paths configurable...
 		$body = file_get_contents(CFG_PATH."skeleton/wiki.tmpl");
-		
+			
 // 		TestingTools::inform($wikitext);
 		$body = str_replace("{{wikitext}}", $wikitext, $body);
 		$this->setDialog($body);

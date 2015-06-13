@@ -1,4 +1,4 @@
-<right alone><border>**Inhaltsverzeichnis:**\\{{TOC}}</border></right>
+<right alone><border>**Inhaltsverzeichnis:**\\{{wiki.TOC}}</border></right>
 
 = {{text.ucfirst|{{wiki.page}}}} =
 

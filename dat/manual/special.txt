@@ -1,7 +1,7 @@
 = Spezielle Befehle =
 
 <border>
-~~TOC~~
+{{wiki.TOC}}
 </border>
 
 == Übersicht ==
@@ -25,9 +25,9 @@ x={{x}}, y={{y}}
 : Konstanten können klein oder auch groß geschrieben werden.
 
 ; Schreibweise
-: ''%%{{Name der Konstante}}%%'' Einfache Notation ohne Unterkategorie oder Parameter.
-: ''%%{{Name der Konstante:Name der Unterkategorie}}%%'' Notation mit Unterkategorie (getrennt durch einen '':'')
-: ''%%{{Name der Konstante|Parameter1|Parameter2|...}}%%'' Parameter werden durch ''|'' voneinander getrennt.
+: ''%%{{plugin}}%%'' Einfache Notation ohne Unterkategorie oder Parameter.
+: ''%%{{plugin.ns1.ns2....nsn.method}}%%'' Notation mit Unterkategorien (getrennt durch einen ''.'')
+: ''%%{{plugin.ns1.ns2....nsn.method|Parameter1|Parameter2|...}}%%'' Parameter werden durch ''|'' voneinander getrennt.
 
 ^ Kategorie             ^ Was es ist                                      ^ Was du schreibst                             ^ Wie es dargestellt wird
 ^ Mathematik            | Kreiszahl Pi                                    | ''%%{{math.pi}}%%''                               | {{math.pi}}
@@ -39,6 +39,7 @@ x={{x}}, y={{y}}
 ^ Zeit                  | Die aktuelle Zeit                               | ''%%{{date.TIME}}%%''                             | {{date.TIME}}
 ^ Wiki                  | Der Name der aktuellen Seite                    | ''%%{{wiki.PAGE}}%%''                             | {{wiki.PAGE}}
 ^ :::                   | Der Namensraum der aktuellen Seite              | ''%%{{wiki.NS}}%%''                               | {{wiki.NS}}
+^ :::                   | Der Namensraum der aktuellen Seite              | ''%%{{wiki.NS.full}}%%''                               | {{wiki.NS.full}}
 ^ :::                   | Die vollständige ID der aktuellen Seite         | ''%%{{wiki.ID}}%%''                               | {{wiki.ID}}
 ^ :::                   | Die aktuelle fehlerhafte ID (nur Ausgabe)       | ''%%{{wiki.WRONGID}}%%''                          | {{wiki.WRONGID}}\\//--(Falls noch keine fehlerhafte ID aufgerufen wurde, ist sie hier leer. Nützlich für Fehlermeldungen innerhalb eines Wikitextes.)--//
 ^ :::                   | Untergeordnete Seiten dieses Namensraumes       | ''%%{{wiki.ns.COUNTSUBS}}%%''                        | {{wiki.ns.COUNTSUBS}}
@@ -83,14 +84,14 @@ Ausgabe: {{varö}}
 **Achtung:** Konstanten können nicht überschrieben werden...
 </warning>
 
-$$ Die aktuelle Seite heißt {{ID}}.
+$$ Die aktuelle Seite heißt {{wiki.ID}}.
 $$ !! ID = NEUE_ID 
 $$ Versuche die ID zu ändern... \\
-$$ Die aktuelle Seite heißt immer noch {{ID}}.
-Die aktuelle Seite heißt {{ID}}.
+$$ Die aktuelle Seite heißt immer noch {{wiki.ID}}.
+Die aktuelle Seite heißt {{wiki.ID}}.
 !! ID = NEUE_ID
 Versuche die ID zu ändern... \\
-Die aktuelle Seite heißt immer noch {{ID}}.
+Die aktuelle Seite heißt immer noch {{wiki.ID}}.
 
 === Fehler bei nicht gesetzten Variablen ===
 Nicht vorhandene Variablen werden wie folgt gekennzeichnet. \\
@@ -99,11 +100,11 @@ Nicht vorhandene Variablen werden wie folgt gekennzeichnet. \\
 == Fußnoten ==
 ; Schreibweise
 : Fußnoten in Textpassagen einfügen: ''%%((Text für Fußnote))%%''
-: Fußnoten als Liste ausgeben: ''%%~~FOOTNOTES~~%%''
+: Fußnoten als Liste ausgeben: ''%%{{wiki.FOOTNOTES}}%%''
 
 $$ Beispiel: Das ist ein Text((Text 1)) mit drei((Text 2)) Fußnoten((Text 3: der **letzte** Text)). \\
 $$ Fußnoten ausgeben...
 $$ ~~FOOTNOTES~~
 Beispiel: Das ist ein Text((Text 1)) mit drei((Text 2)) Fußnoten((Text 3: der **letzte** Text)). \\
 Fußnoten ausgeben...
-~~FOOTNOTES~~
+{{wiki.FOOTNOTES}}

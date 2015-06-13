@@ -4,4 +4,4 @@
 </info>
 [[tests:nstoc verzeichnis:1:2:3:nstoc-test|NSTOC Test]]
 ----
-~~NSTOC|tests|TITLE~~
+{{wiki.NS.TOC|tests|TITLE}}
