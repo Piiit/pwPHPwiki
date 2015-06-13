@@ -1,10 +1,10 @@
-<right alone><border>Inhaltsverzeichnis:\\~~TOC~~</border></right>
+<right alone><border>Inhaltsverzeichnis:\\{{wiki.TOC}}</border></right>
  
 = Hyperlinks =
 == Interne und externe Links ==
 Wiki-Links haben einen Namensraum, einen Namen, Kapitelnamen und optional einen Titel.\\
-Zum Beispiel liegt dieser Wikitext im Namespace ''{{NS}}'' (komplett: ''{{FULLNS}}'') und heißt ''{{PAGE}}''. \\ 
-Daraus ergibt sich die vollständige ID: ''{{ID}}''.
+Zum Beispiel liegt dieser Wikitext im Namespace ''{{wiki.NS}}'' (komplett: ''{{wiki.FULLNS}}'') und heißt ''{{wiki.PAGE}}''. \\ 
+Daraus ergibt sich die vollständige ID: ''{{wiki.ID}}''.
 
 ^ Was es ist ^ Was du schreibst ^ Wie es dargestellt wird 
 | Einfacher externer Link\\(Texterkennung, optional) | {{{
@@ -40,10 +40,10 @@ $$ Dieser Link ist...: [[Nicht vorhanden]]
 }}}
 | Adminfunktionen | {{{
 $$ Seite bearbeiten: [[edit>Ausrichtung]]
-$$ Die aktuelle Seite bearbeiten: [[edit>{{ID}}]]
+$$ Die aktuelle Seite bearbeiten: [[edit>{{wiki.ID}}]]
 }}} | {{{
 : [[edit>Ausrichtung]]
-: [[edit>{{ID}}]]
+: [[edit>{{wiki.ID}}]]
 }}}
 
 == Sprungbefehle ==

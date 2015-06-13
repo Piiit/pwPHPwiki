@@ -1,7 +1,3 @@
-{{toc}}
-
-{{text.ucfirst|test}}
-
 = {{text.ucfirst|{{wiki.page}}}} =
 ^ What it is                                   ^ What do you write                                                      ^ How does it look 
 | bold                                          | ''%%**bold**%%''                                                      | **bold**                                                  

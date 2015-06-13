@@ -1,5 +1,7 @@
-<right alone><border>**Inhaltsverzeichnis:**\\~~TOC~~</border></right>
-= ~~TEXT:ucfirst|{{ID}}~~ =
+<right alone><border>**Inhaltsverzeichnis:**\\{{TOC}}</border></right>
+
+= {{text.ucfirst|{{wiki.page}}}} =
+
 == Blocksatz ==
 $$ :<> {{{...}}}
 :<> {{{
