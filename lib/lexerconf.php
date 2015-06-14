@@ -1,10 +1,9 @@
 <?phpif (!defined('INC_PATH')) {
 	define ('INC_PATH', realpath(dirname(__FILE__).'/../../').'/');
 }
-require_once INC_PATH.'piwo-v0.2/lib/common.php';// require_once INC_PATH.'piwo-v0.2/lib/plugins/toc.php';
-require_once INC_PATH.'piwo-v0.2/cfg/main.php';require_once INC_PATH.'pwTools/parser/wiki/WikiTocTools.php';require_once INC_PATH.'pwTools/parser/wiki/WikiParser.php';require_once INC_PATH.'pwTools/parser/Lexer.php';require_once INC_PATH.'pwTools/tree/TreePrinter.php';
+require_once INC_PATH.'piwo-v0.2/lib/common.php';require_once INC_PATH.'piwo-v0.2/cfg/main.php';require_once INC_PATH.'piwo-v0.2/lib/wiki/WikiTocTools.php';require_once INC_PATH.'piwo-v0.2/lib/wiki/WikiParser.php';require_once INC_PATH.'pwTools/parser/Lexer.php';require_once INC_PATH.'pwTools/tree/TreePrinter.php';
 function parse($text, $forse_debug = true) {	// 	$pathToPlugins = INC_PATH."piwo-v0.2/lib/plugins";		//FIXME This are not plugins, but additional user-defined tokens -> rename!	$pathToPlugins = null;		$debugCatchedException = false; 
-	$wikiParser = new WikiParser($pathToPlugins);	$o = "";	$es = null;		try {		TestingTools::inform($text);		$wikiParser->setUserInfo('piwoversion', PIWOVERSION);		$wikiParser->parse($text);		$o = $wikiParser->getResult();	} catch (Exception $e) {		$debugCatchedException = true;		TestingTools::error("Exception catched! ERROR MESSAGE: ".pw_s2e(print_r($e->getMessage(), true)));		TestingTools::error("ERROR TRACE: \n".pw_s2e($e->getTraceAsString()));		$es = $e;	}		if ($debugCatchedException || $forse_debug) {			TestingTools::inform("LEXER: ".$wikiParser->getLexer(), TestingTools::NOTYPEINFO);
+	$wikiParser = new WikiParser($pathToPlugins);	$o = "";	$es = null;		try {		$wikiParser->parse($text);		$o = $wikiParser->getResult();	} catch (Exception $e) {		$debugCatchedException = true;		TestingTools::error("Exception catched! ERROR MESSAGE: ".pw_s2e(print_r($e->getMessage(), true)));		TestingTools::error("ERROR TRACE: \n".pw_s2e($e->getTraceAsString()));		$es = $e;	}		if ($debugCatchedException || $forse_debug) {			TestingTools::inform("LEXER: ".$wikiParser->getLexer(), TestingTools::NOTYPEINFO);
 		TestingTools::debug ( "PATTERN TABLE: \n" . $wikiParser->getLexer ()->getPatternTableAsString () );		
 		$treePrinter = new TreeWalker ( $wikiParser->getLexer ()->getRootNode (), new TreePrinter () );
 		TestingTools::inform ( "PARSE TREE: \n" . StringTools::showLineNumbers ( $treePrinter->getResult () ) );
