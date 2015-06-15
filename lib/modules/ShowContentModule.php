@@ -1,11 +1,5 @@
 <?php
 
-if (!defined('INC_PATH')) {
-	define ('INC_PATH', realpath(dirname(__FILE__).'/../../').'/');
-}
-require_once INC_PATH.'piwo-v0.2/lib/modules/ModuleHandler.php';
-require_once INC_PATH.'piwo-v0.2/lib/modules/Module.php';
-
 class ShowContentModule extends Module implements ModuleHandler {
 	
 	public function __construct() {
@@ -21,7 +15,7 @@ class ShowContentModule extends Module implements ModuleHandler {
 	}
 
 	public function execute() {
-		$id = pw_wiki_getid();
+		$id = WikiTools::getCurrentID();
 		$filepath = WIKISTORAGE.$id->getPath().WIKIFILEEXT;
 //  		TestingTools::inform("executingXXX: ".$id->getIDAsUrl());
 //  		TestingTools::inform(file_exists($filepath));
@@ -36,14 +30,14 @@ class ShowContentModule extends Module implements ModuleHandler {
 		if($id->isNS()) {
 			$filepathNS = WIKISTORAGE.$id->getPath().WIKINSDEFAULTPAGE.WIKIFILEEXT;
 			if(file_exists($filepathNS)) {
-				$wikitext = pw_wiki_showcontent(new WikiID($id->getFullNS().WIKINSDEFAULTPAGE));
+				$wikitext = pw_wiki_get_parsed_file(new WikiID($id->getFullNS().WIKINSDEFAULTPAGE));
 			} else {
-				$wikitext = pw_wiki_showcontent(new WikiID(WIKITEMPLATESNS."namespace"));
+				$wikitext = pw_wiki_get_parsed_file(new WikiID(WIKITEMPLATESNS."namespace"));
 			}
 		} elseif (file_exists($filepath)) {
-			$wikitext = pw_wiki_showcontent($id);
+			$wikitext = pw_wiki_get_parsed_file($id);
 		} else {
-			$wikitext = pw_wiki_showcontent(new WikiID(WIKITEMPLATESNS."notfound"));
+			$wikitext = pw_wiki_get_parsed_file(new WikiID(WIKITEMPLATESNS."notfound"));
 		}
 			
 		//TODO make template filenames and paths configurable...

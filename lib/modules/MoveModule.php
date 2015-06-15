@@ -1,13 +1,5 @@
 <?php
 
-if (!defined('INC_PATH')) {
-	define ('INC_PATH', realpath(dirname(__FILE__).'/../../').'/');
-}
-require_once INC_PATH.'piwo-v0.2/lib/modules/ModuleHandler.php';
-require_once INC_PATH.'piwo-v0.2/lib/modules/Module.php';
-require_once INC_PATH.'pwTools/gui/GuiTools.php';
-require_once INC_PATH.'pwTools/data/ArrayTools.php';
-
 class MoveModule extends Module implements ModuleHandler, PermissionProvider, MenuItemProvider {
 
 	public function __construct() {
@@ -33,8 +25,8 @@ class MoveModule extends Module implements ModuleHandler, PermissionProvider, Me
 			return;
 		}
 	
-		$mode = pw_wiki_getmode();
-		$id = pw_wiki_getid();
+		$mode = WikiTools::getCurrentMode();
+		$id = WikiTools::getCurrentID();
 	
 		if (isset($_POST["move"])) {
 			try {

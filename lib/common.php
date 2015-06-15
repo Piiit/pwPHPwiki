@@ -1,25 +1,5 @@
 <?php
 
-if (!defined('INC_PATH')) {
-	define ('INC_PATH', realpath(dirname(__FILE__).'/../../').'/');
-}
-require_once INC_PATH.'pwTools/string/encoding.php';
-require_once INC_PATH.'pwTools/string/StringTools.php';
-require_once INC_PATH.'pwTools/debug/TestingTools.php';
-require_once INC_PATH.'pwTools/wiki/WikiID.php';
-
-function pw_wiki_getid() {
-	$id = ":".WIKINSDEFAULTPAGE;
-	if(isset($_GET['id']) && $_GET['id'] != "") {
-		$id = $_GET['id'];
-	}
-	return new WikiID($id);
-}
-
-function pw_wiki_getmode() {
-	return isset($_GET['mode']) ? $_GET['mode'] : null;
-}
-
 function pw_wiki_getcfg($what = "", $subcat = "") {
 	
 	if (!is_array($_SESSION['pw_wiki'])) {
@@ -93,24 +73,6 @@ function pw_wiki_file2editor($data) {
 	$data = FileTools::setTextFileFormat($data, new TextFileFormat(TextFileFormat::UNIX));
 	$data = pw_s2e($data);
 	return $data;
-}
-
-
-//TODO Put pw_wiki_getfulltitle to WikiID, getFullPath or similar... 
-//TODO WikiID: add getRealPageName that returns also WIKINSDEFAULTPAGEs etc. correctly!
-function pw_wiki_getfulltitle($sep = " &laquo; ") {
-	$id = pw_wiki_getid();
-	$title = "";
-	foreach ($id->getFullNSAsArray() as $namespace) { 
-		$title = pw_s2e(utf8_ucfirst($namespace)).$sep.$title;
-	}
-	
-	if(!$id->isNS() && $id->getPage() != WIKINSDEFAULTPAGE) {
-		$title = pw_s2e(utf8_ucfirst($id->getPage())).$sep.$title;
-	}
-	
-	$title .= pw_s2e(utf8_ucfirst(pw_wiki_getcfg('wikititle')));
-	return $title;
 }
 
 function pw_wiki_trace(WikiID $id, $sep = "&raquo;") {

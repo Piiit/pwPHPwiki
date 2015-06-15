@@ -21,7 +21,7 @@ class InternalLink extends ParserRule implements ParserRuleHandler, LexerRuleHan
 	
 			$linkPositionNode = $node->getFirstChild();
 			$linkPositionText = $this->getTextFromNode($linkPositionNode);
-			$curID = pw_wiki_getid();
+			$curID = WikiTools::getCurrentID();
 				
 			/*
 			 * This is the first char of the linkPositionText, it is a look 

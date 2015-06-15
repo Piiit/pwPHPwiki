@@ -1,10 +1,5 @@
 <?php
 
-if (!defined('INC_PATH')) {
-	define ('INC_PATH', realpath(dirname(__FILE__).'/../../').'/');
-}
-require_once INC_PATH.'piwo-v0.2/lib/wiki/WikiPluginHandler.php';
-
 class PluginWiki implements WikiPluginHandler {
 	
 	public function getPluginName() {
@@ -49,7 +44,7 @@ class PluginWiki implements WikiPluginHandler {
 	      		$out = $parser->getUserInfo('wiki.version'); 
 	      	break;
 			case 'page':
-				$id = pw_wiki_getid();
+				$id = WikiTools::getCurrentID();
 				$out = pw_url2u($id->getPage()); 
 			break;
 			case 'wrongid':
@@ -61,7 +56,7 @@ class PluginWiki implements WikiPluginHandler {
 				} 
 			break;
 			case 'id':
-				$id = pw_wiki_getid(); 
+				$id = WikiTools::getCurrentID(); 
 				$out = pw_url2u($id->getID()); 
 			break;
 			case 'startpage': 
@@ -103,7 +98,7 @@ class PluginWiki implements WikiPluginHandler {
 	function categoryTrace ($cat, Node $node, Parser $parser) {
 		$sep = ' &raquo; ';
 	
-		$id = pw_wiki_getid();
+		$id = WikiTools::getCurrentID();
 	
 		if($id->getID() == ":".WIKINSDEFAULTPAGE || $id->getID() == ":") {
 			$out = "Home";
@@ -189,7 +184,7 @@ class PluginWiki implements WikiPluginHandler {
 		 * Default handling, no subcategory set: Return the namespace name.
 		 */
 		if(! isset($cat[0])) {
-			$id = pw_wiki_getid();
+			$id = WikiTools::getCurrentID();
 			$out = pw_url2u($id->getNS());
 			$out = pw_s2e($out);
 			return $out;
@@ -208,7 +203,7 @@ class PluginWiki implements WikiPluginHandler {
 				return $out;
 			break;
 			case 'full':
-				$id = pw_wiki_getid();
+				$id = WikiTools::getCurrentID();
 				$out = pw_url2u($id->getFullNS());
 				$out = pw_s2e($out);
 				return $out;
@@ -232,7 +227,7 @@ class PluginWiki implements WikiPluginHandler {
 		} catch (Exception $e) {
 			return nop("Syntax error: ".$e->getMessage());
 		}
-		$curID = pw_wiki_getid();
+		$curID = WikiTools::getCurrentID();
 	
 		//TODO errors should bubble up
 		//TODO Title should be of the form TITLE=string...

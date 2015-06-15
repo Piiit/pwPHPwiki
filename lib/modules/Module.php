@@ -1,7 +1,6 @@
 <?php
 
 //TODO setNextID, setNextMode to direct module execution.
-
 class Module {
 	
 	const NOTIFICATION_INFO = 0;

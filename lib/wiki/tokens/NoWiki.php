@@ -1,13 +1,5 @@
 <?php
 
-if (!defined('INC_PATH')) {
-	define ('INC_PATH', realpath(dirname(__FILE__).'/../../').'/');
-}
-require_once INC_PATH.'pwTools/parser/LexerRuleHandler.php';
-require_once INC_PATH.'pwTools/parser/ParserRuleHandler.php';
-require_once INC_PATH.'pwTools/parser/ParserRule.php';
-require_once INC_PATH.'pwTools/parser/Pattern.php';
-
 class NoWiki extends ParserRule implements ParserRuleHandler, LexerRuleHandler {
 	
 	public function getName() {

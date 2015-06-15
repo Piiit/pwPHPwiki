@@ -1,12 +1,5 @@
 <?php
 
-if (!defined('INC_PATH')) {
-	define ('INC_PATH', realpath(dirname(__FILE__).'/../../').'/');
-}
-require_once INC_PATH.'piwo-v0.2/lib/modules/ModuleHandler.php';
-require_once INC_PATH.'piwo-v0.2/lib/modules/Module.php';
-require_once INC_PATH.'pwTools/gui/GuiTools.php';
-
 class NewPageModule extends Module implements ModuleHandler, PermissionProvider, MenuItemProvider {
 	
 	public function __construct() {
@@ -36,8 +29,8 @@ class NewPageModule extends Module implements ModuleHandler, PermissionProvider,
 			header("Location: index.php?mode=edit&id=".pw_s2url($_POST["id"]));
 		}
 		
-		$id = pw_wiki_getid();
-		$mode = pw_wiki_getmode();
+		$id = WikiTools::getCurrentID();
+		$mode = WikiTools::getCurrentMode();
 		
 		$out = StringTools::htmlIndent("<a href='?id=".$id->getIDAsUrl()."'>&laquo; Back</a><hr />");
 		$entries = "<p>Namespaces get separated by <tt>:</tt>, e.g. <tt>Manual:Page1</tt><br />If the page already exists, it will be opened for editing.</p>";

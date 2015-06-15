@@ -1,10 +1,5 @@
 <?php
 
-if (!defined('INC_PATH')) {
-	define ('INC_PATH', realpath(dirname(__FILE__).'/../../').'/');
-}
-require_once INC_PATH.'piwo-v0.2/lib/wiki/WikiPluginHandler.php';
-
 class PluginText implements WikiPluginHandler {
 	
 	public function getPluginName() {

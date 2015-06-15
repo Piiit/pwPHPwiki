@@ -1,11 +1,5 @@
 <?php
 
-if (!defined('INC_PATH')) {
-	define ('INC_PATH', realpath(dirname(__FILE__).'/../../').'/');
-}
-require_once INC_PATH.'piwo-v0.2/lib/modules/ModuleHandler.php';
-require_once INC_PATH.'piwo-v0.2/lib/modules/Module.php';
-
 class ShowPagesModule extends Module implements ModuleHandler, MenuItemProvider {
 	
 	public function __construct() {
@@ -21,7 +15,7 @@ class ShowPagesModule extends Module implements ModuleHandler, MenuItemProvider 
 	}
 
 	public function execute() {
-		$id = pw_wiki_getid();
+		$id = WikiTools::getCurrentID();
 		$path = WIKISTORAGE.$id->getFullNSPath();
 		
 		$files = array();
