@@ -1,5 +1,5 @@
 = Fotos =
-<right><border>Inhalt:\\~~TOC~~</border></right>
+<right><border>Inhalt:\\{{wiki.TOC}}</border></right>
 <left>
 <border>
 Werbefrei! \\
@@ -90,7 +90,7 @@ Installiert Firefox und [https://addons.mozilla.org/firefox/downloads/latest/186
 = Unsere Reis(e)-Route =
   * [http://maps.google.com.my/maps?f=d&source=s_d&saddr=Bangkok+Thailand&daddr=Koh+Samui+Thailand+to:Krabi+Thailand+to:Koh+Phi+Phi+Don+Thailand+to:Langkawi,+Kedah+to:kuala+lumpur+to:Singapore+to:Jakarta,+Indonesia+to:Padang+Bai,+Bali,+Indonesia+to:Gunung+Agung,+Bali,+Indonesia&geocode=FRtn0QAdSCX9BSnzYQ0oMmAdMTEgSOJdsgABAQ%3BFVEkkQAdGRb2BSkvXKXRTfFUMDHdURYLQhENJw%3BFY3jewAdpiroBSkJk38teY1RMDGQTDYsvCMCAQ%3BFfwndgAdaDLjBSm1Ek87w95RMDFCFy3k8em_8Q%3BFWR8YAAdhKnzBSnzjUXzD3lMMDGubtT1rNWuUA%3BFbvlLwAdR54PBinn6u8Bx0nMMTF9KBwvW47Z9A%3BFZOhFAAdPCowBil1k4uKIxHaMTHE9atSz2l4iA%3BFSg4of8d9FNeBimdS-NF6fNpLjGihtfaD79xUw%3BFUnSff8dhIPiBilHI6WIaA7SLTEQGYPK-wsDBQ%3BFdCWgP8d4GPiBikNbzOtHwPSLTFxM8MDAXx4JA&hl=en&mra=pr&sll=4.759597,106.946329&sspn=53.176857,106.787109&ie=UTF8&t=h&z=4 Von Bangkok bis Bali]
   * [http://maps.google.com.my/maps?f=d&source=s_d&saddr=Saigon,+Ho+Chi+Minh+City,+Vietnam&daddr=Mui+NE,+Vietnam+to:Da+Lat,+Lam+Dong,+Vietnam+to:Nha+Trang,+Khanh+Hoa,+Vietnam+to:Qui+Nhon,+Binh+Dinh,+Vietnam+to:Kon+Tum,+Vietnam+to:Hoi+An,+Quang+Nam,+Vietnam+to:Da+Nang,+Vietnam+to:Hue,+Thua+Thien-Hue,+Vietnam&geocode=FQwspAAdYopbBinRPY0uKSl1MTErETx3rVpf8Q%3BFVXUpgAdxUV0Bim1lnx_TI52MTEkBwLBcmtAGg%3BFcxFtgAd9bF2BimxiAny_hJxMTEw-StniyJfrQ%3BFQPZugAdbT6CBilviMwReGdwMTG53B6oCrxLXA%3BFQsQ0gAdtcSCBinZq25zZWxvMTFZ1fNajjRi0w%3BFeV42wAd5bFvBikvmTY5l_9rMTHvT-ztlL8XmA%3BFUVc8gAdFQl1Bil7OjXh1A1CMTGjzN9eQzbjCg%3BFXPt9AAdcTpzBikTKiWSxxlCMTGHZENEoOMU_A%3BFWU2-wAdvpxpBilfk6fhFaFBMTG3x7Vwr1A7vw&hl=en&mra=pr&sll=4.759597,106.946329&sspn=53.176857,106.787109&ie=UTF8&ll=12.511665,107.468262&spn=13.484341,26.696777&t=h&z=6 Vietnam]
-  * ...den Rest findest du [[reise:route|hier]]
+  * ...den Rest findest du [[route|hier]]
 
 
 = Schulbücher für Laotische Kinder =

@@ -20,7 +20,7 @@ class PluginDate implements WikiPluginHandler {
 	public function run(Parser $parser, Node $node, $categories, $parameters) {
 	
 		if ($categories == null) {
-			throw new Exception("Plugin '".$this->getPluginName()."': No default command specified.");
+			return nop("Plugin '".$this->getPluginName()."': No default command specified.");
 		}
 		
 		$out = null;

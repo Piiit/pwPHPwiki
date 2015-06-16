@@ -1,9 +1,9 @@
 <code>
-[[edit>{{ID}}]] \\
-[[edit>{{ID}}|bearbeiten]] \\
-[[edit>{{ID}}|{{ID}} bearbeiten]]
+[[edit>{{wiki.ID}}]] \\
+[[edit>{{wiki.ID}}|bearbeiten]] \\
+[[edit>{{wiki.ID}}|{{wiki.ID}} bearbeiten]]
 </code>
 
-[[edit>{{ID}}]] \\
-[[edit>{{ID}}|bearbeiten]] \\
-[[edit>{{ID}}|{{ID}} bearbeiten]]
+[[edit>{{wiki.ID}}]] \\
+[[edit>{{wiki.ID}}|bearbeiten]] \\
+[[edit>{{wiki.ID}}|{{wiki.ID}} bearbeiten]]

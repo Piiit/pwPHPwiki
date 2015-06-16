@@ -1,7 +1,7 @@
 WikiParser stress tester. Testing...
 = Inhaltsverzeichnis =
-$$ {{TOC}}
-~~TOC:wiki~~
+$$ {{wiki.TOC}}
+{{wiki.TOC}}
 
 = Heading =
 

@@ -198,9 +198,8 @@ class PluginWiki implements WikiPluginHandler {
 				/*
 				 * Count all wikipages within the current namespace.
 				 */
-				$path = FileTools::dirname($_SERVER['PHP_SELF']);
-				$out = count(glob($path."/*".WIKIFILEEXT));
-				return $out;
+				$path = PW_WIKI_PATH.WikiConfig::WIKISTORAGE.WikiTools::getCurrentID()->getFullNSPath();
+				return count(glob($path."/*".WikiConfig::WIKIFILEEXT));
 			break;
 			case 'full':
 				$id = WikiTools::getCurrentID();

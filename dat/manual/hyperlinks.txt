@@ -3,7 +3,7 @@
 = Hyperlinks =
 == Interne und externe Links ==
 Wiki-Links haben einen Namensraum, einen Namen, Kapitelnamen und optional einen Titel.\\
-Zum Beispiel liegt dieser Wikitext im Namespace ''{{wiki.NS}}'' (komplett: ''{{wiki.FULLNS}}'') und heißt ''{{wiki.PAGE}}''. \\ 
+Zum Beispiel liegt dieser Wikitext im Namespace ''{{wiki.NS}}'' (komplett: ''{{wiki.NS.FULL}}'') und heißt ''{{wiki.PAGE}}''. \\ 
 Daraus ergibt sich die vollständige ID: ''{{wiki.ID}}''.
 
 ^ Was es ist ^ Was du schreibst ^ Wie es dargestellt wird 

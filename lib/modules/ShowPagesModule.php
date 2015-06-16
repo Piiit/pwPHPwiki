@@ -65,7 +65,7 @@ class ShowPagesModule extends Module implements ModuleHandler, MenuItemProvider 
 			 * Do not show default namespace pages and template folders.
 			 */
 			if(($fileOrDir['NAME'] == WikiConfig::WIKINSDEFAULTPAGE && $fileOrDir['TYPE'] == "TEXT") ||
-			   ($fileOrDir['NAME'] == trim(WIKITEMPLATESNS, ":")) && $fileOrDir['TYPE'] == "DIR") {
+			   ($fileOrDir['NAME'] == trim(WikiConfig::WIKITEMPLATESNS, ":")) && $fileOrDir['TYPE'] == "DIR") {
 				continue;
 			}
 			
