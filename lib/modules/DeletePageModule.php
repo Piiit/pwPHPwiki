@@ -15,7 +15,7 @@ class DeletePageModule extends Module implements ModuleHandler, PermissionProvid
 	}
 
 	public function permissionGranted() {
-		$loginGroup = pw_wiki_getcfg("login", "group");
+		$loginGroup = WikiTools::getSessionInfo("login", "group");
 		return $loginGroup == "admin";
 	}
 
@@ -29,7 +29,7 @@ class DeletePageModule extends Module implements ModuleHandler, PermissionProvid
 		$id = WikiTools::getCurrentID();
 		
 		if (isset($_POST["delete"])) {
-			$filename = WIKISTORAGE.$id->getPath().WIKIFILEEXT; 
+			$filename = WikiConfig::WIKISTORAGE.$id->getPath().WikiConfig::WIKIFILEEXT; 
 	
 			try {
 				FileTools::removeFile($filename);
@@ -44,9 +44,9 @@ class DeletePageModule extends Module implements ModuleHandler, PermissionProvid
 // 		$out = StringTools::htmlIndent("<a href='?id=".$id->getIDAsUrl()."'>&laquo; Back</a><hr />");
 		
 		if($id->getPage() == "") {
-			$filename = WIKISTORAGE.$id->getPath().WIKINSDEFAULTPAGE.WIKIFILEEXT;
+			$filename = WikiConfig::WIKISTORAGE.$id->getPath().WikiConfig::WIKINSDEFAULTPAGE.WikiConfig::WIKIFILEEXT;
 			if(file_exists($filename)) {
-				$this->setDialog(GuiTools::dialogQuestion("Delete", "Do you want to delete the default page of the namespace '".$id->getFullNSAsHtmlEntities()."'?", "delete", "Yes", "cancel", "No", "id=".$id->getFullNS().WIKINSDEFAULTPAGE."&mode=$mode"));
+				$this->setDialog(GuiTools::dialogQuestion("Delete", "Do you want to delete the default page of the namespace '".$id->getFullNSAsHtmlEntities()."'?", "delete", "Yes", "cancel", "No", "id=".$id->getFullNS().WikiConfig::WIKINSDEFAULTPAGE."&mode=$mode"));
 			} 
 			$this->setNotification("Can not delete default page of this namespace. It is not present!".$filename);
 		} else {

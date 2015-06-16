@@ -15,7 +15,7 @@ class MoveModule extends Module implements ModuleHandler, PermissionProvider, Me
 	}
 	
 	public function permissionGranted() {
-		$loginGroup = pw_wiki_getcfg("login", "group");
+		$loginGroup = WikiTools::getSessionInfo("login", "group");
 		return $loginGroup == "admin";
 	}
 	
@@ -32,10 +32,10 @@ class MoveModule extends Module implements ModuleHandler, PermissionProvider, Me
 			try {
 				$newId = new WikiID(":".$_POST['newname'].":");
 				if($id->isNS()) {
-					FileTools::moveFolder(WIKISTORAGE.$id->getPath(), WIKISTORAGE.$newId->getPath());
+					FileTools::moveFolder(WikiConfig::WIKISTORAGE.$id->getPath(), WikiConfig::WIKISTORAGE.$newId->getPath());
 					$this->setDialog(GuiTools::dialogInfo("Move", "The namespace '".$id->getIDAsHtmlEntities()."' has been moved to '".$newId->getIDAsHtmlEntities()."'", "id=".$newId->getFullNSAsUrl()));
 				} else {
-					FileTools::moveFile(WIKISTORAGE.$id->getPath().WIKIFILEEXT, WIKISTORAGE.$newId->getPath());
+					FileTools::moveFile(WikiConfig::WIKISTORAGE.$id->getPath().WikiConfig::WIKIFILEEXT, WikiConfig::WIKISTORAGE.$newId->getPath());
 					$this->setDialog(GuiTools::dialogInfo("Move", "The page '".$id->getIDAsHtmlEntities()."' has been moved to '".$newId->getIDAsHtmlEntities()."'", "id=".$newId->getIDAsUrl()));
 				}
 			} catch (Exception $e) {

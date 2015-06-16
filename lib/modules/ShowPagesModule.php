@@ -16,7 +16,7 @@ class ShowPagesModule extends Module implements ModuleHandler, MenuItemProvider 
 
 	public function execute() {
 		$id = WikiTools::getCurrentID();
-		$path = WIKISTORAGE.$id->getFullNSPath();
+		$path = WikiConfig::WIKISTORAGE.$id->getFullNSPath();
 		
 		$files = array();
 		$dirs = array();
@@ -64,7 +64,7 @@ class ShowPagesModule extends Module implements ModuleHandler, MenuItemProvider 
 			/*
 			 * Do not show default namespace pages and template folders.
 			 */
-			if(($fileOrDir['NAME'] == WIKINSDEFAULTPAGE && $fileOrDir['TYPE'] == "TEXT") ||
+			if(($fileOrDir['NAME'] == WikiConfig::WIKINSDEFAULTPAGE && $fileOrDir['TYPE'] == "TEXT") ||
 			   ($fileOrDir['NAME'] == trim(WIKITEMPLATESNS, ":")) && $fileOrDir['TYPE'] == "DIR") {
 				continue;
 			}
@@ -92,7 +92,7 @@ class ShowPagesModule extends Module implements ModuleHandler, MenuItemProvider 
 	
 			
 			if ($fileOrDir['TYPE'] == "TEXT") {
-				if (pw_wiki_getcfg('login', 'group') == 'admin') {
+				if (WikiTools::getSessionInfo('login', 'group') == 'admin') {
 					$out .= "<a href='?id=".$encFullIDAsURL."&mode=edit'>Edit</a> | ";
 					$out .= "<a href='?id=".$encFullIDAsURL."&mode=deletepage'>Delete</a> | ";
 					$out .= "<a href='?id=".$encFullIDAsURL."&mode=rename'>Rename</a> | ";
@@ -102,7 +102,7 @@ class ShowPagesModule extends Module implements ModuleHandler, MenuItemProvider 
 				}
 			} else {
 				if ($fileOrDir['NAME'] != '..') {
-					if (pw_wiki_getcfg('login', 'group') == 'admin') {
+					if (WikiTools::getSessionInfo('login', 'group') == 'admin') {
 						$out .= "<a href='?id=".$encFullIDAsURL.":"."&mode=deletenamespace'>Delete</a> | ";
 						$out .= "<a href='?id=".$encFullIDAsURL.":"."&mode=rename'>Rename</a> | ";
 						$out .= "<a href='?id=".$encFullIDAsURL.":"."&mode=move'>Move</a>";

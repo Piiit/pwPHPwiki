@@ -27,8 +27,8 @@ class LoginModule extends Module implements ModuleHandler, MenuItemProvider {
 			$login = $_POST["username"];
 			$pass = $_POST["password"];
 
-			if (WIKIADMINUSER == $login && WIKIADMINPASSWORD == $pass) {
-				pw_wiki_setcfg(
+			if (WikiConfig::WIKIADMINUSER == $login && WikiConfig::WIKIADMINPASSWORD == $pass) {
+				WikiTools::setSessionInfo(
 					'login', 
 					array(
 						'user' => $login, 
@@ -38,7 +38,7 @@ class LoginModule extends Module implements ModuleHandler, MenuItemProvider {
 				$this->setNotification("Login successful!");
 				return;
 			} else { 
-				pw_wiki_setcfg(
+				WikiTools::setSessionInfo(
 					'login', 
 					array(
 						'user' => 'guest', 
@@ -50,12 +50,12 @@ class LoginModule extends Module implements ModuleHandler, MenuItemProvider {
 		}
 	
 		if (isset($_POST["logout"])) {
-			pw_wiki_setcfg('login', array('user' => 'guest', 'group' => 'users'));
+			WikiTools::setSessionInfo('login', array('user' => 'guest', 'group' => 'users'));
 			$this->setNotification("Logout successful");
 			return; 
 		}
 	
-		if (pw_wiki_getcfg('login', 'group') == 'admin') {
+		if (WikiTools::getSessionInfo('login', 'group') == 'admin') {
 			$this->setDialog(
 				GuiTools::dialogQuestion(
 					"Logout", "Do you want to logout?", 
@@ -85,8 +85,8 @@ class LoginModule extends Module implements ModuleHandler, MenuItemProvider {
 
 	//TODO how to return a non-link string?
 	public function getMenuText() {
-		if (pw_wiki_getcfg('login', 'group') == 'admin') {
-			$u = pw_wiki_getcfg('login', 'user');
+		if (WikiTools::getSessionInfo('login', 'group') == 'admin') {
+			$u = WikiTools::getSessionInfo('login', 'user');
 			return "Logout ($u)"; 
 		} 
 		return "Login";

@@ -13,7 +13,7 @@ class PluginWiki implements WikiPluginHandler {
 		 */
 		$parser->setUserInfo('wiki.file.type', $lexer->getOrigTextFileFormat()->getString());
 		$parser->setUserInfo('wiki.lexer.performance', $lexer->getExecutionTime());
-		$parser->setUserInfo('wiki.version', PIWOVERSION);
+		$parser->setUserInfo('wiki.version', WikiConfig::PIWOVERSION);
 		
 		/*
 		 * Create an index table to be used for headers and table of content
@@ -49,7 +49,7 @@ class PluginWiki implements WikiPluginHandler {
 			break;
 			case 'wrongid':
 				try { 
-					$wrongId = pw_wiki_getcfg('wrongid');
+					$wrongId = WikiTools::getSessionInfo('wrongid');
 					$out = pw_url2u($wrongId->getID());
 				} catch (Exception $e) {
 					$out = "";
@@ -60,7 +60,7 @@ class PluginWiki implements WikiPluginHandler {
 				$out = pw_url2u($id->getID()); 
 			break;
 			case 'startpage': 
-				$out = ':'.pw_url2u(WIKINSDEFAULTPAGE); 
+				$out = ':'.pw_url2u(WikiConfig::WIKINSDEFAULTPAGE); 
 			break;
 			
 			/*
@@ -100,10 +100,10 @@ class PluginWiki implements WikiPluginHandler {
 	
 		$id = WikiTools::getCurrentID();
 	
-		if($id->getID() == ":".WIKINSDEFAULTPAGE || $id->getID() == ":") {
+		if($id->getID() == ":".WikiConfig::WIKINSDEFAULTPAGE || $id->getID() == ":") {
 			$out = "Home";
 		} else {
-			$out = "<a href='?id=".pw_s2url(":".WIKINSDEFAULTPAGE)."'>Home</a>";
+			$out = "<a href='?id=".pw_s2url(":".WikiConfig::WIKINSDEFAULTPAGE)."'>Home</a>";
 		}
 	
 		$current_namespace = "";
@@ -116,7 +116,7 @@ class PluginWiki implements WikiPluginHandler {
 			}
 		}
 	
-		if($id->isNS() || $id->getPage() == WIKINSDEFAULTPAGE) {
+		if($id->isNS() || $id->getPage() == WikiConfig::WIKINSDEFAULTPAGE) {
 			return $out;
 		}
 	
@@ -248,9 +248,9 @@ class PluginWiki implements WikiPluginHandler {
 		// Parameter NOERR: Do not show error messages!
 		$error = in_array("NOERR", $cont);
 	
-		$path = WIKISTORAGE.$id->getFullNSPath();
+		$path = WikiConfig::WIKISTORAGE.$id->getFullNSPath();
 	
-		$wikiFiles = array_merge(glob($path."*/", GLOB_ONLYDIR), glob($path."*".WIKIFILEEXT));
+		$wikiFiles = array_merge(glob($path."*/", GLOB_ONLYDIR), glob($path."*".WikiConfig::WIKIFILEEXT));
 		sort($wikiFiles);
 	
 		// Titel werden nur ausgegeben, wenn Fehlermeldungen auch ausgegeben werden dürfen!
@@ -266,8 +266,8 @@ class PluginWiki implements WikiPluginHandler {
 		$out .= "<ul>";
 		$uniqueWikiLinks = array();
 		foreach($wikiFiles as $file) {
-			$curId = WikiID::fromPath($file, WIKISTORAGE, WIKIFILEEXT);
-			if($curId->getPage() == WIKINSDEFAULTPAGE) {
+			$curId = WikiID::fromPath($file, WikiConfig::WIKISTORAGE, WikiConfig::WIKIFILEEXT);
+			if($curId->getPage() == WikiConfig::WIKINSDEFAULTPAGE) {
 				continue;
 			}
 	

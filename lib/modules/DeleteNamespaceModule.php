@@ -15,7 +15,7 @@ class DeleteNamespaceModule extends Module implements ModuleHandler, PermissionP
 	}
 
 	public function permissionGranted() {
-		$loginGroup = pw_wiki_getcfg("login", "group");
+		$loginGroup = WikiTools::getSessionInfo("login", "group");
 		return $loginGroup == "admin";
 	}
 
@@ -34,7 +34,7 @@ class DeleteNamespaceModule extends Module implements ModuleHandler, PermissionP
 		}
 		
 		if (isset($_POST["delete"])) {
-			$filename = WIKISTORAGE.$id->getPath(); 
+			$filename = WikiConfig::WIKISTORAGE.$id->getPath(); 
 	
 			if (is_dir($filename)) {
 				

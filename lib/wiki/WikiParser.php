@@ -39,7 +39,6 @@ class WikiParser {
 			
 			if (class_exists($className)) {
 				$class = null;
-				TestingTools::debug("TEST: ".$className);
 				$interfaces = class_implements($className);
 				if (array_search('LexerRuleHandler', $interfaces)) {
 					$class = new $className;

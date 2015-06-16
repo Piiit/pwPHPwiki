@@ -15,7 +15,7 @@ class RenameModule extends Module implements ModuleHandler, PermissionProvider, 
 	}
 	
 	public function permissionGranted() {
-		$loginGroup = pw_wiki_getcfg("login", "group");
+		$loginGroup = WikiTools::getSessionInfo("login", "group");
 		return $loginGroup == "admin";
 	}
 	
@@ -31,14 +31,14 @@ class RenameModule extends Module implements ModuleHandler, PermissionProvider, 
 		if (isset($_POST["rename"])) {
 			try {
 				if($id->isNS()) {
-					$filename = WIKISTORAGE.$id->getPath();
+					$filename = WikiConfig::WIKISTORAGE.$id->getPath();
 					$newId = new WikiID($id->getFullNS()."..:".$_POST['newname'].":");
 					FileTools::renameFolder($filename, $newId->getPath());
 					$this->setDialog(GuiTools::dialogInfo("Rename", "The namespace '".$id->getIDAsHtmlEntities()."' has been renamed to '".$newId->getIDAsHtmlEntities()."'", "id=".$newId->getFullNSAsUrl()));
 				} else {
-					$filename = WIKISTORAGE.$id->getPath().WIKIFILEEXT;
+					$filename = WikiConfig::WIKISTORAGE.$id->getPath().WikiConfig::WIKIFILEEXT;
 					$newId = new WikiID($id->getFullNS()."..:".$_POST['newname']);
-					FileTools::renameFile($filename, $newId->getPath().WIKIFILEEXT);
+					FileTools::renameFile($filename, $newId->getPath().WikiConfig::WIKIFILEEXT);
 					$this->setDialog(GuiTools::dialogInfo("Rename", "The page '".$id->getIDAsHtmlEntities()."' has been renamed to '".$newId->getIDAsHtmlEntities()."'", "id=".$newId->getIDAsUrl()));
 				}
 			} catch (Exception $e) {

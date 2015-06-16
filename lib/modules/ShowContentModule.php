@@ -16,32 +16,27 @@ class ShowContentModule extends Module implements ModuleHandler {
 
 	public function execute() {
 		$id = WikiTools::getCurrentID();
-		$filepath = WIKISTORAGE.$id->getPath().WIKIFILEEXT;
-//  		TestingTools::inform("executingXXX: ".$id->getIDAsUrl());
-//  		TestingTools::inform(file_exists($filepath));
+		$filepath = WikiConfig::WIKISTORAGE.$id->getPath().WikiConfig::WIKIFILEEXT;
 
-
-		if($id->getPage() == WIKINSDEFAULTPAGE) {
-// 			TestingTools::inform($id);
+		if($id->getPage() == WikiConfig::WIKINSDEFAULTPAGE) {
 			header("Location: ?id=".$id->getFullNSAsUrl());
 		}
 		
-		
 		if($id->isNS()) {
-			$filepathNS = WIKISTORAGE.$id->getPath().WIKINSDEFAULTPAGE.WIKIFILEEXT;
+			$filepathNS = WikiConfig::WIKISTORAGE.$id->getPath().WikiConfig::WIKINSDEFAULTPAGE.WikiConfig::WIKIFILEEXT;
 			if(file_exists($filepathNS)) {
-				$wikitext = pw_wiki_get_parsed_file(new WikiID($id->getFullNS().WIKINSDEFAULTPAGE));
+				$wikitext = WikiTools::getParsedFile(new WikiID($id->getFullNS().WikiConfig::WIKINSDEFAULTPAGE));
 			} else {
-				$wikitext = pw_wiki_get_parsed_file(new WikiID(WIKITEMPLATESNS."namespace"));
+				$wikitext = WikiTools::getParsedFile(new WikiID(WikiConfig::WIKITEMPLATESNS."namespace"));
 			}
 		} elseif (file_exists($filepath)) {
-			$wikitext = pw_wiki_get_parsed_file($id);
+			$wikitext = WikiTools::getParsedFile($id);
 		} else {
-			$wikitext = pw_wiki_get_parsed_file(new WikiID(WIKITEMPLATESNS."notfound"));
+			$wikitext = WikiTools::getParsedFile(new WikiID(WikiConfig::WIKITEMPLATESNS."notfound"));
 		}
 			
 		//TODO make template filenames and paths configurable...
-		$body = file_get_contents(CFG_PATH."skeleton/wiki.tmpl");
+		$body = file_get_contents(WikiConfig::CONFIGPATH."/skeleton/wiki.tmpl");
 			
 // 		TestingTools::inform($wikitext);
 		$body = str_replace("{{wikitext}}", $wikitext, $body);

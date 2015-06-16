@@ -59,11 +59,9 @@ class InternalLink extends ParserRule implements ParserRuleHandler, LexerRuleHan
 		
 			$text = null;
 			$textNode = $linkPositionNode->getNextSibling();
-			TestingTools::inform($textNode);
 			if ($textNode != null) {
 				$text = $this->getTextFromNode($textNode);
 			}
-	 		TestingTools::inform($text);
 		
 			$found = true;
 			$jump = null;
@@ -121,7 +119,7 @@ class InternalLink extends ParserRule implements ParserRuleHandler, LexerRuleHan
 				}
 			} 
 	
-			$filename = WIKISTORAGE.$id->getPath().WIKIFILEEXT;;
+			$filename = WikiConfig::WIKISTORAGE.$id->getPath().WikiConfig::WIKIFILEEXT;;
 			if (!file_exists($filename) && !$linkModus) {
 				$linkModus = "edit";
 				$found = false;
@@ -130,7 +128,6 @@ class InternalLink extends ParserRule implements ParserRuleHandler, LexerRuleHan
 			if (!$text) {
 				$text = $linkPositionText;
 			}
-			TestingTools::inform($text);
 			$href = "?id=".pw_s2url($id->getID());
 		
 			if (!$id->hasAnchor()) {

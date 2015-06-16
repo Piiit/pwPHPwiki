@@ -15,7 +15,7 @@ class EditModule extends Module implements ModuleHandler, JavaScriptProvider, Pe
 	}
 
 	public function permissionGranted() {
-		$loginGroup = pw_wiki_getcfg("login", "group");
+		$loginGroup = WikiTools::getSessionInfo("login", "group");
 		return $loginGroup == "admin";
 	}
 	
@@ -23,14 +23,14 @@ class EditModule extends Module implements ModuleHandler, JavaScriptProvider, Pe
 		
 		$id = WikiTools::getCurrentID();
 		$data = "";
-		$filename = WIKISTORAGE.$id->getPath().WIKIFILEEXT;
+		$filename = WikiConfig::WIKISTORAGE.$id->getPath().WikiConfig::WIKIFILEEXT;
 		
 		if ($id->isNS()) {
-			$nsDefaultId = new WikiID($id->getFullNS().WIKINSDEFAULTPAGE);
+			$nsDefaultId = new WikiID($id->getFullNS().WikiConfig::WIKINSDEFAULTPAGE);
 			
 			header("Location: ?id=".$nsDefaultId->getIDAsUrl()."&mode=edit");
 			
-// 			$nsDefaultFilename = WIKISTORAGE.$nsDefaultId->getPath().WIKIFILEEXT;
+// 			$nsDefaultFilename = WikiConfig::WIKISTORAGE.$nsDefaultId->getPath().WikiConfig::WIKIFILEEXT;
 // 			if(file_exists($nsDefaultFilename)) {
 // 				$this->setNotification("Loading default namespace page! ".$nsDefaultFilename);
 // 				$filename = $nsDefaultFilename;
@@ -82,8 +82,8 @@ class EditModule extends Module implements ModuleHandler, JavaScriptProvider, Pe
 	
 	private function save (WikiID $id, $data) {
 	
-		$filename = WIKISTORAGE.$id->getPath().WIKIFILEEXT;
-		$dirname = WIKISTORAGE.$id->getFullNSPath();
+		$filename = WikiConfig::WIKISTORAGE.$id->getPath().WikiConfig::WIKIFILEEXT;
+		$dirname = WikiConfig::WIKISTORAGE.$id->getFullNSPath();
 		
 		try {
 			FileTools::createFolderIfNotExist($dirname);
@@ -91,7 +91,7 @@ class EditModule extends Module implements ModuleHandler, JavaScriptProvider, Pe
 			if(file_put_contents($filename, $data) === false) {
 				throw new Exception("Can not save '".$id->getIDAsHtmlEntities()."'. <br />Details: ".error_get_last()["message"]);
 			}
-			if(pw_wiki_getcfg("useCache")) {
+			if(WikiTools::getSessionInfo("useCache")) {
 				pw_wiki_create_cached_page($id);
 				$this->setNotification("Changes saved. Cache updated!");
 			} else {

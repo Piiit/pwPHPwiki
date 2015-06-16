@@ -15,7 +15,7 @@ class ConfigModule extends Module implements ModuleHandler, PermissionProvider, 
 	}
 
 	public function permissionGranted() {
-		$loginGroup = pw_wiki_getcfg("login", "group");
+		$loginGroup = WikiTools::getSessionInfo("login", "group");
 		return $loginGroup == "admin";
 	}
 	
@@ -29,7 +29,7 @@ class ConfigModule extends Module implements ModuleHandler, PermissionProvider, 
 		$id = WikiTools::getCurrentID();
 		
 		if (isset($_POST['clearsession'])) {
-			pw_wiki_unsetcfg();
+			WikiTools::unsetSessionInfo();
 			pw_wiki_loadconfig();
 			unset($_POST['clearsession']);
 			$this->setNotification("Session cleared!");
@@ -37,18 +37,18 @@ class ConfigModule extends Module implements ModuleHandler, PermissionProvider, 
 		}
 		
 		if (isset($_POST["config"])) {
-			pw_wiki_setcfg('debug', ArrayTools::getIfExistsNotNull(false, $_POST, 'debug'));
-			if (pw_wiki_getcfg('debug') == false) {
+			WikiTools::setSessionInfo('debug', ArrayTools::getIfExistsNotNull(false, $_POST, 'debug'));
+			if (WikiTools::getSessionInfo('debug') == false) {
 				TestingTools::debugOff();
 			}
-			pw_wiki_setcfg('useCache', ArrayTools::getIfExistsNotNull(false, $_POST, 'useCache'));
+			WikiTools::setSessionInfo('useCache', ArrayTools::getIfExistsNotNull(false, $_POST, 'useCache'));
 			$this->setNotification("Changes saved!");
 			return;
 		}
 		
 		$out = StringTools::htmlIndent("<a href='?id=".$id->getIDAsUrl()."'>&laquo; Back</a><hr />");
-		$entries = GuiTools::checkbox("Debug-Modus", "debug", pw_wiki_getcfg('debug'));
-		$entries .= GuiTools::checkbox("Use cache", "useCache", pw_wiki_getcfg('useCache'));
+		$entries = GuiTools::checkbox("Debug-Modus", "debug", WikiTools::getSessionInfo('debug'));
+		$entries .= GuiTools::checkbox("Use cache", "useCache", WikiTools::getSessionInfo('useCache'));
 		$entries .= GuiTools::button("Clear Session", "clearsession"); 
 		$this->setDialog($out.GuiTools::dialogQuestion($this->getMenuText(), $entries, "config", "OK", "cancel", "Cancel", "id=".$id->getIDAsUrl()."&mode=$mode"));
 	}

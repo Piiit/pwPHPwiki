@@ -15,7 +15,7 @@ class NewPageModule extends Module implements ModuleHandler, PermissionProvider,
 	}
 
 	public function permissionGranted() {
-		$loginGroup = pw_wiki_getcfg("login", "group");
+		$loginGroup = WikiTools::getSessionInfo("login", "group");
 		return $loginGroup == "admin";
 	}
 	

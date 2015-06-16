@@ -16,13 +16,13 @@ class ShowSourceModule extends Module implements ModuleHandler, MenuItemProvider
 
 	public function execute() {
 		$id = WikiTools::getCurrentID();
-		$filename = WIKISTORAGE.$id->getPath().WIKIFILEEXT;
+		$filename = WikiConfig::WIKISTORAGE.$id->getPath().WikiConfig::WIKIFILEEXT;
 	
 		$nsPageLoaded = false;
 		if (!file_exists($filename)) {
 			if($id->isNS()) {
-				$nsDefaultId = new WikiID($id->getFullNS().WIKINSDEFAULTPAGE);
-				$nsDefaultFilename = WIKISTORAGE.$nsDefaultId->getPath().WIKIFILEEXT;
+				$nsDefaultId = new WikiID($id->getFullNS().WikiConfig::WIKINSDEFAULTPAGE);
+				$nsDefaultFilename = WikiConfig::WIKISTORAGE.$nsDefaultId->getPath().WikiConfig::WIKIFILEEXT;
 				if(file_exists($nsDefaultFilename)) {
 					$this->setNotification("Loading default namespace page!");
 					$filename = $nsDefaultFilename;
@@ -54,7 +54,7 @@ class ShowSourceModule extends Module implements ModuleHandler, MenuItemProvider
 	}
 
 	public function getMenuAvailability() {
-		$loginGroup = pw_wiki_getcfg("login", "group");
+		$loginGroup = WikiTools::getSessionInfo("login", "group");
 		return $loginGroup != "admin"; 
 	}
 

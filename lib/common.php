@@ -1,57 +1,5 @@
 <?php
 
-function pw_wiki_getcfg($what = "", $subcat = "") {
-	
-	if (!is_array($_SESSION['pw_wiki'])) {
-		throw new Exception("Session pw_wiki is not an ARRAY!");
-	}
-
-	if ($what == "")
-		return $_SESSION['pw_wiki'];
-
-	if (!array_key_exists($what, $_SESSION['pw_wiki'])) {
-		throw new Exception("Session pw_wiki has no category '$what'!");
-	}
-
-	if ($subcat == "")
-		return $_SESSION['pw_wiki'][$what];
-
-	if (!array_key_exists($subcat, $_SESSION['pw_wiki'][$what])) {
-		throw new Exception("Session pw_wiki has no sub-category '$subcat' within '$what'!");
-	}
-
-	return $_SESSION['pw_wiki'][$what][$subcat];
-}
-
-function pw_wiki_setcfg($key, $value) {
-	$_SESSION['pw_wiki'][$key] = $value;
-}
-
-function pw_wiki_unsetcfg($key = "") {
-	if($key == "") {
-		unset($_SESSION['pw_wiki']);
-	} else {
-		unset($_SESSION['pw_wiki'][$key]);
-	}
-}
-
-function pw_wiki_loadconfig() {
-	
-	ini_set('auto_detect_line_endings', false);
-	
-	if (! isset($_SESSION['pw_wiki'])) {
-		global $WIKIDEFAULTCONFIG;
-		$config  = $WIKIDEFAULTCONFIG;
-		if (isset($_SESSION['pw_wiki']) && is_array($_SESSION['pw_wiki'])) {
-			$_SESSION['pw_wiki'] = array_merge($_SESSION['pw_wiki'], $config);
-		} else {
-			$_SESSION['pw_wiki'] = $config;
-		}
-	}
-}
-
-
-
 function pw_wiki_getmenu($id, $mode, Collection $modules) {
 	$o = "";
 	foreach ($modules->getArray() as $module) {
@@ -65,9 +13,6 @@ function pw_wiki_getmenu($id, $mode, Collection $modules) {
 
 	return $o;
 }
-
-
-
 
 function pw_wiki_file2editor($data) {
 	$data = FileTools::setTextFileFormat($data, new TextFileFormat(TextFileFormat::UNIX));
