@@ -1,11 +1,12 @@
 {{var|var}} \\
-{{var|var = 7}}{{var|var}} \\
+{{var|var = 7}} \\
+{{var|var}} \\
 {{var|i}} \\
 {{var|i = 3}} \\
 {{var|i}} \\
 {{var|i = 4}} \\
 {{var|i}} \\
-{{var|varoe = "Hallo Cavallo"}}Teste Variablen: {{var|varoe}} \\
+{{var|varoe = "Hallo <br /> Cavallo"}}Teste Variablen: {{var|varoe}} \\
 {{var|pfad=Die ID lautet {{wiki.ID}} und liegt im NS '{{wiki.NS}}'.}} \\
 {{var|pfad}} \\
 {{var
