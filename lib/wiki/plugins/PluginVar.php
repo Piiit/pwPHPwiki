@@ -1,12 +1,14 @@
 <?php
 
-/*
- * TODO: varvalues > array syntax for values
- * TODO: varnames  > error handling for illegal variable names (define clear regexp for varnames
- * TODO: varvalues > multiline value support
- */
 class PluginVar implements WikiPluginHandler {
 	
+	/*
+	 * Valid variable names:
+	 *   1) case-insensitive
+	 *   2) start with a _ or a letter
+	 *   3) continue with letters, digits or _ (underscore)
+	 */
+	const VALID_VARNAME = "^[a-z_]+([a-z0-9_]*?)$";
 	private static $variables = array();
 	
 	public function getPluginName() {
@@ -30,47 +32,69 @@ class PluginVar implements WikiPluginHandler {
 				$token = new ParserRule($parameterNode, $parser);
 				$text = $token->getText();
 				
-				$matches = array();
+				$matches = preg_split("# *= *#", $text, 2, PREG_SPLIT_NO_EMPTY);
+				$varname = utf8_strtolower(utf8_trim($matches[0]));
+				$value = isset($matches[1]) ? utf8_trim($matches[1]) : null;
 				
 				/*
-				 * Creating or updating variables.
-				 * FIXME This is a bad regexp... what is allowed exactly for varnames and values
+				 * Check if an array index is specified
 				 */
-				if (preg_match("#([\w]+) *= *(.*)#i", $text, $matches)) {
-					$varname = utf8_strtolower(utf8_trim($matches[1]));
-					$value = utf8_trim($matches[2]);
-					self::$variables[$varname] = $value;
-					TestingTools::debug("Variable: adding '$varname' with value '$value'");
-					
-					/*
-					 * Nothing to output, just store variables and values...
-					 */
-					return;
+				$index = null;
+				if(preg_match("#(.*)\[([0-9]+?)\]#is", $varname, $matches)) {
+					$index = $matches[2];
+					$varname = $matches[1];
 				}
-
+				
 				/*
-				 * Returning existing variable values.
+				 * Check for illegal variable names.
 				 */
-				$varname = utf8_strtolower($text);
-				if (isset(self::$variables[$varname])) {
-    				return self::$variables[$varname];
+				if (! self::isValidVarname($varname)) {
+					return nop("VARIABLE '$varname' is not a valid variable name.");
+				}
+				
+				/*
+				 * Return existing variable values, if no set operator
+				 * is present (i.e., =).
+				 */
+				if ($value === null) {
+					if (isset(self::$variables[$varname])) {
+						$vars = self::$variables[$varname];
+						
+						/*
+						 * Value is an array.
+						 */
+						if(is_array($vars)) {
+							if(array_key_exists($index, $vars)) {
+								return $vars[$index];
+							}
+							return nop("VARIABLE '$varname' is an array, but has no index=$index.");
+						}
+						
+						/*
+						 * Value is a simple datatype.
+						 */
+						return $vars;
+					} 
+					return nop("VARIABLE '$varname' is undefined.");					
 				} 
 				
 				/*
-				 * Nothing found, check for illegal variable names.
-				 * FIXME This should be done at the beginning, according to a unique clear regexp.
+				 * Create or update variables. 
+				 * Note: strings with length 0 are allowed
 				 */
-				if (preg_match("#(.*) *= *(.*)#i", $text, $matches)) {
-					$varname = utf8_trim($matches[1]);
-					return nop("VARIABLE '$varname' contains illegal characters.");
+				if(preg_match("#\[(.*)\]#is", $value, $matches)) {
+					self::$variables[$varname] = explode(",", $matches[1]);
+					TestingTools::debug("Variable: adding '$varname' with array '$matches[1]'");
+				} else {
+					self::$variables[$varname] = $value;
+					TestingTools::debug("Variable: adding '$varname' with value '$value'");
 				}
 			}
 		}
-		
-		/*
-		 * Legal variable name, but not found in variable collection.
-		 */
-		return nop("VARIABLE '$varname' is undefined.");
+	}
+	
+	private static function isValidVarname($name) {
+		return (strlen($name) > 0 && preg_match("#".self::VALID_VARNAME."#is", $name));
 	}
 
 }

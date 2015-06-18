@@ -19,7 +19,7 @@ class Strike extends ParserRule implements ParserRuleHandler, LexerRuleHandler {
 	}
 
 	public function getPattern() {
-		return new Pattern($this->getName(), Pattern::TYPE_SECTION, '\-\+', '\+\-');
+		return new Pattern($this->getName(), Pattern::TYPE_SECTION, '~~', '~~');
 	}
 	
 	public function getAllowedModes() {
