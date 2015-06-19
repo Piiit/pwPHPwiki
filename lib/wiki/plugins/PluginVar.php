@@ -5,7 +5,7 @@ class PluginVar implements WikiPluginHandler {
 	/*
 	 * Valid variable names:
 	 *   1) case-insensitive
-	 *   2) start with a _ or a letter
+	 *   2) start with a _ (underscore) or a letter
 	 *   3) continue with letters, digits or _ (underscore)
 	 */
 	const VALID_VARNAME = "^[a-z_]+([a-z0-9_]*?)$";

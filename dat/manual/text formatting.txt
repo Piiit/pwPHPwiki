@@ -9,7 +9,7 @@
 | Emphasized background\\--([[#Emphasized background|additional usage possibilities]])--             | ''%%<hi>Emphasized background</hi>%%''                          | <hi>Emphasized background</hi>                                         
 | Emphasized text                          | ''%%<em>Emphasized text</em>%%''                                 | <em>Emphasized text</em>                                         
 | Not important text                              | ''%%<lo>Not important text</lo>%%''                                     | <lo>Not important text</lo>                                         
-| crossed out                               | ''%%-+crossed out+-%%''                                           | -+crossed out+-                                      
+| crossed out                               | ''%%~~crossed out~~%%''                                           | ~~crossed out~~                                      
 | subscript                                  | ''%%H_{2}O%%'' or ''%%H_{16}%%''                                    | H_{2}O or H_{16}                          
 | superscript                                  | ''%%dm^{3}%%'' or ''%%x^{-5}%%''                                    | dm^{3} or x^{-5}       
 | unformatted  (default)                      | ''%%<nowiki>**I am not fad!**</nowiki>%%''                      | <nowiki>**I am not fad!**</nowiki>

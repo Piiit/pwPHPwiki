@@ -202,7 +202,7 @@ class WikiTools {
 			$treePrinter = new TreeWalker ( $wikiParser->getLexer ()->getRootNode (), new TreePrinter () );
 			TestingTools::inform ( "PARSE TREE: \n" . StringTools::showLineNumbers ( $treePrinter->getResult () ) );
 			TestingTools::inform ( "SPEED: Text parsed in " . $wikiParser->getLexer()->getExecutionTime()." seconds!" );
-			TestingTools::inform ( "SOURCE:\n" . StringTools::showLineNumbers ( $wikiParser->getSource () ) );
+			TestingTools::inform ( "SOURCE:\n" . StringTools::showLineNumbers ( pw_s2e($wikiParser->getSource())));
 	
 			//$debugString .= "<h3>Debug: Parser - Schritte (TODO: ADAPT TO NEW LEXER)</h3>";
 			//$lexer->printDebugInfo(1,1);
